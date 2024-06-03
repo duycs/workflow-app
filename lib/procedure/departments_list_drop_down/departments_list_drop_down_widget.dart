@@ -88,13 +88,12 @@ class _DepartmentsListDropDownWidgetState
           }()},{\"status\":{\"_eq\":\"published\"}}]}',
         );
         if ((_model.apiResultList?.succeeded ?? true)) {
-          setState(() {
-            _model.data = DepartmentListDataStruct.maybeFromMap(
-                    (_model.apiResultList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DepartmentListStruct>();
-          });
+          _model.data = DepartmentListDataStruct.maybeFromMap(
+                  (_model.apiResultList?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<DepartmentListStruct>();
+          setState(() {});
         }
       } else {
         setState(() {});

@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,9 +7,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/order/order_update/order_update_widget.dart';
 import '/training/order/payment/payment_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'order_detail_model.dart';
@@ -186,6 +187,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 60.0,
@@ -213,64 +215,29 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          widget.name!,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 4.0, 0.0, 2.0),
-                                          child: Text(
-                                            '',
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.name!,
+                                            maxLines: 3,
                                             style: FlutterFlowTheme.of(context)
-                                                .labelSmall
+                                                .bodyLarge
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ),
-                                        RatingBar.builder(
-                                          onRatingUpdate: (newValue) =>
-                                              setState(() => _model
-                                                  .ratingBarValue = newValue),
-                                          itemBuilder: (context, index) => Icon(
-                                            Icons.star_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                          ),
-                                          direction: Axis.horizontal,
-                                          initialRating:
-                                              _model.ratingBarValue ??= 3.0,
-                                          unratedColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .accent3,
-                                          itemCount: 5,
-                                          itemSize: 12.0,
-                                          glowColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .tertiary,
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -294,15 +261,19 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                              Text(
-                                widget.author!,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              Expanded(
+                                child: Text(
+                                  widget.author!,
+                                  textAlign: TextAlign.end,
+                                  maxLines: 2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
                               ),
                             ],
                           ),
@@ -896,30 +867,60 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                           Expanded(
                             child: FFButtonWidget(
                               onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return WebViewAware(
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: PaymentWidget(
-                                          orderId: widget.orderId!,
-                                          private: widget.private == '0'
-                                              ? 'private0'
-                                              : 'private1',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
+                                var shouldSetState = false;
+                                _model.orderUpdateStatus1 =
+                                    await action_blocks.tokenReload(context);
+                                shouldSetState = true;
+                                if (_model.orderUpdateStatus1!) {
+                                  _model.apiResultQrCodeCreate =
+                                      await OrderGroup.qrCodeCall.call(
+                                    accessToken: FFAppState().accessToken,
+                                    orderId: widget.orderId,
+                                  );
+                                  shouldSetState = true;
+                                  if ((_model
+                                          .apiResultQrCodeCreate?.succeeded ??
+                                      true)) {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return WebViewAware(
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: PaymentWidget(
+                                              orderId: widget.orderId!,
+                                              private: widget.private == '0'
+                                                  ? 'private0'
+                                                  : 'private1',
+                                              qr: (_model.apiResultQrCodeCreate
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+
+                                    Navigator.pop(context);
+                                  } else {
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
+                                } else {
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (shouldSetState) setState(() {});
                               },
-                              text: 'Hoàn thành',
+                              text: 'Thanh toán',
                               icon: const Icon(
-                                Icons.save,
+                                Icons.payments_outlined,
                                 size: 15.0,
                               ),
                               options: FFButtonOptions(

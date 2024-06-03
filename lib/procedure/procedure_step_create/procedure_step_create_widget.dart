@@ -46,13 +46,12 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.updateStepsEditStruct(
-          (e) => e
-            ..executeType = 'manual'
-            ..operations = [],
-        );
-      });
+      _model.updateStepsEditStruct(
+        (e) => e
+          ..executeType = 'manual'
+          ..operations = [],
+      );
+      setState(() {});
     });
 
     _model.textNameTextController ??= TextEditingController();
@@ -153,13 +152,11 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                               '_model.textNameTextController',
                               const Duration(milliseconds: 2000),
                               () async {
-                                setState(() {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..name =
-                                          _model.textNameTextController.text,
-                                  );
-                                });
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..name = _model.textNameTextController.text,
+                                );
+                                setState(() {});
                               },
                             ),
                             autofocus: false,
@@ -193,13 +190,12 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                   ? InkWell(
                                       onTap: () async {
                                         _model.textNameTextController?.clear();
-                                        setState(() {
-                                          _model.updateStepsEditStruct(
-                                            (e) => e
-                                              ..name = _model
-                                                  .textNameTextController.text,
-                                          );
-                                        });
+                                        _model.updateStepsEditStruct(
+                                          (e) => e
+                                            ..name = _model
+                                                .textNameTextController.text,
+                                        );
+                                        setState(() {});
                                         setState(() {});
                                       },
                                       child: const Icon(
@@ -227,13 +223,12 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                               '_model.textDscriptionTextController',
                               const Duration(milliseconds: 2000),
                               () async {
-                                setState(() {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..description = _model
-                                          .textDscriptionTextController.text,
-                                  );
-                                });
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..description = _model
+                                        .textDscriptionTextController.text,
+                                );
+                                setState(() {});
                               },
                             ),
                             autofocus: false,
@@ -267,14 +262,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                       onTap: () async {
                                         _model.textDscriptionTextController
                                             ?.clear();
-                                        setState(() {
-                                          _model.updateStepsEditStruct(
-                                            (e) => e
-                                              ..description = _model
-                                                  .textDscriptionTextController
-                                                  .text,
-                                          );
-                                        });
+                                        _model.updateStepsEditStruct(
+                                          (e) => e
+                                            ..description = _model
+                                                .textDscriptionTextController
+                                                .text,
+                                        );
+                                        setState(() {});
                                         setState(() {});
                                       },
                                       child: const Icon(
@@ -363,17 +357,16 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                     );
                                   });
                                 }
-                                setState(() {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..timeOperate = dateTimeFormat(
-                                        'Hm',
-                                        _model.datePicked,
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      ),
-                                  );
-                                });
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..timeOperate = dateTimeFormat(
+                                      'Hm',
+                                      _model.datePicked,
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    ),
+                                );
+                                setState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -430,11 +423,10 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                         size: 20.0,
                                       ),
                                       onPressed: () async {
-                                        setState(() {
-                                          _model.updateStepsEditStruct(
-                                            (e) => e..timeOperate = null,
-                                          );
-                                        });
+                                        _model.updateStepsEditStruct(
+                                          (e) => e..timeOperate = null,
+                                        );
+                                        setState(() {});
                                       },
                                     ),
                                 ].divide(const SizedBox(width: 1.0)),
@@ -503,27 +495,26 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                           '_model.estimateDayTextController',
                                           const Duration(milliseconds: 2000),
                                           () async {
-                                            setState(() {
-                                              _model.updateStepsEditStruct(
-                                                (e) => e
-                                                  ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateHourTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateMinuteTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateMinuteTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateDayTextController.text != ''
-                                                          ? _model.estimateDayTextController.text
-                                                          : '0'),
-                                              );
-                                            });
+                                            _model.updateStepsEditStruct(
+                                              (e) => e
+                                                ..estimateInSecond = functions.timeToMinute(
+                                                    _model.estimateHourTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateHourTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateMinuteTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateMinuteTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateDayTextController.text != ''
+                                                        ? _model.estimateDayTextController.text
+                                                        : '0'),
+                                            );
+                                            setState(() {});
                                           },
                                         ),
                                         autofocus: false,
@@ -611,27 +602,26 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                           '_model.estimateHourTextController',
                                           const Duration(milliseconds: 2000),
                                           () async {
-                                            setState(() {
-                                              _model.updateStepsEditStruct(
-                                                (e) => e
-                                                  ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateHourTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateMinuteTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateMinuteTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateDayTextController.text != ''
-                                                          ? _model.estimateDayTextController.text
-                                                          : '0'),
-                                              );
-                                            });
+                                            _model.updateStepsEditStruct(
+                                              (e) => e
+                                                ..estimateInSecond = functions.timeToMinute(
+                                                    _model.estimateHourTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateHourTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateMinuteTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateMinuteTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateDayTextController.text != ''
+                                                        ? _model.estimateDayTextController.text
+                                                        : '0'),
+                                            );
+                                            setState(() {});
                                           },
                                         ),
                                         autofocus: false,
@@ -720,27 +710,26 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                           '_model.estimateMinuteTextController',
                                           const Duration(milliseconds: 2000),
                                           () async {
-                                            setState(() {
-                                              _model.updateStepsEditStruct(
-                                                (e) => e
-                                                  ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateHourTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateMinuteTextController.text !=
-                                                                  ''
-                                                          ? _model
-                                                              .estimateMinuteTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.estimateDayTextController.text != ''
-                                                          ? _model.estimateDayTextController.text
-                                                          : '0'),
-                                              );
-                                            });
+                                            _model.updateStepsEditStruct(
+                                              (e) => e
+                                                ..estimateInSecond = functions.timeToMinute(
+                                                    _model.estimateHourTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateHourTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateMinuteTextController.text !=
+                                                                ''
+                                                        ? _model
+                                                            .estimateMinuteTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.estimateDayTextController.text != ''
+                                                        ? _model.estimateDayTextController.text
+                                                        : '0'),
+                                            );
+                                            setState(() {});
                                           },
                                         ),
                                         autofocus: false,
@@ -898,15 +887,14 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
-                                              setState(() {
-                                                _model.updateStepsEditStruct(
-                                                  (e) => e
-                                                    ..updateOperations(
-                                                      (e) => e.removeAt(
-                                                          operationsViewIndex),
-                                                    ),
-                                                );
-                                              });
+                                              _model.updateStepsEditStruct(
+                                                (e) => e
+                                                  ..updateOperations(
+                                                    (e) => e.removeAt(
+                                                        operationsViewIndex),
+                                                  ),
+                                              );
+                                              setState(() {});
                                             },
                                           ),
                                         ].divide(const SizedBox(width: 4.0)),
@@ -964,14 +952,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                               onChanged: (val) async {
                                                 setState(() => _model
                                                     .actionTypeValue = val);
-                                                setState(() {
-                                                  _model.updateStepsEditStruct(
-                                                    (e) => e
-                                                      ..actionType =
-                                                          _model.actionTypeValue
-                                                      ..operations = [],
-                                                  );
-                                                });
+                                                _model.updateStepsEditStruct(
+                                                  (e) => e
+                                                    ..actionType =
+                                                        _model.actionTypeValue
+                                                    ..operations = [],
+                                                );
+                                                setState(() {});
                                                 setState(() {
                                                   _model
                                                       .operationsTextTextController
@@ -1018,21 +1005,20 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                 _model.actionTypeValue != '') {
                                               if ('${_model.actionTypeValue}' ==
                                                   'to_do_list') {
-                                                setState(() {
-                                                  _model.updateStepsEditStruct(
-                                                    (e) => e
-                                                      ..updateOperations(
-                                                        (e) => e.add(
-                                                            OperationsStruct(
-                                                          content: _model
-                                                              .operationsTextTextController
-                                                              .text,
-                                                          actionType: _model
-                                                              .actionTypeValue,
-                                                        )),
-                                                      ),
-                                                  );
-                                                });
+                                                _model.updateStepsEditStruct(
+                                                  (e) => e
+                                                    ..updateOperations(
+                                                      (e) => e
+                                                          .add(OperationsStruct(
+                                                        content: _model
+                                                            .operationsTextTextController
+                                                            .text,
+                                                        actionType: _model
+                                                            .actionTypeValue,
+                                                      )),
+                                                    ),
+                                                );
+                                                setState(() {});
                                                 setState(() {
                                                   _model
                                                       .operationsTextTextController
@@ -1063,22 +1049,20 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                     },
                                                   );
                                                 } else {
-                                                  setState(() {
-                                                    _model
-                                                        .updateStepsEditStruct(
-                                                      (e) => e
-                                                        ..updateOperations(
-                                                          (e) => e.add(
-                                                              OperationsStruct(
-                                                            content: _model
-                                                                .operationsTextTextController
-                                                                .text,
-                                                            actionType: _model
-                                                                .actionTypeValue,
-                                                          )),
-                                                        ),
-                                                    );
-                                                  });
+                                                  _model.updateStepsEditStruct(
+                                                    (e) => e
+                                                      ..updateOperations(
+                                                        (e) => e.add(
+                                                            OperationsStruct(
+                                                          content: _model
+                                                              .operationsTextTextController
+                                                              .text,
+                                                          actionType: _model
+                                                              .actionTypeValue,
+                                                        )),
+                                                      ),
+                                                  );
+                                                  setState(() {});
                                                   setState(() {
                                                     _model
                                                         .operationsTextTextController
@@ -1173,6 +1157,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                               context,
                                                               item: item,
                                                             );
+
                                                             setState(() {});
                                                           },
                                                         ),
@@ -1207,11 +1192,10 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
 
                                               return;
                                             } else {
-                                              setState(() {
-                                                _model.updateStepsEditStruct(
-                                                  (e) => e..operations = [],
-                                                );
-                                              });
+                                              _model.updateStepsEditStruct(
+                                                (e) => e..operations = [],
+                                              );
+                                              setState(() {});
                                               await showModalBottomSheet(
                                                 isScrollControlled: true,
                                                 backgroundColor:
@@ -1240,6 +1224,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                             context,
                                                             item: item,
                                                           );
+
                                                           setState(() {});
                                                         },
                                                       ),
@@ -1391,6 +1376,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                       context,
                                                       item: item,
                                                     );
+
                                                     setState(() {});
                                                   },
                                                 ),
@@ -1546,11 +1532,10 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                 size: 20.0,
                                               ),
                                               onPressed: () async {
-                                                setState(() {
-                                                  _model
-                                                      .removeAtIndexFromStaffsStepNv(
-                                                          staffsListViewIndex);
-                                                });
+                                                _model
+                                                    .removeAtIndexFromStaffsStepNv(
+                                                        staffsListViewIndex);
+                                                setState(() {});
                                               },
                                             ),
                                           ].divide(const SizedBox(width: 4.0)),
@@ -1593,15 +1578,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                   dataPar: _model
                                                       .stafStepDepartments,
                                                   callback: (item) async {
-                                                    setState(() {
-                                                      _model.stafStepDepartments =
-                                                          [];
-                                                    });
-                                                    setState(() {
-                                                      _model.stafStepDepartments =
-                                                          item!.toList().cast<
-                                                              DepartmentsIdStruct>();
-                                                    });
+                                                    _model.stafStepDepartments =
+                                                        [];
+                                                    setState(() {});
+                                                    _model.stafStepDepartments =
+                                                        item!.toList().cast<
+                                                            DepartmentsIdStruct>();
+                                                    setState(() {});
                                                   },
                                                 ),
                                               ),
@@ -1747,10 +1730,10 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                               size: 20.0,
                                             ),
                                             onPressed: () async {
-                                              setState(() {
-                                                _model.removeAtIndexFromStafStepDepartments(
-                                                    departmentsListViewIndex);
-                                              });
+                                              _model
+                                                  .removeAtIndexFromStafStepDepartments(
+                                                      departmentsListViewIndex);
+                                              setState(() {});
                                             },
                                           ),
                                         ].divide(const SizedBox(width: 4.0)),
@@ -1817,17 +1800,32 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                 !_model.formKey.currentState!.validate()) {
                               return;
                             }
-                            setState(() {
-                              _model.staffAlias = null;
-                            });
+                            _model.staffAlias = null;
+                            setState(() {});
                             if (_model.stepsEdit!.operations.isNotEmpty) {
                               while (_model.loop! <
                                   _model.stafStepDepartments.length) {
-                                setState(() {
-                                  _model.updateStaffAliasStruct(
-                                    (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentsStruct(
+                                _model.updateStaffAliasStruct(
+                                  (e) => e
+                                    ..updateDepartments(
+                                      (e) => e.add(DepartmentsStruct(
+                                        id: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .departmentsId
+                                            .id,
+                                        name: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .departmentsId
+                                            .name,
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..updateDepartments(
+                                      (e) => e.add(DepartmentListStruct(
+                                        departmentsId: DepartmentsStruct(
                                           id: _model
                                               .stafStepDepartments[_model.loop!]
                                               .departmentsId
@@ -1836,104 +1834,189 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                               .stafStepDepartments[_model.loop!]
                                               .departmentsId
                                               .name,
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                while (_model.loop2 <
+                                    _model.stafStepDepartments[_model.loop!]
+                                        .checkStaff.length) {
                                   _model.updateStepsEditStruct(
                                     (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentListStruct(
-                                          departmentsId: DepartmentsStruct(
+                                      ..updateStaffs(
+                                        (e) => e.add(StaffsStepStruct(
+                                          staffsId: StaffIdStruct(
                                             id: _model
                                                 .stafStepDepartments[
                                                     _model.loop!]
-                                                .departmentsId
+                                                .checkStaff[_model.loop2]
+                                                .staffsId
                                                 .id,
-                                            name: _model
+                                            staffName: _model
                                                 .stafStepDepartments[
                                                     _model.loop!]
                                                 .departmentsId
                                                 .name,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
-                                while (_model.loop2 <
-                                    _model.stafStepDepartments[_model.loop!]
-                                        .checkStaff.length) {
-                                  setState(() {
-                                    _model.updateStepsEditStruct(
-                                      (e) => e
-                                        ..updateStaffs(
-                                          (e) => e.add(StaffsStepStruct(
-                                            staffsId: StaffIdStruct(
-                                              id: _model
+                                            userId: UserIdStruct(
+                                              firstName: _model
                                                   .stafStepDepartments[
                                                       _model.loop!]
                                                   .checkStaff[_model.loop2]
                                                   .staffsId
-                                                  .id,
-                                              staffName: _model
-                                                  .stafStepDepartments[
-                                                      _model.loop!]
-                                                  .departmentsId
-                                                  .name,
-                                              userId: UserIdStruct(
-                                                firstName: _model
+                                                  .userId
+                                                  .firstName,
+                                            ),
+                                          ),
+                                        )),
+                                      )
+                                      ..updateDepartments(
+                                        (e) => e[_model.loop!]
+                                          ..updateCheckStaff(
+                                            (e) => e.add(StaffsStepStruct(
+                                              staffsId: StaffIdStruct(
+                                                id: _model
                                                     .stafStepDepartments[
                                                         _model.loop!]
                                                     .checkStaff[_model.loop2]
                                                     .staffsId
-                                                    .userId
-                                                    .firstName,
+                                                    .id,
+                                                userId: _model
+                                                    .stafStepDepartments[
+                                                        _model.loop!]
+                                                    .checkStaff[_model.loop2]
+                                                    .staffsId
+                                                    .userId,
                                               ),
-                                            ),
-                                          )),
-                                        )
-                                        ..updateDepartments(
-                                          (e) => e[_model.loop!]
-                                            ..updateCheckStaff(
-                                              (e) => e.add(StaffsStepStruct(
-                                                staffsId: StaffIdStruct(
-                                                  id: _model
-                                                      .stafStepDepartments[
-                                                          _model.loop!]
-                                                      .checkStaff[_model.loop2]
-                                                      .staffsId
-                                                      .id,
-                                                  userId: _model
-                                                      .stafStepDepartments[
-                                                          _model.loop!]
-                                                      .checkStaff[_model.loop2]
-                                                      .staffsId
-                                                      .userId,
-                                                ),
-                                              )),
-                                            ),
-                                        ),
-                                    );
-                                  });
-                                  setState(() {
-                                    _model.loop2 = _model.loop2 + 1;
-                                  });
+                                            )),
+                                          ),
+                                      ),
+                                  );
+                                  setState(() {});
+                                  _model.loop2 = _model.loop2 + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop2 = 0;
-                                });
-                                setState(() {
-                                  _model.loop = _model.loop! + 1;
-                                });
-                              }
-                              setState(() {
-                                _model.loop = 0;
                                 _model.loop2 = 0;
-                              });
+                                setState(() {});
+                                _model.loop = _model.loop! + 1;
+                                setState(() {});
+                              }
+                              _model.loop = 0;
+                              _model.loop2 = 0;
+                              setState(() {});
                               while (
                                   _model.loop! < _model.staffsStepNv.length) {
-                                setState(() {
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..updateStaffs(
+                                      (e) => e.add(StaffsStepStruct(
+                                        staffsId: StaffIdStruct(
+                                          id: _model.staffsStepNv[_model.loop!]
+                                              .staffsId.id,
+                                          userId: UserIdStruct(
+                                            firstName: _model
+                                                .staffsStepNv[_model.loop!]
+                                                .staffsId
+                                                .userId
+                                                .firstName,
+                                          ),
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                _model.updateStaffAliasStruct(
+                                  (e) => e
+                                    ..updateStaffs(
+                                      (e) => e.add(StaffIdStruct(
+                                        id: _model.staffsStepNv[_model.loop!]
+                                            .staffsId.id,
+                                        staffName: _model
+                                            .staffsStepNv[_model.loop!]
+                                            .staffsId
+                                            .userId
+                                            .firstName,
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.loop = _model.loop! + 1;
+                                setState(() {});
+                              }
+                              _model.loop = 0;
+                              setState(() {});
+                              while (_model.loop! <
+                                  _model.stepsEdit!.staffs.length) {
+                                _model.loop2 = (_model.loop!) + 1;
+                                setState(() {});
+                                while (_model.loop2 <
+                                    _model.stepsEdit!.staffs.length) {
+                                  if ((_model.stepsEdit?.staffs[_model.loop!])
+                                          ?.staffsId
+                                          .id ==
+                                      (_model.stepsEdit?.staffs[_model.loop2])
+                                          ?.staffsId
+                                          .id) {
+                                    _model
+                                        .addToCheckStaff(CheckUpdateStepStruct(
+                                      firstName: (_model
+                                              .stepsEdit?.staffs[_model.loop!])
+                                          ?.staffsId
+                                          .userId
+                                          .firstName,
+                                      staffId: (_model
+                                              .stepsEdit?.staffs[_model.loop!])
+                                          ?.staffsId
+                                          .id,
+                                      name: (_model
+                                              .stepsEdit?.staffs[_model.loop!])
+                                          ?.staffsId
+                                          .staffName,
+                                    ));
+                                    setState(() {});
+                                  }
+                                  _model.loop2 = _model.loop2 + 1;
+                                  setState(() {});
+                                }
+                                _model.loop = _model.loop! + 1;
+                                setState(() {});
+                              }
+                              _model.loop = 0;
+                              _model.loop2 = 0;
+                              setState(() {});
+                              if (_model.checkStaff.isNotEmpty) {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return WebViewAware(
+                                      child: Padding(
+                                        padding:
+                                            MediaQuery.viewInsetsOf(context),
+                                        child: AlertStaffCheckDepartmentsWidget(
+                                          listParam: _model.checkStaff,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
+
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..staffs = []
+                                    ..departments = [],
+                                );
+                                _model.checkStaff = [];
+                                setState(() {});
+                                return;
+                              } else {
+                                _model.updateStepsEditStruct(
+                                  (e) => e..staffs = [],
+                                );
+                                setState(() {});
+                                while (
+                                    _model.loop! < _model.staffsStepNv.length) {
                                   _model.updateStepsEditStruct(
                                     (e) => e
                                       ..updateStaffs(
@@ -1954,145 +2037,19 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                         )),
                                       ),
                                   );
-                                  _model.updateStaffAliasStruct(
-                                    (e) => e
-                                      ..updateStaffs(
-                                        (e) => e.add(StaffIdStruct(
-                                          id: _model.staffsStepNv[_model.loop!]
-                                              .staffsId.id,
-                                          staffName: _model
-                                              .staffsStepNv[_model.loop!]
-                                              .staffsId
-                                              .userId
-                                              .firstName,
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
+                                  setState(() {});
                                   _model.loop = _model.loop! + 1;
-                                });
-                              }
-                              setState(() {
-                                _model.loop = 0;
-                              });
-                              while (_model.loop! <
-                                  _model.stepsEdit!.staffs.length) {
-                                setState(() {
-                                  _model.loop2 = (_model.loop!) + 1;
-                                });
-                                while (_model.loop2 <
-                                    _model.stepsEdit!.staffs.length) {
-                                  if ((_model.stepsEdit?.staffs[_model.loop!])
-                                          ?.staffsId
-                                          .id ==
-                                      (_model.stepsEdit?.staffs[_model.loop2])
-                                          ?.staffsId
-                                          .id) {
-                                    setState(() {
-                                      _model.addToCheckStaff(
-                                          CheckUpdateStepStruct(
-                                        firstName: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
-                                            ?.staffsId
-                                            .userId
-                                            .firstName,
-                                        staffId: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
-                                            ?.staffsId
-                                            .id,
-                                        name: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
-                                            ?.staffsId
-                                            .staffName,
-                                      ));
-                                    });
-                                  }
-                                  setState(() {
-                                    _model.loop2 = _model.loop2 + 1;
-                                  });
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop = _model.loop! + 1;
-                                });
-                              }
-                              setState(() {
                                 _model.loop = 0;
-                                _model.loop2 = 0;
-                              });
-                              if (_model.checkStaff.isNotEmpty) {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return WebViewAware(
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: AlertStaffCheckDepartmentsWidget(
-                                          listParam: _model.checkStaff,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
-
-                                setState(() {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..staffs = []
-                                      ..departments = [],
-                                  );
-                                  _model.checkStaff = [];
-                                });
-                                return;
-                              } else {
-                                setState(() {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e..staffs = [],
-                                  );
-                                });
-                                while (
-                                    _model.loop! < _model.staffsStepNv.length) {
-                                  setState(() {
-                                    _model.updateStepsEditStruct(
-                                      (e) => e
-                                        ..updateStaffs(
-                                          (e) => e.add(StaffsStepStruct(
-                                            staffsId: StaffIdStruct(
-                                              id: _model
-                                                  .staffsStepNv[_model.loop!]
-                                                  .staffsId
-                                                  .id,
-                                              userId: UserIdStruct(
-                                                firstName: _model
-                                                    .staffsStepNv[_model.loop!]
-                                                    .staffsId
-                                                    .userId
-                                                    .firstName,
-                                              ),
-                                            ),
-                                          )),
-                                        ),
-                                    );
-                                  });
-                                  setState(() {
-                                    _model.loop = _model.loop! + 1;
-                                  });
-                                }
-                                setState(() {
-                                  _model.loop = 0;
-                                });
-                                setState(() {
-                                  _model.loop = 0;
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..staffsAlias = functions.jsontoString(
-                                          _model.staffAlias?.toMap()),
-                                  );
-                                });
+                                setState(() {});
+                                _model.loop = 0;
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..staffsAlias = functions.jsontoString(
+                                        _model.staffAlias?.toMap()),
+                                );
+                                setState(() {});
                                 await widget.callBack?.call(
                                   _model.stepsEdit,
                                 );

@@ -47,14 +47,12 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStartFilter = widget.dateStart;
-        _model.dateEndFilter = widget.dateEnd;
-        _model.staff = widget.staffId;
-      });
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.dateStartFilter = widget.dateStart;
+      _model.dateEndFilter = widget.dateEnd;
+      _model.staff = widget.staffId;
+      setState(() {});
+      _model.isLoad = true;
+      setState(() {});
     });
 
     _model.nameTextController ??= TextEditingController(
@@ -198,14 +196,13 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                   );
                                 });
                               }
-                              setState(() {
-                                _model.dateStartFilter = dateTimeFormat(
-                                  'yyyy-MM-dd',
-                                  _model.datePicked1,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                );
-                              });
+                              _model.dateStartFilter = dateTimeFormat(
+                                'yyyy-MM-dd',
+                                _model.datePicked1,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              );
+                              setState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -290,14 +287,13 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                   );
                                 });
                               }
-                              setState(() {
-                                _model.dateEndFilter = dateTimeFormat(
-                                  'yyyy-MM-dd',
-                                  _model.datePicked2,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                );
-                              });
+                              _model.dateEndFilter = dateTimeFormat(
+                                'yyyy-MM-dd',
+                                _model.datePicked2,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              );
+                              setState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -364,9 +360,8 @@ class _ProcedureWorkFilterWidgetState extends State<ProcedureWorkFilterWidget> {
                                         : '',
                                 type: true,
                                 callBack: (item) async {
-                                  setState(() {
-                                    _model.staff = item;
-                                  });
+                                  _model.staff = item;
+                                  setState(() {});
                                 },
                               ),
                             ),

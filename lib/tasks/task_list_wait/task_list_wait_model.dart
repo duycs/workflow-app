@@ -75,11 +75,11 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
   /// Action blocks.
   Future getNumberTask(BuildContext context) async {
-    ApiCallResponse? apiResultGetTaskDone;
-    ApiCallResponse? apiResultGetTaskToDo;
-    ApiCallResponse? apiResultGetTaskWait;
+    ApiCallResponse? apiResultGetTaskDone1;
+    ApiCallResponse? apiResultGetTaskToDo1;
+    ApiCallResponse? apiResultGetTaskWait1;
 
-    apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
+    apiResultGetTaskDone1 = await TaskGroup.getListTaskCall.call(
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
@@ -91,13 +91,13 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
       meta: 'filter_count',
     );
-    if ((apiResultGetTaskDone.succeeded ?? true)) {
+    if ((apiResultGetTaskDone1.succeeded ?? true)) {
       taskDone = getJsonField(
-        (apiResultGetTaskDone.jsonBody ?? ''),
+        (apiResultGetTaskDone1.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
-    apiResultGetTaskToDo = await TaskGroup.getListTaskCall.call(
+    apiResultGetTaskToDo1 = await TaskGroup.getListTaskCall.call(
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
@@ -109,13 +109,13 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
       meta: 'filter_count',
     );
-    if ((apiResultGetTaskToDo.succeeded ?? true)) {
+    if ((apiResultGetTaskToDo1.succeeded ?? true)) {
       taskToDo = getJsonField(
-        (apiResultGetTaskToDo.jsonBody ?? ''),
+        (apiResultGetTaskToDo1.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
-    apiResultGetTaskWait = await TaskGroup.getListTaskCall.call(
+    apiResultGetTaskWait1 = await TaskGroup.getListTaskCall.call(
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
@@ -127,9 +127,9 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
       meta: 'filter_count',
     );
-    if ((apiResultGetTaskWait.succeeded ?? true)) {
+    if ((apiResultGetTaskWait1.succeeded ?? true)) {
       totalWait = getJsonField(
-        (apiResultGetTaskWait.jsonBody ?? ''),
+        (apiResultGetTaskWait1.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -176,7 +176,9 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       listViewApiCall!(nextPageMarker).then((listViewGetListTaskResponse) {
         final pageItems = (TaskListDataStruct.maybeFromMap(
                         listViewGetListTaskResponse.jsonBody)!
-                    .data ??
+                    .data
+                    .where((e) => e.operations.isNotEmpty)
+                    .toList() ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;

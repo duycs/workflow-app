@@ -596,3 +596,15 @@ int countJobDone(dynamic workflowItemJson) {
 
   return completedJobs;
 }
+
+String? random(String? item1) {
+  if (item1 == null || item1.isEmpty) {
+    return null;
+  }
+
+  final random = math.Random();
+
+  return List.generate(9, (index) {
+    return item1[random.nextInt(item1.length)];
+  }).join();
+}

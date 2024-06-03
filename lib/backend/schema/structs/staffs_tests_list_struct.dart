@@ -21,6 +21,7 @@ class StaffsTestsListStruct extends BaseStruct {
     String? description,
     StaffTestLessonStruct? lessionId,
     String? percentCorrect,
+    int? goodScore,
   })  : _id = id,
         _status = status,
         _score = score,
@@ -35,7 +36,8 @@ class StaffsTestsListStruct extends BaseStruct {
         _durationMinutes = durationMinutes,
         _description = description,
         _lessionId = lessionId,
-        _percentCorrect = percentCorrect;
+        _percentCorrect = percentCorrect,
+        _goodScore = goodScore;
 
   // "id" field.
   String? _id;
@@ -138,6 +140,13 @@ class StaffsTestsListStruct extends BaseStruct {
   set percentCorrect(String? val) => _percentCorrect = val;
   bool hasPercentCorrect() => _percentCorrect != null;
 
+  // "good_score" field.
+  int? _goodScore;
+  int get goodScore => _goodScore ?? 0;
+  set goodScore(int? val) => _goodScore = val;
+  void incrementGoodScore(int amount) => _goodScore = goodScore + amount;
+  bool hasGoodScore() => _goodScore != null;
+
   static StaffsTestsListStruct fromMap(Map<String, dynamic> data) =>
       StaffsTestsListStruct(
         id: data['id'] as String?,
@@ -155,6 +164,7 @@ class StaffsTestsListStruct extends BaseStruct {
         description: data['description'] as String?,
         lessionId: StaffTestLessonStruct.maybeFromMap(data['lession_id']),
         percentCorrect: data['percent_correct'] as String?,
+        goodScore: castToType<int>(data['good_score']),
       );
 
   static StaffsTestsListStruct? maybeFromMap(dynamic data) => data is Map
@@ -177,6 +187,7 @@ class StaffsTestsListStruct extends BaseStruct {
         'description': _description,
         'lession_id': _lessionId?.toMap(),
         'percent_correct': _percentCorrect,
+        'good_score': _goodScore,
       }.withoutNulls;
 
   @override
@@ -240,6 +251,10 @@ class StaffsTestsListStruct extends BaseStruct {
         'percent_correct': serializeParam(
           _percentCorrect,
           ParamType.String,
+        ),
+        'good_score': serializeParam(
+          _goodScore,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -322,6 +337,11 @@ class StaffsTestsListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        goodScore: deserializeParam(
+          data['good_score'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -344,7 +364,8 @@ class StaffsTestsListStruct extends BaseStruct {
         durationMinutes == other.durationMinutes &&
         description == other.description &&
         lessionId == other.lessionId &&
-        percentCorrect == other.percentCorrect;
+        percentCorrect == other.percentCorrect &&
+        goodScore == other.goodScore;
   }
 
   @override
@@ -363,7 +384,8 @@ class StaffsTestsListStruct extends BaseStruct {
         durationMinutes,
         description,
         lessionId,
-        percentCorrect
+        percentCorrect,
+        goodScore
       ]);
 }
 
@@ -383,6 +405,7 @@ StaffsTestsListStruct createStaffsTestsListStruct({
   String? description,
   StaffTestLessonStruct? lessionId,
   String? percentCorrect,
+  int? goodScore,
 }) =>
     StaffsTestsListStruct(
       id: id,
@@ -400,4 +423,5 @@ StaffsTestsListStruct createStaffsTestsListStruct({
       description: description,
       lessionId: lessionId ?? StaffTestLessonStruct(),
       percentCorrect: percentCorrect,
+      goodScore: goodScore,
     );

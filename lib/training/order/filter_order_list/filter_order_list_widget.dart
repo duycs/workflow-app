@@ -60,10 +60,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStart = widget.dateStart!;
-        _model.dateEnd = widget.dateEnd!;
-      });
+      _model.dateStart = widget.dateStart!;
+      _model.dateEnd = widget.dateEnd!;
+      setState(() {});
     });
 
     _model.codeTextController ??= TextEditingController(
@@ -359,10 +358,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       );
                                     });
                                   }
-                                  setState(() {
-                                    _model.dateStart =
-                                        _model.datePicked1!.toString();
-                                  });
+                                  _model.dateStart =
+                                      _model.datePicked1!.toString();
+                                  setState(() {});
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -454,10 +452,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                                       );
                                     });
                                   }
-                                  setState(() {
-                                    _model.dateEnd =
-                                        _model.datePicked2!.toString();
-                                  });
+                                  _model.dateEnd =
+                                      _model.datePicked2!.toString();
+                                  setState(() {});
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,

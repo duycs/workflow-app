@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'procedure_pushlished_widget.dart' show ProcedurePushlishedWidget;
@@ -62,6 +63,8 @@ class ProcedurePushlishedModel
   FormFieldController<String>? dropDownValueController;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Model for DataNotFound component.
+  late DataNotFoundModel dataNotFoundModel;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? reloadTokenProcedrue1;
   // Stores action output result for [Backend Call - API (ProcedureTemplateUpdateLimitPublished)] action in Button widget.
@@ -72,8 +75,12 @@ class ProcedurePushlishedModel
   ApiCallResponse? apiResultReciveTask;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    dataNotFoundModel = createModel(context, () => DataNotFoundModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    dataNotFoundModel.dispose();
+  }
 }

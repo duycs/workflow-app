@@ -57,13 +57,12 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
           ).toString().toString()}\"}}]}',
         );
         if ((_model.apiResult9q7?.succeeded ?? true)) {
-          setState(() {
-            _model.operationList = OperationsListDataStruct.maybeFromMap(
-                    (_model.apiResult9q7?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<OperationsStruct>();
-          });
+          _model.operationList = OperationsListDataStruct.maybeFromMap(
+                  (_model.apiResult9q7?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<OperationsStruct>();
+          setState(() {});
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -81,9 +80,8 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
           return;
         }
 
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;

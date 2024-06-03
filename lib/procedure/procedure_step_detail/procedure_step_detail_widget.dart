@@ -256,13 +256,11 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 if (_model.checkShow == 'nv') {
-                                  setState(() {
-                                    _model.checkShow = null;
-                                  });
+                                  _model.checkShow = null;
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.checkShow = 'nv';
-                                  });
+                                  _model.checkShow = 'nv';
+                                  setState(() {});
                                 }
                               },
                               child: Container(
@@ -408,13 +406,11 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 if (_model.checkShow == 'bp') {
-                                  setState(() {
-                                    _model.checkShow = null;
-                                  });
+                                  _model.checkShow = null;
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.checkShow = 'bp';
-                                  });
+                                  _model.checkShow = 'bp';
+                                  setState(() {});
                                 }
                               },
                               child: Container(

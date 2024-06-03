@@ -50,13 +50,12 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultGetTest?.succeeded ?? true)) {
-          setState(() {
-            _model.list = TestListStruct.maybeFromMap(getJsonField(
-              (_model.apiResultGetTest?.jsonBody ?? ''),
-              r'''$.data''',
-            ));
-            _model.testId = widget.testId!;
-          });
+          _model.list = TestListStruct.maybeFromMap(getJsonField(
+            (_model.apiResultGetTest?.jsonBody ?? ''),
+            r'''$.data''',
+          ));
+          _model.testId = widget.testId!;
+          setState(() {});
         }
       } else {
         setState(() {});

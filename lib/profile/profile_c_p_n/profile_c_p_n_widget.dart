@@ -82,7 +82,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          if (_model.organizationDetail != null)
+                          if (_model.isLoad == true)
                             SizedBox(
                               width: double.infinity,
                               child: Stack(
@@ -195,9 +195,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             .stretch,
                                                     children: [
                                                       Text(
-                                                        _model
-                                                            .organizationDetail!
-                                                            .name,
+                                                        _model.organizationDetail !=
+                                                                null
+                                                            ? _model
+                                                                .organizationDetail!
+                                                                .name
+                                                            : '',
                                                         maxLines: 3,
                                                         style: FlutterFlowTheme
                                                                 .of(context)

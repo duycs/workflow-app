@@ -46,9 +46,8 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.requestData = StudyProgramListStruct();
-      });
+      _model.requestData = StudyProgramListStruct();
+      setState(() {});
     });
 
     _model.programNameTextController ??= TextEditingController();
@@ -205,9 +204,8 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               }
                             }
 
-                            setState(() {
-                              _model.uploadImage = _model.uploadImage;
-                            });
+                            _model.uploadImage = _model.uploadImage;
+                            setState(() {});
                           },
                         ),
                       ],
@@ -231,13 +229,12 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 '_model.programNameTextController',
                                 const Duration(milliseconds: 2000),
                                 () async {
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e
-                                        ..name = _model
-                                            .programNameTextController.text,
-                                    );
-                                  });
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..name =
+                                          _model.programNameTextController.text,
+                                  );
+                                  setState(() {});
                                 },
                               ),
                               autofocus: false,
@@ -311,14 +308,13 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 '_model.programDescriptionTextController',
                                 const Duration(milliseconds: 2000),
                                 () async {
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e
-                                        ..description = _model
-                                            .programDescriptionTextController
-                                            .text,
-                                    );
-                                  });
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..description = _model
+                                          .programDescriptionTextController
+                                          .text,
+                                  );
+                                  setState(() {});
                                 },
                               ),
                               autofocus: false,
@@ -390,24 +386,22 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               updateOnChange: true,
                               child: TestsDropdownWidget(
                                 testCallBack: (testId) async {
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e..tests = [],
-                                    );
-                                  });
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e
-                                        ..updateTests(
-                                          (e) => e
-                                              .add(StudyProgramListTestIdStruct(
-                                            testsId: StaffsTestsListStruct(
-                                              id: testId?.id,
-                                            ),
-                                          )),
-                                        ),
-                                    );
-                                  });
+                                  _model.updateRequestDataStruct(
+                                    (e) => e..tests = [],
+                                  );
+                                  setState(() {});
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..updateTests(
+                                        (e) =>
+                                            e.add(StudyProgramListTestIdStruct(
+                                          testsId: StaffsTestsListStruct(
+                                            id: testId?.id,
+                                          ),
+                                        )),
+                                      ),
+                                  );
+                                  setState(() {});
                                 },
                               ),
                             ),
@@ -518,27 +512,25 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                         '_model.estimateInDayTextController',
                                         const Duration(milliseconds: 2000),
                                         () async {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..estimateInDay = (_model.estimateInDayTextController
-                                                                    .text !=
-                                                                '') &&
-                                                        (int.parse(_model
-                                                                .estimateInDayTextController
-                                                                .text) >
-                                                            0)
-                                                    ? functions.stringToInt(_model
-                                                        .estimateInDayTextController
-                                                        .text)
-                                                    : null,
-                                            );
-                                          });
-                                          setState(() {
-                                            _model.check = int.tryParse(_model
-                                                .estimateInDayTextController
-                                                .text);
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..estimateInDay = (_model.estimateInDayTextController
+                                                                  .text !=
+                                                              '') &&
+                                                      (int.parse(_model
+                                                              .estimateInDayTextController
+                                                              .text) >
+                                                          0)
+                                                  ? functions.stringToInt(_model
+                                                      .estimateInDayTextController
+                                                      .text)
+                                                  : null,
+                                          );
+                                          setState(() {});
+                                          _model.check = int.tryParse(_model
+                                              .estimateInDayTextController
+                                              .text);
+                                          setState(() {});
                                         },
                                       ),
                                       autofocus: false,
@@ -754,15 +746,14 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
-                                              setState(() {
-                                                _model.updateRequestDataStruct(
-                                                  (e) => e
-                                                    ..updateLessions(
-                                                      (e) => e.removeAt(
-                                                          listViewIndex),
-                                                    ),
-                                                );
-                                              });
+                                              _model.updateRequestDataStruct(
+                                                (e) => e
+                                                  ..updateLessions(
+                                                    (e) => e.removeAt(
+                                                        listViewIndex),
+                                                  ),
+                                              );
+                                              setState(() {});
                                             },
                                           ),
                                         ],
@@ -796,11 +787,10 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;
                         if (_model.tokenReloadStudyProgramCreate!) {
-                          setState(() {
-                            _model.updateRequestDataStruct(
-                              (e) => e..status = 'published',
-                            );
-                          });
+                          _model.updateRequestDataStruct(
+                            (e) => e..status = 'published',
+                          );
+                          setState(() {});
                           if (_model.estimateInDayTextController.text != '') {
                             if (int.parse(
                                     _model.estimateInDayTextController.text) >
@@ -894,6 +884,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                   },
                                   r'''$.map''',
                                 ),
+                                'status': 'published',
                               },
                             );
                             shouldSetState = true;

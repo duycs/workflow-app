@@ -30,8 +30,6 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
 
   final formKey2 = GlobalKey<FormState>();
   final formKey1 = GlobalKey<FormState>();
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -43,6 +41,10 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? orderUpdateStatus;
+  // Stores action output result for [Backend Call - API (QrCode)] action in Button widget.
+  ApiCallResponse? apiResultQrCodeCreate;
 
   @override
   void initState(BuildContext context) {}

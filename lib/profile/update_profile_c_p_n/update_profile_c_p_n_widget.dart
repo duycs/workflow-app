@@ -42,27 +42,24 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.checkTrue = true;
-      });
+      _model.checkTrue = true;
+      _model.description2 = widget.data!.description;
+      setState(() {});
       while (_model.loop! < widget.data!.files.length) {
-        setState(() {
-          _model.addToImageId(
-              widget.data!.files[_model.loop!].directusFilesId.id);
-          _model.updateFilesStruct(
-            (e) => e
-              ..updateDelete(
-                (e) => e.add(widget.data!.files[_model.loop!].id),
-              ),
-          );
-        });
-        setState(() {
-          _model.loop = _model.loop! + 1;
-        });
+        _model
+            .addToImageId(widget.data!.files[_model.loop!].directusFilesId.id);
+        _model.updateFilesStruct(
+          (e) => e
+            ..updateDelete(
+              (e) => e.add(widget.data!.files[_model.loop!].id),
+            ),
+        );
+        setState(() {});
+        _model.loop = _model.loop! + 1;
+        setState(() {});
       }
-      setState(() {
-        _model.loop = 0;
-      });
+      _model.loop = 0;
+      setState(() {});
     });
 
     _model.nameTextController ??=
@@ -927,11 +924,21 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                               alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: UpdateProfileCkPopupWidget(
-                                                                                  initData: (_model.description2 != '') && (_model.description2 != '') ? _model.description2 : widget.data!.description,
-                                                                                  action: (ckString) async {
-                                                                                    setState(() {
-                                                                                      _model.description2 = ckString!;
-                                                                                    });
+                                                                                  input: () {
+                                                                                    if ((_model.description2 != '') && (_model.description2 != ' ') && (_model.description2 != '') && (_model.description2 != 'undefined')) {
+                                                                                      return _model.description2;
+                                                                                    } else if (_model.description2 == 'undefined') {
+                                                                                      return '';
+                                                                                    } else {
+                                                                                      return '';
+                                                                                    }
+                                                                                  }(),
+                                                                                  output: _model.output,
+                                                                                  action: (input, output) async {
+                                                                                    _model.input = input!;
+                                                                                    _model.output = output!;
+                                                                                    _model.description2 = output;
+                                                                                    setState(() {});
                                                                                   },
                                                                                 ),
                                                                               ),
@@ -963,33 +970,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        if ((widget.data
-                                                                        ?.description !=
-                                                                    null &&
-                                                                widget.data
-                                                                        ?.description !=
-                                                                    '') &&
-                                                            (widget.data
-                                                                    ?.description !=
-                                                                'undefined') &&
-                                                            (widget.data
-                                                                    ?.description !=
-                                                                '') &&
-                                                            ((_model.description2 ==
-                                                                        '') ||
-                                                                (_model.description2 ==
-                                                                    '')))
-                                                          Html(
-                                                            data: widget.data!
-                                                                .description,
-                                                            onLinkTap: (url, _,
-                                                                    __, ___) =>
-                                                                launchURL(url!),
-                                                          ),
                                                         if ((_model.description2 !=
                                                                     '') &&
                                                             (_model.description2 !=
-                                                                ''))
+                                                                ' ') &&
+                                                            (_model.description2 !=
+                                                                '') &&
+                                                            (_model.description2 !=
+                                                                'undefined'))
                                                           Html(
                                                             data: _model
                                                                 .description2,
@@ -1417,11 +1405,10 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                       ),
                                                                       onPressed:
                                                                           () async {
+                                                                        _model.removeAtIndexFromImageId(
+                                                                            listImageIndex);
                                                                         setState(
-                                                                            () {
-                                                                          _model
-                                                                              .removeAtIndexFromImageId(listImageIndex);
-                                                                        });
+                                                                            () {});
                                                                       },
                                                                     ),
                                                                   ],
@@ -1527,10 +1514,10 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                         ),
                                                                         onPressed:
                                                                             () async {
+                                                                          _model
+                                                                              .removeAtIndexFromImages(listImageUploadIndex);
                                                                           setState(
-                                                                              () {
-                                                                            _model.removeAtIndexFromImages(listImageUploadIndex);
-                                                                          });
+                                                                              () {});
                                                                         },
                                                                       ),
                                                                     ],
@@ -1543,6 +1530,16 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                       ),
                                                     FFButtonWidget(
                                                       onPressed: () async {
+                                                        setState(() {
+                                                          _model.isDataUploading2 =
+                                                              false;
+                                                          _model.uploadedLocalFile2 =
+                                                              FFUploadedFile(
+                                                                  bytes: Uint8List
+                                                                      .fromList(
+                                                                          []));
+                                                        });
+
                                                         final selectedMedia =
                                                             await selectMedia(
                                                           imageQuality: 100,
@@ -1610,11 +1607,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                     .bytes
                                                                     ?.isNotEmpty ??
                                                                 false)) {
-                                                          setState(() {
-                                                            _model.addToImages(
-                                                                _model
-                                                                    .uploadedLocalFile2);
-                                                          });
+                                                          _model.addToImages(_model
+                                                              .uploadedLocalFile2);
+                                                          setState(() {});
                                                         }
                                                       },
                                                       text: 'Upload Image',
@@ -1941,12 +1936,11 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         file: _model.uploadedLocalFile1,
                       );
                       if ((_model.apiResultUploadVideo?.succeeded ?? true)) {
-                        setState(() {
-                          _model.videoId = getJsonField(
-                            (_model.apiResultUploadVideo?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
-                        });
+                        _model.videoId = getJsonField(
+                          (_model.apiResultUploadVideo?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString();
+                        setState(() {});
                       }
                     } else {
                       setState(() {});
@@ -1962,12 +1956,11 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         file: _model.uploadedLocalFile3,
                       );
                       if ((_model.apiResultUploadLogo?.succeeded ?? true)) {
-                        setState(() {
-                          _model.logoId = getJsonField(
-                            (_model.apiResultUploadLogo?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
-                        });
+                        _model.logoId = getJsonField(
+                          (_model.apiResultUploadLogo?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString();
+                        setState(() {});
                       }
                     } else {
                       setState(() {});
@@ -1983,12 +1976,11 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         file: _model.uploadedLocalFile4,
                       );
                       if ((_model.apiResultUploadAvatar?.succeeded ?? true)) {
-                        setState(() {
-                          _model.avatarId = getJsonField(
-                            (_model.apiResultUploadAvatar?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
-                        });
+                        _model.avatarId = getJsonField(
+                          (_model.apiResultUploadAvatar?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString();
+                        setState(() {});
                       }
                     } else {
                       setState(() {});
@@ -1997,30 +1989,29 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                   _model.updateOrganizationToken =
                       await action_blocks.tokenReload(context);
                   if (_model.updateOrganizationToken!) {
-                    setState(() {
-                      _model.updateRequestStruct(
-                        (e) => e
-                          ..name = _model.nameTextController.text
-                          ..hotline = _model.hotlineTextController.text
-                          ..avatar =
-                              (_model.avatarId != ''
-                                      ? _model.avatarId
-                                      : widget.data?.avatar)
-                                  ?.toString()
-                          ..logo = (_model.logoId != ''
-                                  ? _model.logoId
-                                  : widget.data?.logo)
-                              ?.toString()
-                          ..address = _model.addressTextController.text
-                          ..video =
-                              (_model.videoId != ''
-                                      ? _model.videoId
-                                      : widget.data?.video)
-                                  ?.toString()
-                          ..description = _model.description2
-                          ..files = _model.files,
-                      );
-                    });
+                    _model.updateRequestStruct(
+                      (e) => e
+                        ..name = _model.nameTextController.text
+                        ..hotline = _model.hotlineTextController.text
+                        ..avatar =
+                            (_model.avatarId != ''
+                                    ? _model.avatarId
+                                    : widget.data?.avatar)
+                                ?.toString()
+                        ..logo = (_model.logoId != ''
+                                ? _model.logoId
+                                : widget.data?.logo)
+                            ?.toString()
+                        ..address = _model.addressTextController.text
+                        ..video =
+                            (_model.videoId != ''
+                                    ? _model.videoId
+                                    : widget.data?.video)
+                                ?.toString()
+                        ..description = _model.description2
+                        ..files = _model.files,
+                    );
+                    setState(() {});
                     _model.apiResultUpdateOrganization =
                         await OrganizationGroup.updateOrganizationCall.call(
                       accessToken: FFAppState().accessToken,

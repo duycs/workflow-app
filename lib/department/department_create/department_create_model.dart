@@ -188,12 +188,12 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
       name: nameTextController.text,
       description: descriptionTextController.text,
       code: codeTextController.text,
-      branchId: FFAppState().user.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39'
-          ? getJsonField(
+      branchId: FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68'
+          ? dropDownBranchIdValue
+          : getJsonField(
               FFAppState().staffLogin,
               r'''$.branch_id''',
-            ).toString().toString()
-          : dropDownBranchIdValue,
+            ).toString().toString(),
       programsIdJson: programIds.map((e) => e.toMap()).toList(),
     );
     if ((apiResultPostDepartment.succeeded ?? true)) {

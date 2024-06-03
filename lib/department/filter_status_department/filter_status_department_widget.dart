@@ -209,9 +209,8 @@ class _FilterStatusDepartmentWidgetState
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _model.status = '';
-                            });
+                            _model.status = '';
+                            setState(() {});
                             await widget.callBack?.call(
                               '',
                               '',

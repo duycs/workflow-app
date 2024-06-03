@@ -114,6 +114,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'checkLesson',
               ParamType.String,
             ),
+            checkReload: params.getParam(
+              'checkReload',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

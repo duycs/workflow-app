@@ -83,9 +83,8 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
             ),
             onPressed: () async {
               context.pop();
-              setState(() {
-                _model.checkFile = '1';
-              });
+              _model.checkFile = '1';
+              setState(() {});
             },
           ),
           title: Text(
@@ -438,10 +437,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                   Colors
                                                                       .transparent,
                                                               onTap: () async {
-                                                                setState(() {
-                                                                  _model.checkFile =
-                                                                      '0';
-                                                                });
+                                                                _model.checkFile =
+                                                                    '0';
+                                                                setState(() {});
                                                               },
                                                               child: Text(
                                                                 '(Mở file)',
@@ -483,10 +481,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                   Colors
                                                                       .transparent,
                                                               onTap: () async {
-                                                                setState(() {
-                                                                  _model.checkFile =
-                                                                      '1';
-                                                                });
+                                                                _model.checkFile =
+                                                                    '1';
+                                                                setState(() {});
                                                               },
                                                               child: Text(
                                                                 '(Đóng file)',
@@ -1205,10 +1202,10 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                                                               r'''$.file.filename_download''',
                                                                             ).toString())) ==
                                                                             'heif'))) {
-                                                                  setState(() {
-                                                                    _model.checkFile =
-                                                                        '0';
-                                                                  });
+                                                                  _model.checkFile =
+                                                                      '0';
+                                                                  setState(
+                                                                      () {});
                                                                 }
                                                               },
                                                               child: Text(

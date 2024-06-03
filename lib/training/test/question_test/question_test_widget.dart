@@ -50,13 +50,12 @@ class _QuestionTestWidgetState extends State<QuestionTestWidget> {
           ).toString().toString()}\"}}]}',
         );
         if ((_model.apiResultQuestionList?.succeeded ?? true)) {
-          setState(() {
-            _model.questionList = QuestionObjectListDataStruct.maybeFromMap(
-                    (_model.apiResultQuestionList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<QuestionObjectStruct>();
-          });
+          _model.questionList = QuestionObjectListDataStruct.maybeFromMap(
+                  (_model.apiResultQuestionList?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<QuestionObjectStruct>();
+          setState(() {});
         }
       } else {
         setState(() {});

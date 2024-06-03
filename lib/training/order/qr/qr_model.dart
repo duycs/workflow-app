@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'payment_copy_widget.dart' show PaymentCopyWidget;
+import 'qr_widget.dart' show QrWidget;
 import 'package:flutter/material.dart';
 
-class PaymentCopyModel extends FlutterFlowModel<PaymentCopyWidget> {
+class QrModel extends FlutterFlowModel<QrWidget> {
   @override
   void initState(BuildContext context) {}
 

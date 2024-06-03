@@ -54,8 +54,8 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
 
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
   bool? downloadFileToken;
@@ -75,7 +75,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    listViewPagingController1?.dispose();
+    listViewPagingController?.dispose();
     navBarModel.dispose();
   }
 
@@ -142,7 +142,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
   }
 
   /// Additional helper methods.
-  Future waitForOnePageForListView1({
+  Future waitForOnePageForListView({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -151,21 +151,21 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
-          (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
     }
   }
 
-  PagingController<ApiPagingParams, dynamic> setListViewController1(
+  PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
-    listViewApiCall1 = apiCall;
-    return listViewPagingController1 ??= _createListViewController1(apiCall);
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
   }
 
-  PagingController<ApiPagingParams, dynamic> _createListViewController1(
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
     Function(ApiPagingParams) query,
   ) {
     final controller = PagingController<ApiPagingParams, dynamic>(
@@ -175,18 +175,18 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewGetListTaskPage1);
+    return controller..addPageRequestListener(listViewGetListTaskPage);
   }
 
-  void listViewGetListTaskPage1(ApiPagingParams nextPageMarker) =>
-      listViewApiCall1!(nextPageMarker).then((listViewGetListTaskResponse) {
+  void listViewGetListTaskPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewGetListTaskResponse) {
         final pageItems = (TaskListDataStruct.maybeFromMap(
                         listViewGetListTaskResponse.jsonBody)!
                     .data ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController1?.appendPage(
+        listViewPagingController?.appendPage(
           pageItems,
           (pageItems.isNotEmpty)
               ? ApiPagingParams(

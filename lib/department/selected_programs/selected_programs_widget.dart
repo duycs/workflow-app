@@ -36,9 +36,8 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.check = widget.itemCheck;
-      });
+      _model.check = widget.itemCheck;
+      setState(() {});
     });
   }
 

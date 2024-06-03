@@ -38,9 +38,8 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.addToDetail(widget.listQuestion!);
-      });
+      _model.addToDetail(widget.listQuestion!);
+      setState(() {});
     });
   }
 

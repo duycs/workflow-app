@@ -309,18 +309,20 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                             text: TextSpan(
                                                               children: [
                                                                 TextSpan(
-                                                                  text:
-                                                                      formatNumber(
-                                                                    functions.stringToInt(_model
-                                                                        .dataGetOne!
-                                                                        .price),
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .commaDecimal,
-                                                                  ),
+                                                                  text: (_model.dataGetOne !=
+                                                                              null) &&
+                                                                          (_model.dataGetOne?.price != null &&
+                                                                              _model.dataGetOne?.price != '')
+                                                                      ? formatNumber(
+                                                                          functions.stringToInt(_model
+                                                                              .dataGetOne!
+                                                                              .price),
+                                                                          formatType:
+                                                                              FormatType.decimal,
+                                                                          decimalType:
+                                                                              DecimalType.commaDecimal,
+                                                                        )
+                                                                      : '',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -355,19 +357,19 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                   ),
                                                                 ),
                                                                 TextSpan(
-                                                                  text:
-                                                                      formatNumber(
-                                                                    double.tryParse((double.parse(_model.dataGetOne!.price) /
-                                                                            0.7)
-                                                                        .toStringAsFixed(
-                                                                            0)),
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .commaDecimal,
-                                                                  ),
+                                                                  text: (_model.dataGetOne !=
+                                                                              null) &&
+                                                                          (_model.dataGetOne?.price != null &&
+                                                                              _model.dataGetOne?.price != '')
+                                                                      ? formatNumber(
+                                                                          double.tryParse(
+                                                                              (double.parse(_model.dataGetOne!.price) / 0.7).toStringAsFixed(0)),
+                                                                          formatType:
+                                                                              FormatType.decimal,
+                                                                          decimalType:
+                                                                              DecimalType.commaDecimal,
+                                                                        )
+                                                                      : '',
                                                                   style:
                                                                       const TextStyle(
                                                                     color: Color(
@@ -611,16 +613,19 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      Text(
-                                        _model.dataGetOne!.authorId.alias,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                      Expanded(
+                                        child: Text(
+                                          _model.dataGetOne!.authorId.alias,
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
                                       ),
                                     ].divide(const SizedBox(width: 8.0)),
                                   ),
@@ -635,6 +640,38 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 4.0, 16.0, 0.0),
+                                  child: Text(
+                                    'Lĩnh vực: ${_model.dataGetOne?.domainId.name}',
+                                    maxLines: 1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 4.0, 16.0, 0.0),
+                                  child: Text(
+                                    'Danh mục: ${_model.dataGetOne?.categoryId.name}',
+                                    maxLines: 1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                   ),
                                 ),
@@ -841,24 +878,138 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: OrderCreateWidget(
-                                      image: _model.dataGetOne!.imageCover,
-                                      price: _model.dataGetOne!.price,
-                                      rating: _model.dataGetOne!.reacts.isNotEmpty
-                                          ? ((List<String> listItem) {
-                                              return listItem
-                                                      .map(int.parse)
-                                                      .reduce(
-                                                          (value, element) =>
-                                                              value + element) /
-                                                  listItem.length;
-                                            }(_model.dataGetOne!.reacts
-                                              .map((e) => e.reactsId.status)
-                                              .toList()))
-                                          : 0.0,
-                                      name: _model.dataGetOne!.name,
+                                      image: _model.dataGetOne?.imageCover,
+                                      price: _model.dataGetOne?.price,
+                                      name: _model.dataGetOne?.name,
                                       numOfListLessions:
-                                          _model.dataGetOne!.lessions.length,
-                                      author: _model.dataGetOne!.authorId.alias,
+                                          _model.dataGetOne?.lessions.length,
+                                      author:
+                                          _model.dataGetOne?.authorId.alias,
+                                      programId: widget.idProgram,
+                                      checkType: 'staff',
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
+                        text: 'Áp dụng cho cá nhân',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).secondary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: OrderCreateWidget(
+                                      image: _model.dataGetOne?.imageCover,
+                                      price: _model.dataGetOne?.price,
+                                      name: _model.dataGetOne?.name,
+                                      numOfListLessions:
+                                          _model.dataGetOne?.lessions.length,
+                                      author:
+                                          _model.dataGetOne?.authorId.alias,
+                                      programId: widget.idProgram,
+                                      checkType: 'organization',
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
+                        text: 'Áp dụng cho tổ chức',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                  ].divide(const SizedBox(width: 16.0)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: OrderCreateWidget(
+                                      image: _model.dataGetOne?.imageCover,
+                                      price: _model.dataGetOne?.price,
+                                      name: _model.dataGetOne?.name,
+                                      numOfListLessions:
+                                          _model.dataGetOne?.lessions.length,
+                                      author:
+                                          _model.dataGetOne?.authorId.alias,
                                       programId: widget.idProgram,
                                       checkType: 'staff',
                                     ),
@@ -910,24 +1061,13 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: OrderCreateWidget(
-                                      image: _model.dataGetOne!.imageCover,
-                                      price: _model.dataGetOne!.price,
-                                      rating: _model.dataGetOne!.reacts.isNotEmpty
-                                          ? ((List<String> listItem) {
-                                              return listItem
-                                                      .map(int.parse)
-                                                      .reduce(
-                                                          (value, element) =>
-                                                              value + element) /
-                                                  listItem.length;
-                                            }(_model.dataGetOne!.reacts
-                                              .map((e) => e.reactsId.status)
-                                              .toList()))
-                                          : 0.0,
-                                      name: _model.dataGetOne!.name,
+                                      image: _model.dataGetOne?.imageCover,
+                                      price: _model.dataGetOne?.price,
+                                      name: _model.dataGetOne?.name,
                                       numOfListLessions:
-                                          _model.dataGetOne!.lessions.length,
-                                      author: _model.dataGetOne!.authorId.alias,
+                                          _model.dataGetOne?.lessions.length,
+                                      author:
+                                          _model.dataGetOne?.authorId.alias,
                                       programId: widget.idProgram,
                                       checkType: 'organization',
                                     ),

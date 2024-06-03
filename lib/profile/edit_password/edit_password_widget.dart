@@ -179,6 +179,20 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       child: TextFormField(
                         controller: _model.newPasswordTextController,
                         focusNode: _model.newPasswordFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.newPasswordTextController',
+                          const Duration(milliseconds: 2000),
+                          () async {
+                            if (_model.newPasswordTextController.text !=
+                                _model.confirmPassTextController.text) {
+                              _model.checkPass = true;
+                              setState(() {});
+                            } else {
+                              _model.checkPass = false;
+                              setState(() {});
+                            }
+                          },
+                        ),
                         autofillHints: const [AutofillHints.password],
                         textCapitalization: TextCapitalization.words,
                         obscureText: !_model.newPasswordVisibility,
@@ -196,7 +210,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                   ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: _model.checkPass == true
+                                  ? FlutterFlowTheme.of(context).error
+                                  : FlutterFlowTheme.of(context).alternate,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
@@ -262,13 +278,11 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                           () async {
                             if (_model.newPasswordTextController.text !=
                                 _model.confirmPassTextController.text) {
-                              setState(() {
-                                _model.checkPass = true;
-                              });
+                              _model.checkPass = true;
+                              setState(() {});
                             } else {
-                              setState(() {
-                                _model.checkPass = false;
-                              });
+                              _model.checkPass = false;
+                              setState(() {});
                             }
                           },
                         ),
@@ -289,7 +303,9 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                   ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
+                              color: _model.checkPass == true
+                                  ? FlutterFlowTheme.of(context).error
+                                  : FlutterFlowTheme.of(context).alternate,
                               width: 1.0,
                             ),
                             borderRadius: BorderRadius.circular(8.0),

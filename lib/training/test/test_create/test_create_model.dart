@@ -66,7 +66,7 @@ class TestCreateModel extends FlutterFlowModel<TestCreateWidget> {
     }
 
     if (!RegExp('^[1-9][0-9]?\$|^100\$').hasMatch(val)) {
-      return 'Điểm đạt không được nhập 0 và lớn hơn 100 ';
+      return 'Điểm đạt phải lơn 0 và nhỏ hơn hoặc bằng 100 ';
     }
     return null;
   }

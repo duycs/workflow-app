@@ -51,66 +51,65 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
           id: widget.workflowsId,
         );
         if ((_model.apiResultStepData?.succeeded ?? true)) {
-          setState(() {
-            _model.stepsList = functions
-                .sortArrayStepList((getJsonField(
-                  (_model.apiResultStepData?.jsonBody ?? ''),
-                  r'''$.data.steps''',
-                  true,
-                )!
-                        .toList()
-                        .map<WorkflowsStepCreateStruct?>(
-                            WorkflowsStepCreateStruct.maybeFromMap)
-                        .toList() as Iterable<WorkflowsStepCreateStruct?>)
-                    .withoutNulls
-                    .toList())
-                .toList()
-                .cast<WorkflowsStepCreateStruct>();
-            _model.data = WorkflowsStepCreateStruct(
-              id: getJsonField(
+          _model.stepsList = functions
+              .sortArrayStepList((getJsonField(
                 (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.id''',
-              ).toString().toString(),
-              status: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.status''',
-              ).toString().toString(),
-              name: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.name''',
-              ).toString().toString(),
-              description: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.description''',
-              ).toString().toString(),
-              remind: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.remind''',
-              ),
-              remindInSecond: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.remind_in_second''',
-              ),
-              remind2: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.remind_2''',
-              ),
-              cron: getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.cron''',
-              ).toString().toString(),
-              departments: (getJsonField(
-                (_model.apiResultStepData?.jsonBody ?? ''),
-                r'''$.data.departments''',
+                r'''$.data.steps''',
                 true,
-              )
-                      ?.toList()
-                      .map<DepartmentListStruct?>(
-                          DepartmentListStruct.maybeFromMap)
-                      .toList() as Iterable<DepartmentListStruct?>)
-                  .withoutNulls,
-            );
-          });
+              )!
+                      .toList()
+                      .map<WorkflowsStepCreateStruct?>(
+                          WorkflowsStepCreateStruct.maybeFromMap)
+                      .toList() as Iterable<WorkflowsStepCreateStruct?>)
+                  .withoutNulls
+                  .toList())
+              .toList()
+              .cast<WorkflowsStepCreateStruct>();
+          _model.data = WorkflowsStepCreateStruct(
+            id: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.id''',
+            ).toString().toString(),
+            status: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.status''',
+            ).toString().toString(),
+            name: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.name''',
+            ).toString().toString(),
+            description: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.description''',
+            ).toString().toString(),
+            remind: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.remind''',
+            ),
+            remindInSecond: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.remind_in_second''',
+            ),
+            remind2: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.remind_2''',
+            ),
+            cron: getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.cron''',
+            ).toString().toString(),
+            departments: (getJsonField(
+              (_model.apiResultStepData?.jsonBody ?? ''),
+              r'''$.data.departments''',
+              true,
+            )
+                    ?.toList()
+                    .map<DepartmentListStruct?>(
+                        DepartmentListStruct.maybeFromMap)
+                    .toList() as Iterable<DepartmentListStruct?>)
+                .withoutNulls,
+          );
+          setState(() {});
           if ((getJsonField(
                 (_model.apiResultStepData?.jsonBody ?? ''),
                 r'''$.data.departments''',
@@ -122,26 +121,24 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                   .withoutNulls.isNotEmpty) {
             setState(() {});
           } else {
-            setState(() {
-              _model.updateDataStruct(
-                (e) => e
-                  ..staffs = (getJsonField(
-                    (_model.apiResultStepData?.jsonBody ?? ''),
-                    r'''$.data.staffs''',
-                    true,
-                  )!
-                          .toList()
-                          .map<StaffsStepStruct?>(StaffsStepStruct.maybeFromMap)
-                          .toList() as Iterable<StaffsStepStruct?>)
-                      .withoutNulls
-                      .toList(),
-              );
-            });
+            _model.updateDataStruct(
+              (e) => e
+                ..staffs = (getJsonField(
+                  (_model.apiResultStepData?.jsonBody ?? ''),
+                  r'''$.data.staffs''',
+                  true,
+                )!
+                        .toList()
+                        .map<StaffsStepStruct?>(StaffsStepStruct.maybeFromMap)
+                        .toList() as Iterable<StaffsStepStruct?>)
+                    .withoutNulls
+                    .toList(),
+            );
+            setState(() {});
           }
 
-          setState(() {
-            _model.idLoad = true;
-          });
+          _model.idLoad = true;
+          setState(() {});
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

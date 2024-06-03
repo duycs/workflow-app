@@ -15,6 +15,15 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share/share.dart';
+import 'dart:math';
+
+String generateRandomString(int length) {
+  const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  final random = Random();
+  return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+      .join();
+}
 
 Future<void> downloadFile(
   String url,
@@ -45,8 +54,10 @@ Future<void> downloadFile(
         ? customFileExtension.split('.').last
         : fileName.split('.').last;
 
-    String extensionFirst =
-        customFileExtension != null ? customFileExtension.split('.').first : '';
+    String extensionFirst = generateRandomString(9);
+
+    // String extensionFirst =
+    //     customFileExtension != null ? customFileExtension.split('.').first : '';
 
     // Xác định thư mục tải xuống dựa trên nền tảng
     String directoryPath;
@@ -66,8 +77,7 @@ Future<void> downloadFile(
     // Lấy tệp từ URL
     final response = await http.get(uri);
     if (response.statusCode != 200) {
-      Fluttertoast.showToast(
-          msg: "Tải xuống thất bại: ${response.reasonPhrase}");
+      Fluttertoast.showToast(msg: "Tải xuống thất bại");
       return;
     }
 
@@ -78,12 +88,16 @@ Future<void> downloadFile(
     await file.writeAsBytes(bytes);
 
     // Ghi log đường dẫn lưu tệp
-    print("File saved at: $path");
-    Fluttertoast.showToast(msg: "Tệp đã được tải xuống thành công: $path");
+    //print("File saved at");
+    Fluttertoast.showToast(msg: "Tệp đã được tải xuống thành công");
     // Chia sẻ tệp với người dùng
-    Share.shareFiles([path], text: "Tệp của bạn đã được tải xuống");
+    //print('Sharing file...');
+    Fluttertoast.showToast(msg: "Sharing file...");
+    Share.shareFiles([path], text: " ");
+    //print('File shared successfully.');
+    Fluttertoast.showToast(msg: "File shared successfully.");
   } catch (e) {
-    Fluttertoast.showToast(msg: "Lỗi khi tải xuống tệp: ${e.toString()}");
-    print("Error downloading file: ${e.toString()}");
+    Fluttertoast.showToast(msg: "Lỗi khi tải xuống tệp");
+    print("Error downloading file");
   }
 }

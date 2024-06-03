@@ -50,10 +50,9 @@ class _DoTestWidgetState extends State<DoTestWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStart =
-            functions.datetimeToString(getCurrentTimestamp.toString());
-      });
+      _model.dateStart =
+          functions.datetimeToString(getCurrentTimestamp.toString());
+      setState(() {});
       _model.getLessionTestToken = await action_blocks.tokenReload(context);
       if (_model.getLessionTestToken!) {
         _model.apiResultGetLessionTest = await TestGroup.testOneCall.call(
@@ -61,31 +60,27 @@ class _DoTestWidgetState extends State<DoTestWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultGetLessionTest?.succeeded ?? true)) {
-          setState(() {
-            _model.list = TestListStruct.maybeFromMap(getJsonField(
-              (_model.apiResultGetLessionTest?.jsonBody ?? ''),
-              r'''$.data''',
-            ));
-          });
+          _model.list = TestListStruct.maybeFromMap(getJsonField(
+            (_model.apiResultGetLessionTest?.jsonBody ?? ''),
+            r'''$.data''',
+          ));
+          setState(() {});
           while (_model.loopList < _model.list!.questions.length) {
-            setState(() {
-              _model.addToRequestData(RequestAnswerStaffStruct(
-                status: 'published',
-                staffId: getJsonField(
-                  FFAppState().staffLogin,
-                  r'''$.id''',
-                ).toString().toString(),
-                questionId: '',
-              ));
-              _model.addToListIdCheck('');
-            });
-            setState(() {
-              _model.loopList = _model.loopList + 1;
-            });
+            _model.addToRequestData(RequestAnswerStaffStruct(
+              status: 'published',
+              staffId: getJsonField(
+                FFAppState().staffLogin,
+                r'''$.id''',
+              ).toString().toString(),
+              questionId: '',
+            ));
+            _model.addToListIdCheck('');
+            setState(() {});
+            _model.loopList = _model.loopList + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loopList = 0;
-          });
+          _model.loopList = 0;
+          setState(() {});
           _model.instantTimer = InstantTimer.periodic(
             duration: const Duration(milliseconds: 1000),
             callback: (timer) async {
@@ -250,39 +245,35 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   ?.questionsId
                                                                   .id)
                                                           .toList().isEmpty) {
-                                                    setState(() {
-                                                      _model.addToRequestData(
-                                                          RequestAnswerStaffStruct(
-                                                        status: 'published',
-                                                        correct: 0,
-                                                        answerType: (_model.list
-                                                                    ?.questions[
-                                                                _model
-                                                                    .loopQuestion])
-                                                            ?.questionsId
-                                                            .answerType,
-                                                        staffId: getJsonField(
-                                                          FFAppState()
-                                                              .staffLogin,
-                                                          r'''$.id''',
-                                                        ).toString(),
-                                                        questionId: (_model.list
-                                                                    ?.questions[
-                                                                _model
-                                                                    .loopQuestion])
-                                                            ?.questionsId
-                                                            .id,
-                                                      ));
-                                                    });
+                                                    _model.addToRequestData(
+                                                        RequestAnswerStaffStruct(
+                                                      status: 'published',
+                                                      correct: 0,
+                                                      answerType: (_model.list
+                                                                  ?.questions[
+                                                              _model
+                                                                  .loopQuestion])
+                                                          ?.questionsId
+                                                          .answerType,
+                                                      staffId: getJsonField(
+                                                        FFAppState().staffLogin,
+                                                        r'''$.id''',
+                                                      ).toString(),
+                                                      questionId: (_model.list
+                                                                  ?.questions[
+                                                              _model
+                                                                  .loopQuestion])
+                                                          ?.questionsId
+                                                          .id,
+                                                    ));
+                                                    setState(() {});
                                                   }
-                                                  setState(() {
-                                                    _model.loopQuestion =
-                                                        _model.loopQuestion + 1;
-                                                  });
+                                                  _model.loopQuestion =
+                                                      _model.loopQuestion + 1;
+                                                  setState(() {});
                                                 }
-                                                setState(() {
-                                                  _model.loopQuestion = 0;
-                                                });
+                                                _model.loopQuestion = 0;
+                                                setState(() {});
                                                 while (_model.loopQuestion <
                                                     _model.requestData.length) {
                                                   if (_model
@@ -290,29 +281,25 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               .loopQuestion]
                                                           .questionId ==
                                                       '') {
-                                                    setState(() {
-                                                      _model
-                                                          .removeAtIndexFromRequestData(
-                                                              _model
-                                                                  .loopQuestion);
-                                                    });
+                                                    _model
+                                                        .removeAtIndexFromRequestData(
+                                                            _model
+                                                                .loopQuestion);
+                                                    setState(() {});
                                                   } else {
-                                                    setState(() {
-                                                      _model.loopQuestion =
-                                                          _model.loopQuestion +
-                                                              1;
-                                                    });
+                                                    _model.loopQuestion =
+                                                        _model.loopQuestion + 1;
+                                                    setState(() {});
                                                   }
 
                                                   setState(() {});
                                                 }
-                                                setState(() {
-                                                  _model.dateEnd = functions
-                                                      .datetimeToString(
-                                                          getCurrentTimestamp
-                                                              .toString());
-                                                  _model.loopQuestion = 0;
-                                                });
+                                                _model.dateEnd =
+                                                    functions.datetimeToString(
+                                                        getCurrentTimestamp
+                                                            .toString());
+                                                _model.loopQuestion = 0;
+                                                setState(() {});
                                                 _model.createStaffTestToken1 =
                                                     await action_blocks
                                                         .tokenReload(context);
@@ -350,61 +337,57 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                           .apiResultCreateStaffTest1
                                                           ?.succeeded ??
                                                       true)) {
-                                                    setState(() {
-                                                      _model.testId =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest1
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.id''',
-                                                      ).toString();
-                                                      _model.testTime =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest1
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.duration_minutes''',
-                                                      );
-                                                      _model.testName =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest1
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.name''',
-                                                      ).toString();
-                                                      _model.testDescription =
-                                                          getJsonField(
-                                                        (_model.apiResultCreateStaffTest1
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.data.test_id.description''',
-                                                      ).toString();
-                                                    });
+                                                    _model.testId =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest1
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.id''',
+                                                    ).toString();
+                                                    _model.testTime =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest1
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.duration_minutes''',
+                                                    );
+                                                    _model.testName =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest1
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.name''',
+                                                    ).toString();
+                                                    _model.testDescription =
+                                                        getJsonField(
+                                                      (_model.apiResultCreateStaffTest1
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.data.test_id.description''',
+                                                    ).toString();
+                                                    setState(() {});
                                                     while (_model.loopId <
                                                         _model.requestData
                                                             .length) {
-                                                      setState(() {
-                                                        _model
-                                                            .updateRequestDataAtIndex(
-                                                          _model.loopId,
-                                                          (e) => e
-                                                            ..staffTestId =
-                                                                getJsonField(
-                                                              (_model.apiResultCreateStaffTest1
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$.data.id''',
-                                                            ).toString(),
-                                                        );
-                                                      });
-                                                      setState(() {
-                                                        _model.loopId =
-                                                            _model.loopId + 1;
-                                                      });
+                                                      _model
+                                                          .updateRequestDataAtIndex(
+                                                        _model.loopId,
+                                                        (e) => e
+                                                          ..staffTestId =
+                                                              getJsonField(
+                                                            (_model.apiResultCreateStaffTest1
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.data.id''',
+                                                          ).toString(),
+                                                      );
+                                                      setState(() {});
+                                                      _model.loopId =
+                                                          _model.loopId + 1;
+                                                      setState(() {});
                                                     }
-                                                    setState(() {
-                                                      _model.loopId = 0;
-                                                    });
+                                                    _model.loopId = 0;
+                                                    setState(() {});
                                                     _model.createStaffAnswerToken1 =
                                                         await action_blocks
                                                             .tokenReload(
@@ -931,54 +914,53 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                           setState(() =>
                                                                               _model.checkboxValueMap[dataQuestionItem] = newValue!);
                                                                           if (newValue!) {
-                                                                            setState(() {
-                                                                              _model.checkboxAnswer = dataQuestionItem.answersId.id;
-                                                                              _model.checkTrue = dataQuestionItem.answersId.correct;
-                                                                            });
-                                                                            setState(() {
-                                                                              _model.updateRequestDataAtIndex(
-                                                                                listQuestionIndex,
-                                                                                (e) => e
-                                                                                  ..correct = _model.checkTrue
-                                                                                  ..answerType = listQuestionItem.questionsId.answerType
-                                                                                  ..questionId = listQuestionItem.questionsId.id
-                                                                                  ..updateAnswers(
-                                                                                    (e) => e.add(AnswersListStruct(
-                                                                                      answersId: TestAnswersIdStruct(
-                                                                                        id: _model.checkboxAnswer,
-                                                                                      ),
-                                                                                    )),
-                                                                                  ),
-                                                                              );
-                                                                            });
-                                                                            setState(() {
-                                                                              _model.checkboxAnswer = null;
-                                                                              _model.checkTrue = null;
-                                                                            });
+                                                                            _model.checkboxAnswer =
+                                                                                dataQuestionItem.answersId.id;
+                                                                            _model.checkTrue =
+                                                                                dataQuestionItem.answersId.correct;
+                                                                            setState(() {});
+                                                                            _model.updateRequestDataAtIndex(
+                                                                              listQuestionIndex,
+                                                                              (e) => e
+                                                                                ..correct = _model.checkTrue
+                                                                                ..answerType = listQuestionItem.questionsId.answerType
+                                                                                ..questionId = listQuestionItem.questionsId.id
+                                                                                ..updateAnswers(
+                                                                                  (e) => e.add(AnswersListStruct(
+                                                                                    answersId: TestAnswersIdStruct(
+                                                                                      id: _model.checkboxAnswer,
+                                                                                    ),
+                                                                                  )),
+                                                                                ),
+                                                                            );
+                                                                            setState(() {});
+                                                                            _model.checkboxAnswer =
+                                                                                null;
+                                                                            _model.checkTrue =
+                                                                                null;
+                                                                            setState(() {});
                                                                           } else {
-                                                                            setState(() {
-                                                                              _model.checkboxAnswer = dataQuestionItem.answersId.id;
-                                                                            });
+                                                                            _model.checkboxAnswer =
+                                                                                dataQuestionItem.answersId.id;
+                                                                            setState(() {});
                                                                             while (_model.loop! <
                                                                                 _model.requestData[listQuestionIndex].answers.length) {
                                                                               if (_model.requestData[listQuestionIndex].answers.where((e) => e.answersId.id == _model.checkboxAnswer).toList().isNotEmpty) {
-                                                                                setState(() {
-                                                                                  _model.updateRequestDataAtIndex(
-                                                                                    listQuestionIndex,
-                                                                                    (e) => e
-                                                                                      ..updateAnswers(
-                                                                                        (e) => e.removeAt(_model.loop!),
-                                                                                      ),
-                                                                                  );
-                                                                                });
+                                                                                _model.updateRequestDataAtIndex(
+                                                                                  listQuestionIndex,
+                                                                                  (e) => e
+                                                                                    ..updateAnswers(
+                                                                                      (e) => e.removeAt(_model.loop!),
+                                                                                    ),
+                                                                                );
+                                                                                setState(() {});
                                                                               }
-                                                                              setState(() {
-                                                                                _model.loop = _model.loop! + 1;
-                                                                              });
+                                                                              _model.loop = _model.loop! + 1;
+                                                                              setState(() {});
                                                                             }
-                                                                            setState(() {
-                                                                              _model.checkboxAnswer = null;
-                                                                            });
+                                                                            _model.checkboxAnswer =
+                                                                                null;
+                                                                            setState(() {});
                                                                           }
                                                                         },
                                                                         side:
@@ -1067,64 +1049,61 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   listQuestionIndex],
                                                               callback:
                                                                   (id) async {
-                                                                setState(() {
-                                                                  _model
-                                                                      .updateListIdCheckAtIndex(
-                                                                    listQuestionIndex,
-                                                                    (_) => id!,
-                                                                  );
-                                                                });
-                                                                setState(() {
-                                                                  _model.checkboxAnswer =
-                                                                      dataQuestionOneItem
-                                                                          .answersId
-                                                                          .id;
-                                                                  _model.checkTrue =
-                                                                      dataQuestionOneItem
-                                                                          .answersId
-                                                                          .correct;
-                                                                });
-                                                                setState(() {
-                                                                  _model
-                                                                      .updateRequestDataAtIndex(
-                                                                    listQuestionIndex,
-                                                                    (e) => e
-                                                                      ..answers =
-                                                                          [],
-                                                                  );
-                                                                });
-                                                                setState(() {
-                                                                  _model
-                                                                      .updateRequestDataAtIndex(
-                                                                    listQuestionIndex,
-                                                                    (e) => e
-                                                                      ..correct =
-                                                                          _model
-                                                                              .checkTrue
-                                                                      ..answerType = listQuestionItem
-                                                                          .questionsId
-                                                                          .answerType
-                                                                      ..questionId =
-                                                                          listQuestionItem
-                                                                              .questionsId
-                                                                              .id
-                                                                      ..updateAnswers(
-                                                                        (e) => e
-                                                                            .add(AnswersListStruct(
-                                                                          answersId:
-                                                                              TestAnswersIdStruct(
-                                                                            id: _model.checkboxAnswer,
-                                                                          ),
-                                                                        )),
-                                                                      ),
-                                                                  );
-                                                                });
-                                                                setState(() {
-                                                                  _model.checkboxAnswer =
-                                                                      null;
-                                                                  _model.checkTrue =
-                                                                      null;
-                                                                });
+                                                                _model
+                                                                    .updateListIdCheckAtIndex(
+                                                                  listQuestionIndex,
+                                                                  (_) => id!,
+                                                                );
+                                                                setState(() {});
+                                                                _model.checkboxAnswer =
+                                                                    dataQuestionOneItem
+                                                                        .answersId
+                                                                        .id;
+                                                                _model.checkTrue =
+                                                                    dataQuestionOneItem
+                                                                        .answersId
+                                                                        .correct;
+                                                                setState(() {});
+                                                                _model
+                                                                    .updateRequestDataAtIndex(
+                                                                  listQuestionIndex,
+                                                                  (e) => e
+                                                                    ..answers =
+                                                                        [],
+                                                                );
+                                                                setState(() {});
+                                                                _model
+                                                                    .updateRequestDataAtIndex(
+                                                                  listQuestionIndex,
+                                                                  (e) => e
+                                                                    ..correct =
+                                                                        _model
+                                                                            .checkTrue
+                                                                    ..answerType =
+                                                                        listQuestionItem
+                                                                            .questionsId
+                                                                            .answerType
+                                                                    ..questionId =
+                                                                        listQuestionItem
+                                                                            .questionsId
+                                                                            .id
+                                                                    ..updateAnswers(
+                                                                      (e) => e.add(
+                                                                          AnswersListStruct(
+                                                                        answersId:
+                                                                            TestAnswersIdStruct(
+                                                                          id: _model
+                                                                              .checkboxAnswer,
+                                                                        ),
+                                                                      )),
+                                                                    ),
+                                                                );
+                                                                setState(() {});
+                                                                _model.checkboxAnswer =
+                                                                    null;
+                                                                _model.checkTrue =
+                                                                    null;
+                                                                setState(() {});
                                                               },
                                                             ),
                                                           );
@@ -1142,37 +1121,35 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                         .questionsId.answers,
                                                     callback: (answerId,
                                                         correct) async {
-                                                      setState(() {
-                                                        _model.answerId =
-                                                            answerId!;
-                                                        _model.correct =
-                                                            correct;
-                                                      });
-                                                      setState(() {
-                                                        _model
-                                                            .updateRequestDataAtIndex(
-                                                          listQuestionIndex,
-                                                          (e) => e
-                                                            ..correct = correct
-                                                            ..answerType =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .answerType
-                                                            ..questionId =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .id
-                                                            ..answers = listQuestionItem
-                                                                .questionsId
-                                                                .answers
-                                                                .where((e) =>
-                                                                    e.answersId
-                                                                        .id ==
-                                                                    _model
-                                                                        .answerId)
-                                                                .toList(),
-                                                        );
-                                                      });
+                                                      _model.answerId =
+                                                          answerId!;
+                                                      _model.correct = correct;
+                                                      setState(() {});
+                                                      _model
+                                                          .updateRequestDataAtIndex(
+                                                        listQuestionIndex,
+                                                        (e) => e
+                                                          ..correct = correct
+                                                          ..answerType =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .answerType
+                                                          ..questionId =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .id
+                                                          ..answers =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .answers
+                                                                  .where((e) =>
+                                                                      e.answersId
+                                                                          .id ==
+                                                                      _model
+                                                                          .answerId)
+                                                                  .toList(),
+                                                      );
+                                                      setState(() {});
                                                     },
                                                   ),
                                                 if (listQuestionItem.questionsId
@@ -1182,23 +1159,22 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     key: Key(
                                                         'Key2km_${listQuestionIndex}_of_${listQuestion.length}'),
                                                     callback: (text) async {
-                                                      setState(() {
-                                                        _model
-                                                            .updateRequestDataAtIndex(
-                                                          listQuestionIndex,
-                                                          (e) => e
-                                                            ..answerType =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .answerType
-                                                            ..questionId =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .id
-                                                            ..answerContent =
-                                                                text,
-                                                        );
-                                                      });
+                                                      _model
+                                                          .updateRequestDataAtIndex(
+                                                        listQuestionIndex,
+                                                        (e) => e
+                                                          ..answerType =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .answerType
+                                                          ..questionId =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .id
+                                                          ..answerContent =
+                                                              text,
+                                                      );
+                                                      setState(() {});
                                                     },
                                                   ),
                                                 if (listQuestionItem.questionsId
@@ -1208,24 +1184,23 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                     key: Key(
                                                         'Keyybg_${listQuestionIndex}_of_${listQuestion.length}'),
                                                     callBack: (number) async {
-                                                      setState(() {
-                                                        _model
-                                                            .updateRequestDataAtIndex(
-                                                          listQuestionIndex,
-                                                          (e) => e
-                                                            ..answerType =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .answerType
-                                                            ..questionId =
-                                                                listQuestionItem
-                                                                    .questionsId
-                                                                    .id
-                                                            ..answerContent =
-                                                                number
-                                                                    ?.toString(),
-                                                        );
-                                                      });
+                                                      _model
+                                                          .updateRequestDataAtIndex(
+                                                        listQuestionIndex,
+                                                        (e) => e
+                                                          ..answerType =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .answerType
+                                                          ..questionId =
+                                                              listQuestionItem
+                                                                  .questionsId
+                                                                  .id
+                                                          ..answerContent =
+                                                              number
+                                                                  ?.toString(),
+                                                      );
+                                                      setState(() {});
                                                     },
                                                   ),
                                               ].divide(const SizedBox(height: 4.0)),
@@ -1285,55 +1260,49 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                               ?.questionsId
                                               .id)
                                       .toList().isEmpty) {
-                                setState(() {
-                                  _model.addToRequestData(
-                                      RequestAnswerStaffStruct(
-                                    status: 'published',
-                                    correct: 0,
-                                    answerType: (_model.list
-                                            ?.questions[_model.loopQuestion])
-                                        ?.questionsId
-                                        .answerType,
-                                    staffId: getJsonField(
-                                      FFAppState().staffLogin,
-                                      r'''$.id''',
-                                    ).toString(),
-                                    questionId: (_model.list
-                                            ?.questions[_model.loopQuestion])
-                                        ?.questionsId
-                                        .id,
-                                  ));
-                                });
+                                _model
+                                    .addToRequestData(RequestAnswerStaffStruct(
+                                  status: 'published',
+                                  correct: 0,
+                                  answerType: (_model.list
+                                          ?.questions[_model.loopQuestion])
+                                      ?.questionsId
+                                      .answerType,
+                                  staffId: getJsonField(
+                                    FFAppState().staffLogin,
+                                    r'''$.id''',
+                                  ).toString(),
+                                  questionId: (_model.list
+                                          ?.questions[_model.loopQuestion])
+                                      ?.questionsId
+                                      .id,
+                                ));
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loopQuestion = _model.loopQuestion + 1;
-                              });
+                              _model.loopQuestion = _model.loopQuestion + 1;
+                              setState(() {});
                             }
-                            setState(() {
-                              _model.loopQuestion = 0;
-                            });
+                            _model.loopQuestion = 0;
+                            setState(() {});
                             while (_model.loopQuestion <
                                 _model.requestData.length) {
                               if (_model.requestData[_model.loopQuestion]
                                       .questionId ==
                                   '') {
-                                setState(() {
-                                  _model.removeAtIndexFromRequestData(
-                                      _model.loopQuestion);
-                                });
+                                _model.removeAtIndexFromRequestData(
+                                    _model.loopQuestion);
+                                setState(() {});
                               } else {
-                                setState(() {
-                                  _model.loopQuestion = _model.loopQuestion + 1;
-                                });
+                                _model.loopQuestion = _model.loopQuestion + 1;
+                                setState(() {});
                               }
 
                               setState(() {});
                             }
-                            setState(() {
-                              _model.dateEnd = functions.datetimeToString(
-                                  getCurrentTimestamp.toString());
-                              _model.loopQuestion = 0;
-                            });
+                            _model.dateEnd = functions.datetimeToString(
+                                getCurrentTimestamp.toString());
+                            _model.loopQuestion = 0;
+                            setState(() {});
                             _model.createStaffTestToken =
                                 await action_blocks.tokenReload(context);
                             shouldSetState = true;
@@ -1359,53 +1328,45 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                               shouldSetState = true;
                               if ((_model.apiResultCreateStaffTest?.succeeded ??
                                   true)) {
-                                setState(() {
-                                  _model.testId = getJsonField(
-                                    (_model.apiResultCreateStaffTest
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.data.id''',
-                                  ).toString();
-                                  _model.testTime = getJsonField(
-                                    (_model.apiResultCreateStaffTest
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.data.test_id.duration_minutes''',
-                                  );
-                                  _model.testName = getJsonField(
-                                    (_model.apiResultCreateStaffTest
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.data.test_id.name''',
-                                  ).toString();
-                                  _model.testDescription = getJsonField(
-                                    (_model.apiResultCreateStaffTest
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.data.test_id.description''',
-                                  ).toString();
-                                });
+                                _model.testId = getJsonField(
+                                  (_model.apiResultCreateStaffTest?.jsonBody ??
+                                      ''),
+                                  r'''$.data.id''',
+                                ).toString();
+                                _model.testTime = getJsonField(
+                                  (_model.apiResultCreateStaffTest?.jsonBody ??
+                                      ''),
+                                  r'''$.data.test_id.duration_minutes''',
+                                );
+                                _model.testName = getJsonField(
+                                  (_model.apiResultCreateStaffTest?.jsonBody ??
+                                      ''),
+                                  r'''$.data.test_id.name''',
+                                ).toString();
+                                _model.testDescription = getJsonField(
+                                  (_model.apiResultCreateStaffTest?.jsonBody ??
+                                      ''),
+                                  r'''$.data.test_id.description''',
+                                ).toString();
+                                setState(() {});
                                 while (
                                     _model.loopId < _model.requestData.length) {
-                                  setState(() {
-                                    _model.updateRequestDataAtIndex(
-                                      _model.loopId,
-                                      (e) => e
-                                        ..staffTestId = getJsonField(
-                                          (_model.apiResultCreateStaffTest
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.data.id''',
-                                        ).toString(),
-                                    );
-                                  });
-                                  setState(() {
-                                    _model.loopId = _model.loopId + 1;
-                                  });
+                                  _model.updateRequestDataAtIndex(
+                                    _model.loopId,
+                                    (e) => e
+                                      ..staffTestId = getJsonField(
+                                        (_model.apiResultCreateStaffTest
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.data.id''',
+                                      ).toString(),
+                                  );
+                                  setState(() {});
+                                  _model.loopId = _model.loopId + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loopId = 0;
-                                });
+                                _model.loopId = 0;
+                                setState(() {});
                                 _model.createStaffAnswerToken =
                                     await action_blocks.tokenReload(context);
                                 shouldSetState = true;

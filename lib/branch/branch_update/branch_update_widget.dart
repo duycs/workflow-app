@@ -248,19 +248,16 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                 () async {
                                   if (widget.code ==
                                       _model.branchCodeTextController.text) {
-                                    setState(() {
-                                      _model.checkCode = '0';
-                                    });
+                                    _model.checkCode = '0';
+                                    setState(() {});
                                   } else {
                                     if ((widget.codeList!).toList().contains(
                                         _model.branchCodeTextController.text)) {
-                                      setState(() {
-                                        _model.checkCode = '1';
-                                      });
+                                      _model.checkCode = '1';
+                                      setState(() {});
                                     } else {
-                                      setState(() {
-                                        _model.checkCode = '0';
-                                      });
+                                      _model.checkCode = '0';
+                                      setState(() {});
                                     }
                                   }
                                 },

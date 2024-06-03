@@ -66,9 +66,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
         await _model.getListLesson(context);
         setState(() {});
       }
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.isLoad = true;
+      setState(() {});
     });
 
     if (!isWeb) {
@@ -560,6 +559,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                   .programId.id,
                                                               ParamType.String,
                                                             ),
+                                                            'checkReload':
+                                                                serializeParam(
+                                                              'Home',
+                                                              ParamType.String,
+                                                            ),
                                                           }.withoutNulls,
                                                           extra: <String,
                                                               dynamic>{
@@ -675,9 +679,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                   () {
                                                                     if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                         (listRowItem.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int
@@ -777,9 +781,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                         (listRowItem.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay ==
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -819,9 +823,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRowItem.dateStart != null && listRowItem.dateStart != '') &&
                                                                         (listRowItem.lessionId.estimateInDay ==
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -861,9 +865,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRowItem.dateStart == null || listRowItem.dateStart == '') &&
                                                                         (listRowItem.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -905,9 +909,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                             listRowItem.dateStart ==
                                                                                 '') &&
                                                                         (listRowItem.lessionId.estimateInDay ==
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -950,26 +954,26 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                             listRowItem.dateStart ==
                                                                                 '') &&
                                                                         (listRowItem.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay ==
-                                                                            null)) {
-                                                                      return 'Không có hạn';
+                                                                            0)) {
+                                                                      return '';
                                                                     } else if ((listRowItem.dateStart !=
                                                                                 null &&
                                                                             listRowItem.dateStart !=
                                                                                 '') &&
                                                                         (listRowItem.lessionId.estimateInDay ==
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRowItem.programId.estimateInDay ==
-                                                                            null)) {
+                                                                            0)) {
                                                                       return 'Không có hạn';
                                                                     } else if ((listRowItem.dateStart ==
                                                                                 null ||
                                                                             listRowItem.dateStart ==
                                                                                 '') &&
                                                                         (listRowItem.programId.estimateInDay ==
-                                                                            null) &&
-                                                                        (listRowItem.lessionId.estimateInDay == null)) {
+                                                                            0) &&
+                                                                        (listRowItem.lessionId.estimateInDay == 0)) {
                                                                       return 'Không có hạn';
                                                                     } else {
                                                                       return null!;
@@ -1282,6 +1286,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                   .programId.id,
                                                               ParamType.String,
                                                             ),
+                                                            'checkReload':
+                                                                serializeParam(
+                                                              'Home',
+                                                              ParamType.String,
+                                                            ),
                                                           }.withoutNulls,
                                                           extra: <String,
                                                               dynamic>{
@@ -1397,9 +1406,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                   () {
                                                                     if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int
@@ -1499,9 +1508,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay ==
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -1541,9 +1550,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRow2Item.dateStart != null && listRow2Item.dateStart != '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -1583,9 +1592,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       }();
                                                                     } else if ((listRow2Item.dateStart == null || listRow2Item.dateStart == '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -1627,9 +1636,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                             listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay !=
-                                                                            null)) {
+                                                                            0)) {
                                                                       return () {
                                                                         if ((String item1,
                                                                                 int item2,
@@ -1672,26 +1681,26 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                             listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay !=
-                                                                            null) &&
+                                                                            0) &&
                                                                         (listRow2Item.programId.estimateInDay ==
-                                                                            null)) {
+                                                                            0)) {
+                                                                      return '';
+                                                                    } else if ((listRow2Item.dateStart ==
+                                                                                null ||
+                                                                            listRow2Item.dateStart ==
+                                                                                '') &&
+                                                                        (listRow2Item.lessionId.estimateInDay ==
+                                                                            0) &&
+                                                                        (listRow2Item.programId.estimateInDay ==
+                                                                            0)) {
                                                                       return 'Không có hạn';
                                                                     } else if ((listRow2Item.dateStart ==
                                                                                 null ||
                                                                             listRow2Item.dateStart ==
                                                                                 '') &&
                                                                         (listRow2Item.lessionId.estimateInDay ==
-                                                                            null) &&
-                                                                        (listRow2Item.programId.estimateInDay ==
-                                                                            null)) {
-                                                                      return 'Không có hạn';
-                                                                    } else if ((listRow2Item.dateStart ==
-                                                                                null ||
-                                                                            listRow2Item.dateStart ==
-                                                                                '') &&
-                                                                        (listRow2Item.lessionId.estimateInDay ==
-                                                                            null) &&
-                                                                        (listRow2Item.programId.estimateInDay == null)) {
+                                                                            0) &&
+                                                                        (listRow2Item.programId.estimateInDay == 0)) {
                                                                       return 'Không có hạn';
                                                                     } else {
                                                                       return null!;
@@ -2436,6 +2445,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                             listRow3Item.id,
                                                             ParamType.String,
                                                           ),
+                                                          'checkReload':
+                                                              serializeParam(
+                                                            'Home',
+                                                            ParamType.String,
+                                                          ),
                                                         }.withoutNulls,
                                                         extra: <String,
                                                             dynamic>{
@@ -2546,9 +2560,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                 () {
                                                                   if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                       (listRow3Item.lessionId.estimateInDay !=
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay !=
-                                                                          null)) {
+                                                                          0)) {
                                                                     return () {
                                                                       if ((String item1,
                                                                               int
@@ -2666,9 +2680,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                     }();
                                                                   } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                       (listRow3Item.lessionId.estimateInDay !=
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay ==
-                                                                          null)) {
+                                                                          0)) {
                                                                     return () {
                                                                       if ((String item1,
                                                                               int
@@ -2726,9 +2740,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                     }();
                                                                   } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                       (listRow3Item.lessionId.estimateInDay ==
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay !=
-                                                                          null)) {
+                                                                          0)) {
                                                                     return () {
                                                                       if ((String item1,
                                                                               int
@@ -2786,9 +2800,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                     }();
                                                                   } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                       (listRow3Item.lessionId.estimateInDay !=
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay !=
-                                                                          null)) {
+                                                                          0)) {
                                                                     return () {
                                                                       if ((String item1,
                                                                               int
@@ -2846,9 +2860,9 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                     }();
                                                                   } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                       (listRow3Item.lessionId.estimateInDay ==
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay !=
-                                                                          null)) {
+                                                                          0)) {
                                                                     return () {
                                                                       if ((String item1,
                                                                               int
@@ -2906,19 +2920,19 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                     }();
                                                                   } else if ((listRow3Item.dateStart == null || listRow3Item.dateStart == '') &&
                                                                       (listRow3Item.lessionId.estimateInDay !=
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item.programId.estimateInDay ==
-                                                                          null)) {
-                                                                    return 'Không có hạn';
+                                                                          0)) {
+                                                                    return '';
                                                                   } else if ((listRow3Item.dateStart != null && listRow3Item.dateStart != '') &&
                                                                       (listRow3Item
                                                                               .lessionId
                                                                               .estimateInDay ==
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item
                                                                               .programId
                                                                               .estimateInDay ==
-                                                                          null)) {
+                                                                          0)) {
                                                                     return 'Không có hạn';
                                                                   } else if ((listRow3Item.dateStart == null ||
                                                                           listRow3Item.dateStart ==
@@ -2926,11 +2940,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                       (listRow3Item
                                                                               .lessionId
                                                                               .estimateInDay ==
-                                                                          null) &&
+                                                                          0) &&
                                                                       (listRow3Item
                                                                               .programId
                                                                               .estimateInDay ==
-                                                                          null)) {
+                                                                          0)) {
                                                                     return 'Không có hạn';
                                                                   } else {
                                                                     return null!;
@@ -3226,30 +3240,29 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                   lessonStatus,
                                                                   lessonFavoriteStatus,
                                                                   programsId) async {
-                                                                setState(() {
-                                                                  _model.status =
-                                                                      status!;
-                                                                  _model.dateStartList =
-                                                                      dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    dateStart,
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  );
-                                                                  _model.dateEndList =
-                                                                      dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    dateEnd,
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  );
-                                                                  _model.lessonFavoriteStatusList =
-                                                                      lessonFavoriteStatus!;
-                                                                  _model.programsAllId =
-                                                                      programsId!;
-                                                                });
+                                                                _model.status =
+                                                                    status!;
+                                                                _model.dateStartList =
+                                                                    dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  dateStart,
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                );
+                                                                _model.dateEndList =
+                                                                    dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  dateEnd,
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                );
+                                                                _model.lessonFavoriteStatusList =
+                                                                    lessonFavoriteStatus!;
+                                                                _model.programsAllId =
+                                                                    programsId!;
+                                                                setState(() {});
                                                                 setState(() => _model
                                                                     .listViewPagingController4
                                                                     ?.refresh());
@@ -3377,6 +3390,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                       'checkLesson':
                                                           serializeParam(
                                                         'closeTest',
+                                                        ParamType.String,
+                                                      ),
+                                                      'checkReload':
+                                                          serializeParam(
+                                                        'Home',
                                                         ParamType.String,
                                                       ),
                                                     }.withoutNulls,

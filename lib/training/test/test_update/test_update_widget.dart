@@ -52,14 +52,13 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.questionItem = widget.questions!
-            .map((e) => QuestionObjectStruct.maybeFromMap(e))
-            .withoutNulls
-            .toList()
-            .toList()
-            .cast<QuestionObjectStruct>();
-      });
+      _model.questionItem = widget.questions!
+          .map((e) => QuestionObjectStruct.maybeFromMap(e))
+          .withoutNulls
+          .toList()
+          .toList()
+          .cast<QuestionObjectStruct>();
+      setState(() {});
     });
 
     _model.textController1 ??= TextEditingController(text: widget.name);
@@ -480,9 +479,8 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                       ),
                                     );
                                   } else {
-                                    setState(() {
-                                      _model.addToQuestionItem(item!);
-                                    });
+                                    _model.addToQuestionItem(item!);
+                                    setState(() {});
                                   }
                                 },
                               ),
@@ -560,11 +558,10 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                                     size: 24.0,
                                                   ),
                                                   onPressed: () async {
-                                                    setState(() {
-                                                      _model
-                                                          .removeAtIndexFromQuestionItem(
-                                                              questionListIndex);
-                                                    });
+                                                    _model
+                                                        .removeAtIndexFromQuestionItem(
+                                                            questionListIndex);
+                                                    setState(() {});
                                                   },
                                                 ),
                                               ].divide(const SizedBox(width: 8.0)),
@@ -705,15 +702,14 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             if ((_model.apiResultAddQuestion
                                                     ?.succeeded ??
                                                 true)) {
-                                              setState(() {
-                                                _model.addToQuestionItem(
-                                                    QuestsionOneDataStruct
-                                                            .maybeFromMap((_model
-                                                                    .apiResultAddQuestion
-                                                                    ?.jsonBody ??
-                                                                ''))!
-                                                        .data);
-                                              });
+                                              _model.addToQuestionItem(
+                                                  QuestsionOneDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultAddQuestion
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data);
+                                              setState(() {});
                                             }
                                           },
                                         ),
@@ -794,19 +790,16 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               if (confirmDialogResponse) {
                                 while (
                                     _model.loop < _model.questionItem.length) {
-                                  setState(() {
-                                    _model.addToQuestionIdAdd(<String, dynamic>{
-                                      'questions_id': <String, String>{
-                                        'id':
-                                            _model.questionItem[_model.loop].id,
-                                      },
-                                    });
-                                    _model.loop = _model.loop + 1;
+                                  _model.addToQuestionIdAdd(<String, dynamic>{
+                                    'questions_id': <String, String>{
+                                      'id': _model.questionItem[_model.loop].id,
+                                    },
                                   });
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop = 0;
-                                });
+                                _model.loop = 0;
+                                setState(() {});
                                 _model.apiResultCreateTest =
                                     await TestGroup.testUpdateCall.call(
                                   id: widget.id,
@@ -860,7 +853,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                           FFAppConstants.ErrorLoadData,
                                           style: TextStyle(
                                             color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                                .secondaryBackground,
                                           ),
                                         ),
                                         duration: const Duration(milliseconds: 4000),

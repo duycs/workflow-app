@@ -57,19 +57,17 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
           ).toString().toString()}\"}}}]}',
         );
         if ((_model.apiResultListDeparment?.succeeded ?? true)) {
-          setState(() {
-            _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
-                    (_model.apiResultListDeparment?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DepartmentListStruct>();
-          });
-          setState(() {
-            _model.dob = getJsonField(
-              widget.staffDetail,
-              r'''$.dob''',
-            ).toString().toString();
-          });
+          _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
+                  (_model.apiResultListDeparment?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<DepartmentListStruct>();
+          setState(() {});
+          _model.dob = getJsonField(
+            widget.staffDetail,
+            r'''$.dob''',
+          ).toString().toString();
+          setState(() {});
         }
         _model.getListBranchToken = await action_blocks.tokenReload(context);
         if (_model.getListBranchToken!) {
@@ -82,13 +80,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
             ).toString().toString()}\"}}}]}',
           );
           if ((_model.apiResultGetListBranch?.succeeded ?? true)) {
-            setState(() {
-              _model.branchList = BranchListDataStruct.maybeFromMap(
-                      (_model.apiResultGetListBranch?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<BranchListStruct>();
-            });
+            _model.branchList = BranchListDataStruct.maybeFromMap(
+                    (_model.apiResultGetListBranch?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<BranchListStruct>();
+            setState(() {});
           }
         } else {
           setState(() {});
@@ -800,9 +797,8 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     );
                                   });
                                 }
-                                setState(() {
-                                  _model.dob = _model.datePicked!.toString();
-                                });
+                                _model.dob = _model.datePicked!.toString();
+                                setState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -916,13 +912,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           '3755a98d-f064-45cd-80e4-5084ab1dd2c4') ||
                                       (_model.roleValue ==
                                           '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                    setState(() {
-                                      _model.selectRole = true;
-                                    });
+                                    _model.selectRole = true;
+                                    setState(() {});
                                   } else {
-                                    setState(() {
-                                      _model.selectRole = false;
-                                    });
+                                    _model.selectRole = false;
+                                    setState(() {});
                                   }
 
                                   if ((FFAppState().user.role ==
@@ -973,6 +967,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       _model.roleValueController?.reset();
                                     });
                                   }
+
                                   setState(() {});
                                 },
                                 width: double.infinity,
@@ -1042,6 +1037,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     }
                                   }();
                                 });
+
                                 setState(() {});
                               },
                               width: double.infinity,
@@ -1150,8 +1146,20 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                           if ((_model.roleValue ==
                                   'a8d33527-375b-4599-ac70-6a3fcad1de39') ||
-                              (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68'))
+                              ((_model.roleValue ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') &&
+                                  (FFAppState().user.role !=
+                                      getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ))) ||
+                              ((FFAppState().user.role ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') &&
+                                  (FFAppState().user.role !=
+                                      getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ))))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
@@ -1185,17 +1193,15 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     if ((_model.apiResultListDeparment2
                                             ?.succeeded ??
                                         true)) {
-                                      setState(() {
-                                        _model.listDepartment =
-                                            DepartmentListDataStruct
-                                                    .maybeFromMap((_model
-                                                            .apiResultListDeparment2
-                                                            ?.jsonBody ??
-                                                        ''))!
-                                                .data
-                                                .toList()
-                                                .cast<DepartmentListStruct>();
-                                      });
+                                      _model.listDepartment =
+                                          DepartmentListDataStruct.maybeFromMap(
+                                                  (_model.apiResultListDeparment2
+                                                          ?.jsonBody ??
+                                                      ''))!
+                                              .data
+                                              .toList()
+                                              .cast<DepartmentListStruct>();
+                                      setState(() {});
                                     }
                                   } else {
                                     setState(() {});
@@ -1268,14 +1274,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     .toList(),
                                 onChanged: (val) async {
                                   setState(() => _model.departmentValue = val);
-                                  setState(() {
-                                    _model.selectDepartment = _model
-                                        .listDepartment
-                                        .where((e) =>
-                                            e.id == _model.departmentValue)
-                                        .toList()
-                                        .first;
-                                  });
+                                  _model.selectDepartment = _model
+                                      .listDepartment
+                                      .where(
+                                          (e) => e.id == _model.departmentValue)
+                                      .toList()
+                                      .first;
+                                  setState(() {});
                                 },
                                 width: double.infinity,
                                 height: 56.0,
@@ -1438,9 +1443,6 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey.currentState!.validate()) {
                         return;
                       }
-                      if (_model.branchValue == null) {
-                        return;
-                      }
                       _model.uploadImageToken =
                           await action_blocks.tokenReload(context);
                       if (_model.uploadImageToken!) {
@@ -1450,12 +1452,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           accessToken: FFAppState().accessToken,
                         );
                         if ((_model.apiResultUploadImage?.succeeded ?? true)) {
-                          setState(() {
-                            _model.avatarid = getJsonField(
-                              (_model.apiResultUploadImage?.jsonBody ?? ''),
-                              r'''$.data.id''',
-                            ).toString();
-                          });
+                          _model.avatarid = getJsonField(
+                            (_model.apiResultUploadImage?.jsonBody ?? ''),
+                            r'''$.data.id''',
+                          ).toString();
+                          setState(() {});
                         }
                         _model.updateStaffToken =
                             await action_blocks.tokenReload(context);
@@ -1500,7 +1501,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   'phone': _model.phoneTextController.text,
                                   'department_id': () {
                                     if (_model.selectDepartment != null) {
-                                      return _model.selectDepartment?.id;
+                                      return _model.departmentValue;
                                     } else if (_model.roleValue ==
                                         'a8d33527-375b-4599-ac70-6a3fcad1de39') {
                                       return null;
@@ -1511,41 +1512,51 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       );
                                     }
                                   }(),
-                                  'branch_id': getJsonField(
-                                    FFAppState().staffLogin,
-                                    r'''$.branch_id''',
-                                  ),
+                                  'branch_id': _model.branchValue,
                                   'title': _model.titleTextTextController.text,
                                 },
                               );
                               if ((_model
                                       .apiResultUpdateUserStaff2?.succeeded ??
                                   true)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Cập nhật thành công',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                _model.apiCreateProgramStaff = await StaffGroup
+                                    .createProgramStaffCall
+                                    .call(
+                                  accessToken: FFAppState().accessToken,
+                                  staffId: getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.id''',
+                                  ).toString(),
+                                );
+                                if ((_model.apiCreateProgramStaff?.succeeded ??
+                                    true)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Cập nhật thành công',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
                                       ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondary,
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
+                                  );
 
-                                context.pushNamed(
-                                  'PersonnelList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
+                                  context.pushNamed(
+                                    'PersonnelList',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                }
                               }
                             } else {
                               setState(() {});
@@ -1560,9 +1571,6 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     } else {
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
-                        return;
-                      }
-                      if (_model.branchValue == null) {
                         return;
                       }
                       _model.updateNoImageToken =
@@ -1611,7 +1619,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 'phone': _model.phoneTextController.text,
                                 'department_id': () {
                                   if (_model.selectDepartment != null) {
-                                    return _model.selectDepartment?.id;
+                                    return _model.departmentValue;
                                   } else if (_model.roleValue ==
                                       'a8d33527-375b-4599-ac70-6a3fcad1de39') {
                                     return null;
@@ -1622,40 +1630,48 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     );
                                   }
                                 }(),
-                                'branch_id': getJsonField(
-                                  FFAppState().staffLogin,
-                                  r'''$.branch_id''',
-                                ),
+                                'branch_id': _model.branchValue,
                                 'title': _model.titleTextTextController.text,
                               },
                             );
                             if ((_model.apiResultUpdateUserStaff?.succeeded ??
                                 true)) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Cập nhật thành công',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                              _model.apiCreateProgramStaff1 =
+                                  await StaffGroup.createProgramStaffCall.call(
+                                accessToken: FFAppState().accessToken,
+                                staffId: getJsonField(
+                                  widget.staffDetail,
+                                  r'''$.id''',
+                                ).toString(),
+                              );
+                              if ((_model.apiCreateProgramStaff1?.succeeded ??
+                                  true)) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Cập nhật thành công',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                      ),
                                     ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).secondary,
                                   ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
+                                );
 
-                              context.pushNamed(
-                                'PersonnelList',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
-                                },
-                              );
+                                context.pushNamed(
+                                  'PersonnelList',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              }
                             }
                           } else {
                             setState(() {});

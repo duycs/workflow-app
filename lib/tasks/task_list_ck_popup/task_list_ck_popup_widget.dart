@@ -37,9 +37,8 @@ class _TaskListCkPopupWidgetState extends State<TaskListCkPopupWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.itemCk = widget.item!;
-      });
+      _model.itemCk = widget.item!;
+      setState(() {});
     });
   }
 
@@ -168,9 +167,8 @@ class _TaskListCkPopupWidgetState extends State<TaskListCkPopupWidget> {
                           height: MediaQuery.sizeOf(context).height * 0.9,
                           initialData: widget.item!,
                           action: (data) async {
-                            setState(() {
-                              _model.itemCk = data;
-                            });
+                            _model.itemCk = data;
+                            setState(() {});
                           },
                         ),
                       ),

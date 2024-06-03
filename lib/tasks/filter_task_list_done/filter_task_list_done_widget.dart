@@ -56,11 +56,10 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStart = widget.dateStart!;
-        _model.dateEnd = widget.dateEnd!;
-        _model.type = widget.type!;
-      });
+      _model.dateStart = widget.dateStart!;
+      _model.dateEnd = widget.dateEnd!;
+      _model.type = widget.type!;
+      setState(() {});
     });
 
     _model.createdTextController ??= TextEditingController(
@@ -287,14 +286,13 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                     );
                                   });
                                 }
-                                setState(() {
-                                  _model.dateStart = dateTimeFormat(
-                                    'yyyy-MM-dd',
-                                    _model.datePicked1,
-                                    locale: FFLocalizations.of(context)
-                                        .languageCode,
-                                  );
-                                });
+                                _model.dateStart = dateTimeFormat(
+                                  'yyyy-MM-dd',
+                                  _model.datePicked1,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                );
+                                setState(() {});
                               },
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -383,14 +381,13 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                     );
                                   });
                                 }
-                                setState(() {
-                                  _model.dateEnd = dateTimeFormat(
-                                    'yyyy-MM-dd',
-                                    _model.datePicked2,
-                                    locale: FFLocalizations.of(context)
-                                        .languageCode,
-                                  );
-                                });
+                                _model.dateEnd = dateTimeFormat(
+                                  'yyyy-MM-dd',
+                                  _model.datePicked2,
+                                  locale:
+                                      FFLocalizations.of(context).languageCode,
+                                );
+                                setState(() {});
                               },
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -463,7 +460,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
-                                  hintText: 'Vd: Chị Nụ',
+                                  hintText: 'Vd: Tổ chức 1',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -552,7 +549,7 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                                         fontFamily: 'Nunito Sans',
                                         letterSpacing: 0.0,
                                       ),
-                                  hintText: 'Vd: Chị Nụ',
+                                  hintText: 'Vd: Tổ chức 1',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -619,11 +616,10 @@ class _FilterTaskListDoneWidgetState extends State<FilterTaskListDoneWidget> {
                             setState(() {
                               _model.typeValueController?.reset();
                             });
-                            setState(() {
-                              _model.dateStart = '';
-                              _model.dateEnd = '';
-                              _model.type = '';
-                            });
+                            _model.dateStart = '';
+                            _model.dateEnd = '';
+                            _model.type = '';
+                            setState(() {});
                             await widget.callback?.call(
                               _model.datePicked1?.toString(),
                               _model.datePicked2?.toString(),

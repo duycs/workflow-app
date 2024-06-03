@@ -47,61 +47,52 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultx0q?.succeeded ?? true)) {
-          setState(() {
-            _model.addToCategoriesList(CategoriesListStruct(
-              id: '1',
-              name: 'Tất cả',
-            ));
-          });
+          _model.addToCategoriesList(CategoriesListStruct(
+            id: '1',
+            name: 'Tất cả',
+          ));
+          setState(() {});
           while (_model.loop <
               CategoriesListDataStruct.maybeFromMap(
                       (_model.apiResultx0q?.jsonBody ?? ''))!
                   .data
                   .length) {
-            setState(() {
-              _model.addToCategoriesList(CategoriesListDataStruct.maybeFromMap(
-                      (_model.apiResultx0q?.jsonBody ?? ''))!
-                  .data[_model.loop]);
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
+            _model.addToCategoriesList(CategoriesListDataStruct.maybeFromMap(
+                    (_model.apiResultx0q?.jsonBody ?? ''))!
+                .data[_model.loop]);
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop = 0;
-          });
+          _model.loop = 0;
+          setState(() {});
         }
         _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultlld?.succeeded ?? true)) {
-          setState(() {
-            _model.addToDomainList(DomainsListStruct(
-              id: '1',
-              name: 'Tất cả',
-            ));
-          });
+          _model.addToDomainList(DomainsListStruct(
+            id: '1',
+            name: 'Tất cả',
+          ));
+          setState(() {});
           while (_model.loop <
               DomainsListDataStruct.maybeFromMap(
                       (_model.apiResultlld?.jsonBody ?? ''))!
                   .data
                   .length) {
-            setState(() {
-              _model.addToDomainList(DomainsListDataStruct.maybeFromMap(
-                      (_model.apiResultlld?.jsonBody ?? ''))!
-                  .data[_model.loop]);
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
+            _model.addToDomainList(DomainsListDataStruct.maybeFromMap(
+                    (_model.apiResultlld?.jsonBody ?? ''))!
+                .data[_model.loop]);
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop = 0;
-          });
+          _model.loop = 0;
+          setState(() {});
         }
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -189,12 +180,11 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                         child: DomainsSearchWidget(
                           search: _model.domainSearch,
                           callback: (dom) async {
-                            setState(() {
-                              _model.domainSearch =
-                                  dom!.toList().cast<String>();
-                            });
+                            _model.domainSearch = dom!.toList().cast<String>();
+                            setState(() {});
                             setState(() =>
                                 _model.gridViewPagingController?.refresh());
+
                             setState(() {});
                           },
                         ),
@@ -341,6 +331,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                             setState(() => _model.dropDownValue = val);
                             await _model.callSearchList(context);
                             setState(() {});
+
                             setState(() {});
                           },
                           width: 300.0,
@@ -394,18 +385,15 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                           while (_model.loop < _model.categoriesList.length) {
                             if (_model.categoriesList[_model.loop].name ==
                                 _model.choiceChipsValue) {
-                              setState(() {
-                                _model.categoryId =
-                                    _model.categoriesList[_model.loop].id;
-                              });
+                              _model.categoryId =
+                                  _model.categoriesList[_model.loop].id;
+                              setState(() {});
                             }
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                           setState(
                               () => _model.gridViewPagingController?.refresh());
                         },

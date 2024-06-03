@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/order/after_payment/after_payment_widget.dart';
-import '/training/order/payment_copy/payment_copy_widget.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_model.dart';
 export 'payment_model.dart';
@@ -17,10 +20,12 @@ class PaymentWidget extends StatefulWidget {
     super.key,
     required this.orderId,
     required this.private,
+    this.qr,
   });
 
   final String? orderId;
   final String? private;
+  final dynamic qr;
 
   @override
   State<PaymentWidget> createState() => _PaymentWidgetState();
@@ -39,29 +44,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PaymentModel());
-
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
-
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
-
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
-
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-          _model.textController1?.text = 'MB bank';
-          _model.textController2?.text = 'TA THI NU';
-          _model.textController3?.text = '66686268666';
-          _model.textController4?.text = '1.000.000';
-          _model.textController5?.text = 'Thanh toan don hang OD0001';
-        }));
   }
 
   @override
@@ -81,7 +63,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           constraints: const BoxConstraints(
-            maxHeight: 730.0,
+            maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -101,14 +83,15 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Thanh toán đơn OD0001',
+                      'Thanh toán đơn hàng',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             fontFamily: 'Nunito Sans',
                             fontSize: 18.0,
@@ -138,33 +121,72 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.ios_share,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          Text(
-                            'Chia sẻ',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
+                      Builder(
+                        builder: (context) => InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await Share.share(
+                              'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${getJsonField(
+                                widget.qr,
+                                r'''$.qrCode''',
+                              ).toString()}',
+                              sharePositionOrigin:
+                                  getWidgetBoundingBox(context),
+                            );
+                          },
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  Icons.ios_share,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
                                 ),
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: Text(
+                                              'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                            widget.qr,
+                                            r'''$.qrCode''',
+                                          ).toString()}'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                              Text(
+                                'Chia sẻ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                       InkWell(
                         splashColor: Colors.transparent,
@@ -177,26 +199,40 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             PageTransition(
                               type: PageTransitionType.fade,
                               child: FlutterFlowExpandedImageView(
-                                image: Image.asset(
-                                  'assets/images/licensed-image.jpg',
+                                image: Image.network(
+                                  'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                    widget.qr,
+                                    r'''$.qrCode''',
+                                  ).toString()}',
                                   fit: BoxFit.contain,
                                 ),
                                 allowRotation: false,
-                                tag: 'imageTag',
+                                tag:
+                                    'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                  widget.qr,
+                                  r'''$.qrCode''',
+                                ).toString()}',
                                 useHeroAnimation: true,
                               ),
                             ),
                           );
                         },
                         child: Hero(
-                          tag: 'imageTag',
+                          tag:
+                              'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                            widget.qr,
+                            r'''$.qrCode''',
+                          ).toString()}',
                           transitionOnUserGestures: true,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/licensed-image.jpg',
-                              width: 180.0,
-                              height: 180.0,
+                            child: Image.network(
+                              'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                widget.qr,
+                                r'''$.qrCode''',
+                              ).toString()}',
+                              width: 150.0,
+                              height: 150.0,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -214,8 +250,15 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              await actions.downloadFile(
+                                'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                  widget.qr,
+                                  r'''$.qrCode''',
+                                ).toString()}',
+                                'qrcode',
+                                '999.png',
+                              );
                             },
                           ),
                           Text(
@@ -229,522 +272,437 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           ),
                         ],
                       ),
-                    ],
+                    ].divide(const SizedBox(width: 8.0)),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
-                  child: TextFormField(
-                    controller: _model.textController1,
-                    focusNode: _model.textFieldFocusNode1,
-                    autofocus: false,
-                    readOnly: true,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Ngân hàng',
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  child: Text(
+                    'Ngân hàng',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 16.0,
                           letterSpacing: 0.0,
                         ),
-                    validator:
-                        _model.textController1Validator.asValidator(context),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
-                  child: TextFormField(
-                    controller: _model.textController2,
-                    focusNode: _model.textFieldFocusNode2,
-                    autofocus: false,
-                    readOnly: true,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Tên tài khoản',
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          fontSize: 16.0,
-                          letterSpacing: 0.0,
-                        ),
-                    validator:
-                        _model.textController2Validator.asValidator(context),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
+                      child: Text(
+                        getJsonField(
+                          widget.qr,
+                          r'''$.bankName''',
+                        ).toString(),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
-                  child: TextFormField(
-                    controller: _model.textController3,
-                    focusNode: _model.textFieldFocusNode3,
-                    autofocus: false,
-                    readOnly: true,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Số tài khoản',
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      suffixIcon: const Icon(
-                        Icons.content_copy,
-                      ),
-                    ),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: Text(
+                    'Chủ tài khoản',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 16.0,
                           letterSpacing: 0.0,
                         ),
-                    validator:
-                        _model.textController3Validator.asValidator(context),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
-                  child: TextFormField(
-                    controller: _model.textController4,
-                    focusNode: _model.textFieldFocusNode4,
-                    autofocus: false,
-                    readOnly: true,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Số tiền (VND)',
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      suffixIcon: const Icon(
-                        Icons.content_copy,
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          fontSize: 16.0,
-                          letterSpacing: 0.0,
-                        ),
-                    validator:
-                        _model.textController4Validator.asValidator(context),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
+                      child: Text(
+                        getJsonField(
+                          widget.qr,
+                          r'''$.userBankName''',
+                        ).toString(),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 32.0),
-                  child: TextFormField(
-                    controller: _model.textController5,
-                    focusNode: _model.textFieldFocusNode5,
-                    autofocus: false,
-                    readOnly: true,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      labelText: 'Nội dung',
-                      labelStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 18.0,
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelMedium.override(
-                                fontFamily: 'Nunito Sans',
-                                fontSize: 14.0,
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      suffixIcon: const Icon(
-                        Icons.content_copy,
-                      ),
-                    ),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: Text(
+                    'Số tài khoản',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
-                          fontSize: 16.0,
                           letterSpacing: 0.0,
                         ),
-                    validator:
-                        _model.textController5Validator.asValidator(context),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 9.0, 0.0),
+                            child: Text(
+                              getJsonField(
+                                widget.qr,
+                                r'''$.bankAccount''',
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.content_copy,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(ClipboardData(
+                                text: getJsonField(
+                              widget.qr,
+                              r'''$.bankAccount''',
+                            ).toString()));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: Text(
+                    'Số tiền',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 9.0, 0.0),
+                            child: Text(
+                              formatNumber(
+                                functions.stringToInt(getJsonField(
+                                  widget.qr,
+                                  r'''$.amount''',
+                                ).toString()),
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.commaDecimal,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.content_copy,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(ClipboardData(
+                                text: getJsonField(
+                              widget.qr,
+                              r'''$.amount''',
+                            ).toString()));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: Text(
+                    'Nội dung',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: Container(
+                    width: 100.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 9.0, 0.0),
+                            child: Text(
+                              getJsonField(
+                                widget.qr,
+                                r'''$.content''',
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.content_copy,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(ClipboardData(
+                                text: getJsonField(
+                              widget.qr,
+                              r'''$.content''',
+                            ).toString()));
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Align(
                   alignment: const AlignmentDirectional(-1.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(
-                              'OrderList',
-                              extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
-                                  hasTransition: true,
-                                  transitionType: PageTransitionType.fade,
-                                  duration: Duration(milliseconds: 0),
-                                ),
-                              },
-                            );
-                          },
-                          text: 'Hủy',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            var shouldSetState = false;
-                            _model.apiResultUpdateStatuOrder = await OrderGroup
-                                .updateOrderStatusPublishedCall
-                                .call(
-                              accessToken: FFAppState().accessToken,
-                              orderId: widget.orderId,
-                            );
-                            shouldSetState = true;
-                            if ((_model.apiResultUpdateStatuOrder?.succeeded ??
-                                true)) {
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text(getJsonField(
-                                        (_model.apiResultUpdateStatuOrder
-                                                ?.jsonBody ??
-                                            ''),
-                                        r'''$.qrLink''',
-                                      ).toString()),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return WebViewAware(
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: PaymentCopyWidget(
-                                        orderId: '',
-                                        private: '',
-                                        qr: getJsonField(
-                                          (_model.apiResultUpdateStatuOrder
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.qrLink''',
-                                        ).toString(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Mua khóa học thành công!',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              if (getJsonField(
-                                    (_model.apiResultUpdateStatuOrder
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.programs[0].private''',
-                                  ) ==
-                                  getJsonField(
-                                    <String, int>{
-                                      'map': 1,
-                                    },
-                                    r'''$.map''',
-                                  )) {
-                                _model.apiResultsgg =
-                                    await GroupMarketLessonGroup.inviteStaffCall
-                                        .call(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              var shouldSetState = false;
+                              _model.checkTransfer =
+                                  await action_blocks.tokenReload(context);
+                              shouldSetState = true;
+                              if (_model.checkTransfer!) {
+                                _model.apiResultCheckTransfer =
+                                    await OrderGroup.checkTransferCall.call(
                                   accessToken: FFAppState().accessToken,
-                                  programId: getJsonField(
-                                    (_model.apiResultUpdateStatuOrder
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.programs[0].id''',
+                                  value: getJsonField(
+                                    widget.qr,
+                                    r'''$.pay_code''',
                                   ).toString(),
-                                  staffId: FFAppState().staffid,
                                 );
                                 shouldSetState = true;
-                                if (!(_model.apiResultsgg?.succeeded ?? true)) {
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                }
-                              }
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return WebViewAware(
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: AfterPaymentWidget(
-                                        programId: getJsonField(
-                                          (_model.apiResultUpdateStatuOrder
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.programs[0].id''',
-                                        ).toString(),
-                                        private: widget.private!,
+                                if ((_model.apiResultCheckTransfer?.succeeded ??
+                                    true)) {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: Text(getJsonField(
+                                            (_model.apiResultCheckTransfer
+                                                    ?.jsonBody ??
+                                                ''),
+                                            r'''$.message''',
+                                          ).toString()),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Lỗi kiểm tra thông tin thanh toán!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
                                       ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
                                     ),
                                   );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            }
-                            if (shouldSetState) setState(() {});
-                          },
-                          text: 'Tôi đã thanh toán',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                                }
+                              } else {
+                                setState(() {});
+                                if (shouldSetState) setState(() {});
+                                return;
+                              }
+
+                              if (shouldSetState) setState(() {});
+                            },
+                            text: 'Kiểm tra thanh toán',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(width: 16.0)),
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(
+                                'OrderList',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            },
+                            text: 'Đến đơn hàng',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      ].divide(const SizedBox(width: 16.0)),
+                    ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 4.0)),
             ),
           ),
         ),

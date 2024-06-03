@@ -129,6 +129,9 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Container(
+          constraints: const BoxConstraints(
+            maxHeight: 550.0,
+          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: const [
@@ -444,8 +447,12 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                color: _model.check1 == '1'
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .error
+                                                    : FlutterFlowTheme.of(
+                                                            context)
                                                         .alternate,
                                                 width: 1.0,
                                               ),
@@ -490,6 +497,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
+                                          textAlign: TextAlign.center,
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .priceMinTextControllerValidator
                                               .asValidator(context),
@@ -525,7 +534,6 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                               _model.priceMaxTextController,
                                           focusNode: _model.priceMaxFocusNode,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -544,8 +552,12 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                color: _model.check1 == '1'
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .error
+                                                    : FlutterFlowTheme.of(
+                                                            context)
                                                         .alternate,
                                                 width: 1.0,
                                               ),
@@ -590,6 +602,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
+                                          textAlign: TextAlign.center,
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .priceMaxTextControllerValidator
                                               .asValidator(context),
@@ -599,6 +613,24 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                   ],
                                 ),
                               ].divide(const SizedBox(width: 20.0)),
+                            ),
+                          ),
+                        if (_model.check1 == '1')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Khoảng giá không hợp lệ: giá trị bắt đầu không thể lớn hơn giá trị kết thúc!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                             ),
                           ),
                         if ((widget.checkPrice1 == 'checkPriceList') &&
@@ -674,8 +706,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                color: (_model.check2 == '1') ||
+                                                        (_model.check2 == '2')
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .error
+                                                    : FlutterFlowTheme.of(
+                                                            context)
                                                         .alternate,
                                                 width: 1.0,
                                               ),
@@ -720,6 +757,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
+                                          textAlign: TextAlign.center,
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .priceMin1TextControllerValidator
                                               .asValidator(context),
@@ -755,7 +794,6 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                               _model.priceMax1TextController,
                                           focusNode: _model.priceMax1FocusNode,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelStyle:
@@ -774,8 +812,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                     ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                color: (_model.check2 == '1') ||
+                                                        (_model.check2 == '2')
+                                                    ? FlutterFlowTheme.of(
+                                                            context)
+                                                        .error
+                                                    : FlutterFlowTheme.of(
+                                                            context)
                                                         .alternate,
                                                 width: 1.0,
                                               ),
@@ -820,6 +863,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
                                               ),
+                                          textAlign: TextAlign.center,
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .priceMax1TextControllerValidator
                                               .asValidator(context),
@@ -831,72 +876,170 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                               ].divide(const SizedBox(width: 20.0)),
                             ),
                           ),
+                        if (_model.check2 == '1')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Khoảng giá không hợp lệ: giá trị bắt đầu không thể lớn hơn giá trị kết thúc!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
+                        if (_model.check2 == '2')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 5.0),
+                            child: Text(
+                              'Khoảng giá Min phải lơn hơn 0!',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            setState(() {
-                              _model.authorTextController?.clear();
-                              _model.categoryTextController?.clear();
-                              _model.priceMinTextController?.clear();
-                              _model.priceMaxTextController?.clear();
-                              _model.priceMin1TextController?.clear();
-                              _model.priceMax1TextController?.clear();
-                            });
-                            await widget.callBack?.call(
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                              '',
-                            );
-                            Navigator.pop(context);
-                          },
-                          text: 'Xoá bộ lọc',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).alternate,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          setState(() {
+                            _model.authorTextController?.clear();
+                            _model.categoryTextController?.clear();
+                            _model.priceMinTextController?.clear();
+                            _model.priceMaxTextController?.clear();
+                            _model.priceMin1TextController?.clear();
+                            _model.priceMax1TextController?.clear();
+                          });
+                          await widget.callBack?.call(
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                            '',
+                          );
+                          Navigator.pop(context);
+                        },
+                        text: 'Xoá bộ lọc',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.normal,
+                              ),
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            width: 1.0,
                           ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            if (_model.priceMin1TextController.text != '') {
-                              if (double.parse(
-                                      _model.priceMin1TextController.text) >
-                                  0) {
+                    ),
+                    Expanded(
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          if ((((_model.priceMinTextController.text !=
+                                              '') &&
+                                      (_model.priceMinTextController.text !=
+                                          'noData')) &&
+                                  ((_model.priceMaxTextController.text !=
+                                              '') &&
+                                      (_model.priceMaxTextController.text !=
+                                          'noData'))) ||
+                              (((_model.priceMin1TextController.text ==
+                                              '') &&
+                                      (_model.priceMin1TextController.text ==
+                                          'noData')) &&
+                                  ((_model.priceMax1TextController.text ==
+                                              '') &&
+                                      (_model.priceMax1TextController.text ==
+                                          'noData')))) {
+                            if ((String var1, String var2) {
+                              return double.parse(var2) >= double.parse(var1);
+                            }(_model.priceMinTextController.text,
+                                _model.priceMaxTextController.text)) {
+                              _model.check1 = '';
+                              setState(() {});
+                              if (_model.priceMin1TextController.text != '') {
+                                if (double.parse(
+                                        _model.priceMin1TextController.text) >
+                                    0) {
+                                  _model.check2 = '';
+                                  setState(() {});
+                                  await widget.callBack?.call(
+                                    _model.domainValue != null &&
+                                            _model.domainValue != ''
+                                        ? _model.domainValue
+                                        : 'noData',
+                                    _model.authorTextController.text !=
+                                                ''
+                                        ? _model.authorTextController.text
+                                        : 'noData',
+                                    _model.categoryTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.categoryTextController.text
+                                        : 'noData',
+                                    _model.priceMinTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMinTextController.text
+                                        : 'noData',
+                                    _model.priceMaxTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMaxTextController.text
+                                        : 'noData',
+                                    _model.priceMin1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMin1TextController.text
+                                        : 'noData',
+                                    _model.priceMax1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMax1TextController.text
+                                        : 'noData',
+                                  );
+                                  Navigator.pop(context);
+                                } else {
+                                  _model.check2 = '2';
+                                  setState(() {});
+                                }
+                              } else {
                                 await widget.callBack?.call(
                                   _model.domainValue != null &&
                                           _model.domainValue != ''
@@ -927,95 +1070,264 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                       : 'noData',
                                 );
                                 Navigator.pop(context);
-                              } else {
-                                var confirmDialogResponse =
-                                    await showDialog<bool>(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: const Text('Thông báo'),
-                                                content: const Text(
-                                                    'Giá trị min phải lớn hơn 0!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: const Text('Cancel'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: const Text('Confirm'),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ) ??
-                                        false;
                               }
                             } else {
-                              await widget.callBack?.call(
-                                _model.domainValue != null &&
-                                        _model.domainValue != ''
-                                    ? _model.domainValue
-                                    : 'noData',
-                                _model.authorTextController.text != ''
-                                    ? _model.authorTextController.text
-                                    : 'noData',
-                                _model.categoryTextController.text != ''
-                                    ? _model.categoryTextController.text
-                                    : 'noData',
-                                _model.priceMinTextController.text != ''
-                                    ? _model.priceMinTextController.text
-                                    : 'noData',
-                                _model.priceMaxTextController.text != ''
-                                    ? _model.priceMaxTextController.text
-                                    : 'noData',
-                                _model.priceMin1TextController.text !=
-                                            ''
-                                    ? _model.priceMin1TextController.text
-                                    : 'noData',
-                                _model.priceMax1TextController.text !=
-                                            ''
-                                    ? _model.priceMax1TextController.text
-                                    : 'noData',
-                              );
-                              Navigator.pop(context);
+                              _model.check1 = '1';
+                              setState(() {});
                             }
-                          },
-                          text: 'Xác nhận',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                          } else {
+                            if ((((_model.priceMinTextController
+                                                    .text ==
+                                                '') &&
+                                        (_model.priceMinTextController.text ==
+                                            'noData')) &&
+                                    ((_model.priceMaxTextController
+                                                    .text ==
+                                                '') &&
+                                        (_model.priceMaxTextController.text ==
+                                            'noData'))) ||
+                                (((_model.priceMin1TextController
+                                                    .text !=
+                                                '') &&
+                                        (_model.priceMin1TextController.text !=
+                                            'noData')) &&
+                                    ((_model.priceMax1TextController
+                                                    .text !=
+                                                '') &&
+                                        (_model.priceMax1TextController.text !=
+                                            'noData')))) {
+                              if ((String var1, String var2) {
+                                return double.parse(var2) >= double.parse(var1);
+                              }(_model.priceMin1TextController.text,
+                                  _model.priceMax1TextController.text)) {
+                                _model.check2 = '';
+                                setState(() {});
+                                if (_model.priceMin1TextController.text != '') {
+                                  if (double.parse(
+                                          _model.priceMin1TextController.text) >
+                                      0) {
+                                    _model.check2 = '';
+                                    setState(() {});
+                                    await widget.callBack?.call(
+                                      _model.domainValue != null &&
+                                              _model.domainValue != ''
+                                          ? _model.domainValue
+                                          : 'noData',
+                                      _model.authorTextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.authorTextController.text
+                                          : 'noData',
+                                      _model.categoryTextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.categoryTextController.text
+                                          : 'noData',
+                                      _model.priceMinTextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.priceMinTextController.text
+                                          : 'noData',
+                                      _model.priceMaxTextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.priceMaxTextController.text
+                                          : 'noData',
+                                      _model.priceMin1TextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.priceMin1TextController.text
+                                          : 'noData',
+                                      _model.priceMax1TextController
+                                                      .text !=
+                                                  ''
+                                          ? _model.priceMax1TextController.text
+                                          : 'noData',
+                                    );
+                                    Navigator.pop(context);
+                                  } else {
+                                    _model.check2 = '2';
+                                    setState(() {});
+                                  }
+                                } else {
+                                  await widget.callBack?.call(
+                                    _model.domainValue != null &&
+                                            _model.domainValue != ''
+                                        ? _model.domainValue
+                                        : 'noData',
+                                    _model.authorTextController.text !=
+                                                ''
+                                        ? _model.authorTextController.text
+                                        : 'noData',
+                                    _model.categoryTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.categoryTextController.text
+                                        : 'noData',
+                                    _model.priceMinTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMinTextController.text
+                                        : 'noData',
+                                    _model.priceMaxTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMaxTextController.text
+                                        : 'noData',
+                                    _model.priceMin1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMin1TextController.text
+                                        : 'noData',
+                                    _model.priceMax1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMax1TextController.text
+                                        : 'noData',
+                                  );
+                                  Navigator.pop(context);
+                                }
+                              } else {
+                                _model.check2 = '1';
+                                setState(() {});
+                              }
+                            } else {
+                              if (_model.priceMin1TextController.text != '') {
+                                if (double.parse(
+                                        _model.priceMin1TextController.text) >
+                                    0) {
+                                  await widget.callBack?.call(
+                                    _model.domainValue != null &&
+                                            _model.domainValue != ''
+                                        ? _model.domainValue
+                                        : 'noData',
+                                    _model.authorTextController.text !=
+                                                ''
+                                        ? _model.authorTextController.text
+                                        : 'noData',
+                                    _model.categoryTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.categoryTextController.text
+                                        : 'noData',
+                                    _model.priceMinTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMinTextController.text
+                                        : 'noData',
+                                    _model.priceMaxTextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMaxTextController.text
+                                        : 'noData',
+                                    _model.priceMin1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMin1TextController.text
+                                        : 'noData',
+                                    _model.priceMax1TextController
+                                                    .text !=
+                                                ''
+                                        ? _model.priceMax1TextController.text
+                                        : 'noData',
+                                  );
+
+                                  setState(() {});
+                                  Navigator.pop(context);
+                                } else {
+                                  var confirmDialogResponse =
+                                      await showDialog<bool>(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: const Text('Thông báo'),
+                                                  content: const Text(
+                                                      'Giá trị min phải lớn hơn 0!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ) ??
+                                          false;
+                                  _model.check2 = '2';
+                                  setState(() {});
+                                }
+                              } else {
+                                await widget.callBack?.call(
+                                  _model.domainValue != null &&
+                                          _model.domainValue != ''
+                                      ? _model.domainValue
+                                      : 'noData',
+                                  _model.authorTextController.text != ''
+                                      ? _model.authorTextController.text
+                                      : 'noData',
+                                  _model.categoryTextController.text !=
+                                              ''
+                                      ? _model.categoryTextController.text
+                                      : 'noData',
+                                  _model.priceMinTextController.text !=
+                                              ''
+                                      ? _model.priceMinTextController.text
+                                      : 'noData',
+                                  _model.priceMaxTextController.text !=
+                                              ''
+                                      ? _model.priceMaxTextController.text
+                                      : 'noData',
+                                  _model.priceMin1TextController.text !=
+                                              ''
+                                      ? _model.priceMin1TextController.text
+                                      : 'noData',
+                                  _model.priceMax1TextController.text !=
+                                              ''
+                                      ? _model.priceMax1TextController.text
+                                      : 'noData',
+                                );
+                                Navigator.pop(context);
+                              }
+                            }
+                          }
+                        },
+                        text: 'Xác nhận',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF33BA45),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
                           ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
-                  ),
+                    ),
+                  ].divide(const SizedBox(width: 16.0)),
                 ),
               ],
             ),

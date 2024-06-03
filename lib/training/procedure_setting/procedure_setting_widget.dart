@@ -47,76 +47,69 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.data != null) {
-        setState(() {
-          _model.settingAdd = RequestWorkflowsCreateStruct(
-            remind2: widget.data?.remind2 ?? 0,
-            remind: widget.data?.remind ?? 0,
-            remindInSecond: widget.data?.remindInSecond ?? 0,
-            cron: widget.data?.cron != null && widget.data?.cron != ''
-                ? widget.data?.cron
-                : 'null',
-          );
-        });
+        _model.settingAdd = RequestWorkflowsCreateStruct(
+          remind2: widget.data?.remind2 ?? 0,
+          remind: widget.data?.remind ?? 0,
+          remindInSecond: widget.data?.remindInSecond ?? 0,
+          cron: widget.data?.cron != null && widget.data?.cron != ''
+              ? widget.data?.cron
+              : 'null',
+        );
+        setState(() {});
       } else {
-        setState(() {
-          _model.settingAdd = RequestWorkflowsCreateStruct(
-            remind2: 0,
-            remind: 0,
-            cron: null,
-          );
-        });
+        _model.settingAdd = RequestWorkflowsCreateStruct(
+          remind2: 0,
+          remind: 0,
+          cron: null,
+        );
+        setState(() {});
       }
 
-      setState(() {
-        _model.checkType = functions.checkTypeCron(_model.settingAdd!.cron);
-      });
+      _model.checkType = functions.checkTypeCron(_model.settingAdd!.cron);
+      setState(() {});
       if (functions.checkTypeCron(_model.settingAdd!.cron) == '3') {
         while (_model.loop! < 6) {
-          setState(() {
-            _model.addToCheckOne(CheckBoxGroupStruct(
-              type: false,
-              title: ((_model.loop!) + 1) < 10
-                  ? '0${((_model.loop!) + 1).toString()}'
-                  : ((_model.loop!) + 1).toString(),
-            ));
-            _model.addToCheckTwo(CheckBoxGroupStruct(
-              type: false,
-              title: ((_model.loop!) + 7) < 10
-                  ? '0${((_model.loop!) + 7).toString()}'
-                  : ((_model.loop!) + 7).toString(),
-            ));
-            _model.addToCheckThrees(CheckBoxGroupStruct(
-              type: false,
-              title: ((_model.loop!) + 13) < 10
-                  ? '0${((_model.loop!) + 13).toString()}'
-                  : ((_model.loop!) + 13).toString(),
-            ));
-            _model.addToCheckBoxFour(CheckBoxGroupStruct(
-              type: false,
-              title: ((_model.loop!) + 19) < 10
-                  ? '0${((_model.loop!) + 19).toString()}'
-                  : ((_model.loop!) + 19).toString(),
-            ));
-            _model.addToCheckBoxFive(CheckBoxGroupStruct(
-              type: false,
-              title: ((_model.loop!) + 25) < 10
-                  ? '0${((_model.loop!) + 25).toString()}'
-                  : ((_model.loop!) + 25).toString(),
-            ));
-          });
-          setState(() {
-            _model.loop = _model.loop! + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
-        });
-        setState(() {
-          _model.addToCheckBoxSix(CheckBoxGroupStruct(
+          _model.addToCheckOne(CheckBoxGroupStruct(
             type: false,
-            title: '31',
+            title: ((_model.loop!) + 1) < 10
+                ? '0${((_model.loop!) + 1).toString()}'
+                : ((_model.loop!) + 1).toString(),
           ));
-        });
+          _model.addToCheckTwo(CheckBoxGroupStruct(
+            type: false,
+            title: ((_model.loop!) + 7) < 10
+                ? '0${((_model.loop!) + 7).toString()}'
+                : ((_model.loop!) + 7).toString(),
+          ));
+          _model.addToCheckThrees(CheckBoxGroupStruct(
+            type: false,
+            title: ((_model.loop!) + 13) < 10
+                ? '0${((_model.loop!) + 13).toString()}'
+                : ((_model.loop!) + 13).toString(),
+          ));
+          _model.addToCheckBoxFour(CheckBoxGroupStruct(
+            type: false,
+            title: ((_model.loop!) + 19) < 10
+                ? '0${((_model.loop!) + 19).toString()}'
+                : ((_model.loop!) + 19).toString(),
+          ));
+          _model.addToCheckBoxFive(CheckBoxGroupStruct(
+            type: false,
+            title: ((_model.loop!) + 25) < 10
+                ? '0${((_model.loop!) + 25).toString()}'
+                : ((_model.loop!) + 25).toString(),
+          ));
+          setState(() {});
+          _model.loop = _model.loop! + 1;
+          setState(() {});
+        }
+        _model.loop = 0;
+        setState(() {});
+        _model.addToCheckBoxSix(CheckBoxGroupStruct(
+          type: false,
+          title: '31',
+        ));
+        setState(() {});
         while (_model.loop! <
             functions.cronToType(_model.settingAdd!.cron).length) {
           if (int.parse(functions.cronToType(_model.settingAdd!.cron)[_model.loop!]) <
@@ -124,16 +117,14 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             while (_model.loop2 < _model.checkOne.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkOne[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckOneAtIndex(
-                    _model.loop2,
-                    (e) => e..type = true,
-                  );
-                });
+                _model.updateCheckOneAtIndex(
+                  _model.loop2,
+                  (e) => e..type = true,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           } else if (6 < int.parse(functions.cronToType(_model.settingAdd!.cron)[_model.loop!]) &&
               int.parse(functions.cronToType(_model.settingAdd!.cron)[_model.loop!]) <
@@ -141,21 +132,19 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             while (_model.loop2 < _model.checkTwo.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkTwo[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckTwoAtIndex(
-                    _model.loop2,
-                    (e) => e
-                      ..type = functions.cronToType(
-                                  _model.settingAdd!.cron)[_model.loop!] ==
-                              _model.checkTwo[_model.loop2].title
-                          ? true
-                          : false,
-                  );
-                });
+                _model.updateCheckTwoAtIndex(
+                  _model.loop2,
+                  (e) => e
+                    ..type = functions.cronToType(
+                                _model.settingAdd!.cron)[_model.loop!] ==
+                            _model.checkTwo[_model.loop2].title
+                        ? true
+                        : false,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           } else if (12 <
                   int.parse(functions
@@ -165,21 +154,19 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             while (_model.loop2 < _model.checkThrees.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkThrees[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckThreesAtIndex(
-                    _model.loop2,
-                    (e) => e
-                      ..type = functions.cronToType(
-                                  _model.settingAdd!.cron)[_model.loop!] ==
-                              _model.checkThrees[_model.loop2].title
-                          ? true
-                          : false,
-                  );
-                });
+                _model.updateCheckThreesAtIndex(
+                  _model.loop2,
+                  (e) => e
+                    ..type = functions.cronToType(
+                                _model.settingAdd!.cron)[_model.loop!] ==
+                            _model.checkThrees[_model.loop2].title
+                        ? true
+                        : false,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           } else if (18 <
                   int.parse(functions
@@ -189,21 +176,19 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             while (_model.loop2 < _model.checkBoxFour.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkBoxFour[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckBoxFourAtIndex(
-                    _model.loop2,
-                    (e) => e
-                      ..type = functions.cronToType(
-                                  _model.settingAdd!.cron)[_model.loop!] ==
-                              _model.checkBoxFour[_model.loop2].title
-                          ? true
-                          : false,
-                  );
-                });
+                _model.updateCheckBoxFourAtIndex(
+                  _model.loop2,
+                  (e) => e
+                    ..type = functions.cronToType(
+                                _model.settingAdd!.cron)[_model.loop!] ==
+                            _model.checkBoxFour[_model.loop2].title
+                        ? true
+                        : false,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           } else if (24 <
                   int.parse(
@@ -212,57 +197,50 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             while (_model.loop2 < _model.checkBoxFive.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkBoxFive[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckBoxFiveAtIndex(
-                    _model.loop2,
-                    (e) => e
-                      ..type = functions.cronToType(
-                                  _model.settingAdd!.cron)[_model.loop!] ==
-                              _model.checkBoxFive[_model.loop2].title
-                          ? true
-                          : false,
-                  );
-                });
+                _model.updateCheckBoxFiveAtIndex(
+                  _model.loop2,
+                  (e) => e
+                    ..type = functions.cronToType(
+                                _model.settingAdd!.cron)[_model.loop!] ==
+                            _model.checkBoxFive[_model.loop2].title
+                        ? true
+                        : false,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           } else {
             while (_model.loop2 < _model.checkBoxSix.length) {
               if (functions.cronToType(_model.settingAdd!.cron)[_model.loop!] ==
                   _model.checkBoxSix[_model.loop2].title) {
-                setState(() {
-                  _model.updateCheckBoxSixAtIndex(
-                    _model.loop2,
-                    (e) => e
-                      ..type = functions.cronToType(
-                                  _model.settingAdd!.cron)[_model.loop!] ==
-                              _model.checkBoxSix[_model.loop2].title
-                          ? true
-                          : false,
-                  );
-                });
+                _model.updateCheckBoxSixAtIndex(
+                  _model.loop2,
+                  (e) => e
+                    ..type = functions.cronToType(
+                                _model.settingAdd!.cron)[_model.loop!] ==
+                            _model.checkBoxSix[_model.loop2].title
+                        ? true
+                        : false,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
           }
 
-          setState(() {
-            _model.loop = _model.loop! + 1;
-            _model.loop2 = 0;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
+          _model.loop = _model.loop! + 1;
           _model.loop2 = 0;
-        });
+          setState(() {});
+        }
+        _model.loop = 0;
+        _model.loop2 = 0;
+        setState(() {});
       }
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.isLoad = true;
+      setState(() {});
     });
 
     _model.timeHourTextController ??= TextEditingController();
@@ -404,85 +382,72 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   setState(
                                       () => _model.dropDownCronValue = val);
                                   if (_model.dropDownCronValue != '3') {
-                                    setState(() {
-                                      _model.loop = 0;
-                                      _model.checkCron = [];
-                                      _model.checkOne = [];
-                                      _model.checkTwo = [];
-                                      _model.checkThrees = [];
-                                      _model.checkBoxFour = [];
-                                      _model.checkBoxFive = [];
-                                      _model.checkBoxSix = [];
-                                    });
-                                    setState(() {
-                                      _model.checkOne = [];
-                                      _model.checkTwo = [];
-                                      _model.checkThrees = [];
-                                      _model.checkBoxFour = [];
-                                      _model.checkBoxFive = [];
-                                      _model.checkBoxSix = [];
-                                    });
-                                    setState(() {
-                                      _model.checkType =
-                                          _model.dropDownCronValue;
-                                    });
+                                    _model.loop = 0;
+                                    _model.checkCron = [];
+                                    _model.checkOne = [];
+                                    _model.checkTwo = [];
+                                    _model.checkThrees = [];
+                                    _model.checkBoxFour = [];
+                                    _model.checkBoxFive = [];
+                                    _model.checkBoxSix = [];
+                                    setState(() {});
+                                    _model.checkOne = [];
+                                    _model.checkTwo = [];
+                                    _model.checkThrees = [];
+                                    _model.checkBoxFour = [];
+                                    _model.checkBoxFive = [];
+                                    _model.checkBoxSix = [];
+                                    setState(() {});
+                                    _model.checkType = _model.dropDownCronValue;
+                                    setState(() {});
                                   } else {
                                     while (_model.loop! < 6) {
-                                      setState(() {
-                                        _model
-                                            .addToCheckOne(CheckBoxGroupStruct(
-                                          type: false,
-                                          title: ((_model.loop!) + 1) < 10
-                                              ? '0${((_model.loop!) + 1).toString()}'
-                                              : ((_model.loop!) + 1).toString(),
-                                        ));
-                                        _model
-                                            .addToCheckTwo(CheckBoxGroupStruct(
-                                          type: false,
-                                          title: ((_model.loop!) + 7) < 10
-                                              ? '0${((_model.loop!) + 7).toString()}'
-                                              : ((_model.loop!) + 7).toString(),
-                                        ));
-                                        _model.addToCheckThrees(
-                                            CheckBoxGroupStruct(
-                                          type: false,
-                                          title: ((_model.loop!) + 12) < 10
-                                              ? '0${((_model.loop!) + 13).toString()}'
-                                              : ((_model.loop!) + 13).toString(),
-                                        ));
-                                        _model.addToCheckBoxFour(
-                                            CheckBoxGroupStruct(
-                                          type: false,
-                                          title: ((_model.loop!) + 18) < 10
-                                              ? '0${((_model.loop!) + 19).toString()}'
-                                              : ((_model.loop!) + 19).toString(),
-                                        ));
-                                        _model.addToCheckBoxFive(
-                                            CheckBoxGroupStruct(
-                                          type: false,
-                                          title: ((_model.loop!) + 24) < 10
-                                              ? '0${((_model.loop!) + 25).toString()}'
-                                              : ((_model.loop!) + 25).toString(),
-                                        ));
-                                      });
-                                      setState(() {
-                                        _model.loop = _model.loop! + 1;
-                                      });
-                                    }
-                                    setState(() {
-                                      _model
-                                          .addToCheckBoxSix(CheckBoxGroupStruct(
+                                      _model.addToCheckOne(CheckBoxGroupStruct(
                                         type: false,
-                                        title: '31',
+                                        title: ((_model.loop!) + 1) < 10
+                                            ? '0${((_model.loop!) + 1).toString()}'
+                                            : ((_model.loop!) + 1).toString(),
                                       ));
-                                    });
-                                    setState(() {
-                                      _model.loop = 0;
-                                    });
-                                    setState(() {
-                                      _model.checkType =
-                                          _model.dropDownCronValue;
-                                    });
+                                      _model.addToCheckTwo(CheckBoxGroupStruct(
+                                        type: false,
+                                        title: ((_model.loop!) + 7) < 10
+                                            ? '0${((_model.loop!) + 7).toString()}'
+                                            : ((_model.loop!) + 7).toString(),
+                                      ));
+                                      _model
+                                          .addToCheckThrees(CheckBoxGroupStruct(
+                                        type: false,
+                                        title: ((_model.loop!) + 12) < 10
+                                            ? '0${((_model.loop!) + 13).toString()}'
+                                            : ((_model.loop!) + 13).toString(),
+                                      ));
+                                      _model.addToCheckBoxFour(
+                                          CheckBoxGroupStruct(
+                                        type: false,
+                                        title: ((_model.loop!) + 18) < 10
+                                            ? '0${((_model.loop!) + 19).toString()}'
+                                            : ((_model.loop!) + 19).toString(),
+                                      ));
+                                      _model.addToCheckBoxFive(
+                                          CheckBoxGroupStruct(
+                                        type: false,
+                                        title: ((_model.loop!) + 24) < 10
+                                            ? '0${((_model.loop!) + 25).toString()}'
+                                            : ((_model.loop!) + 25).toString(),
+                                      ));
+                                      setState(() {});
+                                      _model.loop = _model.loop! + 1;
+                                      setState(() {});
+                                    }
+                                    _model.addToCheckBoxSix(CheckBoxGroupStruct(
+                                      type: false,
+                                      title: '31',
+                                    ));
+                                    setState(() {});
+                                    _model.loop = 0;
+                                    setState(() {});
+                                    _model.checkType = _model.dropDownCronValue;
+                                    setState(() {});
                                   }
                                 },
                                 width: double.infinity,
@@ -574,18 +539,15 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                       'Chủ Nhật'
                                                     ]));
                                                 while (_model.loop! < 7) {
-                                                  setState(() {
-                                                    _model.addToCheckCron(
-                                                        ((_model.loop!) + 1).toString());
-                                                  });
-                                                  setState(() {
-                                                    _model.loop =
-                                                        _model.loop! + 1;
-                                                  });
+                                                  _model.addToCheckCron(
+                                                      ((_model.loop!) + 1).toString());
+                                                  setState(() {});
+                                                  _model.loop =
+                                                      _model.loop! + 1;
+                                                  setState(() {});
                                                 }
-                                                setState(() {
-                                                  _model.loop = 0;
-                                                });
+                                                _model.loop = 0;
+                                                setState(() {});
                                               },
                                               text: 'Chọn tất cả',
                                               options: FFButtonOptions(
@@ -628,9 +590,8 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 setState(() => _model
                                                     .groupWeekValueController
                                                     ?.value = []);
-                                                setState(() {
-                                                  _model.checkCron = [];
-                                                });
+                                                _model.checkCron = [];
+                                                setState(() {});
                                               },
                                               text: 'Bỏ chọn',
                                               options: FFButtonOptions(
@@ -688,8 +649,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                       controller:
                                           _model.groupWeekValueController ??=
                                               FormFieldController<List<String>>(
-                                        functions.cronToType(
-                                            _model.settingAdd!.cron),
+                                        List.from(functions.cronToType(
+                                                _model.settingAdd!.cron) ??
+                                            []),
                                       ),
                                       activeColor: FlutterFlowTheme.of(context)
                                           .secondary,
@@ -757,47 +719,42 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       while (_model.loop! < 6) {
-                                        setState(() {
-                                          _model.updateCheckOneAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = true,
-                                          );
-                                          _model.updateCheckTwoAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = true,
-                                          );
-                                          _model.updateCheckThreesAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = true,
-                                          );
-                                          _model.updateCheckBoxFourAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = true,
-                                          );
-                                          _model.updateCheckBoxFiveAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = true,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.updateCheckOneAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = true,
+                                        );
+                                        _model.updateCheckTwoAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = true,
+                                        );
+                                        _model.updateCheckThreesAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = true,
+                                        );
+                                        _model.updateCheckBoxFourAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = true,
+                                        );
+                                        _model.updateCheckBoxFiveAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = true,
+                                        );
+                                        setState(() {});
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.updateCheckBoxSixAtIndex(
-                                          0,
-                                          (e) => e..type = true,
-                                        );
-                                      });
-                                      setState(() {
-                                        _model.updateCheckBoxSixAtIndex(
-                                          1,
-                                          (e) => e..type = true,
-                                        );
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
+                                      _model.updateCheckBoxSixAtIndex(
+                                        0,
+                                        (e) => e..type = true,
+                                      );
+                                      setState(() {});
+                                      _model.updateCheckBoxSixAtIndex(
+                                        1,
+                                        (e) => e..type = true,
+                                      );
+                                      setState(() {});
                                     },
                                     text: 'Chọn tất cả',
                                     options: FFButtonOptions(
@@ -830,47 +787,42 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   FFButtonWidget(
                                     onPressed: () async {
                                       while (_model.loop! < 6) {
-                                        setState(() {
-                                          _model.updateCheckOneAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = false,
-                                          );
-                                          _model.updateCheckTwoAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = false,
-                                          );
-                                          _model.updateCheckThreesAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = false,
-                                          );
-                                          _model.updateCheckBoxFourAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = false,
-                                          );
-                                          _model.updateCheckBoxFiveAtIndex(
-                                            _model.loop!,
-                                            (e) => e..type = false,
-                                          );
-                                        });
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.updateCheckOneAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = false,
+                                        );
+                                        _model.updateCheckTwoAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = false,
+                                        );
+                                        _model.updateCheckThreesAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = false,
+                                        );
+                                        _model.updateCheckBoxFourAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = false,
+                                        );
+                                        _model.updateCheckBoxFiveAtIndex(
+                                          _model.loop!,
+                                          (e) => e..type = false,
+                                        );
+                                        setState(() {});
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
-                                      setState(() {
-                                        _model.updateCheckBoxSixAtIndex(
-                                          0,
-                                          (e) => e..type = false,
-                                        );
-                                      });
-                                      setState(() {
-                                        _model.updateCheckBoxSixAtIndex(
-                                          1,
-                                          (e) => e..type = false,
-                                        );
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
+                                      _model.updateCheckBoxSixAtIndex(
+                                        0,
+                                        (e) => e..type = false,
+                                      );
+                                      setState(() {});
+                                      _model.updateCheckBoxSixAtIndex(
+                                        1,
+                                        (e) => e..type = false,
+                                      );
+                                      setState(() {});
                                     },
                                     text: 'Bỏ chọn',
                                     options: FFButtonOptions(
@@ -951,14 +903,11 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listOneItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckOneAtIndex(
-                                                      listOneIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model.updateCheckOneAtIndex(
+                                                    listOneIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1034,14 +983,11 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listTwoItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckTwoAtIndex(
-                                                      listTwoIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model.updateCheckTwoAtIndex(
+                                                    listTwoIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1118,14 +1064,12 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listThreeItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckThreesAtIndex(
-                                                      listThreeIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model
+                                                      .updateCheckThreesAtIndex(
+                                                    listThreeIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1201,14 +1145,12 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listFourItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckBoxFourAtIndex(
-                                                      listFourIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model
+                                                      .updateCheckBoxFourAtIndex(
+                                                    listFourIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1284,14 +1226,12 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listFiveItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckBoxFiveAtIndex(
-                                                      listFiveIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model
+                                                      .updateCheckBoxFiveAtIndex(
+                                                    listFiveIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1366,14 +1306,12 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 ),
                                                 checkParam: listSixItem.type,
                                                 callBack: (checkCall) async {
-                                                  setState(() {
-                                                    _model
-                                                        .updateCheckBoxSixAtIndex(
-                                                      listSixIndex,
-                                                      (e) =>
-                                                          e..type = checkCall,
-                                                    );
-                                                  });
+                                                  _model
+                                                      .updateCheckBoxSixAtIndex(
+                                                    listSixIndex,
+                                                    (e) => e..type = checkCall,
+                                                  );
+                                                  setState(() {});
                                                 },
                                               ),
                                             ),
@@ -1439,17 +1377,15 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                       setState(() =>
                                           _model.checkboxValue1 = newValue!);
                                       if (newValue!) {
-                                        setState(() {
-                                          _model.updateSettingAddStruct(
-                                            (e) => e..remind = 1,
-                                          );
-                                        });
+                                        _model.updateSettingAddStruct(
+                                          (e) => e..remind = 1,
+                                        );
+                                        setState(() {});
                                       } else {
-                                        setState(() {
-                                          _model.updateSettingAddStruct(
-                                            (e) => e..remind = 0,
-                                          );
-                                        });
+                                        _model.updateSettingAddStruct(
+                                          (e) => e..remind = 0,
+                                        );
+                                        setState(() {});
                                       }
                                     },
                                     side: BorderSide(
@@ -1496,27 +1432,26 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                           '_model.timeHourTextController',
                                           const Duration(milliseconds: 2000),
                                           () async {
-                                            setState(() {
-                                              _model.updateSettingAddStruct(
-                                                (e) => e
-                                                  ..remindInSecond = functions.timeToMinute(
-                                                      _model.timeHourTextController
-                                                                      .text !=
-                                                                  ''
-                                                          ? _model
-                                                              .timeHourTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.timeMinuteTextController
-                                                                      .text !=
-                                                                  ''
-                                                          ? _model
-                                                              .timeMinuteTextController
-                                                              .text
-                                                          : '0',
-                                                      null),
-                                              );
-                                            });
+                                            _model.updateSettingAddStruct(
+                                              (e) => e
+                                                ..remindInSecond = functions.timeToMinute(
+                                                    _model.timeHourTextController
+                                                                    .text !=
+                                                                ''
+                                                        ? _model
+                                                            .timeHourTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.timeMinuteTextController
+                                                                    .text !=
+                                                                ''
+                                                        ? _model
+                                                            .timeMinuteTextController
+                                                            .text
+                                                        : '0',
+                                                    null),
+                                            );
+                                            setState(() {});
                                           },
                                         ),
                                         autofocus: false,
@@ -1605,27 +1540,26 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                           '_model.timeMinuteTextController',
                                           const Duration(milliseconds: 2000),
                                           () async {
-                                            setState(() {
-                                              _model.updateSettingAddStruct(
-                                                (e) => e
-                                                  ..remindInSecond = functions.timeToMinute(
-                                                      _model.timeHourTextController
-                                                                      .text !=
-                                                                  ''
-                                                          ? _model
-                                                              .timeHourTextController
-                                                              .text
-                                                          : '0',
-                                                      _model.timeMinuteTextController
-                                                                      .text !=
-                                                                  ''
-                                                          ? _model
-                                                              .timeMinuteTextController
-                                                              .text
-                                                          : '0',
-                                                      null),
-                                              );
-                                            });
+                                            _model.updateSettingAddStruct(
+                                              (e) => e
+                                                ..remindInSecond = functions.timeToMinute(
+                                                    _model.timeHourTextController
+                                                                    .text !=
+                                                                ''
+                                                        ? _model
+                                                            .timeHourTextController
+                                                            .text
+                                                        : '0',
+                                                    _model.timeMinuteTextController
+                                                                    .text !=
+                                                                ''
+                                                        ? _model
+                                                            .timeMinuteTextController
+                                                            .text
+                                                        : '0',
+                                                    null),
+                                            );
+                                            setState(() {});
                                           },
                                         ),
                                         autofocus: false,
@@ -1761,17 +1695,15 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                 setState(
                                     () => _model.checkboxValue2 = newValue!);
                                 if (newValue!) {
-                                  setState(() {
-                                    _model.updateSettingAddStruct(
-                                      (e) => e..remind2 = 1,
-                                    );
-                                  });
+                                  _model.updateSettingAddStruct(
+                                    (e) => e..remind2 = 1,
+                                  );
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.updateSettingAddStruct(
-                                      (e) => e..remind2 = 0,
-                                    );
-                                  });
+                                  _model.updateSettingAddStruct(
+                                    (e) => e..remind2 = 0,
+                                  );
+                                  setState(() {});
                                 }
                               },
                               side: BorderSide(
@@ -1844,146 +1776,121 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               Expanded(
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() {
-                                      _model.checkCron = [];
-                                    });
+                                    _model.checkCron = [];
+                                    setState(() {});
                                     if (_model.checkType == '3') {
                                       while (_model.loop! <
                                           _model.checkOne.length) {
                                         if (_model
                                                 .checkOne[_model.loop!].type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkOne[_model.loop!].title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkOne[_model.loop!].title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                       while (_model.loop! <
                                           _model.checkTwo.length) {
                                         if (_model
                                                 .checkTwo[_model.loop!].type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkTwo[_model.loop!].title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkTwo[_model.loop!].title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                       while (_model.loop! <
                                           _model.checkThrees.length) {
                                         if (_model.checkThrees[_model.loop!]
                                                 .type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkThrees[_model.loop!]
-                                                .title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkThrees[_model.loop!].title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                       while (_model.loop! <
                                           _model.checkBoxFour.length) {
                                         if (_model.checkBoxFour[_model.loop!]
                                                 .type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkBoxFour[_model.loop!]
-                                                .title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkBoxFour[_model.loop!]
+                                              .title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                       while (_model.loop! <
                                           _model.checkBoxFive.length) {
                                         if (_model.checkBoxFive[_model.loop!]
                                                 .type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkBoxFive[_model.loop!]
-                                                .title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkBoxFive[_model.loop!]
+                                              .title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                       while (_model.loop! <
                                           _model.checkBoxSix.length) {
                                         if (_model.checkBoxSix[_model.loop!]
                                                 .type ==
                                             true) {
-                                          setState(() {
-                                            _model.addToCheckCron(_model
-                                                .checkBoxSix[_model.loop!]
-                                                .title);
-                                          });
+                                          _model.addToCheckCron(_model
+                                              .checkBoxSix[_model.loop!].title);
+                                          setState(() {});
                                         }
-                                        setState(() {
-                                          _model.loop = _model.loop! + 1;
-                                        });
+                                        _model.loop = _model.loop! + 1;
+                                        setState(() {});
                                       }
-                                      setState(() {
-                                        _model.loop = 0;
-                                      });
+                                      _model.loop = 0;
+                                      setState(() {});
                                     } else if (_model.checkType == '2') {
-                                      setState(() {
-                                        _model.checkCron = _model
-                                            .groupWeekValues!
-                                            .toList()
-                                            .cast<String>();
-                                      });
+                                      _model.checkCron = _model.groupWeekValues!
+                                          .toList()
+                                          .cast<String>();
+                                      setState(() {});
                                     }
 
                                     if ((_model.checkType != null &&
                                             _model.checkType != '') &&
                                         (_model.checkType != '0')) {
-                                      setState(() {
-                                        _model.updateSettingAddStruct(
-                                          (e) => e
-                                            ..cron = functions.limitPublished(
-                                                _model.checkType!,
-                                                _model.checkCron.toList()),
-                                        );
-                                      });
-                                    }
-                                    setState(() {
                                       _model.updateSettingAddStruct(
                                         (e) => e
                                           ..cron = functions.limitPublished(
                                               _model.checkType!,
-                                              _model.checkCron.toList())
-                                          ..remind = _model.settingAdd?.remind,
+                                              _model.checkCron.toList()),
                                       );
-                                    });
+                                      setState(() {});
+                                    }
+                                    _model.updateSettingAddStruct(
+                                      (e) => e
+                                        ..cron = functions.limitPublished(
+                                            _model.checkType!,
+                                            _model.checkCron.toList())
+                                        ..remind = _model.settingAdd?.remind,
+                                    );
+                                    setState(() {});
                                     await widget.callBack?.call(
                                       _model.settingAdd,
                                     );

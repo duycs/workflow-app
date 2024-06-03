@@ -41,9 +41,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getStaffListToken = await action_blocks.tokenReload(context);
       if (_model.getStaffListToken!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -351,12 +350,11 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                           department: _model.department,
                                           callback: (statusCallback, department,
                                               branch) async {
-                                            setState(() {
-                                              _model.statusFilter =
-                                                  statusCallback!;
-                                              _model.branch = branch!;
-                                              _model.department = department!;
-                                            });
+                                            _model.statusFilter =
+                                                statusCallback!;
+                                            _model.branch = branch!;
+                                            _model.department = department!;
+                                            setState(() {});
                                             setState(() => _model
                                                 .listViewPagingController
                                                 ?.refresh());

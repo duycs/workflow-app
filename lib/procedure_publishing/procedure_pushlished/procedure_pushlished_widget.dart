@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -66,17 +67,15 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
               ).toString().toString()}\"}}}}]}]}',
       );
       if ((_model.apiResultProcedureList?.succeeded ?? true)) {
-        setState(() {
-          _model.workflowList = WorkflowsListDataStruct.maybeFromMap(
-                  (_model.apiResultProcedureList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<WorkflowsStruct>();
-        });
+        _model.workflowList = WorkflowsListDataStruct.maybeFromMap(
+                (_model.apiResultProcedureList?.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<WorkflowsStruct>();
+        setState(() {});
       }
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.isLoad = true;
+      setState(() {});
     });
   }
 
@@ -189,50 +188,43 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                       .toList(),
                                   onChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);
-                                    setState(() {
-                                      _model.workflowSelected = _model
-                                          .workflowList
-                                          .where((e) =>
-                                              e.id == _model.dropDownValue)
-                                          .toList()
-                                          .first;
-                                      _model.staffOne = (getJsonField(
-                                        _model.workflowSelected!.toMap(),
-                                        r'''$.steps''',
-                                        true,
-                                      )!
-                                                  .toList()
-                                                  .map<ProcedurePublishedStepStruct?>(
-                                                      ProcedurePublishedStepStruct
-                                                          .maybeFromMap)
-                                                  .toList()
-                                              as Iterable<
-                                                  ProcedurePublishedStepStruct?>)
-                                          .withoutNulls
-                                          .where((e) => e.number == 1)
-                                          .toList()
-                                          .cast<ProcedurePublishedStepStruct>();
-                                    });
+                                    _model.workflowSelected = _model
+                                        .workflowList
+                                        .where(
+                                            (e) => e.id == _model.dropDownValue)
+                                        .toList()
+                                        .first;
+                                    _model.staffOne = (getJsonField(
+                                      _model.workflowSelected!.toMap(),
+                                      r'''$.steps''',
+                                      true,
+                                    )!
+                                                .toList()
+                                                .map<ProcedurePublishedStepStruct?>(
+                                                    ProcedurePublishedStepStruct
+                                                        .maybeFromMap)
+                                                .toList()
+                                            as Iterable<
+                                                ProcedurePublishedStepStruct?>)
+                                        .withoutNulls
+                                        .where((e) => e.number == 1)
+                                        .toList()
+                                        .cast<ProcedurePublishedStepStruct>();
+                                    setState(() {});
                                     while (_model.loop <
                                         _model.staffOne.first.staffs.length) {
-                                      setState(() {
-                                        _model.addToStaffIdStepOne(
-                                            StaffStepOneStruct(
-                                          staffsId: IdStruct(
-                                            id: _model
-                                                .staffOne
-                                                .first
-                                                .staffs[_model.loop]
-                                                .staffsId
-                                                .id,
-                                          ),
-                                        ));
-                                        _model.loop = _model.loop + 1;
-                                      });
+                                      _model.addToStaffIdStepOne(
+                                          StaffStepOneStruct(
+                                        staffsId: IdStruct(
+                                          id: _model.staffOne.first
+                                              .staffs[_model.loop].staffsId.id,
+                                        ),
+                                      ));
+                                      _model.loop = _model.loop + 1;
+                                      setState(() {});
                                     }
-                                    setState(() {
-                                      _model.loop = 0;
-                                    });
+                                    _model.loop = 0;
+                                    setState(() {});
                                   },
                                   width: 300.0,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -263,7 +255,9 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   isMultiSelect: false,
                                 ),
                               ),
-                            if (_model.workflowList.isEmpty)
+                            if ((_model.workflowList.isEmpty) &&
+                                (FFAppState().user.role !=
+                                    '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                               Align(
                                 alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
@@ -558,23 +552,22 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                         );
                                       });
                                     }
-                                    setState(() {
-                                      _model.limitPublished =
-                                          functions.totalLimitPublished(
-                                              dateTimeFormat(
-                                                'dd/MM/yyyy',
-                                                _model.datePicked2,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              ),
-                                              functions
-                                                  .cronToType(_model
-                                                      .workflowSelected!.cron)
-                                                  .toList(),
-                                              functions.checkTypeCron(_model
-                                                  .workflowSelected!.cron));
-                                    });
+                                    _model.limitPublished =
+                                        functions.totalLimitPublished(
+                                            dateTimeFormat(
+                                              'dd/MM/yyyy',
+                                              _model.datePicked2,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
+                                            functions
+                                                .cronToType(_model
+                                                    .workflowSelected!.cron)
+                                                .toList(),
+                                            functions.checkTypeCron(
+                                                _model.workflowSelected!.cron));
+                                    setState(() {});
                                   },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -829,6 +822,28 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                                   ),
                                 ),
                               ),
+                            if ((_model.workflowList.isEmpty) &&
+                                (FFAppState().user.role ==
+                                    '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
+                              Flexible(
+                                child: Container(
+                                  width: 3.0,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 1.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: wrapWithModel(
+                                      model: _model.dataNotFoundModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: const DataNotFoundWidget(),
+                                    ),
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
@@ -878,154 +893,162 @@ class _ProcedurePushlishedWidgetState extends State<ProcedurePushlishedWidget> {
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              var shouldSetState = false;
-                              _model.reloadTokenProcedrue1 =
-                                  await action_blocks.tokenReload(context);
-                              shouldSetState = true;
-                              if (_model.reloadTokenProcedrue1!) {
-                                _model.apiResultUpdateLimit =
-                                    await ProcedurePublishedGroup
-                                        .procedureTemplateUpdateLimitPublishedCall
-                                        .call(
-                                  id: _model.workflowSelected?.id,
-                                  accessToken: FFAppState().accessToken,
-                                  limitPublished: _model.limitPublished,
-                                );
+                        if (_model.workflowList.isNotEmpty)
+                          Expanded(
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                var shouldSetState = false;
+                                _model.reloadTokenProcedrue1 =
+                                    await action_blocks.tokenReload(context);
                                 shouldSetState = true;
-                                if ((_model.apiResultUpdateLimit?.succeeded ??
-                                    true)) {
-                                  _model.apiResultProcedurePublished =
+                                if (_model.reloadTokenProcedrue1!) {
+                                  _model.apiResultUpdateLimit =
                                       await ProcedurePublishedGroup
-                                          .procedurePublishedCall
+                                          .procedureTemplateUpdateLimitPublishedCall
                                           .call(
+                                    id: _model.workflowSelected?.id,
                                     accessToken: FFAppState().accessToken,
-                                    workflowId: _model.workflowSelected?.id,
+                                    limitPublished: _model.limitPublished,
                                   );
                                   shouldSetState = true;
-                                  if ((_model.apiResultProcedurePublished
-                                          ?.succeeded ??
+                                  if ((_model.apiResultUpdateLimit?.succeeded ??
                                       true)) {
-                                    if (_model.workflowSelected?.type !=
-                                        'instant') {
-                                      while (_model.loop <
-                                          _model.staffIdStepOne.length) {
-                                        _model.apiResultReciveTask =
-                                            await TaskGroup.receiveTaskCall
-                                                .call(
-                                          accessToken: FFAppState().accessToken,
-                                          workflowId:
-                                              _model.workflowSelected?.id,
-                                          staffId: _model
-                                              .staffIdStepOne[_model.loop]
-                                              .staffsId
-                                              .id,
-                                          publishedCount: getJsonField(
-                                            (_model.apiResultProcedurePublished
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.workflow[0].published_count''',
-                                          ),
-                                        );
-                                        shouldSetState = true;
-                                        if (!(_model.apiResultReciveTask
-                                                ?.succeeded ??
-                                            true)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Lỗi nhận task!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
+                                    _model.apiResultProcedurePublished =
+                                        await ProcedurePublishedGroup
+                                            .procedurePublishedCall
+                                            .call(
+                                      accessToken: FFAppState().accessToken,
+                                      workflowId: _model.workflowSelected?.id,
+                                    );
+                                    shouldSetState = true;
+                                    if ((_model.apiResultProcedurePublished
+                                            ?.succeeded ??
+                                        true)) {
+                                      if (_model.workflowSelected?.type !=
+                                          'instant') {
+                                        while (_model.loop <
+                                            _model.staffIdStepOne.length) {
+                                          _model.apiResultReciveTask =
+                                              await TaskGroup.receiveTaskCall
+                                                  .call(
+                                            accessToken:
+                                                FFAppState().accessToken,
+                                            workflowId:
+                                                _model.workflowSelected?.id,
+                                            staffId: _model
+                                                .staffIdStepOne[_model.loop]
+                                                .staffsId
+                                                .id,
+                                            publishedCount: getJsonField(
+                                              (_model.apiResultProcedurePublished
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.workflow[0].published_count''',
                                             ),
                                           );
-                                        }
-                                        setState(() {
+                                          shouldSetState = true;
+                                          if (!(_model.apiResultReciveTask
+                                                  ?.succeeded ??
+                                              true)) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Lỗi nhận task!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                              ),
+                                            );
+                                          }
                                           _model.loop = _model.loop + 1;
-                                        });
+                                          setState(() {});
+                                        }
                                       }
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo công việc thành công!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                      await widget.callback?.call();
+                                      Navigator.pop(context);
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Lỗi tạo công việc!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
                                     }
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Tạo công việc thành công!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
-                                    await widget.callback?.call();
-                                    Navigator.pop(context);
                                   } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Lỗi tạo công việc!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                      ),
-                                    );
+                                    if (shouldSetState) setState(() {});
+                                    return;
                                   }
                                 } else {
+                                  setState(() {});
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }
-                              } else {
-                                setState(() {});
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
 
-                              if (shouldSetState) setState(() {});
-                            },
-                            text: 'Xác nhận',
-                            options: FFButtonOptions(
-                              height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                if (shouldSetState) setState(() {});
+                              },
+                              text: 'Xác nhận',
+                              options: FFButtonOptions(
+                                height: 44.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 20.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(40.0),
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),

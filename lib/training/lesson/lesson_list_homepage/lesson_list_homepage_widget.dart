@@ -49,9 +49,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
       _model.tokenReloadLessonListHomepage =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadLessonListHomepage!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         FFAppState().update(() {});
         return;
@@ -94,7 +93,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(
@@ -140,6 +139,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 () async {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
+
                                   setState(() {});
                                 },
                               ),
@@ -210,6 +210,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+
                                           setState(() {});
                                           setState(() {});
                                         },
@@ -287,33 +288,33 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                 lessonStatus,
                                                 lessonFavoriteStatus,
                                                 programsId) async {
-                                              setState(() {
-                                                _model.status = status!;
-                                                _model.dateStartList =
-                                                    dateTimeFormat(
-                                                  'yyyy-MM-dd',
-                                                  dateStart,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                );
-                                                _model.dateEndList =
-                                                    dateTimeFormat(
-                                                  'yyyy-MM-dd',
-                                                  dateEnd,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                );
-                                                _model.statusLesson =
-                                                    lessonStatus!;
-                                                _model.lessonFavoriteStatusList =
-                                                    lessonFavoriteStatus!;
-                                                _model.programsId = programsId!;
-                                              });
+                                              _model.status = status!;
+                                              _model.dateStartList =
+                                                  dateTimeFormat(
+                                                'yyyy-MM-dd',
+                                                dateStart,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
+                                              _model.dateEndList =
+                                                  dateTimeFormat(
+                                                'yyyy-MM-dd',
+                                                dateEnd,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
+                                              _model.statusLesson =
+                                                  lessonStatus!;
+                                              _model.lessonFavoriteStatusList =
+                                                  lessonFavoriteStatus!;
+                                              _model.programsId = programsId!;
+                                              setState(() {});
                                               setState(() => _model
                                                   .listViewPagingController
                                                   ?.refresh());
+
                                               setState(() {});
                                             },
                                           ),

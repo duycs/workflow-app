@@ -34,9 +34,21 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
   ApiCallResponse? apiResultGetStaffAnswerList;
   // State field(s) for Checkbox widget.
 
-  Map<QuestionAnswerObjectStruct, bool> checkboxValueMap = {};
-  List<QuestionAnswerObjectStruct> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+  Map<QuestionAnswerObjectStruct, bool> checkboxValueMap1 = {};
+  List<QuestionAnswerObjectStruct> get checkboxCheckedItems1 =>
+      checkboxValueMap1.entries
+          .where((e) => e.value)
+          .map((e) => e.key)
+          .toList();
+
+  // State field(s) for Checkbox widget.
+
+  Map<QuestionAnswerObjectStruct, bool> checkboxValueMap2 = {};
+  List<QuestionAnswerObjectStruct> get checkboxCheckedItems2 =>
+      checkboxValueMap2.entries
+          .where((e) => e.value)
+          .map((e) => e.key)
+          .toList();
 
   @override
   void initState(BuildContext context) {}

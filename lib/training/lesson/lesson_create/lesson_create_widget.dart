@@ -499,11 +499,9 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       '_model.estimateInDayTextController',
                                       const Duration(milliseconds: 2000),
                                       () async {
-                                        setState(() {
-                                          _model.checkTime = int.tryParse(_model
-                                              .estimateInDayTextController
-                                              .text);
-                                        });
+                                        _model.checkTime = int.tryParse(_model
+                                            .estimateInDayTextController.text);
+                                        setState(() {});
                                       },
                                     ),
                                     autofocus: false,
@@ -717,9 +715,8 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadImage = _model.uploadImage;
-                                    });
+                                    _model.uploadImage = _model.uploadImage;
+                                    setState(() {});
                                   },
                                   text: 'Ảnh',
                                   icon: const Icon(
@@ -892,9 +889,8 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadVideo = _model.uploadVideo;
-                                    });
+                                    _model.uploadVideo = _model.uploadVideo;
+                                    setState(() {});
                                   },
                                   text: ' Video',
                                   icon: const Icon(
@@ -1067,9 +1063,8 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadFile = _model.uploadFile;
-                                    });
+                                    _model.uploadFile = _model.uploadFile;
+                                    setState(() {});
                                   },
                                   text: 'File',
                                   icon: const Icon(
@@ -1159,11 +1154,10 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             input: _model.input,
                                             output: _model.output,
                                             callBack: (input, output) async {
-                                              setState(() {
-                                                _model.checkContent = output!;
-                                                _model.input = input!;
-                                                _model.output = output;
-                                              });
+                                              _model.checkContent = output!;
+                                              _model.input = input!;
+                                              _model.output = output;
+                                              setState(() {});
                                             },
                                           ),
                                         ),
@@ -1315,7 +1309,22 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Các trường ảnh bài học, tiêu đề, nội dung, mô tả, thời gian bắt buộc!',
+                            () {
+                              if (_model.nameTextController.text == '') {
+                                return 'Tiêu đề chưa có dữ liệu!';
+                              } else if (_model.checkContent == '') {
+                                return 'Nội dung chưa có dữ liệu!';
+                              } else if (_model.descriptionTextController.text == '') {
+                                return 'Mô tả chưa có dữ liệu!';
+                              } else if (_model.durationHoursTextController.text ==
+                                      '') {
+                                return 'Thời gian học chưa có dữ liệu!';
+                              } else if (_model.uploadImage == '') {
+                                return 'Chưa có ảnh tải lên!';
+                              } else {
+                                return '';
+                              }
+                            }(),
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),

@@ -46,9 +46,8 @@ class _StudyProgramListMarketWidgetState
       _model.tokenReloadStudyProgramList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadStudyProgramList!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         FFAppState().update(() {});
         return;
@@ -143,14 +142,14 @@ class _StudyProgramListMarketWidgetState
                             '_model.textFieldNameSearchTextController',
                             const Duration(milliseconds: 500),
                             () async {
-                              setState(() {
-                                _model.nameSearch = _model
-                                    .textFieldNameSearchTextController.text;
-                                _model.isLoad = false;
-                                _model.dataList = [];
-                              });
+                              _model.nameSearch =
+                                  _model.textFieldNameSearchTextController.text;
+                              _model.isLoad = false;
+                              _model.dataList = [];
+                              setState(() {});
                               setState(() =>
                                   _model.listViewPagingController1?.refresh());
+
                               setState(() {});
                             },
                           ),
@@ -214,16 +213,16 @@ class _StudyProgramListMarketWidgetState
                                     onTap: () async {
                                       _model.textFieldNameSearchTextController
                                           ?.clear();
-                                      setState(() {
-                                        _model.nameSearch = _model
-                                            .textFieldNameSearchTextController
-                                            .text;
-                                        _model.isLoad = false;
-                                        _model.dataList = [];
-                                      });
+                                      _model.nameSearch = _model
+                                          .textFieldNameSearchTextController
+                                          .text;
+                                      _model.isLoad = false;
+                                      _model.dataList = [];
+                                      setState(() {});
                                       setState(() => _model
                                           .listViewPagingController1
                                           ?.refresh());
+
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -289,13 +288,11 @@ class _StudyProgramListMarketWidgetState
                                                 .textFieldNameSearchTextController
                                                 ?.clear();
                                           });
-                                          setState(() {
-                                            _model.nameSearch = name;
-                                            _model.dateEndSearch = dateEnd;
-                                            _model.dateStartSearch = dateStart;
-                                            _model.lessionsNameSearch =
-                                                lessions;
-                                          });
+                                          _model.nameSearch = name;
+                                          _model.dateEndSearch = dateEnd;
+                                          _model.dateStartSearch = dateStart;
+                                          _model.lessionsNameSearch = lessions;
+                                          setState(() {});
                                           setState(() => _model
                                               .listViewPagingController1
                                               ?.refresh());
@@ -304,6 +301,7 @@ class _StudyProgramListMarketWidgetState
                                                 .textFieldNameSearchTextController
                                                 ?.text = name!;
                                           });
+
                                           setState(() {});
                                         },
                                       ),
@@ -539,16 +537,14 @@ class _StudyProgramListMarketWidgetState
                                                                       .checkShow ==
                                                                   dataListViewItem
                                                                       .id) {
-                                                                setState(() {
-                                                                  _model.checkShow =
-                                                                      null;
-                                                                });
+                                                                _model.checkShow =
+                                                                    null;
+                                                                setState(() {});
                                                               } else {
-                                                                setState(() {
-                                                                  _model.checkShow =
-                                                                      dataListViewItem
-                                                                          .id;
-                                                                });
+                                                                _model.checkShow =
+                                                                    dataListViewItem
+                                                                        .id;
+                                                                setState(() {});
                                                               }
                                                             },
                                                             child: Row(

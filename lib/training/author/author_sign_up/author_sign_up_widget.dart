@@ -273,13 +273,11 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                         .where((e) =>
                                             e == _model.nameTextController.text)
                                         .toList().isNotEmpty) {
-                                  setState(() {
-                                    _model.checkName = true;
-                                  });
+                                  _model.checkName = true;
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.checkName = false;
-                                  });
+                                  _model.checkName = false;
+                                  setState(() {});
                                 }
                               },
                             ),
@@ -533,26 +531,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             isOverButton: true,
                             isSearchable: true,
                             isMultiSelect: true,
-                            onMultiSelectChanged: (val) async {
-                              setState(() => _model.dropDownValue = val);
-                              setState(() {
-                                _model.selectedDomainList = [];
-                              });
-                              while (
-                                  _model.loop < _model.dropDownValue!.length) {
-                                setState(() {
-                                  _model.addToSelectedDomainList(
-                                      CreateDomainAuthorsStruct(
-                                    domainsId:
-                                        _model.dropDownValue?[_model.loop],
-                                  ));
-                                  _model.loop = _model.loop + 1;
-                                });
-                              }
-                              setState(() {
-                                _model.loop = 0;
-                              });
-                            },
+                            onMultiSelectChanged: (val) =>
+                                setState(() => _model.dropDownValue = val),
                           ),
                         ]
                             .divide(const SizedBox(height: 4.0))
@@ -613,6 +593,71 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                     !_model.formKey.currentState!.validate()) {
                                   return;
                                 }
+                                if ((_model.uploadedLocalFile.bytes ?? [])
+                                        .isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Vui lòng đẩy ảnh đại diện!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                  return;
+                                }
+                                if (_model.dropDownValue == null) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Vui lòng chọn lĩnh vực',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                  return;
+                                }
+                                while (_model.loop <
+                                    _model.dropDownValue!.length) {
+                                  _model.addToSelectedDomainList(
+                                      CreateDomainAuthorsStruct(
+                                    domainsId:
+                                        _model.dropDownValue?[_model.loop],
+                                  ));
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
+                                }
+                                _model.loop = 0;
+                                setState(() {});
+                                if (_model.selectedDomainList.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Vui lòng chọn lĩnh vực',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
                                 var confirmDialogResponse = await showDialog<
                                         bool>(
                                       context: context,
@@ -657,14 +702,12 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                   if ((_model
                                           .apiResultUploadAvatar?.succeeded ??
                                       true)) {
-                                    setState(() {
-                                      _model.avatar = getJsonField(
-                                        (_model.apiResultUploadAvatar
-                                                ?.jsonBody ??
-                                            ''),
-                                        r'''$.data.id''',
-                                      ).toString();
-                                    });
+                                    _model.avatar = getJsonField(
+                                      (_model.apiResultUploadAvatar?.jsonBody ??
+                                          ''),
+                                      r'''$.data.id''',
+                                    ).toString();
+                                    setState(() {});
                                   }
                                   _model.authorsSignUp =
                                       await action_blocks.tokenReload(context);
@@ -719,22 +762,20 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       if ((_model
                                               .apiResultGetStaffId?.succeeded ??
                                           true)) {
-                                        setState(() {
-                                          FFAppState().staffLogin =
-                                              getJsonField(
-                                            (_model.apiResultGetStaffId
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.staff''',
-                                          );
-                                          FFAppState().staffOrganization =
-                                              getJsonField(
-                                            (_model.apiResultGetStaffId
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.organization''',
-                                          );
-                                        });
+                                        FFAppState().staffLogin = getJsonField(
+                                          (_model.apiResultGetStaffId
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.staff''',
+                                        );
+                                        FFAppState().staffOrganization =
+                                            getJsonField(
+                                          (_model.apiResultGetStaffId
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.organization''',
+                                        );
+                                        setState(() {});
                                       }
 
                                       context.pushNamed(

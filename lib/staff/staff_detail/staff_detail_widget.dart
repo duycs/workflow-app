@@ -42,23 +42,23 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
         if (_model.getStaffInfoToken!) {
           _model.apiResultGetStaffInfo = await UserGroup.getStaffIdCall.call(
             accessToken: FFAppState().accessToken,
-            userId: StaffListStruct.maybeFromMap(widget.staffDetail)?.id,
+            userId:
+                StaffListStruct.maybeFromMap(widget.staffDetail)?.userId.id,
           );
           if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
-            setState(() {
-              _model.staffData = functions.stringToJson(getJsonField(
-                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-                r'''$.staff''',
-              ).toString().toString());
-              _model.department = functions.stringToJson(getJsonField(
-                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-                r'''$.department''',
-              ).toString().toString());
-              _model.branch = functions.stringToJson(getJsonField(
-                (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
-                r'''$.branch''',
-              ).toString().toString());
-            });
+            _model.staffData = functions.stringToJson(getJsonField(
+              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+              r'''$.staff''',
+            ).toString().toString());
+            _model.department = functions.stringToJson(getJsonField(
+              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+              r'''$.department''',
+            ).toString().toString());
+            _model.branch = functions.stringToJson(getJsonField(
+              (_model.apiResultGetStaffInfo?.jsonBody ?? ''),
+              r'''$.branch''',
+            ).toString().toString());
+            setState(() {});
           }
         } else {
           setState(() {});

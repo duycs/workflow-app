@@ -153,14 +153,12 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   '_model.questionContenTextController',
                                   const Duration(milliseconds: 2000),
                                   () async {
-                                    setState(() {
-                                      _model.updateRequestDataStruct(
-                                        (e) => e
-                                          ..content = _model
-                                              .questionContenTextController
-                                              .text,
-                                      );
-                                    });
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..content = _model
+                                            .questionContenTextController.text,
+                                    );
+                                    setState(() {});
                                   },
                                 ),
                                 autofocus: false,
@@ -241,13 +239,12 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                   ],
                                   onChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);
-                                    setState(() {
-                                      _model.updateRequestDataStruct(
-                                        (e) => e
-                                          ..answerType = _model.dropDownValue
-                                          ..answers = [],
-                                      );
-                                    });
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..answerType = _model.dropDownValue
+                                        ..answers = [],
+                                    );
+                                    setState(() {});
                                     setState(() {
                                       _model.textAnswerTextController?.clear();
                                       _model.textAnswerNumberTextController
@@ -444,25 +441,23 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                     if (_model.textAnswerTextController.text !=
                                             '') {
                                       if (_model.dropDownValue == 'checkbox') {
-                                        setState(() {
-                                          _model.updateRequestDataStruct(
-                                            (e) => e
-                                              ..updateAnswers(
-                                                (e) => e.add(
-                                                    QuestionAnswersIdStruct(
-                                                  content: _model
-                                                      .textAnswerTextController
-                                                      .text,
-                                                  status: 'published',
-                                                  correct:
-                                                      _model.checkboxValue ==
-                                                              true
-                                                          ? 1
-                                                          : 0,
-                                                )),
-                                              ),
-                                          );
-                                        });
+                                        _model.updateRequestDataStruct(
+                                          (e) => e
+                                            ..updateAnswers(
+                                              (e) =>
+                                                  e.add(QuestionAnswersIdStruct(
+                                                content: _model
+                                                    .textAnswerTextController
+                                                    .text,
+                                                status: 'published',
+                                                correct:
+                                                    _model.checkboxValue == true
+                                                        ? 1
+                                                        : 0,
+                                              )),
+                                            ),
+                                        );
+                                        setState(() {});
                                         setState(() {
                                           _model.textAnswerTextController
                                               ?.clear();
@@ -499,25 +494,24 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct:
-                                                        _model.checkboxValue ==
-                                                                true
-                                                            ? 1
-                                                            : 0,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct:
+                                                      _model.checkboxValue ==
+                                                              true
+                                                          ? 1
+                                                          : 0,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -552,21 +546,20 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct: 1,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct: 1,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -605,21 +598,20 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerNumberTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct: 1,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerNumberTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct: 1,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -809,16 +801,14 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                setState(() {
-                                                  _model
-                                                      .updateRequestDataStruct(
-                                                    (e) => e
-                                                      ..updateAnswers(
-                                                        (e) => e.removeAt(
-                                                            listViewIndex),
-                                                      ),
-                                                  );
-                                                });
+                                                _model.updateRequestDataStruct(
+                                                  (e) => e
+                                                    ..updateAnswers(
+                                                      (e) => e.removeAt(
+                                                          listViewIndex),
+                                                    ),
+                                                );
+                                                setState(() {});
                                               },
                                             ),
                                           ].divide(const SizedBox(width: 4.0)),
@@ -882,13 +872,12 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
-                              setState(() {
-                                _model.updateRequestDataStruct(
-                                  (e) => e
-                                    ..status = 'published'
-                                    ..autoCorrect = 1,
-                                );
-                              });
+                              _model.updateRequestDataStruct(
+                                (e) => e
+                                  ..status = 'published'
+                                  ..autoCorrect = 1,
+                              );
+                              setState(() {});
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
                                 return;

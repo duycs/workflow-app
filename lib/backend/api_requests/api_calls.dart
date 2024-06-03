@@ -173,6 +173,8 @@ class DepartmentGroup {
   static PostdepartmentCall postdepartmentCall = PostdepartmentCall();
   static PathDepartmentCall pathDepartmentCall = PathDepartmentCall();
   static UpdateProgramsCall updateProgramsCall = UpdateProgramsCall();
+  static ProgramSynchronizedCall programSynchronizedCall =
+      ProgramSynchronizedCall();
 }
 
 class GetDepartmentListCall {
@@ -328,6 +330,32 @@ class UpdateProgramsCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ProgramSynchronizedCall {
+  Future<ApiCallResponse> call({
+    String? accessToken = '',
+  }) async {
+    final baseUrl = DepartmentGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ProgramSynchronized',
+      apiUrl: '$baseUrl/flows/trigger/b1888ea3-9709-4c01-821d-9573d1171060',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -1115,7 +1143,7 @@ class StudyProgramListCall {
         params: {
           'filter': filter,
           'fields':
-              "private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count",
+              "category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score",
           'offset': offset,
           'limit': limit,
           'meta': "total_count,filter_count",
@@ -1291,7 +1319,7 @@ class StaffsProgramsCall {
         },
         params: {
           'fields[]':
-              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created",
+              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created,program_id.image_cover",
           'filter': filter,
           'limit': limit,
           'offset': offset,
@@ -1317,6 +1345,8 @@ class UpdateStudyProgramPriceCall {
     int? price,
     String? authorId = '',
     int? version,
+    String? category = '',
+    String? domain = '',
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -1327,6 +1357,8 @@ class UpdateStudyProgramPriceCall {
 {
   "price": $price,
   "author_id": "$authorId",
+  "category_id": "$category",
+  "domain_id": "$domain",
   "version": $version
 }''';
     return ApiManager.instance.makeApiCall(
@@ -2662,6 +2694,8 @@ class StaffGroup {
   static UpdateStaffCall updateStaffCall = UpdateStaffCall();
   static UpdateUserStaffCall updateUserStaffCall = UpdateUserStaffCall();
   static UpdatePasswordCall updatePasswordCall = UpdatePasswordCall();
+  static CreateProgramStaffCall createProgramStaffCall =
+      CreateProgramStaffCall();
 }
 
 class GetStaffListCall {
@@ -2850,6 +2884,39 @@ class UpdatePasswordCall {
     return ApiManager.instance.makeApiCall(
       callName: 'UpdatePassword',
       apiUrl: '$baseUrl/flows/trigger/a721cfaf-8453-4f0c-aff1-6839e9c8ddb1',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateProgramStaffCall {
+  Future<ApiCallResponse> call({
+    String? staffId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = StaffGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "staff_id": "$staffId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateProgramStaff',
+      apiUrl: '$baseUrl/flows/trigger/03cdb683-356a-46f0-be36-2893888d0263',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -3413,6 +3480,7 @@ class GetListMarketLessonCall {
         'filter': filter,
         'limit': limit,
         'offset': offset,
+        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3746,8 +3814,9 @@ class OrderGroup {
   static GetOneOrderCall getOneOrderCall = GetOneOrderCall();
   static CreateOrderCall createOrderCall = CreateOrderCall();
   static UpdateOrderCall updateOrderCall = UpdateOrderCall();
-  static UpdateOrderStatusPublishedCall updateOrderStatusPublishedCall =
-      UpdateOrderStatusPublishedCall();
+  static QrCodeCall qrCodeCall = QrCodeCall();
+  static OrderCompletedCall orderCompletedCall = OrderCompletedCall();
+  static CheckTransferCall checkTransferCall = CheckTransferCall();
 }
 
 class GetListOrderCall {
@@ -3755,6 +3824,7 @@ class GetListOrderCall {
     int? limit = 5000,
     int? offset = 0,
     String? filter = '',
+    String? sort = '',
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -3884,7 +3954,7 @@ class UpdateOrderCall {
   }
 }
 
-class UpdateOrderStatusPublishedCall {
+class QrCodeCall {
   Future<ApiCallResponse> call({
     String? orderId = '',
     String? accessToken = '',
@@ -3898,8 +3968,70 @@ class UpdateOrderStatusPublishedCall {
   "program_order_id": "$orderId"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'UpdateOrderStatusPublished',
+      callName: 'QrCode',
       apiUrl: '$baseUrl/flows/trigger/cfe5b9a4-1967-4cd3-9a1a-41aea2a76df4',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class OrderCompletedCall {
+  Future<ApiCallResponse> call({
+    String? orderId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'OrderCompleted',
+      apiUrl: '$baseUrl/flows/trigger/3b9cc77a-ddde-4098-a81f-b102f4daa429',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CheckTransferCall {
+  Future<ApiCallResponse> call({
+    String? value = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = OrderGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "type": 0,
+  "value": "$value"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'CheckTransfer',
+      apiUrl: '$baseUrl/flows/trigger/d6cb057b-3036-4714-b0a0-c2cd21e3a739',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -3935,10 +4067,14 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
     if (kDebugMode) {
       print("List serialization failed. Returning empty list.");
@@ -3950,7 +4086,7 @@ String _serializeList(List? list) {
 String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
     if (kDebugMode) {
       print("Json serialization failed. Returning empty json.");

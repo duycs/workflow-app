@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -5,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/order/payment/payment_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +20,8 @@ class OrderCreateWidget extends StatefulWidget {
     super.key,
     String? image,
     String? price,
-    required this.rating,
     String? name,
-    required this.numOfListLessions,
+    this.numOfListLessions,
     String? author,
     String? programId,
     String? checkType,
@@ -33,7 +34,6 @@ class OrderCreateWidget extends StatefulWidget {
 
   final String image;
   final String price;
-  final double? rating;
   final String name;
   final int? numOfListLessions;
   final String author;
@@ -60,7 +60,18 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
 
     _model.quantityTextController ??= TextEditingController();
     _model.quantityFocusNode ??= FocusNode();
-
+    _model.quantityFocusNode!.addListener(
+      () async {
+        _model.total = functions.stringToInt(widget.price) *
+            valueOrDefault<int>(
+              int.tryParse(_model.quantityTextController.text),
+              0,
+            );
+        _model.number =
+            functions.stringToInt(_model.quantityTextController.text);
+        setState(() {});
+      },
+    );
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -175,6 +186,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                   12.0, 8.0, 12.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: 60.0,
@@ -205,67 +217,29 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          widget.name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyLarge
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 4.0, 0.0, 2.0),
-                                          child: Text(
-                                            '',
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.name,
+                                            maxLines: 2,
                                             style: FlutterFlowTheme.of(context)
-                                                .labelSmall
+                                                .bodyLarge
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.star,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                              size: 16.0,
-                                            ),
-                                            Text(
-                                              '',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ].divide(const SizedBox(width: 4.0)),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -289,17 +263,21 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                              Text(
-                                widget.author != ''
-                                    ? widget.author
-                                    : ' ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              Expanded(
+                                child: Text(
+                                  widget.author != ''
+                                      ? widget.author
+                                      : ' ',
+                                  textAlign: TextAlign.end,
+                                  maxLines: 2,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
                               ),
                             ],
                           ),
@@ -516,20 +494,20 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     '_model.quantityTextController',
                                     const Duration(milliseconds: 2000),
                                     () async {
-                                      setState(() {
-                                        _model.total = functions
-                                                .stringToInt(widget.price) *
-                                            valueOrDefault<int>(
-                                              int.tryParse(_model
-                                                  .quantityTextController.text),
-                                              0,
-                                            );
-                                        _model.number = functions.stringToInt(
-                                            _model.quantityTextController.text);
-                                      });
+                                      _model.total =
+                                          functions.stringToInt(widget.price) *
+                                              valueOrDefault<int>(
+                                                int.tryParse(_model
+                                                    .quantityTextController
+                                                    .text),
+                                                0,
+                                              );
+                                      _model.number = functions.stringToInt(
+                                          _model.quantityTextController.text);
+                                      setState(() {});
                                     },
                                   ),
-                                  autofocus: false,
+                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelStyle: FlutterFlowTheme.of(context)
@@ -906,9 +884,9 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
 
                               if (shouldSetState) setState(() {});
                             },
-                            text: 'Lưu',
+                            text: 'Lưu tạm',
                             icon: const Icon(
-                              Icons.download_sharp,
+                              Icons.save,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(
@@ -964,37 +942,67 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                               _model.orderCreateDraft2 =
                                   await _model.orderCreate(context);
                               shouldSetState = true;
-                              if (!(_model.orderCreateDraft2 != null &&
-                                  _model.orderCreateDraft2 != '')) {
+                              if (_model.orderCreateDraft2 != null &&
+                                  _model.orderCreateDraft2 != '') {
+                                _model.orderUpdateStatusDone =
+                                    await action_blocks.tokenReload(context);
+                                shouldSetState = true;
+                                if (_model.orderUpdateStatusDone!) {
+                                  _model.apiResultQrCodeCreate =
+                                      await OrderGroup.qrCodeCall.call(
+                                    accessToken: FFAppState().accessToken,
+                                    orderId: _model.orderCreateDraft2,
+                                  );
+                                  shouldSetState = true;
+                                  if ((_model
+                                          .apiResultQrCodeCreate?.succeeded ??
+                                      true)) {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return WebViewAware(
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: PaymentWidget(
+                                              orderId:
+                                                  _model.orderCreateDraft2!,
+                                              private:
+                                                  widget.checkType == 'staff'
+                                                      ? 'private1'
+                                                      : 'private0',
+                                              qr: (_model.apiResultQrCodeCreate
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+
+                                    Navigator.pop(context);
+                                  } else {
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
+                                } else {
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                              } else {
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return WebViewAware(
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: PaymentWidget(
-                                        orderId: _model.orderCreateDraft2!,
-                                        private: widget.checkType == 'staff'
-                                            ? 'private1'
-                                            : 'private0',
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
 
-                              Navigator.pop(context);
                               if (shouldSetState) setState(() {});
                             },
-                            text: 'Hoàn thành',
+                            text: 'Thanh toán',
                             icon: const Icon(
-                              Icons.save,
+                              Icons.payments_outlined,
                               size: 15.0,
                             ),
                             options: FFButtonOptions(

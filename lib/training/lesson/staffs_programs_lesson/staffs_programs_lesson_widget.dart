@@ -166,9 +166,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         dateStart: getCurrentTimestamp.toString(),
                       );
                       if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
-                        setState(() {
-                          _model.status = 'inprogress';
-                        });
+                        _model.status = 'inprogress';
+                        setState(() {});
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -629,11 +628,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
+                                                                      _model.checkFile =
+                                                                          '0';
                                                                       setState(
-                                                                          () {
-                                                                        _model.checkFile =
-                                                                            '0';
-                                                                      });
+                                                                          () {});
                                                                     },
                                                                     child: Text(
                                                                       '(Mở file)',
@@ -679,11 +677,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
+                                                                      _model.checkFile =
+                                                                          '1';
                                                                       setState(
-                                                                          () {
-                                                                        _model.checkFile =
-                                                                            '1';
-                                                                      });
+                                                                          () {});
                                                                     },
                                                                     child: Text(
                                                                       '(Đóng file)',
@@ -1266,11 +1263,10 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                                   }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
                                                                                   'pdfua')) &&
                                                                           (_model.status != 'draft')) {
+                                                                        _model.checkFile =
+                                                                            '0';
                                                                         setState(
-                                                                            () {
-                                                                          _model.checkFile =
-                                                                              '0';
-                                                                        });
+                                                                            () {});
                                                                       }
                                                                     },
                                                                     child: Text(
@@ -1722,9 +1718,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.checkLove = '0';
-                                            });
+                                            _model.checkLove = '0';
+                                            setState(() {});
                                             await _model.deleteHeart(context);
                                             setState(() {});
                                           },
@@ -1742,9 +1737,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.checkLove = '1';
-                                            });
+                                            _model.checkLove = '1';
+                                            setState(() {});
                                             await _model.postHeart(context);
                                             setState(() {});
                                           },
@@ -2354,6 +2348,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                                     ),
                                                                                     afterDeleteAction: () async {
                                                                                       await _model.getComments(context);
+
                                                                                       setState(() {});
                                                                                     },
                                                                                   ),

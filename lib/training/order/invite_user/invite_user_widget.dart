@@ -231,15 +231,19 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       ),
                                 ),
                                 if (_model.program != null)
-                                  Text(
-                                    _model.program!.authorId.alias,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                  Expanded(
+                                    child: Text(
+                                      _model.program!.authorId.alias,
+                                      textAlign: TextAlign.end,
+                                      maxLines: 2,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
                                   ),
                               ].divide(const SizedBox(width: 4.0)),
                             ),
@@ -684,9 +688,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                               isMultiSelect: true,
                               onMultiSelectChanged: (val) async {
                                 setState(() => _model.dropDownValue2 = val);
-                                setState(() {
-                                  _model.selectedStaffList = [];
-                                });
+                                _model.selectedStaffList = [];
+                                setState(() {});
                                 while (_model.loop! <
                                     _model.dropDownValue2!.length) {
                                   if (_model.selectedStaffList
@@ -695,24 +698,21 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                               (_model.dropDownValue2?[
                                                   _model.loop!]))
                                           .toList().isEmpty) {
-                                    setState(() {
-                                      _model.addToSelectedStaffList(_model
-                                          .getStaffList
-                                          .where((e) =>
-                                              e.id ==
-                                              (_model.dropDownValue2?[
-                                                  _model.loop!]))
-                                          .toList()
-                                          .first);
-                                    });
+                                    _model.addToSelectedStaffList(_model
+                                        .getStaffList
+                                        .where((e) =>
+                                            e.id ==
+                                            (_model
+                                                .dropDownValue2?[_model.loop!]))
+                                        .toList()
+                                        .first);
+                                    setState(() {});
                                   }
-                                  setState(() {
-                                    _model.loop = _model.loop! + 1;
-                                  });
+                                  _model.loop = _model.loop! + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop = 0;
-                                });
+                                _model.loop = 0;
+                                setState(() {});
                               },
                             ),
                           ),
@@ -1020,9 +1020,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         );
                                       }
 
-                                      setState(() {
-                                        _model.loop = _model.loop! + 1;
-                                      });
+                                      _model.loop = _model.loop! + 1;
+                                      setState(() {});
                                     }
                                   }
                                 } else {
@@ -1145,23 +1144,20 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         );
                                       }
 
-                                      setState(() {
-                                        _model.loop = _model.loop! + 1;
-                                      });
+                                      _model.loop = _model.loop! + 1;
+                                      setState(() {});
                                     }
                                   }
                                 }
 
-                                setState(() {
-                                  _model.loop = 0;
-                                });
+                                _model.loop = 0;
+                                setState(() {});
                                 await _model.getOneProgram(context);
                                 setState(() {});
                                 if (_model.program!.inviteCount <
                                     _model.program!.limitInvite) {
-                                  setState(() {
-                                    _model.selectedStaffList = [];
-                                  });
+                                  _model.selectedStaffList = [];
+                                  setState(() {});
                                   setState(() {
                                     _model.dropDownValueController2?.reset();
                                   });

@@ -63,13 +63,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
           ).toString().toString()}\"}}}]}',
         );
         if ((_model.apiResultGetListBranch2?.succeeded ?? true)) {
-          setState(() {
-            _model.branchList = BranchListDataStruct.maybeFromMap(
-                    (_model.apiResultGetListBranch2?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<BranchListStruct>();
-          });
+          _model.branchList = BranchListDataStruct.maybeFromMap(
+                  (_model.apiResultGetListBranch2?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<BranchListStruct>();
+          setState(() {});
         }
         _model.listDeparment4Token = await action_blocks.tokenReload(context);
         if (_model.listDeparment4Token!) {
@@ -107,13 +106,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
             }(),
           );
           if ((_model.apiResultListDeparment4?.succeeded ?? true)) {
-            setState(() {
-              _model.departmentList = DepartmentListDataStruct.maybeFromMap(
-                      (_model.apiResultListDeparment4?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<DepartmentListStruct>();
-            });
+            _model.departmentList = DepartmentListDataStruct.maybeFromMap(
+                    (_model.apiResultListDeparment4?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<DepartmentListStruct>();
+            setState(() {});
           }
         } else {
           setState(() {});
@@ -304,16 +302,15 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 if ((_model
                                         .apiResultListDeparment3?.succeeded ??
                                     true)) {
-                                  setState(() {
-                                    _model.departmentList =
-                                        DepartmentListDataStruct.maybeFromMap(
-                                                (_model.apiResultListDeparment3
-                                                        ?.jsonBody ??
-                                                    ''))!
-                                            .data
-                                            .toList()
-                                            .cast<DepartmentListStruct>();
-                                  });
+                                  _model.departmentList =
+                                      DepartmentListDataStruct.maybeFromMap(
+                                              (_model.apiResultListDeparment3
+                                                      ?.jsonBody ??
+                                                  ''))!
+                                          .data
+                                          .toList()
+                                          .cast<DepartmentListStruct>();
+                                  setState(() {});
                                 }
                               } else {
                                 setState(() {});
@@ -486,16 +483,14 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                               );
                               if ((_model.apiResultClearFilter?.succeeded ??
                                   true)) {
-                                setState(() {
-                                  _model.list =
-                                      StaffListDataStruct.maybeFromMap((_model
-                                                  .apiResultClearFilter
-                                                  ?.jsonBody ??
-                                              ''))!
-                                          .data
-                                          .toList()
-                                          .cast<StaffListStruct>();
-                                });
+                                _model.list = StaffListDataStruct.maybeFromMap(
+                                        (_model.apiResultClearFilter
+                                                ?.jsonBody ??
+                                            ''))!
+                                    .data
+                                    .toList()
+                                    .cast<StaffListStruct>();
+                                setState(() {});
                                 await widget.callback?.call(
                                   '',
                                   '',

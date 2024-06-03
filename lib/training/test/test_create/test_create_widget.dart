@@ -454,9 +454,8 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                     ),
                                   );
                                 } else {
-                                  setState(() {
-                                    _model.addToQuestionItem(item!);
-                                  });
+                                  _model.addToQuestionItem(item!);
+                                  setState(() {});
                                 }
                               },
                             ),
@@ -532,11 +531,10 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                                   size: 24.0,
                                                 ),
                                                 onPressed: () async {
-                                                  setState(() {
-                                                    _model
-                                                        .removeAtIndexFromQuestionItem(
-                                                            questionListIndex);
-                                                  });
+                                                  _model
+                                                      .removeAtIndexFromQuestionItem(
+                                                          questionListIndex);
+                                                  setState(() {});
                                                 },
                                               ),
                                             ].divide(const SizedBox(width: 8.0)),
@@ -673,15 +671,14 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                           if ((_model.apiResultAddQuestion
                                                   ?.succeeded ??
                                               true)) {
-                                            setState(() {
-                                              _model.addToQuestionItem(
-                                                  QuestsionOneDataStruct
-                                                          .maybeFromMap((_model
-                                                                  .apiResultAddQuestion
-                                                                  ?.jsonBody ??
-                                                              ''))!
-                                                      .data);
-                                            });
+                                            _model.addToQuestionItem(
+                                                QuestsionOneDataStruct
+                                                        .maybeFromMap((_model
+                                                                .apiResultAddQuestion
+                                                                ?.jsonBody ??
+                                                            ''))!
+                                                    .data);
+                                            setState(() {});
                                           }
                                         },
                                       ),
@@ -760,18 +757,16 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                 false;
                             if (confirmDialogResponse) {
                               while (_model.loop < _model.questionItem.length) {
-                                setState(() {
-                                  _model.addToQuestionIdAdd(<String, dynamic>{
-                                    'questions_id': <String, String>{
-                                      'id': _model.questionItem[_model.loop].id,
-                                    },
-                                  });
-                                  _model.loop = _model.loop + 1;
+                                _model.addToQuestionIdAdd(<String, dynamic>{
+                                  'questions_id': <String, String>{
+                                    'id': _model.questionItem[_model.loop].id,
+                                  },
                                 });
+                                _model.loop = _model.loop + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop = 0;
-                              });
+                              _model.loop = 0;
+                              setState(() {});
                               _model.reloadTokenCreateTest =
                                   await action_blocks.tokenReload(context);
                               shouldSetState = true;
@@ -800,7 +795,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Tạo mới bài thi thành công',
+                                        'Tạo mới thành công!',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -822,6 +817,21 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                         duration: Duration(milliseconds: 0),
                                       ),
                                     },
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Tạo mới không thành công!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
                                   );
                                 }
                               } else {

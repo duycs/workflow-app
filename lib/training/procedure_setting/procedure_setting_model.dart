@@ -102,8 +102,11 @@ class ProcedureSettingModel extends FlutterFlowModel<ProcedureSettingWidget> {
   String? dropDownCronValue;
   FormFieldController<String>? dropDownCronValueController;
   // State field(s) for groupWeek widget.
-  List<String>? groupWeekValues;
   FormFieldController<List<String>>? groupWeekValueController;
+
+  List<String>? get groupWeekValues => groupWeekValueController?.value;
+  set groupWeekValues(List<String>? v) => groupWeekValueController?.value = v;
+
   // Models for checkBoxToggle dynamic component.
   late FlutterFlowDynamicModels<CheckBoxToggleModel> checkBoxToggleModels1;
   // Models for checkBoxToggle dynamic component.

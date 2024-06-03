@@ -7,8 +7,11 @@ class CheckBoxTestModel extends FlutterFlowModel<CheckBoxTestWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for CheckboxGroup widget.
-  List<String>? checkboxGroupValues;
   FormFieldController<List<String>>? checkboxGroupValueController;
+
+  List<String>? get checkboxGroupValues => checkboxGroupValueController?.value;
+  set checkboxGroupValues(List<String>? v) =>
+      checkboxGroupValueController?.value = v;
 
   @override
   void initState(BuildContext context) {}

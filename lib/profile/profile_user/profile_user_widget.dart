@@ -42,12 +42,11 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
           ).toString().toString(),
         );
         if ((_model.apiResultUser?.succeeded ?? true)) {
-          setState(() {
-            _model.user = getJsonField(
-              (_model.apiResultUser?.jsonBody ?? ''),
-              r'''$.data''',
-            );
-          });
+          _model.user = getJsonField(
+            (_model.apiResultUser?.jsonBody ?? ''),
+            r'''$.data''',
+          );
+          setState(() {});
         }
       } else {
         setState(() {});

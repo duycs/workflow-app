@@ -52,9 +52,8 @@ class _ListStaffProfileCompanyWidgetState
       _model.reloadTokenListStaffProfileCompanyApp =
           await action_blocks.tokenReload(context);
       if (_model.reloadTokenListStaffProfileCompanyApp!) {
-        setState(() {
-          _model.isSShow = true;
-        });
+        _model.isSShow = true;
+        setState(() {});
       } else {
         setState(() {});
         return;

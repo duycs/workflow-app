@@ -170,12 +170,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
       context.pushNamed(
         'LessonsList',
-        queryParameters: {
-          'checkpage': serializeParam(
-            widget.checkPage,
-            ParamType.String,
-          ),
-        }.withoutNulls,
         extra: <String, dynamic>{
           kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
@@ -230,7 +224,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              FFAppConstants.ErrorLoadData,
+              'Lỗi tải Video!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -267,7 +261,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              FFAppConstants.ErrorLoadData,
+              'Lỗi tải ảnh!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -304,7 +298,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              FFAppConstants.ErrorLoadData,
+              'Lỗi tải File!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),

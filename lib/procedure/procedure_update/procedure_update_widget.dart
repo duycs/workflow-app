@@ -53,330 +53,288 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
+      _model.updateDataUpdateStruct(
+        (e) => e
+          ..name = widget.itemData?.name
+          ..description = widget.itemData?.description
+          ..status = widget.itemData?.status
+          ..remind2 = widget.itemData?.remind2
+          ..cron = widget.itemData?.cron
+          ..remind = widget.itemData?.remind
+          ..remindInSecond = widget.itemData?.remindInSecond,
+      );
+      setState(() {});
+      while (widget.itemData!.departments.length > _model.loop) {
         _model.updateDataUpdateStruct(
           (e) => e
-            ..name = widget.itemData?.name
-            ..description = widget.itemData?.description
-            ..status = widget.itemData?.status
-            ..remind2 = widget.itemData?.remind2
-            ..cron = widget.itemData?.cron
-            ..remind = widget.itemData?.remind
-            ..remindInSecond = widget.itemData?.remindInSecond,
+            ..updateDepartments(
+              (e) => e.add(DepartmentsIdStruct(
+                departmentsId: DepartmentsStruct(
+                  id: (widget.itemData?.departments[_model.loop])
+                      ?.departmentsId
+                      .id,
+                  name: (widget.itemData?.departments[_model.loop])
+                      ?.departmentsId
+                      .name,
+                ),
+              )),
+            ),
         );
-      });
-      while (widget.itemData!.departments.length > _model.loop) {
-        setState(() {
-          _model.updateDataUpdateStruct(
-            (e) => e
-              ..updateDepartments(
-                (e) => e.add(DepartmentsIdStruct(
-                  departmentsId: DepartmentsStruct(
-                    id: (widget.itemData?.departments[_model.loop])
-                        ?.departmentsId
-                        .id,
-                    name: (widget.itemData?.departments[_model.loop])
-                        ?.departmentsId
-                        .name,
-                  ),
-                )),
-              ),
-          );
-        });
-        setState(() {
-          _model.loop = _model.loop + 1;
-        });
+        setState(() {});
+        _model.loop = _model.loop + 1;
+        setState(() {});
       }
-      setState(() {
-        _model.loop = 0;
-      });
+      _model.loop = 0;
+      setState(() {});
       if (_model.dataUpdate!.departments.isNotEmpty) {
         setState(() {});
       } else {
         while (widget.itemData!.staffs.length > _model.loop) {
-          setState(() {
-            _model.updateDataUpdateStruct(
-              (e) => e..staffs = widget.itemData!.staffs.toList(),
-            );
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.updateDataUpdateStruct(
+            (e) => e..staffs = widget.itemData!.staffs.toList(),
+          );
+          setState(() {});
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
       }
 
       if (widget.stepListPar?.first != null) {
         while (_model.loop < widget.stepListPar!.length) {
-          setState(() {
-            _model.addToStepList(WorkflowsStepCreateStruct(
-              id: (widget.stepListPar?[_model.loop])?.id,
-              status: (widget.stepListPar?[_model.loop])?.status,
-              description: (widget.stepListPar?[_model.loop])?.description,
-              executeType: (widget.stepListPar?[_model.loop])?.executeType,
-              number: (widget.stepListPar?[_model.loop])?.number,
-              timeOperate: (widget.stepListPar?[_model.loop])?.timeOperate,
-              actionType: (widget.stepListPar?[_model.loop])?.actionType,
-              name: (widget.stepListPar?[_model.loop])?.name,
-              estimateInSecond:
-                  (widget.stepListPar?[_model.loop])?.estimateInSecond,
-              staffsAlias: (widget.stepListPar?[_model.loop])?.staffsAlias,
-            ));
-          });
+          _model.addToStepList(WorkflowsStepCreateStruct(
+            id: (widget.stepListPar?[_model.loop])?.id,
+            status: (widget.stepListPar?[_model.loop])?.status,
+            description: (widget.stepListPar?[_model.loop])?.description,
+            executeType: (widget.stepListPar?[_model.loop])?.executeType,
+            number: (widget.stepListPar?[_model.loop])?.number,
+            timeOperate: (widget.stepListPar?[_model.loop])?.timeOperate,
+            actionType: (widget.stepListPar?[_model.loop])?.actionType,
+            name: (widget.stepListPar?[_model.loop])?.name,
+            estimateInSecond:
+                (widget.stepListPar?[_model.loop])?.estimateInSecond,
+            staffsAlias: (widget.stepListPar?[_model.loop])?.staffsAlias,
+          ));
+          setState(() {});
           while (
               _model.loop2 < (widget.stepListPar![_model.loop]).staffs.length) {
-            setState(() {
-              _model.updateStepListAtIndex(
-                _model.loop,
-                (e) => e
-                  ..updateStaffs(
-                    (e) => e.add(StaffsStepStruct(
-                      staffsId: StaffIdStruct(
-                        id: ((widget.stepListPar?[_model.loop])
+            _model.updateStepListAtIndex(
+              _model.loop,
+              (e) => e
+                ..updateStaffs(
+                  (e) => e.add(StaffsStepStruct(
+                    staffsId: StaffIdStruct(
+                      id: ((widget.stepListPar?[_model.loop])
+                              ?.staffs[_model.loop2])
+                          ?.staffsId
+                          .id,
+                      userId: UserIdStruct(
+                        firstName: ((widget.stepListPar?[_model.loop])
                                 ?.staffs[_model.loop2])
                             ?.staffsId
-                            .id,
-                        userId: UserIdStruct(
-                          firstName: ((widget.stepListPar?[_model.loop])
-                                  ?.staffs[_model.loop2])
-                              ?.staffsId
-                              .userId
-                              .firstName,
-                        ),
+                            .userId
+                            .firstName,
                       ),
-                    )),
-                  ),
-              );
-            });
-            setState(() {
-              _model.loop2 = _model.loop2 + 1;
-            });
+                    ),
+                  )),
+                ),
+            );
+            setState(() {});
+            _model.loop2 = _model.loop2 + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop2 = 0;
-          });
+          _model.loop2 = 0;
+          setState(() {});
           while (_model.loop2 <
               (widget.stepListPar![_model.loop]).operations.length) {
-            setState(() {
-              _model.updateStepListAtIndex(
-                _model.loop,
-                (e) => e
-                  ..updateOperations(
-                    (e) => e.add(OperationsStruct(
-                      content: ((widget.stepListPar?[_model.loop])
-                              ?.operations[_model.loop2])
-                          ?.operationsId
-                          .content,
-                      actionType: ((widget.stepListPar?[_model.loop])
-                              ?.operations[_model.loop2])
-                          ?.operationsId
-                          .actionType,
-                      id: ((widget.stepListPar?[_model.loop])
-                              ?.operations[_model.loop2])
-                          ?.operationsId
-                          .id,
-                    )),
-                  ),
-              );
-            });
-            setState(() {
-              _model.loop2 = _model.loop2 + 1;
-            });
+            _model.updateStepListAtIndex(
+              _model.loop,
+              (e) => e
+                ..updateOperations(
+                  (e) => e.add(OperationsStruct(
+                    content: ((widget.stepListPar?[_model.loop])
+                            ?.operations[_model.loop2])
+                        ?.operationsId
+                        .content,
+                    actionType: ((widget.stepListPar?[_model.loop])
+                            ?.operations[_model.loop2])
+                        ?.operationsId
+                        .actionType,
+                    id: ((widget.stepListPar?[_model.loop])
+                            ?.operations[_model.loop2])
+                        ?.operationsId
+                        .id,
+                  )),
+                ),
+            );
+            setState(() {});
+            _model.loop2 = _model.loop2 + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop2 = 0;
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.loop = 0;
           _model.loop2 = 0;
-        });
+          setState(() {});
+          _model.loop = _model.loop + 1;
+          setState(() {});
+        }
+        _model.loop = 0;
+        _model.loop2 = 0;
+        setState(() {});
       }
       if (functions.checkTypeCron(_model.dataUpdate!.cron) == '2') {
-        setState(() {
-          _model.loop = 0;
-          _model.checkOne = [];
-          _model.checkTwo = [];
-          _model.checkThrees = [];
-          _model.checkBoxFour = [];
-          _model.checkBoxFive = [];
-          _model.checkBoxSix = [];
-        });
-        setState(() {
-          _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
-        });
+        _model.loop = 0;
+        _model.checkOne = [];
+        _model.checkTwo = [];
+        _model.checkThrees = [];
+        _model.checkBoxFour = [];
+        _model.checkBoxFive = [];
+        _model.checkBoxSix = [];
+        setState(() {});
+        _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
+        setState(() {});
       } else if (functions.checkTypeCron(_model.dataUpdate!.cron) == '3') {
-        setState(() {
-          _model.loop = 0;
-          _model.checkOne = [];
-          _model.checkTwo = [];
-          _model.checkThrees = [];
-          _model.checkBoxFour = [];
-          _model.checkBoxFive = [];
-          _model.checkBoxSix = [];
-        });
+        _model.loop = 0;
+        _model.checkOne = [];
+        _model.checkTwo = [];
+        _model.checkThrees = [];
+        _model.checkBoxFour = [];
+        _model.checkBoxFive = [];
+        _model.checkBoxSix = [];
+        setState(() {});
         while (_model.loop < 6) {
-          setState(() {
-            _model.addToCheckOne(CheckBoxGroupStruct(
-              type: false,
-              title: (_model.loop + 1) < 10
-                  ? '0${(_model.loop + 1).toString()}'
-                  : (_model.loop + 1).toString(),
-            ));
-            _model.addToCheckTwo(CheckBoxGroupStruct(
-              type: false,
-              title: (_model.loop + 7) < 10
-                  ? '0${(_model.loop + 7).toString()}'
-                  : (_model.loop + 7).toString(),
-            ));
-            _model.addToCheckThrees(CheckBoxGroupStruct(
-              type: false,
-              title: (_model.loop + 13).toString(),
-            ));
-            _model.addToCheckBoxFour(CheckBoxGroupStruct(
-              type: false,
-              title: (_model.loop + 19).toString(),
-            ));
-            _model.addToCheckBoxFive(CheckBoxGroupStruct(
-              type: false,
-              title: (_model.loop + 25).toString(),
-            ));
-          });
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
-        }
-        setState(() {
-          _model.addToCheckBoxSix(CheckBoxGroupStruct(
+          _model.addToCheckOne(CheckBoxGroupStruct(
             type: false,
-            title: '31',
+            title: (_model.loop + 1) < 10
+                ? '0${(_model.loop + 1).toString()}'
+                : (_model.loop + 1).toString(),
           ));
-        });
-        setState(() {
-          _model.loop = 0;
-        });
+          _model.addToCheckTwo(CheckBoxGroupStruct(
+            type: false,
+            title: (_model.loop + 7) < 10
+                ? '0${(_model.loop + 7).toString()}'
+                : (_model.loop + 7).toString(),
+          ));
+          _model.addToCheckThrees(CheckBoxGroupStruct(
+            type: false,
+            title: (_model.loop + 13).toString(),
+          ));
+          _model.addToCheckBoxFour(CheckBoxGroupStruct(
+            type: false,
+            title: (_model.loop + 19).toString(),
+          ));
+          _model.addToCheckBoxFive(CheckBoxGroupStruct(
+            type: false,
+            title: (_model.loop + 25).toString(),
+          ));
+          setState(() {});
+          _model.loop = _model.loop + 1;
+          setState(() {});
+        }
+        _model.addToCheckBoxSix(CheckBoxGroupStruct(
+          type: false,
+          title: '31',
+        ));
+        setState(() {});
+        _model.loop = 0;
+        setState(() {});
         while (_model.loop < _model.checkOne.length) {
           if ((List<String> var1, String var2) {
             return var1.join(',').contains(var2);
           }(functions.cronToType(_model.dataUpdate!.cron).toList(),
               _model.checkOne[_model.loop].title)) {
-            setState(() {
-              _model.updateCheckOneAtIndex(
-                _model.loop,
-                (e) => e..type = true,
-              );
-            });
+            _model.updateCheckOneAtIndex(
+              _model.loop,
+              (e) => e..type = true,
+            );
+            setState(() {});
           }
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
         while (_model.loop < _model.checkTwo.length) {
           if ((List<String> var1, String var2) {
             return var1.join(',').contains(var2);
           }(functions.cronToType(_model.dataUpdate!.cron).toList(),
               _model.checkTwo[_model.loop].title)) {
-            setState(() {
-              _model.updateCheckTwoAtIndex(
-                _model.loop,
-                (e) => e..type = true,
-              );
-            });
+            _model.updateCheckTwoAtIndex(
+              _model.loop,
+              (e) => e..type = true,
+            );
+            setState(() {});
           }
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
         while (_model.loop < _model.checkThrees.length) {
           if ((List<String> var1, String var2) {
             return var1.join(',').contains(var2);
           }(functions.cronToType(_model.dataUpdate!.cron).toList(),
               _model.checkThrees[_model.loop].title)) {
-            setState(() {
-              _model.updateCheckThreesAtIndex(
-                _model.loop,
-                (e) => e..type = true,
-              );
-            });
+            _model.updateCheckThreesAtIndex(
+              _model.loop,
+              (e) => e..type = true,
+            );
+            setState(() {});
           }
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
         while (_model.loop < _model.checkBoxFour.length) {
           if ((List<String> var1, String var2) {
             return var1.join(',').contains(var2);
           }(functions.cronToType(_model.dataUpdate!.cron).toList(),
               _model.checkBoxFour[_model.loop].title)) {
-            setState(() {
-              _model.updateCheckBoxFourAtIndex(
-                _model.loop,
-                (e) => e..type = true,
-              );
-            });
+            _model.updateCheckBoxFourAtIndex(
+              _model.loop,
+              (e) => e..type = true,
+            );
+            setState(() {});
           }
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
         while (_model.loop < _model.checkBoxFive.length) {
           if ((List<String> var1, String var2) {
             return var1.join(',').contains(var2);
           }(functions.cronToType(_model.dataUpdate!.cron).toList(),
               _model.checkBoxFive[_model.loop].title)) {
-            setState(() {
-              _model.updateCheckBoxFiveAtIndex(
-                _model.loop,
-                (e) => e..type = true,
-              );
-            });
+            _model.updateCheckBoxFiveAtIndex(
+              _model.loop,
+              (e) => e..type = true,
+            );
+            setState(() {});
           }
-          setState(() {
-            _model.loop = _model.loop + 1;
-          });
+          _model.loop = _model.loop + 1;
+          setState(() {});
         }
-        setState(() {
-          _model.loop = 0;
-        });
+        _model.loop = 0;
+        setState(() {});
         if ((List<String> var1, String var2) {
           return var1.join(',').contains(var2);
         }(functions.cronToType(_model.dataUpdate!.cron).toList(),
             _model.checkBoxSix.first.title)) {
-          setState(() {
-            _model.updateCheckBoxSixAtIndex(
-              0,
-              (e) => e..type = true,
-            );
-          });
+          _model.updateCheckBoxSixAtIndex(
+            0,
+            (e) => e..type = true,
+          );
+          setState(() {});
         }
-        setState(() {
-          _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
-        });
+        _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
+        setState(() {});
       }
 
-      setState(() {
-        _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
-      });
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.checkType = functions.checkTypeCron(_model.dataUpdate!.cron);
+      setState(() {});
+      _model.isLoad = true;
+      setState(() {});
     });
 
     _model.tabBarController = TabController(
@@ -459,187 +417,157 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
               child: FFButtonWidget(
                 onPressed: () async {
                   var shouldSetState = false;
+
                   setState(() {});
                   _model.tokenReloadProcedurUpdate =
                       await action_blocks.tokenReload(context);
                   shouldSetState = true;
                   if (_model.tokenReloadProcedurUpdate!) {
-                    setState(() {
-                      _model.requestUpdate = null;
-                    });
+                    _model.requestUpdate = null;
+                    setState(() {});
                     if (_model.dataUpdate?.name != null &&
                         _model.dataUpdate?.name != '') {
-                      setState(() {
-                        _model.updateDataUpdateStruct(
-                          (e) => e
-                            ..status = 'published'
-                            ..id = widget.itemData?.id,
-                        );
-                        _model.loop = 0;
-                      });
+                      _model.updateDataUpdateStruct(
+                        (e) => e
+                          ..status = 'published'
+                          ..id = widget.itemData?.id,
+                      );
+                      _model.loop = 0;
+                      setState(() {});
                       if (_model.checkType == '3') {
                         while (_model.loop < _model.checkOne.length) {
                           if (_model.checkOne[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkOne[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkOne[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                         while (_model.loop < _model.checkTwo.length) {
                           if (_model.checkTwo[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkTwo[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkTwo[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                         while (_model.loop < _model.checkThrees.length) {
                           if (_model.checkThrees[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkThrees[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkThrees[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                         while (_model.loop < _model.checkBoxFour.length) {
                           if (_model.checkBoxFour[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkBoxFour[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkBoxFour[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                         while (_model.loop < _model.checkBoxFive.length) {
                           if (_model.checkBoxFive[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkBoxFive[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkBoxFive[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                         while (_model.loop < _model.checkBoxSix.length) {
                           if (_model.checkBoxSix[_model.loop].type == true) {
-                            setState(() {
-                              _model.addToCheckCron(
-                                  _model.checkBoxSix[_model.loop].title);
-                            });
+                            _model.addToCheckCron(
+                                _model.checkBoxSix[_model.loop].title);
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = _model.loop + 1;
-                          });
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
-                        setState(() {
-                          _model.loop = 0;
-                        });
+                        _model.loop = 0;
+                        setState(() {});
                       } else if (_model.checkType == '2') {
-                        setState(() {
-                          _model.checkCron =
-                              _model.groupWeekValues!.toList().cast<String>();
-                        });
+                        _model.checkCron =
+                            _model.groupWeekValues!.toList().cast<String>();
+                        setState(() {});
                       } else if (_model.checkType == '1') {
-                        setState(() {
-                          _model.checkCron = [];
-                        });
+                        _model.checkCron = [];
+                        setState(() {});
                       } else {
-                        setState(() {
-                          _model.checkCron = [];
-                        });
+                        _model.checkCron = [];
+                        setState(() {});
                       }
 
-                      setState(() {
-                        _model.requestUpdate = RequestWorkflowsCreateStruct(
-                          name: _model.dataUpdate?.name,
-                          description: _model.dataUpdate?.description,
-                          status: _model.dataUpdate?.status,
-                          remind: _model.dataUpdate?.remind,
-                          limitPublished: _model.dataUpdate?.limitPublished,
-                          remind2: _model.dataUpdate?.remind2,
-                          remindInSecond: _model.dataUpdate?.remindInSecond,
-                          id: _model.dataUpdate?.id,
-                          cron: functions.limitPublished(
-                              _model.checkType!, _model.checkCron.toList()),
-                        );
-                      });
+                      _model.requestUpdate = RequestWorkflowsCreateStruct(
+                        name: _model.dataUpdate?.name,
+                        description: _model.dataUpdate?.description,
+                        status: _model.dataUpdate?.status,
+                        remind: _model.dataUpdate?.remind,
+                        limitPublished: _model.dataUpdate?.limitPublished,
+                        remind2: _model.dataUpdate?.remind2,
+                        remindInSecond: _model.dataUpdate?.remindInSecond,
+                        id: _model.dataUpdate?.id,
+                        cron: functions.limitPublished(
+                            _model.checkType!, _model.checkCron.toList()),
+                      );
+                      setState(() {});
                       while (_model.loop < _model.dataUpdate!.staffs.length) {
-                        setState(() {
-                          _model.updateRequestUpdateStruct(
-                            (e) => e
-                              ..updateStaffs(
-                                (e) => e.add(StaffsStepStruct(
-                                  staffsId: StaffIdStruct(
-                                    id: (_model
-                                            .dataUpdate?.staffs[_model.loop])
-                                        ?.staffsId
-                                        .id,
-                                  ),
-                                )),
-                              )
-                              ..departments = [],
-                          );
-                        });
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
+                        _model.updateRequestUpdateStruct(
+                          (e) => e
+                            ..updateStaffs(
+                              (e) => e.add(StaffsStepStruct(
+                                staffsId: StaffIdStruct(
+                                  id: (_model.dataUpdate?.staffs[_model.loop])
+                                      ?.staffsId
+                                      .id,
+                                ),
+                              )),
+                            )
+                            ..departments = [],
+                        );
+                        setState(() {});
+                        _model.loop = _model.loop + 1;
+                        setState(() {});
                       }
-                      setState(() {
-                        _model.loop = 0;
-                      });
+                      _model.loop = 0;
+                      setState(() {});
                       while (
                           _model.loop < _model.dataUpdate!.departments.length) {
-                        setState(() {
-                          _model.updateRequestUpdateStruct(
-                            (e) => e
-                              ..updateDepartments(
-                                (e) => e.add(DepartmentsIdStruct(
-                                  departmentsId: DepartmentsStruct(
-                                    id: (_model.dataUpdate
-                                            ?.departments[_model.loop])
-                                        ?.departmentsId
-                                        .id,
-                                  ),
-                                )),
-                              )
-                              ..staffs = [],
-                          );
-                        });
-                        setState(() {
-                          _model.loop = _model.loop + 1;
-                        });
+                        _model.updateRequestUpdateStruct(
+                          (e) => e
+                            ..updateDepartments(
+                              (e) => e.add(DepartmentsIdStruct(
+                                departmentsId: DepartmentsStruct(
+                                  id: (_model.dataUpdate
+                                          ?.departments[_model.loop])
+                                      ?.departmentsId
+                                      .id,
+                                ),
+                              )),
+                            )
+                            ..staffs = [],
+                        );
+                        setState(() {});
+                        _model.loop = _model.loop + 1;
+                        setState(() {});
                       }
-                      setState(() {
-                        _model.loop = 0;
-                      });
+                      _model.loop = 0;
+                      setState(() {});
                       _model.apiResultUpdate =
                           await ProcedureTemplateGroup.workflowUpdateCall.call(
                         accessToken: FFAppState().accessToken,
@@ -657,288 +585,246 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                         shouldSetState = true;
                         if ((_model.apiResultDeleteStep?.succeeded ?? true)) {
                           while (_model.loop < _model.stepList.length) {
-                            setState(() {
-                              _model.updateStepListAtIndex(
-                                _model.loop,
-                                (e) => e..number = _model.loop + 1,
-                              );
-                            });
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.updateStepListAtIndex(
+                              _model.loop,
+                              (e) => e..number = _model.loop + 1,
+                            );
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                           while (_model.loop < _model.stepList.length) {
                             if (_model.stepList[_model.loop].id != '') {
-                              setState(() {
-                                _model.addToCreateUpdate(
-                                    WorkflowsStepCreateStruct(
-                                  id: _model.stepList[_model.loop].id,
-                                  name: _model.stepList[_model.loop].name,
-                                  status: _model.stepList[_model.loop].status,
-                                  description:
-                                      _model.stepList[_model.loop].description,
-                                  executeType:
-                                      _model.stepList[_model.loop].executeType,
-                                  actionType:
-                                      _model.stepList[_model.loop].actionType,
-                                  staffsAlias:
-                                      _model.stepList[_model.loop].staffsAlias,
-                                  timeOperate:
-                                      _model.stepList[_model.loop].timeOperate,
-                                  estimateInSecond: _model
-                                      .stepList[_model.loop].estimateInSecond,
-                                  number: _model.stepList[_model.loop].number,
-                                ));
-                              });
+                              _model
+                                  .addToCreateUpdate(WorkflowsStepCreateStruct(
+                                id: _model.stepList[_model.loop].id,
+                                name: _model.stepList[_model.loop].name,
+                                status: _model.stepList[_model.loop].status,
+                                description:
+                                    _model.stepList[_model.loop].description,
+                                executeType:
+                                    _model.stepList[_model.loop].executeType,
+                                actionType:
+                                    _model.stepList[_model.loop].actionType,
+                                staffsAlias:
+                                    _model.stepList[_model.loop].staffsAlias,
+                                timeOperate:
+                                    _model.stepList[_model.loop].timeOperate,
+                                estimateInSecond: _model
+                                    .stepList[_model.loop].estimateInSecond,
+                                number: _model.stepList[_model.loop].number,
+                              ));
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].staffs.length) {
-                                setState(() {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateStaffs(
-                                        (e) => e.add(StaffsStepStruct(
-                                          staffsId: StaffIdStruct(
-                                            id: _model
-                                                .stepList[_model.loop]
-                                                .staffs[_model.loop2]
-                                                .staffsId
-                                                .id,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.updateCreateUpdateAtIndex(
+                                  _model.createUpdate.length - 1,
+                                  (e) => e
+                                    ..updateStaffs(
+                                      (e) => e.add(StaffsStepStruct(
+                                        staffsId: StaffIdStruct(
+                                          id: _model.stepList[_model.loop]
+                                              .staffs[_model.loop2].staffsId.id,
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].departments
                                       .length) {
-                                setState(() {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentListStruct(
-                                          departmentsId: DepartmentsStruct(
-                                            id: _model
-                                                .stepList[_model.loop]
-                                                .departments[_model.loop2]
-                                                .departmentsId
-                                                .id,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.updateCreateUpdateAtIndex(
+                                  _model.createUpdate.length - 1,
+                                  (e) => e
+                                    ..updateDepartments(
+                                      (e) => e.add(DepartmentListStruct(
+                                        departmentsId: DepartmentsStruct(
+                                          id: _model
+                                              .stepList[_model.loop]
+                                              .departments[_model.loop2]
+                                              .departmentsId
+                                              .id,
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].operations
                                       .length) {
                                 if (_model.stepList[_model.loop]
                                             .operations[_model.loop2].id !=
                                         '') {
-                                  setState(() {
-                                    _model.updateCreateUpdateAtIndex(
-                                      _model.createUpdate.length - 1,
-                                      (e) => e
-                                        ..updateOperations(
-                                          (e) => e.add(OperationsStruct(
-                                            content: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .content,
-                                            actionType: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .actionType,
-                                            id: _model.stepList[_model.loop]
-                                                .operations[_model.loop2].id,
-                                          )),
-                                        ),
-                                    );
-                                  });
+                                  _model.updateCreateUpdateAtIndex(
+                                    _model.createUpdate.length - 1,
+                                    (e) => e
+                                      ..updateOperations(
+                                        (e) => e.add(OperationsStruct(
+                                          content: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].content,
+                                          actionType: _model
+                                              .stepList[_model.loop]
+                                              .operations[_model.loop2]
+                                              .actionType,
+                                          id: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].id,
+                                        )),
+                                      ),
+                                  );
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.updateCreateUpdateAtIndex(
-                                      _model.createUpdate.length - 1,
-                                      (e) => e
-                                        ..updateOperations(
-                                          (e) => e.add(OperationsStruct(
-                                            content: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .content,
-                                            actionType: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .actionType,
-                                          )),
-                                        ),
-                                    );
-                                  });
+                                  _model.updateCreateUpdateAtIndex(
+                                    _model.createUpdate.length - 1,
+                                    (e) => e
+                                      ..updateOperations(
+                                        (e) => e.add(OperationsStruct(
+                                          content: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].content,
+                                          actionType: _model
+                                              .stepList[_model.loop]
+                                              .operations[_model.loop2]
+                                              .actionType,
+                                        )),
+                                      ),
+                                  );
+                                  setState(() {});
                                 }
 
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                             } else {
-                              setState(() {
-                                _model
-                                    .addToCreateStep(WorkflowsStepCreateStruct(
-                                  name: _model.stepList[_model.loop].name,
-                                  status: _model.stepList[_model.loop].status,
-                                  description:
-                                      _model.stepList[_model.loop].description,
-                                  executeType:
-                                      _model.stepList[_model.loop].executeType,
-                                  actionType:
-                                      _model.stepList[_model.loop].actionType,
-                                  staffsAlias:
-                                      _model.stepList[_model.loop].staffsAlias,
-                                  timeOperate:
-                                      _model.stepList[_model.loop].timeOperate,
-                                  estimateInSecond: _model
-                                      .stepList[_model.loop].estimateInSecond,
-                                  number: _model.stepList[_model.loop].number,
-                                  workflowId: widget.itemData?.id,
-                                ));
-                              });
+                              _model.addToCreateStep(WorkflowsStepCreateStruct(
+                                name: _model.stepList[_model.loop].name,
+                                status: _model.stepList[_model.loop].status,
+                                description:
+                                    _model.stepList[_model.loop].description,
+                                executeType:
+                                    _model.stepList[_model.loop].executeType,
+                                actionType:
+                                    _model.stepList[_model.loop].actionType,
+                                staffsAlias:
+                                    _model.stepList[_model.loop].staffsAlias,
+                                timeOperate:
+                                    _model.stepList[_model.loop].timeOperate,
+                                estimateInSecond: _model
+                                    .stepList[_model.loop].estimateInSecond,
+                                number: _model.stepList[_model.loop].number,
+                                workflowId: widget.itemData?.id,
+                              ));
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].staffs.length) {
-                                setState(() {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateStaffs(
-                                        (e) => e.add(StaffsStepStruct(
-                                          staffsId: StaffIdStruct(
-                                            id: _model
-                                                .stepList[_model.loop]
-                                                .staffs[_model.loop2]
-                                                .staffsId
-                                                .id,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.updateCreateStepAtIndex(
+                                  _model.createStep.length - 1,
+                                  (e) => e
+                                    ..updateStaffs(
+                                      (e) => e.add(StaffsStepStruct(
+                                        staffsId: StaffIdStruct(
+                                          id: _model.stepList[_model.loop]
+                                              .staffs[_model.loop2].staffsId.id,
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].departments
                                       .length) {
-                                setState(() {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentListStruct(
-                                          departmentsId: DepartmentsStruct(
-                                            id: _model
-                                                .stepList[_model.loop]
-                                                .departments[_model.loop2]
-                                                .departmentsId
-                                                .id,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.updateCreateStepAtIndex(
+                                  _model.createStep.length - 1,
+                                  (e) => e
+                                    ..updateDepartments(
+                                      (e) => e.add(DepartmentListStruct(
+                                        departmentsId: DepartmentsStruct(
+                                          id: _model
+                                              .stepList[_model.loop]
+                                              .departments[_model.loop2]
+                                              .departmentsId
+                                              .id,
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                               while (_model.loop2 <
                                   _model.stepList[_model.loop].operations
                                       .length) {
                                 if (_model.stepList[_model.loop]
                                             .operations[_model.loop2].id !=
                                         '') {
-                                  setState(() {
-                                    _model.updateCreateStepAtIndex(
-                                      _model.createStep.length - 1,
-                                      (e) => e
-                                        ..updateOperations(
-                                          (e) => e.add(OperationsStruct(
-                                            content: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .content,
-                                            actionType: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .actionType,
-                                            id: _model.stepList[_model.loop]
-                                                .operations[_model.loop2].id,
-                                          )),
-                                        ),
-                                    );
-                                  });
+                                  _model.updateCreateStepAtIndex(
+                                    _model.createStep.length - 1,
+                                    (e) => e
+                                      ..updateOperations(
+                                        (e) => e.add(OperationsStruct(
+                                          content: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].content,
+                                          actionType: _model
+                                              .stepList[_model.loop]
+                                              .operations[_model.loop2]
+                                              .actionType,
+                                          id: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].id,
+                                        )),
+                                      ),
+                                  );
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.updateCreateStepAtIndex(
-                                      _model.createStep.length - 1,
-                                      (e) => e
-                                        ..updateOperations(
-                                          (e) => e.add(OperationsStruct(
-                                            content: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .content,
-                                            actionType: _model
-                                                .stepList[_model.loop]
-                                                .operations[_model.loop2]
-                                                .actionType,
-                                          )),
-                                        ),
-                                    );
-                                  });
+                                  _model.updateCreateStepAtIndex(
+                                    _model.createStep.length - 1,
+                                    (e) => e
+                                      ..updateOperations(
+                                        (e) => e.add(OperationsStruct(
+                                          content: _model.stepList[_model.loop]
+                                              .operations[_model.loop2].content,
+                                          actionType: _model
+                                              .stepList[_model.loop]
+                                              .operations[_model.loop2]
+                                              .actionType,
+                                        )),
+                                      ),
+                                  );
+                                  setState(() {});
                                 }
 
-                                setState(() {
-                                  _model.loop2 = _model.loop2 + 1;
-                                });
+                                _model.loop2 = _model.loop2 + 1;
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop2 = 0;
-                              });
+                              _model.loop2 = 0;
+                              setState(() {});
                             }
 
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                            _model.loop2 = 0;
-                          });
+                          _model.loop = 0;
+                          _model.loop2 = 0;
+                          setState(() {});
                           while (_model.loop < _model.createStep.length) {
                             _model.apiResultj7m = await ProcedureTemplateGroup
                                 .stepCreateWorkflowsCall
@@ -951,13 +837,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             if ((_model.apiResultj7m?.succeeded ?? true)) {
                               setState(() {});
                             }
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                           while (_model.loop < _model.createUpdate.length) {
                             _model.apiResult2eo = await ProcedureTemplateGroup
                                 .stepUpdateCall
@@ -970,13 +854,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             if ((_model.apiResult2eo?.succeeded ?? true)) {
                               setState(() {});
                             }
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -1190,16 +1072,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       milliseconds:
                                                                           2000),
                                                                   () async {
+                                                                    _model
+                                                                        .updateDataUpdateStruct(
+                                                                      (e) => e
+                                                                        ..name = _model
+                                                                            .textNameTextController
+                                                                            .text,
+                                                                    );
                                                                     setState(
-                                                                        () {
-                                                                      _model
-                                                                          .updateDataUpdateStruct(
-                                                                        (e) => e
-                                                                          ..name = _model
-                                                                              .textNameTextController
-                                                                              .text,
-                                                                      );
-                                                                    });
+                                                                        () {});
                                                                   },
                                                                 ),
                                                                 autofocus:
@@ -1287,16 +1168,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                               milliseconds:
                                                                   2000),
                                                           () async {
-                                                            setState(() {
-                                                              _model
-                                                                  .updateDataUpdateStruct(
-                                                                (e) => e
-                                                                  ..description =
-                                                                      _model
-                                                                          .textDescriptionTextController
-                                                                          .text,
-                                                              );
-                                                            });
+                                                            _model
+                                                                .updateDataUpdateStruct(
+                                                              (e) => e
+                                                                ..description =
+                                                                    _model
+                                                                        .textDescriptionTextController
+                                                                        .text,
+                                                            );
+                                                            setState(() {});
                                                           },
                                                         ),
                                                         obscureText: false,
@@ -1446,14 +1326,12 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                 onChanged: (val) async {
                                                   setState(() => _model
                                                       .dropDownRunValue = val);
-                                                  setState(() {
-                                                    _model
-                                                        .updateDataUpdateStruct(
-                                                      (e) => e
-                                                        ..departments = []
-                                                        ..staffs = [],
-                                                    );
-                                                  });
+                                                  _model.updateDataUpdateStruct(
+                                                    (e) => e
+                                                      ..departments = []
+                                                      ..staffs = [],
+                                                  );
+                                                  setState(() {});
                                                   if (_model.dropDownRunValue ==
                                                       '1') {
                                                     await showModalBottomSheet(
@@ -1488,14 +1366,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     ?.departments,
                                                                 callback:
                                                                     (item) async {
-                                                                  setState(() {
-                                                                    _model
-                                                                        .updateDataUpdateStruct(
-                                                                      (e) => e
-                                                                        ..departments =
-                                                                            item!.toList(),
-                                                                    );
-                                                                  });
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..departments =
+                                                                          item!
+                                                                              .toList(),
+                                                                  );
+                                                                  setState(
+                                                                      () {});
                                                                 },
                                                               ),
                                                             ),
@@ -1544,6 +1423,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     context,
                                                                     item: item,
                                                                   );
+
                                                                   setState(
                                                                       () {});
                                                                 },
@@ -1680,6 +1560,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     context,
                                                                     item: item,
                                                                   );
+
                                                                   setState(
                                                                       () {});
                                                                 },
@@ -1890,14 +1771,16 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     ?.departments,
                                                                 callback:
                                                                     (item) async {
-                                                                  setState(() {
-                                                                    _model
-                                                                        .updateDataUpdateStruct(
-                                                                      (e) => e
-                                                                        ..departments =
-                                                                            item!.toList(),
-                                                                    );
-                                                                  });
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..departments =
+                                                                          item!
+                                                                              .toList(),
+                                                                  );
+                                                                  setState(
+                                                                      () {});
+
                                                                   setState(
                                                                       () {});
                                                                 },
@@ -2201,88 +2084,97 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       setState(() =>
                                                                           _model.dropDownCronValue =
                                                                               val);
+                                                                      _model.checkCron =
+                                                                          [];
                                                                       setState(
-                                                                          () {
-                                                                        _model.checkCron =
-                                                                            [];
-                                                                      });
+                                                                          () {});
                                                                       if (_model
                                                                               .dropDownCronValue !=
                                                                           '3') {
+                                                                        _model.loop =
+                                                                            0;
+                                                                        _model.checkOne =
+                                                                            [];
+                                                                        _model.checkTwo =
+                                                                            [];
+                                                                        _model.checkThrees =
+                                                                            [];
+                                                                        _model.checkBoxFour =
+                                                                            [];
+                                                                        _model.checkBoxFive =
+                                                                            [];
+                                                                        _model.checkBoxSix =
+                                                                            [];
                                                                         setState(
-                                                                            () {
-                                                                          _model.loop =
-                                                                              0;
-                                                                          _model.checkOne =
-                                                                              [];
-                                                                          _model.checkTwo =
-                                                                              [];
-                                                                          _model.checkThrees =
-                                                                              [];
-                                                                          _model.checkBoxFour =
-                                                                              [];
-                                                                          _model.checkBoxFive =
-                                                                              [];
-                                                                          _model.checkBoxSix =
-                                                                              [];
-                                                                        });
+                                                                            () {});
+                                                                        _model.checkType =
+                                                                            _model.dropDownCronValue;
                                                                         setState(
-                                                                            () {
-                                                                          _model.checkType =
-                                                                              _model.dropDownCronValue;
-                                                                        });
+                                                                            () {});
                                                                       } else {
                                                                         while (_model.loop <
                                                                             6) {
-                                                                          setState(
-                                                                              () {
-                                                                            _model.addToCheckOne(CheckBoxGroupStruct(
-                                                                              type: false,
-                                                                              title: (_model.loop + 1) < 10 ? '0${(_model.loop + 1).toString()}' : (_model.loop + 1).toString(),
-                                                                            ));
-                                                                            _model.addToCheckTwo(CheckBoxGroupStruct(
-                                                                              type: false,
-                                                                              title: (_model.loop + 7) < 10 ? '0${(_model.loop + 7).toString()}' : (_model.loop + 7).toString(),
-                                                                            ));
-                                                                            _model.addToCheckThrees(CheckBoxGroupStruct(
-                                                                              type: false,
-                                                                              title: (_model.loop + 13).toString(),
-                                                                            ));
-                                                                            _model.addToCheckBoxFour(CheckBoxGroupStruct(
-                                                                              type: false,
-                                                                              title: (_model.loop + 19).toString(),
-                                                                            ));
-                                                                            _model.addToCheckBoxFive(CheckBoxGroupStruct(
-                                                                              type: false,
-                                                                              title: (_model.loop + 25).toString(),
-                                                                            ));
-                                                                          });
-                                                                          setState(
-                                                                              () {
-                                                                            _model.loop =
-                                                                                _model.loop + 1;
-                                                                          });
-                                                                        }
-                                                                        setState(
-                                                                            () {
                                                                           _model
-                                                                              .addToCheckBoxSix(CheckBoxGroupStruct(
+                                                                              .addToCheckOne(CheckBoxGroupStruct(
+                                                                            type:
+                                                                                false,
+                                                                            title: (_model.loop + 1) < 10
+                                                                                ? '0${(_model.loop + 1).toString()}'
+                                                                                : (_model.loop + 1).toString(),
+                                                                          ));
+                                                                          _model
+                                                                              .addToCheckTwo(CheckBoxGroupStruct(
+                                                                            type:
+                                                                                false,
+                                                                            title: (_model.loop + 7) < 10
+                                                                                ? '0${(_model.loop + 7).toString()}'
+                                                                                : (_model.loop + 7).toString(),
+                                                                          ));
+                                                                          _model
+                                                                              .addToCheckThrees(CheckBoxGroupStruct(
                                                                             type:
                                                                                 false,
                                                                             title:
-                                                                                '31',
+                                                                                (_model.loop + 13).toString(),
                                                                           ));
-                                                                        });
-                                                                        setState(
-                                                                            () {
+                                                                          _model
+                                                                              .addToCheckBoxFour(CheckBoxGroupStruct(
+                                                                            type:
+                                                                                false,
+                                                                            title:
+                                                                                (_model.loop + 19).toString(),
+                                                                          ));
+                                                                          _model
+                                                                              .addToCheckBoxFive(CheckBoxGroupStruct(
+                                                                            type:
+                                                                                false,
+                                                                            title:
+                                                                                (_model.loop + 25).toString(),
+                                                                          ));
+                                                                          setState(
+                                                                              () {});
                                                                           _model.loop =
-                                                                              0;
-                                                                        });
+                                                                              _model.loop + 1;
+                                                                          setState(
+                                                                              () {});
+                                                                        }
+                                                                        _model.addToCheckBoxSix(
+                                                                            CheckBoxGroupStruct(
+                                                                          type:
+                                                                              false,
+                                                                          title:
+                                                                              '31',
+                                                                        ));
                                                                         setState(
-                                                                            () {
-                                                                          _model.checkType =
-                                                                              _model.dropDownCronValue;
-                                                                        });
+                                                                            () {});
+                                                                        _model.loop =
+                                                                            0;
+                                                                        setState(
+                                                                            () {});
+                                                                        _model.checkType =
+                                                                            _model.dropDownCronValue;
+                                                                        setState(
+                                                                            () {});
                                                                       }
                                                                     },
                                                                     width: double
@@ -2422,16 +2314,14 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                 ]));
                                                                             while (_model.loop <
                                                                                 7) {
-                                                                              setState(() {
-                                                                                _model.addToCheckCron((_model.loop + 1).toString());
-                                                                              });
-                                                                              setState(() {
-                                                                                _model.loop = _model.loop + 1;
-                                                                              });
+                                                                              _model.addToCheckCron((_model.loop + 1).toString());
+                                                                              setState(() {});
+                                                                              _model.loop = _model.loop + 1;
+                                                                              setState(() {});
                                                                             }
-                                                                            setState(() {
-                                                                              _model.loop = 0;
-                                                                            });
+                                                                            _model.loop =
+                                                                                0;
+                                                                            setState(() {});
                                                                           },
                                                                           text:
                                                                               'Chọn tất cả',
@@ -2474,9 +2364,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                               () async {
                                                                             setState(() =>
                                                                                 _model.groupWeekValueController?.value = []);
-                                                                            setState(() {
-                                                                              _model.checkCron = [];
-                                                                            });
+                                                                            _model.checkCron =
+                                                                                [];
+                                                                            setState(() {});
                                                                           },
                                                                           text:
                                                                               'Bỏ chọn',
@@ -2535,9 +2425,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             .groupWeekValueController ??=
                                                                         FormFieldController<
                                                                             List<String>>(
-                                                                      functions.cronToType(_model
-                                                                          .dataUpdate!
-                                                                          .cron),
+                                                                      List.from(
+                                                                          functions.cronToType(_model.dataUpdate!.cron) ??
+                                                                              []),
                                                                     ),
                                                                     activeColor:
                                                                         FlutterFlowTheme.of(context)
@@ -2633,49 +2523,56 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           () async {
                                                                         while (_model.loop <
                                                                             6) {
-                                                                          setState(
-                                                                              () {
-                                                                            _model.updateCheckOneAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = true,
-                                                                            );
-                                                                            _model.updateCheckTwoAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = true,
-                                                                            );
-                                                                            _model.updateCheckThreesAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = true,
-                                                                            );
-                                                                            _model.updateCheckBoxFourAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = true,
-                                                                            );
-                                                                            _model.updateCheckBoxFiveAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = true,
-                                                                            );
-                                                                          });
-                                                                          setState(
-                                                                              () {
-                                                                            _model.loop =
-                                                                                _model.loop + 1;
-                                                                          });
-                                                                        }
-                                                                        setState(
-                                                                            () {
                                                                           _model
-                                                                              .updateCheckBoxSixAtIndex(
-                                                                            0,
+                                                                              .updateCheckOneAtIndex(
+                                                                            _model.loop,
                                                                             (e) => e
                                                                               ..type = true,
                                                                           );
-                                                                        });
-                                                                        setState(
-                                                                            () {
+                                                                          _model
+                                                                              .updateCheckTwoAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = true,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckThreesAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = true,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckBoxFourAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = true,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckBoxFiveAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = true,
+                                                                          );
+                                                                          setState(
+                                                                              () {});
                                                                           _model.loop =
-                                                                              0;
-                                                                        });
+                                                                              _model.loop + 1;
+                                                                          setState(
+                                                                              () {});
+                                                                        }
+                                                                        _model
+                                                                            .updateCheckBoxSixAtIndex(
+                                                                          0,
+                                                                          (e) => e
+                                                                            ..type =
+                                                                                true,
+                                                                        );
+                                                                        setState(
+                                                                            () {});
+                                                                        _model.loop =
+                                                                            0;
+                                                                        setState(
+                                                                            () {});
                                                                       },
                                                                       text:
                                                                           'Chọn tất cả',
@@ -2722,49 +2619,56 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           () async {
                                                                         while (_model.loop <
                                                                             6) {
-                                                                          setState(
-                                                                              () {
-                                                                            _model.updateCheckOneAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = false,
-                                                                            );
-                                                                            _model.updateCheckTwoAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = false,
-                                                                            );
-                                                                            _model.updateCheckThreesAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = false,
-                                                                            );
-                                                                            _model.updateCheckBoxFourAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = false,
-                                                                            );
-                                                                            _model.updateCheckBoxFiveAtIndex(
-                                                                              _model.loop,
-                                                                              (e) => e..type = false,
-                                                                            );
-                                                                          });
-                                                                          setState(
-                                                                              () {
-                                                                            _model.loop =
-                                                                                _model.loop + 1;
-                                                                          });
-                                                                        }
-                                                                        setState(
-                                                                            () {
                                                                           _model
-                                                                              .updateCheckBoxSixAtIndex(
-                                                                            0,
+                                                                              .updateCheckOneAtIndex(
+                                                                            _model.loop,
                                                                             (e) => e
                                                                               ..type = false,
                                                                           );
-                                                                        });
-                                                                        setState(
-                                                                            () {
+                                                                          _model
+                                                                              .updateCheckTwoAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = false,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckThreesAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = false,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckBoxFourAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = false,
+                                                                          );
+                                                                          _model
+                                                                              .updateCheckBoxFiveAtIndex(
+                                                                            _model.loop,
+                                                                            (e) => e
+                                                                              ..type = false,
+                                                                          );
+                                                                          setState(
+                                                                              () {});
                                                                           _model.loop =
-                                                                              0;
-                                                                        });
+                                                                              _model.loop + 1;
+                                                                          setState(
+                                                                              () {});
+                                                                        }
+                                                                        _model
+                                                                            .updateCheckBoxSixAtIndex(
+                                                                          0,
+                                                                          (e) => e
+                                                                            ..type =
+                                                                                false,
+                                                                        );
+                                                                        setState(
+                                                                            () {});
+                                                                        _model.loop =
+                                                                            0;
+                                                                        setState(
+                                                                            () {});
                                                                       },
                                                                       text:
                                                                           'Bỏ chọn',
@@ -2875,12 +2779,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     ),
                                                                                     checkParam: listOneItem.type,
                                                                                     callBack: (checkCall) async {
-                                                                                      setState(() {
-                                                                                        _model.updateCheckOneAtIndex(
-                                                                                          listOneIndex,
-                                                                                          (e) => e..type = checkCall,
-                                                                                        );
-                                                                                      });
+                                                                                      _model.updateCheckOneAtIndex(
+                                                                                        listOneIndex,
+                                                                                        (e) => e..type = checkCall,
+                                                                                      );
+                                                                                      setState(() {});
                                                                                     },
                                                                                   ),
                                                                                 ),
@@ -2970,12 +2873,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     ),
                                                                                     checkParam: listTwoItem.type,
                                                                                     callBack: (checkCall) async {
-                                                                                      setState(() {
-                                                                                        _model.updateCheckTwoAtIndex(
-                                                                                          listTwoIndex,
-                                                                                          (e) => e..type = checkCall,
-                                                                                        );
-                                                                                      });
+                                                                                      _model.updateCheckTwoAtIndex(
+                                                                                        listTwoIndex,
+                                                                                        (e) => e..type = checkCall,
+                                                                                      );
+                                                                                      setState(() {});
                                                                                     },
                                                                                   ),
                                                                                 ),
@@ -3065,12 +2967,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     ),
                                                                                     checkParam: listThreeItem.type,
                                                                                     callBack: (checkCall) async {
-                                                                                      setState(() {
-                                                                                        _model.updateCheckThreesAtIndex(
-                                                                                          listThreeIndex,
-                                                                                          (e) => e..type = checkCall,
-                                                                                        );
-                                                                                      });
+                                                                                      _model.updateCheckThreesAtIndex(
+                                                                                        listThreeIndex,
+                                                                                        (e) => e..type = checkCall,
+                                                                                      );
+                                                                                      setState(() {});
                                                                                     },
                                                                                   ),
                                                                                 ),
@@ -3158,12 +3059,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     ),
                                                                                     checkParam: listFourItem.type,
                                                                                     callBack: (checkCall) async {
-                                                                                      setState(() {
-                                                                                        _model.updateCheckBoxFourAtIndex(
-                                                                                          listFourIndex,
-                                                                                          (e) => e..type = checkCall,
-                                                                                        );
-                                                                                      });
+                                                                                      _model.updateCheckBoxFourAtIndex(
+                                                                                        listFourIndex,
+                                                                                        (e) => e..type = checkCall,
+                                                                                      );
+                                                                                      setState(() {});
                                                                                     },
                                                                                   ),
                                                                                 ),
@@ -3251,12 +3151,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     ),
                                                                                     checkParam: listFiveItem.type,
                                                                                     callBack: (checkCall) async {
-                                                                                      setState(() {
-                                                                                        _model.updateCheckBoxFiveAtIndex(
-                                                                                          listFiveIndex,
-                                                                                          (e) => e..type = checkCall,
-                                                                                        );
-                                                                                      });
+                                                                                      _model.updateCheckBoxFiveAtIndex(
+                                                                                        listFiveIndex,
+                                                                                        (e) => e..type = checkCall,
+                                                                                      );
+                                                                                      setState(() {});
                                                                                     },
                                                                                   ),
                                                                                 ),
@@ -3339,12 +3238,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                   ),
                                                                                   checkParam: listSixItem.type,
                                                                                   callBack: (checkCall) async {
-                                                                                    setState(() {
-                                                                                      _model.updateCheckBoxSixAtIndex(
-                                                                                        listSixIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                    });
+                                                                                    _model.updateCheckBoxSixAtIndex(
+                                                                                      listSixIndex,
+                                                                                      (e) => e..type = checkCall,
+                                                                                    );
+                                                                                    setState(() {});
                                                                                   },
                                                                                 ),
                                                                               ),
@@ -3421,17 +3319,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                           setState(() =>
                                                                               _model.checkboxValue1 = newValue!);
                                                                           if (newValue!) {
-                                                                            setState(() {
-                                                                              _model.updateDataUpdateStruct(
-                                                                                (e) => e..remind = 1,
-                                                                              );
-                                                                            });
+                                                                            _model.updateDataUpdateStruct(
+                                                                              (e) => e..remind = 1,
+                                                                            );
+                                                                            setState(() {});
                                                                           } else {
-                                                                            setState(() {
-                                                                              _model.updateDataUpdateStruct(
-                                                                                (e) => e..remind = 0,
-                                                                              );
-                                                                            });
+                                                                            _model.updateDataUpdateStruct(
+                                                                              (e) => e..remind = 0,
+                                                                            );
+                                                                            setState(() {});
                                                                           }
                                                                         },
                                                                         side:
@@ -3491,11 +3387,10 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             '_model.timeHourTextController',
                                                                             const Duration(milliseconds: 2000),
                                                                             () async {
-                                                                              setState(() {
-                                                                                _model.updateDataUpdateStruct(
-                                                                                  (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
-                                                                                );
-                                                                              });
+                                                                              _model.updateDataUpdateStruct(
+                                                                                (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
+                                                                              );
+                                                                              setState(() {});
                                                                             },
                                                                           ),
                                                                           autofocus:
@@ -3579,11 +3474,10 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             '_model.timeMinuteTextController',
                                                                             const Duration(milliseconds: 2000),
                                                                             () async {
-                                                                              setState(() {
-                                                                                _model.updateDataUpdateStruct(
-                                                                                  (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
-                                                                                );
-                                                                              });
+                                                                              _model.updateDataUpdateStruct(
+                                                                                (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
+                                                                              );
+                                                                              setState(() {});
                                                                             },
                                                                           ),
                                                                           autofocus:
@@ -3732,25 +3626,23 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                         _model.checkboxValue2 =
                                                                             newValue!);
                                                                     if (newValue!) {
+                                                                      _model
+                                                                          .updateDataUpdateStruct(
+                                                                        (e) => e
+                                                                          ..remind2 =
+                                                                              1,
+                                                                      );
                                                                       setState(
-                                                                          () {
-                                                                        _model
-                                                                            .updateDataUpdateStruct(
-                                                                          (e) => e
-                                                                            ..remind2 =
-                                                                                1,
-                                                                        );
-                                                                      });
+                                                                          () {});
                                                                     } else {
+                                                                      _model
+                                                                          .updateDataUpdateStruct(
+                                                                        (e) => e
+                                                                          ..remind2 =
+                                                                              0,
+                                                                      );
                                                                       setState(
-                                                                          () {
-                                                                        _model
-                                                                            .updateDataUpdateStruct(
-                                                                          (e) => e
-                                                                            ..remind2 =
-                                                                                0,
-                                                                        );
-                                                                      });
+                                                                          () {});
                                                                     }
                                                                   },
                                                                   side:
@@ -3872,37 +3764,38 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                             ProcedureStepCreateWidget(
                                                           callBack:
                                                               (addItem) async {
-                                                            setState(() {
-                                                              _model.addToStepList(
-                                                                  WorkflowsStepCreateStruct(
-                                                                name: addItem
-                                                                    ?.name,
-                                                                description: addItem
-                                                                    ?.description,
-                                                                staffs: addItem
-                                                                    ?.staffs,
-                                                                executeType: addItem
-                                                                    ?.executeType,
-                                                                actionType: addItem
-                                                                    ?.actionType,
-                                                                operations: addItem
-                                                                    ?.operations,
-                                                                status:
-                                                                    'published',
-                                                                staffsAlias: addItem
-                                                                    ?.staffsAlias,
-                                                                timeOperate: addItem?.timeOperate !=
-                                                                            null &&
-                                                                        addItem?.timeOperate !=
-                                                                            ''
-                                                                    ? addItem
-                                                                        ?.timeOperate
-                                                                    : '',
-                                                                estimateInSecond:
-                                                                    addItem
-                                                                            ?.estimateInSecond ?? 0,
-                                                              ));
-                                                            });
+                                                            _model.addToStepList(
+                                                                WorkflowsStepCreateStruct(
+                                                              name:
+                                                                  addItem?.name,
+                                                              description: addItem
+                                                                  ?.description,
+                                                              staffs: addItem
+                                                                  ?.staffs,
+                                                              executeType: addItem
+                                                                  ?.executeType,
+                                                              actionType: addItem
+                                                                  ?.actionType,
+                                                              operations: addItem
+                                                                  ?.operations,
+                                                              status:
+                                                                  'published',
+                                                              staffsAlias: addItem
+                                                                  ?.staffsAlias,
+                                                              timeOperate: addItem
+                                                                              ?.timeOperate !=
+                                                                          null &&
+                                                                      addItem?.timeOperate !=
+                                                                          ''
+                                                                  ? addItem
+                                                                      ?.timeOperate
+                                                                  : '',
+                                                              estimateInSecond:
+                                                                  addItem
+                                                                          ?.estimateInSecond ?? 0,
+                                                            ));
+                                                            setState(() {});
+
                                                             setState(() {});
                                                           },
                                                         ),
@@ -4139,18 +4032,17 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                                     index: listViewIndex,
                                                                                     idItem: idItem,
                                                                                   );
+
                                                                                   setState(() {});
                                                                                 },
                                                                                 callBackDelete: () async {
                                                                                   if (listViewItem.id != '') {
-                                                                                    setState(() {
-                                                                                      _model.removeAtIndexFromStepList(listViewIndex);
-                                                                                      _model.addToStepDelete(listViewItem.id);
-                                                                                    });
+                                                                                    _model.removeAtIndexFromStepList(listViewIndex);
+                                                                                    _model.addToStepDelete(listViewItem.id);
+                                                                                    setState(() {});
                                                                                   } else {
-                                                                                    setState(() {
-                                                                                      _model.removeAtIndexFromStepList(listViewIndex);
-                                                                                    });
+                                                                                    _model.removeAtIndexFromStepList(listViewIndex);
+                                                                                    setState(() {});
                                                                                   }
                                                                                 },
                                                                               ),
@@ -4182,13 +4074,12 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                               reorderableOldIndex,
                                               reorderableNewIndex,
                                             );
-                                            setState(() {
-                                              _model.stepList = _model
-                                                  .updateListView!
-                                                  .toList()
-                                                  .cast<
-                                                      WorkflowsStepCreateStruct>();
-                                            });
+                                            _model.stepList = _model
+                                                .updateListView!
+                                                .toList()
+                                                .cast<
+                                                    WorkflowsStepCreateStruct>();
+                                            setState(() {});
 
                                             setState(() {});
                                           },

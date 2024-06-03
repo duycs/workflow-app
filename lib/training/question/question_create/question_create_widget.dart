@@ -152,14 +152,12 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   '_model.questionContenTextController',
                                   const Duration(milliseconds: 2000),
                                   () async {
-                                    setState(() {
-                                      _model.updateRequestDataStruct(
-                                        (e) => e
-                                          ..content = _model
-                                              .questionContenTextController
-                                              .text,
-                                      );
-                                    });
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..content = _model
+                                            .questionContenTextController.text,
+                                    );
+                                    setState(() {});
                                   },
                                 ),
                                 autofocus: false,
@@ -242,25 +240,24 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   ],
                                   onChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);
-                                    setState(() {
-                                      _model.updateRequestDataStruct(
-                                        (e) => e
-                                          ..answerType = () {
-                                            if (_model.dropDownValue == '0') {
-                                              return 'radio';
-                                            } else if (_model.dropDownValue ==
-                                                '1') {
-                                              return 'checkbox';
-                                            } else if (_model.dropDownValue ==
-                                                '2') {
-                                              return 'text';
-                                            } else {
-                                              return 'number';
-                                            }
-                                          }()
-                                          ..answers = [],
-                                      );
-                                    });
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..answerType = () {
+                                          if (_model.dropDownValue == '0') {
+                                            return 'radio';
+                                          } else if (_model.dropDownValue ==
+                                              '1') {
+                                            return 'checkbox';
+                                          } else if (_model.dropDownValue ==
+                                              '2') {
+                                            return 'text';
+                                          } else {
+                                            return 'number';
+                                          }
+                                        }()
+                                        ..answers = [],
+                                    );
+                                    setState(() {});
                                     setState(() {
                                       _model.textAnswerTextController?.clear();
                                       _model.textAnswerNumberTextController
@@ -466,25 +463,23 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                     if (_model.textAnswerTextController.text !=
                                             '') {
                                       if (_model.dropDownValue == '1') {
-                                        setState(() {
-                                          _model.updateRequestDataStruct(
-                                            (e) => e
-                                              ..updateAnswers(
-                                                (e) => e.add(
-                                                    QuestionAnswersIdStruct(
-                                                  content: _model
-                                                      .textAnswerTextController
-                                                      .text,
-                                                  status: 'published',
-                                                  correct:
-                                                      _model.checkboxValue ==
-                                                              true
-                                                          ? 1
-                                                          : 0,
-                                                )),
-                                              ),
-                                          );
-                                        });
+                                        _model.updateRequestDataStruct(
+                                          (e) => e
+                                            ..updateAnswers(
+                                              (e) =>
+                                                  e.add(QuestionAnswersIdStruct(
+                                                content: _model
+                                                    .textAnswerTextController
+                                                    .text,
+                                                status: 'published',
+                                                correct:
+                                                    _model.checkboxValue == true
+                                                        ? 1
+                                                        : 0,
+                                              )),
+                                            ),
+                                        );
+                                        setState(() {});
                                         setState(() {
                                           _model.textAnswerTextController
                                               ?.clear();
@@ -520,25 +515,24 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct:
-                                                        _model.checkboxValue ==
-                                                                true
-                                                            ? 1
-                                                            : 0,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct:
+                                                      _model.checkboxValue ==
+                                                              true
+                                                          ? 1
+                                                          : 0,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -573,21 +567,20 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct: 1,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct: 1,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -646,21 +639,20 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                             },
                                           );
                                         } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..updateAnswers(
-                                                  (e) => e.add(
-                                                      QuestionAnswersIdStruct(
-                                                    content: _model
-                                                        .textAnswerNumberTextController
-                                                        .text,
-                                                    status: 'published',
-                                                    correct: 1,
-                                                  )),
-                                                ),
-                                            );
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..updateAnswers(
+                                                (e) => e.add(
+                                                    QuestionAnswersIdStruct(
+                                                  content: _model
+                                                      .textAnswerNumberTextController
+                                                      .text,
+                                                  status: 'published',
+                                                  correct: 1,
+                                                )),
+                                              ),
+                                          );
+                                          setState(() {});
                                           setState(() {
                                             _model.textAnswerTextController
                                                 ?.clear();
@@ -850,16 +842,14 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                setState(() {
-                                                  _model
-                                                      .updateRequestDataStruct(
-                                                    (e) => e
-                                                      ..updateAnswers(
-                                                        (e) => e.removeAt(
-                                                            listViewIndex),
-                                                      ),
-                                                  );
-                                                });
+                                                _model.updateRequestDataStruct(
+                                                  (e) => e
+                                                    ..updateAnswers(
+                                                      (e) => e.removeAt(
+                                                          listViewIndex),
+                                                    ),
+                                                );
+                                                setState(() {});
                                               },
                                             ),
                                           ].divide(const SizedBox(width: 4.0)),
@@ -923,18 +913,18 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+
                               setState(() {});
                               _model.tokenReloadQuestionCreate =
                                   await action_blocks.tokenReload(context);
                               shouldSetState = true;
                               if (_model.tokenReloadQuestionCreate!) {
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e
-                                      ..status = 'published'
-                                      ..autoCorrect = 1,
-                                  );
-                                });
+                                _model.updateRequestDataStruct(
+                                  (e) => e
+                                    ..status = 'published'
+                                    ..autoCorrect = 1,
+                                );
+                                setState(() {});
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;

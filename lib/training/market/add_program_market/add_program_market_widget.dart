@@ -22,12 +22,16 @@ class AddProgramMarketWidget extends StatefulWidget {
     this.price,
     this.version,
     this.checkPage,
+    this.category,
+    this.domain,
   });
 
   final String? id;
   final String? price;
   final int? version;
   final String? checkPage;
+  final String? category;
+  final String? domain;
 
   @override
   State<AddProgramMarketWidget> createState() => _AddProgramMarketWidgetState();
@@ -57,24 +61,22 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultwkg?.succeeded ?? true)) {
-          setState(() {
-            _model.categoryList = CategoriesListDataStruct.maybeFromMap(
-                    (_model.apiResultwkg?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<CategoriesListStruct>();
-          });
+          _model.categoryList = CategoriesListDataStruct.maybeFromMap(
+                  (_model.apiResultwkg?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<CategoriesListStruct>();
+          setState(() {});
           _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
             accessToken: FFAppState().accessToken,
           );
           if ((_model.apiResultDomain?.succeeded ?? true)) {
-            setState(() {
-              _model.domainList = DomainsListDataStruct.maybeFromMap(
-                      (_model.apiResultDomain?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<DomainsListStruct>();
-            });
+            _model.domainList = DomainsListDataStruct.maybeFromMap(
+                    (_model.apiResultDomain?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<DomainsListStruct>();
+            setState(() {});
           } else {
             _model.checkRefreshTokenBlocks =
                 await action_blocks.checkRefreshToken(
@@ -98,9 +100,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
             return;
           }
 
-          setState(() {
-            _model.isLoad = true;
-          });
+          _model.isLoad = true;
+          setState(() {});
         } else {
           _model.checkRefreshTokenBlocka =
               await action_blocks.checkRefreshToken(
@@ -154,7 +155,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
           child: Container(
             width: double.infinity,
             constraints: const BoxConstraints(
-              maxHeight: 450.0,
+              maxHeight: 750.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -180,7 +181,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                       primary: false,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -226,7 +227,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                 controller:
                                     _model.dropDownDomainValueController ??=
                                         FormFieldController<String>(
-                                  _model.dropDownDomainValue ??= '',
+                                  _model.dropDownDomainValue ??= widget.domain,
                                 ),
                                 options: List<String>.from(_model.domainList
                                     .map((e) => e.id)
@@ -273,7 +274,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                               controller:
                                   _model.dropDownCategoryValueController ??=
                                       FormFieldController<String>(
-                                _model.dropDownCategoryValue ??= '',
+                                _model.dropDownCategoryValue ??=
+                                    widget.category,
                               ),
                               options: List<String>.from(_model.categoryList
                                   .map((e) => e.id)
@@ -383,6 +385,19 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                               validator: _model.textControllerValidator
                                   .asValidator(context),
                             ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -508,6 +523,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                       r'''$.authors[0]''',
                                     ).toString(),
                                     version: (widget.version!) + 1,
+                                    category: _model.dropDownCategoryValue,
+                                    domain: _model.dropDownDomainValue,
                                   );
                                   shouldSetState = true;
                                   if ((_model.apiResultUpdatePrice?.succeeded ??

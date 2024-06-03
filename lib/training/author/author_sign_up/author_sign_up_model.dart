@@ -72,6 +72,15 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  String? _descriptionTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Yêu cầu nhập giới thiệu';
+    }
+
+    return null;
+  }
+
   // State field(s) for DropDown widget.
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;
@@ -89,6 +98,7 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   @override
   void initState(BuildContext context) {
     nameTextControllerValidator = _nameTextControllerValidator;
+    descriptionTextControllerValidator = _descriptionTextControllerValidator;
   }
 
   @override
