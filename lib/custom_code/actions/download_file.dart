@@ -88,13 +88,11 @@ Future<void> downloadFile(
     await file.writeAsBytes(bytes);
 
     // Ghi log đường dẫn lưu tệp
-    //print("File saved at");
+    print("File saved at");
     Fluttertoast.showToast(msg: "Tệp đã được tải xuống thành công");
     // Chia sẻ tệp với người dùng
-    //print('Sharing file...');
     Fluttertoast.showToast(msg: "Sharing file...");
     Share.shareFiles([path], text: " ");
-    //print('File shared successfully.');
     Fluttertoast.showToast(msg: "File shared successfully.");
   } catch (e) {
     Fluttertoast.showToast(msg: "Lỗi khi tải xuống tệp");

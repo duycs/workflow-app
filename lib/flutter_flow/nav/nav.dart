@@ -946,6 +946,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'UpdateProfileCPNCopy',
+          path: '/updateProfileCPNCopy',
+          builder: (context, params) => UpdateProfileCPNCopyWidget(
+            data: params.getParam(
+              'data',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: OrganizationListStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

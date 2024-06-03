@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -133,6 +134,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
     _model.textController ??= TextEditingController(
         text: functions.stringToInt(widget.price!).toString());
     _model.textFieldFocusNode ??= FocusNode();
+
+    _model.switchValue = true;
   }
 
   @override
@@ -317,7 +320,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 16.0),
+                                0.0, 20.0, 0.0, 36.0),
                             child: TextFormField(
                               controller: _model.textController,
                               focusNode: _model.textFieldFocusNode,
@@ -386,18 +389,80 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   .asValidator(context),
                             ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: Text(
+                              'Thiết lập bài học được phép học thử',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Switch.adaptive(
+                                  value: _model.switchValue!,
+                                  onChanged: (newValue) async {
+                                    setState(
+                                        () => _model.switchValue = newValue);
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).accent1,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                 ),
-                              ),
+                                Text(
+                                  'Chọn tất cả',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          FlutterFlowCheckboxGroup(
+                            options: const [
+                              'Bài học 1',
+                              'Bài học 2',
+                              'Bài học 3',
+                              'Bài học 4'
                             ],
+                            onChanged: (val) => setState(
+                                () => _model.checkboxGroupValues = val),
+                            controller: _model.checkboxGroupValueController ??=
+                                FormFieldController<List<String>>(
+                              [],
+                            ),
+                            activeColor: FlutterFlowTheme.of(context).primary,
+                            checkColor: FlutterFlowTheme.of(context).info,
+                            checkboxBorderColor:
+                                FlutterFlowTheme.of(context).secondaryText,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            checkboxBorderRadius: BorderRadius.circular(4.0),
+                            initialized: _model.checkboxGroupValues != null,
                           ),
                         ],
                       ),
