@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'tao_moi_quy_trinh2_model.dart';
 export 'tao_moi_quy_trinh2_model.dart';
@@ -86,14 +88,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
               text: 'Chỉnh sửa',
               options: FFButtonOptions(
                 height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,
                     ),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: Colors.transparent,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
@@ -101,7 +103,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
             ),
           ],
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 0.0,
       ),
@@ -122,13 +124,13 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                         color: FlutterFlowTheme.of(context).primary,
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 24.0, 16.0, 24.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 0.9,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).accent4,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 blurRadius: 8.0,
                                 color: Color(0x36000000),
@@ -141,7 +143,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(12.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -165,7 +167,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                 padding:
                                                     MediaQuery.viewInsetsOf(
                                                         context),
-                                                child: SizedBox(
+                                                child: Container(
                                                   height: 600.0,
                                                   child: ProcedureSettingWidget(
                                                     callBack: (cron) async {},
@@ -186,7 +188,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                               BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0),
                                           child: Icon(
                                             Icons.settings,
                                             color: FlutterFlowTheme.of(context)
@@ -198,7 +200,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -206,7 +208,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Text(
                                                 'Quy trình chạy tiệc',
                                                 style:
@@ -242,7 +244,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0),
                                           child: Text(
                                             'Không mô tả',
                                             style: FlutterFlowTheme.of(context)
@@ -267,7 +269,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -283,7 +285,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 48.0),
+                padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 48.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -319,7 +321,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                           .secondaryText,
                                       borderRadius: BorderRadius.circular(90.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '1',
                                       style: FlutterFlowTheme.of(context)
@@ -334,7 +336,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                   ),
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController1,
@@ -417,7 +419,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: const SizedBox(
+                                          child: Container(
                                             height: 600.0,
                                             child: NhapWidget(),
                                           ),
@@ -429,7 +431,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x3E57636C),
+                                    color: Color(0x3E57636C),
                                     borderRadius: BorderRadius.circular(4.0),
                                   ),
                                   child: Row(
@@ -444,7 +446,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 8.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -466,7 +468,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                             90.0),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     '2',
@@ -494,7 +496,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -511,7 +513,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                             90.0),
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Text(
                                                     '3',
@@ -539,9 +541,9 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
-                                              ].divide(const SizedBox(width: 8.0)),
+                                              ].divide(SizedBox(width: 8.0)),
                                             ),
-                                          ].divide(const SizedBox(height: 8.0)),
+                                          ].divide(SizedBox(height: 8.0)),
                                         ),
                                       ),
                                     ],
@@ -551,9 +553,9 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                             ],
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
-                    const Divider(
+                    Divider(
                       thickness: 1.0,
                       color: Color(0x4657636C),
                     ),
@@ -588,7 +590,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                           .secondaryText,
                                       borderRadius: BorderRadius.circular(90.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '2',
                                       style: FlutterFlowTheme.of(context)
@@ -603,7 +605,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                   ),
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController2,
@@ -673,11 +675,11 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                               Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: const Color(0x3E57636C),
+                                  color: Color(0x3E57636C),
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -709,9 +711,9 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                             ],
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
-                    const Divider(
+                    Divider(
                       thickness: 1.0,
                       color: Color(0x4657636C),
                     ),
@@ -746,7 +748,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                           .secondaryText,
                                       borderRadius: BorderRadius.circular(90.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
                                       '3',
                                       style: FlutterFlowTheme.of(context)
@@ -761,7 +763,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                   ),
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 8.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController3,
@@ -830,11 +832,11 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                               Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: const Color(0x3E57636C),
+                                  color: Color(0x3E57636C),
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 8.0, 0.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -866,13 +868,13 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                             ],
                           ),
                         ),
-                      ].divide(const SizedBox(width: 4.0)),
+                      ].divide(SizedBox(width: 4.0)),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -882,16 +884,16 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                         print('Button pressed ...');
                       },
                       text: 'Thêm bước',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -902,7 +904,7 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                   fontWeight: FontWeight.normal,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -914,16 +916,16 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                         print('Button pressed ...');
                       },
                       text: 'Thêm quy trình',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.add,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -934,14 +936,14 @@ class _TaoMoiQuyTrinh2WidgetState extends State<TaoMoiQuyTrinh2Widget> {
                                   fontWeight: FontWeight.normal,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
               ),
             ],

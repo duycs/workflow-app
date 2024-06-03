@@ -10,11 +10,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'staff_update_model.dart';
 export 'staff_update_model.dart';
@@ -146,8 +151,8 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 60.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 60.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -200,7 +205,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                 letterSpacing: 0.0,
               ),
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -216,15 +221,16 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          if ((_model.uploadedLocalFile.bytes?.isEmpty ?? true))
+                          if (_model.uploadedLocalFile == null ||
+                              (_model.uploadedLocalFile.bytes?.isEmpty ?? true))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: Container(
                                 width: 100.0,
@@ -234,7 +240,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   shape: BoxShape.circle,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: EdgeInsets.all(2.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -275,7 +281,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         width: 90.0,
                                         height: 90.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
@@ -291,10 +297,11 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 ),
                               ),
                             ),
-                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                          if (_model.uploadedLocalFile != null &&
+                              (_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                   false))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: Container(
                                 width: 100.0,
@@ -304,7 +311,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   shape: BoxShape.circle,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: EdgeInsets.all(2.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -343,7 +350,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         width: 90.0,
                                         height: 90.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.memory(
@@ -409,14 +416,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -435,7 +442,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
@@ -448,7 +455,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 16.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.nameTextController,
@@ -504,7 +511,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -521,7 +528,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                           if ('1' == '2')
                             Padding(
-                              padding: const EdgeInsets.all(20.0),
+                              padding: EdgeInsets.all(20.0),
                               child: TextFormField(
                                 controller: _model.emailTextController,
                                 focusNode: _model.emailFocusNode,
@@ -578,7 +585,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           20.0, 24.0, 0.0, 24.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -594,7 +601,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.phoneTextController,
@@ -650,7 +657,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -667,7 +674,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.cccdTextController,
@@ -723,7 +730,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -740,7 +747,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 30.0, 0.0, 20.0, 20.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -748,7 +755,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final datePickedDate = await showDatePicker(
+                                final _datePickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
                                   firstDate: DateTime(1900),
@@ -788,12 +795,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   },
                                 );
 
-                                if (datePickedDate != null) {
+                                if (_datePickedDate != null) {
                                   safeSetState(() {
                                     _model.datePicked = DateTime(
-                                      datePickedDate.year,
-                                      datePickedDate.month,
-                                      datePickedDate.day,
+                                      _datePickedDate.year,
+                                      _datePickedDate.month,
+                                      _datePickedDate.day,
                                     );
                                   });
                                 }
@@ -826,12 +833,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 10.0),
                             child: Text(
                               'Giới tính',
@@ -845,16 +852,16 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 30.0, 0.0, 20.0, 20.0),
                             child: FlutterFlowRadioButton(
                               options: ['Nam', 'Nữ'].toList(),
                               onChanged: (val) => setState(() {}),
                               controller: _model.radioButtonValueController ??=
-                                  FormFieldController<String>(getJsonField(
+                                  FormFieldController<String>('${getJsonField(
                                             widget.staffDetail,
                                             r'''$.gender''',
-                                          ).toString() ==
+                                          ).toString()}' ==
                                           'male'
                                       ? 'Nam'
                                       : 'Nữ'),
@@ -886,7 +893,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           if (_model.roleValue !=
                               '82073000-1ba2-43a4-a55c-459d17c23b68')
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.roleValueController ??=
@@ -901,7 +908,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   '6a8bc644-cb2d-4a31-b11e-b86e19824725',
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4'
                                 ]),
-                                optionLabels: const [
+                                optionLabels: [
                                   'Quản lý chi nhánh',
                                   'Quản lý bộ phận',
                                   'Nhân viên'
@@ -932,7 +939,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -958,7 +965,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -994,7 +1001,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 4.0, 12.0, 4.0),
                                 hidesUnderline: true,
                                 isSearchable: false,
@@ -1002,7 +1009,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.titleValueController ??=
@@ -1011,7 +1018,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               ),
                               options:
                                   List<String>.from(['1', '2', '3', '4', '5']),
-                              optionLabels: const [
+                              optionLabels: [
                                 'Trưởng chi nhánh',
                                 'Phó chi nhánh',
                                 'Trưởng bộ phận',
@@ -1064,7 +1071,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 4.0, 12.0, 4.0),
                               hidesUnderline: true,
                               isSearchable: false,
@@ -1072,7 +1079,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: TextFormField(
                               controller: _model.titleTextTextController,
@@ -1128,7 +1135,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 24.0, 0.0, 24.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -1161,7 +1168,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                         r'''$.user_id.role''',
                                       ))))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.branchValueController ??=
@@ -1211,7 +1218,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 },
                                 width: double.infinity,
                                 height: 56.0,
-                                searchHintTextStyle: const TextStyle(
+                                searchHintTextStyle: TextStyle(
                                   height: 20.0,
                                 ),
                                 searchTextStyle: FlutterFlowTheme.of(context)
@@ -1243,7 +1250,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 4.0, 12.0, 4.0),
                                 hidesUnderline: true,
                                 isSearchable: true,
@@ -1256,7 +1263,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               (_model.roleValue ==
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.departmentValueController ??=
@@ -1284,7 +1291,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 },
                                 width: double.infinity,
                                 height: 56.0,
-                                searchHintTextStyle: const TextStyle(),
+                                searchHintTextStyle: TextStyle(),
                                 searchTextStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -1314,7 +1321,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 4.0, 12.0, 4.0),
                                 hidesUnderline: true,
                                 isSearchable: true,
@@ -1325,14 +1332,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(24.0),
+                      padding: EdgeInsets.all(24.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -1351,14 +1358,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -1371,12 +1378,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(2.0),
+                          padding: EdgeInsets.all(2.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Icon(
                                   Icons.power_settings_new_rounded,
@@ -1388,16 +1395,16 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               Expanded(
                                 child: SwitchListTile.adaptive(
                                   value: _model.switchListTileValue ??=
-                                      getJsonField(
+                                      '${getJsonField(
                                                 widget.staffDetail,
                                                 r'''$.status''',
-                                              ).toString() ==
+                                              ).toString()}' ==
                                               'active'
                                           ? true
                                           : false,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.switchListTileValue = newValue);
+                                        _model.switchListTileValue = newValue!);
                                   },
                                   title: Text(
                                     'Trạng thái hoạt động',
@@ -1418,7 +1425,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 4.0, 0.0),
                                 ),
                               ),
@@ -1433,12 +1440,13 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.05),
+              alignment: AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                    if (_model.uploadedLocalFile != null &&
+                        (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
                         return;
@@ -1539,7 +1547,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                               .primaryText,
                                         ),
                                       ),
-                                      duration: const Duration(milliseconds: 4000),
+                                      duration: Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context)
                                               .secondary,
@@ -1549,7 +1557,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   context.pushNamed(
                                     'PersonnelList',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
+                                      kTransitionInfoKey: TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1655,7 +1663,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 4000),
+                                    duration: Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
@@ -1664,7 +1672,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 context.pushNamed(
                                   'PersonnelList',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -1688,9 +1696,9 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -1700,7 +1708,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

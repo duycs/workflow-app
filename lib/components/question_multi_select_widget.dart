@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'question_multi_select_model.dart';
 export 'question_multi_select_model.dart';
 
@@ -39,7 +41,7 @@ class _QuestionMultiSelectWidgetState extends State<QuestionMultiSelectWidget> {
   @override
   Widget build(BuildContext context) {
     return FlutterFlowCheckboxGroup(
-      options: const [''],
+      options: [''],
       onChanged: (val) => setState(() => _model.checkboxGroupValues = val),
       controller: _model.checkboxGroupValueController ??=
           FormFieldController<List<String>>(
@@ -52,7 +54,7 @@ class _QuestionMultiSelectWidgetState extends State<QuestionMultiSelectWidget> {
             fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,
           ),
-      itemPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+      itemPadding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
       checkboxBorderRadius: BorderRadius.circular(4.0),
       initialized: _model.checkboxGroupValues != null,
     );

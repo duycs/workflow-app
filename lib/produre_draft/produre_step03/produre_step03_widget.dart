@@ -4,6 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'produre_step03_model.dart';
 export 'produre_step03_model.dart';
@@ -79,14 +81,14 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
               text: 'Lưu',
               options: FFButtonOptions(
                 height: 40.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
                       letterSpacing: 0.0,
                     ),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: Colors.transparent,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
@@ -94,14 +96,14 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
             ),
           ],
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 1.0,
       ),
       body: SafeArea(
         top: true,
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,13 +124,13 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                               color: FlutterFlowTheme.of(context).primary,
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 24.0, 16.0, 24.0),
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.9,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).accent4,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 8.0,
                                       color: Color(0x36000000),
@@ -141,7 +143,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(12.0),
+                                  padding: EdgeInsets.all(12.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -166,7 +168,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                                       padding: MediaQuery
                                                           .viewInsetsOf(
                                                               context),
-                                                      child: SizedBox(
+                                                      child: Container(
                                                         height: 900.0,
                                                         child:
                                                             ProcedureSettingWidget(
@@ -191,7 +193,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Icon(
                                                   Icons.settings,
                                                   color: FlutterFlowTheme.of(
@@ -204,7 +206,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                           ),
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(8.0, 0.0, 0.0, 0.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -212,10 +214,10 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
@@ -429,7 +431,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 12.0, 16.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -447,7 +449,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           16.0, 16.0, 16.0, 16.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -493,7 +495,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(4.0),
                                     bottomRight: Radius.circular(4.0),
                                     topLeft: Radius.circular(4.0),
@@ -505,7 +507,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                   ),
                                 ),
                                 child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'B1',
                                     textAlign: TextAlign.center,
@@ -564,23 +566,23 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
                 child: Container(
                   width: 160.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: const BorderRadius.only(
+                    borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(8.0),
                       bottomRight: Radius.circular(8.0),
                       topLeft: Radius.circular(8.0),
                       topRight: Radius.circular(8.0),
                     ),
                     border: Border.all(
-                      color: const Color(0x8257636C),
+                      color: Color(0x8257636C),
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -593,7 +595,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(2.0),
                                   bottomRight: Radius.circular(2.0),
                                   topLeft: Radius.circular(2.0),
@@ -620,7 +622,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -631,7 +633,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(2.0),
                                   bottomRight: Radius.circular(2.0),
                                   topLeft: Radius.circular(2.0),
@@ -658,7 +660,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -669,7 +671,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(2.0),
                                   bottomRight: Radius.circular(2.0),
                                   topLeft: Radius.circular(2.0),
@@ -696,7 +698,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -707,7 +709,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                borderRadius: const BorderRadius.only(
+                                borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(2.0),
                                   bottomRight: Radius.circular(2.0),
                                   topLeft: Radius.circular(2.0),
@@ -734,7 +736,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -761,7 +763,7 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -787,9 +789,9 @@ class _ProdureStep03WidgetState extends State<ProdureStep03Widget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(const SizedBox(width: 4.0)),
+                          ].divide(SizedBox(width: 4.0)),
                         ),
-                      ].divide(const SizedBox(height: 8.0)),
+                      ].divide(SizedBox(height: 8.0)),
                     ),
                   ),
                 ),

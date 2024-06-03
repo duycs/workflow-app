@@ -9,6 +9,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'staff_detail_model.dart';
 export 'staff_detail_model.dart';
@@ -43,7 +45,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
           _model.apiResultGetStaffInfo = await UserGroup.getStaffIdCall.call(
             accessToken: FFAppState().accessToken,
             userId:
-                StaffListStruct.maybeFromMap(widget.staffDetail)?.userId.id,
+                StaffListStruct.maybeFromMap(widget.staffDetail)?.userId?.id,
           );
           if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
             _model.staffData = functions.stringToJson(getJsonField(
@@ -107,7 +109,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: const [],
+        actions: [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -124,13 +126,13 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Container(
                               width: 100.0,
@@ -140,7 +142,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(2.0),
+                                padding: EdgeInsets.all(2.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -181,7 +183,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                       width: 90.0,
                                       height: 90.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -202,7 +204,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                       child: Form(
                         key: _model.formKey,
                         autovalidateMode: AutovalidateMode.disabled,
@@ -211,7 +213,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -254,7 +256,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -297,7 +299,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -340,7 +342,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -383,7 +385,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -432,7 +434,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -457,10 +459,10 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        getJsonField(
+                                        '${getJsonField(
                                                   widget.staffDetail,
                                                   r'''$.gender''',
-                                                ).toString() ==
+                                                ).toString()}' ==
                                                 'male'
                                             ? 'Nam'
                                             : 'Nữ',
@@ -478,7 +480,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: Container(
                                 width: double.infinity,
@@ -519,13 +521,13 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                 ),
                               ),
                             ),
-                            if (getJsonField(
+                            if ('${getJsonField(
                                   widget.staffDetail,
                                   r'''$.user_id.role''',
-                                ).toString() !=
+                                ).toString()}' !=
                                 '82073000-1ba2-43a4-a55c-459d17c23b68')
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 20.0),
                                 child: Container(
                                   width: double.infinity,
@@ -567,18 +569,18 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   ),
                                 ),
                               ),
-                            if ((getJsonField(
+                            if (('${getJsonField(
                                       widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString() !=
+                                    ).toString()}' !=
                                     '82073000-1ba2-43a4-a55c-459d17c23b68') &&
-                                (getJsonField(
+                                ('${getJsonField(
                                       widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString() !=
+                                    ).toString()}' !=
                                     'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 20.0),
                                 child: Container(
                                   width: double.infinity,
@@ -620,18 +622,18 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   ),
                                 ),
                               ),
-                            if ((getJsonField(
+                            if (('${getJsonField(
                                       widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString() !=
+                                    ).toString()}' !=
                                     '82073000-1ba2-43a4-a55c-459d17c23b68') &&
-                                (getJsonField(
+                                ('${getJsonField(
                                       widget.staffDetail,
                                       r'''$.user_id.role''',
-                                    ).toString() !=
+                                    ).toString()}' !=
                                     'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 20.0),
                                 child: Container(
                                   width: double.infinity,
@@ -656,10 +658,10 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          getJsonField(
+                                          '${getJsonField(
                                                     widget.staffDetail,
                                                     r'''$.status''',
-                                                  ).toString() ==
+                                                  ).toString()}' ==
                                                   'active'
                                               ? 'Hoạt động'
                                               : 'Không hoạt động',
@@ -685,9 +687,9 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
               ),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.05),
+              alignment: AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
@@ -699,7 +701,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
+                        kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -711,9 +713,9 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -723,7 +725,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),
