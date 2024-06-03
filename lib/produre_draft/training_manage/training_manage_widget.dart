@@ -2,8 +2,13 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'training_manage_model.dart';
 export 'training_manage_model.dart';
 
@@ -130,12 +135,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -147,7 +152,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
                         child: Container(
                           decoration: BoxDecoration(
@@ -158,7 +163,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(4.0),
+                            padding: EdgeInsets.all(4.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -191,7 +196,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                       .secondaryBackground,
                                   size: 24.0,
                                 ),
-                              ].divide(const SizedBox(width: 12.0)),
+                              ].divide(SizedBox(width: 12.0)),
                             ),
                           ),
                         ),
@@ -212,9 +217,9 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                 ),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: Text(
                                     '#Marketing',
@@ -239,9 +244,9 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                 ),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: Text(
                                     '#Kinh doanh',
@@ -256,14 +261,14 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
+                              .divide(SizedBox(width: 8.0))
+                              .addToStart(SizedBox(width: 16.0))
+                              .addToEnd(SizedBox(width: 16.0)),
                         ),
                       ).animateOnPageLoad(
                           animationsMap['rowOnPageLoadAnimation1']!),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -290,28 +295,28 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                       .bodySmall
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: const Color(0xFFDE7C03),
+                                        color: Color(0xFFDE7C03),
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                const Icon(
+                                Icon(
                                   Icons.arrow_forward_ios,
                                   color: Color(0xFFDE7C03),
                                   size: 14.0,
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ],
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 160.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: ListView(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -321,19 +326,19 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -348,7 +353,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -404,21 +409,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -426,12 +431,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -487,21 +492,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -509,12 +514,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -570,32 +575,32 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -610,7 +615,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -666,21 +671,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -688,12 +693,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -749,21 +754,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -771,12 +776,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -832,22 +837,22 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 18.0)),
+                            ].divide(SizedBox(width: 18.0)),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -874,28 +879,28 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                       .bodySmall
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: const Color(0xFFDE7C03),
+                                        color: Color(0xFFDE7C03),
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                const Icon(
+                                Icon(
                                   Icons.arrow_forward_ios,
                                   color: Color(0xFFDE7C03),
                                   size: 14.0,
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ],
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 160.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: ListView(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -905,19 +910,19 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -932,7 +937,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -988,21 +993,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1010,12 +1015,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1071,21 +1076,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1093,12 +1098,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1154,32 +1159,32 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1194,7 +1199,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1250,21 +1255,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1272,12 +1277,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1333,21 +1338,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1355,12 +1360,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1416,22 +1421,22 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 18.0)),
+                            ].divide(SizedBox(width: 18.0)),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
                         child: Container(
                           decoration: BoxDecoration(
@@ -1442,7 +1447,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(4.0),
+                            padding: EdgeInsets.all(4.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -1475,7 +1480,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                       .secondaryBackground,
                                   size: 24.0,
                                 ),
-                              ].divide(const SizedBox(width: 12.0)),
+                              ].divide(SizedBox(width: 12.0)),
                             ),
                           ),
                         ),
@@ -1496,9 +1501,9 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                 ),
                               ),
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: Text(
                                     '#All',
@@ -1513,14 +1518,14 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                               ),
                             ),
                           ]
-                              .divide(const SizedBox(width: 8.0))
-                              .addToStart(const SizedBox(width: 16.0))
-                              .addToEnd(const SizedBox(width: 16.0)),
+                              .divide(SizedBox(width: 8.0))
+                              .addToStart(SizedBox(width: 16.0))
+                              .addToEnd(SizedBox(width: 16.0)),
                         ),
                       ).animateOnPageLoad(
                           animationsMap['rowOnPageLoadAnimation2']!),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1547,28 +1552,28 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                       .bodySmall
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: const Color(0xFFDE7C03),
+                                        color: Color(0xFFDE7C03),
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                const Icon(
+                                Icon(
                                   Icons.arrow_forward_ios,
                                   color: Color(0xFFDE7C03),
                                   size: 14.0,
                                 ),
-                              ].divide(const SizedBox(width: 8.0)),
+                              ].divide(SizedBox(width: 8.0)),
                             ),
                           ],
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 160.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: ListView(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -1578,19 +1583,19 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1605,7 +1610,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1661,21 +1666,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1683,12 +1688,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1744,21 +1749,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1766,12 +1771,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1827,32 +1832,32 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
                               Container(
                                 width: 300.0,
                                 height: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1867,7 +1872,7 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -1923,21 +1928,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1945,12 +1950,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x7CF9CF58),
+                                                color: Color(0x7CF9CF58),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -2006,21 +2011,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0x7639D2C0),
+                                        color: Color(0x7639D2C0),
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
+                                        padding: EdgeInsets.all(6.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2028,12 +2033,12 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                               width: 30.0,
                                               height: 30.0,
                                               decoration: BoxDecoration(
-                                                color: const Color(0x4CBF39EF),
+                                                color: Color(0x4CBF39EF),
                                                 borderRadius:
                                                     BorderRadius.circular(90.0),
                                               ),
                                               child: Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Text(
                                                   'C',
@@ -2089,21 +2094,21 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
                                                               FontWeight.w100,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 4.0)),
+                                                ].divide(SizedBox(height: 4.0)),
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 18.0)),
+                            ].divide(SizedBox(width: 18.0)),
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(height: 12.0)),
+                    ].divide(SizedBox(height: 12.0)),
                   ),
                 ),
               ],

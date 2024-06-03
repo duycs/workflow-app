@@ -1,9 +1,23 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import '/profile/update_profile_ck_popup/update_profile_ck_popup_widget.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'update_profile_c_p_n_copy_widget.dart' show UpdateProfileCPNCopyWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class UpdateProfileCPNCopyModel
@@ -137,21 +151,49 @@ class UpdateProfileCPNCopyModel
     bool? uploadImageToken2;
     ApiCallResponse? apiResultUploadImage2;
 
-    if (images.isNotEmpty) {
+    if (images.length > 0) {
       uploadImageToken2 = await action_blocks.tokenReload(context);
       if (uploadImageToken2!) {
         apiResultUploadImage2 = await UploadFileGroup.uploadListFileCall.call(
           accessToken: FFAppState().accessToken,
           fileList: images,
         );
-        if ((apiResultUploadImage2.succeeded ?? true)) {
+        if ((apiResultUploadImage2?.succeeded ?? true)) {
           if (FileUploadStruct.maybeFromMap(
-                      (apiResultUploadImage2.jsonBody ?? ''))!
+                      (apiResultUploadImage2?.jsonBody ?? ''))!
                   .data
                   .length >=
               2) {
+            var confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return WebViewAware(
+                      child: AlertDialog(
+                        title: Text(files!.create.length.toString()),
+                        content: Text(FileUploadStruct.maybeFromMap(
+                                (apiResultUploadImage2?.jsonBody ?? ''))!
+                            .data
+                            .length
+                            .toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: Text('Confirm'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ) ??
+                false;
             imagesUpload = FileUploadStruct.maybeFromMap(
-                    (apiResultUploadImage2.jsonBody ?? ''))!
+                    (apiResultUploadImage2?.jsonBody ?? ''))!
                 .data
                 .map((e) => e.id)
                 .toList()
@@ -191,12 +233,12 @@ class UpdateProfileCPNCopyModel
                           TextButton(
                             onPressed: () =>
                                 Navigator.pop(alertDialogContext, false),
-                            child: const Text('Cancel'),
+                            child: Text('Cancel'),
                           ),
                           TextButton(
                             onPressed: () =>
                                 Navigator.pop(alertDialogContext, true),
-                            child: const Text('Confirm'),
+                            child: Text('Confirm'),
                           ),
                         ],
                       ),
@@ -231,12 +273,12 @@ class UpdateProfileCPNCopyModel
                           TextButton(
                             onPressed: () =>
                                 Navigator.pop(alertDialogContext, false),
-                            child: const Text('Cancel'),
+                            child: Text('Cancel'),
                           ),
                           TextButton(
                             onPressed: () =>
                                 Navigator.pop(alertDialogContext, true),
-                            child: const Text('Confirm'),
+                            child: Text('Confirm'),
                           ),
                         ],
                       ),

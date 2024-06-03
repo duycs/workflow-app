@@ -6,10 +6,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dropdown_user_list_model.dart';
 export 'dropdown_user_list_model.dart';
@@ -48,7 +50,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
       _model.tokenReloadDropdownUserList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadDropdownUserList!) {
-        if (widget.dataPar!.isNotEmpty) {
+        if (widget.dataPar!.length > 0) {
           _model.apiResultList = await StaffGroup.getStaffListCall.call(
             accessToken: FFAppState().accessToken,
             filter: () {
@@ -97,7 +99,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
           while (_model.loop < _model.staffList.length) {
             while (_model.loop2 < widget.dataPar!.length) {
               if (_model.staffList[_model.loop].id ==
-                  (widget.dataPar?[_model.loop2])?.staffsId.id) {
+                  (widget.dataPar?[_model.loop2])?.staffsId?.id) {
                 _model.updateStaffListAtIndex(
                   _model.loop,
                   (e) => e..check = true,
@@ -192,17 +194,17 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Container(
             width: double.infinity,
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxHeight: 750.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -215,11 +217,11 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Stack(
-              alignment: const AlignmentDirectional(0.0, 1.0),
+              alignment: AlignmentDirectional(0.0, 1.0),
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 80.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 80.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -232,7 +234,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -244,7 +246,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         focusNode: _model.textNameFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.textNameTextController',
-                                          const Duration(milliseconds: 2000),
+                                          Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
                                         autofocus: false,
@@ -308,9 +310,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
-                                          prefixIcon: const Icon(
+                                          prefixIcon: Icon(
                                             Icons.search_rounded,
                                           ),
                                           suffixIcon: _model
@@ -324,7 +326,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                         ?.clear();
                                                     setState(() {});
                                                   },
-                                                  child: const Icon(
+                                                  child: Icon(
                                                     Icons.clear,
                                                     size: 22,
                                                   ),
@@ -360,7 +362,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -374,9 +376,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         value: _model.switchValue1!,
                                         onChanged: (newValue) async {
                                           setState(() =>
-                                              _model.switchValue1 = newValue);
+                                              _model.switchValue1 = newValue!);
 
-                                          if (!newValue) {
+                                          if (!newValue!) {
                                             while (_model.loop <
                                                 _model.staffList.length) {
                                               _model.updateStaffListAtIndex(
@@ -416,8 +418,8 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         value: _model.switchValue2!,
                                         onChanged: (newValue) async {
                                           setState(() =>
-                                              _model.switchValue2 = newValue);
-                                          if (newValue) {
+                                              _model.switchValue2 = newValue!);
+                                          if (newValue!) {
                                             while (_model.loop <
                                                 _model.staffList.length) {
                                               _model.updateStaffListAtIndex(
@@ -449,7 +451,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                 .primaryText,
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Chọn tất cả',
@@ -468,7 +470,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                               ),
                               if (_model.isLoad == true)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: Builder(
                                     builder: (context) {
@@ -493,12 +495,12 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         scrollDirection: Axis.vertical,
                                         itemCount: listView.length,
                                         separatorBuilder: (_, __) =>
-                                            const SizedBox(height: 16.0),
+                                            SizedBox(height: 16.0),
                                         itemBuilder: (context, listViewIndex) {
                                           final listViewItem =
                                               listView[listViewIndex];
                                           return Container(
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -557,7 +559,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -568,7 +570,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                             BorderRadius
                                                                 .circular(40.0),
                                                         child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listViewItem.userId.avatar != null && listViewItem.userId.avatar != '' ? listViewItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                           width: 32.0,
                                                           height: 32.0,
                                                           fit: BoxFit.cover,
@@ -578,7 +580,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     4.0,
                                                                     0.0,
@@ -614,7 +616,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           4.0,
@@ -672,12 +674,14 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                       .textNameTextController
                                                       .text
                                                       .toLowerCase()))
-                                          .toList().isEmpty) &&
+                                          .toList()
+                                          .length <=
+                                      0) &&
                                   (_model.isLoad == true))
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 100.0, 0.0, 50.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -694,7 +698,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 0.0, 0.0),
                                           child: Text(
                                             'Không có dữ liệu !',
@@ -721,7 +725,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(15.0, 12.0, 15.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(15.0, 12.0, 15.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -734,9 +738,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                           text: 'Đóng',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -750,7 +754,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                             ),
                             borderRadius: BorderRadius.circular(20.0),
@@ -785,9 +789,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -800,7 +804,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                   fontWeight: FontWeight.normal,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -808,7 +812,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 12.0)),
+                    ].divide(SizedBox(width: 12.0)),
                   ),
                 ),
               ],

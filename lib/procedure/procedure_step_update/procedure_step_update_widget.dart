@@ -11,8 +11,11 @@ import '/procedure/dropdown_user_list/dropdown_user_list_widget.dart';
 import '/procedure/operations_list_popup/operations_list_popup_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_step_update_model.dart';
 export 'procedure_step_update_model.dart';
@@ -58,7 +61,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
           ..actionType = widget.data?.actionType
           ..name = widget.data?.name
           ..staffsAlias = widget.data?.staffsAlias
-          ..estimateInSecond = widget.data?.estimateInSecond ?? 0
+          ..estimateInSecond = widget.data?.estimateInSecond != null
+              ? widget.data?.estimateInSecond
+              : 0
           ..timeOperate =
               widget.data?.timeOperate != null && widget.data?.timeOperate != ''
                   ? widget.data?.timeOperate
@@ -75,9 +80,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
       while (_model.loop! < widget.data!.departments.length) {
         _model.addToStafStepDepartments(DepartmentsIdStruct(
           departmentsId: DepartmentsStruct(
-            id: (widget.data?.departments[_model.loop!])?.departmentsId.id,
+            id: (widget.data?.departments?[_model.loop!])?.departmentsId?.id,
             name:
-                (widget.data?.departments[_model.loop!])?.departmentsId.name,
+                (widget.data?.departments?[_model.loop!])?.departmentsId?.name,
           ),
         ));
         setState(() {});
@@ -89,16 +94,16 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
               ..updateCheckStaff(
                 (e) => e.add(StaffsStepStruct(
                   staffsId: StaffIdStruct(
-                    id: ((widget.data?.departments[_model.loop!])
-                            ?.checkStaff[_model.loop2])
+                    id: ((widget.data?.departments?[_model.loop!])
+                            ?.checkStaff?[_model.loop2])
                         ?.staffsId
-                        .id,
+                        ?.id,
                     userId: UserIdStruct(
-                      firstName: ((widget.data?.departments[_model.loop!])
-                              ?.checkStaff[_model.loop2])
+                      firstName: ((widget.data?.departments?[_model.loop!])
+                              ?.checkStaff?[_model.loop2])
                           ?.staffsId
-                          .userId
-                          .firstName,
+                          ?.userId
+                          ?.firstName,
                     ),
                   ),
                 )),
@@ -157,16 +162,16 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
+        alignment: AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Container(
-            constraints: const BoxConstraints(
+            constraints: BoxConstraints(
               maxHeight: 870.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -187,7 +192,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -195,7 +200,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -225,7 +230,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               focusNode: _model.textNameFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textNameTextController',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () async {
                                   _model.updateStepsEditStruct(
                                     (e) => e
@@ -255,9 +260,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 focusedBorder: InputBorder.none,
                                 errorBorder: InputBorder.none,
                                 focusedErrorBorder: InputBorder.none,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Icons.drive_file_rename_outline,
                                 ),
                               ),
@@ -276,7 +281,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               focusNode: _model.textDscriptionFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textDscriptionTextController',
-                                const Duration(milliseconds: 2000),
+                                Duration(milliseconds: 2000),
                                 () async {
                                   _model.updateStepsEditStruct(
                                     (e) => e
@@ -306,9 +311,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 focusedBorder: InputBorder.none,
                                 errorBorder: InputBorder.none,
                                 focusedErrorBorder: InputBorder.none,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                prefixIcon: const Icon(
+                                prefixIcon: Icon(
                                   Icons.notes_sharp,
                                 ),
                                 suffixIcon: _model.textDscriptionTextController!
@@ -326,7 +331,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           setState(() {});
                                           setState(() {});
                                         },
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.clear,
                                           size: 22,
                                         ),
@@ -354,7 +359,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 4.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -362,7 +367,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final datePickedTime = await showTimePicker(
+                                  final _datePickedTime = await showTimePicker(
                                     context: context,
                                     initialTime: TimeOfDay.fromDateTime(
                                         getCurrentTimestamp),
@@ -402,14 +407,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       );
                                     },
                                   );
-                                  if (datePickedTime != null) {
+                                  if (_datePickedTime != null) {
                                     safeSetState(() {
                                       _model.datePicked = DateTime(
                                         getCurrentTimestamp.year,
                                         getCurrentTimestamp.month,
                                         getCurrentTimestamp.day,
-                                        datePickedTime.hour,
-                                        datePickedTime.minute,
+                                        _datePickedTime.hour,
+                                        _datePickedTime.minute,
                                       );
                                     });
                                   }
@@ -454,7 +459,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(const SizedBox(width: 1.0)),
+                                  ].divide(SizedBox(width: 1.0)),
                                 ),
                               ),
                             ),
@@ -503,14 +508,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               ),
                             if ('1' == '2')
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Expanded(
-                                      child: SizedBox(
+                                      child: Container(
                                         width: 90.0,
                                         child: TextFormField(
                                           controller:
@@ -520,24 +525,29 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.estimateDayTextController',
-                                            const Duration(milliseconds: 2000),
+                                            Duration(milliseconds: 2000),
                                             () async {
                                               _model.updateStepsEditStruct(
                                                 (e) => e
                                                   ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
+                                                      _model.estimateHourTextController.text != null &&
+                                                              _model.estimateHourTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateHourTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateMinuteTextController.text !=
+                                                      _model.estimateMinuteTextController.text != null &&
+                                                              _model.estimateMinuteTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateMinuteTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateDayTextController.text != ''
+                                                      _model.estimateDayTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.estimateDayTextController.text != ''
                                                           ? _model.estimateDayTextController.text
                                                           : '0'),
                                               );
@@ -618,7 +628,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       ),
                                     ),
                                     Expanded(
-                                      child: SizedBox(
+                                      child: Container(
                                         width: 90.0,
                                         child: TextFormField(
                                           controller:
@@ -628,24 +638,29 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.estimateHourTextController',
-                                            const Duration(milliseconds: 2000),
+                                            Duration(milliseconds: 2000),
                                             () async {
                                               _model.updateStepsEditStruct(
                                                 (e) => e
                                                   ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
+                                                      _model.estimateHourTextController.text != null &&
+                                                              _model.estimateHourTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateHourTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateMinuteTextController.text !=
+                                                      _model.estimateMinuteTextController.text != null &&
+                                                              _model.estimateMinuteTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateMinuteTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateDayTextController.text != ''
+                                                      _model.estimateDayTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.estimateDayTextController.text != ''
                                                           ? _model.estimateDayTextController.text
                                                           : '0'),
                                               );
@@ -726,7 +741,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       ),
                                     ),
                                     Expanded(
-                                      child: SizedBox(
+                                      child: Container(
                                         width: 90.0,
                                         child: TextFormField(
                                           controller: _model
@@ -736,24 +751,29 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.estimateMinuteTextController',
-                                            const Duration(milliseconds: 2000),
+                                            Duration(milliseconds: 2000),
                                             () async {
                                               _model.updateStepsEditStruct(
                                                 (e) => e
                                                   ..estimateInSecond = functions.timeToMinute(
-                                                      _model.estimateHourTextController.text !=
+                                                      _model.estimateHourTextController.text != null &&
+                                                              _model.estimateHourTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateHourTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateMinuteTextController.text !=
+                                                      _model.estimateMinuteTextController.text != null &&
+                                                              _model.estimateMinuteTextController.text !=
                                                                   ''
                                                           ? _model
                                                               .estimateMinuteTextController
                                                               .text
                                                           : '0',
-                                                      _model.estimateDayTextController.text != ''
+                                                      _model.estimateDayTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.estimateDayTextController.text != ''
                                                           ? _model.estimateDayTextController.text
                                                           : '0'),
                                               );
@@ -833,11 +853,11 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
                                 '#Công việc',
@@ -853,7 +873,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                             Builder(
                               builder: (context) {
                                 final operationsView =
-                                    _model.stepsEdit?.operations.toList() ??
+                                    _model.stepsEdit?.operations?.toList() ??
                                         [];
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
@@ -861,7 +881,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: operationsView.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 4.0),
+                                      SizedBox(height: 4.0),
                                   itemBuilder: (context, operationsViewIndex) {
                                     final operationsViewItem =
                                         operationsView[operationsViewIndex];
@@ -874,7 +894,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             BorderRadius.circular(4.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -908,7 +928,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 8.0)),
+                                                ].divide(SizedBox(height: 8.0)),
                                               ),
                                             ),
                                             FlutterFlowIconButton(
@@ -933,7 +953,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 setState(() {});
                                               },
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     );
@@ -942,7 +962,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 8.0),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -951,7 +971,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 8.0, 4.0, 8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -963,7 +983,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                         children: [
                                           Expanded(
                                             child: Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child:
                                                   FlutterFlowDropDown<String>(
                                                 controller: _model
@@ -979,7 +999,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                   'to_do_list',
                                                   'approve'
                                                 ]),
-                                                optionLabels: const [
+                                                optionLabels: [
                                                   'Nhập văn bản',
                                                   'Chụp ảnh',
                                                   'Upload file',
@@ -1022,7 +1042,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         .alternate,
                                                 borderWidth: 1.0,
                                                 borderRadius: 0.0,
-                                                margin: const EdgeInsetsDirectional
+                                                margin: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 4.0),
                                                 hidesUnderline: true,
@@ -1063,7 +1083,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                   if (_model
                                                           .stepsEdit
                                                           ?.operations
-                                                          .length ==
+                                                          ?.length ==
                                                       1) {
                                                     await showDialog(
                                                       context: context,
@@ -1071,7 +1091,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                           (alertDialogContext) {
                                                         return WebViewAware(
                                                           child: AlertDialog(
-                                                            content: const Text(
+                                                            content: Text(
                                                                 'Kiểu hành động này chỉ có 1 công việc!'),
                                                             actions: [
                                                               TextButton(
@@ -1079,7 +1099,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                                     Navigator.pop(
                                                                         alertDialogContext),
                                                                 child:
-                                                                    const Text('Ok'),
+                                                                    Text('Ok'),
                                                               ),
                                                             ],
                                                           ),
@@ -1116,14 +1136,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        content: const Text(
+                                                        content: Text(
                                                             'Vui lòng chọn kiểu hành động!'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       ),
@@ -1135,10 +1155,10 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             text: 'Thêm',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1154,7 +1174,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1165,7 +1185,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               setState(() {});
-                                              if (_model.stepsEdit!.operations.isNotEmpty) {
+                                              if (_model.stepsEdit!.operations
+                                                      .length >
+                                                  0) {
                                                 setState(() {});
                                                 if (_model.actionTypeValue ==
                                                     'to_do_list') {
@@ -1214,14 +1236,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         (alertDialogContext) {
                                                       return WebViewAware(
                                                         child: AlertDialog(
-                                                          content: const Text(
+                                                          content: Text(
                                                               'Kiểu hành động này chỉ có 1 công việc!'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: const Text('Ok'),
+                                                              child: Text('Ok'),
                                                             ),
                                                           ],
                                                         ),
@@ -1280,10 +1302,10 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             text: 'Chọn',
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1299,7 +1321,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1307,7 +1329,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                        ].divide(SizedBox(width: 8.0)),
                                       ),
                                       TextFormField(
                                         controller:
@@ -1316,7 +1338,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             _model.operationsTextFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.operationsTextTextController',
-                                          const Duration(milliseconds: 2000),
+                                          Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
                                         autofocus: false,
@@ -1379,7 +1401,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 BorderRadius.circular(0.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 0.0, 4.0, 0.0),
                                           suffixIcon: _model
                                                   .operationsTextTextController!
@@ -1392,7 +1414,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         ?.clear();
                                                     setState(() {});
                                                   },
-                                                  child: const Icon(
+                                                  child: Icon(
                                                     Icons.clear,
                                                     size: 22,
                                                   ),
@@ -1410,22 +1432,22 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             .operationsTextTextControllerValidator
                                             .asValidator(context),
                                       ),
-                                    ].divide(const SizedBox(height: 16.0)),
+                                    ].divide(SizedBox(height: 16.0)),
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 4.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 24.0, 0.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -1480,7 +1502,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 10.0, 0.0),
                                               child: Row(
@@ -1491,7 +1513,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Chọn danh sách nhân viên',
@@ -1523,7 +1545,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 1.0)),
+                                ].divide(SizedBox(width: 1.0)),
                               ),
                             ),
                             Builder(
@@ -1536,7 +1558,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: staffsListView.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 4.0),
+                                      SizedBox(height: 4.0),
                                   itemBuilder: (context, staffsListViewIndex) {
                                     final staffsListViewItem =
                                         staffsListView[staffsListViewIndex];
@@ -1549,7 +1571,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1578,6 +1600,11 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                                     .staffsId
                                                                     .userId
                                                                     .firstName !=
+                                                                null &&
+                                                            staffsListViewItem
+                                                                    .staffsId
+                                                                    .userId
+                                                                    .firstName !=
                                                                 ''
                                                         ? staffsListViewItem
                                                             .staffsId
@@ -1593,7 +1620,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 8.0)),
+                                                ].divide(SizedBox(height: 8.0)),
                                               ),
                                             ),
                                             FlutterFlowIconButton(
@@ -1614,7 +1641,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 setState(() {});
                                               },
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     );
@@ -1623,14 +1650,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 4.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
                                     child: Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -1674,7 +1701,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            borderRadius: const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(0.0),
                                               bottomRight: Radius.circular(0.0),
                                               topLeft: Radius.circular(0.0),
@@ -1688,7 +1715,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 10.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1698,7 +1725,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'Bộ phận',
@@ -1729,7 +1756,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 1.0)),
+                                ].divide(SizedBox(width: 1.0)),
                               ),
                             ),
                             Builder(
@@ -1742,7 +1769,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: departmentsListView.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 4.0),
+                                      SizedBox(height: 4.0),
                                   itemBuilder:
                                       (context, departmentsListViewIndex) {
                                     final departmentsListViewItem =
@@ -1757,7 +1784,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -1785,6 +1812,10 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                     departmentsListViewItem
                                                                     .departmentsId
                                                                     .name !=
+                                                                null &&
+                                                            departmentsListViewItem
+                                                                    .departmentsId
+                                                                    .name !=
                                                                 ''
                                                         ? departmentsListViewItem
                                                             .departmentsId.name
@@ -1798,7 +1829,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                   ),
-                                                ].divide(const SizedBox(height: 8.0)),
+                                                ].divide(SizedBox(height: 8.0)),
                                               ),
                                             ),
                                             FlutterFlowIconButton(
@@ -1818,7 +1849,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                 setState(() {});
                                               },
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ].divide(SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     );
@@ -1833,14 +1864,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 16.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 16.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -1850,9 +1881,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -1885,7 +1916,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               }
                               _model.staffAlias = null;
                               setState(() {});
-                              if (_model.stepsEdit!.operations.isNotEmpty) {
+                              if (_model.stepsEdit!.operations.length > 0) {
                                 while (_model.loop! <
                                     _model.stafStepDepartments.length) {
                                   _model.updateStaffAliasStruct(
@@ -2042,28 +2073,28 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   while (_model.loop2 <
                                       _model.stepsEdit!.staffs.length) {
                                     if ((_model.stepsEdit
-                                                ?.staffs[_model.loop!])
+                                                ?.staffs?[_model.loop!])
                                             ?.staffsId
-                                            .id ==
+                                            ?.id ==
                                         (_model.stepsEdit
-                                                ?.staffs[_model.loop2])
+                                                ?.staffs?[_model.loop2])
                                             ?.staffsId
-                                            .id) {
+                                            ?.id) {
                                       _model.addToCheckStaff(
                                           CheckUpdateStepStruct(
                                         firstName: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
+                                                ?.staffs?[_model.loop!])
                                             ?.staffsId
-                                            .userId
-                                            .firstName,
+                                            ?.userId
+                                            ?.firstName,
                                         staffId: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
+                                                ?.staffs?[_model.loop!])
                                             ?.staffsId
-                                            .id,
+                                            ?.id,
                                         name: (_model.stepsEdit
-                                                ?.staffs[_model.loop!])
+                                                ?.staffs?[_model.loop!])
                                             ?.staffsId
-                                            .staffName,
+                                            ?.staffName,
                                       ));
                                       setState(() {});
                                     }
@@ -2076,7 +2107,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 _model.loop = 0;
                                 _model.loop2 = 0;
                                 setState(() {});
-                                if (_model.checkStaff.isNotEmpty) {
+                                if (_model.checkStaff.length > 0) {
                                   await showModalBottomSheet(
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
@@ -2185,12 +2216,12 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                     return WebViewAware(
                                       child: AlertDialog(
                                         content:
-                                            const Text('Vui lòng nhập công việc!'),
+                                            Text('Vui lòng nhập công việc!'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('Ok'),
+                                            child: Text('Ok'),
                                           ),
                                         ],
                                       ),
@@ -2203,9 +2234,9 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                             text: 'Lưu',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -2216,7 +2247,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

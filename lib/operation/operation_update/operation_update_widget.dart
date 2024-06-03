@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'operation_update_model.dart';
@@ -64,17 +65,17 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 650.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -90,19 +91,19 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
               width: 1.0,
             ),
           ),
-          alignment: const AlignmentDirectional(0.0, 1.0),
+          alignment: AlignmentDirectional(0.0, 1.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -110,7 +111,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -199,7 +200,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -263,7 +264,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: const EdgeInsets.all(16.0),
+                                contentPadding: EdgeInsets.all(16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -326,7 +327,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   ),
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 16.0),
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -351,7 +352,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 'to_do_list',
                                 'approve'
                               ]),
-                              optionLabels: const [
+                              optionLabels: [
                                 'Nhập văn bản',
                                 'Chụp ảnh',
                                 'Upload file',
@@ -380,7 +381,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 0.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -407,7 +408,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                             : false,
                                     onChanged: (newValue) async {
                                       setState(() => _model
-                                          .switchListTileValue = newValue);
+                                          .switchListTileValue = newValue!);
                                     },
                                     title: Text(
                                       'Trạng thái hoạt động:',
@@ -430,23 +431,23 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                         ListTileControlAffinity.trailing,
                                   ),
                                 ),
-                              ].divide(const SizedBox(width: 16.0)),
+                              ].divide(SizedBox(width: 16.0)),
                             ),
-                          ].divide(const SizedBox(height: 12.0)),
+                          ].divide(SizedBox(height: 12.0)),
                         ),
                       ),
                     ),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 12.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -455,9 +456,9 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               text: 'Hủy',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -484,15 +485,15 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               var confirmDialogResponse =
                                   await showDialog<bool>(
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return WebViewAware(
                                             child: AlertDialog(
-                                              title: const Text('Xác nhận'),
-                                              content: const Text(
+                                              title: Text('Xác nhận'),
+                                              content: Text(
                                                   'Bạn chắc chắn muốn chỉnh sửa'),
                                               actions: [
                                                 TextButton(
@@ -500,14 +501,14 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           false),
-                                                  child: const Text('Hủy'),
+                                                  child: Text('Hủy'),
                                                 ),
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext,
                                                           true),
-                                                  child: const Text('Xác nhận'),
+                                                  child: Text('Xác nhận'),
                                                 ),
                                               ],
                                             ),
@@ -518,7 +519,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                               if (confirmDialogResponse) {
                                 _model.apiResuftOperationUpdate =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.apiResuftOperationUpdate!) {
                                   _model.apiResultOperationUpdate =
                                       await OperationGroup.operationsUpdateCall
@@ -537,7 +538,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                     accessToken: FFAppState().accessToken,
                                     operationId: widget.operationUpdate?.id,
                                   );
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if ((_model.apiResultOperationUpdate
                                           ?.succeeded ??
                                       true)) {
@@ -550,7 +551,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
                                                 .secondary,
@@ -560,7 +561,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                     context.pushNamed(
                                       'OperationList',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -578,7 +579,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context).error,
                                       ),
@@ -586,22 +587,22 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                   }
                                 } else {
                                   setState(() {});
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Lưu',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -612,7 +613,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

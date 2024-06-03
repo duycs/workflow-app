@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,11 +6,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/order/order_create/order_create_widget.dart';
+import 'dart:math';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'program_market_detail_model.dart';
@@ -19,7 +24,7 @@ class ProgramMarketDetailWidget extends StatefulWidget {
   const ProgramMarketDetailWidget({
     super.key,
     String? idProgram,
-  }) : idProgram = idProgram ?? '';
+  }) : this.idProgram = idProgram ?? '';
 
   final String idProgram;
 
@@ -63,15 +68,15 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 400.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
           ScaleEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 400.0.ms,
-            begin: const Offset(0.6, 0.6),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.6, 0.6),
+            end: Offset(1.0, 1.0),
           ),
         ],
       ),
@@ -132,7 +137,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -154,7 +159,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
-                            boxShadow: const [
+                            boxShadow: [
                               BoxShadow(
                                 blurRadius: 1.0,
                                 color: Color(0x28000000),
@@ -164,7 +169,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 ),
                               )
                             ],
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(12.0),
                               bottomRight: Radius.circular(12.0),
                               topLeft: Radius.circular(0.0),
@@ -172,24 +177,24 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(12.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SizedBox(
+                                Container(
                                   height: 250.0,
                                   child: Stack(
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
                                           height: 250.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
@@ -234,10 +239,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 1.0),
+                                            AlignmentDirectional(0.0, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 12.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -254,7 +259,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .accent4,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 5.0,
                                                       color: Color(0x28000000),
@@ -269,7 +274,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                           12.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(12.0),
+                                                  padding: EdgeInsets.all(12.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -286,7 +291,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         1.0,
                                                                         0.0,
@@ -337,7 +342,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                             FontWeight.w500,
                                                                       ),
                                                                 ),
-                                                                const TextSpan(
+                                                                TextSpan(
                                                                   text: 'đ',
                                                                   style:
                                                                       TextStyle(
@@ -348,7 +353,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                             .normal,
                                                                   ),
                                                                 ),
-                                                                const TextSpan(
+                                                                TextSpan(
                                                                   text: '   ',
                                                                   style:
                                                                       TextStyle(
@@ -371,7 +376,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                         )
                                                                       : '',
                                                                   style:
-                                                                      const TextStyle(
+                                                                      TextStyle(
                                                                     color: Color(
                                                                         0xFFFF0000),
                                                                     fontSize:
@@ -384,7 +389,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                             .normal,
                                                                   ),
                                                                 ),
-                                                                const TextSpan(
+                                                                TextSpan(
                                                                   text: 'đ',
                                                                   style:
                                                                       TextStyle(
@@ -414,7 +419,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                   ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                       Row(
@@ -426,7 +431,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         1.0,
                                                                         0.0,
@@ -465,7 +470,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                       0.0,
                                                                 ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                       Row(
@@ -480,7 +485,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                         children: [
                                                           if (_model
                                                                   .dataGetOne!
-                                                                  .reacts.isNotEmpty)
+                                                                  .reacts
+                                                                  .length >
+                                                              0)
                                                             Icon(
                                                               Icons
                                                                   .star_rounded,
@@ -491,10 +498,14 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                             ),
                                                           if (_model
                                                                   .dataGetOne!
-                                                                  .reacts.isNotEmpty)
+                                                                  .reacts
+                                                                  .length >
+                                                              0)
                                                             Expanded(
                                                               child: Text(
-                                                                _model.dataGetOne!.reacts.isNotEmpty
+                                                                _model.dataGetOne!.reacts
+                                                                            .length >
+                                                                        0
                                                                     ? formatNumber(
                                                                         (List<String>
                                                                             listItem) {
@@ -528,7 +539,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                             ),
                                                           if (_model
                                                                   .dataGetOne!
-                                                                  .reacts.isEmpty)
+                                                                  .reacts
+                                                                  .length <=
+                                                              0)
                                                             Expanded(
                                                               child: Text(
                                                                 '',
@@ -557,7 +570,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                           2.0),
                                                             ),
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Text(
                                                               'HOT',
@@ -578,7 +591,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                   ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             width: 4.0)),
                                                       ),
                                                     ],
@@ -594,7 +607,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -605,11 +618,11 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         width: 45.0,
                                         height: 45.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.dataGetOne?.authorId.avatar}?access_token=${FFAppState().accessToken}',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.dataGetOne?.authorId?.avatar}?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -627,11 +640,11 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                               ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 8.0)),
+                                    ].divide(SizedBox(width: 8.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 12.0, 0.0, 0.0),
                                   child: Text(
                                     _model.dataGetOne!.name,
@@ -644,10 +657,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 4.0, 16.0, 0.0),
                                   child: Text(
-                                    'Lĩnh vực: ${_model.dataGetOne?.domainId.name}',
+                                    'Lĩnh vực: ${_model.dataGetOne?.domainId?.name}',
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
@@ -660,10 +673,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       4.0, 4.0, 16.0, 0.0),
                                   child: Text(
-                                    'Danh mục: ${_model.dataGetOne?.categoryId.name}',
+                                    'Danh mục: ${_model.dataGetOne?.categoryId?.name}',
                                     maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
@@ -676,7 +689,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -686,7 +699,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   4.0, 4.0, 16.0, 0.0),
                                           child: Text(
                                             _model.dataGetOne!.description,
@@ -707,7 +720,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -715,7 +728,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Danh sách bài học',
@@ -734,10 +747,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 16.0, 0.0),
                                 child: Text(
-                                  '${_model.dataGetOne?.lessions.length.toString()} bài học',
+                                  '${_model.dataGetOne?.lessions?.length?.toString()} bài học',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -753,12 +766,12 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 24.0),
                           child: Builder(
                             builder: (context) {
                               final listLessons =
-                                  _model.dataGetOne?.lessions.toList() ?? [];
+                                  _model.dataGetOne?.lessions?.toList() ?? [];
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,
@@ -766,12 +779,12 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 scrollDirection: Axis.vertical,
                                 itemCount: listLessons.length,
                                 separatorBuilder: (_, __) =>
-                                    const SizedBox(height: 8.0),
+                                    SizedBox(height: 8.0),
                                 itemBuilder: (context, listLessonsIndex) {
                                   final listLessonsItem =
                                       listLessons[listLessonsIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 16.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -782,13 +795,13 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Container(
                                             width: 100.0,
                                             height: 100.0,
-                                            decoration: const BoxDecoration(),
+                                            decoration: BoxDecoration(),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(12.0),
@@ -808,7 +821,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 4.0),
                                                 child: Text(
@@ -893,10 +906,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                   ),
                                                 ],
                                               ),
-                                            ].divide(const SizedBox(height: 2.0)),
+                                            ].divide(SizedBox(height: 2.0)),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 8.0)),
+                                      ].divide(SizedBox(width: 8.0)),
                                     ),
                                   );
                                 },
@@ -910,7 +923,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                 ),
               if (_model.dataGetOne?.price == '0')
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -938,9 +951,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         price: _model.dataGetOne?.price,
                                         name: _model.dataGetOne?.name,
                                         numOfListLessions:
-                                            _model.dataGetOne?.lessions.length,
+                                            _model.dataGetOne?.lessions?.length,
                                         author:
-                                            _model.dataGetOne?.authorId.alias,
+                                            _model.dataGetOne?.authorId?.alias,
                                         programId: widget.idProgram,
                                         checkType: 'staff',
                                       ),
@@ -953,9 +966,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           text: 'Áp dụng cho cá nhân',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -966,7 +979,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -997,9 +1010,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         price: _model.dataGetOne?.price,
                                         name: _model.dataGetOne?.name,
                                         numOfListLessions:
-                                            _model.dataGetOne?.lessions.length,
+                                            _model.dataGetOne?.lessions?.length,
                                         author:
-                                            _model.dataGetOne?.authorId.alias,
+                                            _model.dataGetOne?.authorId?.alias,
                                         programId: widget.idProgram,
                                         checkType: 'organization',
                                       ),
@@ -1012,9 +1025,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           text: 'Áp dụng cho tổ chức',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1025,7 +1038,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -1033,12 +1046,12 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
               if (_model.dataGetOne?.price != '0')
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1066,9 +1079,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         price: _model.dataGetOne?.price,
                                         name: _model.dataGetOne?.name,
                                         numOfListLessions:
-                                            _model.dataGetOne?.lessions.length,
+                                            _model.dataGetOne?.lessions?.length,
                                         author:
-                                            _model.dataGetOne?.authorId.alias,
+                                            _model.dataGetOne?.authorId?.alias,
                                         programId: widget.idProgram,
                                         checkType: 'staff',
                                       ),
@@ -1081,9 +1094,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           text: 'Mua cho cá nhân',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).secondary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1094,7 +1107,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -1125,9 +1138,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         price: _model.dataGetOne?.price,
                                         name: _model.dataGetOne?.name,
                                         numOfListLessions:
-                                            _model.dataGetOne?.lessions.length,
+                                            _model.dataGetOne?.lessions?.length,
                                         author:
-                                            _model.dataGetOne?.authorId.alias,
+                                            _model.dataGetOne?.authorId?.alias,
                                         programId: widget.idProgram,
                                         checkType: 'organization',
                                       ),
@@ -1140,9 +1153,9 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           text: 'Mua cho tổ chức',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1153,7 +1166,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -1161,7 +1174,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
             ],

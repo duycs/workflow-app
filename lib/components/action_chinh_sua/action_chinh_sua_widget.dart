@@ -5,6 +5,7 @@ import '/training/market/add_program_market/add_program_market_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'action_chinh_sua_model.dart';
@@ -16,11 +17,13 @@ class ActionChinhSuaWidget extends StatefulWidget {
     required this.dataDetail,
     required this.callBackList2,
     bool? checkMarket,
-  }) : checkMarket = checkMarket ?? true;
+    required this.checkpage,
+  }) : this.checkMarket = checkMarket ?? true;
 
   final StudyProgramListStruct? dataDetail;
   final Future Function()? callBackList2;
   final bool checkMarket;
+  final String? checkpage;
 
   @override
   State<ActionChinhSuaWidget> createState() => _ActionChinhSuaWidgetState();
@@ -68,18 +71,18 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(-1.0, 0.0),
+      alignment: AlignmentDirectional(-1.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
         child: Container(
           width: double.infinity,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 300.0,
             maxHeight: 180.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x2B202529),
@@ -91,9 +94,9 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
             ],
             borderRadius: BorderRadius.circular(8.0),
           ),
-          alignment: const AlignmentDirectional(-1.0, 0.0),
+          alignment: AlignmentDirectional(-1.0, 0.0),
           child: Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(12.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +135,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Icon(
                           Icons.mode,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -141,7 +144,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: Text(
                             'Chỉnh sửa',
@@ -162,7 +165,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                       child: Icon(
                         Icons.people,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -172,7 +175,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Text(
                           'Gán chương trình cho bộ phận',
                           style:
@@ -204,8 +207,8 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               child: AddProgramMarketWidget(
                                 id: widget.dataDetail!.id,
                                 price: widget.dataDetail?.price,
-                                version: dataListViewItem.version,
-                                checkPage: widget.checkpage,
+                                version: widget.dataDetail?.version,
+                                checkPage: widget.checkMarket.toString(),
                               ),
                             ),
                           );
@@ -216,7 +219,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.shopify,
@@ -226,7 +229,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               'Đưa khóa học lên Market',
@@ -247,7 +250,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                       child: Icon(
                         Icons.shopify,
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -257,7 +260,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Text(
                           'Update version khóa học trên Market',
                           style:

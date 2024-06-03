@@ -1,16 +1,22 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/filter_reprot_image/filter_reprot_image_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'report_image_model.dart';
@@ -84,7 +90,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
               context.pushNamed(
                 'WorkResultList',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
+                  kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -162,14 +168,14 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                 ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: Visibility(
           visible: '1' == _model.checkData,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +195,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                           focusNode: _model.textFieldFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            const Duration(milliseconds: 500),
+                            Duration(milliseconds: 500),
                             () async {
                               _model.nameSearch = _model.textController.text;
                               setState(() {});
@@ -248,9 +254,9 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons.search,
                             ),
                             suffixIcon: _model.textController!.text.isNotEmpty
@@ -345,11 +351,13 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if ((_model.nameSearch != '') ||
-                        (_model.nameProcedure != '') ||
-                        (_model.startDate != '') ||
-                        (_model.endDate != '') ||
-                        (_model.nameTask != ''))
+                    if ((_model.nameSearch != null &&
+                            _model.nameSearch != '') ||
+                        (_model.nameProcedure != null &&
+                            _model.nameProcedure != '') ||
+                        (_model.startDate != null && _model.startDate != '') ||
+                        (_model.endDate != null && _model.endDate != '') ||
+                        (_model.nameTask != null && _model.nameTask != ''))
                       Text(
                         '#Kết quả hiển thị theo bộ lọc',
                         style:
@@ -370,9 +378,9 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                         offset: nextPageMarker.nextPageNumber * 20,
                         limit: 20,
                         filter:
-                            '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(_model.nameProcedure != '') && (_model.nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.nameProcedure}\"}}}' : ' '}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"submit_staff_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.nameSearch}\"}}}}' : ' '}${(_model.startDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"${_model.startDate}\"}}}}' : ' '}${(_model.endDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"${(String var1) {
+                            '{\"_and\":[{},{\"status\":{\"_eq\":\"done\"}}, {\"action_type\":{\"_eq\":\"image\"}}${(_model.nameProcedure != null && _model.nameProcedure != '') && (_model.nameProcedure != ' ') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.nameProcedure}\"}}}' : ' '}${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"submit_staff_id\":{\"user_id\":{\"first_name\":{\"_icontains\":\"${_model.nameSearch}\"}}}}' : ' '}${(_model.startDate != null && _model.startDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_gte\":\"${_model.startDate}\"}}}}' : ' '}${(_model.endDate != null && _model.endDate != '') && (_model.endDate != ' ') ? ',{\"operations\":{\"operations_id\":{\"date_updated\":{\"_lte\":\"${(String var1) {
                                 return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
+                                    .add(Duration(days: 1))
                                     .toString();
                               }(_model.endDate)}\"}}}}' : ' '}${() {
                           if (FFAppState().user.role ==
@@ -396,7 +404,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                           } else {
                             return ',{\"submit_staff_id\":{\"user_id\":{\"id\":{\"_eq\":\"${FFAppState().user.id}\"}}}}';
                           }
-                        }()}${(_model.nameTask != '') && (_model.nameTask != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameTask}\"}}' : ''}]}',
+                        }()}${(_model.nameTask != null && _model.nameTask != '') && (_model.nameTask != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameTask}\"}}' : ''}]}',
                         sort: '-date_created',
                       ),
                     ),
@@ -404,7 +412,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                     primary: false,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                    separatorBuilder: (_, __) => SizedBox(height: 8.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -430,7 +438,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                           ),
                         ),
                       ),
-                      noItemsFoundIndicatorBuilder: (_) => const SizedBox(
+                      noItemsFoundIndicatorBuilder: (_) => Container(
                         width: double.infinity,
                         height: double.infinity,
                         child: DataNotFoundWidget(),
@@ -440,7 +448,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             .listViewPagingController!
                             .itemList![reportImagesIndex];
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -465,7 +473,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: const TransitionInfo(
+                                  kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -478,7 +486,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                boxShadow: const [
+                                boxShadow: [
                                   BoxShadow(
                                     color: Color(0x33000000),
                                     offset: Offset(
@@ -494,7 +502,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -516,7 +524,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                         width: 120.0,
                                         height: 120.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
@@ -527,7 +535,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -537,7 +545,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                               CrossAxisAlignment.stretch,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 8.0, 0.0, 8.0),
                                               child: Text(
                                                 reportImagesItem.staffs.length >
@@ -582,7 +590,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                       ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 4.0, 0.0, 0.0),
                                               child: Text(
                                                 reportImagesItem.workflowId
@@ -639,7 +647,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                             .id !=
                                                         ''))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 12.0, 0.0, 0.0),
                                                 child: InkWell(
@@ -710,7 +718,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                             .dateUpdated !=
                                                         ''))
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 4.0, 0.0, 4.0),
                                                 child: Text(
@@ -774,7 +782,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

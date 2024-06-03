@@ -2,6 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'checkbox_work_result_model.dart';
 export 'checkbox_work_result_model.dart';
 
@@ -58,7 +60,7 @@ class _CheckboxWorkResultWidgetState extends State<CheckboxWorkResultWidget> {
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
-                widget.listData?.operationsId.status == 'done',
+                widget.listData?.operationsId?.status == 'done',
             onChanged: (newValue) async {
               setState(() => _model.checkboxValue = newValue!);
             },
@@ -77,7 +79,7 @@ class _CheckboxWorkResultWidgetState extends State<CheckboxWorkResultWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-      ].divide(const SizedBox(width: 4.0)),
+      ].divide(SizedBox(width: 4.0)),
     );
   }
 }
