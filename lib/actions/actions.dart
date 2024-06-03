@@ -78,26 +78,25 @@ Future<bool?> tokenReload(BuildContext context) async {
     refreshToken: FFAppState().refreshToken,
   );
   if ((apiResultRefreshTokenCheck.succeeded ?? true)) {
-    FFAppState().update(() {
-      FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
-              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
-          .data
-          .accessToken;
-      FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
-              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
-          .data
-          .refreshToken;
-      FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
-              (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
-          .data
-          .expires;
-      FFAppState().dataTimeStartToken =
-          (DateTime.now().microsecondsSinceEpoch / 1000).round() +
-              LoginResourceDataStruct.maybeFromMap(
-                      (apiResultRefreshTokenCheck?.jsonBody ?? ''))!
-                  .data
-                  .expires;
-    });
+    FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
+            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
+        .data
+        .accessToken;
+    FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
+            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
+        .data
+        .refreshToken;
+    FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
+            (apiResultRefreshTokenCheck.jsonBody ?? ''))!
+        .data
+        .expires;
+    FFAppState().dataTimeStartToken =
+        (DateTime.now().microsecondsSinceEpoch / 1000).round() +
+            LoginResourceDataStruct.maybeFromMap(
+                    (apiResultRefreshTokenCheck.jsonBody ?? ''))!
+                .data
+                .expires;
+    FFAppState().update(() {});
     await actions.saveInfoUser(
       'wf_token',
       getJsonField(
@@ -106,12 +105,11 @@ Future<bool?> tokenReload(BuildContext context) async {
       ).toString().toString(),
     );
   } else {
-    FFAppState().update(() {
-      FFAppState().accessToken = '';
-      FFAppState().refreshToken = '';
-      FFAppState().user = UserStruct();
-      FFAppState().expires = 0;
-    });
+    FFAppState().accessToken = '';
+    FFAppState().refreshToken = '';
+    FFAppState().user = UserStruct();
+    FFAppState().expires = 0;
+    FFAppState().update(() {});
     await actions.clearInfoUser(
       'wf_email',
     );

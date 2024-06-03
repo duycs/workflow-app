@@ -39,10 +39,9 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStart = widget.dateStart!;
-        _model.dateEnd = widget.dateEnd!;
-      });
+      _model.dateStart = widget.dateStart!;
+      _model.dateEnd = widget.dateEnd!;
+      setState(() {});
     });
   }
 
@@ -175,14 +174,13 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                                   );
                                 });
                               }
-                              setState(() {
-                                _model.dateStart = dateTimeFormat(
-                                  'yyyy-MM-dd',
-                                  _model.datePicked1,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                );
-                              });
+                              _model.dateStart = dateTimeFormat(
+                                'yyyy-MM-dd',
+                                _model.datePicked1,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              );
+                              setState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -264,14 +262,13 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                                   );
                                 });
                               }
-                              setState(() {
-                                _model.dateEnd = dateTimeFormat(
-                                  'yyy-MM-dd',
-                                  _model.datePicked2,
-                                  locale:
-                                      FFLocalizations.of(context).languageCode,
-                                );
-                              });
+                              _model.dateEnd = dateTimeFormat(
+                                'yyy-MM-dd',
+                                _model.datePicked2,
+                                locale:
+                                    FFLocalizations.of(context).languageCode,
+                              );
+                              setState(() {});
                             },
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -312,10 +309,9 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() {
-                                _model.dateStart = '';
-                                _model.dateEnd = '';
-                              });
+                              _model.dateStart = '';
+                              _model.dateEnd = '';
+                              setState(() {});
                               await widget.callBack?.call(
                                 '',
                                 '',

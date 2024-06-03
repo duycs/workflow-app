@@ -76,54 +76,45 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
             }(),
           );
           if ((_model.apiResultList?.succeeded ?? true)) {
-            setState(() {
-              _model.staffList = StaffListDataStruct.maybeFromMap(
-                      (_model.apiResultList?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<StaffListStruct>();
-            });
+            _model.staffList = StaffListDataStruct.maybeFromMap(
+                    (_model.apiResultList?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<StaffListStruct>();
+            setState(() {});
           }
           while (_model.loop < _model.staffList.length) {
-            setState(() {
-              _model.updateStaffListAtIndex(
-                _model.loop,
-                (e) => e..check = false,
-              );
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
+            _model.updateStaffListAtIndex(
+              _model.loop,
+              (e) => e..check = false,
+            );
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop = 0;
-          });
+          _model.loop = 0;
+          setState(() {});
           while (_model.loop < _model.staffList.length) {
             while (_model.loop2 < widget.dataPar!.length) {
               if (_model.staffList[_model.loop].id ==
                   (widget.dataPar?[_model.loop2])?.staffsId.id) {
-                setState(() {
-                  _model.updateStaffListAtIndex(
-                    _model.loop,
-                    (e) => e..check = true,
-                  );
-                });
+                _model.updateStaffListAtIndex(
+                  _model.loop,
+                  (e) => e..check = true,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
-            setState(() {
-              _model.loop2 = 0;
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
-          }
-          setState(() {
             _model.loop2 = 0;
-            _model.loop = 0;
-          });
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
+          }
+          _model.loop2 = 0;
+          _model.loop = 0;
+          setState(() {});
         } else {
           _model.apiResultListData = await StaffGroup.getStaffListCall.call(
             accessToken: FFAppState().accessToken,
@@ -152,33 +143,28 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
             }(),
           );
           if ((_model.apiResultListData?.succeeded ?? true)) {
-            setState(() {
-              _model.staffList = StaffListDataStruct.maybeFromMap(
-                      (_model.apiResultListData?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<StaffListStruct>();
-            });
+            _model.staffList = StaffListDataStruct.maybeFromMap(
+                    (_model.apiResultListData?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<StaffListStruct>();
+            setState(() {});
           }
           while (_model.loop < _model.staffList.length) {
-            setState(() {
-              _model.updateStaffListAtIndex(
-                _model.loop,
-                (e) => e..check = false,
-              );
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
+            _model.updateStaffListAtIndex(
+              _model.loop,
+              (e) => e..check = false,
+            );
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop = 0;
-          });
+          _model.loop = 0;
+          setState(() {});
         }
 
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -187,6 +173,9 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
 
     _model.textNameTextController ??= TextEditingController();
     _model.textNameFocusNode ??= FocusNode();
+
+    _model.switchValue1 = true;
+    _model.switchValue2 = false;
   }
 
   @override
@@ -382,7 +371,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                             .length ==
                                         _model.staffList.length)
                                       Switch.adaptive(
-                                        value: _model.switchValue1 ??= true,
+                                        value: _model.switchValue1!,
                                         onChanged: (newValue) async {
                                           setState(() =>
                                               _model.switchValue1 = newValue);
@@ -390,19 +379,16 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                           if (!newValue) {
                                             while (_model.loop <
                                                 _model.staffList.length) {
-                                              setState(() {
-                                                _model.updateStaffListAtIndex(
-                                                  _model.loop,
-                                                  (e) => e..check = false,
-                                                );
-                                              });
-                                              setState(() {
-                                                _model.loop = _model.loop + 1;
-                                              });
+                                              _model.updateStaffListAtIndex(
+                                                _model.loop,
+                                                (e) => e..check = false,
+                                              );
+                                              setState(() {});
+                                              _model.loop = _model.loop + 1;
+                                              setState(() {});
                                             }
-                                            setState(() {
-                                              _model.loop = 0;
-                                            });
+                                            _model.loop = 0;
+                                            setState(() {});
                                             setState(() {
                                               _model.switchValue1 = true;
                                             });
@@ -427,26 +413,23 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                             .length !=
                                         _model.staffList.length)
                                       Switch.adaptive(
-                                        value: _model.switchValue2 ??= false,
+                                        value: _model.switchValue2!,
                                         onChanged: (newValue) async {
                                           setState(() =>
                                               _model.switchValue2 = newValue);
                                           if (newValue) {
                                             while (_model.loop <
                                                 _model.staffList.length) {
-                                              setState(() {
-                                                _model.updateStaffListAtIndex(
-                                                  _model.loop,
-                                                  (e) => e..check = true,
-                                                );
-                                              });
-                                              setState(() {
-                                                _model.loop = _model.loop + 1;
-                                              });
+                                              _model.updateStaffListAtIndex(
+                                                _model.loop,
+                                                (e) => e..check = true,
+                                              );
+                                              setState(() {});
+                                              _model.loop = _model.loop + 1;
+                                              setState(() {});
                                             }
-                                            setState(() {
-                                              _model.loop = 0;
-                                            });
+                                            _model.loop = 0;
+                                            setState(() {});
                                             setState(() {
                                               _model.switchValue2 = false;
                                             });
@@ -554,25 +537,21 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                                                         _model
                                                                             .loop]
                                                                     .id) {
-                                                              setState(() {
-                                                                _model
-                                                                    .updateStaffListAtIndex(
-                                                                  _model.loop,
-                                                                  (e) => e
-                                                                    ..check =
-                                                                        checkCall,
-                                                                );
-                                                              });
+                                                              _model
+                                                                  .updateStaffListAtIndex(
+                                                                _model.loop,
+                                                                (e) => e
+                                                                  ..check =
+                                                                      checkCall,
+                                                              );
+                                                              setState(() {});
                                                             }
-                                                            setState(() {
-                                                              _model.loop =
-                                                                  _model.loop +
-                                                                      1;
-                                                            });
+                                                            _model.loop =
+                                                                _model.loop + 1;
+                                                            setState(() {});
                                                           }
-                                                          setState(() {
-                                                            _model.loop = 0;
-                                                          });
+                                                          _model.loop = 0;
+                                                          setState(() {});
                                                         },
                                                       ),
                                                     ),
@@ -784,23 +763,20 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                             setState(() {});
                             while (_model.loop < _model.staffList.length) {
                               if (_model.staffList[_model.loop].check == true) {
-                                setState(() {
-                                  _model.addToCallBackData(StaffListStruct(
-                                    id: _model.staffList[_model.loop].id,
-                                    userId: UserStruct(
-                                      firstName: _model.staffList[_model.loop]
-                                          .userId.firstName,
-                                    ),
-                                  ));
-                                });
+                                _model.addToCallBackData(StaffListStruct(
+                                  id: _model.staffList[_model.loop].id,
+                                  userId: UserStruct(
+                                    firstName: _model.staffList[_model.loop]
+                                        .userId.firstName,
+                                  ),
+                                ));
+                                setState(() {});
                               }
-                              setState(() {
-                                _model.loop = _model.loop + 1;
-                              });
+                              _model.loop = _model.loop + 1;
+                              setState(() {});
                             }
-                            setState(() {
-                              _model.loop = 0;
-                            });
+                            _model.loop = 0;
+                            setState(() {});
                             await widget.callback?.call(
                               _model.callBackData,
                             );

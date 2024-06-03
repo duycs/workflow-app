@@ -29,10 +29,9 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().idCheck = '';
-        FFAppState().alertCheck = '';
-      });
+      FFAppState().idCheck = '';
+      FFAppState().alertCheck = '';
+      setState(() {});
       _model.checkEmailWf = await actions.checkLoginSharePreferences(
         'wf_email',
         'wf_token',
@@ -46,27 +45,25 @@ class _LoginWidgetState extends State<LoginWidget> {
           refreshToken: _model.checkWfToken,
         );
         if ((_model.apiResultRefreshTokenLogin?.succeeded ?? true)) {
-          FFAppState().update(() {
-            FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
-                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-                .data
-                .accessToken;
-            FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
-                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-                .data
-                .refreshToken;
-            FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
-                    (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
-                .data
-                .expires;
-            FFAppState().dataTimeStartToken =
-                (DateTime.now().microsecondsSinceEpoch / 1000).round() +
-                    LoginResourceDataStruct.maybeFromMap(
-                            (_model.apiResultRefreshTokenLogin?.jsonBody ??
-                                ''))!
-                        .data
-                        .expires;
-          });
+          FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
+                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+              .data
+              .accessToken;
+          FFAppState().refreshToken = LoginResourceDataStruct.maybeFromMap(
+                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+              .data
+              .refreshToken;
+          FFAppState().expires = LoginResourceDataStruct.maybeFromMap(
+                  (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+              .data
+              .expires;
+          FFAppState().dataTimeStartToken =
+              (DateTime.now().microsecondsSinceEpoch / 1000).round() +
+                  LoginResourceDataStruct.maybeFromMap(
+                          (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
+                      .data
+                      .expires;
+          FFAppState().update(() {});
           await actions.saveInfoUser(
             'wf_token',
             getJsonField(
@@ -82,28 +79,27 @@ class _LoginWidgetState extends State<LoginWidget> {
             userId: FFAppState().user.id,
           );
           if ((_model.apiResultGetStaffIdReWfLogin?.succeeded ?? true)) {
-            setState(() {
-              FFAppState().staffid = getJsonField(
-                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
-                r'''$.staff.id''',
-              ).toString().toString();
-              FFAppState().staffLogin = getJsonField(
-                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
-                r'''$.staff''',
-              );
-              FFAppState().staffDepartment = getJsonField(
-                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
-                r'''$.department''',
-              );
-              FFAppState().staffBranch = getJsonField(
-                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
-                r'''$.branch''',
-              );
-              FFAppState().staffOrganization = getJsonField(
-                (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
-                r'''$.organization''',
-              );
-            });
+            FFAppState().staffid = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.staff.id''',
+            ).toString().toString();
+            FFAppState().staffLogin = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.staff''',
+            );
+            FFAppState().staffDepartment = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.department''',
+            );
+            FFAppState().staffBranch = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.branch''',
+            );
+            FFAppState().staffOrganization = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.organization''',
+            );
+            setState(() {});
             await actions.checkNofiLoad();
 
             context.pushNamed('TaskList');
@@ -111,17 +107,15 @@ class _LoginWidgetState extends State<LoginWidget> {
             return;
           }
         } else {
-          setState(() {
-            _model.isLoad = true;
-          });
+          _model.isLoad = true;
+          setState(() {});
           return;
         }
 
         return;
       } else {
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
         return;
       }
     });

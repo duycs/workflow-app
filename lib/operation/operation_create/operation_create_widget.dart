@@ -46,6 +46,8 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
 
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.switchValue = true;
   }
 
   @override
@@ -428,7 +430,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                       ),
                                 ),
                                 Switch.adaptive(
-                                  value: _model.switchValue ??= true,
+                                  value: _model.switchValue!,
                                   onChanged: (newValue) async {
                                     setState(
                                         () => _model.switchValue = newValue);
@@ -498,12 +500,12 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+
                               setState(() {});
                               if (_model.dropDownValue != null &&
                                   _model.dropDownValue != '') {
-                                setState(() {
-                                  _model.checkHD = '0';
-                                });
+                                _model.checkHD = '0';
+                                setState(() {});
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;
@@ -591,9 +593,8 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                   return;
                                 }
                               } else {
-                                setState(() {
-                                  _model.checkHD = '1';
-                                });
+                                _model.checkHD = '1';
+                                setState(() {});
                                 if (_model.formKey.currentState == null ||
                                     !_model.formKey.currentState!.validate()) {
                                   return;

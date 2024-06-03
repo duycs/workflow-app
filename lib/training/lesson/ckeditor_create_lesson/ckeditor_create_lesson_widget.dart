@@ -128,12 +128,12 @@ class _CkeditorCreateLessonWidgetState
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext, false),
-                                            child: const Text('Cancel'),
+                                            child: const Text('Đóng'),
                                           ),
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext, true),
-                                            child: const Text('Confirm'),
+                                            child: const Text('Ok'),
                                           ),
                                         ],
                                       ),
@@ -184,9 +184,8 @@ class _CkeditorCreateLessonWidgetState
                       ? widget.output!
                       : '',
                   action: (data) async {
-                    setState(() {
-                      _model.check = data;
-                    });
+                    _model.check = data;
+                    setState(() {});
                   },
                 ),
               ),

@@ -51,10 +51,9 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.dateStart = widget.dateStart;
-        _model.dateEnd = widget.dateEnd;
-      });
+      _model.dateStart = widget.dateStart;
+      _model.dateEnd = widget.dateEnd;
+      setState(() {});
     });
 
     _model.nameStaffTextController ??= TextEditingController(
@@ -218,14 +217,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 );
                               });
                             }
-                            setState(() {
-                              _model.dateStart = dateTimeFormat(
-                                'yyyy-MM-dd',
-                                _model.datePicked1,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              );
-                            });
+                            _model.dateStart = dateTimeFormat(
+                              'yyyy-MM-dd',
+                              _model.datePicked1,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
+                            setState(() {});
                           },
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -306,14 +303,12 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
                                 );
                               });
                             }
-                            setState(() {
-                              _model.dateEnd = dateTimeFormat(
-                                'yyyy-MM-dd',
-                                _model.datePicked2,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              );
-                            });
+                            _model.dateEnd = dateTimeFormat(
+                              'yyyy-MM-dd',
+                              _model.datePicked2,
+                              locale: FFLocalizations.of(context).languageCode,
+                            );
+                            setState(() {});
                           },
                           child: Column(
                             mainAxisSize: MainAxisSize.max,

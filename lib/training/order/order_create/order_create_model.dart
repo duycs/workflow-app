@@ -55,6 +55,10 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
   String? orderCreateDraft;
   // Stores action output result for [Action Block - OrderCreate] action in Button widget.
   String? orderCreateDraft2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? orderUpdateStatusDone;
+  // Stores action output result for [Backend Call - API (QrCode)] action in Button widget.
+  ApiCallResponse? apiResultQrCodeCreate;
 
   @override
   void initState(BuildContext context) {

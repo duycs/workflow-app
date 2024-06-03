@@ -60,13 +60,12 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
               '{\"_and\":[{\"staff_test_id\":{\"_eq\":\"${widget.testId}\"}}]}',
         );
         if ((_model.apiResultGetStaffAnswerList?.succeeded ?? true)) {
-          setState(() {
-            _model.list = StaffAnswerListDataStruct.maybeFromMap(
-                    (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<StaffAnswerListStruct>();
-          });
+          _model.list = StaffAnswerListDataStruct.maybeFromMap(
+                  (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<StaffAnswerListStruct>();
+          setState(() {});
         }
       } else {
         setState(() {});
@@ -664,10 +663,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                   ),
                                               ].divide(const SizedBox(height: 8.0)),
                                             ),
-                                            if ((questionListItem.answerType ==
-                                                    'checkbox') ||
-                                                (questionListItem.answerType ==
-                                                    'radio'))
+                                            if (questionListItem.answerType ==
+                                                'checkbox')
                                               Builder(
                                                 builder: (context) {
                                                   final listAnswer2 =
@@ -723,7 +720,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               ),
                                                               child: Checkbox(
                                                                 value: _model
-                                                                        .checkboxValueMap[
+                                                                        .checkboxValueMap1[
                                                                     listAnswer2Item] ??= questionListItem
                                                                             .answers
                                                                             .where((e) =>
@@ -737,7 +734,154 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                                     ? null
                                                                     : (newValue) async {
                                                                         setState(() =>
-                                                                            _model.checkboxValueMap[listAnswer2Item] =
+                                                                            _model.checkboxValueMap1[listAnswer2Item] =
+                                                                                newValue!);
+                                                                      },
+                                                                side:
+                                                                    BorderSide(
+                                                                  width: 2,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                ),
+                                                                activeColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                checkColor: ('1' ==
+                                                                        '1')
+                                                                    ? null
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Text(
+                                                                listAnswer2Item
+                                                                    .answersId
+                                                                    .content,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color:
+                                                                          () {
+                                                                        if ((listAnswer2Item.answersId.correct ==
+                                                                                1) &&
+                                                                            (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else if ((listAnswer2Item.answersId.correct !=
+                                                                                1) &&
+                                                                            (questionListItem.answers.where((e) => e.answersId.id == listAnswer2Item.answersId.id).toList().isNotEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .error;
+                                                                        } else if ((listAnswer2Item.answersId.correct ==
+                                                                                1) &&
+                                                                            (questionListItem.answers.isEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else if ((listAnswer2Item.answersId.correct !=
+                                                                                1) &&
+                                                                            (questionListItem.answers.isEmpty)) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primaryText;
+                                                                        } else if (listAnswer2Item.answersId.correct ==
+                                                                            1) {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primary;
+                                                                        } else {
+                                                                          return FlutterFlowTheme.of(context)
+                                                                              .primaryText;
+                                                                        }
+                                                                      }(),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            if (questionListItem.answerType ==
+                                                'radio')
+                                              Builder(
+                                                builder: (context) {
+                                                  final listAnswer2 =
+                                                      questionListItem
+                                                          .questionId.answers
+                                                          .toList();
+                                                  return ListView.separated(
+                                                    padding: EdgeInsets.zero,
+                                                    shrinkWrap: true,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listAnswer2.length,
+                                                    separatorBuilder: (_, __) =>
+                                                        const SizedBox(height: 4.0),
+                                                    itemBuilder: (context,
+                                                        listAnswer2Index) {
+                                                      final listAnswer2Item =
+                                                          listAnswer2[
+                                                              listAnswer2Index];
+                                                      return Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .noColor,
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Theme(
+                                                              data: ThemeData(
+                                                                checkboxTheme:
+                                                                    CheckboxThemeData(
+                                                                  visualDensity:
+                                                                      VisualDensity
+                                                                          .compact,
+                                                                  materialTapTargetSize:
+                                                                      MaterialTapTargetSize
+                                                                          .shrinkWrap,
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                ),
+                                                                unselectedWidgetColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                              ),
+                                                              child: Checkbox(
+                                                                value: _model
+                                                                        .checkboxValueMap2[
+                                                                    listAnswer2Item] ??= questionListItem
+                                                                            .answers
+                                                                            .where((e) =>
+                                                                                e.answersId.id ==
+                                                                                listAnswer2Item.answersId.id)
+                                                                            .toList().isNotEmpty
+                                                                    ? true
+                                                                    : false,
+                                                                onChanged: ('1' ==
+                                                                        '1')
+                                                                    ? null
+                                                                    : (newValue) async {
+                                                                        setState(() =>
+                                                                            _model.checkboxValueMap2[listAnswer2Item] =
                                                                                 newValue!);
                                                                       },
                                                                 side:

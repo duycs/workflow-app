@@ -53,13 +53,12 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
         accessToken: FFAppState().accessToken,
       );
       if ((_model.apiResultGetList?.succeeded ?? true)) {
-        setState(() {
-          _model.departmentList = DepartmentListDataStruct.maybeFromMap(
-                  (_model.apiResultGetList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<DepartmentListStruct>();
-        });
+        _model.departmentList = DepartmentListDataStruct.maybeFromMap(
+                (_model.apiResultGetList?.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<DepartmentListStruct>();
+        setState(() {});
       }
     });
   }
@@ -677,7 +676,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                               id: widget.id,
                               name: widget.name,
                               code: widget.code,
-                              description: widget.code,
+                              description: widget.description,
                               codeList: widget.codeListitem,
                               status: widget.status,
                             ),

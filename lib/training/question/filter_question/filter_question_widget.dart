@@ -42,15 +42,13 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.nameSearch =
-            widget.name != null && widget.name != '' ? widget.name : '';
-        _model.statusSearch =
-            widget.status != null && widget.status != '' ? widget.status : '';
-      });
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.nameSearch =
+          widget.name != null && widget.name != '' ? widget.name : '';
+      _model.statusSearch =
+          widget.status != null && widget.status != '' ? widget.status : '';
+      setState(() {});
+      _model.isLoad = true;
+      setState(() {});
     });
 
     _model.nameTextController ??= TextEditingController(text: widget.name);
@@ -134,9 +132,8 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                         optionLabels: const ['Hoạt động', 'Không hoạt động'],
                         onChanged: (val) async {
                           setState(() => _model.dropStatusValue = val);
-                          setState(() {
-                            _model.statusSearch = _model.dropStatusValue;
-                          });
+                          _model.statusSearch = _model.dropStatusValue;
+                          setState(() {});
                         },
                         width: double.infinity,
                         height: 56.0,

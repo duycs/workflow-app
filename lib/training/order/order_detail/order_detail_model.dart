@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'order_detail_widget.dart' show OrderDetailWidget;
@@ -6,8 +7,6 @@ import 'package:flutter/material.dart';
 class OrderDetailModel extends FlutterFlowModel<OrderDetailWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for RatingBar widget.
-  double? ratingBarValue;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -19,6 +18,10 @@ class OrderDetailModel extends FlutterFlowModel<OrderDetailWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? orderUpdateStatus1;
+  // Stores action output result for [Backend Call - API (QrCode)] action in Button widget.
+  ApiCallResponse? apiResultQrCodeCreate;
 
   @override
   void initState(BuildContext context) {}

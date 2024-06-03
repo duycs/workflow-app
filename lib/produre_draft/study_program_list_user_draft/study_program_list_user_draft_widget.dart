@@ -142,14 +142,14 @@ class _StudyProgramListUserDraftWidgetState
                             '_model.textFieldNameSearchTextController',
                             const Duration(milliseconds: 500),
                             () async {
-                              setState(() {
-                                _model.nameSearch = _model
-                                    .textFieldNameSearchTextController.text;
-                                _model.isLoad = false;
-                                _model.dataList = [];
-                              });
+                              _model.nameSearch =
+                                  _model.textFieldNameSearchTextController.text;
+                              _model.isLoad = false;
+                              _model.dataList = [];
+                              setState(() {});
                               await _model.getLinkProgram(context);
                               setState(() {});
+
                               setState(() {});
                             },
                           ),
@@ -215,15 +215,15 @@ class _StudyProgramListUserDraftWidgetState
                                     onTap: () async {
                                       _model.textFieldNameSearchTextController
                                           ?.clear();
-                                      setState(() {
-                                        _model.nameSearch = _model
-                                            .textFieldNameSearchTextController
-                                            .text;
-                                        _model.isLoad = false;
-                                        _model.dataList = [];
-                                      });
+                                      _model.nameSearch = _model
+                                          .textFieldNameSearchTextController
+                                          .text;
+                                      _model.isLoad = false;
+                                      _model.dataList = [];
+                                      setState(() {});
                                       await _model.getLinkProgram(context);
                                       setState(() {});
+
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -289,18 +289,16 @@ class _StudyProgramListUserDraftWidgetState
                                                 .textFieldNameSearchTextController
                                                 ?.clear();
                                           });
-                                          setState(() {
-                                            _model.nameSearch = name!;
-                                            _model.dateEndSeach = dateEnd!;
-                                            _model.lessonNameSeach =
-                                                lessonName!;
-                                            _model.dateStartSeach = dateStart!;
-                                          });
+                                          _model.nameSearch = name!;
+                                          _model.dateEndSeach = dateEnd!;
+                                          _model.lessonNameSeach = lessonName!;
+                                          _model.dateStartSeach = dateStart!;
+                                          setState(() {});
                                           await _model.getLinkProgram(context);
                                           setState(() {
                                             _model
                                                 .textFieldNameSearchTextController
-                                                ?.text = name!;
+                                                ?.text = name;
                                           });
                                         },
                                       ),
@@ -428,14 +426,12 @@ class _StudyProgramListUserDraftWidgetState
                                             onTap: () async {
                                               if (_model.checkShow ==
                                                   dataListViewItem.id) {
-                                                setState(() {
-                                                  _model.checkShow = null;
-                                                });
+                                                _model.checkShow = null;
+                                                setState(() {});
                                               } else {
-                                                setState(() {
-                                                  _model.checkShow =
-                                                      dataListViewItem.id;
-                                                });
+                                                _model.checkShow =
+                                                    dataListViewItem.id;
+                                                setState(() {});
                                               }
                                             },
                                             child: Row(

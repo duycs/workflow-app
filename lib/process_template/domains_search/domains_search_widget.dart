@@ -51,60 +51,51 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultlld?.succeeded ?? true)) {
-          setState(() {
-            _model.domainList = DomainsListDataStruct.maybeFromMap(
-                    (_model.apiResultlld?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DomainsListStruct>();
-          });
+          _model.domainList = DomainsListDataStruct.maybeFromMap(
+                  (_model.apiResultlld?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<DomainsListStruct>();
+          setState(() {});
           while (_model.loop < _model.domainList.length) {
-            setState(() {
-              _model.updateDomainListAtIndex(
-                _model.loop,
-                (e) => e..check = false,
-              );
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
+            _model.updateDomainListAtIndex(
+              _model.loop,
+              (e) => e..check = false,
+            );
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
           }
-          setState(() {
-            _model.loop = 0;
-          });
+          _model.loop = 0;
+          setState(() {});
         }
+
         setState(() {});
         if (widget.search!.isNotEmpty) {
           while (_model.loop < widget.search!.length) {
             while (_model.loop2 < _model.domainList.length) {
               if ((widget.search?[_model.loop]) ==
                   _model.domainList[_model.loop2].id) {
-                setState(() {
-                  _model.updateDomainListAtIndex(
-                    _model.loop2,
-                    (e) => e..check = true,
-                  );
-                });
+                _model.updateDomainListAtIndex(
+                  _model.loop2,
+                  (e) => e..check = true,
+                );
+                setState(() {});
               }
-              setState(() {
-                _model.loop2 = _model.loop2 + 1;
-              });
+              _model.loop2 = _model.loop2 + 1;
+              setState(() {});
             }
-            setState(() {
-              _model.loop2 = 0;
-            });
-            setState(() {
-              _model.loop = _model.loop + 1;
-            });
-          }
-          setState(() {
             _model.loop2 = 0;
-            _model.loop = 0;
-          });
+            setState(() {});
+            _model.loop = _model.loop + 1;
+            setState(() {});
+          }
+          _model.loop2 = 0;
+          _model.loop = 0;
+          setState(() {});
         }
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -113,6 +104,9 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
 
     _model.textNameTextController ??= TextEditingController();
     _model.textNameFocusNode ??= FocusNode();
+
+    _model.switchValue1 = true;
+    _model.switchValue2 = false;
   }
 
   @override
@@ -331,7 +325,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                             .length ==
                                         _model.domainList.length)
                                       Switch.adaptive(
-                                        value: _model.switchValue1 ??= true,
+                                        value: _model.switchValue1!,
                                         onChanged: (newValue) async {
                                           setState(() =>
                                               _model.switchValue1 = newValue);
@@ -339,19 +333,16 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                           if (!newValue) {
                                             while (_model.loop <
                                                 _model.domainList.length) {
-                                              setState(() {
-                                                _model.updateDomainListAtIndex(
-                                                  _model.loop,
-                                                  (e) => e..check = false,
-                                                );
-                                              });
-                                              setState(() {
-                                                _model.loop = _model.loop + 1;
-                                              });
+                                              _model.updateDomainListAtIndex(
+                                                _model.loop,
+                                                (e) => e..check = false,
+                                              );
+                                              setState(() {});
+                                              _model.loop = _model.loop + 1;
+                                              setState(() {});
                                             }
-                                            setState(() {
-                                              _model.loop = 0;
-                                            });
+                                            _model.loop = 0;
+                                            setState(() {});
                                             setState(() {
                                               _model.switchValue1 = true;
                                             });
@@ -376,26 +367,23 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                             .length !=
                                         _model.domainList.length)
                                       Switch.adaptive(
-                                        value: _model.switchValue2 ??= false,
+                                        value: _model.switchValue2!,
                                         onChanged: (newValue) async {
                                           setState(() =>
                                               _model.switchValue2 = newValue);
                                           if (newValue) {
                                             while (_model.loop <
                                                 _model.domainList.length) {
-                                              setState(() {
-                                                _model.updateDomainListAtIndex(
-                                                  _model.loop,
-                                                  (e) => e..check = true,
-                                                );
-                                              });
-                                              setState(() {
-                                                _model.loop = _model.loop + 1;
-                                              });
+                                              _model.updateDomainListAtIndex(
+                                                _model.loop,
+                                                (e) => e..check = true,
+                                              );
+                                              setState(() {});
+                                              _model.loop = _model.loop + 1;
+                                              setState(() {});
                                             }
-                                            setState(() {
-                                              _model.loop = 0;
-                                            });
+                                            _model.loop = 0;
+                                            setState(() {});
                                             setState(() {
                                               _model.switchValue2 = false;
                                             });
@@ -481,15 +469,13 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                       color: 'colorUser',
                                                       callBack:
                                                           (checkCall) async {
-                                                        setState(() {
-                                                          _model
-                                                              .updateDomainListAtIndex(
-                                                            listViewIndex,
-                                                            (e) => e
-                                                              ..check =
-                                                                  checkCall,
-                                                          );
-                                                        });
+                                                        _model
+                                                            .updateDomainListAtIndex(
+                                                          listViewIndex,
+                                                          (e) => e
+                                                            ..check = checkCall,
+                                                        );
+                                                        setState(() {});
                                                         while (_model.loop <
                                                             _model.domainList
                                                                 .length) {
@@ -499,24 +485,21 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                                       _model
                                                                           .loop]
                                                                   .id) {
-                                                            setState(() {
-                                                              _model
-                                                                  .updateDomainListAtIndex(
-                                                                _model.loop,
-                                                                (e) => e
-                                                                  ..check =
-                                                                      checkCall,
-                                                              );
-                                                            });
+                                                            _model
+                                                                .updateDomainListAtIndex(
+                                                              _model.loop,
+                                                              (e) => e
+                                                                ..check =
+                                                                    checkCall,
+                                                            );
+                                                            setState(() {});
                                                           }
-                                                          setState(() {
-                                                            _model.loop =
-                                                                _model.loop + 1;
-                                                          });
+                                                          _model.loop =
+                                                              _model.loop + 1;
+                                                          setState(() {});
                                                         }
-                                                        setState(() {
-                                                          _model.loop = 0;
-                                                        });
+                                                        _model.loop = 0;
+                                                        setState(() {});
                                                       },
                                                     ),
                                                   ),
@@ -624,18 +607,15 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 while (_model.loop < _model.domainList.length) {
                                   if (_model.domainList[_model.loop].check ==
                                       true) {
-                                    setState(() {
-                                      _model.addToListSeacrh(
-                                          _model.domainList[_model.loop].id);
-                                    });
+                                    _model.addToListSeacrh(
+                                        _model.domainList[_model.loop].id);
+                                    setState(() {});
                                   }
-                                  setState(() {
-                                    _model.loop = _model.loop + 1;
-                                  });
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop = 0;
-                                });
+                                _model.loop = 0;
+                                setState(() {});
                                 await widget.callback?.call(
                                   _model.listSeacrh,
                                 );

@@ -39,9 +39,8 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.detail = widget.listAnswer!.toList().cast<AnswersListStruct>();
-      });
+      _model.detail = widget.listAnswer!.toList().cast<AnswersListStruct>();
+      setState(() {});
     });
   }
 
@@ -58,20 +57,19 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
       options: _model.detail.map((e) => e.answersId.content).toList().toList(),
       onChanged: (val) async {
         setState(() {});
-        setState(() {
-          _model.answerId = _model.detail
-              .where((e) => e.answersId.content == _model.radioButtonValue)
-              .toList()
-              .first
-              .answersId
-              .id;
-          _model.correct = _model.detail
-              .where((e) => e.answersId.content == _model.radioButtonValue)
-              .toList()
-              .first
-              .answersId
-              .correct;
-        });
+        _model.answerId = _model.detail
+            .where((e) => e.answersId.content == _model.radioButtonValue)
+            .toList()
+            .first
+            .answersId
+            .id;
+        _model.correct = _model.detail
+            .where((e) => e.answersId.content == _model.radioButtonValue)
+            .toList()
+            .first
+            .answersId
+            .correct;
+        setState(() {});
         await widget.callback?.call(
           _model.answerId,
           _model.correct,

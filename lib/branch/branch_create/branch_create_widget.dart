@@ -15,11 +15,9 @@ class BranchCreateWidget extends StatefulWidget {
   const BranchCreateWidget({
     super.key,
     this.listCode,
-    required this.callBack,
   });
 
   final List<String>? listCode;
-  final Future Function()? callBack;
 
   @override
   State<BranchCreateWidget> createState() => _BranchCreateWidgetState();
@@ -230,13 +228,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                 () async {
                                   if ((widget.listCode!).toList().contains(
                                       _model.branchCodeTextController.text)) {
-                                    setState(() {
-                                      _model.checkCode = '1';
-                                    });
+                                    _model.checkCode = '1';
+                                    setState(() {});
                                   } else {
-                                    setState(() {
-                                      _model.checkCode = '0';
-                                    });
+                                    _model.checkCode = '0';
+                                    setState(() {});
                                   }
                                 },
                               ),
@@ -453,6 +449,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                 ? null
                                 : () async {
                                     var shouldSetState = false;
+
                                     setState(() {});
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
@@ -526,8 +523,6 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??
                                             true)) {
-                                          await Future.delayed(const Duration(
-                                              milliseconds: 2000));
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -546,11 +541,21 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                       .secondary,
                                             ),
                                           );
-                                          await widget.callBack?.call();
-                                          Navigator.pop(context);
+
+                                          context.pushNamed(
+                                            'BranchList',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
                                         } else {
-                                          await widget.callBack?.call();
-                                          Navigator.pop(context);
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {

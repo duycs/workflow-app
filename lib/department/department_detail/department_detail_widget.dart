@@ -43,24 +43,19 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.selectedPrograms =
-            widget.programs!.toList().cast<ProgramStruct>();
-      });
+      _model.selectedPrograms = widget.programs!.toList().cast<ProgramStruct>();
+      setState(() {});
       while (_model.loop! < _model.selectedPrograms.length) {
-        setState(() {
-          _model.updateSelectedProgramsAtIndex(
-            _model.loop!,
-            (e) => e..checkPrograms = false,
-          );
-        });
-        setState(() {
-          _model.loop = _model.loop! + 1;
-        });
+        _model.updateSelectedProgramsAtIndex(
+          _model.loop!,
+          (e) => e..checkPrograms = false,
+        );
+        setState(() {});
+        _model.loop = _model.loop! + 1;
+        setState(() {});
       }
-      setState(() {
-        _model.loop = 0;
-      });
+      _model.loop = 0;
+      setState(() {});
     });
   }
 
@@ -546,12 +541,10 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                 highlightColor:
                                                     Colors.transparent,
                                                 onTap: () async {
-                                                  setState(() {
-                                                    _model.checkPrograms = '1';
-                                                  });
-                                                  setState(() {
-                                                    _model.programItems = [];
-                                                  });
+                                                  _model.checkPrograms = '1';
+                                                  setState(() {});
+                                                  _model.programItems = [];
+                                                  setState(() {});
                                                 },
                                                 child: Row(
                                                   mainAxisSize:
@@ -608,20 +601,18 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                       e.checkPrograms ==
                                                                       true)
                                                                   .toList().isNotEmpty) {
-                                                            setState(() {
-                                                              _model.programItems = widget
-                                                                  .programs!
-                                                                  .where((e) =>
-                                                                      e.checkPrograms ==
-                                                                      true)
-                                                                  .toList()
-                                                                  .map((e) => e
-                                                                      .programsId
-                                                                      .id)
-                                                                  .toList()
-                                                                  .cast<
-                                                                      String>();
-                                                            });
+                                                            _model.programItems = widget
+                                                                .programs!
+                                                                .where((e) =>
+                                                                    e.checkPrograms ==
+                                                                    true)
+                                                                .toList()
+                                                                .map((e) => e
+                                                                    .programsId
+                                                                    .id)
+                                                                .toList()
+                                                                .cast<String>();
+                                                            setState(() {});
                                                             var confirmDialogResponse =
                                                                 await showDialog<
                                                                         bool>(
@@ -701,20 +692,17 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                           () {});
                                                                     }
                                                                   }
-                                                                  setState(() {
-                                                                    _model.loop =
-                                                                        _model.loop! +
-                                                                            1;
-                                                                  });
-                                                                }
-                                                                setState(() {
                                                                   _model.loop =
-                                                                      0;
-                                                                });
-                                                                setState(() {
-                                                                  _model.checkPrograms =
-                                                                      '0';
-                                                                });
+                                                                      _model.loop! +
+                                                                          1;
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                                _model.loop = 0;
+                                                                setState(() {});
+                                                                _model.checkPrograms =
+                                                                    '0';
+                                                                setState(() {});
                                                                 ScaffoldMessenger.of(
                                                                         context)
                                                                     .showSnackBar(
@@ -741,26 +729,25 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                     _model
                                                                         .selectedPrograms
                                                                         .length) {
-                                                                  setState(() {
+                                                                  _model
+                                                                      .updateSelectedProgramsAtIndex(
                                                                     _model
-                                                                        .updateSelectedProgramsAtIndex(
-                                                                      _model
-                                                                          .loop1!,
-                                                                      (e) => e
-                                                                        ..checkPrograms =
-                                                                            false,
-                                                                    );
-                                                                  });
-                                                                  setState(() {
-                                                                    _model.loop1 =
-                                                                        _model.loop1! +
-                                                                            1;
-                                                                  });
-                                                                }
-                                                                setState(() {
+                                                                        .loop1!,
+                                                                    (e) => e
+                                                                      ..checkPrograms =
+                                                                          false,
+                                                                  );
+                                                                  setState(
+                                                                      () {});
                                                                   _model.loop1 =
-                                                                      0;
-                                                                });
+                                                                      _model.loop1! +
+                                                                          1;
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                                _model.loop1 =
+                                                                    0;
+                                                                setState(() {});
                                                               } else {
                                                                 setState(() {});
                                                                 if (shouldSetState) {
@@ -987,16 +974,15 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                           .checkPrograms,
                                                                   callBack:
                                                                       (check) async {
+                                                                    _model
+                                                                        .updateSelectedProgramsAtIndex(
+                                                                      listItemsIndex,
+                                                                      (e) => e
+                                                                        ..checkPrograms =
+                                                                            check,
+                                                                    );
                                                                     setState(
-                                                                        () {
-                                                                      _model
-                                                                          .updateSelectedProgramsAtIndex(
-                                                                        listItemsIndex,
-                                                                        (e) => e
-                                                                          ..checkPrograms =
-                                                                              check,
-                                                                      );
-                                                                    });
+                                                                        () {});
                                                                   },
                                                                 ),
                                                               ),

@@ -204,10 +204,9 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           onChanged: (val) async {
                                             setState(() => _model
                                                 .dropDownWorkflowValue = val);
-                                            setState(() {
-                                              _model.workflowId =
-                                                  _model.dropDownWorkflowValue!;
-                                            });
+                                            _model.workflowId =
+                                                _model.dropDownWorkflowValue!;
+                                            setState(() {});
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(

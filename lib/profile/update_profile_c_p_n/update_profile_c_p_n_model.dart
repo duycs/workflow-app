@@ -58,6 +58,10 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   void updateImagesUploadAtIndex(int index, Function(String) updateFn) =>
       imagesUpload[index] = updateFn(imagesUpload[index]);
 
+  String input = '';
+
+  String output = '';
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for name widget.
@@ -135,29 +139,6 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
     if (images.isNotEmpty) {
       uploadImageToken2 = await action_blocks.tokenReload(context);
       if (uploadImageToken2!) {
-        var confirmDialogResponse = await showDialog<bool>(
-              context: context,
-              builder: (alertDialogContext) {
-                return WebViewAware(
-                  child: AlertDialog(
-                    title: Text(imageId.length.toString()),
-                    actions: [
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, true),
-                        child: const Text('Confirm'),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ) ??
-            false;
         apiResultUploadImage2 = await UploadFileGroup.uploadListFileCall.call(
           accessToken: FFAppState().accessToken,
           fileList: images,
@@ -189,7 +170,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
                 .toList()
                 .toList()
                 .cast<String>();
-            confirmDialogResponse = await showDialog<bool>(
+            var confirmDialogResponse = await showDialog<bool>(
                   context: context,
                   builder: (alertDialogContext) {
                     return WebViewAware(

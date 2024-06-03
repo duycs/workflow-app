@@ -40,12 +40,15 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
+    _model.switchValue1 = true;
     _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
+    _model.switchValue2 = true;
     _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
+    _model.switchValue3 = true;
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -555,7 +558,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             ),
                           ),
                           Switch.adaptive(
-                            value: _model.switchValue1 ??= true,
+                            value: _model.switchValue1!,
                             onChanged: (newValue) async {
                               setState(() => _model.switchValue1 = newValue);
                             },
@@ -650,7 +653,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             ),
                           ),
                           Switch.adaptive(
-                            value: _model.switchValue2 ??= true,
+                            value: _model.switchValue2!,
                             onChanged: (newValue) async {
                               setState(() => _model.switchValue2 = newValue);
                             },
@@ -745,7 +748,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             ),
                           ),
                           Switch.adaptive(
-                            value: _model.switchValue3 ??= true,
+                            value: _model.switchValue3!,
                             onChanged: (newValue) async {
                               setState(() => _model.switchValue3 = newValue);
                             },

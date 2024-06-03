@@ -282,13 +282,11 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                                 e ==
                                                 _model.nameTextController.text)
                                             .toList().isNotEmpty) {
-                                      setState(() {
-                                        _model.checkName = true;
-                                      });
+                                      _model.checkName = true;
+                                      setState(() {});
                                     } else {
-                                      setState(() {
-                                        _model.checkName = false;
-                                      });
+                                      _model.checkName = false;
+                                      setState(() {});
                                     }
                                   },
                                 ),
@@ -562,21 +560,18 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                           isMultiSelect: true,
                           onMultiSelectChanged: (val) async {
                             setState(() => _model.dropDownValue = val);
-                            setState(() {
-                              _model.selectedDomainList = [];
-                            });
+                            _model.selectedDomainList = [];
+                            setState(() {});
                             while (_model.loop < _model.dropDownValue!.length) {
-                              setState(() {
-                                _model.addToSelectedDomainList(
-                                    CreateDomainAuthorsStruct(
-                                  domainsId: _model.dropDownValue?[_model.loop],
-                                ));
-                                _model.loop = _model.loop + 1;
-                              });
+                              _model.addToSelectedDomainList(
+                                  CreateDomainAuthorsStruct(
+                                domainsId: _model.dropDownValue?[_model.loop],
+                              ));
+                              _model.loop = _model.loop + 1;
+                              setState(() {});
                             }
-                            setState(() {
-                              _model.loop = 0;
-                            });
+                            _model.loop = 0;
+                            setState(() {});
                           },
                         ),
                       ]
@@ -685,14 +680,13 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     if ((_model.apiResultUploadAvatarUp
                                             ?.succeeded ??
                                         true)) {
-                                      setState(() {
-                                        _model.avatar = getJsonField(
-                                          (_model.apiResultUploadAvatarUp
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.data.id''',
-                                        ).toString();
-                                      });
+                                      _model.avatar = getJsonField(
+                                        (_model.apiResultUploadAvatarUp
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.data.id''',
+                                      ).toString();
+                                      setState(() {});
                                     }
                                   }
                                 } else {
@@ -708,23 +702,41 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   _model.apiResultAuthorsUpdate =
                                       await GroupAuthorsGroup.authorsUpdateCall
                                           .call(
-                                    requestDataJson: <String, dynamic>{
-                                      'alias': _model.nameTextController.text,
-                                      'description':
-                                          _model.descriptionTextController.text,
-                                      'domains': <String, List<dynamic>>{
-                                        'create': _model.selectedDomainList
-                                            .map((e) => e.toMap())
-                                            .toList(),
-                                        'delete': widget.domainIds!,
-                                      },
-                                      'avatar':
-                                          (_model.uploadedLocalFile
-                                                          .bytes?.isNotEmpty ??
-                                                      false)
-                                              ? _model.avatar
-                                              : widget.avatar,
-                                    },
+                                    requestDataJson: _model
+                                                .selectedDomainList.isNotEmpty
+                                        ? <String, dynamic>{
+                                            'alias':
+                                                _model.nameTextController.text,
+                                            'description': _model
+                                                .descriptionTextController.text,
+                                            'domains': <String, List<dynamic>>{
+                                              'create': _model
+                                                  .selectedDomainList
+                                                  .map((e) => e.toMap())
+                                                  .toList(),
+                                              'delete': widget.domainIds!,
+                                            },
+                                            'avatar': (_model
+                                                            .uploadedLocalFile
+                                                            .bytes
+                                                            ?.isNotEmpty ??
+                                                        false)
+                                                ? _model.avatar
+                                                : widget.avatar,
+                                          }
+                                        : <String, dynamic>{
+                                            'alias':
+                                                _model.nameTextController.text,
+                                            'description': _model
+                                                .descriptionTextController.text,
+                                            'avatar': (_model
+                                                            .uploadedLocalFile
+                                                            .bytes
+                                                            ?.isNotEmpty ??
+                                                        false)
+                                                ? _model.avatar
+                                                : widget.avatar,
+                                          },
                                     accessToken: FFAppState().accessToken,
                                     id: widget.id,
                                   );

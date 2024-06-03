@@ -51,32 +51,30 @@ class _ProcessTemplateDetailWidgetState
           id: widget.id,
         );
         if ((_model.apiResultm7u?.succeeded ?? true)) {
-          setState(() {
-            _model.data = WorkflowsStepCreateStruct(
-              name: getJsonField(
+          _model.data = WorkflowsStepCreateStruct(
+            name: getJsonField(
+              (_model.apiResultm7u?.jsonBody ?? ''),
+              r'''$.data.name''',
+            ).toString().toString(),
+          );
+          _model.stepList = functions
+              .sortArrayStepList((getJsonField(
                 (_model.apiResultm7u?.jsonBody ?? ''),
-                r'''$.data.name''',
-              ).toString().toString(),
-            );
-            _model.stepList = functions
-                .sortArrayStepList((getJsonField(
-                  (_model.apiResultm7u?.jsonBody ?? ''),
-                  r'''$.data.steps''',
-                  true,
-                )!
-                        .toList()
-                        .map<WorkflowsStepCreateStruct?>(
-                            WorkflowsStepCreateStruct.maybeFromMap)
-                        .toList() as Iterable<WorkflowsStepCreateStruct?>)
-                    .withoutNulls
-                    .toList())
-                .toList()
-                .cast<WorkflowsStepCreateStruct>();
-          });
+                r'''$.data.steps''',
+                true,
+              )!
+                      .toList()
+                      .map<WorkflowsStepCreateStruct?>(
+                          WorkflowsStepCreateStruct.maybeFromMap)
+                      .toList() as Iterable<WorkflowsStepCreateStruct?>)
+                  .withoutNulls
+                  .toList())
+              .toList()
+              .cast<WorkflowsStepCreateStruct>();
+          setState(() {});
         }
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;

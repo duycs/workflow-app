@@ -52,9 +52,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.requestData = widget.dataDetail;
-      });
+      _model.requestData = widget.dataDetail;
+      setState(() {});
     });
 
     _model.programNameTextController ??= TextEditingController(
@@ -288,10 +287,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadImageEdit =
-                                          _model.uploadImageEdit;
-                                    });
+                                    _model.uploadImageEdit =
+                                        _model.uploadImageEdit;
+                                    setState(() {});
                                   },
                                 ),
                               ],
@@ -307,13 +305,12 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 '_model.programNameTextController',
                                 const Duration(milliseconds: 2000),
                                 () async {
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e
-                                        ..name = _model
-                                            .programNameTextController.text,
-                                    );
-                                  });
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..name =
+                                          _model.programNameTextController.text,
+                                  );
+                                  setState(() {});
                                 },
                               ),
                               autofocus: false,
@@ -386,14 +383,13 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 '_model.programDescriptionTextController',
                                 const Duration(milliseconds: 2000),
                                 () async {
-                                  setState(() {
-                                    _model.updateRequestDataStruct(
-                                      (e) => e
-                                        ..description = _model
-                                            .programDescriptionTextController
-                                            .text,
-                                    );
-                                  });
+                                  _model.updateRequestDataStruct(
+                                    (e) => e
+                                      ..description = _model
+                                          .programDescriptionTextController
+                                          .text,
+                                  );
+                                  setState(() {});
                                 },
                               ),
                               autofocus: false,
@@ -464,26 +460,23 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   ? widget.dataDetail?.tests.first.testsId.id
                                   : ' ',
                               testCallBack: (testId) async {
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e..tests = [],
-                                  );
-                                });
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e
-                                      ..updateTests(
-                                        (e) =>
-                                            e.add(StudyProgramListTestIdStruct(
-                                          testsId: StaffsTestsListStruct(
-                                            id: testId?.id,
-                                            status: testId?.status,
-                                            name: testId?.name,
-                                          ),
-                                        )),
-                                      ),
-                                  );
-                                });
+                                _model.updateRequestDataStruct(
+                                  (e) => e..tests = [],
+                                );
+                                setState(() {});
+                                _model.updateRequestDataStruct(
+                                  (e) => e
+                                    ..updateTests(
+                                      (e) => e.add(StudyProgramListTestIdStruct(
+                                        testsId: StaffsTestsListStruct(
+                                          id: testId?.id,
+                                          status: testId?.status,
+                                          name: testId?.name,
+                                        ),
+                                      )),
+                                    ),
+                                );
+                                setState(() {});
                               },
                             ),
                           ),
@@ -592,27 +585,25 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                         '_model.estimateInDayTextController',
                                         const Duration(milliseconds: 2000),
                                         () async {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e
-                                                ..estimateInDay = (_model.estimateInDayTextController
-                                                                    .text !=
-                                                                '') &&
-                                                        (int.parse(_model
-                                                                .estimateInDayTextController
-                                                                .text) >
-                                                            0)
-                                                    ? functions.stringToInt(_model
-                                                        .estimateInDayTextController
-                                                        .text)
-                                                    : _model.es,
-                                            );
-                                          });
-                                          setState(() {
-                                            _model.check = int.tryParse(_model
-                                                .estimateInDayTextController
-                                                .text);
-                                          });
+                                          _model.updateRequestDataStruct(
+                                            (e) => e
+                                              ..estimateInDay = (_model.estimateInDayTextController
+                                                                  .text !=
+                                                              '') &&
+                                                      (int.parse(
+                                                              _model.estimateInDayTextController
+                                                                  .text) >
+                                                          0)
+                                                  ? functions.stringToInt(_model
+                                                      .estimateInDayTextController
+                                                      .text)
+                                                  : _model.es,
+                                          );
+                                          setState(() {});
+                                          _model.check = int.tryParse(_model
+                                              .estimateInDayTextController
+                                              .text);
+                                          setState(() {});
                                         },
                                       ),
                                       autofocus: false,
@@ -835,16 +826,14 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                setState(() {
-                                                  _model
-                                                      .updateRequestDataStruct(
-                                                    (e) => e
-                                                      ..updateLessions(
-                                                        (e) => e.removeAt(
-                                                            listViewIndex),
-                                                      ),
-                                                  );
-                                                });
+                                                _model.updateRequestDataStruct(
+                                                  (e) => e
+                                                    ..updateLessions(
+                                                      (e) => e.removeAt(
+                                                          listViewIndex),
+                                                    ),
+                                                );
+                                                setState(() {});
                                               },
                                             ),
                                           ],
@@ -855,87 +844,86 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                 );
                               },
                             ),
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1.0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: Icon(
-                                      Icons.power_settings_new_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SwitchListTile.adaptive(
-                                      value: _model.switchListTileValue ??=
-                                          widget.dataDetail?.status ==
-                                                  'published'
-                                              ? true
-                                              : false,
-                                      onChanged: (newValue) async {
-                                        setState(() => _model
-                                            .switchListTileValue = newValue);
-                                        if (newValue) {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e..status = 'published',
-                                            );
-                                          });
-                                        } else {
-                                          setState(() {
-                                            _model.updateRequestDataStruct(
-                                              (e) => e..status = 'draft',
-                                            );
-                                          });
-                                        }
-                                      },
-                                      title: Text(
-                                        'Trạng thái hoạt động',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      tileColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      activeColor: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      activeTrackColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      dense: false,
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              12.0, 0.0, 4.0, 0.0),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation']!),
                         ].divide(const SizedBox(height: 16.0)),
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 1.0,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: Icon(
+                                Icons.power_settings_new_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                            ),
+                            Expanded(
+                              child: SwitchListTile.adaptive(
+                                value: _model.switchListTileValue ??=
+                                    widget.dataDetail?.status == 'published'
+                                        ? true
+                                        : false,
+                                onChanged: (newValue) async {
+                                  setState(() =>
+                                      _model.switchListTileValue = newValue);
+                                  if (newValue) {
+                                    _model.updateRequestDataStruct(
+                                      (e) => e
+                                        ..status =
+                                            _model.switchListTileValue == true
+                                                ? 'published'
+                                                : 'draft',
+                                    );
+                                    setState(() {});
+                                  } else {
+                                    _model.updateRequestDataStruct(
+                                      (e) => e..status = 'draft',
+                                    );
+                                    setState(() {});
+                                  }
+                                },
+                                title: Text(
+                                  'Trạng thái hoạt động',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                activeTrackColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                dense: false,
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                                contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 4.0, 0.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ).animateOnPageLoad(
+                        animationsMap['containerOnPageLoadAnimation']!),
                   ),
                   Padding(
                     padding:

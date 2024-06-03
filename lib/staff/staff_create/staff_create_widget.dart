@@ -43,9 +43,8 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
-        setState(() {
-          _model.selectRole = true;
-        });
+        _model.selectRole = true;
+        setState(() {});
       }
       _model.listDeparmentToken = await action_blocks.tokenReload(context);
       if (_model.listDeparmentToken!) {
@@ -58,13 +57,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
           ).toString().toString()}\"}}}]}',
         );
         if ((_model.apiResultListDeparment?.succeeded ?? true)) {
-          setState(() {
-            _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
-                    (_model.apiResultListDeparment?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<DepartmentListStruct>();
-          });
+          _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
+                  (_model.apiResultListDeparment?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<DepartmentListStruct>();
+          setState(() {});
         }
         _model.getListBranchToken = await action_blocks.tokenReload(context);
         if (_model.getListBranchToken!) {
@@ -77,13 +75,12 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
             ).toString().toString()}\"}}}]}',
           );
           if ((_model.apiResultGetListBranch?.succeeded ?? true)) {
-            setState(() {
-              _model.branchList = BranchListDataStruct.maybeFromMap(
-                      (_model.apiResultGetListBranch?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<BranchListStruct>();
-            });
+            _model.branchList = BranchListDataStruct.maybeFromMap(
+                    (_model.apiResultGetListBranch?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<BranchListStruct>();
+            setState(() {});
           }
           _model.getListUserToken = await action_blocks.tokenReload(context);
           if (_model.getListUserToken!) {
@@ -91,14 +88,13 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
               accessToken: FFAppState().accessToken,
             );
             if ((_model.apiResultgetListUser?.succeeded ?? true)) {
-              setState(() {
-                _model.listEmail = ListUserStruct.maybeFromMap(
-                        (_model.apiResultgetListUser?.jsonBody ?? ''))!
-                    .data
-                    .toList()
-                    .cast<UserStruct>();
-                _model.checkDob = false;
-              });
+              _model.listEmail = ListUserStruct.maybeFromMap(
+                      (_model.apiResultgetListUser?.jsonBody ?? ''))!
+                  .data
+                  .toList()
+                  .cast<UserStruct>();
+              _model.checkDob = false;
+              setState(() {});
             }
           } else {
             setState(() {});
@@ -206,11 +202,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Flexible(
                 child: SingleChildScrollView(
+                  primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding:
@@ -392,7 +391,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
-                                      hintText: 'Vd: Tiên Nữ Xinh Đẹp',
+                                      hintText: 'Vd: Mai Hồng Ngọc',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -483,13 +482,11 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                               .text ==
                                                           e.email)
                                                       .toList().isNotEmpty) {
-                                                setState(() {
-                                                  _model.checkEmail = '1';
-                                                });
+                                                _model.checkEmail = '1';
+                                                setState(() {});
                                               } else {
-                                                setState(() {
-                                                  _model.checkEmail = '0';
-                                                });
+                                                _model.checkEmail = '0';
+                                                setState(() {});
                                               }
                                             },
                                           ),
@@ -622,7 +619,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
-                                      hintText: 'Vd: 0355736969',
+                                      hintText: 'Vd: 0355739999',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
@@ -788,6 +785,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                         ),
                                       ),
@@ -864,15 +862,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 );
                                               });
                                             }
-                                            setState(() {
-                                              _model.dob = dateTimeFormat(
-                                                'dd/MM/yyyy',
-                                                _model.datePicked,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              );
-                                            });
+                                            _model.dob = dateTimeFormat(
+                                              'dd/MM/yyyy',
+                                              _model.datePicked,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            );
+                                            setState(() {});
                                           },
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -936,7 +933,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           fontFamily: 'Nunito Sans',
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
                                 ),
@@ -994,6 +991,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                         ),
                                       ),
@@ -1024,13 +1022,11 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     '3755a98d-f064-45cd-80e4-5084ab1dd2c4') ||
                                                 ('${_model.roleValue}' ==
                                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                              setState(() {
-                                                _model.selectRole = true;
-                                              });
+                                              _model.selectRole = true;
+                                              setState(() {});
                                             } else {
-                                              setState(() {
-                                                _model.selectRole = false;
-                                              });
+                                              _model.selectRole = false;
+                                              setState(() {});
                                             }
 
                                             if ((FFAppState().user.role ==
@@ -1095,6 +1091,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                     ?.reset();
                                               });
                                             }
+
                                             setState(() {});
                                             setState(() {
                                               _model.branchValueController
@@ -1169,134 +1166,169 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.stretch,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 0.0, 4.0),
-                                        child: Text(
-                                          'Chức vụ gợi ý',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 4.0),
-                                        child: FlutterFlowDropDown<String>(
-                                          controller:
-                                              _model.titleValueController ??=
-                                                  FormFieldController<String>(
-                                            _model.titleValue ??= '',
-                                          ),
-                                          options: List<String>.from(
-                                              ['1', '2', '3', '4', '5']),
-                                          optionLabels: const [
-                                            'Trưởng chi nhánh',
-                                            'Phó chi nhánh',
-                                            'Trưởng bộ phận',
-                                            'Phó bộ phận',
-                                            'Nhân viên'
-                                          ],
-                                          onChanged: (val) async {
-                                            setState(
-                                                () => _model.titleValue = val);
-                                            setState(() {
-                                              _model.titleTextTextController
-                                                  ?.text = () {
-                                                if (_model.titleValue == '5') {
-                                                  return 'Nhân viên';
-                                                } else if (_model.titleValue ==
-                                                    '4') {
-                                                  return 'Phó bộ phận';
-                                                } else if (_model.titleValue ==
-                                                    '3') {
-                                                  return 'Trưởng bộ phận';
-                                                } else if (_model.titleValue ==
-                                                    '2') {
-                                                  return 'Phó chi nhánh';
-                                                } else if (_model.titleValue ==
-                                                    '1') {
-                                                  return 'Trưởng chi nhánh';
-                                                } else {
-                                                  return ' ';
-                                                }
-                                              }();
-                                            });
-                                            setState(() {});
-                                          },
-                                          width: double.infinity,
-                                          height: 56.0,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                              ),
-                                          hintText: 'Chọn chức vụ',
-                                          icon: Icon(
-                                            Icons.keyboard_arrow_down_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 15.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 1.0,
-                                          borderColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                          borderWidth: 1.0,
-                                          borderRadius: 8.0,
-                                          margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 4.0, 12.0, 4.0),
-                                          hidesUnderline: true,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
-                                        ),
-                                      ),
-                                      if (_model.checkRoleText)
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  40.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Vui lòng chọn chức vụ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle: FontStyle.italic,
+                                            20.0, 0.0, 0.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    'Chức vụ',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
                                                 ),
-                                          ),
-                                        ),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 16.0, 0.0, 4.0),
-                                        child: Text(
-                                          'Chức vụ tùy chỉnh:',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 4.0),
+                                                  child: Text(
+                                                    '(Có thể chọn chức vụ gợi ý)',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 20.0, 4.0),
+                                                child:
+                                                    FlutterFlowDropDown<String>(
+                                                  controller: _model
+                                                          .titleValueController ??=
+                                                      FormFieldController<
+                                                          String>(
+                                                    _model.titleValue ??= '',
+                                                  ),
+                                                  options: List<String>.from([
+                                                    '1',
+                                                    '2',
+                                                    '3',
+                                                    '4',
+                                                    '5'
+                                                  ]),
+                                                  optionLabels: const [
+                                                    'Trưởng chi nhánh',
+                                                    'Phó chi nhánh',
+                                                    'Trưởng bộ phận',
+                                                    'Phó bộ phận',
+                                                    'Nhân viên'
+                                                  ],
+                                                  onChanged: (val) async {
+                                                    setState(() => _model
+                                                        .titleValue = val);
+                                                    setState(() {
+                                                      _model
+                                                          .titleTextTextController
+                                                          ?.text = () {
+                                                        if (_model.titleValue ==
+                                                            '5') {
+                                                          return 'Nhân viên';
+                                                        } else if (_model
+                                                                .titleValue ==
+                                                            '4') {
+                                                          return 'Phó bộ phận';
+                                                        } else if (_model
+                                                                .titleValue ==
+                                                            '3') {
+                                                          return 'Trưởng bộ phận';
+                                                        } else if (_model
+                                                                .titleValue ==
+                                                            '2') {
+                                                          return 'Phó chi nhánh';
+                                                        } else if (_model
+                                                                .titleValue ==
+                                                            '1') {
+                                                          return 'Trưởng chi nhánh';
+                                                        } else {
+                                                          return ' ';
+                                                        }
+                                                      }();
+                                                    });
+
+                                                    setState(() {});
+                                                  },
+                                                  width: 200.0,
+                                                  height: 40.0,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  hintText: 'Chức vụ gợi ý',
+                                                  icon: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_down_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 15.0,
+                                                  ),
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                  elevation: 1.0,
+                                                  borderColor:
+                                                      Colors.transparent,
+                                                  borderWidth: 0.0,
+                                                  borderRadius: 8.0,
+                                                  margin: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 4.0, 8.0, 4.0),
+                                                  hidesUnderline: true,
+                                                  isSearchable: false,
+                                                  isMultiSelect: false,
+                                                ),
                                               ),
+                                            ),
+                                          ].divide(const SizedBox(width: 6.0)),
                                         ),
                                       ),
                                       Padding(
@@ -1318,13 +1350,11 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                               .text ==
                                                           e.email)
                                                       .toList().isNotEmpty) {
-                                                setState(() {
-                                                  _model.checkEmail = '1';
-                                                });
+                                                _model.checkEmail = '1';
+                                                setState(() {});
                                               } else {
-                                                setState(() {
-                                                  _model.checkEmail = '0';
-                                                });
+                                                _model.checkEmail = '0';
+                                                setState(() {});
                                               }
                                             },
                                           ),
@@ -1440,6 +1470,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                         ),
@@ -1463,15 +1494,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             onChanged: (val) async {
                                               setState(() =>
                                                   _model.branchValue = val);
-                                              setState(() {
-                                                _model.selectBranch = _model
-                                                    .branchList
-                                                    .where((e) =>
-                                                        e.id ==
-                                                        _model.branchValue)
-                                                    .toList()
-                                                    .first;
-                                              });
+                                              _model.selectBranch = _model
+                                                  .branchList
+                                                  .where((e) =>
+                                                      e.id ==
+                                                      _model.branchValue)
+                                                  .toList()
+                                                  .first;
+                                              setState(() {});
                                               _model.listDeparment2Token =
                                                   await action_blocks
                                                       .tokenReload(context);
@@ -1489,18 +1519,17 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                         .apiResultListDeparment2
                                                         ?.succeeded ??
                                                     true)) {
-                                                  setState(() {
-                                                    _model.listDepartment =
-                                                        DepartmentListDataStruct
-                                                                .maybeFromMap((_model
-                                                                        .apiResultListDeparment2
-                                                                        ?.jsonBody ??
-                                                                    ''))!
-                                                            .data
-                                                            .toList()
-                                                            .cast<
-                                                                DepartmentListStruct>();
-                                                  });
+                                                  _model.listDepartment =
+                                                      DepartmentListDataStruct
+                                                              .maybeFromMap((_model
+                                                                      .apiResultListDeparment2
+                                                                      ?.jsonBody ??
+                                                                  ''))!
+                                                          .data
+                                                          .toList()
+                                                          .cast<
+                                                              DepartmentListStruct>();
+                                                  setState(() {});
                                                 }
                                               }
 
@@ -1597,6 +1626,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
                                                   letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                         ),
@@ -1620,15 +1650,14 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             onChanged: (val) async {
                                               setState(() =>
                                                   _model.departmentValue = val);
-                                              setState(() {
-                                                _model.selectDepartment = _model
-                                                    .listDepartment
-                                                    .where((e) =>
-                                                        e.id ==
-                                                        _model.departmentValue)
-                                                    .toList()
-                                                    .first;
-                                              });
+                                              _model.selectDepartment = _model
+                                                  .listDepartment
+                                                  .where((e) =>
+                                                      e.id ==
+                                                      _model.departmentValue)
+                                                  .toList()
+                                                  .first;
+                                              setState(() {});
                                             },
                                             width: double.infinity,
                                             height: 56.0,
@@ -1702,167 +1731,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                   ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Thông tin đăng nhập:',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Sử dụng email và mật khẩu mặc định để đăng nhập',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Email: ${_model.emailTextController.text}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await Clipboard.setData(ClipboardData(
-                                              text: _model
-                                                  .emailTextController.text));
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Copy thành công!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.content_copy,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 4.0)),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        'Mật khẩu mặc định: Abcd@1234',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          await Clipboard.setData(
-                                              const ClipboardData(text: 'Abcd@1234'));
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Copy thành công!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.content_copy,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 4.0)),
-                                  ),
-                                ].divide(const SizedBox(height: 8.0)),
-                              ),
-                            ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(24.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.settings_outlined,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 20.0,
-                                ),
-                                Text(
-                                  'Thiết lập khác',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ].divide(const SizedBox(width: 8.0)),
-                            ),
-                          ),
                         ),
                       ),
                       Padding(
@@ -1936,6 +1805,97 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                         ).animateOnPageLoad(
                             animationsMap['containerOnPageLoadAnimation']!),
                       ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Thông tin đăng nhập:',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                            Text(
+                              'Sử dụng email và mật khẩu mặc định để đăng nhập',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Email: ${_model.emailTextController.text}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await Clipboard.setData(ClipboardData(
+                                        text: _model.emailTextController.text));
+                                  },
+                                  child: Icon(
+                                    Icons.content_copy,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 4.0)),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Mật khẩu mặc định: Abcd@1234',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await Clipboard.setData(
+                                        const ClipboardData(text: 'Abcd@1234'));
+                                  },
+                                  child: Icon(
+                                    Icons.content_copy,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 4.0)),
+                            ),
+                          ].divide(const SizedBox(height: 8.0)),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -1955,9 +1915,8 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                               '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
                           (_model.roleValue ==
                               'a8d33527-375b-4599-ac70-6a3fcad1de39')) {
-                        setState(() {
-                          _model.checkDepartment = true;
-                        });
+                        _model.checkDepartment = true;
+                        setState(() {});
                         if (_model.roleValue ==
                             'a8d33527-375b-4599-ac70-6a3fcad1de39') {
                           _model.apiResultCreateAdminBranch =
@@ -2160,28 +2119,23 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                             shouldSetState = true;
                             if ((_model.apiResultuploadImage?.succeeded ??
                                 true)) {
-                              setState(() {
-                                _model.avatarId = getJsonField(
-                                  (_model.apiResultuploadImage?.jsonBody ?? ''),
-                                  r'''$.data.id''',
-                                ).toString();
-                              });
+                              _model.avatarId = getJsonField(
+                                (_model.apiResultuploadImage?.jsonBody ?? ''),
+                                r'''$.data.id''',
+                              ).toString();
+                              setState(() {});
                             }
                           } else {
                             setState(() {});
                           }
                         } else {
-                          setState(() {
-                            _model.avatarId =
-                                '6f2dfeb5-4df6-4b73-93c4-109f72133a25';
-                          });
+                          _model.avatarId =
+                              '6f2dfeb5-4df6-4b73-93c4-109f72133a25';
+                          setState(() {});
                         }
 
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
-                          return;
-                        }
-                        if (_model.branchValue == null) {
                           return;
                         }
                         if (_model.checkEmail == '1') {
@@ -2204,165 +2158,36 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                         } else {
                           if (_model.roleValue == null ||
                               _model.roleValue == '') {
-                            setState(() {
-                              _model.checkRole = true;
-                            });
+                            _model.checkRole = true;
+                            setState(() {});
                             if (shouldSetState) setState(() {});
                             return;
                           } else {
-                            if (_model.titleValue == null ||
-                                _model.titleValue == '') {
-                              setState(() {
-                                _model.checkRoleText = true;
-                              });
+                            if (_model.datePicked == null) {
+                              _model.checkDob = true;
+                              setState(() {});
                               if (shouldSetState) setState(() {});
                               return;
                             } else {
-                              if (_model.datePicked == null) {
-                                setState(() {
-                                  _model.checkDob = true;
-                                });
+                              if (_model.branchValue == null ||
+                                  _model.branchValue == '') {
+                                _model.checkBranch = true;
+                                setState(() {});
                                 if (shouldSetState) setState(() {});
                                 return;
                               } else {
-                                if (_model.branchValue == null ||
-                                    _model.branchValue == '') {
-                                  setState(() {
-                                    _model.checkBranch = true;
-                                  });
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                } else {
-                                  if (_model.departmentValue == null ||
-                                      _model.departmentValue == '') {
-                                    if ((_model.roleValue ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
-                                        (FFAppState().user.role !=
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
-                                      setState(() {});
-                                      _model.createBToken = await action_blocks
-                                          .tokenReload(context);
-                                      shouldSetState = true;
-                                      if (_model.createBToken!) {
-                                        _model.apiResultCreateB =
-                                            await StaffGroup.createStaffCall
-                                                .call(
-                                          accessToken: FFAppState().accessToken,
-                                          requestDataJson: <String, dynamic>{
-                                            'email':
-                                                _model.emailTextController.text,
-                                            'password': 'Abcd@1234',
-                                            'role': _model.roleValue,
-                                            'first_name':
-                                                _model.nameTextController.text,
-                                            'last_name':
-                                                _model.nameTextController.text,
-                                            'status': 'active',
-                                            'department_id': null,
-                                            'branch_id': _model.branchValue,
-                                            'cccd':
-                                                _model.cccdTextController.text,
-                                            'gender':
-                                                _model.radioButtonValue == 'Nam'
-                                                    ? 'male'
-                                                    : 'female',
-                                            'phone':
-                                                _model.phoneTextController.text,
-                                            'dob': dateTimeFormat(
-                                              'yyyy-MM-dd',
-                                              _model.datePicked,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            ),
-                                            'avatar': _model.avatarId,
-                                            'title': _model
-                                                .titleTextTextController.text,
-                                            'sort': () {
-                                              if (_model.roleValue ==
-                                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                                return '1';
-                                              } else if (_model.roleValue ==
-                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                                return '2';
-                                              } else {
-                                                return '3';
-                                              }
-                                            }(),
-                                          },
-                                        );
-                                        shouldSetState = true;
-                                        if ((_model
-                                                .apiResultCreateB?.succeeded ??
-                                            true)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Tạo mới thành công!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-
-                                          context.pushNamed(
-                                            'PersonnelList',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Tạo mới thất bại!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                            ),
-                                          );
-                                        }
-                                      } else {
-                                        setState(() {});
-                                      }
-                                    } else {
-                                      setState(() {
-                                        _model.checkDepartment = true;
-                                      });
-                                      if (shouldSetState) setState(() {});
-                                      return;
-                                    }
-                                  } else {
-                                    _model.createOToken = await action_blocks
+                                if (_model.departmentValue == null ||
+                                    _model.departmentValue == '') {
+                                  if ((_model.roleValue ==
+                                          'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
+                                      (FFAppState().user.role !=
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725')) {
+                                    setState(() {});
+                                    _model.createBToken = await action_blocks
                                         .tokenReload(context);
                                     shouldSetState = true;
-                                    if (_model.createOToken!) {
-                                      _model.apiResultCreateO =
+                                    if (_model.createBToken!) {
+                                      _model.apiResultCreateB =
                                           await StaffGroup.createStaffCall.call(
                                         accessToken: FFAppState().accessToken,
                                         requestDataJson: <String, dynamic>{
@@ -2375,8 +2200,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           'last_name':
                                               _model.nameTextController.text,
                                           'status': 'active',
-                                          'department_id':
-                                              _model.departmentValue,
+                                          'department_id': null,
                                           'branch_id': _model.branchValue,
                                           'cccd':
                                               _model.cccdTextController.text,
@@ -2409,7 +2233,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         },
                                       );
                                       shouldSetState = true;
-                                      if ((_model.apiResultCreateO?.succeeded ??
+                                      if ((_model.apiResultCreateB?.succeeded ??
                                           true)) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -2465,6 +2289,116 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                     } else {
                                       setState(() {});
                                     }
+                                  } else {
+                                    _model.checkDepartment = true;
+                                    setState(() {});
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
+                                } else {
+                                  _model.createOToken =
+                                      await action_blocks.tokenReload(context);
+                                  shouldSetState = true;
+                                  if (_model.createOToken!) {
+                                    _model.apiResultCreateO =
+                                        await StaffGroup.createStaffCall.call(
+                                      accessToken: FFAppState().accessToken,
+                                      requestDataJson: <String, dynamic>{
+                                        'email':
+                                            _model.emailTextController.text,
+                                        'password': 'Abcd@1234',
+                                        'role': _model.roleValue,
+                                        'first_name':
+                                            _model.nameTextController.text,
+                                        'last_name':
+                                            _model.nameTextController.text,
+                                        'status': 'active',
+                                        'department_id': _model.departmentValue,
+                                        'branch_id': _model.branchValue,
+                                        'cccd': _model.cccdTextController.text,
+                                        'gender':
+                                            _model.radioButtonValue == 'Nam'
+                                                ? 'male'
+                                                : 'female',
+                                        'phone':
+                                            _model.phoneTextController.text,
+                                        'dob': dateTimeFormat(
+                                          'yyyy-MM-dd',
+                                          _model.datePicked,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
+                                        'avatar': _model.avatarId,
+                                        'title':
+                                            _model.titleTextTextController.text,
+                                        'sort': () {
+                                          if (_model.roleValue ==
+                                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                            return '1';
+                                          } else if (_model.roleValue ==
+                                              '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                            return '2';
+                                          } else {
+                                            return '3';
+                                          }
+                                        }(),
+                                      },
+                                    );
+                                    shouldSetState = true;
+                                    if ((_model.apiResultCreateO?.succeeded ??
+                                        true)) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới thành công!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+
+                                      context.pushNamed(
+                                        'PersonnelList',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Tạo mới thất bại!',
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              const Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                        ),
+                                      );
+                                    }
+                                  } else {
+                                    setState(() {});
                                   }
                                 }
                               }

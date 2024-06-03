@@ -50,13 +50,12 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
           ).toString().toString()}\"}}]}',
         );
         if ((_model.apiResultLessonList?.succeeded ?? true)) {
-          setState(() {
-            _model.dataList = LessonsListDataStruct.maybeFromMap(
-                    (_model.apiResultLessonList?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<LessonsStruct>();
-          });
+          _model.dataList = LessonsListDataStruct.maybeFromMap(
+                  (_model.apiResultLessonList?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<LessonsStruct>();
+          setState(() {});
         }
       } else {
         setState(() {});

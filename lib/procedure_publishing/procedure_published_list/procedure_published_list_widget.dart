@@ -48,9 +48,8 @@ class _ProcedurePublishedListWidgetState
       _model.reloadTokenPublishedListApp =
           await action_blocks.tokenReload(context);
       if (_model.reloadTokenPublishedListApp!) {
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -113,6 +112,7 @@ class _ProcedurePublishedListWidgetState
                           callback: () async {
                             setState(() =>
                                 _model.listViewPagingController?.refresh());
+
                             setState(() {});
                           },
                         ),
@@ -177,13 +177,13 @@ class _ProcedurePublishedListWidgetState
                                         '_model.textController',
                                         const Duration(milliseconds: 500),
                                         () async {
-                                          setState(() {
-                                            _model.searchName =
-                                                _model.textController.text;
-                                          });
+                                          _model.searchName =
+                                              _model.textController.text;
+                                          setState(() {});
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+
                                           setState(() {});
                                         },
                                       ),
@@ -254,13 +254,13 @@ class _ProcedurePublishedListWidgetState
                                                 onTap: () async {
                                                   _model.textController
                                                       ?.clear();
-                                                  setState(() {
-                                                    _model.searchName = _model
-                                                        .textController.text;
-                                                  });
+                                                  _model.searchName = _model
+                                                      .textController.text;
+                                                  setState(() {});
                                                   setState(() => _model
                                                       .listViewPagingController
                                                       ?.refresh());
+
                                                   setState(() {});
                                                   setState(() {});
                                                 },
@@ -329,14 +329,13 @@ class _ProcedurePublishedListWidgetState
                                                       dateStart,
                                                       dateEnd,
                                                       userCreated) async {
-                                                    setState(() {
-                                                      _model.searchName = name!;
-                                                      _model.dateStart =
-                                                          dateStart!;
-                                                      _model.dateEnd = dateEnd!;
-                                                      _model.searchUserCreated =
-                                                          userCreated!;
-                                                    });
+                                                    _model.searchName = name!;
+                                                    _model.dateStart =
+                                                        dateStart!;
+                                                    _model.dateEnd = dateEnd!;
+                                                    _model.searchUserCreated =
+                                                        userCreated!;
+                                                    setState(() {});
                                                     setState(() {
                                                       _model.textController
                                                           ?.clear();
@@ -346,8 +345,9 @@ class _ProcedurePublishedListWidgetState
                                                         ?.refresh());
                                                     setState(() {
                                                       _model.textController
-                                                          ?.text = name!;
+                                                          ?.text = name;
                                                     });
+
                                                     setState(() {});
                                                   },
                                                 ),
@@ -423,7 +423,7 @@ class _ProcedurePublishedListWidgetState
                                           return DateTime.parse(var1)
                                               .add(const Duration(days: 1))
                                               .toString();
-                                        }(_model.dateEnd)}\"}}}}' : ' '}${(_model.searchUserCreated != '') && (_model.searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"${_model.searchUserCreated}\"}}}}}' : ' '}]}',
+                                        }(_model.dateEnd)}\"}}}}' : ' '}${(_model.searchUserCreated != '') && (_model.searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.searchUserCreated}\"}}}}}' : ' '}]}',
                                     ),
                                   ),
                                   padding: EdgeInsets.zero,

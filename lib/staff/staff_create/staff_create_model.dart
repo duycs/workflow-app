@@ -173,6 +173,14 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   FocusNode? titleTextFocusNode;
   TextEditingController? titleTextTextController;
   String? Function(BuildContext, String?)? titleTextTextControllerValidator;
+  String? _titleTextTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Chức vụ không thể để trống!';
+    }
+
+    return null;
+  }
+
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
@@ -208,6 +216,7 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
     emailTextControllerValidator = _emailTextControllerValidator;
     phoneTextControllerValidator = _phoneTextControllerValidator;
     cccdTextControllerValidator = _cccdTextControllerValidator;
+    titleTextTextControllerValidator = _titleTextTextControllerValidator;
   }
 
   @override

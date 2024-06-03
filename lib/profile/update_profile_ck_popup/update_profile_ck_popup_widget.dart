@@ -10,12 +10,14 @@ export 'update_profile_ck_popup_model.dart';
 class UpdateProfileCkPopupWidget extends StatefulWidget {
   const UpdateProfileCkPopupWidget({
     super.key,
-    required this.initData,
+    required this.input,
     required this.action,
+    required this.output,
   });
 
-  final String? initData;
-  final Future Function(String? ckString)? action;
+  final String? input;
+  final Future Function(String? input, String? output)? action;
+  final String? output;
 
   @override
   State<UpdateProfileCkPopupWidget> createState() =>
@@ -39,9 +41,8 @@ class _UpdateProfileCkPopupWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.itemCk = widget.initData!;
-      });
+      _model.itemCk = widget.input!;
+      setState(() {});
     });
   }
 
@@ -80,7 +81,27 @@ class _UpdateProfileCkPopupWidgetState
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  Navigator.pop(context);
+                  if (_model.dataOutput != '') {
+                    await widget.action?.call(
+                      widget.output,
+                      _model.dataOutput,
+                    );
+                    Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Lỗi nhập liệu!',
+                          style: TextStyle(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                        duration: const Duration(milliseconds: 4000),
+                        backgroundColor: FlutterFlowTheme.of(context).error,
+                      ),
+                    );
+                    Navigator.pop(context);
+                  }
                 },
                 text: 'Đóng',
                 options: FFButtonOptions(
@@ -135,14 +156,18 @@ class _UpdateProfileCkPopupWidgetState
                       child: SizedBox(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.9,
-                        child: custom_widgets.CKEditor(
+                        child: custom_widgets.CKEditorUpdate(
                           width: double.infinity,
                           height: MediaQuery.sizeOf(context).height * 0.9,
-                          initialData: widget.initData!,
+                          initialData:
+                              (widget.input != null && widget.input != '') &&
+                                      (widget.input != 'undefined') &&
+                                      (widget.input != '')
+                                  ? widget.input!
+                                  : '',
                           action: (data) async {
-                            await widget.action?.call(
-                              data,
-                            );
+                            _model.dataOutput = data;
+                            setState(() {});
                           },
                         ),
                       ),

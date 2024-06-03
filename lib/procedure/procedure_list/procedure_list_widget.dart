@@ -36,9 +36,12 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.checkTokenProcedureList = await action_blocks.tokenReload(context);
       if (_model.checkTokenProcedureList!) {
+        _model.isLoad = true;
+        setState(() {});
         setState(() {
-          _model.isLoad = true;
+          _model.textNameTextController?.clear();
         });
+        setState(() => _model.listViewPagingController?.refresh());
       } else {
         setState(() {});
         return;
@@ -69,6 +72,9 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
             context.pushNamed(
               'ProcedureCreate',
               queryParameters: {
@@ -157,12 +163,12 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                             '_model.textNameTextController',
                             const Duration(milliseconds: 500),
                             () async {
-                              setState(() {
-                                _model.searchName =
-                                    _model.textNameTextController.text;
-                              });
+                              _model.searchName =
+                                  _model.textNameTextController.text;
+                              setState(() {});
                               setState(() =>
                                   _model.listViewPagingController?.refresh());
+
                               setState(() {});
                             },
                           ),
@@ -223,13 +229,13 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                 ? InkWell(
                                     onTap: () async {
                                       _model.textNameTextController?.clear();
-                                      setState(() {
-                                        _model.searchName =
-                                            _model.textNameTextController.text;
-                                      });
+                                      _model.searchName =
+                                          _model.textNameTextController.text;
+                                      setState(() {});
                                       setState(() => _model
                                           .listViewPagingController
                                           ?.refresh());
+
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -305,12 +311,11 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             _model.textNameTextController
                                                 ?.clear();
                                           });
-                                          setState(() {
-                                            _model.searchName = name;
-                                            _model.dateStart = dateStart;
-                                            _model.dateEnd = dateEnd;
-                                            _model.staffsId = staffid;
-                                          });
+                                          _model.searchName = name;
+                                          _model.dateStart = dateStart;
+                                          _model.dateEnd = dateEnd;
+                                          _model.staffsId = staffid;
+                                          setState(() {});
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
@@ -318,6 +323,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                             _model.textNameTextController
                                                 ?.text = name!;
                                           });
+
                                           setState(() {});
                                         },
                                       ),

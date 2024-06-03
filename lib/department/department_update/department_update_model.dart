@@ -183,18 +183,20 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
 
   Future pathDepartment(BuildContext context) async {
     ApiCallResponse? apiResultPathDepartment;
+    bool? programDB;
+    ApiCallResponse? apiResultSynchronized;
     bool? checkRefreshTokenBlockhg;
 
     apiResultPathDepartment = await DepartmentGroup.pathDepartmentCall.call(
       accessToken: FFAppState().accessToken,
       name: nameTextController.text,
       code: codeTextController.text,
-      branchId: FFAppState().user.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39'
-          ? getJsonField(
+      branchId: FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68'
+          ? dropDownBranchIdValue
+          : getJsonField(
               FFAppState().staffLogin,
               r'''$.branch_id''',
-            ).toString().toString()
-          : dropDownBranchIdValue,
+            ).toString().toString(),
       description: descriptionTextController.text,
       departmentId: getJsonField(
         widget.items,
@@ -216,6 +218,34 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
+      programDB = await action_blocks.tokenReload(context);
+      if (programDB!) {
+        while (loop < programIds.length) {
+          apiResultSynchronized =
+              await StudyProgramGroup.synchronizedStaffLessonCall.call(
+            accessToken: FFAppState().accessToken,
+            programId: programIds[loop].programsId.id,
+          );
+          if (!(apiResultSynchronized.succeeded ?? true)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Lỗi đồng bộ chương trình bài học',
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: const Duration(milliseconds: 4000),
+                backgroundColor: FlutterFlowTheme.of(context).error,
+              ),
+            );
+          }
+          loop = loop + 1;
+        }
+        loop = 0;
+      } else {
+        return;
+      }
 
       context.pushNamed(
         'DepartmentList',

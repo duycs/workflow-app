@@ -50,9 +50,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
       if (_model.getTaskFailToken!) {
         await _model.getNumberTask(context);
         setState(() {});
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
       }
@@ -126,7 +125,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 90.0),
+                            16.0, 16.0, 16.0, 75.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -300,18 +299,17 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                         typeCallback,
                                                         createdCallback,
                                                         workflowNameCallback) async {
-                                                      setState(() {
-                                                        _model.dateStartFilter =
-                                                            dateStartCallback;
-                                                        _model.dateEndFilter =
-                                                            dateEndCallback;
-                                                        _model.typeFilter =
-                                                            typeCallback;
-                                                        _model.createdFilter =
-                                                            createdCallback!;
-                                                        _model.workflowNameFilter =
-                                                            workflowNameCallback!;
-                                                      });
+                                                      _model.dateStartFilter =
+                                                          dateStartCallback;
+                                                      _model.dateEndFilter =
+                                                          dateEndCallback;
+                                                      _model.typeFilter =
+                                                          typeCallback;
+                                                      _model.createdFilter =
+                                                          createdCallback!;
+                                                      _model.workflowNameFilter =
+                                                          workflowNameCallback!;
+                                                      setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController
                                                           ?.refresh());
@@ -481,12 +479,18 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                               ),
                             ),
                             if ((_model.textController.text != '') ||
-                                (_model.dateStartFilter != null &&
-                                    _model.dateStartFilter != '') ||
-                                (_model.dateEndFilter != null &&
-                                    _model.dateEndFilter != '') ||
-                                (_model.typeFilter != null &&
-                                    _model.typeFilter != ''))
+                                ((_model.dateStartFilter != null &&
+                                        _model.dateStartFilter != '') &&
+                                    (_model.dateStartFilter != '') &&
+                                    (_model.dateStartFilter != ' ')) ||
+                                ((_model.dateEndFilter != null &&
+                                        _model.dateEndFilter != '') &&
+                                    (_model.dateEndFilter != '') &&
+                                    (_model.dateEndFilter != ' ')) ||
+                                ((_model.typeFilter != null &&
+                                        _model.typeFilter != '') &&
+                                    (_model.typeFilter != '') &&
+                                    (_model.typeFilter != ' ')))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
@@ -553,7 +557,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                           return ' ';
                                         }
                                       }()}\"}}' : ' '}${_model.textController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}' : ' '}${(_model.createdFilter != '') && (_model.createdFilter == '') ? ',{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.createdFilter}\"}}}' : ' '}${(_model.workflowNameFilter != '') && (_model.workflowNameFilter == '') ? ',{\"workflow_id\":{\"name\":{\"_icontains\":\"${_model.workflowNameFilter}\"}}}' : ' '}]}',
-                                    sort: 'number',
+                                    sort: '-date_created',
                                   ),
                                 ),
                                 padding: EdgeInsets.zero,
@@ -756,10 +760,9 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    setState(() {
-                                                      _model.isShow =
-                                                          dataListItem.id;
-                                                    });
+                                                    _model.isShow =
+                                                        dataListItem.id;
+                                                    setState(() {});
                                                   },
                                                   child: Text(
                                                     'Xem thêm',
@@ -1176,9 +1179,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        setState(() {
-                                                          _model.isShow = null;
-                                                        });
+                                                        _model.isShow = null;
+                                                        setState(() {});
                                                       },
                                                       child: Text(
                                                         'Ẩn bớt',

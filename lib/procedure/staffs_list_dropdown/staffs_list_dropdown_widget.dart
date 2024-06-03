@@ -51,13 +51,12 @@ class _StaffsListDropdownWidgetState extends State<StaffsListDropdownWidget> {
         ).toString().toString()}\"}}]}',
       );
       if ((_model.apiResultList?.succeeded ?? true)) {
-        setState(() {
-          _model.staffList = StaffListDataStruct.maybeFromMap(
-                  (_model.apiResultList?.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<StaffListStruct>();
-        });
+        _model.staffList = StaffListDataStruct.maybeFromMap(
+                (_model.apiResultList?.jsonBody ?? ''))!
+            .data
+            .toList()
+            .cast<StaffListStruct>();
+        setState(() {});
       }
     });
   }

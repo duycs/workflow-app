@@ -299,15 +299,14 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                               priceMax,
                                               priceMin1,
                                               priceMax1) async {
-                                            setState(() {
-                                              _model.domain = domain!;
-                                              _model.author = author!;
-                                              _model.category = category!;
-                                              _model.priceMin = priceMin1!;
-                                              _model.priceMax = priceMax1!;
-                                              _model.priceMinDomain = priceMin!;
-                                              _model.priceMaxDomain = priceMax!;
-                                            });
+                                            _model.domain = domain!;
+                                            _model.author = author!;
+                                            _model.category = category!;
+                                            _model.priceMin = priceMin1!;
+                                            _model.priceMax = priceMax1!;
+                                            _model.priceMinDomain = priceMin!;
+                                            _model.priceMaxDomain = priceMax!;
+                                            setState(() {});
                                             await _model
                                                 .getProgramsList(context);
                                           },
@@ -446,7 +445,7 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                                               ),
                                         ),
                                         Text(
-                                          'Danh mục: ${itemProgramsItem.domainId.name}',
+                                          'Lĩnh vực: ${itemProgramsItem.domainId.name}',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

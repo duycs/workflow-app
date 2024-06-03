@@ -62,18 +62,14 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   bool? getTaskListDetailToken;
   // Stores action output result for [Backend Call - API (GetListTask)] action in Button widget.
   ApiCallResponse? apiResultGetTaskListDetail2;
-  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_to_do_list widget.
-  bool? apiResultCheckListToken;
-  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_to_do_list widget.
-  ApiCallResponse? apiResultCheckList;
-  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_image widget.
-  bool? updateImageToken;
-  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_image widget.
-  ApiCallResponse? apiResultUpdateImage;
   // Stores action output result for [Action Block - tokenReload] action in detail_action_type_approve widget.
   bool? confirmToken;
   // Stores action output result for [Backend Call - API (ConfirmOperation)] action in detail_action_type_approve widget.
   ApiCallResponse? apiResultConfirm;
+  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_to_do_list widget.
+  bool? apiResultCheckListToken;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_to_do_list widget.
+  ApiCallResponse? apiResultCheckList;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? apiResultx5lTokenCopy;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
@@ -82,6 +78,10 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
   bool? apiResultUpdateoperationToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_upload_file widget.
   ApiCallResponse? apiResultUpdateoperation;
+  // Stores action output result for [Action Block - tokenReload] action in detail_action_type_image widget.
+  bool? updateImageToken;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in detail_action_type_image widget.
+  ApiCallResponse? apiResultUpdateImage;
 
   @override
   void initState(BuildContext context) {}

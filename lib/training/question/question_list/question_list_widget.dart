@@ -40,9 +40,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.tokenReloadQuestionList = await action_blocks.tokenReload(context);
       if (_model.tokenReloadQuestionList!) {
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         FFAppState().update(() {});
         return;
@@ -91,15 +90,15 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                             : FocusScope.of(context).unfocus(),
                         child: QuestionCreateWidget(
                           callBackList: () async {
-                            setState(() {
-                              _model.nameSearch = ' ';
-                              _model.status = ' ';
-                            });
+                            _model.nameSearch = ' ';
+                            _model.status = ' ';
+                            setState(() {});
                             setState(() {
                               _model.questionNameTextController?.clear();
                             });
                             setState(() =>
                                 _model.listViewPagingController?.refresh());
+
                             setState(() {});
                           },
                         ),
@@ -181,12 +180,12 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                               '_model.questionNameTextController',
                               const Duration(milliseconds: 500),
                               () async {
-                                setState(() {
-                                  _model.nameSearch =
-                                      _model.questionNameTextController.text;
-                                });
+                                _model.nameSearch =
+                                    _model.questionNameTextController.text;
+                                setState(() {});
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
+
                                 setState(() {});
                               },
                             ),
@@ -243,13 +242,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                       onTap: () async {
                                         _model.questionNameTextController
                                             ?.clear();
-                                        setState(() {
-                                          _model.nameSearch = _model
-                                              .questionNameTextController.text;
-                                        });
+                                        _model.nameSearch = _model
+                                            .questionNameTextController.text;
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
+
                                         setState(() {});
                                         setState(() {});
                                       },
@@ -310,18 +309,16 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                         status: _model.status,
                                         callBack:
                                             (statusFilter, nameFilter) async {
-                                          setState(() {
-                                            _model.nameSearch = nameFilter!;
-                                            _model.status = statusFilter!;
-                                          });
+                                          _model.nameSearch = nameFilter!;
+                                          _model.status = statusFilter!;
+                                          setState(() {});
                                           setState(() {
                                             _model.questionNameTextController
                                                 ?.clear();
                                           });
                                           setState(() {
                                             _model.questionNameTextController
-                                                ?.text = ((nameFilter != null &&
-                                                        nameFilter != '') &&
+                                                ?.text = ((nameFilter != '') &&
                                                     (nameFilter != ' ')
                                                 ? nameFilter
                                                 : '');
@@ -329,6 +326,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+
                                           setState(() {});
                                         },
                                       ),
@@ -519,12 +517,11 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                                   detailViewItem,
                                                               callBackRequest:
                                                                   () async {
-                                                                setState(() {
-                                                                  _model.nameSearch =
-                                                                      ' ';
-                                                                  _model.status =
-                                                                      ' ';
-                                                                });
+                                                                _model.nameSearch =
+                                                                    ' ';
+                                                                _model.status =
+                                                                    ' ';
+                                                                setState(() {});
                                                                 setState(() {
                                                                   _model
                                                                       .questionNameTextController
@@ -533,6 +530,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                                 setState(() => _model
                                                                     .listViewPagingController
                                                                     ?.refresh());
+
                                                                 setState(() {});
                                                               },
                                                             ),

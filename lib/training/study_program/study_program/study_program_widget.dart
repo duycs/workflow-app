@@ -79,11 +79,10 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               '_model.programNameTextController',
                               const Duration(milliseconds: 2000),
                               () async {
-                                setState(() {
-                                  _model.requestData = StudyProgramListStruct(
-                                    name: _model.programNameTextController.text,
-                                  );
-                                });
+                                _model.requestData = StudyProgramListStruct(
+                                  name: _model.programNameTextController.text,
+                                );
+                                setState(() {});
                               },
                             ),
                             autofocus: false,
@@ -153,14 +152,12 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               '_model.programDescriptionTextController',
                               const Duration(milliseconds: 2000),
                               () async {
-                                setState(() {
-                                  _model.updateRequestDataStruct(
-                                    (e) => e
-                                      ..description = _model
-                                          .programDescriptionTextController
-                                          .text,
-                                  );
-                                });
+                                _model.updateRequestDataStruct(
+                                  (e) => e
+                                    ..description = _model
+                                        .programDescriptionTextController.text,
+                                );
+                                setState(() {});
                               },
                             ),
                             autofocus: false,

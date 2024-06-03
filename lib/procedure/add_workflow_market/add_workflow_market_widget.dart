@@ -51,24 +51,22 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
           accessToken: FFAppState().accessToken,
         );
         if ((_model.apiResultwkg?.succeeded ?? true)) {
-          setState(() {
-            _model.categoryList = CategoriesListDataStruct.maybeFromMap(
-                    (_model.apiResultwkg?.jsonBody ?? ''))!
-                .data
-                .toList()
-                .cast<CategoriesListStruct>();
-          });
+          _model.categoryList = CategoriesListDataStruct.maybeFromMap(
+                  (_model.apiResultwkg?.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<CategoriesListStruct>();
+          setState(() {});
           _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
             accessToken: FFAppState().accessToken,
           );
           if ((_model.apiResultDomain?.succeeded ?? true)) {
-            setState(() {
-              _model.domainList = DomainsListDataStruct.maybeFromMap(
-                      (_model.apiResultDomain?.jsonBody ?? ''))!
-                  .data
-                  .toList()
-                  .cast<DomainsListStruct>();
-            });
+            _model.domainList = DomainsListDataStruct.maybeFromMap(
+                    (_model.apiResultDomain?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<DomainsListStruct>();
+            setState(() {});
           } else {
             _model.checkRefreshTokenBlocks =
                 await action_blocks.checkRefreshToken(
@@ -92,9 +90,8 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
             return;
           }
 
-          setState(() {
-            _model.isLoad = true;
-          });
+          _model.isLoad = true;
+          setState(() {});
         } else {
           _model.checkRefreshTokenBlocka =
               await action_blocks.checkRefreshToken(
@@ -354,6 +351,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
+
                               setState(() {});
                               if ((_model.dropDownDomainValue != null &&
                                       _model.dropDownDomainValue != '') &&

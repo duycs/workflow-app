@@ -38,9 +38,8 @@ class _CheckBoxToggleWidgetState extends State<CheckBoxToggleWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.check = widget.checkParam!;
-      });
+      _model.check = widget.checkParam!;
+      setState(() {});
     });
   }
 

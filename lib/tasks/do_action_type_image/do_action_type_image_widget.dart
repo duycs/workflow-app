@@ -20,7 +20,7 @@ class DoActionTypeImageWidget extends StatefulWidget {
     this.image,
   });
 
-  final Future Function(List<String>? images)? callback;
+  final Future Function(List<String> images)? callback;
   final TaskListStruct? image;
 
   @override
@@ -44,22 +44,18 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.listUploadImage = [];
-      });
+      _model.listUploadImage = [];
+      setState(() {});
       while (_model.loop <
           widget.image!.operations.first.operationsId.files.length) {
-        setState(() {
-          _model.addToListUploadImage(widget.image!.operations.first
-              .operationsId.files[_model.loop].directusFilesId.id);
-        });
-        setState(() {
-          _model.loop = _model.loop + 1;
-        });
+        _model.addToListUploadImage(widget.image!.operations.first.operationsId
+            .files[_model.loop].directusFilesId.id);
+        setState(() {});
+        _model.loop = _model.loop + 1;
+        setState(() {});
       }
-      setState(() {
-        _model.loop = 0;
-      });
+      _model.loop = 0;
+      setState(() {});
     });
   }
 
@@ -82,13 +78,9 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
           child: Builder(
             builder: (context) {
               final list = widget.image?.operations.toList() ?? [];
-              return ListView.builder(
-                padding: EdgeInsets.zero,
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: list.length,
-                itemBuilder: (context, listIndex) {
+              return Column(
+                mainAxisSize: MainAxisSize.max,
+                children: List.generate(list.length, (listIndex) {
                   final listItem = list[listIndex];
                   return Visibility(
                     visible: listIndex == 0,
@@ -164,30 +156,29 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                               ),
                                             ),
                                           ),
-                                          FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            icon: Icon(
-                                              Icons.close,
-                                              color:
+                                          Opacity(
+                                            opacity: 0.8,
+                                            child: FlutterFlowIconButton(
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              fillColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
-                                            ),
-                                            onPressed: () async {
-                                              setState(() {
+                                                      .alternate,
+                                              icon: Icon(
+                                                Icons.close,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              onPressed: () async {
                                                 _model
                                                     .removeAtIndexFromListUploadImage(
                                                         listImageIndex);
-                                              });
-                                            },
+                                                setState(() {});
+                                              },
+                                            ),
                                           ),
                                         ],
                                       );
@@ -200,7 +191,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       ),
                     ),
                   );
-                },
+                }),
               );
             },
           ),
@@ -266,23 +257,24 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                             ),
                           ),
                         ),
-                        FlutterFlowIconButton(
-                          borderColor: FlutterFlowTheme.of(context).primaryText,
-                          borderRadius: 20.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: FlutterFlowTheme.of(context).alternate,
-                          icon: Icon(
-                            Icons.close,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                          onPressed: () async {
-                            setState(() {
+                        Opacity(
+                          opacity: 0.8,
+                          child: FlutterFlowIconButton(
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            fillColor: FlutterFlowTheme.of(context).alternate,
+                            icon: Icon(
+                              Icons.close,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
                               _model.removeAtIndexFromImageUpload(
                                   listImageUploadIndex);
-                            });
-                          },
+                              setState(() {});
+                            },
+                          ),
                         ),
                       ],
                     );
@@ -291,170 +283,162 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               },
             ),
           ),
-        Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              FFButtonWidget(
-                onPressed: () async {
-                  final selectedMedia = await selectMedia(
-                    multiImage: false,
-                  );
-                  if (selectedMedia != null &&
-                      selectedMedia.every(
-                          (m) => validateFileFormat(m.storagePath, context))) {
-                    setState(() => _model.isDataUploading = true);
-                    var selectedUploadedFiles = <FFUploadedFile>[];
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FFButtonWidget(
+              onPressed: () async {
+                setState(() {
+                  _model.isDataUploading = false;
+                  _model.uploadedLocalFile =
+                      FFUploadedFile(bytes: Uint8List.fromList([]));
+                });
 
-                    try {
-                      selectedUploadedFiles = selectedMedia
-                          .map((m) => FFUploadedFile(
-                                name: m.storagePath.split('/').last,
-                                bytes: m.bytes,
-                                height: m.dimensions?.height,
-                                width: m.dimensions?.width,
-                                blurHash: m.blurHash,
-                              ))
-                          .toList();
-                    } finally {
-                      _model.isDataUploading = false;
-                    }
-                    if (selectedUploadedFiles.length == selectedMedia.length) {
-                      setState(() {
-                        _model.uploadedLocalFile = selectedUploadedFiles.first;
-                      });
-                    } else {
-                      setState(() {});
-                      return;
-                    }
+                final selectedMedia = await selectMedia(
+                  multiImage: false,
+                );
+                if (selectedMedia != null &&
+                    selectedMedia.every(
+                        (m) => validateFileFormat(m.storagePath, context))) {
+                  setState(() => _model.isDataUploading = true);
+                  var selectedUploadedFiles = <FFUploadedFile>[];
+
+                  try {
+                    selectedUploadedFiles = selectedMedia
+                        .map((m) => FFUploadedFile(
+                              name: m.storagePath.split('/').last,
+                              bytes: m.bytes,
+                              height: m.dimensions?.height,
+                              width: m.dimensions?.width,
+                              blurHash: m.blurHash,
+                            ))
+                        .toList();
+                  } finally {
+                    _model.isDataUploading = false;
                   }
-
-                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  if (selectedUploadedFiles.length == selectedMedia.length) {
                     setState(() {
-                      _model.addToImageUpload(_model.uploadedLocalFile);
+                      _model.uploadedLocalFile = selectedUploadedFiles.first;
                     });
+                  } else {
+                    setState(() {});
+                    return;
                   }
-                },
-                text: 'Chụp ảnh',
-                icon: Icon(
-                  Icons.camera_alt,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 15.0,
-                ),
-                options: FFButtonOptions(
-                  width: 150.0,
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).alternate,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                }
+
+                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  _model.addToImageUpload(_model.uploadedLocalFile);
+                  setState(() {});
+                }
+              },
+              text: 'Chụp ảnh',
+              icon: Icon(
+                Icons.camera_alt,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 15.0,
               ),
-              FFButtonWidget(
-                onPressed: () async {
-                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
-                    _model.imageToken =
-                        await action_blocks.tokenReload(context);
-                    if (_model.imageToken!) {
-                      _model.apiResultImage =
-                          await UploadFileGroup.uploadListFileCall.call(
-                        accessToken: FFAppState().accessToken,
-                        fileList: _model.imageUpload,
-                      );
-                      if ((_model.apiResultImage?.succeeded ?? true)) {
-                        if (FileUploadStruct.maybeFromMap(
+              options: FFButtonOptions(
+                width: 150.0,
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).alternate,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 14.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            FFButtonWidget(
+              onPressed: () async {
+                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  _model.imageToken = await action_blocks.tokenReload(context);
+                  if (_model.imageToken!) {
+                    _model.apiResultImage =
+                        await UploadFileGroup.uploadListFileCall.call(
+                      accessToken: FFAppState().accessToken,
+                      fileList: _model.imageUpload,
+                    );
+                    if ((_model.apiResultImage?.succeeded ?? true)) {
+                      if (FileUploadStruct.maybeFromMap(
+                                  (_model.apiResultImage?.jsonBody ?? ''))!
+                              .data
+                              .length >=
+                          2) {
+                        while (_model.loop <
+                            FileUploadStruct.maybeFromMap(
                                     (_model.apiResultImage?.jsonBody ?? ''))!
                                 .data
-                                .length >=
-                            2) {
-                          while (_model.loop <
+                                .length) {
+                          _model.addToListUploadImage(
                               FileUploadStruct.maybeFromMap(
                                       (_model.apiResultImage?.jsonBody ?? ''))!
-                                  .data
-                                  .length) {
-                            setState(() {
-                              _model.addToListUploadImage(
-                                  FileUploadStruct.maybeFromMap(
-                                          (_model.apiResultImage?.jsonBody ??
-                                              ''))!
-                                      .data[_model.loop]
-                                      .id);
-                            });
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
-                          }
-                          setState(() {
-                            _model.loop = 0;
-                          });
-                        } else {
-                          setState(() {
-                            _model.addToListUploadImage(getJsonField(
-                              (_model.apiResultImage?.jsonBody ?? ''),
-                              r'''$.data.id''',
-                            ).toString());
-                          });
+                                  .data[_model.loop]
+                                  .id);
+                          setState(() {});
+                          _model.loop = _model.loop + 1;
+                          setState(() {});
                         }
+                        _model.loop = 0;
+                        setState(() {});
+                      } else {
+                        _model.addToListUploadImage(getJsonField(
+                          (_model.apiResultImage?.jsonBody ?? ''),
+                          r'''$.data.id''',
+                        ).toString());
+                        setState(() {});
                       }
-                    } else {
-                      setState(() {});
                     }
+                  } else {
+                    setState(() {});
                   }
-                  await widget.callback?.call(
-                    _model.listUploadImage,
-                  );
-                  setState(() {
-                    _model.imageUpload = [];
-                  });
+                }
+                await widget.callback?.call(
+                  _model.listUploadImage,
+                );
+                _model.imageUpload = [];
+                setState(() {});
 
-                  setState(() {});
-                },
-                text: 'Lưu',
-                icon: Icon(
-                  Icons.save,
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  size: 15.0,
-                ),
-                options: FFButtonOptions(
-                  width: 150.0,
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                setState(() {});
+              },
+              text: 'Lưu',
+              icon: Icon(
+                Icons.save,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+                size: 15.0,
               ),
-            ],
-          ),
+              options: FFButtonOptions(
+                width: 150.0,
+                height: 40.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).primary,
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      fontSize: 14.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.normal,
+                    ),
+                elevation: 3.0,
+                borderSide: const BorderSide(
+                  color: Colors.transparent,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ],
         ),
       ].divide(const SizedBox(height: 8.0)),
     );

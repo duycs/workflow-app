@@ -814,19 +814,18 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           );
                                                         });
                                                       }
-                                                      setState(() {
-                                                        _model.date =
-                                                            dateTimeFormat(
-                                                          'dd/MM/yyyy',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  _model.date),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        );
-                                                      });
+                                                      _model.date =
+                                                          dateTimeFormat(
+                                                        'dd/MM/yyyy',
+                                                        functions
+                                                            .stringToDateTime(
+                                                                _model.date),
+                                                        locale:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .languageCode,
+                                                      );
+                                                      setState(() {});
                                                     },
                                                     child: Container(
                                                       width: double.infinity,
@@ -991,14 +990,13 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                               if ((_model.apiResultUploadImage
                                                       ?.succeeded ??
                                                   true)) {
-                                                setState(() {
-                                                  _model.image = getJsonField(
-                                                    (_model.apiResultUploadImage
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.data.id''',
-                                                  ).toString();
-                                                });
+                                                _model.image = getJsonField(
+                                                  (_model.apiResultUploadImage
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.data.id''',
+                                                ).toString();
+                                                setState(() {});
                                                 _model.apiResultUpdateStaff =
                                                     await StaffGroup
                                                         .updateStaffCall

@@ -47,9 +47,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.testList(context);
       setState(() {});
-      setState(() {
-        _model.isLoad = true;
-      });
+      _model.isLoad = true;
+      setState(() {});
     });
 
     _model.nameTextController ??= TextEditingController(
@@ -539,11 +538,9 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       '_model.estimateInDayTextController',
                                       const Duration(milliseconds: 2000),
                                       () async {
-                                        setState(() {
-                                          _model.checkTime = int.tryParse(_model
-                                              .estimateInDayTextController
-                                              .text);
-                                        });
+                                        _model.checkTime = int.tryParse(_model
+                                            .estimateInDayTextController.text);
+                                        setState(() {});
                                       },
                                     ),
                                     autofocus: false,
@@ -845,9 +842,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadImage = _model.uploadImage;
-                                    });
+                                    _model.uploadImage = _model.uploadImage;
+                                    setState(() {});
                                   },
                                   text: 'Ảnh',
                                   icon: const Icon(
@@ -1058,9 +1054,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadVideo = _model.uploadVideo;
-                                    });
+                                    _model.uploadVideo = _model.uploadVideo;
+                                    setState(() {});
                                   },
                                   text: 'Video',
                                   icon: const Icon(
@@ -1299,9 +1294,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       }
                                     }
 
-                                    setState(() {
-                                      _model.uploadFile = _model.uploadFile;
-                                    });
+                                    _model.uploadFile = _model.uploadFile;
+                                    setState(() {});
                                   },
                                   text: 'File',
                                   icon: const Icon(
@@ -1400,11 +1394,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             }(),
                                             output: _model.output,
                                             callBack: (input, output) async {
-                                              setState(() {
-                                                _model.checkContent = output!;
-                                                _model.input = input!;
-                                                _model.output = output;
-                                              });
+                                              _model.checkContent = output!;
+                                              _model.input = input!;
+                                              _model.output = output;
+                                              setState(() {});
                                             },
                                           ),
                                         ),

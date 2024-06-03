@@ -36,9 +36,8 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
       _model.checkTokenListBranchProfile =
           await action_blocks.tokenReload(context);
       if (_model.checkTokenListBranchProfile!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -119,15 +118,13 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                             const Duration(milliseconds: 500),
                             () async {
                               if (_model.textController.text != '') {
-                                setState(() {
-                                  _model.search = _model.textController.text;
-                                });
+                                _model.search = _model.textController.text;
+                                setState(() {});
                                 setState(() => _model.listViewPagingController1
                                     ?.refresh());
                               } else {
-                                setState(() {
-                                  _model.search = '';
-                                });
+                                _model.search = '';
+                                setState(() {});
                                 setState(() => _model.listViewPagingController1
                                     ?.refresh());
                               }
@@ -187,17 +184,15 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                     onTap: () async {
                                       _model.textController?.clear();
                                       if (_model.textController.text != '') {
-                                        setState(() {
-                                          _model.search =
-                                              _model.textController.text;
-                                        });
+                                        _model.search =
+                                            _model.textController.text;
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController1
                                             ?.refresh());
                                       } else {
-                                        setState(() {
-                                          _model.search = '';
-                                        });
+                                        _model.search = '';
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController1
                                             ?.refresh());

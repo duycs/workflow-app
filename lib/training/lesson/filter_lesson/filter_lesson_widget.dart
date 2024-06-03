@@ -178,9 +178,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 );
                               });
                             }
-                            setState(() {
-                              _model.dateStart = _model.datePicked1;
-                            });
+                            _model.dateStart = _model.datePicked1;
+                            setState(() {});
                           },
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -264,9 +263,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                                 );
                               });
                             }
-                            setState(() {
-                              _model.dateEnd = _model.datePicked2;
-                            });
+                            _model.dateEnd = _model.datePicked2;
+                            setState(() {});
                           },
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -392,11 +390,10 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _model.status = '';
-                              _model.dateStart = null;
-                              _model.dateEnd = null;
-                            });
+                            _model.status = '';
+                            _model.dateStart = null;
+                            _model.dateEnd = null;
+                            setState(() {});
                             await widget.callBack?.call(
                               '',
                               _model.dateStartCPN,

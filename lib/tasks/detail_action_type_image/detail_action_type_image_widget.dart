@@ -21,7 +21,7 @@ class DetailActionTypeImageWidget extends StatefulWidget {
   });
 
   final TaskListStruct? image;
-  final Future Function(List<String>? imageid)? callback;
+  final Future Function(List<String> imageid)? callback;
 
   @override
   State<DetailActionTypeImageWidget> createState() =>
@@ -47,17 +47,14 @@ class _DetailActionTypeImageWidgetState
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       while (_model.loop <
           widget.image!.operations.first.operationsId.files.length) {
-        setState(() {
-          _model.addToImagesList(widget.image!.operations.first.operationsId
-              .files[_model.loop].directusFilesId.id);
-        });
-        setState(() {
-          _model.loop = _model.loop + 1;
-        });
+        _model.addToImagesList(widget.image!.operations.first.operationsId
+            .files[_model.loop].directusFilesId.id);
+        setState(() {});
+        _model.loop = _model.loop + 1;
+        setState(() {});
       }
-      setState(() {
-        _model.loop = 0;
-      });
+      _model.loop = 0;
+      setState(() {});
     });
   }
 
@@ -75,7 +72,7 @@ class _DetailActionTypeImageWidgetState
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if ((widget.image?.status == 'done') &&
@@ -83,13 +80,9 @@ class _DetailActionTypeImageWidgetState
             Builder(
               builder: (context) {
                 final data = widget.image?.operations.toList() ?? [];
-                return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: data.length,
-                  itemBuilder: (context, dataIndex) {
+                return Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: List.generate(data.length, (dataIndex) {
                     final dataItem = data[dataIndex];
                     return Builder(
                       builder: (context) {
@@ -149,7 +142,7 @@ class _DetailActionTypeImageWidgetState
                         );
                       },
                     );
-                  },
+                  }),
                 );
               },
             ),
@@ -219,26 +212,26 @@ class _DetailActionTypeImageWidgetState
                                   ),
                                 ),
                               ),
-                              FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                icon: Icon(
-                                  Icons.close,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  setState(() {
+                              Opacity(
+                                opacity: 0.8,
+                                child: FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
                                     _model.removeAtIndexFromImagesList(
                                         dataTodoItemIndex);
-                                  });
-                                },
+                                    setState(() {});
+                                  },
+                                ),
                               ),
                             ],
                           );
@@ -306,26 +299,26 @@ class _DetailActionTypeImageWidgetState
                                   ),
                                 ),
                               ),
-                              FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                icon: Icon(
-                                  Icons.close,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  setState(() {
+                              Opacity(
+                                opacity: 0.8,
+                                child: FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
                                     _model.removeAtIndexFromImages(
                                         imageUploadIndex);
-                                  });
-                                },
+                                    setState(() {});
+                                  },
+                                ),
                               ),
                             ],
                           );
@@ -342,6 +335,12 @@ class _DetailActionTypeImageWidgetState
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
+                        setState(() {
+                          _model.isDataUploading = false;
+                          _model.uploadedLocalFile =
+                              FFUploadedFile(bytes: Uint8List.fromList([]));
+                        });
+
                         final selectedMedia = await selectMedia(
                           multiImage: false,
                         );
@@ -378,9 +377,8 @@ class _DetailActionTypeImageWidgetState
 
                         if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                 false)) {
-                          setState(() {
-                            _model.addToImages(_model.uploadedLocalFile);
-                          });
+                          _model.addToImages(_model.uploadedLocalFile);
+                          setState(() {});
                         }
                       },
                       text: 'Chụp ảnh',
@@ -442,31 +440,26 @@ class _DetailActionTypeImageWidgetState
                                             ''))!
                                         .data
                                         .length) {
-                                  setState(() {
-                                    _model.addToImagesList(
-                                        FileUploadStruct.maybeFromMap((_model
-                                                    .apiResultUploadListImage
-                                                    ?.jsonBody ??
-                                                ''))!
-                                            .data[_model.loop]
-                                            .id);
-                                  });
-                                  setState(() {
-                                    _model.loop = _model.loop + 1;
-                                  });
+                                  _model.addToImagesList(
+                                      FileUploadStruct.maybeFromMap((_model
+                                                  .apiResultUploadListImage
+                                                  ?.jsonBody ??
+                                              ''))!
+                                          .data[_model.loop]
+                                          .id);
+                                  setState(() {});
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
                                 }
-                                setState(() {
-                                  _model.loop = 0;
-                                });
+                                _model.loop = 0;
+                                setState(() {});
                               } else {
-                                setState(() {
-                                  _model.addToImagesList(getJsonField(
-                                    (_model.apiResultUploadListImage
-                                            ?.jsonBody ??
-                                        ''),
-                                    r'''$.data.id''',
-                                  ).toString());
-                                });
+                                _model.addToImagesList(getJsonField(
+                                  (_model.apiResultUploadListImage?.jsonBody ??
+                                      ''),
+                                  r'''$.data.id''',
+                                ).toString());
+                                setState(() {});
                               }
                             }
                           } else {
@@ -476,9 +469,8 @@ class _DetailActionTypeImageWidgetState
                         await widget.callback?.call(
                           _model.imagesList,
                         );
-                        setState(() {
-                          _model.images = [];
-                        });
+                        _model.images = [];
+                        setState(() {});
 
                         setState(() {});
                       },

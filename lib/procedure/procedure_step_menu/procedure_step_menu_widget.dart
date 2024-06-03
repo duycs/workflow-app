@@ -50,9 +50,8 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
             widget.idItem,
           );
           Navigator.pop(context);
-          setState(() {
-            _model.isLoad = false;
-          });
+          _model.isLoad = false;
+          setState(() {});
           break;
         }
         await Future.delayed(const Duration(milliseconds: 200));
@@ -125,12 +124,10 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                                 child: ProcedureStepUpdateWidget(
                                   data: widget.item!,
                                   callBack: (addItem) async {
-                                    setState(() {
-                                      _model.data = addItem;
-                                    });
-                                    setState(() {
-                                      _model.isLoad = true;
-                                    });
+                                    _model.data = addItem;
+                                    setState(() {});
+                                    _model.isLoad = true;
+                                    setState(() {});
                                   },
                                   calBackUnBottom: () async {
                                     Navigator.pop(context);

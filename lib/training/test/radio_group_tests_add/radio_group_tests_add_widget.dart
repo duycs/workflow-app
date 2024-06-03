@@ -37,9 +37,8 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        _model.addToDetail(widget.parameter1!);
-      });
+      _model.addToDetail(widget.parameter1!);
+      setState(() {});
     });
   }
 

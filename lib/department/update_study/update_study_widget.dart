@@ -112,16 +112,15 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                         .toList(),
                     onChanged: (val) async {
                       setState(() => _model.dropDownValue = val);
-                      setState(() {
-                        _model.addToProgramsDerpartmen(widget.programList![
-                            (List<String> ids, String id) {
-                          return ids.indexWhere((value) => value == id);
-                        }(
-                                widget.programList!
-                                    .map((e) => e.programsId.id)
-                                    .toList(),
-                                _model.dropDownValue!)]);
-                      });
+                      _model.addToProgramsDerpartmen(widget.programList![
+                          (List<String> ids, String id) {
+                        return ids.indexWhere((value) => value == id);
+                      }(
+                              widget.programList!
+                                  .map((e) => e.programsId.id)
+                                  .toList(),
+                              _model.dropDownValue!)]);
+                      setState(() {});
                     },
                     width: double.infinity,
                     height: 56.0,

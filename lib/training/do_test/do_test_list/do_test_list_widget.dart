@@ -134,19 +134,18 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               const Duration(milliseconds: 500),
                               () async {
                                 if (_model.textController.text != '') {
-                                  setState(() {
-                                    _model.filter =
-                                        '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                  });
+                                  _model.filter =
+                                      '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.filter =
-                                        '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
-                                  });
+                                  _model.filter =
+                                      '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
+                                  setState(() {});
                                 }
 
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
+
                                 setState(() {});
                               },
                             ),
@@ -209,20 +208,19 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                       onTap: () async {
                                         _model.textController?.clear();
                                         if (_model.textController.text != '') {
-                                          setState(() {
-                                            _model.filter =
-                                                '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
-                                          });
+                                          _model.filter =
+                                              '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}},{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}]}';
+                                          setState(() {});
                                         } else {
-                                          setState(() {
-                                            _model.filter =
-                                                '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
-                                          });
+                                          _model.filter =
+                                              '{\"_and\":[{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}]}';
+                                          setState(() {});
                                         }
 
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
+
                                         setState(() {});
                                         setState(() {});
                                       },
@@ -282,15 +280,15 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                           dateEnd: _model.dateEndFilter,
                                           callback: (dateStartCallback,
                                               dateEndCallback) async {
-                                            setState(() {
-                                              _model.dateStartFilter =
-                                                  dateStartCallback!;
-                                              _model.dateEndFilter =
-                                                  dateEndCallback!;
-                                            });
+                                            _model.dateStartFilter =
+                                                dateStartCallback!;
+                                            _model.dateEndFilter =
+                                                dateEndCallback!;
+                                            setState(() {});
                                             setState(() => _model
                                                 .listViewPagingController
                                                 ?.refresh());
+
                                             setState(() {});
                                           },
                                         ),

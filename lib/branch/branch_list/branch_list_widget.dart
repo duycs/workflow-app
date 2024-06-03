@@ -33,11 +33,11 @@ class _BranchListWidgetState extends State<BranchListWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() => _model.listViewPagingController?.refresh());
       await _model.getLinkBranch(context);
       setState(() {});
-      setState(() {
-        _model.isShow = true;
-      });
+      _model.isShow = true;
+      setState(() {});
     });
 
     _model.textController ??= TextEditingController();
@@ -82,23 +82,6 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                             : FocusScope.of(context).unfocus(),
                         child: BranchCreateWidget(
                           listCode: _model.codeList,
-                          callBack: () async {
-                            setState(() {
-                              _model.filter = '';
-                              _model.searchStatus = '';
-                              _model.isShow = false;
-                            });
-                            setState(() {
-                              _model.textController?.clear();
-                            });
-                            setState(() =>
-                                _model.listViewPagingController?.refresh());
-                            await _model.getLinkBranch(context);
-                            setState(() {
-                              _model.isShow = true;
-                            });
-                            setState(() {});
-                          },
                         ),
                       ),
                     ),
@@ -178,15 +161,13 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                             const Duration(milliseconds: 500),
                             () async {
                               if (_model.textController.text != '') {
-                                setState(() {
-                                  _model.filter = _model.textController.text;
-                                });
+                                _model.filter = _model.textController.text;
+                                setState(() {});
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
                               } else {
-                                setState(() {
-                                  _model.filter = '';
-                                });
+                                _model.filter = '';
+                                setState(() {});
                                 setState(() =>
                                     _model.listViewPagingController?.refresh());
                               }
@@ -252,17 +233,15 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                     onTap: () async {
                                       _model.textController?.clear();
                                       if (_model.textController.text != '') {
-                                        setState(() {
-                                          _model.filter =
-                                              _model.textController.text;
-                                        });
+                                        _model.filter =
+                                            _model.textController.text;
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
                                       } else {
-                                        setState(() {
-                                          _model.filter = '';
-                                        });
+                                        _model.filter = '';
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
@@ -320,9 +299,8 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                       child: FilterBranchWidget(
                                         status: _model.searchStatus,
                                         callBack: (status) async {
-                                          setState(() {
-                                            _model.searchStatus = status!;
-                                          });
+                                          _model.searchStatus = status!;
+                                          setState(() {});
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());

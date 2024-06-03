@@ -169,6 +169,8 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   bool? updateUserStaff2Token;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff2;
+  // Stores action output result for [Backend Call - API (CreateProgramStaff)] action in Button widget.
+  ApiCallResponse? apiCreateProgramStaff;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? updateNoImageToken;
   // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
@@ -177,6 +179,8 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   bool? updateUserStaffToken;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff;
+  // Stores action output result for [Backend Call - API (CreateProgramStaff)] action in Button widget.
+  ApiCallResponse? apiCreateProgramStaff1;
 
   @override
   void initState(BuildContext context) {

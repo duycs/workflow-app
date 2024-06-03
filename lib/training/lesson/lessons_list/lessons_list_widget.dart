@@ -40,9 +40,8 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.tokenReloadLessonsList = await action_blocks.tokenReload(context);
       if (_model.tokenReloadLessonsList!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -176,6 +175,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                 () async {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
+
                                   setState(() {});
                                 },
                               ),
@@ -242,6 +242,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+
                                           setState(() {});
                                           setState(() {});
                                         },
@@ -303,27 +304,27 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                           programId: _model.programId,
                                           callBack: (status, dateStart, dateEnd,
                                               programId) async {
-                                            setState(() {
-                                              _model.status = status!;
-                                              _model.dateStart = dateTimeFormat(
-                                                'yyyy-MM-dd',
-                                                dateStart,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              );
-                                              _model.dateEnd = dateTimeFormat(
-                                                'yyyy-MM-dd',
-                                                dateEnd,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              );
-                                              _model.programId = programId!;
-                                            });
+                                            _model.status = status!;
+                                            _model.dateStart = dateTimeFormat(
+                                              'yyyy-MM-dd',
+                                              dateStart,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            );
+                                            _model.dateEnd = dateTimeFormat(
+                                              'yyyy-MM-dd',
+                                              dateEnd,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            );
+                                            _model.programId = programId!;
+                                            setState(() {});
                                             setState(() => _model
                                                 .listViewPagingController
                                                 ?.refresh());
+
                                             setState(() {});
                                           },
                                         ),

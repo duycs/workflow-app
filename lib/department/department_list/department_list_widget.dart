@@ -39,16 +39,14 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getDepartmentList(context);
       setState(() {});
-      setState(() {
-        _model.dataParam =
-            _model.list.map((e) => e.code).toList().toList().cast<String>();
-      });
+      _model.dataParam =
+          _model.list.map((e) => e.code).toList().toList().cast<String>();
+      setState(() {});
       _model.tokenReloadDepartmentListList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadDepartmentListList!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -311,10 +309,9 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                           status: _model.status,
                                           branchId: _model.branchId,
                                           callBack: (status, branchId) async {
-                                            setState(() {
-                                              _model.status = status!;
-                                              _model.branchId = branchId!;
-                                            });
+                                            _model.status = status!;
+                                            _model.branchId = branchId!;
+                                            setState(() {});
                                             setState(() => _model
                                                 .listViewPagingController
                                                 ?.refresh());

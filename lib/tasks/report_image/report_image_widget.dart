@@ -37,9 +37,8 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.reloadTokenTasksCheck = await action_blocks.tokenReload(context);
       if (_model.reloadTokenTasksCheck!) {
-        setState(() {
-          _model.checkData = '1';
-        });
+        _model.checkData = '1';
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -139,16 +138,18 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                 nameProcedure: _model.nameProcedure,
                                 dateStart: _model.startDate,
                                 dateEnd: _model.endDate,
+                                nameTask: _model.nameTask,
                                 callBack: (name, nameProcedure, dateStart,
                                     dateEnd, nameTask) async {
-                                  setState(() {
-                                    _model.nameSearch = name!;
-                                    _model.nameProcedure = nameProcedure!;
-                                    _model.startDate = dateStart!;
-                                    _model.endDate = dateEnd!;
-                                  });
+                                  _model.nameSearch = name!;
+                                  _model.nameProcedure = nameProcedure!;
+                                  _model.startDate = dateStart!;
+                                  _model.endDate = dateEnd!;
+                                  _model.nameTask = nameTask;
+                                  setState(() {});
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
+
                                   setState(() {});
                                 },
                               ),
@@ -190,11 +191,11 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             '_model.textController',
                             const Duration(milliseconds: 500),
                             () async {
-                              setState(() {
-                                _model.nameSearch = _model.textController.text;
-                              });
+                              _model.nameSearch = _model.textController.text;
+                              setState(() {});
                               setState(() =>
                                   _model.listViewPagingController?.refresh());
+
                               setState(() {});
                             },
                           ),
@@ -256,13 +257,13 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                 ? InkWell(
                                     onTap: () async {
                                       _model.textController?.clear();
-                                      setState(() {
-                                        _model.nameSearch =
-                                            _model.textController.text;
-                                      });
+                                      _model.nameSearch =
+                                          _model.textController.text;
+                                      setState(() {});
                                       setState(() => _model
                                           .listViewPagingController
                                           ?.refresh());
+
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -319,16 +320,16 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                       nameTask: _model.nameTask,
                                       callBack: (name, nameProcedure, dateStart,
                                           dateEnd, nameTask) async {
-                                        setState(() {
-                                          _model.nameSearch = name!;
-                                          _model.nameProcedure = nameProcedure!;
-                                          _model.startDate = dateStart!;
-                                          _model.endDate = dateEnd!;
-                                          _model.nameTask = nameTask;
-                                        });
+                                        _model.nameSearch = name!;
+                                        _model.nameProcedure = nameProcedure!;
+                                        _model.startDate = dateStart!;
+                                        _model.endDate = dateEnd!;
+                                        _model.nameTask = nameTask;
+                                        setState(() {});
                                         setState(() => _model
                                             .listViewPagingController
                                             ?.refresh());
+
                                         setState(() {});
                                       },
                                     ),
@@ -347,7 +348,8 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                     if ((_model.nameSearch != '') ||
                         (_model.nameProcedure != '') ||
                         (_model.startDate != '') ||
-                        (_model.endDate != ''))
+                        (_model.endDate != '') ||
+                        (_model.nameTask != ''))
                       Text(
                         '#Kết quả hiển thị theo bộ lọc',
                         style:

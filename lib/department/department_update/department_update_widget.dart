@@ -10,6 +10,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'department_update_model.dart';
 export 'department_update_model.dart';
 
@@ -41,19 +42,18 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await _model.getLinkBranchList(context);
       setState(() {});
-      setState(() {
-        _model.programs = (getJsonField(
-          widget.items,
-          r'''$.programs''',
-          true,
-        )!
-                .toList()
-                .map<ProgramStruct?>(ProgramStruct.maybeFromMap)
-                .toList() as Iterable<ProgramStruct?>)
-            .withoutNulls
-            .toList()
-            .cast<ProgramStruct>();
-      });
+      _model.programs = (getJsonField(
+        widget.items,
+        r'''$.programs''',
+        true,
+      )!
+              .toList()
+              .map<ProgramStruct?>(ProgramStruct.maybeFromMap)
+              .toList() as Iterable<ProgramStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<ProgramStruct>();
+      setState(() {});
       await _model.getPrograms(context);
       setState(() {});
     });
@@ -119,14 +119,43 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Chỉnh sửa bộ phận',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return WebViewAware(
+                        child: AlertDialog(
+                          title: Text(FFAppState().user.role),
+                          content: Text(getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.branch_id''',
+                          ).toString()),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Chỉnh sửa bộ phận',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ],
           ),
@@ -227,13 +256,11 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                         .where((e) =>
                                             e == _model.codeTextController.text)
                                         .toList().isNotEmpty) {
-                                  setState(() {
-                                    _model.checkCode = '1';
-                                  });
+                                  _model.checkCode = '1';
+                                  setState(() {});
                                 } else {
-                                  setState(() {
-                                    _model.checkCode = '0';
-                                  });
+                                  _model.checkCode = '0';
+                                  setState(() {});
                                 }
                               },
                             ),
@@ -490,13 +517,13 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 buttonPosition: RadioButtonPosition.left,
-                                direction: Axis.horizontal,
+                                direction: Axis.vertical,
                                 radioButtonColor:
                                     FlutterFlowTheme.of(context).primary,
                                 inactiveRadioButtonColor:
                                     FlutterFlowTheme.of(context).secondaryText,
                                 toggleable: false,
-                                horizontalAlignment: WrapAlignment.spaceBetween,
+                                horizontalAlignment: WrapAlignment.start,
                                 verticalAlignment: WrapCrossAlignment.start,
                               ),
                             ],
@@ -526,25 +553,24 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               _model.programsList.map((e) => e.name).toList(),
                           onChanged: (val) async {
                             setState(() => _model.programsIdValue = val);
-                            setState(() {
-                              _model.addToPrograms(_model.programs
+                            _model.addToPrograms(_model.programs
+                                        .where((e) =>
+                                            e.programsId.id ==
+                                            _model.programsIdValue)
+                                        .toList().isEmpty
+                                ? ProgramStruct(
+                                    programsId: ProgramIdStruct(
+                                      id: _model.programsIdValue,
+                                      name: _model.programsList
                                           .where((e) =>
-                                              e.programsId.id ==
-                                              _model.programsIdValue)
-                                          .toList().isEmpty
-                                  ? ProgramStruct(
-                                      programsId: ProgramIdStruct(
-                                        id: _model.programsIdValue,
-                                        name: _model.programsList
-                                            .where((e) =>
-                                                e.id == _model.programsIdValue)
-                                            .toList()
-                                            .first
-                                            .name,
-                                      ),
-                                    )
-                                  : null!);
-                            });
+                                              e.id == _model.programsIdValue)
+                                          .toList()
+                                          .first
+                                          .name,
+                                    ),
+                                  )
+                                : null!);
+                            setState(() {});
                           },
                           width: 300.0,
                           height: 56.0,
@@ -580,6 +606,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               final listItems = _model.programs.toList();
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: listItems.length,
@@ -639,11 +666,9 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                               size: 24.0,
                                             ),
                                             onPressed: () async {
-                                              setState(() {
-                                                _model
-                                                    .removeAtIndexFromPrograms(
-                                                        listItemsIndex);
-                                              });
+                                              _model.removeAtIndexFromPrograms(
+                                                  listItemsIndex);
+                                              setState(() {});
                                             },
                                           ),
                                         ].divide(const SizedBox(width: 8.0)),
@@ -664,8 +689,8 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (FFAppState().user.role !=
-                        'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                    if (FFAppState().user.role ==
+                        '82073000-1ba2-43a4-a55c-459d17c23b68') {
                       if ((_model.nameTextController.text != '') &&
                           (_model.codeTextController.text != '') &&
                           (_model.descriptionTextController.text != '') &&
@@ -673,22 +698,18 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                               _model.dropDownBranchIdValue != '')) {
                         if (_model.checkCode != '1') {
                           while (_model.loop < _model.programs.length) {
-                            setState(() {
-                              _model.addToProgramIds(
-                                  ProgaramsCreateDepartmentsStruct(
-                                programsId: ProgramIdCreateDepartmentsStruct(
-                                  id: _model
-                                      .programs[_model.loop].programsId.id,
-                                ),
-                              ));
-                            });
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.addToProgramIds(
+                                ProgaramsCreateDepartmentsStruct(
+                              programsId: ProgramIdCreateDepartmentsStruct(
+                                id: _model.programs[_model.loop].programsId.id,
+                              ),
+                            ));
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                           await _model.pathDepartment(context);
                           setState(() {});
                         } else {
@@ -698,7 +719,22 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
+                              () {
+                                if (_model.nameTextController.text == '') {
+                                  return 'Tiêu đề đang trống!';
+                                } else if (_model.codeTextController.text == '') {
+                                  return 'Mã bộ phận đang trống!';
+                                } else if (_model.descriptionTextController.text ==
+                                        '') {
+                                  return 'Mô tả đang trống!';
+                                } else if (_model.dropDownBranchIdValue ==
+                                        null ||
+                                    _model.dropDownBranchIdValue == '') {
+                                  return 'Chi nhánh đang trống!';
+                                } else {
+                                  return '';
+                                }
+                              }(),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -715,22 +751,18 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           (_model.descriptionTextController.text != '')) {
                         if (_model.checkCode != '1') {
                           while (_model.loop < _model.programs.length) {
-                            setState(() {
-                              _model.addToProgramIds(
-                                  ProgaramsCreateDepartmentsStruct(
-                                programsId: ProgramIdCreateDepartmentsStruct(
-                                  id: _model
-                                      .programs[_model.loop].programsId.id,
-                                ),
-                              ));
-                            });
-                            setState(() {
-                              _model.loop = _model.loop + 1;
-                            });
+                            _model.addToProgramIds(
+                                ProgaramsCreateDepartmentsStruct(
+                              programsId: ProgramIdCreateDepartmentsStruct(
+                                id: _model.programs[_model.loop].programsId.id,
+                              ),
+                            ));
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
                           }
-                          setState(() {
-                            _model.loop = 0;
-                          });
+                          _model.loop = 0;
+                          setState(() {});
                           await _model.pathDepartment(context);
                           setState(() {});
                         } else {
@@ -740,7 +772,18 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Các trường tên, mô tả, mã bộ phận bắt buộc phải nhập!',
+                              () {
+                                if (_model.nameTextController.text == '') {
+                                  return 'Tiêu đề đang trống!';
+                                } else if (_model.codeTextController.text == '') {
+                                  return 'Mã bộ phận đang trống!';
+                                } else if (_model.descriptionTextController.text ==
+                                        '') {
+                                  return 'Mô tả đang trống!';
+                                } else {
+                                  return '';
+                                }
+                              }(),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),

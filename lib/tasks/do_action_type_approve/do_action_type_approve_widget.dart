@@ -50,9 +50,8 @@ class _DoActionTypeApproveWidgetState extends State<DoActionTypeApproveWidget> {
         children: [
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.result = 'rejected';
-              });
+              _model.result = 'rejected';
+              setState(() {});
               await widget.callback?.call(
                 _model.result,
               );

@@ -4,6 +4,12 @@ import 'filter_programs_widget.dart' show FilterProgramsWidget;
 import 'package:flutter/material.dart';
 
 class FilterProgramsModel extends FlutterFlowModel<FilterProgramsWidget> {
+  ///  Local state fields for this component.
+
+  String check1 = '';
+
+  String check2 = '';
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for domain widget.

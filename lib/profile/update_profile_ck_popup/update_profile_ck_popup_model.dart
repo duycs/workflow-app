@@ -8,6 +8,8 @@ class UpdateProfileCkPopupModel
 
   String itemCk = '';
 
+  String dataOutput = '';
+
   @override
   void initState(BuildContext context) {}
 

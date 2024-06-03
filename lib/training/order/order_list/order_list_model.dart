@@ -126,7 +126,7 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
         final pageItems = (ProgramOrderDataStruct.maybeFromMap(
                         listViewGetListOrderResponse.jsonBody)!
                     .data
-                    .where((e) => e.status == 'published')
+                    .where((e) => e.programOrderItems.isNotEmpty)
                     .toList() ??
                 [])
             .toList() as List;

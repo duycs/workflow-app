@@ -28,6 +28,7 @@ class LessonDetailHomePageWidget extends StatefulWidget {
     String? checkScroll,
     this.programId,
     String? checkLesson,
+    this.checkReload,
   })  : id = id ?? '',
         checkScroll = checkScroll ?? '0',
         checkLesson = checkLesson ?? '';
@@ -38,6 +39,7 @@ class LessonDetailHomePageWidget extends StatefulWidget {
   final String checkScroll;
   final String? programId;
   final String checkLesson;
+  final String? checkReload;
 
   @override
   State<LessonDetailHomePageWidget> createState() =>
@@ -100,7 +102,23 @@ class _LessonDetailHomePageWidgetState
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
+
+              setState(() {});
+              if (widget.checkReload == 'Home') {
+                context.pushNamed(
+                  'LessonLists_Homepage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              } else {
+                context.safePop();
+              }
             },
           ),
           title: Row(
@@ -152,9 +170,8 @@ class _LessonDetailHomePageWidgetState
                         dateStart: getCurrentTimestamp.toString(),
                       );
                       if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
-                        setState(() {
-                          _model.status = 'inprogress';
-                        });
+                        _model.status = 'inprogress';
+                        setState(() {});
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -616,10 +633,10 @@ class _LessonDetailHomePageWidgetState
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
-                                                                  setState(() {
-                                                                    _model.checkFile =
-                                                                        '0';
-                                                                  });
+                                                                  _model.checkFile =
+                                                                      '0';
+                                                                  setState(
+                                                                      () {});
                                                                 },
                                                                 child: Text(
                                                                   '(Mở file)',
@@ -662,10 +679,10 @@ class _LessonDetailHomePageWidgetState
                                                                         .transparent,
                                                                 onTap:
                                                                     () async {
-                                                                  setState(() {
-                                                                    _model.checkFile =
-                                                                        '1';
-                                                                  });
+                                                                  _model.checkFile =
+                                                                      '1';
+                                                                  setState(
+                                                                      () {});
                                                                 },
                                                                 child: Text(
                                                                   '(Đóng file)',
@@ -1352,11 +1369,10 @@ class _LessonDetailHomePageWidgetState
                                                                                   ).toString())) ==
                                                                                   'heif'))) &&
                                                                       (_model.status != 'draft')) {
+                                                                    _model.checkFile =
+                                                                        '0';
                                                                     setState(
-                                                                        () {
-                                                                      _model.checkFile =
-                                                                          '0';
-                                                                    });
+                                                                        () {});
                                                                   }
                                                                 },
                                                                 child: Text(
@@ -1791,9 +1807,8 @@ class _LessonDetailHomePageWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          setState(() {
-                                            _model.checkLove = '0';
-                                          });
+                                          _model.checkLove = '0';
+                                          setState(() {});
                                           await _model.deleteHeart(context);
                                           setState(() {});
                                         },
@@ -1811,9 +1826,8 @@ class _LessonDetailHomePageWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          setState(() {
-                                            _model.checkLove = '1';
-                                          });
+                                          _model.checkLove = '1';
+                                          setState(() {});
                                           await _model.postHeart(context);
                                           setState(() {});
                                         },
@@ -2428,6 +2442,7 @@ class _LessonDetailHomePageWidgetState
                                                                                   ),
                                                                                   afterDeleteAction: () async {
                                                                                     await _model.getComments(context);
+
                                                                                     setState(() {});
                                                                                   },
                                                                                 ),

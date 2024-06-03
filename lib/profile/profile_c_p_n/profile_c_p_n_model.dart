@@ -26,6 +26,8 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
 
   int loop = 3;
 
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -73,6 +75,7 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
           loop = loop + 1;
         }
         loop = 3;
+        isLoad = true;
       }
     } else {
       FFAppState().update(() {});

@@ -228,9 +228,8 @@ class _FilterLessonHomePageWidgetState
                                       );
                                     });
                                   }
-                                  setState(() {
-                                    _model.dateStart = _model.datePicked1;
-                                  });
+                                  _model.dateStart = _model.datePicked1;
+                                  setState(() {});
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -321,9 +320,8 @@ class _FilterLessonHomePageWidgetState
                                       );
                                     });
                                   }
-                                  setState(() {
-                                    _model.dateEnd = _model.datePicked2;
-                                  });
+                                  _model.dateEnd = _model.datePicked2;
+                                  setState(() {});
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -521,12 +519,11 @@ class _FilterLessonHomePageWidgetState
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              _model.status = '';
-                              _model.dateStart = null;
-                              _model.dateEnd = null;
-                              _model.lessonFavoritStatus = '';
-                            });
+                            _model.status = '';
+                            _model.dateStart = null;
+                            _model.dateEnd = null;
+                            _model.lessonFavoritStatus = '';
+                            setState(() {});
                             await widget.callBack?.call(
                               '',
                               _model.dateStartCPN,

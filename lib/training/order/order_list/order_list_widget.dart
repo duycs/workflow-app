@@ -37,9 +37,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.tokenReloadOrderList = await action_blocks.tokenReload(context);
       if (_model.tokenReloadOrderList!) {
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         setState(() {});
         return;
@@ -286,16 +285,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                               codeCb,
                                               nameCb,
                                               authorCb) async {
-                                            setState(() {
-                                              _model.statusFilter = statusCb!;
-                                              _model.privateFilter = privateCb!;
-                                              _model.codeFilter = codeCb;
-                                              _model.nameFilter = nameCb;
-                                              _model.authorFilter = authorCb;
-                                              _model.dateStartFilter =
-                                                  dateStartCb;
-                                              _model.dateEndFilter = dateEndCb;
-                                            });
+                                            _model.statusFilter = statusCb!;
+                                            _model.privateFilter = privateCb!;
+                                            _model.codeFilter = codeCb;
+                                            _model.nameFilter = nameCb;
+                                            _model.authorFilter = authorCb;
+                                            _model.dateStartFilter =
+                                                dateStartCb;
+                                            _model.dateEndFilter = dateEndCb;
+                                            setState(() {});
                                             setState(() => _model
                                                 .listViewPagingController
                                                 ?.refresh());
@@ -369,6 +367,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                       .add(const Duration(days: 1))
                                       .toString();
                                 }(_model.dateEndFilter)}\"}}' : ' '}]}',
+                          sort: '-date_created',
                         ),
                       ),
                       padding: EdgeInsets.zero,
@@ -409,7 +408,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                           final dataListItem = _model.listViewPagingController!
                               .itemList![dataListIndex];
                           return Visibility(
-                            visible: dataListItem.status == 'published',
+                            visible: dataListItem.programOrderItems.isNotEmpty,
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,

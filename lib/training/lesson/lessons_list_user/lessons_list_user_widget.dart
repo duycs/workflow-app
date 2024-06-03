@@ -36,9 +36,8 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
       _model.tokenReloadLessonsListUser =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadLessonsListUser!) {
-        setState(() {
-          _model.isShow = true;
-        });
+        _model.isShow = true;
+        setState(() {});
       } else {
         FFAppState().update(() {});
         return;
@@ -135,6 +134,7 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                 () async {
                                   setState(() => _model.listViewPagingController
                                       ?.refresh());
+
                                   setState(() {});
                                 },
                               ),
@@ -202,6 +202,7 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+
                                           setState(() {});
                                           setState(() {});
                                         },
@@ -257,11 +258,9 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                                         dateStart: _model.dateStartSearch,
                                         dateEnd: _model.dateEndStartSearch,
                                         callBack: (dateStart, dateEnd) async {
-                                          setState(() {
-                                            _model.dateStartSearch = dateStart!;
-                                            _model.dateEndStartSearch =
-                                                dateEnd!;
-                                          });
+                                          _model.dateStartSearch = dateStart!;
+                                          _model.dateEndStartSearch = dateEnd!;
+                                          setState(() {});
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());

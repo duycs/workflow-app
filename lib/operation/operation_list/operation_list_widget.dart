@@ -44,9 +44,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
       _model.tokenReloadOperationListList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadOperationListList!) {
-        setState(() {
-          _model.isLoad = true;
-        });
+        _model.isLoad = true;
+        setState(() {});
       } else {
         FFAppState().update(() {});
         return;
@@ -117,14 +116,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               : FocusScope.of(context).unfocus(),
                           child: OperationCreateWidget(
                             callBack: () async {
-                              setState(() {
-                                _model.seachName = '';
-                                _model.seachUserCreate = '';
-                                _model.searchAction = '';
-                                _model.searchDateStart = '';
-                                _model.searchDateEnd = '';
-                                _model.searchStatus = '';
-                              });
+                              _model.seachName = '';
+                              _model.seachUserCreate = '';
+                              _model.searchAction = '';
+                              _model.searchDateStart = '';
+                              _model.searchDateEnd = '';
+                              _model.searchStatus = '';
+                              setState(() {});
                               setState(() {
                                 _model.textController?.clear();
                               });
@@ -135,6 +133,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               setState(() => _model
                                   .listViewThreePagingController
                                   ?.refresh());
+
                               setState(() {});
                             },
                           ),
@@ -215,9 +214,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             '_model.textController',
                             const Duration(milliseconds: 500),
                             () async {
-                              setState(() {
-                                _model.seachName = _model.textController.text;
-                              });
+                              _model.seachName = _model.textController.text;
+                              setState(() {});
                               setState(() => _model.listViewOnePagingController
                                   ?.refresh());
                               setState(() => _model.listViewTwoPagingController
@@ -225,6 +223,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                               setState(() => _model
                                   .listViewThreePagingController
                                   ?.refresh());
+
                               setState(() {});
                             },
                           ),
@@ -285,10 +284,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                 ? InkWell(
                                     onTap: () async {
                                       _model.textController?.clear();
-                                      setState(() {
-                                        _model.seachName =
-                                            _model.textController.text;
-                                      });
+                                      _model.seachName =
+                                          _model.textController.text;
+                                      setState(() {});
                                       setState(() => _model
                                           .listViewOnePagingController
                                           ?.refresh());
@@ -298,6 +296,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                       setState(() => _model
                                           .listViewThreePagingController
                                           ?.refresh());
+
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -360,14 +359,13 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           userCeated,
                                           status,
                                           actionType) async {
-                                        setState(() {
-                                          _model.seachName = name!;
-                                          _model.seachUserCreate = userCeated!;
-                                          _model.searchAction = actionType!;
-                                          _model.searchStatus = status!;
-                                          _model.searchDateStart = dateStart!;
-                                          _model.searchDateEnd = dateEnd!;
-                                        });
+                                        _model.seachName = name!;
+                                        _model.seachUserCreate = userCeated!;
+                                        _model.searchAction = actionType!;
+                                        _model.searchStatus = status!;
+                                        _model.searchDateStart = dateStart!;
+                                        _model.searchDateEnd = dateEnd!;
+                                        setState(() {});
                                         setState(() {
                                           _model.textController?.clear();
                                         });
@@ -381,8 +379,9 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                             .listViewThreePagingController
                                             ?.refresh());
                                         setState(() {
-                                          _model.textController?.text = name!;
+                                          _model.textController?.text = name;
                                         });
+
                                         setState(() {});
                                       },
                                     ),
