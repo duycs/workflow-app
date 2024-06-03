@@ -166,6 +166,53 @@ String limitPublished(
   }
 }
 
+dynamic groupTasksByWorkflowImplement(String jsonData) {
+  var parsedData = jsonDecode(jsonData);
+
+  var tasksList = parsedData['data']
+      .expand((workflow) => workflow['steps'])
+      .expand((step) => step['tasks'])
+      .toList();
+
+  var groupedTasks = <String, Map<int, List<Map<String, dynamic>>>>{};
+
+  for (var task in tasksList) {
+    String workflowId = task['workflow_id'];
+    int publishedCount = task['published_count'];
+
+    groupedTasks.putIfAbsent(workflowId, () => {});
+    groupedTasks[workflowId]!.putIfAbsent(publishedCount, () => []);
+    groupedTasks[workflowId]![publishedCount]!.add(
+        {"id": task['id'], "name": task['name'], "status": task['status']});
+  }
+
+  var result = {
+    "data": groupedTasks.entries.map((entry) {
+      var workflowId = entry.key;
+      var publishedCountGroups = entry.value.entries.map((groupEntry) {
+        var publishedCount = groupEntry.key;
+        var tasks = groupEntry.value;
+        return {"published_count": publishedCount, "tasks": tasks};
+      }).toList();
+
+      int totalDone = 0;
+      for (var groupEntry in entry.value.entries) {
+        if (groupEntry.value.every((task) => task['status'] == 'done')) {
+          totalDone += 1;
+        }
+      }
+
+      return {
+        "workflow_id": workflowId,
+        "total_done": totalDone,
+        "published_count_group": publishedCountGroups
+      };
+    }).toList()
+  };
+
+  return result;
+}
+
 int timeToMinute(
   String hour,
   String second,
@@ -513,33 +560,6 @@ String? fileName(FFUploadedFile? file) {
   return file?.name?.toString();
 }
 
-int totaResultWorkflow(ProcedurePublishedListStruct data) {
-  var count = 0;
-  //if (data.steps.isEmpty) {
-  for (var group in data.steps) {
-    var groups = {group};
-    if (groups.isEmpty) {
-    } else {
-      var allTasks = groups.expand((step) => step.tasks ?? []).toList();
-
-      var lenghtStep = groups.length;
-
-      for (int i = 1; i <= allTasks.length ~/ lenghtStep; i++) {
-        var check = allTasks
-            .where((item) =>
-                item['published_count'] == i && item['status'] == 'done')
-            .toList();
-        if (check.length == lenghtStep) {
-          count++;
-        }
-      }
-    }
-    // }
-  }
-  print("$count");
-  return count;
-}
-
 double? newCaculator(List<dynamic>? list) {
   if (list is List<dynamic>) {
     double totalPercentCorrect = 0.0;
@@ -552,4 +572,27 @@ double? newCaculator(List<dynamic>? list) {
     return totalPercentCorrect;
   }
   return null;
+}
+
+int countJobDone(dynamic workflowItemJson) {
+  var tasksList = (workflowItemJson['steps'] as List)
+      .expand((step) => (step['tasks'] as List))
+      .toList();
+
+  Map<int, List<dynamic>> tasksGroupedByPublishedCount = {};
+  tasksList.forEach((task) {
+    int publishedCount = task['published_count'];
+    tasksGroupedByPublishedCount[publishedCount] ??= [];
+    tasksGroupedByPublishedCount[publishedCount]!.add(task);
+  });
+
+  int completedJobs = 0;
+  tasksGroupedByPublishedCount.forEach((publishedCount, tasks) {
+    bool allTasksCompleted = tasks.every((task) => task['status'] == 'done');
+    if (allTasksCompleted) {
+      completedJobs++;
+    }
+  });
+
+  return completedJobs;
 }

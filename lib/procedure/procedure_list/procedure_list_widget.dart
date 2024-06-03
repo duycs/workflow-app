@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_list_model.dart';
 export 'procedure_list_model.dart';
 
@@ -272,52 +273,54 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                               enableDrag: false,
                               context: context,
                               builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: ProcedureWorkFilterWidget(
-                                      name: _model.searchName != null &&
-                                              _model.searchName != ''
-                                          ? _model.searchName
-                                          : '',
-                                      dateStart: _model.dateStart != null &&
-                                              _model.dateStart != ''
-                                          ? _model.dateStart!
-                                          : '',
-                                      dateEnd: _model.dateEnd != null &&
-                                              _model.dateEnd != ''
-                                          ? _model.dateEnd!
-                                          : '',
-                                      staffId: _model.staffsId != null &&
-                                              _model.staffsId != ''
-                                          ? _model.staffsId!
-                                          : '',
-                                      callback: (name, dateStart, dateEnd,
-                                          staffid) async {
-                                        setState(() {
-                                          _model.textNameTextController
-                                              ?.clear();
-                                        });
-                                        setState(() {
-                                          _model.searchName = name;
-                                          _model.dateStart = dateStart;
-                                          _model.dateEnd = dateEnd;
-                                          _model.staffsId = staffid;
-                                        });
-                                        setState(() => _model
-                                            .listViewPagingController
-                                            ?.refresh());
-                                        setState(() {
-                                          _model.textNameTextController?.text =
-                                              name!;
-                                        });
-                                        setState(() {});
-                                      },
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: ProcedureWorkFilterWidget(
+                                        name: _model.searchName != null &&
+                                                _model.searchName != ''
+                                            ? _model.searchName
+                                            : '',
+                                        dateStart: _model.dateStart != null &&
+                                                _model.dateStart != ''
+                                            ? _model.dateStart!
+                                            : '',
+                                        dateEnd: _model.dateEnd != null &&
+                                                _model.dateEnd != ''
+                                            ? _model.dateEnd!
+                                            : '',
+                                        staffId: _model.staffsId != null &&
+                                                _model.staffsId != ''
+                                            ? _model.staffsId!
+                                            : '',
+                                        callback: (name, dateStart, dateEnd,
+                                            staffid) async {
+                                          setState(() {
+                                            _model.textNameTextController
+                                                ?.clear();
+                                          });
+                                          setState(() {
+                                            _model.searchName = name;
+                                            _model.dateStart = dateStart;
+                                            _model.dateEnd = dateEnd;
+                                            _model.staffsId = staffid;
+                                          });
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                          setState(() {
+                                            _model.textNameTextController
+                                                ?.text = name!;
+                                          });
+                                          setState(() {});
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -498,22 +501,26 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                 enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          AddWorkflowMarketWidget(
-                                                        id: listViewItem.id,
+                                                  return WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            AddWorkflowMarketWidget(
+                                                          id: listViewItem.id,
+                                                        ),
                                                       ),
                                                     ),
                                                   );

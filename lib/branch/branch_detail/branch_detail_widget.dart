@@ -10,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'branch_detail_model.dart';
 export 'branch_detail_model.dart';
 
@@ -669,15 +670,17 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                       enableDrag: false,
                       context: context,
                       builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: BranchUpdateWidget(
-                            id: widget.id,
-                            name: widget.name,
-                            code: widget.code,
-                            description: widget.code,
-                            codeList: widget.codeListitem,
-                            status: widget.status,
+                        return WebViewAware(
+                          child: Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: BranchUpdateWidget(
+                              id: widget.id,
+                              name: widget.name,
+                              code: widget.code,
+                              description: widget.code,
+                              codeList: widget.codeListitem,
+                              status: widget.status,
+                            ),
                           ),
                         );
                       },

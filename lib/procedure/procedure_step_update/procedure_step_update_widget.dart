@@ -13,6 +13,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_step_update_model.dart';
 export 'procedure_step_update_model.dart';
 
@@ -1092,17 +1093,20 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          content: const Text(
-                                                              'Kiểu hành động này chỉ có 1 công việc!'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: const Text('Ok'),
-                                                            ),
-                                                          ],
+                                                        return WebViewAware(
+                                                          child: AlertDialog(
+                                                            content: const Text(
+                                                                'Kiểu hành động này chỉ có 1 công việc!'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    const Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         );
                                                       },
                                                     );
@@ -1135,17 +1139,19 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      content: const Text(
-                                                          'Vui lòng chọn kiểu hành động!'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: const Text('Ok'),
-                                                        ),
-                                                      ],
+                                                    return WebViewAware(
+                                                      child: AlertDialog(
+                                                        content: const Text(
+                                                            'Vui lòng chọn kiểu hành động!'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: const Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     );
                                                   },
                                                 );
@@ -1195,7 +1201,76 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                     enableDrag: false,
                                                     context: context,
                                                     builder: (context) {
-                                                      return Padding(
+                                                      return WebViewAware(
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              OperationsListPopupWidget(
+                                                            actionType: _model
+                                                                .actionTypeValue!,
+                                                            callBack:
+                                                                (item) async {
+                                                              setState(() {
+                                                                _model.actionTypeValueController
+                                                                        ?.value =
+                                                                    item!
+                                                                        .actionType;
+                                                              });
+                                                              await _model
+                                                                  .addOperations(
+                                                                context,
+                                                                item: item,
+                                                              );
+                                                              setState(() {});
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() {}));
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return WebViewAware(
+                                                        child: AlertDialog(
+                                                          content: const Text(
+                                                              'Kiểu hành động này chỉ có 1 công việc!'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: const Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                  return;
+                                                }
+
+                                                return;
+                                              } else {
+                                                setState(() {
+                                                  _model.updateStepsEditStruct(
+                                                    (e) => e..operations = [],
+                                                  );
+                                                });
+                                                await showModalBottomSheet(
+                                                  isScrollControlled: true,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  enableDrag: false,
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return WebViewAware(
+                                                      child: Padding(
                                                         padding: MediaQuery
                                                             .viewInsetsOf(
                                                                 context),
@@ -1219,68 +1294,6 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                             setState(() {});
                                                           },
                                                         ),
-                                                      );
-                                                    },
-                                                  ).then((value) =>
-                                                      safeSetState(() {}));
-                                                } else {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        content: const Text(
-                                                            'Kiểu hành động này chỉ có 1 công việc!'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: const Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                  return;
-                                                }
-
-                                                return;
-                                              } else {
-                                                setState(() {
-                                                  _model.updateStepsEditStruct(
-                                                    (e) => e..operations = [],
-                                                  );
-                                                });
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          OperationsListPopupWidget(
-                                                        actionType: _model
-                                                            .actionTypeValue!,
-                                                        callBack: (item) async {
-                                                          setState(() {
-                                                            _model.actionTypeValueController
-                                                                    ?.value =
-                                                                item!
-                                                                    .actionType;
-                                                          });
-                                                          await _model
-                                                              .addOperations(
-                                                            context,
-                                                            item: item,
-                                                          );
-                                                          setState(() {});
-                                                        },
                                                       ),
                                                     );
                                                   },
@@ -1451,20 +1464,23 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child: DropdownUserListWidget(
-                                                    dataPar:
-                                                        _model.staffsStepNv,
-                                                    callback: (item) async {
-                                                      await _model.addStaff(
-                                                        context,
-                                                        item: item,
-                                                      );
-                                                      setState(() {});
-                                                    },
+                                                return WebViewAware(
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        DropdownUserListWidget(
+                                                      dataPar:
+                                                          _model.staffsStepNv,
+                                                      callback: (item) async {
+                                                        await _model.addStaff(
+                                                          context,
+                                                          item: item,
+                                                        );
+                                                        setState(() {});
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -1651,25 +1667,27 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                             enableDrag: false,
                                             context: context,
                                             builder: (context) {
-                                              return Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child:
-                                                    DropdownDepartmentsListWidget(
-                                                  dataPar: _model
-                                                      .stafStepDepartments,
-                                                  callback: (item) async {
-                                                    setState(() {
-                                                      _model.stafStepDepartments =
-                                                          [];
-                                                    });
-                                                    setState(() {
-                                                      _model.stafStepDepartments =
-                                                          item!.toList().cast<
-                                                              DepartmentsIdStruct>();
-                                                    });
-                                                  },
+                                              return WebViewAware(
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      DropdownDepartmentsListWidget(
+                                                    dataPar: _model
+                                                        .stafStepDepartments,
+                                                    callback: (item) async {
+                                                      setState(() {
+                                                        _model.stafStepDepartments =
+                                                            [];
+                                                      });
+                                                      setState(() {
+                                                        _model.stafStepDepartments =
+                                                            item!.toList().cast<
+                                                                DepartmentsIdStruct>();
+                                                      });
+                                                    },
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -2113,11 +2131,14 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                     enableDrag: false,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: AlertStaffCheckDepartmentsWidget(
-                                          listParam: _model.checkStaff,
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child:
+                                              AlertStaffCheckDepartmentsWidget(
+                                            listParam: _model.checkStaff,
+                                          ),
                                         ),
                                       );
                                     },
@@ -2219,15 +2240,18 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: const Text('Vui lòng nhập công việc!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        content:
+                                            const Text('Vui lòng nhập công việc!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 );

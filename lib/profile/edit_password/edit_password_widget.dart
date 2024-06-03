@@ -7,6 +7,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 
@@ -375,21 +376,23 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                   var confirmDialogResponse = await showDialog<bool>(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('Xác nhận'),
-                            content: const Text('Bạn chắc chắn muốn thay đổi?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext, false),
-                                child: const Text('Hủy'),
-                              ),
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext, true),
-                                child: const Text('Xác nhận'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: const Text('Xác nhận'),
+                              content: const Text('Bạn chắc chắn muốn thay đổi?'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, false),
+                                  child: const Text('Hủy'),
+                                ),
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext, true),
+                                  child: const Text('Xác nhận'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ) ??

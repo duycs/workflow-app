@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lessons_list_user_model.dart';
 export 'lessons_list_user_model.dart';
 
@@ -243,26 +244,29 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
                               enableDrag: false,
                               context: context,
                               builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: FilterLessonUserWidget(
-                                      dateStart: _model.dateStartSearch,
-                                      dateEnd: _model.dateEndStartSearch,
-                                      callBack: (dateStart, dateEnd) async {
-                                        setState(() {
-                                          _model.dateStartSearch = dateStart!;
-                                          _model.dateEndStartSearch = dateEnd!;
-                                        });
-                                        setState(() => _model
-                                            .listViewPagingController
-                                            ?.refresh());
-                                      },
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: FilterLessonUserWidget(
+                                        dateStart: _model.dateStartSearch,
+                                        dateEnd: _model.dateEndStartSearch,
+                                        callBack: (dateStart, dateEnd) async {
+                                          setState(() {
+                                            _model.dateStartSearch = dateStart!;
+                                            _model.dateEndStartSearch =
+                                                dateEnd!;
+                                          });
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );

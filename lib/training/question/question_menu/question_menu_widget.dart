@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/training/question/question_detail/question_detail_widget.dart';
 import '/training/question/question_update/question_update_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'question_menu_model.dart';
 export 'question_menu_model.dart';
 
@@ -93,12 +94,14 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                         isDismissible: false,
                         context: context,
                         builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: double.infinity,
-                              child: QuestionDetailWidget(
-                                itemOne: widget.item!,
+                          return WebViewAware(
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: SizedBox(
+                                height: double.infinity,
+                                child: QuestionDetailWidget(
+                                  itemOne: widget.item!,
+                                ),
                               ),
                             ),
                           );
@@ -172,10 +175,12 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                         backgroundColor: Colors.transparent,
                         context: context,
                         builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: QuestionUpdateWidget(
-                              item: widget.item!,
+                          return WebViewAware(
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: QuestionUpdateWidget(
+                                item: widget.item!,
+                              ),
                             ),
                           );
                         },

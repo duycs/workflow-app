@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_list_homepage_model.dart';
 export 'lesson_list_homepage_model.dart';
 
@@ -257,61 +258,65 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: FilterLessonHomePageWidget(
-                                          status: _model.status,
-                                          dateStart: _model.dateStartList,
-                                          dateEnd: _model.dateEndList,
-                                          lessonFavoriteStatus:
-                                              _model.lessonFavoriteStatusList,
-                                          statusLoveFilter: widget.statusLove!,
-                                          statusDateToday:
-                                              widget.lessonNewCreate,
-                                          statusDateHistory:
-                                              widget.lesonHistory!,
-                                          programsId: _model.programsId,
-                                          checkPrograms: '',
-                                          callBack: (status,
-                                              dateStart,
-                                              dateEnd,
-                                              lessonStatus,
-                                              lessonFavoriteStatus,
-                                              programsId) async {
-                                            setState(() {
-                                              _model.status = status!;
-                                              _model.dateStartList =
-                                                  dateTimeFormat(
-                                                'yyyy-MM-dd',
+                                      child: WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: FilterLessonHomePageWidget(
+                                            status: _model.status,
+                                            dateStart: _model.dateStartList,
+                                            dateEnd: _model.dateEndList,
+                                            lessonFavoriteStatus:
+                                                _model.lessonFavoriteStatusList,
+                                            statusLoveFilter:
+                                                widget.statusLove!,
+                                            statusDateToday:
+                                                widget.lessonNewCreate,
+                                            statusDateHistory:
+                                                widget.lesonHistory!,
+                                            programsId: _model.programsId,
+                                            checkPrograms: '',
+                                            callBack: (status,
                                                 dateStart,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              );
-                                              _model.dateEndList =
-                                                  dateTimeFormat(
-                                                'yyyy-MM-dd',
                                                 dateEnd,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              );
-                                              _model.statusLesson =
-                                                  lessonStatus!;
-                                              _model.lessonFavoriteStatusList =
-                                                  lessonFavoriteStatus!;
-                                              _model.programsId = programsId!;
-                                            });
-                                            setState(() => _model
-                                                .listViewPagingController
-                                                ?.refresh());
-                                            setState(() {});
-                                          },
+                                                lessonStatus,
+                                                lessonFavoriteStatus,
+                                                programsId) async {
+                                              setState(() {
+                                                _model.status = status!;
+                                                _model.dateStartList =
+                                                    dateTimeFormat(
+                                                  'yyyy-MM-dd',
+                                                  dateStart,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                );
+                                                _model.dateEndList =
+                                                    dateTimeFormat(
+                                                  'yyyy-MM-dd',
+                                                  dateEnd,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                );
+                                                _model.statusLesson =
+                                                    lessonStatus!;
+                                                _model.lessonFavoriteStatusList =
+                                                    lessonFavoriteStatus!;
+                                                _model.programsId = programsId!;
+                                              });
+                                              setState(() => _model
+                                                  .listViewPagingController
+                                                  ?.refresh());
+                                              setState(() {});
+                                            },
+                                          ),
                                         ),
                                       ),
                                     );

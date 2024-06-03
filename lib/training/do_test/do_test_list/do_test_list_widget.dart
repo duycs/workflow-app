@@ -9,6 +9,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'do_test_list_model.dart';
 export 'do_test_list_model.dart';
 
@@ -266,30 +267,33 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                                     backgroundColor: Colors.transparent,
                                     alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: FilterDoTestWidget(
-                                        filterSearch:
-                                            _model.textController.text,
-                                        dateStart: _model.dateStartFilter,
-                                        dateEnd: _model.dateEndFilter,
-                                        callback: (dateStartCallback,
-                                            dateEndCallback) async {
-                                          setState(() {
-                                            _model.dateStartFilter =
-                                                dateStartCallback!;
-                                            _model.dateEndFilter =
-                                                dateEndCallback!;
-                                          });
-                                          setState(() => _model
-                                              .listViewPagingController
-                                              ?.refresh());
-                                          setState(() {});
-                                        },
+                                    child: WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: FilterDoTestWidget(
+                                          filterSearch:
+                                              _model.textController.text,
+                                          dateStart: _model.dateStartFilter,
+                                          dateEnd: _model.dateEndFilter,
+                                          callback: (dateStartCallback,
+                                              dateEndCallback) async {
+                                            setState(() {
+                                              _model.dateStartFilter =
+                                                  dateStartCallback!;
+                                              _model.dateEndFilter =
+                                                  dateEndCallback!;
+                                            });
+                                            setState(() => _model
+                                                .listViewPagingController
+                                                ?.refresh());
+                                            setState(() {});
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );

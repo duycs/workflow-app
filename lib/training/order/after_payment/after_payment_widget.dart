@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/order/invite_user/invite_user_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'after_payment_model.dart';
 export 'after_payment_model.dart';
 
@@ -192,10 +193,12 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: InviteUserWidget(
-                                  programId: widget.programId!,
+                              return WebViewAware(
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: InviteUserWidget(
+                                    programId: widget.programId!,
+                                  ),
                                 ),
                               );
                             },

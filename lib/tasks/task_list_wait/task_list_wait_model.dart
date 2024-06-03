@@ -46,8 +46,6 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in TaskListWait widget.
   bool? getTaskFailToken;
-  // Stores action output result for [Backend Call - API (GetListTask)] action in TaskListWait widget.
-  ApiCallResponse? apiResultGetTask;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -73,6 +71,68 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
 
     listViewPagingController?.dispose();
     navBarModel.dispose();
+  }
+
+  /// Action blocks.
+  Future getNumberTask(BuildContext context) async {
+    ApiCallResponse? apiResultGetTaskDone;
+    ApiCallResponse? apiResultGetTaskToDo;
+    ApiCallResponse? apiResultGetTaskWait;
+
+    apiResultGetTaskDone = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
+      meta: 'filter_count',
+    );
+    if ((apiResultGetTaskDone.succeeded ?? true)) {
+      taskDone = getJsonField(
+        (apiResultGetTaskDone.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
+    }
+    apiResultGetTaskToDo = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
+      meta: 'filter_count',
+    );
+    if ((apiResultGetTaskToDo.succeeded ?? true)) {
+      taskToDo = getJsonField(
+        (apiResultGetTaskToDo.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
+    }
+    apiResultGetTaskWait = await TaskGroup.getListTaskCall.call(
+      accessToken: FFAppState().accessToken,
+      filter:
+          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.id''',
+      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+        FFAppState().staffLogin,
+        r'''$.organization_id''',
+      ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
+      meta: 'filter_count',
+    );
+    if ((apiResultGetTaskWait.succeeded ?? true)) {
+      totalWait = getJsonField(
+        (apiResultGetTaskWait.jsonBody ?? ''),
+        r'''$.meta.filter_count''',
+      );
+    }
   }
 
   /// Additional helper methods.

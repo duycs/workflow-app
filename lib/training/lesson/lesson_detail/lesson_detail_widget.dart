@@ -1771,18 +1771,33 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                                   ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 5.0, 12.0, 0.0),
-                        child: custom_widgets.HtmlToDoc(
-                          width: double.infinity,
-                          height: 100.0,
-                          html: functions.formatHtml(getJsonField(
-                            _model.listDetail,
-                            r'''$.content''',
-                          ).toString()),
+                      if ((_model.listDetail != null) &&
+                          (getJsonField(
+                                _model.listDetail,
+                                r'''$.content''',
+                              ) !=
+                              null))
+                        SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 5.0, 12.0, 0.0),
+                                child: custom_widgets.HtmlToDoc(
+                                  width: double.infinity,
+                                  height: 100.0,
+                                  html: functions.formatHtml(getJsonField(
+                                    _model.listDetail,
+                                    r'''$.content''',
+                                  ).toString()),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 16.0),

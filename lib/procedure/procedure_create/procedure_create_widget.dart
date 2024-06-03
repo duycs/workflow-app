@@ -20,6 +20,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_create_model.dart';
 export 'procedure_create_model.dart';
 
@@ -977,30 +978,32 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        DropdownDepartmentsListWidget(
-                                                      dataPar: _model
-                                                          .departmentsList,
-                                                      callback: (item) async {
-                                                        setState(() {
-                                                          _model.departmentsList =
-                                                              item!.toList().cast<
-                                                                  DepartmentsIdStruct>();
-                                                        });
-                                                      },
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          DropdownDepartmentsListWidget(
+                                                        dataPar: _model
+                                                            .departmentsList,
+                                                        callback: (item) async {
+                                                          setState(() {
+                                                            _model.departmentsList =
+                                                                item!.toList().cast<
+                                                                    DepartmentsIdStruct>();
+                                                          });
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1016,29 +1019,32 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        DropdownUserListWidget(
-                                                      dataPar: _model.staffList,
-                                                      callback: (item) async {
-                                                        await _model.addStaff(
-                                                          context,
-                                                          item: item,
-                                                        );
-                                                        setState(() {});
-                                                      },
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          DropdownUserListWidget(
+                                                        dataPar:
+                                                            _model.staffList,
+                                                        callback: (item) async {
+                                                          await _model.addStaff(
+                                                            context,
+                                                            item: item,
+                                                          );
+                                                          setState(() {});
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1127,29 +1133,32 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        DropdownUserListWidget(
-                                                      dataPar: _model.staffList,
-                                                      callback: (item) async {
-                                                        await _model.addStaff(
-                                                          context,
-                                                          item: item,
-                                                        );
-                                                        setState(() {});
-                                                      },
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          DropdownUserListWidget(
+                                                        dataPar:
+                                                            _model.staffList,
+                                                        callback: (item) async {
+                                                          await _model.addStaff(
+                                                            context,
+                                                            item: item,
+                                                          );
+                                                          setState(() {});
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1307,31 +1316,33 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        DropdownDepartmentsListWidget(
-                                                      dataPar: _model
-                                                          .departmentsList,
-                                                      callback: (item) async {
-                                                        setState(() {
-                                                          _model.departmentsList =
-                                                              item!.toList().cast<
-                                                                  DepartmentsIdStruct>();
-                                                        });
-                                                        setState(() {});
-                                                      },
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          DropdownDepartmentsListWidget(
+                                                        dataPar: _model
+                                                            .departmentsList,
+                                                        callback: (item) async {
+                                                          setState(() {
+                                                            _model.departmentsList =
+                                                                item!.toList().cast<
+                                                                    DepartmentsIdStruct>();
+                                                          });
+                                                          setState(() {});
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -3532,51 +3543,55 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        ProcedureStepCreateWidget(
-                                                      callBack:
-                                                          (addItem) async {
-                                                        setState(() {
-                                                          _model.addToStepsList(
-                                                              WorkflowsStepCreateStruct(
-                                                            name: addItem?.name,
-                                                            description: addItem
-                                                                ?.description,
-                                                            staffs:
-                                                                addItem?.staffs,
-                                                            executeType: addItem
-                                                                ?.executeType,
-                                                            actionType: addItem
-                                                                ?.actionType,
-                                                            operations: addItem
-                                                                ?.operations,
-                                                            status: 'published',
-                                                            staffsAlias: addItem
-                                                                ?.staffsAlias,
-                                                            timeOperate: addItem
-                                                                ?.timeOperate,
-                                                            estimateInSecond:
-                                                                addItem
-                                                                    ?.estimateInSecond,
-                                                            departments: addItem
-                                                                ?.departments,
-                                                          ));
-                                                        });
-                                                        setState(() {});
-                                                      },
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          ProcedureStepCreateWidget(
+                                                        callBack:
+                                                            (addItem) async {
+                                                          setState(() {
+                                                            _model.addToStepsList(
+                                                                WorkflowsStepCreateStruct(
+                                                              name:
+                                                                  addItem?.name,
+                                                              description: addItem
+                                                                  ?.description,
+                                                              staffs: addItem
+                                                                  ?.staffs,
+                                                              executeType: addItem
+                                                                  ?.executeType,
+                                                              actionType: addItem
+                                                                  ?.actionType,
+                                                              operations: addItem
+                                                                  ?.operations,
+                                                              status:
+                                                                  'published',
+                                                              staffsAlias: addItem
+                                                                  ?.staffsAlias,
+                                                              timeOperate: addItem
+                                                                  ?.timeOperate,
+                                                              estimateInSecond:
+                                                                  addItem
+                                                                      ?.estimateInSecond,
+                                                              departments: addItem
+                                                                  ?.departments,
+                                                            ));
+                                                          });
+                                                          setState(() {});
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -3792,30 +3807,30 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           color:
                                                                               Colors.transparent,
                                                                           child:
-                                                                              GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                                              WebViewAware(
                                                                             child:
-                                                                                SizedBox(
-                                                                              height: 150.0,
-                                                                              width: 250.0,
-                                                                              child: ProcedureStepMenuWidget(
-                                                                                item: listViewItem,
-                                                                                idItem: 'null',
-                                                                                callBack: (upStep, idItem) async {
-                                                                                  await _model.updateStep(
-                                                                                    context,
-                                                                                    item: upStep,
-                                                                                    index: listViewIndex,
-                                                                                  );
-                                                                                  setState(() {});
-                                                                                },
-                                                                                callBackDelete: () async {
-                                                                                  setState(() {
-                                                                                    _model.removeAtIndexFromStepsList(listViewIndex);
-                                                                                  });
-                                                                                },
+                                                                                GestureDetector(
+                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              child: SizedBox(
+                                                                                height: 150.0,
+                                                                                width: 250.0,
+                                                                                child: ProcedureStepMenuWidget(
+                                                                                  item: listViewItem,
+                                                                                  idItem: 'null',
+                                                                                  callBack: (upStep, idItem) async {
+                                                                                    await _model.updateStep(
+                                                                                      context,
+                                                                                      item: upStep,
+                                                                                      index: listViewIndex,
+                                                                                    );
+                                                                                    setState(() {});
+                                                                                  },
+                                                                                  callBackDelete: () async {
+                                                                                    setState(() {
+                                                                                      _model.removeAtIndexFromStepsList(listViewIndex);
+                                                                                    });
+                                                                                  },
+                                                                                ),
                                                                               ),
                                                                             ),
                                                                           ),

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   ///  Local state fields for this page.
@@ -137,18 +138,22 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
         var confirmDialogResponse = await showDialog<bool>(
               context: context,
               builder: (alertDialogContext) {
-                return AlertDialog(
-                  title: Text(imageId.length.toString()),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                      child: const Text('Confirm'),
-                    ),
-                  ],
+                return WebViewAware(
+                  child: AlertDialog(
+                    title: Text(imageId.length.toString()),
+                    actions: [
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.pop(alertDialogContext, false),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.pop(alertDialogContext, true),
+                        child: const Text('Confirm'),
+                      ),
+                    ],
+                  ),
                 );
               },
             ) ??
@@ -187,20 +192,22 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
             confirmDialogResponse = await showDialog<bool>(
                   context: context,
                   builder: (alertDialogContext) {
-                    return AlertDialog(
-                      title: Text(imagesUpload.length.toString()),
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, false),
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, true),
-                          child: const Text('Confirm'),
-                        ),
-                      ],
+                    return WebViewAware(
+                      child: AlertDialog(
+                        title: Text(imagesUpload.length.toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: const Text('Confirm'),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ) ??
@@ -231,20 +238,22 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
             confirmDialogResponse = await showDialog<bool>(
                   context: context,
                   builder: (alertDialogContext) {
-                    return AlertDialog(
-                      title: Text(imagesUpload.length.toString()),
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, false),
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, true),
-                          child: const Text('Confirm'),
-                        ),
-                      ],
+                    return WebViewAware(
+                      child: AlertDialog(
+                        title: Text(imagesUpload.length.toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: const Text('Confirm'),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ) ??

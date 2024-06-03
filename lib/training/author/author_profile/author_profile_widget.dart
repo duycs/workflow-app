@@ -10,6 +10,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'author_profile_model.dart';
 export 'author_profile_model.dart';
 
@@ -383,7 +384,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                               padding:
                                                                   EdgeInsets
                                                                       .zero,
-                                                              shrinkWrap: true,
+                                                              primary: false,
                                                               scrollDirection:
                                                                   Axis.vertical,
                                                               itemCount:
@@ -1239,49 +1240,51 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                           enableDrag: false,
                                                           context: context,
                                                           builder: (context) {
-                                                            return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    UpdateAuthorWidget(
-                                                                  name: _model
-                                                                      .author!
-                                                                      .alias,
-                                                                  avatar: _model
-                                                                      .author!
-                                                                      .avatar,
-                                                                  description: _model
-                                                                      .author!
-                                                                      .description,
-                                                                  domains: _model
-                                                                      .author
-                                                                      ?.domains
-                                                                      .map((e) => e
-                                                                          .domainsId
-                                                                          .id)
-                                                                      .toList(),
-                                                                  id: _model
-                                                                      .author!
-                                                                      .id,
-                                                                  domainIds: _model
-                                                                      .author
-                                                                      ?.domains
-                                                                      .map((e) =>
-                                                                          e.id)
-                                                                      .toList(),
+                                                            return WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
+                                                                  child:
+                                                                      UpdateAuthorWidget(
+                                                                    name: _model
+                                                                        .author!
+                                                                        .alias,
+                                                                    avatar: _model
+                                                                        .author!
+                                                                        .avatar,
+                                                                    description: _model
+                                                                        .author!
+                                                                        .description,
+                                                                    domains: _model
+                                                                        .author
+                                                                        ?.domains
+                                                                        .map((e) => e
+                                                                            .domainsId
+                                                                            .id)
+                                                                        .toList(),
+                                                                    id: _model
+                                                                        .author!
+                                                                        .id,
+                                                                    domainIds: _model
+                                                                        .author
+                                                                        ?.domains
+                                                                        .map((e) =>
+                                                                            e.id)
+                                                                        .toList(),
+                                                                  ),
                                                                 ),
                                                               ),
                                                             );

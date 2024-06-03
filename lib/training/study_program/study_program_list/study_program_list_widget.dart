@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_list_model.dart';
 export 'study_program_list_model.dart';
 
@@ -88,30 +89,32 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                     backgroundColor: Colors.transparent,
                     alignment: const AlignmentDirectional(0.0, 1.0)
                         .resolve(Directionality.of(context)),
-                    child: GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: StudyProgramCreateWidget(
-                        callBackList: () async {
-                          setState(() {
-                            _model.checkShow = null;
-                            _model.dataList = [];
-                            _model.meta = null;
-                            _model.isLoad = false;
-                            _model.nameSearch = '';
-                            _model.dateEndSearch = '';
-                            _model.dateStartSearch = '';
-                            _model.lessionsNameSearch = '';
-                          });
-                          setState(() {
-                            _model.textFieldNameSearchTextController?.clear();
-                          });
-                          setState(() =>
-                              _model.listViewPagingController1?.refresh());
-                          setState(() {});
-                        },
+                    child: WebViewAware(
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: StudyProgramCreateWidget(
+                          callBackList: () async {
+                            setState(() {
+                              _model.checkShow = null;
+                              _model.dataList = [];
+                              _model.meta = null;
+                              _model.isLoad = false;
+                              _model.nameSearch = '';
+                              _model.dateEndSearch = '';
+                              _model.dateStartSearch = '';
+                              _model.lessionsNameSearch = '';
+                            });
+                            setState(() {
+                              _model.textFieldNameSearchTextController?.clear();
+                            });
+                            setState(() =>
+                                _model.listViewPagingController1?.refresh());
+                            setState(() {});
+                          },
+                        ),
                       ),
                     ),
                   );
@@ -434,42 +437,46 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   backgroundColor: Colors.transparent,
                                   alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterStudyProgramWidget(
-                                      name: _model.nameSearch!,
-                                      lessionsName: _model.lessionsNameSearch!,
-                                      dateStart: _model.dateStartSearch!,
-                                      dateEnd: _model.dateEndSearch!,
-                                      status: _model.status,
-                                      callBack: (name, dateStart, dateEnd,
-                                          lessions, status) async {
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.clear();
-                                        });
-                                        setState(() {
-                                          _model.nameSearch = name;
-                                          _model.dateEndSearch = dateEnd;
-                                          _model.dateStartSearch = dateStart;
-                                          _model.lessionsNameSearch = lessions;
-                                          _model.status = status!;
-                                        });
-                                        setState(() => _model
-                                            .listViewPagingController1
-                                            ?.refresh());
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.text = name!;
-                                        });
-                                        setState(() {});
-                                      },
+                                  child: WebViewAware(
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: FilterStudyProgramWidget(
+                                        name: _model.nameSearch!,
+                                        lessionsName:
+                                            _model.lessionsNameSearch!,
+                                        dateStart: _model.dateStartSearch!,
+                                        dateEnd: _model.dateEndSearch!,
+                                        status: _model.status,
+                                        callBack: (name, dateStart, dateEnd,
+                                            lessions, status) async {
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.clear();
+                                          });
+                                          setState(() {
+                                            _model.nameSearch = name;
+                                            _model.dateEndSearch = dateEnd;
+                                            _model.dateStartSearch = dateStart;
+                                            _model.lessionsNameSearch =
+                                                lessions;
+                                            _model.status = status!;
+                                          });
+                                          setState(() => _model
+                                              .listViewPagingController1
+                                              ?.refresh());
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.text = name!;
+                                          });
+                                          setState(() {});
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -637,55 +644,58 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                     enableDrag: false,
                                                     context: context,
                                                     builder: (context) {
-                                                      return GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
-                                                                .unfocus(),
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              StudyProgramEditWidget(
-                                                            dataDetail:
-                                                                dataListViewItem,
-                                                            callBackList1:
-                                                                () async {
-                                                              setState(() {
-                                                                _model.checkShow =
-                                                                    null;
-                                                                _model.dataList =
-                                                                    [];
-                                                                _model.meta =
-                                                                    null;
-                                                                _model.isLoad =
-                                                                    false;
-                                                                _model.nameSearch =
-                                                                    '';
-                                                                _model.dateEndSearch =
-                                                                    '';
-                                                                _model.dateStartSearch =
-                                                                    '';
-                                                                _model.lessionsNameSearch =
-                                                                    '';
-                                                              });
-                                                              setState(() {
-                                                                _model
-                                                                    .textFieldNameSearchTextController
-                                                                    ?.clear();
-                                                              });
-                                                              await _model
-                                                                  .getListProgram(
-                                                                      context);
-                                                              setState(() {});
-                                                            },
+                                                      return WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child: Padding(
+                                                            padding: MediaQuery
+                                                                .viewInsetsOf(
+                                                                    context),
+                                                            child:
+                                                                StudyProgramEditWidget(
+                                                              dataDetail:
+                                                                  dataListViewItem,
+                                                              callBackList1:
+                                                                  () async {
+                                                                setState(() {
+                                                                  _model.checkShow =
+                                                                      null;
+                                                                  _model.dataList =
+                                                                      [];
+                                                                  _model.meta =
+                                                                      null;
+                                                                  _model.isLoad =
+                                                                      false;
+                                                                  _model.nameSearch =
+                                                                      '';
+                                                                  _model.dateEndSearch =
+                                                                      '';
+                                                                  _model.dateStartSearch =
+                                                                      '';
+                                                                  _model.lessionsNameSearch =
+                                                                      '';
+                                                                });
+                                                                setState(() {
+                                                                  _model
+                                                                      .textFieldNameSearchTextController
+                                                                      ?.clear();
+                                                                });
+                                                                await _model
+                                                                    .getListProgram(
+                                                                        context);
+                                                                setState(() {});
+                                                              },
+                                                            ),
                                                           ),
                                                         ),
                                                       );
@@ -865,29 +875,32 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             MainAxisAlignment
                                                                 .spaceBetween,
                                                         children: [
-                                                          Text(
-                                                            '${'${valueOrDefault<String>(
-                                                              dataListViewItem
-                                                                  .lessions
-                                                                  .length
-                                                                  .toString(),
-                                                              '0',
-                                                            )} bài học'} - ${'${valueOrDefault<String>(
-                                                              dataListViewItem
-                                                                  .tests.length
-                                                                  .toString(),
-                                                              '0',
-                                                            )} bài thi'}',
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              '${'${valueOrDefault<String>(
+                                                                dataListViewItem
+                                                                    .lessions
+                                                                    .length
+                                                                    .toString(),
+                                                                '0',
+                                                              )} bài học'} - ${'${valueOrDefault<String>(
+                                                                dataListViewItem
+                                                                    .tests
+                                                                    .length
+                                                                    .toString(),
+                                                                '0',
+                                                              )} bài thi'}',
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
                                                           ),
                                                           Container(
                                                             decoration:
@@ -1059,28 +1072,26 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       context,
                                                                   builder:
                                                                       (context) {
-                                                                    return GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
+                                                                    return WebViewAware(
                                                                       child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            MediaQuery.viewInsetsOf(context),
+                                                                          GestureDetector(
+                                                                        onTap: () => _model.unfocusNode.canRequestFocus
+                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                            : FocusScope.of(context).unfocus(),
                                                                         child:
-                                                                            AddProgramMarketWidget(
-                                                                          id: dataListViewItem
-                                                                              .id,
-                                                                          price:
-                                                                              dataListViewItem.price,
-                                                                          version:
-                                                                              dataListViewItem.version,
-                                                                          checkPage:
-                                                                              widget.checkpage,
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AddProgramMarketWidget(
+                                                                            id: dataListViewItem.id,
+                                                                            price:
+                                                                                dataListViewItem.price,
+                                                                            version:
+                                                                                dataListViewItem.version,
+                                                                            checkPage:
+                                                                                widget.checkpage,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     );
@@ -1197,28 +1208,26 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       context,
                                                                   builder:
                                                                       (context) {
-                                                                    return GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
+                                                                    return WebViewAware(
                                                                       child:
-                                                                          Padding(
-                                                                        padding:
-                                                                            MediaQuery.viewInsetsOf(context),
+                                                                          GestureDetector(
+                                                                        onTap: () => _model.unfocusNode.canRequestFocus
+                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                            : FocusScope.of(context).unfocus(),
                                                                         child:
-                                                                            AddProgramMarketWidget(
-                                                                          id: dataListViewItem
-                                                                              .id,
-                                                                          price:
-                                                                              dataListViewItem.price,
-                                                                          version:
-                                                                              dataListViewItem.version,
-                                                                          checkPage:
-                                                                              widget.checkpage,
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              AddProgramMarketWidget(
+                                                                            id: dataListViewItem.id,
+                                                                            price:
+                                                                                dataListViewItem.price,
+                                                                            version:
+                                                                                dataListViewItem.version,
+                                                                            checkPage:
+                                                                                widget.checkpage,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     );

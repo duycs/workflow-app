@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'procedure_step_update_widget.dart' show ProcedureStepUpdateWidget;
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProcedureStepUpdateModel
     extends FlutterFlowModel<ProcedureStepUpdateWidget> {
@@ -180,14 +181,16 @@ class ProcedureStepUpdateModel
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            content: const Text('Hành động đã có !'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: const Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              content: const Text('Hành động đã có !'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: const Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );

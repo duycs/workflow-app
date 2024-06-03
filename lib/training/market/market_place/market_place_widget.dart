@@ -8,6 +8,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'market_place_model.dart';
 export 'market_place_model.dart';
 
@@ -1323,44 +1324,47 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: FilterProgramsWidget(
-                                          domain: _model.domain,
-                                          author: _model.author,
-                                          category: _model.category,
-                                          priceMin: _model.priceMin,
-                                          priceMax: _model.priceMax,
-                                          listDomain: _model.listDataDomains
-                                              .map((e) => e.name)
-                                              .toList(),
-                                          checkPrice: '',
-                                          checkPrice1: 'checkPriceListList',
-                                          priceMin1: '',
-                                          priceMax1: '',
-                                          checkAuthor: '',
-                                          callBack: (domain,
-                                              author,
-                                              category,
-                                              priceMin,
-                                              priceMax,
-                                              priceMin1,
-                                              priceMax1) async {
-                                            setState(() {
-                                              _model.domain = domain!;
-                                              _model.author = author!;
-                                              _model.category = category!;
-                                              _model.priceMin = priceMin!;
-                                              _model.priceMax = priceMax!;
-                                            });
-                                            await _model
-                                                .getProgramsMarketAll(context);
-                                          },
+                                      child: WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: FilterProgramsWidget(
+                                            domain: _model.domain,
+                                            author: _model.author,
+                                            category: _model.category,
+                                            priceMin: _model.priceMin,
+                                            priceMax: _model.priceMax,
+                                            listDomain: _model.listDataDomains
+                                                .map((e) => e.name)
+                                                .toList(),
+                                            checkPrice: '',
+                                            checkPrice1: 'checkPriceListList',
+                                            priceMin1: '',
+                                            priceMax1: '',
+                                            checkAuthor: '',
+                                            callBack: (domain,
+                                                author,
+                                                category,
+                                                priceMin,
+                                                priceMax,
+                                                priceMin1,
+                                                priceMax1) async {
+                                              setState(() {
+                                                _model.domain = domain!;
+                                                _model.author = author!;
+                                                _model.category = category!;
+                                                _model.priceMin = priceMin!;
+                                                _model.priceMax = priceMax!;
+                                              });
+                                              await _model.getProgramsMarketAll(
+                                                  context);
+                                            },
+                                          ),
                                         ),
                                       ),
                                     );

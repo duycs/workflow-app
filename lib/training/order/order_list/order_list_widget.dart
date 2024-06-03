@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'order_list_model.dart';
 export 'order_list_model.dart';
 
@@ -262,41 +263,44 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                     backgroundColor: Colors.transparent,
                                     alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: FilterOrderListWidget(
-                                        status: _model.statusFilter,
-                                        private: _model.privateFilter,
-                                        dateStart: _model.dateStartFilter,
-                                        dateEnd: _model.dateEndFilter,
-                                        code: _model.codeFilter,
-                                        name: _model.nameFilter,
-                                        author: _model.authorFilter,
-                                        callback: (statusCb,
-                                            privateCb,
-                                            dateStartCb,
-                                            dateEndCb,
-                                            codeCb,
-                                            nameCb,
-                                            authorCb) async {
-                                          setState(() {
-                                            _model.statusFilter = statusCb!;
-                                            _model.privateFilter = privateCb!;
-                                            _model.codeFilter = codeCb;
-                                            _model.nameFilter = nameCb;
-                                            _model.authorFilter = authorCb;
-                                            _model.dateStartFilter =
-                                                dateStartCb;
-                                            _model.dateEndFilter = dateEndCb;
-                                          });
-                                          setState(() => _model
-                                              .listViewPagingController
-                                              ?.refresh());
-                                        },
+                                    child: WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: FilterOrderListWidget(
+                                          status: _model.statusFilter,
+                                          private: _model.privateFilter,
+                                          dateStart: _model.dateStartFilter,
+                                          dateEnd: _model.dateEndFilter,
+                                          code: _model.codeFilter,
+                                          name: _model.nameFilter,
+                                          author: _model.authorFilter,
+                                          callback: (statusCb,
+                                              privateCb,
+                                              dateStartCb,
+                                              dateEndCb,
+                                              codeCb,
+                                              nameCb,
+                                              authorCb) async {
+                                            setState(() {
+                                              _model.statusFilter = statusCb!;
+                                              _model.privateFilter = privateCb!;
+                                              _model.codeFilter = codeCb;
+                                              _model.nameFilter = nameCb;
+                                              _model.authorFilter = authorCb;
+                                              _model.dateStartFilter =
+                                                  dateStartCb;
+                                              _model.dateEndFilter = dateEndCb;
+                                            });
+                                            setState(() => _model
+                                                .listViewPagingController
+                                                ?.refresh());
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );
@@ -418,51 +422,65 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                   enableDrag: false,
                                   context: context,
                                   builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: OrderDetailWidget(
-                                          image: dataListItem.programOrderItems
-                                              .first.programId.imageCover,
-                                          name: dataListItem.programOrderItems
-                                              .first.programId.name,
-                                          rating: 0.0,
-                                          author: dataListItem.programOrderItems
-                                              .first.programId.authorId.alias,
-                                          quantity: valueOrDefault<int>(
-                                            dataListItem.totalItem,
-                                            0,
+                                    return WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: OrderDetailWidget(
+                                            image: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .imageCover,
+                                            name: dataListItem.programOrderItems
+                                                .first.programId.name,
+                                            rating: 0.0,
+                                            author: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .authorId
+                                                .alias,
+                                            quantity: valueOrDefault<int>(
+                                              dataListItem.totalItem,
+                                              0,
+                                            ),
+                                            status: dataListItem.status,
+                                            numLessions: valueOrDefault<int>(
+                                              dataListItem
+                                                  .programOrderItems
+                                                  .first
+                                                  .programId
+                                                  .lessions
+                                                  .length,
+                                              0,
+                                            ),
+                                            totalPrice: valueOrDefault<String>(
+                                              dataListItem.totalPrice,
+                                              '0',
+                                            ),
+                                            private:
+                                                dataListItem.private.toString(),
+                                            code: dataListItem.code,
+                                            price: valueOrDefault<String>(
+                                              dataListItem.programOrderItems
+                                                  .first.programId.price,
+                                              '0',
+                                            ),
+                                            orderId: dataListItem.id,
+                                            programId: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .id,
                                           ),
-                                          status: dataListItem.status,
-                                          numLessions: valueOrDefault<int>(
-                                            dataListItem.programOrderItems.first
-                                                .programId.lessions.length,
-                                            0,
-                                          ),
-                                          totalPrice: valueOrDefault<String>(
-                                            dataListItem.totalPrice,
-                                            '0',
-                                          ),
-                                          private:
-                                              dataListItem.private.toString(),
-                                          code: dataListItem.code,
-                                          price: valueOrDefault<String>(
-                                            dataListItem.programOrderItems.first
-                                                .programId.price,
-                                            '0',
-                                          ),
-                                          orderId: dataListItem.id,
-                                          programId: dataListItem
-                                              .programOrderItems
-                                              .first
-                                              .programId
-                                              .id,
                                         ),
                                       ),
                                     );

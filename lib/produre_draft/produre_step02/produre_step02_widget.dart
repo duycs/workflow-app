@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/procedure_setting/procedure_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'produre_step02_model.dart';
 export 'produre_step02_model.dart';
 
@@ -161,16 +162,18 @@ class _ProdureStep02WidgetState extends State<ProdureStep02Widget> {
                                                 enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
-                                                  return Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child: SizedBox(
-                                                      height: 900.0,
-                                                      child:
-                                                          ProcedureSettingWidget(
-                                                        callBack:
-                                                            (cron) async {},
+                                                  return WebViewAware(
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: SizedBox(
+                                                        height: 900.0,
+                                                        child:
+                                                            ProcedureSettingWidget(
+                                                          callBack:
+                                                              (cron) async {},
+                                                        ),
                                                       ),
                                                     ),
                                                   );
@@ -498,12 +501,14 @@ class _ProdureStep02WidgetState extends State<ProdureStep02Widget> {
                                     useSafeArea: true,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: const SizedBox(
-                                          height: 100.0,
-                                          child: ActionXoaWidget(),
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: const SizedBox(
+                                            height: 100.0,
+                                            child: ActionXoaWidget(),
+                                          ),
                                         ),
                                       );
                                     },

@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -22,6 +21,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'task_list_wait_model.dart';
 export 'task_list_wait_model.dart';
 
@@ -48,49 +48,8 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getTaskFailToken = await action_blocks.tokenReload(context);
       if (_model.getTaskFailToken!) {
-        _model.apiResultGetTask = await TaskGroup.getListTaskCall.call(
-          accessToken: FFAppState().accessToken,
-          filter:
-              '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.id''',
-          ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
-            FFAppState().staffLogin,
-            r'''$.organization_id''',
-          ).toString().toString()}\"}}}]}',
-        );
-        if ((_model.apiResultGetTask?.succeeded ?? true)) {
-          setState(() {
-            _model.taskToDo = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'todo') &&
-                    (e.current.toString() == '1'))
-                .toList()
-                .length;
-            _model.taskDone = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'done') &&
-                    (e.submitStaffId.id ==
-                        getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.id''',
-                        )))
-                .toList()
-                .length;
-            _model.totalWait = TaskListDataStruct.maybeFromMap(
-                    (_model.apiResultGetTask?.jsonBody ?? ''))!
-                .data
-                .where((e) =>
-                    (e.status == 'todo') &&
-                    (e.current.toString() == '0'))
-                .toList()
-                .length;
-          });
-        }
+        await _model.getNumberTask(context);
+        setState(() {});
         setState(() {
           _model.isLoad = true;
         });
@@ -313,45 +272,51 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: FilterTaskListWaitWidget(
-                                                  filterSearch: _model
-                                                      .textController.text,
-                                                  dateStart:
-                                                      _model.dateStartFilter,
-                                                  dateEnd: _model.dateEndFilter,
-                                                  type: _model.typeFilter,
-                                                  created: _model.createdFilter,
-                                                  workflowName:
-                                                      _model.workflowNameFilter,
-                                                  callback: (dateStartCallback,
-                                                      dateEndCallback,
-                                                      typeCallback,
-                                                      createdCallback,
-                                                      workflowNameCallback) async {
-                                                    setState(() {
-                                                      _model.dateStartFilter =
-                                                          dateStartCallback;
-                                                      _model.dateEndFilter =
-                                                          dateEndCallback;
-                                                      _model.typeFilter =
-                                                          typeCallback;
-                                                      _model.createdFilter =
-                                                          createdCallback!;
-                                                      _model.workflowNameFilter =
-                                                          workflowNameCallback!;
-                                                    });
-                                                    setState(() => _model
-                                                        .listViewPagingController
-                                                        ?.refresh());
-                                                  },
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => _model
+                                                          .unfocusNode
+                                                          .canRequestFocus
+                                                      ? FocusScope.of(context)
+                                                          .requestFocus(_model
+                                                              .unfocusNode)
+                                                      : FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child:
+                                                      FilterTaskListWaitWidget(
+                                                    filterSearch: _model
+                                                        .textController.text,
+                                                    dateStart:
+                                                        _model.dateStartFilter,
+                                                    dateEnd:
+                                                        _model.dateEndFilter,
+                                                    type: _model.typeFilter,
+                                                    created:
+                                                        _model.createdFilter,
+                                                    workflowName: _model
+                                                        .workflowNameFilter,
+                                                    callback: (dateStartCallback,
+                                                        dateEndCallback,
+                                                        typeCallback,
+                                                        createdCallback,
+                                                        workflowNameCallback) async {
+                                                      setState(() {
+                                                        _model.dateStartFilter =
+                                                            dateStartCallback;
+                                                        _model.dateEndFilter =
+                                                            dateEndCallback;
+                                                        _model.typeFilter =
+                                                            typeCallback;
+                                                        _model.createdFilter =
+                                                            createdCallback!;
+                                                        _model.workflowNameFilter =
+                                                            workflowNameCallback!;
+                                                      });
+                                                      setState(() => _model
+                                                          .listViewPagingController
+                                                          ?.refresh());
+                                                    },
+                                                  ),
                                                 ),
                                               ),
                                             );
@@ -1051,12 +1016,13 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                             width: 8.0)),
                                                       ),
                                                     ),
-                                                  if (dataListItem
-                                                              .timeOperate !=
-                                                          null &&
-                                                      dataListItem
-                                                              .timeOperate !=
-                                                          '')
+                                                  if ((dataListItem
+                                                                  .timeOperate !=
+                                                              null &&
+                                                          dataListItem
+                                                                  .timeOperate !=
+                                                              '') &&
+                                                      ('1' == '2'))
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -1257,27 +1223,26 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                                               .secondaryText,
                                                       size: 20.0,
                                                     ),
-                                                    if (dataListItem
-                                                            .actionType !=
-                                                        'to_do_list')
-                                                      Expanded(
-                                                        child: Text(
-                                                          'Nội dung: ${dataListItem.operations.first.operationsId.content}',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Nội dung: ${dataListItem.operations.first.operationsId.content}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
                                                       ),
+                                                    ),
                                                   ].divide(
                                                       const SizedBox(width: 8.0)),
                                                 ),
@@ -1326,9 +1291,12 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               child: Container(
                                                 decoration: const BoxDecoration(),
                                                 child: Visibility(
-                                                  visible:
-                                                      dataListItem.actionType ==
-                                                          'to_do_list',
+                                                  visible: (dataListItem
+                                                              .actionType ==
+                                                          'to_do_list') &&
+                                                      (dataListItem.operations
+                                                              .length >
+                                                          0),
                                                   child:
                                                       WaitActionTypeToDoListWidget(
                                                     key: Key(
@@ -1343,8 +1311,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               decoration: const BoxDecoration(),
                                               child: Visibility(
                                                 visible:
-                                                    dataListItem.actionType ==
-                                                        'approved',
+                                                    (dataListItem.actionType ==
+                                                            'approved') &&
+                                                        (dataListItem.operations
+                                                                .length >
+                                                            0),
                                                 child:
                                                     WaitActionTypeApproveWidget(
                                                   key: Key(
@@ -1357,8 +1328,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               decoration: const BoxDecoration(),
                                               child: Visibility(
                                                 visible:
-                                                    dataListItem.actionType ==
-                                                        'image',
+                                                    (dataListItem.actionType ==
+                                                            'image') &&
+                                                        (dataListItem.operations
+                                                                .length >
+                                                            0),
                                                 child:
                                                     WaitActionTypeImageWidget(
                                                   key: Key(
@@ -1371,8 +1345,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               decoration: const BoxDecoration(),
                                               child: Visibility(
                                                 visible:
-                                                    dataListItem.actionType ==
-                                                        'upload_file',
+                                                    (dataListItem.actionType ==
+                                                            'upload_file') &&
+                                                        (dataListItem.operations
+                                                                .length >
+                                                            0),
                                                 child:
                                                     WaitActionTypeUploadFileWidget(
                                                   key: Key(
@@ -1384,8 +1361,11 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               decoration: const BoxDecoration(),
                                               child: Visibility(
                                                 visible:
-                                                    dataListItem.actionType ==
-                                                        'submit_text',
+                                                    (dataListItem.actionType ==
+                                                            'submit_text') &&
+                                                        (dataListItem.operations
+                                                                .length >
+                                                            0),
                                                 child:
                                                     WaitActionTypeSubmitTextWidget(
                                                   key: Key(

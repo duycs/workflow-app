@@ -25,7 +25,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
   String uploadFile = '';
 
-  String checkContent = ' ';
+  String checkContent = '';
 
   int? checkTime;
 

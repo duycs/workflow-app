@@ -14,6 +14,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'personnel_list_model.dart';
 export 'personnel_list_model.dart';
 
@@ -334,30 +335,33 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     backgroundColor: Colors.transparent,
                                     alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: FilterPersonnelListWidget(
-                                        filterSearch:
-                                            _model.textController.text,
-                                        status: _model.statusFilter,
-                                        branch: _model.branch,
-                                        department: _model.department,
-                                        callback: (statusCallback, department,
-                                            branch) async {
-                                          setState(() {
-                                            _model.statusFilter =
-                                                statusCallback!;
-                                            _model.branch = branch!;
-                                            _model.department = department!;
-                                          });
-                                          setState(() => _model
-                                              .listViewPagingController
-                                              ?.refresh());
-                                        },
+                                    child: WebViewAware(
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: FilterPersonnelListWidget(
+                                          filterSearch:
+                                              _model.textController.text,
+                                          status: _model.statusFilter,
+                                          branch: _model.branch,
+                                          department: _model.department,
+                                          callback: (statusCallback, department,
+                                              branch) async {
+                                            setState(() {
+                                              _model.statusFilter =
+                                                  statusCallback!;
+                                              _model.branch = branch!;
+                                              _model.department = department!;
+                                            });
+                                            setState(() => _model
+                                                .listViewPagingController
+                                                ?.refresh());
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );

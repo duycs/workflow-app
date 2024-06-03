@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'do_action_type_to_do_list_model.dart';
 export 'do_action_type_to_do_list_model.dart';
 
@@ -69,20 +70,22 @@ class _DoActionTypeToDoListWidgetState
                 var confirmDialogResponse = await showDialog<bool>(
                       context: context,
                       builder: (alertDialogContext) {
-                        return AlertDialog(
-                          content: const Text('Xác nhận đã thực hiện!'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext, false),
-                              child: const Text('Đóng'),
-                            ),
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext, true),
-                              child: const Text('Xác nhận'),
-                            ),
-                          ],
+                        return WebViewAware(
+                          child: AlertDialog(
+                            content: const Text('Xác nhận đã thực hiện!'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, false),
+                                child: const Text('Đóng'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, true),
+                                child: const Text('Xác nhận'),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ) ??
@@ -102,20 +105,22 @@ class _DoActionTypeToDoListWidgetState
                 var confirmDialogResponse = await showDialog<bool>(
                       context: context,
                       builder: (alertDialogContext) {
-                        return AlertDialog(
-                          content: const Text('Xác nhận chưa thực hiện!'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext, false),
-                              child: const Text('Đóng'),
-                            ),
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext, true),
-                              child: const Text('Xác nhận'),
-                            ),
-                          ],
+                        return WebViewAware(
+                          child: AlertDialog(
+                            content: const Text('Xác nhận chưa thực hiện!'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, false),
+                                child: const Text('Đóng'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext, true),
+                                child: const Text('Xác nhận'),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ) ??

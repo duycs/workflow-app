@@ -18,6 +18,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_published_list_model.dart';
 export 'procedure_published_list_model.dart';
 
@@ -100,19 +101,21 @@ class _ProcedurePublishedListWidgetState
                 enableDrag: false,
                 context: context,
                 builder: (context) {
-                  return GestureDetector(
-                    onTap: () => _model.unfocusNode.canRequestFocus
-                        ? FocusScope.of(context)
-                            .requestFocus(_model.unfocusNode)
-                        : FocusScope.of(context).unfocus(),
-                    child: Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: ProcedurePushlishedWidget(
-                        callback: () async {
-                          setState(
-                              () => _model.listViewPagingController?.refresh());
-                          setState(() {});
-                        },
+                  return WebViewAware(
+                    child: GestureDetector(
+                      onTap: () => _model.unfocusNode.canRequestFocus
+                          ? FocusScope.of(context)
+                              .requestFocus(_model.unfocusNode)
+                          : FocusScope.of(context).unfocus(),
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: ProcedurePushlishedWidget(
+                          callback: () async {
+                            setState(() =>
+                                _model.listViewPagingController?.refresh());
+                            setState(() {});
+                          },
+                        ),
                       ),
                     ),
                   );
@@ -302,49 +305,52 @@ class _ProcedurePublishedListWidgetState
                                         enableDrag: false,
                                         context: context,
                                         builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child:
-                                                  FilterProcedurePublishedWidget(
-                                                name: _model.searchName,
-                                                dateStart: _model.dateStart,
-                                                dateEnd: _model.dateEnd,
-                                                userCreated:
-                                                    _model.searchUserCreated,
-                                                callBack: (name,
-                                                    dateStart,
-                                                    dateEnd,
-                                                    userCreated) async {
-                                                  setState(() {
-                                                    _model.searchName = name!;
-                                                    _model.dateStart =
-                                                        dateStart!;
-                                                    _model.dateEnd = dateEnd!;
-                                                    _model.searchUserCreated =
-                                                        userCreated!;
-                                                  });
-                                                  setState(() {
-                                                    _model.textController
-                                                        ?.clear();
-                                                  });
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                  setState(() {
-                                                    _model.textController
-                                                        ?.text = name!;
-                                                  });
-                                                  setState(() {});
-                                                },
+                                          return WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    FilterProcedurePublishedWidget(
+                                                  name: _model.searchName,
+                                                  dateStart: _model.dateStart,
+                                                  dateEnd: _model.dateEnd,
+                                                  userCreated:
+                                                      _model.searchUserCreated,
+                                                  callBack: (name,
+                                                      dateStart,
+                                                      dateEnd,
+                                                      userCreated) async {
+                                                    setState(() {
+                                                      _model.searchName = name!;
+                                                      _model.dateStart =
+                                                          dateStart!;
+                                                      _model.dateEnd = dateEnd!;
+                                                      _model.searchUserCreated =
+                                                          userCreated!;
+                                                    });
+                                                    setState(() {
+                                                      _model.textController
+                                                          ?.clear();
+                                                    });
+                                                    setState(() => _model
+                                                        .listViewPagingController
+                                                        ?.refresh());
+                                                    setState(() {
+                                                      _model.textController
+                                                          ?.text = name!;
+                                                    });
+                                                    setState(() {});
+                                                  },
+                                                ),
                                               ),
                                             ),
                                           );

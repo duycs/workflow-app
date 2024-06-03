@@ -14,6 +14,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'test_create_model.dart';
 export 'test_create_model.dart';
 
@@ -325,7 +326,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Flexible(
                                 child: Text(
@@ -338,10 +339,11 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                       ),
                                 ),
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 0.0, 8.0, 0.0),
+                                child: SizedBox(
+                                  width: 50.0,
                                   child: TextFormField(
                                     controller: _model.textController4,
                                     focusNode: _model.textFieldFocusNode4,
@@ -406,6 +408,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
+                                    textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                     validator: _model.textController4Validator
                                         .asValidator(context),
@@ -489,7 +492,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Text(
                                                 '${(questionListIndex + 1).toString()}:',
@@ -648,37 +651,40 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                               enableDrag: false,
                               context: context,
                               builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: QuestionCreateTestWidget(
-                                      callBackList: (idQuestion) async {
-                                        _model.apiResultAddQuestion =
-                                            await QuestionGroup
-                                                .questionListOneCall
-                                                .call(
-                                          questionId: idQuestion,
-                                          accessToken: FFAppState().accessToken,
-                                        );
-                                        if ((_model.apiResultAddQuestion
-                                                ?.succeeded ??
-                                            true)) {
-                                          setState(() {
-                                            _model.addToQuestionItem(
-                                                QuestsionOneDataStruct
-                                                        .maybeFromMap((_model
-                                                                .apiResultAddQuestion
-                                                                ?.jsonBody ??
-                                                            ''))!
-                                                    .data);
-                                          });
-                                        }
-                                      },
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: QuestionCreateTestWidget(
+                                        callBackList: (idQuestion) async {
+                                          _model.apiResultAddQuestion =
+                                              await QuestionGroup
+                                                  .questionListOneCall
+                                                  .call(
+                                            questionId: idQuestion,
+                                            accessToken:
+                                                FFAppState().accessToken,
+                                          );
+                                          if ((_model.apiResultAddQuestion
+                                                  ?.succeeded ??
+                                              true)) {
+                                            setState(() {
+                                              _model.addToQuestionItem(
+                                                  QuestsionOneDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultAddQuestion
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data);
+                                            });
+                                          }
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -730,21 +736,24 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Xác nhận'),
-                                      content: const Text('Bạn chắc chắn muốn lưu!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, false),
-                                          child: const Text('Hủy'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, true),
-                                          child: const Text('Xác nhận'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        title: const Text('Xác nhận'),
+                                        content:
+                                            const Text('Bạn chắc chắn muốn lưu!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext, false),
+                                            child: const Text('Hủy'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext, true),
+                                            child: const Text('Xác nhận'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 ) ??

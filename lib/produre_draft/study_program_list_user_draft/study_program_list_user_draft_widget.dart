@@ -10,6 +10,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_list_user_draft_model.dart';
 export 'study_program_list_user_draft_model.dart';
 
@@ -267,39 +268,42 @@ class _StudyProgramListUserDraftWidgetState
                               enableDrag: false,
                               context: context,
                               builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: FilterStudyProgramUserWidget(
-                                      name: _model.nameSearch,
-                                      lessonName: _model.lessonNameSeach,
-                                      dateStart: _model.dateStartSeach,
-                                      dateEnd: _model.dateEndSeach,
-                                      callBack: (name, lessonName, dateStart,
-                                          dateEnd) async {
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.clear();
-                                        });
-                                        setState(() {
-                                          _model.nameSearch = name!;
-                                          _model.dateEndSeach = dateEnd!;
-                                          _model.lessonNameSeach = lessonName!;
-                                          _model.dateStartSeach = dateStart!;
-                                        });
-                                        await _model.getLinkProgram(context);
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.text = name!;
-                                        });
-                                      },
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: FilterStudyProgramUserWidget(
+                                        name: _model.nameSearch,
+                                        lessonName: _model.lessonNameSeach,
+                                        dateStart: _model.dateStartSeach,
+                                        dateEnd: _model.dateEndSeach,
+                                        callBack: (name, lessonName, dateStart,
+                                            dateEnd) async {
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.clear();
+                                          });
+                                          setState(() {
+                                            _model.nameSearch = name!;
+                                            _model.dateEndSeach = dateEnd!;
+                                            _model.lessonNameSeach =
+                                                lessonName!;
+                                            _model.dateStartSeach = dateStart!;
+                                          });
+                                          await _model.getLinkProgram(context);
+                                          setState(() {
+                                            _model
+                                                .textFieldNameSearchTextController
+                                                ?.text = name!;
+                                          });
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -464,28 +468,30 @@ class _StudyProgramListUserDraftWidgetState
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                                  WebViewAware(
                                                                 child:
-                                                                    ConfirmDoTestWidget(
-                                                                  testId:
-                                                                      dataListViewItem
-                                                                          .tests
-                                                                          .first
-                                                                          .testsId
-                                                                          .id,
-                                                                  lessionId:
-                                                                      null,
-                                                                  avatar: '',
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      ConfirmDoTestWidget(
+                                                                    testId: dataListViewItem
+                                                                        .tests
+                                                                        .first
+                                                                        .testsId
+                                                                        .id,
+                                                                    lessionId:
+                                                                        null,
+                                                                    avatar: '',
+                                                                  ),
                                                                 ),
                                                               ),
                                                             );
@@ -564,30 +570,32 @@ class _StudyProgramListUserDraftWidgetState
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: SizedBox(
-                                                                height: MediaQuery.sizeOf(
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
                                                                             context)
-                                                                        .height *
-                                                                    0.6,
-                                                                width: MediaQuery.sizeOf(
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
                                                                             context)
-                                                                        .width *
-                                                                    0.9,
+                                                                        .unfocus(),
                                                                 child:
-                                                                    const CertificateWidget(),
+                                                                    SizedBox(
+                                                                  height: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .height *
+                                                                      0.6,
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.9,
+                                                                  child:
+                                                                      const CertificateWidget(),
+                                                                ),
                                                               ),
                                                             ),
                                                           );

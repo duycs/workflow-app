@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'process_template_list_model.dart';
 export 'process_template_list_model.dart';
 
@@ -182,18 +183,21 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                   enableDrag: false,
                   context: context,
                   builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: DomainsSearchWidget(
-                        search: _model.domainSearch,
-                        callback: (dom) async {
-                          setState(() {
-                            _model.domainSearch = dom!.toList().cast<String>();
-                          });
-                          setState(
-                              () => _model.gridViewPagingController?.refresh());
-                          setState(() {});
-                        },
+                    return WebViewAware(
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: DomainsSearchWidget(
+                          search: _model.domainSearch,
+                          callback: (dom) async {
+                            setState(() {
+                              _model.domainSearch =
+                                  dom!.toList().cast<String>();
+                            });
+                            setState(() =>
+                                _model.gridViewPagingController?.refresh());
+                            setState(() {});
+                          },
+                        ),
                       ),
                     );
                   },

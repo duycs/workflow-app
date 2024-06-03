@@ -11,6 +11,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'department_detail_model.dart';
 export 'department_detail_model.dart';
 
@@ -628,21 +629,24 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              const Text('Xác nhận'),
-                                                                          content:
-                                                                              const Text('Xác nhận thiết lập học lại chương trình cho bộ phận!'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: const Text('Hủy'),
-                                                                            ),
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: const Text('Xác nhận'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                const Text('Xác nhận'),
+                                                                            content:
+                                                                                const Text('Xác nhận thiết lập học lại chương trình cho bộ phận!'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                child: const Text('Hủy'),
+                                                                              ),
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                child: const Text('Xác nhận'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     ) ??

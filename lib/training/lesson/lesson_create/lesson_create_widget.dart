@@ -11,6 +11,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_create_model.dart';
 export 'lesson_create_model.dart';
 
@@ -90,36 +92,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
               context.pop();
             },
           ),
-          title: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(_model.checkContent),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Text(
-              'Tạo bài học',
-              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                    fontFamily: 'Nunito Sans',
-                    fontSize: 18.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-            ),
+          title: Text(
+            'Tạo bài học',
+            style: FlutterFlowTheme.of(context).headlineSmall.override(
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.normal,
+                ),
           ),
           actions: const [],
           centerTitle: false,
@@ -1166,23 +1146,26 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: CkeditorCreateLessonWidget(
-                                          input: _model.input,
-                                          output: _model.output,
-                                          callBack: (input, output) async {
-                                            setState(() {
-                                              _model.checkContent = output!;
-                                              _model.input = input!;
-                                              _model.output = output;
-                                            });
-                                          },
+                                      child: WebViewAware(
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: CkeditorCreateLessonWidget(
+                                            input: _model.input,
+                                            output: _model.output,
+                                            callBack: (input, output) async {
+                                              setState(() {
+                                                _model.checkContent = output!;
+                                                _model.input = input!;
+                                                _model.output = output;
+                                              });
+                                            },
+                                          ),
                                         ),
                                       ),
                                     );
@@ -1229,16 +1212,27 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           print('IconButton pressed ...');
                                         },
                                       ),
-                                      Text(
-                                        'Nhập nội dung',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
+                                      if (_model.checkContent == '')
+                                        Text(
+                                          'Nhập nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      if (_model.checkContent != '')
+                                        Text(
+                                          'Chỉnh sửa nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -1246,6 +1240,23 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             ),
                           ),
                         ),
+                        if (_model.checkContent != '')
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).noColor,
+                              borderRadius: BorderRadius.circular(0.0),
+                              shape: BoxShape.rectangle,
+                              border: Border.all(
+                                color: FlutterFlowTheme.of(context).noColor,
+                              ),
+                            ),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: Html(
+                              data: _model.checkContent,
+                              onLinkTap: (url, _, __, ___) => launchURL(url!),
+                            ),
+                          ),
                       ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
@@ -1304,7 +1315,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Kiểm tra lại ảnh bài học, tiêu đề, nội dung, mô tả, thời gian!',
+                            'Các trường ảnh bài học, tiêu đề, nội dung, mô tả, thời gian bắt buộc!',
                             style: TextStyle(
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),

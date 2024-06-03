@@ -15,6 +15,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'operation_list_model.dart';
 export 'operation_list_model.dart';
 
@@ -108,32 +109,35 @@ class _OperationListWidgetState extends State<OperationListWidget>
                       backgroundColor: Colors.transparent,
                       alignment: const AlignmentDirectional(0.0, 0.0)
                           .resolve(Directionality.of(context)),
-                      child: GestureDetector(
-                        onTap: () => _model.unfocusNode.canRequestFocus
-                            ? FocusScope.of(context)
-                                .requestFocus(_model.unfocusNode)
-                            : FocusScope.of(context).unfocus(),
-                        child: OperationCreateWidget(
-                          callBack: () async {
-                            setState(() {
-                              _model.seachName = '';
-                              _model.seachUserCreate = '';
-                              _model.searchAction = '';
-                              _model.searchDateStart = '';
-                              _model.searchDateEnd = '';
-                              _model.searchStatus = '';
-                            });
-                            setState(() {
-                              _model.textController?.clear();
-                            });
-                            setState(() =>
-                                _model.listViewOnePagingController?.refresh());
-                            setState(() =>
-                                _model.listViewTwoPagingController?.refresh());
-                            setState(() => _model.listViewThreePagingController
-                                ?.refresh());
-                            setState(() {});
-                          },
+                      child: WebViewAware(
+                        child: GestureDetector(
+                          onTap: () => _model.unfocusNode.canRequestFocus
+                              ? FocusScope.of(context)
+                                  .requestFocus(_model.unfocusNode)
+                              : FocusScope.of(context).unfocus(),
+                          child: OperationCreateWidget(
+                            callBack: () async {
+                              setState(() {
+                                _model.seachName = '';
+                                _model.seachUserCreate = '';
+                                _model.searchAction = '';
+                                _model.searchDateStart = '';
+                                _model.searchDateEnd = '';
+                                _model.searchStatus = '';
+                              });
+                              setState(() {
+                                _model.textController?.clear();
+                              });
+                              setState(() => _model.listViewOnePagingController
+                                  ?.refresh());
+                              setState(() => _model.listViewTwoPagingController
+                                  ?.refresh());
+                              setState(() => _model
+                                  .listViewThreePagingController
+                                  ?.refresh());
+                              setState(() {});
+                            },
+                          ),
                         ),
                       ),
                     );
@@ -334,47 +338,54 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: FilterOperationWidget(
-                                    name: _model.seachName,
-                                    dateStart: _model.searchDateStart,
-                                    dateEnd: _model.searchDateEnd,
-                                    userCreate: _model.seachUserCreate,
-                                    action: _model.searchAction,
-                                    status: _model.searchStatus,
-                                    callBack: (name, dateStart, dateEnd,
-                                        userCeated, status, actionType) async {
-                                      setState(() {
-                                        _model.seachName = name!;
-                                        _model.seachUserCreate = userCeated!;
-                                        _model.searchAction = actionType!;
-                                        _model.searchStatus = status!;
-                                        _model.searchDateStart = dateStart!;
-                                        _model.searchDateEnd = dateEnd!;
-                                      });
-                                      setState(() {
-                                        _model.textController?.clear();
-                                      });
-                                      setState(() => _model
-                                          .listViewOnePagingController
-                                          ?.refresh());
-                                      setState(() => _model
-                                          .listViewTwoPagingController
-                                          ?.refresh());
-                                      setState(() => _model
-                                          .listViewThreePagingController
-                                          ?.refresh());
-                                      setState(() {
-                                        _model.textController?.text = name!;
-                                      });
-                                      setState(() {});
-                                    },
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterOperationWidget(
+                                      name: _model.seachName,
+                                      dateStart: _model.searchDateStart,
+                                      dateEnd: _model.searchDateEnd,
+                                      userCreate: _model.seachUserCreate,
+                                      action: _model.searchAction,
+                                      status: _model.searchStatus,
+                                      callBack: (name,
+                                          dateStart,
+                                          dateEnd,
+                                          userCeated,
+                                          status,
+                                          actionType) async {
+                                        setState(() {
+                                          _model.seachName = name!;
+                                          _model.seachUserCreate = userCeated!;
+                                          _model.searchAction = actionType!;
+                                          _model.searchStatus = status!;
+                                          _model.searchDateStart = dateStart!;
+                                          _model.searchDateEnd = dateEnd!;
+                                        });
+                                        setState(() {
+                                          _model.textController?.clear();
+                                        });
+                                        setState(() => _model
+                                            .listViewOnePagingController
+                                            ?.refresh());
+                                        setState(() => _model
+                                            .listViewTwoPagingController
+                                            ?.refresh());
+                                        setState(() => _model
+                                            .listViewThreePagingController
+                                            ?.refresh());
+                                        setState(() {
+                                          _model.textController?.text = name!;
+                                        });
+                                        setState(() {});
+                                      },
+                                    ),
                                   ),
                                 ),
                               );
@@ -561,23 +572,27 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                                 enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          OperationDetailWidget(
-                                                        operationDetail:
-                                                            itemOperationItem,
+                                                  return WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            OperationDetailWidget(
+                                                          operationDetail:
+                                                              itemOperationItem,
+                                                        ),
                                                       ),
                                                     ),
                                                   );
@@ -1132,23 +1147,25 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        OperationDetailWidget(
-                                                      operationDetail:
-                                                          itemUserCreatedItem,
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          OperationDetailWidget(
+                                                        operationDetail:
+                                                            itemUserCreatedItem,
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -1653,23 +1670,25 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                               enableDrag: false,
                                               context: context,
                                               builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        OperationDetailWidget(
-                                                      operationDetail:
-                                                          itemDefaultItem,
+                                                return WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          OperationDetailWidget(
+                                                        operationDetail:
+                                                            itemDefaultItem,
+                                                      ),
                                                     ),
                                                   ),
                                                 );

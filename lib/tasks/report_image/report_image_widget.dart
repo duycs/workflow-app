@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'report_image_model.dart';
 export 'report_image_model.dart';
 
@@ -125,30 +126,32 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                       enableDrag: false,
                       context: context,
                       builder: (context) {
-                        return GestureDetector(
-                          onTap: () => _model.unfocusNode.canRequestFocus
-                              ? FocusScope.of(context)
-                                  .requestFocus(_model.unfocusNode)
-                              : FocusScope.of(context).unfocus(),
-                          child: Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: FilterReprotImageWidget(
-                              name: _model.nameSearch,
-                              nameProcedure: _model.nameProcedure,
-                              dateStart: _model.startDate,
-                              dateEnd: _model.endDate,
-                              callBack: (name, nameProcedure, dateStart,
-                                  dateEnd, nameTask) async {
-                                setState(() {
-                                  _model.nameSearch = name!;
-                                  _model.nameProcedure = nameProcedure!;
-                                  _model.startDate = dateStart!;
-                                  _model.endDate = dateEnd!;
-                                });
-                                setState(() =>
-                                    _model.listViewPagingController?.refresh());
-                                setState(() {});
-                              },
+                        return WebViewAware(
+                          child: GestureDetector(
+                            onTap: () => _model.unfocusNode.canRequestFocus
+                                ? FocusScope.of(context)
+                                    .requestFocus(_model.unfocusNode)
+                                : FocusScope.of(context).unfocus(),
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: FilterReprotImageWidget(
+                                name: _model.nameSearch,
+                                nameProcedure: _model.nameProcedure,
+                                dateStart: _model.startDate,
+                                dateEnd: _model.endDate,
+                                callBack: (name, nameProcedure, dateStart,
+                                    dateEnd, nameTask) async {
+                                  setState(() {
+                                    _model.nameSearch = name!;
+                                    _model.nameProcedure = nameProcedure!;
+                                    _model.startDate = dateStart!;
+                                    _model.endDate = dateEnd!;
+                                  });
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+                                  setState(() {});
+                                },
+                              ),
                             ),
                           ),
                         );
@@ -299,33 +302,36 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                             enableDrag: false,
                             context: context,
                             builder: (context) {
-                              return GestureDetector(
-                                onTap: () => _model.unfocusNode.canRequestFocus
-                                    ? FocusScope.of(context)
-                                        .requestFocus(_model.unfocusNode)
-                                    : FocusScope.of(context).unfocus(),
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: FilterReprotImageWidget(
-                                    name: _model.nameSearch,
-                                    nameProcedure: _model.nameProcedure,
-                                    dateStart: _model.startDate,
-                                    dateEnd: _model.endDate,
-                                    nameTask: _model.nameTask,
-                                    callBack: (name, nameProcedure, dateStart,
-                                        dateEnd, nameTask) async {
-                                      setState(() {
-                                        _model.nameSearch = name!;
-                                        _model.nameProcedure = nameProcedure!;
-                                        _model.startDate = dateStart!;
-                                        _model.endDate = dateEnd!;
-                                        _model.nameTask = nameTask;
-                                      });
-                                      setState(() => _model
-                                          .listViewPagingController
-                                          ?.refresh());
-                                      setState(() {});
-                                    },
+                              return WebViewAware(
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterReprotImageWidget(
+                                      name: _model.nameSearch,
+                                      nameProcedure: _model.nameProcedure,
+                                      dateStart: _model.startDate,
+                                      dateEnd: _model.endDate,
+                                      nameTask: _model.nameTask,
+                                      callBack: (name, nameProcedure, dateStart,
+                                          dateEnd, nameTask) async {
+                                        setState(() {
+                                          _model.nameSearch = name!;
+                                          _model.nameProcedure = nameProcedure!;
+                                          _model.startDate = dateStart!;
+                                          _model.endDate = dateEnd!;
+                                          _model.nameTask = nameTask;
+                                        });
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
+                                        setState(() {});
+                                      },
+                                    ),
                                   ),
                                 ),
                               );

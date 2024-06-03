@@ -12,6 +12,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'detail_action_type_upload_file_model.dart';
 export 'detail_action_type_upload_file_model.dart';
 
@@ -258,10 +259,12 @@ class _DetailActionTypeUploadFileWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: PopupSeeMoreWidget(
-                                                  fileName: dataFileItem
-                                                      .filenameDownload,
-                                                  fileId: dataFileItem.id,
+                                                child: WebViewAware(
+                                                  child: PopupSeeMoreWidget(
+                                                    fileName: dataFileItem
+                                                        .filenameDownload,
+                                                    fileId: dataFileItem.id,
+                                                  ),
                                                 ),
                                               );
                                             },

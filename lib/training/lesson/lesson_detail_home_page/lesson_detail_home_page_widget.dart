@@ -15,6 +15,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_detail_home_page_model.dart';
 export 'lesson_detail_home_page_model.dart';
 
@@ -123,20 +124,22 @@ class _LessonDetailHomePageWidgetState
                     var confirmDialogResponse = await showDialog<bool>(
                           context: context,
                           builder: (alertDialogContext) {
-                            return AlertDialog(
-                              content: const Text('Bắt đầu bài học!'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, false),
-                                  child: const Text('Đóng'),
-                                ),
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext, true),
-                                  child: const Text('Xác nhận'),
-                                ),
-                              ],
+                            return WebViewAware(
+                              child: AlertDialog(
+                                content: const Text('Bắt đầu bài học!'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(
+                                        alertDialogContext, false),
+                                    child: const Text('Đóng'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext, true),
+                                    child: const Text('Xác nhận'),
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         ) ??
@@ -1947,25 +1950,27 @@ class _LessonDetailHomePageWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: ConfirmDoTestWidget(
-                                                    testId: _model.testId,
-                                                    lessionId: getJsonField(
-                                                      widget.listItems,
-                                                      r'''$.id''',
-                                                    ).toString(),
-                                                    avatar: getJsonField(
-                                                      widget.listItems,
-                                                      r'''$.image_cover''',
-                                                    ).toString(),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: ConfirmDoTestWidget(
+                                                      testId: _model.testId,
+                                                      lessionId: getJsonField(
+                                                        widget.listItems,
+                                                        r'''$.id''',
+                                                      ).toString(),
+                                                      avatar: getJsonField(
+                                                        widget.listItems,
+                                                        r'''$.image_cover''',
+                                                      ).toString(),
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -2409,23 +2414,23 @@ class _LessonDetailHomePageWidgetState
                                                                           color:
                                                                               Colors.transparent,
                                                                           child:
-                                                                              GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                                              WebViewAware(
                                                                             child:
-                                                                                SizedBox(
-                                                                              height: 100.0,
-                                                                              width: 200.0,
-                                                                              child: MenuDeleteWidget(
-                                                                                id: getJsonField(
-                                                                                  listItemsItem,
-                                                                                  r'''$.id''',
+                                                                                GestureDetector(
+                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              child: SizedBox(
+                                                                                height: 100.0,
+                                                                                width: 200.0,
+                                                                                child: MenuDeleteWidget(
+                                                                                  id: getJsonField(
+                                                                                    listItemsItem,
+                                                                                    r'''$.id''',
+                                                                                  ),
+                                                                                  afterDeleteAction: () async {
+                                                                                    await _model.getComments(context);
+                                                                                    setState(() {});
+                                                                                  },
                                                                                 ),
-                                                                                afterDeleteAction: () async {
-                                                                                  await _model.getComments(context);
-                                                                                  setState(() {});
-                                                                                },
                                                                               ),
                                                                             ),
                                                                           ),

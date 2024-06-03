@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'study_program_list_user_model.dart';
 export 'study_program_list_user_model.dart';
 
@@ -239,39 +240,43 @@ class _StudyProgramListUserWidgetState
                               enableDrag: false,
                               context: context,
                               builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: FilterStudyProgramUserCopyWidget(
-                                      lessonName: _model.lessonName,
-                                      dateStart: _model.dateStart,
-                                      dateEnd: _model.dateEnd,
-                                      callBack: (lessonName, dateStart,
-                                          dateEnd) async {
-                                        setState(() {
-                                          _model.lessonName = lessonName!;
-                                          _model.dateStart = dateTimeFormat(
-                                            'yyyy-MM-dd',
-                                            dateStart,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          );
-                                          _model.dateEnd = dateTimeFormat(
-                                            'yyyy-MM-dd',
-                                            dateEnd,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          );
-                                        });
-                                        setState(() => _model
-                                            .listViewPagingController
-                                            ?.refresh());
-                                      },
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: FilterStudyProgramUserCopyWidget(
+                                        lessonName: _model.lessonName,
+                                        dateStart: _model.dateStart,
+                                        dateEnd: _model.dateEnd,
+                                        callBack: (lessonName, dateStart,
+                                            dateEnd) async {
+                                          setState(() {
+                                            _model.lessonName = lessonName!;
+                                            _model.dateStart = dateTimeFormat(
+                                              'yyyy-MM-dd',
+                                              dateStart,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            );
+                                            _model.dateEnd = dateTimeFormat(
+                                              'yyyy-MM-dd',
+                                              dateEnd,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            );
+                                          });
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
+                                        },
+                                      ),
                                     ),
                                   ),
                                 );
@@ -601,26 +606,25 @@ class _StudyProgramListUserWidgetState
                                                                         .resolve(
                                                                             Directionality.of(context)),
                                                                     child:
-                                                                        GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
+                                                                        WebViewAware(
                                                                       child:
-                                                                          ConfirmDoTestWidget(
-                                                                        testId: itemProgramIdTilteItem
-                                                                            .programId
-                                                                            .tests
-                                                                            .first
-                                                                            .testsId
-                                                                            .id,
-                                                                        lessionId:
-                                                                            null,
-                                                                        avatar:
-                                                                            '',
+                                                                          GestureDetector(
+                                                                        onTap: () => _model.unfocusNode.canRequestFocus
+                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                            : FocusScope.of(context).unfocus(),
+                                                                        child:
+                                                                            ConfirmDoTestWidget(
+                                                                          testId: itemProgramIdTilteItem
+                                                                              .programId
+                                                                              .tests
+                                                                              .first
+                                                                              .testsId
+                                                                              .id,
+                                                                          lessionId:
+                                                                              null,
+                                                                          avatar:
+                                                                              '',
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   );
@@ -718,25 +722,23 @@ class _StudyProgramListUserWidgetState
                                                                         .resolve(
                                                                             Directionality.of(context)),
                                                                     child:
-                                                                        GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
+                                                                        WebViewAware(
                                                                       child:
-                                                                          SizedBox(
-                                                                        height: MediaQuery.sizeOf(context).height *
-                                                                            0.6,
-                                                                        width: MediaQuery.sizeOf(context).width *
-                                                                            0.9,
+                                                                          GestureDetector(
+                                                                        onTap: () => _model.unfocusNode.canRequestFocus
+                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                            : FocusScope.of(context).unfocus(),
                                                                         child:
-                                                                            CertificateWidget(
-                                                                          program: itemProgramIdTilteItem
-                                                                              .programId
-                                                                              .name,
+                                                                            SizedBox(
+                                                                          height:
+                                                                              MediaQuery.sizeOf(context).height * 0.6,
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 0.9,
+                                                                          child:
+                                                                              CertificateWidget(
+                                                                            program:
+                                                                                itemProgramIdTilteItem.programId.name,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
