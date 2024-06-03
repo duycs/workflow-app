@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/action_chinh_sua/action_chinh_sua_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -604,7 +605,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  5.0, 12.0, 5.0, 12.0),
+                                                  5.0, 12.0, 5.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -713,6 +714,9 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                       await _model
                                                                           .getListProgram(
                                                                               context);
+                                                                      setState(() => _model
+                                                                          .listViewPagingController1
+                                                                          ?.refresh());
 
                                                                       setState(
                                                                           () {});
@@ -779,22 +783,94 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            FlutterFlowIconButton(
-                                                              borderRadius:
-                                                                  20.0,
-                                                              borderWidth: 1.0,
-                                                              buttonSize: 40.0,
-                                                              icon: Icon(
-                                                                Icons.more_vert,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                size: 24.0,
+                                                            Builder(
+                                                              builder: (context) =>
+                                                                  FlutterFlowIconButton(
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    1.0,
+                                                                buttonSize:
+                                                                    40.0,
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .more_vert,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            WebViewAware(
+                                                                          child:
+                                                                              GestureDetector(
+                                                                            onTap: () => _model.unfocusNode.canRequestFocus
+                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                                : FocusScope.of(context).unfocus(),
+                                                                            child:
+                                                                                ActionChinhSuaWidget(
+                                                                              dataDetail: dataListViewItem,
+                                                                              checkMarket: ((dataListViewItem.template == 0) &&
+                                                                                          (getJsonField(
+                                                                                                FFAppState().staffOrganization,
+                                                                                                r'''$.authors[0]''',
+                                                                                              ) !=
+                                                                                              null) &&
+                                                                                          ((dataListViewItem.authorId == null || dataListViewItem.authorId == '') ||
+                                                                                              ((dataListViewItem.authorId != null && dataListViewItem.authorId != '') &&
+                                                                                                  (dataListViewItem.authorId ==
+                                                                                                      getJsonField(
+                                                                                                        FFAppState().staffOrganization,
+                                                                                                        r'''$.authors[0]''',
+                                                                                                      )))) &&
+                                                                                          (dataListViewItem.copyrightOrganizationId == null || dataListViewItem.copyrightOrganizationId == '') &&
+                                                                                          (dataListViewItem.version == 0)) ==
+                                                                                      true
+                                                                                  ? true
+                                                                                  : false,
+                                                                              callBackList2: () async {
+                                                                                _model.checkShow = null;
+                                                                                _model.dataList = [];
+                                                                                _model.meta = null;
+                                                                                _model.isLoad = false;
+                                                                                _model.nameSearch = '';
+                                                                                _model.dateEndSearch = '';
+                                                                                _model.dateStartSearch = '';
+                                                                                _model.lessionsNameSearch = '';
+                                                                                setState(() {});
+                                                                                setState(() {
+                                                                                  _model.textFieldNameSearchTextController?.clear();
+                                                                                });
+                                                                                setState(() => _model.listViewPagingController1?.refresh());
+
+                                                                                setState(() {});
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
                                                               ),
-                                                              onPressed: () {
-                                                                print(
-                                                                    'IconButton pressed ...');
-                                                              },
                                                             ),
                                                           ],
                                                         ),
@@ -821,330 +897,317 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     0.0,
                                                               ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .end,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            if ((dataListViewItem
-                                                                        .template ==
-                                                                    0) &&
-                                                                (getJsonField(
-                                                                      FFAppState()
-                                                                          .staffOrganization,
-                                                                      r'''$.authors[0]''',
-                                                                    ) !=
-                                                                    null) &&
-                                                                ((dataListViewItem.authorId ==
-                                                                            null ||
-                                                                        dataListViewItem.authorId ==
-                                                                            '') ||
-                                                                    ((dataListViewItem.authorId !=
-                                                                                null &&
-                                                                            dataListViewItem.authorId !=
-                                                                                '') &&
-                                                                        (dataListViewItem
-                                                                                .authorId ==
-                                                                            getJsonField(
-                                                                              FFAppState().staffOrganization,
-                                                                              r'''$.authors[0]''',
-                                                                            )))) &&
-                                                                (dataListViewItem
-                                                                            .copyrightOrganizationId ==
-                                                                        null ||
-                                                                    dataListViewItem
-                                                                            .copyrightOrganizationId ==
-                                                                        '') &&
-                                                                (dataListViewItem
-                                                                        .version ==
-                                                                    0))
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            1.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await showModalBottomSheet(
-                                                                      isScrollControlled:
-                                                                          true,
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      enableDrag:
-                                                                          false,
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
+                                                        if (widget.checkpage ==
+                                                            'authorProfile')
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                            children: [
+                                                              if ((dataListViewItem
+                                                                          .template ==
+                                                                      0) &&
+                                                                  (getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors[0]''',
+                                                                      ) !=
+                                                                      null) &&
+                                                                  ((dataListViewItem.authorId ==
+                                                                              null ||
+                                                                          dataListViewItem.authorId ==
+                                                                              '') ||
+                                                                      ((dataListViewItem.authorId != null &&
+                                                                              dataListViewItem.authorId !=
+                                                                                  '') &&
+                                                                          (dataListViewItem
+                                                                                  .authorId ==
+                                                                              getJsonField(
+                                                                                FFAppState().staffOrganization,
+                                                                                r'''$.authors[0]''',
+                                                                              )))) &&
+                                                                  (dataListViewItem
+                                                                              .copyrightOrganizationId ==
+                                                                          null ||
+                                                                      dataListViewItem
+                                                                              .copyrightOrganizationId ==
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                          .version ==
+                                                                      0))
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          1.0),
+                                                                  child:
+                                                                      FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      await showModalBottomSheet(
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        enableDrag:
+                                                                            false,
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return WebViewAware(
                                                                             child:
-                                                                                Padding(
-                                                                              padding: MediaQuery.viewInsetsOf(context),
-                                                                              child: AddProgramMarketWidget(
-                                                                                id: dataListViewItem.id,
-                                                                                price: dataListViewItem.price,
-                                                                                version: dataListViewItem.version,
-                                                                                checkPage: widget.checkpage,
+                                                                                GestureDetector(
+                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              child: Padding(
+                                                                                padding: MediaQuery.viewInsetsOf(context),
+                                                                                child: AddProgramMarketWidget(
+                                                                                  id: dataListViewItem.id,
+                                                                                  price: dataListViewItem.price,
+                                                                                  version: dataListViewItem.version,
+                                                                                  checkPage: widget.checkpage,
+                                                                                ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        safeSetState(
-                                                                            () {}));
-                                                                  },
-                                                                  text:
-                                                                      'Market',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .upgrade_sharp,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 20.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        32.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            6.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).tertiary,
-                                                                          fontSize:
-                                                                              13.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            if ((dataListViewItem
-                                                                        .template ==
-                                                                    0) &&
-                                                                (getJsonField(
-                                                                      FFAppState()
-                                                                          .staffOrganization,
-                                                                      r'''$.authors[0]''',
-                                                                    ) !=
-                                                                    null) &&
-                                                                ((dataListViewItem.authorId ==
-                                                                            null ||
-                                                                        dataListViewItem.authorId ==
-                                                                            '') ||
-                                                                    ((dataListViewItem.authorId !=
-                                                                                null &&
-                                                                            dataListViewItem.authorId !=
-                                                                                '') &&
-                                                                        (dataListViewItem
-                                                                                .authorId ==
-                                                                            getJsonField(
-                                                                              FFAppState().staffOrganization,
-                                                                              r'''$.authors[0]''',
-                                                                            )))) &&
-                                                                (dataListViewItem
-                                                                            .copyrightOrganizationId ==
-                                                                        null ||
-                                                                    dataListViewItem
-                                                                            .copyrightOrganizationId ==
-                                                                        '') &&
-                                                                (dataListViewItem
-                                                                        .version >
-                                                                    0))
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            1.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await showModalBottomSheet(
-                                                                      isScrollControlled:
-                                                                          true,
-                                                                      backgroundColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      enableDrag:
-                                                                          false,
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: MediaQuery.viewInsetsOf(context),
-                                                                              child: AddProgramMarketWidget(
-                                                                                id: dataListViewItem.id,
-                                                                                price: dataListViewItem.price,
-                                                                                version: dataListViewItem.version,
-                                                                                checkPage: widget.checkpage,
-                                                                                category: dataListViewItem.categoryId,
-                                                                                domain: dataListViewItem.domainId,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        safeSetState(
-                                                                            () {}));
-                                                                  },
-                                                                  text:
-                                                                      'Market',
-                                                                  icon: const Icon(
-                                                                    Icons.check,
-                                                                    color: Color(
-                                                                        0xFF38B647),
-                                                                    size: 20.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        32.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            6.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).tertiary,
-                                                                          fontSize:
-                                                                              13.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            if ((dataListViewItem
-                                                                        .template ==
-                                                                    0) &&
-                                                                (dataListViewItem
-                                                                            .authorId !=
-                                                                        null &&
-                                                                    dataListViewItem
-                                                                            .authorId !=
-                                                                        '') &&
-                                                                ((getJsonField(
-                                                                          FFAppState()
-                                                                              .staffOrganization,
-                                                                          r'''$.authors[0]''',
-                                                                        ) ==
-                                                                        null) ||
-                                                                    ((getJsonField(
-                                                                              FFAppState().staffOrganization,
-                                                                              r'''$.authors[0]''',
-                                                                            ) !=
-                                                                            null) &&
-                                                                        (dataListViewItem
-                                                                                .authorId !=
-                                                                            getJsonField(
-                                                                              FFAppState().staffOrganization,
-                                                                              r'''$.authors[0]''',
-                                                                            )))) &&
-                                                                (dataListViewItem
-                                                                            .copyrightOrganizationId !=
-                                                                        null &&
-                                                                    dataListViewItem
-                                                                            .copyrightOrganizationId !=
-                                                                        '') &&
-                                                                (dataListViewItem
-                                                                            .copyrightOrganizationId !=
-                                                                        null &&
-                                                                    dataListViewItem
-                                                                            .copyrightOrganizationId !=
-                                                                        ''))
-                                                              Text(
-                                                                'Mua từ Market',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
+                                                                          );
+                                                                        },
+                                                                      ).then((value) =>
+                                                                          safeSetState(
+                                                                              () {}));
+                                                                    },
+                                                                    text:
+                                                                        'Market',
+                                                                    icon: Icon(
+                                                                      Icons
+                                                                          .upgrade_sharp,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .tertiary,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontStyle:
-                                                                          FontStyle
-                                                                              .italic,
+                                                                          .secondaryText,
+                                                                      size:
+                                                                          20.0,
                                                                     ),
-                                                              ),
-                                                          ],
-                                                        ),
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      height:
+                                                                          32.0,
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          6.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if ((dataListViewItem
+                                                                          .template ==
+                                                                      0) &&
+                                                                  (getJsonField(
+                                                                        FFAppState()
+                                                                            .staffOrganization,
+                                                                        r'''$.authors[0]''',
+                                                                      ) !=
+                                                                      null) &&
+                                                                  ((dataListViewItem.authorId ==
+                                                                              null ||
+                                                                          dataListViewItem.authorId ==
+                                                                              '') ||
+                                                                      ((dataListViewItem.authorId != null &&
+                                                                              dataListViewItem.authorId !=
+                                                                                  '') &&
+                                                                          (dataListViewItem
+                                                                                  .authorId ==
+                                                                              getJsonField(
+                                                                                FFAppState().staffOrganization,
+                                                                                r'''$.authors[0]''',
+                                                                              )))) &&
+                                                                  (dataListViewItem
+                                                                              .copyrightOrganizationId ==
+                                                                          null ||
+                                                                      dataListViewItem
+                                                                              .copyrightOrganizationId ==
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                          .version >
+                                                                      0))
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          1.0),
+                                                                  child:
+                                                                      FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      await showModalBottomSheet(
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        enableDrag:
+                                                                            false,
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return WebViewAware(
+                                                                            child:
+                                                                                GestureDetector(
+                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                              child: Padding(
+                                                                                padding: MediaQuery.viewInsetsOf(context),
+                                                                                child: AddProgramMarketWidget(
+                                                                                  id: dataListViewItem.id,
+                                                                                  price: dataListViewItem.price,
+                                                                                  version: dataListViewItem.version,
+                                                                                  checkPage: widget.checkpage,
+                                                                                  category: dataListViewItem.categoryId,
+                                                                                  domain: dataListViewItem.domainId,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      ).then((value) =>
+                                                                          safeSetState(
+                                                                              () {}));
+                                                                    },
+                                                                    text:
+                                                                        'Market',
+                                                                    icon: const Icon(
+                                                                      Icons
+                                                                          .check,
+                                                                      color: Color(
+                                                                          0xFF38B647),
+                                                                      size:
+                                                                          20.0,
+                                                                    ),
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      height:
+                                                                          32.0,
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          6.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
+                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if ((dataListViewItem
+                                                                          .template ==
+                                                                      0) &&
+                                                                  (dataListViewItem
+                                                                              .authorId !=
+                                                                          null &&
+                                                                      dataListViewItem
+                                                                              .authorId !=
+                                                                          '') &&
+                                                                  ((getJsonField(
+                                                                            FFAppState().staffOrganization,
+                                                                            r'''$.authors[0]''',
+                                                                          ) ==
+                                                                          null) ||
+                                                                      ((getJsonField(
+                                                                                FFAppState().staffOrganization,
+                                                                                r'''$.authors[0]''',
+                                                                              ) !=
+                                                                              null) &&
+                                                                          (dataListViewItem
+                                                                                  .authorId !=
+                                                                              getJsonField(
+                                                                                FFAppState().staffOrganization,
+                                                                                r'''$.authors[0]''',
+                                                                              )))) &&
+                                                                  (dataListViewItem
+                                                                              .copyrightOrganizationId !=
+                                                                          null &&
+                                                                      dataListViewItem
+                                                                              .copyrightOrganizationId !=
+                                                                          '') &&
+                                                                  (dataListViewItem
+                                                                              .copyrightOrganizationId !=
+                                                                          null &&
+                                                                      dataListViewItem
+                                                                              .copyrightOrganizationId !=
+                                                                          ''))
+                                                                Text(
+                                                                  'Mua từ Market',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary,
+                                                                        fontSize:
+                                                                            12.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontStyle:
+                                                                            FontStyle.italic,
+                                                                      ),
+                                                                ),
+                                                            ],
+                                                          ),
                                                         if ((dataListViewItem
                                                                         .copyrightOrganizationId ==
                                                                     null ||
@@ -1182,159 +1245,174 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                         .circular(
                                                                             20.0),
                                                               ),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            5.0,
-                                                                            2.0,
-                                                                            5.0,
-                                                                            2.0),
-                                                                    child: Text(
-                                                                      dataListViewItem.status ==
-                                                                              'published'
-                                                                          ? 'Hoạt động'
-                                                                          : 'Không hoạt động',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color: dataListViewItem.status == 'published'
-                                                                                ? FlutterFlowTheme.of(context).secondary
-                                                                                : FlutterFlowTheme.of(context).tertiary,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
                                                             ),
                                                           ),
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                if (_model
-                                                                        .checkShow ==
-                                                                    dataListViewItem
-                                                                        .id) {
-                                                                  _model.checkShow =
-                                                                      null;
-                                                                  setState(
-                                                                      () {});
-                                                                } else {
-                                                                  _model.checkShow =
-                                                                      dataListViewItem
-                                                                          .id;
-                                                                  setState(
-                                                                      () {});
-                                                                }
-                                                              },
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .end,
-                                                                children: [
-                                                                  Text(
-                                                                    (_model.checkShow != null && _model.checkShow != '') &&
-                                                                            (dataListViewItem.id ==
-                                                                                _model.checkShow)
-                                                                        ? 'Thu nhỏ'
-                                                                        : 'Xem thêm',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .end,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodySmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                  ),
-                                                                  if ((_model.checkShow !=
-                                                                              null &&
-                                                                          _model.checkShow !=
-                                                                              '') &&
-                                                                      (dataListViewItem
-                                                                              .id ==
-                                                                          _model
-                                                                              .checkShow))
-                                                                    Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_up,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size:
-                                                                          14.0,
-                                                                    ),
-                                                                  if (dataListViewItem
-                                                                          .id !=
-                                                                      _model
-                                                                          .checkShow)
-                                                                    Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_down_outlined,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      size:
-                                                                          14.0,
-                                                                    ),
-                                                                ].divide(const SizedBox(
-                                                                    width:
-                                                                        8.0)),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                             ].divide(const SizedBox(width: 4.0)),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 4.0, 0.0, 12.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                if (_model.checkShow ==
+                                                    dataListViewItem.id) {
+                                                  _model.checkShow = null;
+                                                  setState(() {});
+                                                } else {
+                                                  _model.checkShow =
+                                                      dataListViewItem.id;
+                                                  setState(() {});
+                                                }
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  if ((dataListViewItem
+                                                                  .copyrightOrganizationId ==
+                                                              null ||
+                                                          dataListViewItem
+                                                                  .copyrightOrganizationId ==
+                                                              '') &&
+                                                      (dataListViewItem
+                                                                  .copyrightProgramId ==
+                                                              null ||
+                                                          dataListViewItem
+                                                                  .copyrightProgramId ==
+                                                              ''))
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: dataListViewItem
+                                                                      .status ==
+                                                                  'published'
+                                                              ? FlutterFlowTheme
+                                                                      .of(
+                                                                          context)
+                                                                  .accent2
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .accent3,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      5.0,
+                                                                      2.0,
+                                                                      5.0,
+                                                                      2.0),
+                                                          child: Text(
+                                                            dataListViewItem
+                                                                        .status ==
+                                                                    'published'
+                                                                ? 'Hoạt động'
+                                                                : 'Không hoạt động',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: dataListViewItem
+                                                                              .status ==
+                                                                          'published'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  Text(
+                                                    (_model.checkShow != null &&
+                                                                _model.checkShow !=
+                                                                    '') &&
+                                                            (dataListViewItem
+                                                                    .id ==
+                                                                _model
+                                                                    .checkShow)
+                                                        ? 'Thu nhỏ'
+                                                        : 'Xem thêm',
+                                                    textAlign: TextAlign.end,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                  if ((_model.checkShow !=
+                                                              null &&
+                                                          _model.checkShow !=
+                                                              '') &&
+                                                      (dataListViewItem.id ==
+                                                          _model.checkShow))
+                                                    Icon(
+                                                      Icons.keyboard_arrow_up,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 14.0,
+                                                    ),
+                                                  if (dataListViewItem.id !=
+                                                      _model.checkShow)
+                                                    Icon(
+                                                      Icons
+                                                          .keyboard_arrow_down_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 14.0,
+                                                    ),
+                                                ].divide(const SizedBox(width: 8.0)),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],

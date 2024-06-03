@@ -54,6 +54,15 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // State field(s) for CheckboxGroup widget.
+  FormFieldController<List<String>>? checkboxGroupValueController;
+
+  List<String>? get checkboxGroupValues => checkboxGroupValueController?.value;
+  set checkboxGroupValues(List<String>? v) =>
+      checkboxGroupValueController?.value = v;
+
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? updatePrice;
   // Stores action output result for [Backend Call - API (UpdateStudyProgramPrice)] action in Button widget.

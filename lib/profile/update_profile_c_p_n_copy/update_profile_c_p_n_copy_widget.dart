@@ -15,11 +15,11 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'update_profile_c_p_n_model.dart';
-export 'update_profile_c_p_n_model.dart';
+import 'update_profile_c_p_n_copy_model.dart';
+export 'update_profile_c_p_n_copy_model.dart';
 
-class UpdateProfileCPNWidget extends StatefulWidget {
-  const UpdateProfileCPNWidget({
+class UpdateProfileCPNCopyWidget extends StatefulWidget {
+  const UpdateProfileCPNCopyWidget({
     super.key,
     this.data,
   });
@@ -27,18 +27,20 @@ class UpdateProfileCPNWidget extends StatefulWidget {
   final OrganizationListStruct? data;
 
   @override
-  State<UpdateProfileCPNWidget> createState() => _UpdateProfileCPNWidgetState();
+  State<UpdateProfileCPNCopyWidget> createState() =>
+      _UpdateProfileCPNCopyWidgetState();
 }
 
-class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
-  late UpdateProfileCPNModel _model;
+class _UpdateProfileCPNCopyWidgetState
+    extends State<UpdateProfileCPNCopyWidget> {
+  late UpdateProfileCPNCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => UpdateProfileCPNModel());
+    _model = createModel(context, () => UpdateProfileCPNCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {

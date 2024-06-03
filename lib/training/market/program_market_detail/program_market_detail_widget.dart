@@ -838,6 +838,61 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    'Xem trước',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Áp dụng để xem',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          letterSpacing: 0.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Mua để xem',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
+                                                          letterSpacing: 0.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
                                             ].divide(const SizedBox(height: 2.0)),
                                           ),
                                         ),
@@ -853,256 +908,262 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                     ),
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OrderCreateWidget(
-                                      image: _model.dataGetOne?.imageCover,
-                                      price: _model.dataGetOne?.price,
-                                      name: _model.dataGetOne?.name,
-                                      numOfListLessions:
-                                          _model.dataGetOne?.lessions.length,
-                                      author:
-                                          _model.dataGetOne?.authorId.alias,
-                                      programId: widget.idProgram,
-                                      checkType: 'staff',
+              if (_model.dataGetOne?.price == '0')
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OrderCreateWidget(
+                                        image: _model.dataGetOne?.imageCover,
+                                        price: _model.dataGetOne?.price,
+                                        name: _model.dataGetOne?.name,
+                                        numOfListLessions:
+                                            _model.dataGetOne?.lessions.length,
+                                        author:
+                                            _model.dataGetOne?.authorId.alias,
+                                        programId: widget.idProgram,
+                                        checkType: 'staff',
+                                      ),
                                     ),
                                   ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Áp dụng cho cá nhân',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Áp dụng cho cá nhân',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OrderCreateWidget(
-                                      image: _model.dataGetOne?.imageCover,
-                                      price: _model.dataGetOne?.price,
-                                      name: _model.dataGetOne?.name,
-                                      numOfListLessions:
-                                          _model.dataGetOne?.lessions.length,
-                                      author:
-                                          _model.dataGetOne?.authorId.alias,
-                                      programId: widget.idProgram,
-                                      checkType: 'organization',
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OrderCreateWidget(
+                                        image: _model.dataGetOne?.imageCover,
+                                        price: _model.dataGetOne?.price,
+                                        name: _model.dataGetOne?.name,
+                                        numOfListLessions:
+                                            _model.dataGetOne?.lessions.length,
+                                        author:
+                                            _model.dataGetOne?.authorId.alias,
+                                        programId: widget.idProgram,
+                                        checkType: 'organization',
+                                      ),
                                     ),
                                   ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Áp dụng cho tổ chức',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Áp dụng cho tổ chức',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ),
-                  ].divide(const SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OrderCreateWidget(
-                                      image: _model.dataGetOne?.imageCover,
-                                      price: _model.dataGetOne?.price,
-                                      name: _model.dataGetOne?.name,
-                                      numOfListLessions:
-                                          _model.dataGetOne?.lessions.length,
-                                      author:
-                                          _model.dataGetOne?.authorId.alias,
-                                      programId: widget.idProgram,
-                                      checkType: 'staff',
+              if (_model.dataGetOne?.price != '0')
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OrderCreateWidget(
+                                        image: _model.dataGetOne?.imageCover,
+                                        price: _model.dataGetOne?.price,
+                                        name: _model.dataGetOne?.name,
+                                        numOfListLessions:
+                                            _model.dataGetOne?.lessions.length,
+                                        author:
+                                            _model.dataGetOne?.authorId.alias,
+                                        programId: widget.idProgram,
+                                        checkType: 'staff',
+                                      ),
                                     ),
                                   ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Mua cho cá nhân',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Mua cho cá nhân',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return WebViewAware(
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OrderCreateWidget(
-                                      image: _model.dataGetOne?.imageCover,
-                                      price: _model.dataGetOne?.price,
-                                      name: _model.dataGetOne?.name,
-                                      numOfListLessions:
-                                          _model.dataGetOne?.lessions.length,
-                                      author:
-                                          _model.dataGetOne?.authorId.alias,
-                                      programId: widget.idProgram,
-                                      checkType: 'organization',
+                      Expanded(
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return WebViewAware(
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: OrderCreateWidget(
+                                        image: _model.dataGetOne?.imageCover,
+                                        price: _model.dataGetOne?.price,
+                                        name: _model.dataGetOne?.name,
+                                        numOfListLessions:
+                                            _model.dataGetOne?.lessions.length,
+                                        author:
+                                            _model.dataGetOne?.authorId.alias,
+                                        programId: widget.idProgram,
+                                        checkType: 'organization',
+                                      ),
                                     ),
                                   ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Mua cho tổ chức',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Mua cho tổ chức',
-                        options: FFButtonOptions(
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    ),
-                  ].divide(const SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
+                  ),
                 ),
-              ),
             ],
           ),
         ),

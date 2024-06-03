@@ -2,10 +2,12 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
+import 'update_profile_c_p_n_copy_widget.dart' show UpdateProfileCPNCopyWidget;
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
-class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
+class UpdateProfileCPNCopyModel
+    extends FlutterFlowModel<UpdateProfileCPNCopyWidget> {
   ///  Local state fields for this page.
 
   String logoId = '';
@@ -143,25 +145,11 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
           fileList: images,
         );
         if ((apiResultUploadImage2.succeeded ?? true)) {
-          if (imagesUpload.length == 1) {
-            updateFilesStruct(
-              (e) => e
-                ..updateCreate(
-                  (e) => e.add(FileDataStruct(
-                    organizationsId: getJsonField(
-                      FFAppState().staffLogin,
-                      r'''$.organization_id''',
-                    ).toString().toString(),
-                    directusFilesId: FileIDDataTypeStruct(
-                      id: getJsonField(
-                        (apiResultUploadImage2?.jsonBody ?? ''),
-                        r'''$.data.id''',
-                      ).toString().toString(),
-                    ),
-                  )),
-                ),
-            );
-          } else {
+          if (FileUploadStruct.maybeFromMap(
+                      (apiResultUploadImage2.jsonBody ?? ''))!
+                  .data
+                  .length >=
+              2) {
             imagesUpload = FileUploadStruct.maybeFromMap(
                     (apiResultUploadImage2.jsonBody ?? ''))!
                 .data
@@ -192,6 +180,70 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
               loop = loop! + 1;
             }
             loop = 0;
+          } else {
+            var confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return WebViewAware(
+                      child: AlertDialog(
+                        title: Text(files!.create.length.toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: const Text('Confirm'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ) ??
+                false;
+            updateFilesStruct(
+              (e) => e
+                ..updateCreate(
+                  (e) => e.add(FileDataStruct(
+                    organizationsId: getJsonField(
+                      FFAppState().staffLogin,
+                      r'''$.organization_id''',
+                    ).toString().toString(),
+                    directusFilesId: FileIDDataTypeStruct(
+                      id: getJsonField(
+                        (apiResultUploadImage2?.jsonBody ?? ''),
+                        r'''$.data.id''',
+                      ).toString().toString(),
+                    ),
+                  )),
+                ),
+            );
+            confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return WebViewAware(
+                      child: AlertDialog(
+                        title: Text(files!.create.length.toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: const Text('Confirm'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ) ??
+                false;
           }
         }
       }
