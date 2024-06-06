@@ -1,11 +1,22 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/do_test/filter_do_test/filter_do_test_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'do_test_list_widget.dart' show DoTestListWidget;
+import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
   ///  Local state fields for this page.
@@ -62,9 +73,9 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
-      if ((apiResultGetListStaffTest.succeeded ?? true)) {
+      if ((apiResultGetListStaffTest?.succeeded ?? true)) {
         list = StaffsTestsListDataStruct.maybeFromMap(
-                (apiResultGetListStaffTest.jsonBody ?? ''))!
+                (apiResultGetListStaffTest?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<StaffsTestsListStruct>();
@@ -81,7 +92,7 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
+      await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -121,7 +132,7 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.isNotEmpty)
+          (pageItems.length > 0)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

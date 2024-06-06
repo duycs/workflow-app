@@ -11,6 +11,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'update_author_model.dart';
 export 'update_author_model.dart';
@@ -81,16 +82,16 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -103,13 +104,13 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -146,7 +147,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -165,7 +166,8 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                 ),
                                 child: Stack(
                                   children: [
-                                    if ((_model.uploadedLocalFile.bytes
+                                    if (_model.uploadedLocalFile == null ||
+                                        (_model.uploadedLocalFile.bytes
                                                 ?.isEmpty ??
                                             true))
                                       ClipRRect(
@@ -178,7 +180,8 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                    if ((_model.uploadedLocalFile.bytes
+                                    if (_model.uploadedLocalFile != null &&
+                                        (_model.uploadedLocalFile.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       ClipRRect(
@@ -258,7 +261,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   'Tên tác giả',
@@ -276,13 +279,15 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                 focusNode: _model.nameFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.nameTextController',
-                                  const Duration(milliseconds: 2000),
+                                  Duration(milliseconds: 2000),
                                   () async {
                                     if (_model.listAuthorName
                                             .where((e) =>
                                                 e ==
                                                 _model.nameTextController.text)
-                                            .toList().isNotEmpty) {
+                                            .toList()
+                                            .length >
+                                        0) {
                                       _model.checkName = true;
                                       setState(() {});
                                     } else {
@@ -356,7 +361,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           16.0, 20.0, 16.0, 20.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -373,7 +378,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                               ),
                               if (_model.checkName == true)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Trùng tên tác giả. Vui lòng nhập tên khác!',
@@ -390,7 +395,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   ),
                                 ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 16.0, 0.0, 3.0),
                                 child: Text(
                                   'Giới thiệu về tôi',
@@ -472,7 +477,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   fillColor: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   contentPadding:
-                                      const EdgeInsetsDirectional.fromSTEB(
+                                      EdgeInsetsDirectional.fromSTEB(
                                           16.0, 16.0, 16.0, 16.0),
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -491,7 +496,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     .asValidator(context),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 16.0, 0.0, 3.0),
                                 child: Text(
                                   'Lĩnh vực chính',
@@ -504,7 +509,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       ),
                                 ),
                               ),
-                              if (_model.domains.isNotEmpty)
+                              if (_model.domains.length > 0)
                                 FlutterFlowDropDown<String>(
                                   multiSelectController:
                                       _model.dropDownValueController ??=
@@ -560,7 +565,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       FlutterFlowTheme.of(context).alternate,
                                   borderWidth: 1.0,
                                   borderRadius: 12.0,
-                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                  margin: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 4.0, 8.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
@@ -568,7 +573,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   isMultiSelect: true,
                                   onMultiSelectChanged: (val) async {
                                     setState(() => _model.dropDownValue = val);
-                                    if (_model.dropDownValue!.isNotEmpty) {
+                                    if (_model.dropDownValue!.length > 0) {
                                       _model.domainList = _model.dropDownValue!
                                           .toList()
                                           .cast<String>();
@@ -584,15 +589,15 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                           ),
                         ),
                       ]
-                          .divide(const SizedBox(height: 4.0))
-                          .addToEnd(const SizedBox(height: 32.0)),
+                          .divide(SizedBox(height: 4.0))
+                          .addToEnd(SizedBox(height: 32.0)),
                     ),
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -605,9 +610,9 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -621,7 +626,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -632,9 +637,9 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               if (_model.checkName != false) {
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
                               if (_model.formKey.currentState == null ||
@@ -651,7 +656,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                             .secondaryBackground,
                                       ),
                                     ),
-                                    duration: const Duration(milliseconds: 500),
+                                    duration: Duration(milliseconds: 500),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
@@ -674,19 +679,19 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                         context: context,
                                         builder: (alertDialogContext) {
                                           return AlertDialog(
-                                            title: const Text('Xác nhận'),
-                                            content: const Text(
+                                            title: Text('Xác nhận'),
+                                            content: Text(
                                                 'Cập nhật thông tin tác giả!'),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
-                                                child: const Text('Hủy'),
+                                                child: Text('Hủy'),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: const Text('Xác nhận'),
+                                                child: Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -696,9 +701,10 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                               if (confirmDialogResponse) {
                                 _model.uploadFileUpdate =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.uploadFileUpdate!) {
-                                  if ((_model.uploadedLocalFile.bytes
+                                  if (_model.uploadedLocalFile != null &&
+                                      (_model.uploadedLocalFile.bytes
                                               ?.isNotEmpty ??
                                           false)) {
                                     _model.apiResultUploadAvatarUp =
@@ -707,7 +713,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       accessToken: FFAppState().accessToken,
                                       file: _model.uploadedLocalFile,
                                     );
-                                    shouldSetState = true;
+                                    _shouldSetState = true;
                                     if ((_model.apiResultUploadAvatarUp
                                             ?.succeeded ??
                                         true)) {
@@ -722,13 +728,13 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   }
                                 } else {
                                   setState(() {});
-                                  if (shouldSetState) setState(() {});
+                                  if (_shouldSetState) setState(() {});
                                   return;
                                 }
 
                                 _model.authorsUpdate =
                                     await action_blocks.tokenReload(context);
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.authorsUpdate!) {
                                   _model.apiResultAuthorsUpdate =
                                       await GroupAuthorsGroup.authorsUpdateCall
@@ -744,7 +750,8 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                         'delete': widget.domainIds!,
                                       },
                                       'avatar':
-                                          (_model.uploadedLocalFile
+                                          _model.uploadedLocalFile != null &&
+                                                  (_model.uploadedLocalFile
                                                           .bytes?.isNotEmpty ??
                                                       false)
                                               ? _model.avatar
@@ -753,7 +760,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     accessToken: FFAppState().accessToken,
                                     id: widget.id,
                                   );
-                                  shouldSetState = true;
+                                  _shouldSetState = true;
                                   if ((_model
                                           .apiResultAuthorsUpdate?.succeeded ??
                                       true)) {
@@ -766,7 +773,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                                 .primaryText,
                                           ),
                                         ),
-                                        duration: const Duration(milliseconds: 4000),
+                                        duration: Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
                                                 .secondary,
@@ -776,7 +783,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     context.pushNamed(
                                       'AuthorProfile',
                                       extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
+                                        kTransitionInfoKey: TransitionInfo(
                                           hasTransition: true,
                                           transitionType:
                                               PageTransitionType.fade,
@@ -789,14 +796,14 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   }
                                 }
                               }
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -808,7 +815,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -816,11 +823,11 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                             ),
                           ),
                         ),
-                      ].divide(const SizedBox(width: 16.0)),
+                      ].divide(SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

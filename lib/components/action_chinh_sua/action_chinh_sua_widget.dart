@@ -6,6 +6,7 @@ import '/training/study_program/add_department/add_department_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'action_chinh_sua_model.dart';
 export 'action_chinh_sua_model.dart';
@@ -17,7 +18,7 @@ class ActionChinhSuaWidget extends StatefulWidget {
     required this.callBackList2,
     bool? checkMarket,
     required this.checkpage,
-  }) : checkMarket = checkMarket ?? true;
+  }) : this.checkMarket = checkMarket ?? true;
 
   final StudyProgramListStruct? dataDetail;
   final Future Function()? callBackList2;
@@ -70,16 +71,16 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
       child: Container(
         width: double.infinity,
-        constraints: const BoxConstraints(
+        constraints: BoxConstraints(
           maxWidth: 300.0,
           maxHeight: 200.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x2B202529),
@@ -92,23 +93,17 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: EdgeInsets.all(12.0),
           child: ListView(
             padding: EdgeInsets.zero,
             primary: false,
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             children: [
-              if (widget.dataDetail?.userCreated.id == FFAppState().user.id)
+              if (widget.dataDetail?.userCreated?.id == FFAppState().user.id)
                 MouseRegion(
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = false);
-                  }),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -138,7 +133,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.mode,
@@ -148,7 +143,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               'Chỉnh sửa',
@@ -164,16 +159,16 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       ],
                     ),
                   ),
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered1 = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered1 = false);
+                  }),
                 ),
               MouseRegion(
                 opaque: false,
                 cursor: MouseCursor.defer ?? MouseCursor.defer,
-                onEnter: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = true);
-                }),
-                onExit: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = false);
-                }),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -205,7 +200,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Icon(
                           Icons.people,
                           color: FlutterFlowTheme.of(context).primaryText,
@@ -214,7 +209,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: Text(
                             'Gán chương trình cho bộ phận',
@@ -230,6 +225,12 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                     ],
                   ),
                 ),
+                onEnter: ((event) async {
+                  setState(() => _model.mouseRegionHovered2 = true);
+                }),
+                onExit: ((event) async {
+                  setState(() => _model.mouseRegionHovered2 = false);
+                }),
               ),
               if ((widget.dataDetail?.template == 0) &&
                   (getJsonField(
@@ -252,12 +253,6 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                 MouseRegion(
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered3 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered3 = false);
-                  }),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -278,7 +273,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               version: widget.dataDetail?.version,
                               checkPage: widget.checkMarket.toString(),
                               nameLession: widget.dataDetail?.lessions
-                                  .map((e) => e.lessionsId.name)
+                                  ?.map((e) => e.lessionsId.name)
                                   .toList(),
                               lessions: widget.dataDetail,
                             ),
@@ -292,7 +287,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.shopify,
@@ -302,7 +297,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               'Đưa khóa học lên Market',
@@ -318,6 +313,12 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       ],
                     ),
                   ),
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered3 = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered3 = false);
+                  }),
                 ),
               if ((widget.dataDetail?.template == 0) &&
                   (getJsonField(
@@ -341,12 +342,6 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                 MouseRegion(
                   opaque: false,
                   cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered4 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered4 = false);
-                  }),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -377,7 +372,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Icon(
                             Icons.shopify,
@@ -387,7 +382,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               'Update version khóa học trên Market',
@@ -403,6 +398,12 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                       ],
                     ),
                   ),
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered4 = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered4 = false);
+                  }),
                 ),
             ],
           ),

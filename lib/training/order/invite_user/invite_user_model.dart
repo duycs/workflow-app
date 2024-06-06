@@ -1,11 +1,20 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/training/order/after_invite/after_invite_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'invite_user_widget.dart' show InviteUserWidget;
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
   ///  Local state fields for this component.
@@ -78,9 +87,9 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
                 r'''$.id''',
               ).toString().toString()}\"}},{\"status\":{\"_eq\":\"active\"}}]}',
       );
-      if ((apiResultGetStaff1.succeeded ?? true)) {
+      if ((apiResultGetStaff1?.succeeded ?? true)) {
         getStaffList = StaffListDataStruct.maybeFromMap(
-                (apiResultGetStaff1.jsonBody ?? ''))!
+                (apiResultGetStaff1?.jsonBody ?? ''))!
             .data
             .toList()
             .cast<StaffListStruct>();
@@ -93,7 +102,7 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -115,9 +124,9 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
         accessToken: FFAppState().accessToken,
         idPrograms: widget.programId,
       );
-      if ((apiResultGetOneProgram.succeeded ?? true)) {
+      if ((apiResultGetOneProgram?.succeeded ?? true)) {
         program = MarketLessonListStruct.maybeFromMap(getJsonField(
-          (apiResultGetOneProgram.jsonBody ?? ''),
+          (apiResultGetOneProgram?.jsonBody ?? ''),
           r'''$.data''',
         ));
       }

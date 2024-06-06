@@ -2,6 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'do_action_type_to_do_list_model.dart';
 export 'do_action_type_to_do_list_model.dart';
 
@@ -62,7 +64,7 @@ class _DoActionTypeToDoListWidgetState
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
-                widget.listdata?.operationsId.status == 'done',
+                widget.listdata?.operationsId?.status == 'done',
             onChanged: (newValue) async {
               setState(() => _model.checkboxValue = newValue!);
               if (newValue!) {
@@ -70,17 +72,17 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          content: const Text('Xác nhận đã thực hiện!'),
+                          content: Text('Xác nhận đã thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Đóng'),
+                              child: Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Xác nhận'),
+                              child: Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -90,12 +92,12 @@ class _DoActionTypeToDoListWidgetState
                 if (confirmDialogResponse) {
                   await widget.callback?.call(
                     'done',
-                    widget.listdata?.operationsId.id,
+                    widget.listdata?.operationsId?.id,
                   );
                 } else {
                   setState(() {
                     _model.checkboxValue =
-                        widget.listdata?.operationsId.status == 'done';
+                        widget.listdata?.operationsId?.status == 'done';
                   });
                 }
               } else {
@@ -103,17 +105,17 @@ class _DoActionTypeToDoListWidgetState
                       context: context,
                       builder: (alertDialogContext) {
                         return AlertDialog(
-                          content: const Text('Xác nhận chưa thực hiện!'),
+                          content: Text('Xác nhận chưa thực hiện!'),
                           actions: [
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, false),
-                              child: const Text('Đóng'),
+                              child: Text('Đóng'),
                             ),
                             TextButton(
                               onPressed: () =>
                                   Navigator.pop(alertDialogContext, true),
-                              child: const Text('Xác nhận'),
+                              child: Text('Xác nhận'),
                             ),
                           ],
                         );
@@ -123,7 +125,7 @@ class _DoActionTypeToDoListWidgetState
                 if (confirmDialogResponse) {
                   await widget.callback?.call(
                     'published',
-                    widget.listdata?.operationsId.id,
+                    widget.listdata?.operationsId?.id,
                   );
                 } else {
                   setState(() {
@@ -150,7 +152,7 @@ class _DoActionTypeToDoListWidgetState
                 ),
           ),
         ),
-      ].divide(const SizedBox(width: 8.0)),
+      ].divide(SizedBox(width: 8.0)),
     );
   }
 }

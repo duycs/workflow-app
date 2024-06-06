@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'filter_programs_model.dart';
 export 'filter_programs_model.dart';
 
@@ -23,15 +25,15 @@ class FilterProgramsWidget extends StatefulWidget {
     String? priceMin1,
     String? priceMax1,
     required this.checkAuthor,
-  })  : domain = domain ?? '',
-        author = author ?? '',
-        category = category ?? '',
-        priceMin = priceMin ?? '',
-        priceMax = priceMax ?? '',
-        checkPrice = checkPrice ?? '',
-        checkPrice1 = checkPrice1 ?? '',
-        priceMin1 = priceMin1 ?? '',
-        priceMax1 = priceMax1 ?? '';
+  })  : this.domain = domain ?? '',
+        this.author = author ?? '',
+        this.category = category ?? '',
+        this.priceMin = priceMin ?? '',
+        this.priceMax = priceMax ?? '',
+        this.checkPrice = checkPrice ?? '',
+        this.checkPrice1 = checkPrice1 ?? '',
+        this.priceMin1 = priceMin1 ?? '',
+        this.priceMax1 = priceMax1 ?? '';
 
   final Future Function(
       String? domain,
@@ -72,42 +74,42 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
     _model = createModel(context, () => FilterProgramsModel());
 
     _model.authorTextController ??= TextEditingController(
-        text: (widget.author != '') &&
+        text: (widget.author != null && widget.author != '') &&
                 (widget.author != 'noData')
             ? widget.author
             : '');
     _model.authorFocusNode ??= FocusNode();
 
     _model.categoryTextController ??= TextEditingController(
-        text: (widget.category != '') &&
+        text: (widget.category != null && widget.category != '') &&
                 (widget.category != 'noData')
             ? widget.category
             : '');
     _model.categoryFocusNode ??= FocusNode();
 
     _model.priceMinTextController ??= TextEditingController(
-        text: (widget.priceMin != '') &&
+        text: (widget.priceMin != null && widget.priceMin != '') &&
                 (widget.priceMin != 'noData')
             ? widget.priceMin
             : '');
     _model.priceMinFocusNode ??= FocusNode();
 
     _model.priceMaxTextController ??= TextEditingController(
-        text: (widget.priceMax != '') &&
+        text: (widget.priceMax != null && widget.priceMax != '') &&
                 (widget.priceMax != 'noData')
             ? widget.priceMax
             : '');
     _model.priceMaxFocusNode ??= FocusNode();
 
     _model.priceMin1TextController ??= TextEditingController(
-        text: (widget.priceMin1 != '') &&
+        text: (widget.priceMin1 != null && widget.priceMin1 != '') &&
                 (widget.priceMin1 != 'noData')
             ? widget.priceMin1
             : '');
     _model.priceMin1FocusNode ??= FocusNode();
 
     _model.priceMax1TextController ??= TextEditingController(
-        text: (widget.priceMax1 != '') &&
+        text: (widget.priceMax1 != null && widget.priceMax1 != '') &&
                 (widget.priceMax1 != 'noData')
             ? widget.priceMax1
             : '');
@@ -124,16 +126,16 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 550.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -146,13 +148,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,12 +194,13 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       children: [
                         if (widget.checkPrice != 'free1')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 10.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.domainValueController ??=
                                   FormFieldController<String>(
-                                _model.domainValue ??= (widget.domain != '') &&
+                                _model.domainValue ??= (widget.domain != null &&
+                                            widget.domain != '') &&
                                         (widget.domain != 'noData')
                                     ? widget.domain
                                     : '',
@@ -240,7 +243,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
+                              margin: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -251,7 +254,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         if (widget.checkAuthor == null ||
                             widget.checkAuthor == '')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 10.0),
                             child: TextFormField(
                               controller: _model.authorTextController,
@@ -314,7 +317,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: TextFormField(
                             controller: _model.categoryTextController,
@@ -378,7 +381,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         if ((widget.checkPrice1 == 'checkPriceListList') ||
                             (widget.checkPrice == 'free1'))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
                               'Khoảng giá',
@@ -394,7 +397,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         if ((widget.checkPrice1 == 'checkPriceListList') ||
                             (widget.checkPrice == 'free1'))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 2.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -420,7 +423,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             3.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -526,7 +529,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             3.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -611,12 +614,12 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                     ),
                                   ],
                                 ),
-                              ].divide(const SizedBox(width: 20.0)),
+                              ].divide(SizedBox(width: 20.0)),
                             ),
                           ),
                         if (_model.check1 == '1')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
                               'Khoảng giá không hợp lệ: giá trị bắt đầu không thể lớn hơn giá trị kết thúc!',
@@ -636,7 +639,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                             (widget.checkPrice != 'free') &&
                             (widget.checkPrice != 'free1'))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
                               'Khoảng giá',
@@ -653,7 +656,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                             (widget.checkPrice != 'free') &&
                             (widget.checkPrice != 'free1'))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 2.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -679,7 +682,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             3.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -786,7 +789,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             3.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -872,12 +875,12 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                     ),
                                   ],
                                 ),
-                              ].divide(const SizedBox(width: 20.0)),
+                              ].divide(SizedBox(width: 20.0)),
                             ),
                           ),
                         if (_model.check2 == '1')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
                               'Khoảng giá không hợp lệ: giá trị bắt đầu không thể lớn hơn giá trị kết thúc!',
@@ -895,7 +898,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                           ),
                         if (_model.check2 == '2')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 5.0),
                             child: Text(
                               'Khoảng giá Min phải lơn hơn 0!',
@@ -944,9 +947,9 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         text: 'Xoá bộ lọc',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -970,19 +973,25 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                     Expanded(
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if ((((_model.priceMinTextController.text !=
+                          if ((((_model.priceMinTextController.text != null &&
+                                          _model.priceMinTextController.text !=
                                               '') &&
                                       (_model.priceMinTextController.text !=
                                           'noData')) &&
                                   ((_model.priceMaxTextController.text !=
+                                              null &&
+                                          _model.priceMaxTextController.text !=
                                               '') &&
                                       (_model.priceMaxTextController.text !=
                                           'noData'))) ||
-                              (((_model.priceMin1TextController.text ==
+                              (((_model.priceMin1TextController.text == null ||
+                                          _model.priceMin1TextController.text ==
                                               '') &&
                                       (_model.priceMin1TextController.text ==
                                           'noData')) &&
                                   ((_model.priceMax1TextController.text ==
+                                              null ||
+                                          _model.priceMax1TextController.text ==
                                               '') &&
                                       (_model.priceMax1TextController.text ==
                                           'noData')))) {
@@ -992,7 +1001,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                 _model.priceMaxTextController.text)) {
                               _model.check1 = '';
                               setState(() {});
-                              if (_model.priceMin1TextController.text != '') {
+                              if (_model.priceMin1TextController.text != null &&
+                                  _model.priceMin1TextController.text != '') {
                                 if (double.parse(
                                         _model.priceMin1TextController.text) >
                                     0) {
@@ -1003,31 +1013,42 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             _model.domainValue != ''
                                         ? _model.domainValue
                                         : 'noData',
-                                    _model.authorTextController.text !=
+                                    _model.authorTextController.text != null &&
+                                            _model.authorTextController.text !=
                                                 ''
                                         ? _model.authorTextController.text
                                         : 'noData',
-                                    _model.categoryTextController
+                                    _model.categoryTextController.text !=
+                                                null &&
+                                            _model.categoryTextController
                                                     .text !=
                                                 ''
                                         ? _model.categoryTextController.text
                                         : 'noData',
-                                    _model.priceMinTextController
+                                    _model.priceMinTextController.text !=
+                                                null &&
+                                            _model.priceMinTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMinTextController.text
                                         : 'noData',
-                                    _model.priceMaxTextController
+                                    _model.priceMaxTextController.text !=
+                                                null &&
+                                            _model.priceMaxTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMaxTextController.text
                                         : 'noData',
-                                    _model.priceMin1TextController
+                                    _model.priceMin1TextController.text !=
+                                                null &&
+                                            _model.priceMin1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMin1TextController.text
                                         : 'noData',
-                                    _model.priceMax1TextController
+                                    _model.priceMax1TextController.text !=
+                                                null &&
+                                            _model.priceMax1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMax1TextController.text
@@ -1044,26 +1065,32 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                           _model.domainValue != ''
                                       ? _model.domainValue
                                       : 'noData',
-                                  _model.authorTextController.text != ''
+                                  _model.authorTextController.text != null &&
+                                          _model.authorTextController.text != ''
                                       ? _model.authorTextController.text
                                       : 'noData',
-                                  _model.categoryTextController.text !=
+                                  _model.categoryTextController.text != null &&
+                                          _model.categoryTextController.text !=
                                               ''
                                       ? _model.categoryTextController.text
                                       : 'noData',
-                                  _model.priceMinTextController.text !=
+                                  _model.priceMinTextController.text != null &&
+                                          _model.priceMinTextController.text !=
                                               ''
                                       ? _model.priceMinTextController.text
                                       : 'noData',
-                                  _model.priceMaxTextController.text !=
+                                  _model.priceMaxTextController.text != null &&
+                                          _model.priceMaxTextController.text !=
                                               ''
                                       ? _model.priceMaxTextController.text
                                       : 'noData',
-                                  _model.priceMin1TextController.text !=
+                                  _model.priceMin1TextController.text != null &&
+                                          _model.priceMin1TextController.text !=
                                               ''
                                       ? _model.priceMin1TextController.text
                                       : 'noData',
-                                  _model.priceMax1TextController.text !=
+                                  _model.priceMax1TextController.text != null &&
+                                          _model.priceMax1TextController.text !=
                                               ''
                                       ? _model.priceMax1TextController.text
                                       : 'noData',
@@ -1075,22 +1102,29 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                               setState(() {});
                             }
                           } else {
-                            if ((((_model.priceMinTextController
+                            if ((((_model.priceMinTextController.text == null ||
+                                            _model.priceMinTextController
                                                     .text ==
                                                 '') &&
                                         (_model.priceMinTextController.text ==
                                             'noData')) &&
-                                    ((_model.priceMaxTextController
+                                    ((_model.priceMaxTextController.text ==
+                                                null ||
+                                            _model.priceMaxTextController
                                                     .text ==
                                                 '') &&
                                         (_model.priceMaxTextController.text ==
                                             'noData'))) ||
-                                (((_model.priceMin1TextController
+                                (((_model.priceMin1TextController.text !=
+                                                null &&
+                                            _model.priceMin1TextController
                                                     .text !=
                                                 '') &&
                                         (_model.priceMin1TextController.text !=
                                             'noData')) &&
-                                    ((_model.priceMax1TextController
+                                    ((_model.priceMax1TextController.text !=
+                                                null &&
+                                            _model.priceMax1TextController
                                                     .text !=
                                                 '') &&
                                         (_model.priceMax1TextController.text !=
@@ -1101,7 +1135,9 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                   _model.priceMax1TextController.text)) {
                                 _model.check2 = '';
                                 setState(() {});
-                                if (_model.priceMin1TextController.text != '') {
+                                if (_model.priceMin1TextController.text !=
+                                        null &&
+                                    _model.priceMin1TextController.text != '') {
                                   if (double.parse(
                                           _model.priceMin1TextController.text) >
                                       0) {
@@ -1112,32 +1148,44 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                               _model.domainValue != ''
                                           ? _model.domainValue
                                           : 'noData',
-                                      _model.authorTextController
+                                      _model.authorTextController.text !=
+                                                  null &&
+                                              _model.authorTextController
                                                       .text !=
                                                   ''
                                           ? _model.authorTextController.text
                                           : 'noData',
-                                      _model.categoryTextController
+                                      _model.categoryTextController.text !=
+                                                  null &&
+                                              _model.categoryTextController
                                                       .text !=
                                                   ''
                                           ? _model.categoryTextController.text
                                           : 'noData',
-                                      _model.priceMinTextController
+                                      _model.priceMinTextController.text !=
+                                                  null &&
+                                              _model.priceMinTextController
                                                       .text !=
                                                   ''
                                           ? _model.priceMinTextController.text
                                           : 'noData',
-                                      _model.priceMaxTextController
+                                      _model.priceMaxTextController.text !=
+                                                  null &&
+                                              _model.priceMaxTextController
                                                       .text !=
                                                   ''
                                           ? _model.priceMaxTextController.text
                                           : 'noData',
-                                      _model.priceMin1TextController
+                                      _model.priceMin1TextController.text !=
+                                                  null &&
+                                              _model.priceMin1TextController
                                                       .text !=
                                                   ''
                                           ? _model.priceMin1TextController.text
                                           : 'noData',
-                                      _model.priceMax1TextController
+                                      _model.priceMax1TextController.text !=
+                                                  null &&
+                                              _model.priceMax1TextController
                                                       .text !=
                                                   ''
                                           ? _model.priceMax1TextController.text
@@ -1154,31 +1202,42 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             _model.domainValue != ''
                                         ? _model.domainValue
                                         : 'noData',
-                                    _model.authorTextController.text !=
+                                    _model.authorTextController.text != null &&
+                                            _model.authorTextController.text !=
                                                 ''
                                         ? _model.authorTextController.text
                                         : 'noData',
-                                    _model.categoryTextController
+                                    _model.categoryTextController.text !=
+                                                null &&
+                                            _model.categoryTextController
                                                     .text !=
                                                 ''
                                         ? _model.categoryTextController.text
                                         : 'noData',
-                                    _model.priceMinTextController
+                                    _model.priceMinTextController.text !=
+                                                null &&
+                                            _model.priceMinTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMinTextController.text
                                         : 'noData',
-                                    _model.priceMaxTextController
+                                    _model.priceMaxTextController.text !=
+                                                null &&
+                                            _model.priceMaxTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMaxTextController.text
                                         : 'noData',
-                                    _model.priceMin1TextController
+                                    _model.priceMin1TextController.text !=
+                                                null &&
+                                            _model.priceMin1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMin1TextController.text
                                         : 'noData',
-                                    _model.priceMax1TextController
+                                    _model.priceMax1TextController.text !=
+                                                null &&
+                                            _model.priceMax1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMax1TextController.text
@@ -1191,7 +1250,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                 setState(() {});
                               }
                             } else {
-                              if (_model.priceMin1TextController.text != '') {
+                              if (_model.priceMin1TextController.text != null &&
+                                  _model.priceMin1TextController.text != '') {
                                 if (double.parse(
                                         _model.priceMin1TextController.text) >
                                     0) {
@@ -1200,31 +1260,42 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             _model.domainValue != ''
                                         ? _model.domainValue
                                         : 'noData',
-                                    _model.authorTextController.text !=
+                                    _model.authorTextController.text != null &&
+                                            _model.authorTextController.text !=
                                                 ''
                                         ? _model.authorTextController.text
                                         : 'noData',
-                                    _model.categoryTextController
+                                    _model.categoryTextController.text !=
+                                                null &&
+                                            _model.categoryTextController
                                                     .text !=
                                                 ''
                                         ? _model.categoryTextController.text
                                         : 'noData',
-                                    _model.priceMinTextController
+                                    _model.priceMinTextController.text !=
+                                                null &&
+                                            _model.priceMinTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMinTextController.text
                                         : 'noData',
-                                    _model.priceMaxTextController
+                                    _model.priceMaxTextController.text !=
+                                                null &&
+                                            _model.priceMaxTextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMaxTextController.text
                                         : 'noData',
-                                    _model.priceMin1TextController
+                                    _model.priceMin1TextController.text !=
+                                                null &&
+                                            _model.priceMin1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMin1TextController.text
                                         : 'noData',
-                                    _model.priceMax1TextController
+                                    _model.priceMax1TextController.text !=
+                                                null &&
+                                            _model.priceMax1TextController
                                                     .text !=
                                                 ''
                                         ? _model.priceMax1TextController.text
@@ -1239,8 +1310,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return AlertDialog(
-                                                title: const Text('Thông báo'),
-                                                content: const Text(
+                                                title: Text('Thông báo'),
+                                                content: Text(
                                                     'Giá trị min phải lớn hơn 0!'),
                                                 actions: [
                                                   TextButton(
@@ -1248,14 +1319,14 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: const Text('Cancel'),
+                                                    child: Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: const Text('Confirm'),
+                                                    child: Text('Confirm'),
                                                   ),
                                                 ],
                                               );
@@ -1271,26 +1342,32 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                           _model.domainValue != ''
                                       ? _model.domainValue
                                       : 'noData',
-                                  _model.authorTextController.text != ''
+                                  _model.authorTextController.text != null &&
+                                          _model.authorTextController.text != ''
                                       ? _model.authorTextController.text
                                       : 'noData',
-                                  _model.categoryTextController.text !=
+                                  _model.categoryTextController.text != null &&
+                                          _model.categoryTextController.text !=
                                               ''
                                       ? _model.categoryTextController.text
                                       : 'noData',
-                                  _model.priceMinTextController.text !=
+                                  _model.priceMinTextController.text != null &&
+                                          _model.priceMinTextController.text !=
                                               ''
                                       ? _model.priceMinTextController.text
                                       : 'noData',
-                                  _model.priceMaxTextController.text !=
+                                  _model.priceMaxTextController.text != null &&
+                                          _model.priceMaxTextController.text !=
                                               ''
                                       ? _model.priceMaxTextController.text
                                       : 'noData',
-                                  _model.priceMin1TextController.text !=
+                                  _model.priceMin1TextController.text != null &&
+                                          _model.priceMin1TextController.text !=
                                               ''
                                       ? _model.priceMin1TextController.text
                                       : 'noData',
-                                  _model.priceMax1TextController.text !=
+                                  _model.priceMax1TextController.text != null &&
+                                          _model.priceMax1TextController.text !=
                                               ''
                                       ? _model.priceMax1TextController.text
                                       : 'noData',
@@ -1303,11 +1380,11 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         text: 'Xác nhận',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFF33BA45),
+                          color: Color(0xFF33BA45),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Nunito Sans',
@@ -1316,7 +1393,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -1324,7 +1401,7 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 16.0)),
+                  ].divide(SizedBox(width: 16.0)),
                 ),
               ],
             ),

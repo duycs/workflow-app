@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'study_program_model.dart';
 export 'study_program_model.dart';
 
@@ -47,9 +49,9 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -62,7 +64,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -70,14 +72,14 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.programNameTextController,
                             focusNode: _model.programNameFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.programNameTextController',
-                              const Duration(milliseconds: 2000),
+                              Duration(milliseconds: 2000),
                               () async {
                                 _model.requestData = StudyProgramListStruct(
                                   name: _model.programNameTextController.text,
@@ -143,14 +145,14 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.programDescriptionTextController,
                             focusNode: _model.programDescriptionFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.programDescriptionTextController',
-                              const Duration(milliseconds: 2000),
+                              Duration(milliseconds: 2000),
                               () async {
                                 _model.updateRequestDataStruct(
                                   (e) => e
@@ -247,7 +249,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                         Builder(
                           builder: (context) {
                             final listView =
-                                _model.requestData?.lessions.toList() ?? [];
+                                _model.requestData?.lessions?.toList() ?? [];
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               primary: false,
@@ -257,7 +259,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                               itemBuilder: (context, listViewIndex) {
                                 final listViewItem = listView[listViewIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 5.0),
                                   child: Container(
                                     width: 100.0,
@@ -270,7 +272,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 10.0, 0.0),
                                           child: Text(
                                             '-',
@@ -304,13 +306,13 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                             );
                           },
                         ),
-                      ].divide(const SizedBox(height: 16.0)),
+                      ].divide(SizedBox(height: 16.0)),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       setState(() {});
@@ -320,9 +322,9 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                       width: double.infinity,
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
