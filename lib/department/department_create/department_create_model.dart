@@ -1,20 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'department_create_widget.dart' show DepartmentCreateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
   ///  Local state fields for this page.
@@ -117,16 +108,16 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}}]}',
     );
-    if ((apiResultist?.succeeded ?? true)) {
+    if ((apiResultist.succeeded ?? true)) {
       branchList =
-          BranchListDataStruct.maybeFromMap((apiResultist?.jsonBody ?? ''))!
+          BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!
               .data
               .toList()
               .cast<BranchListStruct>();
     } else {
       checkRefreshTokenBlockad = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultist?.jsonBody ?? ''),
+        jsonErrors: (apiResultist.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockad!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -134,10 +125,10 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -158,16 +149,16 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}]}',
     );
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       programsList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultList?.jsonBody ?? ''))!
+              (apiResultList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StudyProgramListStruct>();
     } else {
       checkRefreshTokenBlockdf = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockdf!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -175,10 +166,10 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -205,7 +196,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             ).toString().toString(),
       programsIdJson: programIds.map((e) => e.toMap()).toList(),
     );
-    if ((apiResultPostDepartment?.succeeded ?? true)) {
+    if ((apiResultPostDepartment.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -214,7 +205,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
               color: FlutterFlowTheme.of(context).primaryText,
             ),
           ),
-          duration: Duration(milliseconds: 4000),
+          duration: const Duration(milliseconds: 4000),
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
@@ -222,7 +213,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
       context.pushNamed(
         'DepartmentList',
         extra: <String, dynamic>{
-          kTransitionInfoKey: TransitionInfo(
+          kTransitionInfoKey: const TransitionInfo(
             hasTransition: true,
             transitionType: PageTransitionType.fade,
             duration: Duration(milliseconds: 0),
@@ -232,7 +223,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
     } else {
       checkRefreshTokenBlockak = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPostDepartment?.jsonBody ?? ''),
+        jsonErrors: (apiResultPostDepartment.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockak!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -240,10 +231,10 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

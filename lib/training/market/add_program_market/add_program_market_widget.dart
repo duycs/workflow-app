@@ -1,20 +1,17 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/training/market/checkbox_lessions/checkbox_lessions_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'add_program_market_model.dart';
 export 'add_program_market_model.dart';
 
@@ -27,6 +24,8 @@ class AddProgramMarketWidget extends StatefulWidget {
     this.checkPage,
     this.category,
     this.domain,
+    this.nameLession,
+    this.lessions,
   });
 
   final String? id;
@@ -35,6 +34,8 @@ class AddProgramMarketWidget extends StatefulWidget {
   final String? checkPage;
   final String? category;
   final String? domain;
+  final List<String>? nameLession;
+  final StudyProgramListStruct? lessions;
 
   @override
   State<AddProgramMarketWidget> createState() => _AddProgramMarketWidgetState();
@@ -60,6 +61,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
       _model.tokenReloadAddWorkflowMarket =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadAddWorkflowMarket!) {
+        _model.checkBoxLession = widget.lessions;
+        setState(() {});
         _model.apiResultwkg = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
@@ -80,6 +83,22 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                 .toList()
                 .cast<DomainsListStruct>();
             setState(() {});
+            while (_model.loop < widget.nameLession!.length) {
+              _model.updateCheckBoxLessionStruct(
+                (e) => e
+                  ..updateLessions(
+                    (e) => e[_model.loop]
+                      ..updateLessionsId(
+                        (e) => e..checkLession = false,
+                      ),
+                  ),
+              );
+              setState(() {});
+              _model.loop = _model.loop + 1;
+              setState(() {});
+            }
+            _model.loop = 0;
+            setState(() {});
           } else {
             _model.checkRefreshTokenBlocks =
                 await action_blocks.checkRefreshToken(
@@ -95,7 +114,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: Duration(milliseconds: 4000),
+                  duration: const Duration(milliseconds: 4000),
                   backgroundColor: FlutterFlowTheme.of(context).error,
                 ),
               );
@@ -120,7 +139,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                     color: FlutterFlowTheme.of(context).primaryText,
                   ),
                 ),
-                duration: Duration(milliseconds: 4000),
+                duration: const Duration(milliseconds: 4000),
                 backgroundColor: FlutterFlowTheme.of(context).error,
               ),
             );
@@ -137,7 +156,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
         text: functions.stringToInt(widget.price!).toString());
     _model.textFieldFocusNode ??= FocusNode();
 
-    _model.switchValue = true;
+    _model.switchOnValue = true;
+    _model.switchOffValue = false;
   }
 
   @override
@@ -154,17 +174,17 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxHeight: 750.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 4.0,
                   color: Color(0x33000000),
@@ -177,7 +197,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -189,7 +209,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -224,9 +244,9 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 20.0),
                               child: FlutterFlowDropDown<String>(
                                 controller:
@@ -264,7 +284,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 2.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -274,7 +294,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller:
                                   _model.dropDownCategoryValueController ??=
@@ -312,7 +332,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 2.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -321,7 +341,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 36.0),
                             child: TextFormField(
                               controller: _model.textController,
@@ -392,7 +412,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
                             child: Text(
                               'Thiết lập bài học được phép học thử',
@@ -406,65 +426,195 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Switch.adaptive(
-                                  value: _model.switchValue!,
-                                  onChanged: (newValue) async {
-                                    setState(
-                                        () => _model.switchValue = newValue!);
-                                  },
-                                  activeColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  activeTrackColor:
-                                      FlutterFlowTheme.of(context).accent1,
-                                  inactiveTrackColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                  inactiveThumbColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                ),
-                                Text(
-                                  'Chọn tất cả',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ],
+                          if (widget.price == '0')
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 12.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  if (_model.checkBoxLession?.lessions
+                                          .where((e) =>
+                                              e.lessionsId.checkLession == true)
+                                          .toList()
+                                          .length ==
+                                      widget.nameLession?.length)
+                                    Switch.adaptive(
+                                      value: _model.switchOnValue!,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.switchOnValue = newValue);
+
+                                        if (!newValue) {
+                                          while (_model.loop <
+                                              widget.nameLession!.length) {
+                                            _model.updateCheckBoxLessionStruct(
+                                              (e) => e
+                                                ..updateLessions(
+                                                  (e) => e[_model.loop]
+                                                    ..updateLessionsId(
+                                                      (e) => e
+                                                        ..checkLession = false,
+                                                    ),
+                                                ),
+                                            );
+                                            setState(() {});
+                                            _model.loop = _model.loop + 1;
+                                            setState(() {});
+                                          }
+                                          _model.loop = 0;
+                                          setState(() {});
+                                          setState(() {
+                                            _model.switchOnValue = true;
+                                          });
+                                        }
+                                      },
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      activeTrackColor:
+                                          FlutterFlowTheme.of(context).accent1,
+                                      inactiveTrackColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      inactiveThumbColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                    ),
+                                  if (_model.checkBoxLession?.lessions
+                                          .where((e) =>
+                                              e.lessionsId.checkLession == true)
+                                          .toList()
+                                          .length !=
+                                      _model.checkBoxLession?.lessions.length)
+                                    Switch.adaptive(
+                                      value: _model.switchOffValue!,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.switchOffValue = newValue);
+                                        if (newValue) {
+                                          while (_model.loop <
+                                              widget.nameLession!.length) {
+                                            _model.updateCheckBoxLessionStruct(
+                                              (e) => e
+                                                ..updateLessions(
+                                                  (e) => e[_model.loop]
+                                                    ..updateLessionsId(
+                                                      (e) => e
+                                                        ..checkLession = true,
+                                                    ),
+                                                ),
+                                            );
+                                            setState(() {});
+                                            _model.loop = _model.loop + 1;
+                                            setState(() {});
+                                          }
+                                          _model.loop = 0;
+                                          setState(() {});
+                                          setState(() {
+                                            _model.switchOffValue = false;
+                                          });
+                                        }
+                                      },
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      activeTrackColor:
+                                          FlutterFlowTheme.of(context).accent1,
+                                      inactiveTrackColor:
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
+                                      inactiveThumbColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                    ),
+                                  Text(
+                                    'Chọn tất cả',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          FlutterFlowCheckboxGroup(
-                            options: [
-                              'Bài học 1',
-                              'Bài học 2',
-                              'Bài học 3',
-                              'Bài học 4'
-                            ],
-                            onChanged: (val) => setState(
-                                () => _model.checkboxGroupValues = val),
-                            controller: _model.checkboxGroupValueController ??=
-                                FormFieldController<List<String>>(
-                              [],
-                            ),
-                            activeColor: FlutterFlowTheme.of(context).primary,
-                            checkColor: FlutterFlowTheme.of(context).info,
-                            checkboxBorderColor:
-                                FlutterFlowTheme.of(context).secondaryText,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            checkboxBorderRadius: BorderRadius.circular(4.0),
-                            initialized: _model.checkboxGroupValues != null,
+                          Builder(
+                            builder: (context) {
+                              final programItems =
+                                  _model.checkBoxLession?.lessions.toList() ??
+                                      [];
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                primary: false,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: programItems.length,
+                                itemBuilder: (context, programItemsIndex) {
+                                  final programItemsItem =
+                                      programItems[programItemsIndex];
+                                  return Visibility(
+                                    visible: _model.checkBoxLession != null,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        wrapWithModel(
+                                          model: _model.checkboxLessionsModels
+                                              .getModel(
+                                            '${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}',
+                                            programItemsIndex,
+                                          ),
+                                          updateCallback: () => setState(() {}),
+                                          updateOnChange: true,
+                                          child: CheckboxLessionsWidget(
+                                            key: Key(
+                                              'Key6ry_${'${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}'}',
+                                            ),
+                                            parameter1: programItemsIndex,
+                                            checkLessions: programItemsItem
+                                                .lessionsId.checkLession,
+                                            callBack: (check) async {
+                                              setState(() {});
+                                              while (_model.loop <
+                                                  widget.nameLession!.length) {
+                                                _model
+                                                    .updateCheckBoxLessionStruct(
+                                                  (e) => e
+                                                    ..updateLessions(
+                                                      (e) =>
+                                                          e[programItemsIndex]
+                                                            ..updateLessionsId(
+                                                              (e) => e
+                                                                ..checkLession =
+                                                                    check,
+                                                            ),
+                                                    ),
+                                                );
+                                                setState(() {});
+                                                _model.loop = _model.loop + 1;
+                                                setState(() {});
+                                              }
+                                              _model.loop = 0;
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            programItemsItem.lessionsId.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),
@@ -472,7 +622,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -485,9 +635,9 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -501,7 +651,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                               ),
                               borderRadius: BorderRadius.circular(20.0),
@@ -511,41 +661,38 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
-                              if (_model.textController.text != null &&
-                                  _model.textController.text != '') {
+                              var shouldSetState = false;
+                              if (_model.textController.text != '') {
                                 var confirmDialogResponse =
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Xác nhận:'),
-                                                content: Text(
-                                                    'Đưa chương trình lên Market!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Đóng'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Xác nhận'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: const Text('Xác nhận:'),
+                                              content: const Text(
+                                                  'Đưa chương trình lên Market!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: const Text('Đóng'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: const Text('Xác nhận'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         ) ??
                                         false;
                                 if (!confirmDialogResponse) {
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
                               } else {
@@ -558,12 +705,12 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                             .primaryText,
                                       ),
                                     ),
-                                    duration: Duration(milliseconds: 4000),
+                                    duration: const Duration(milliseconds: 4000),
                                     backgroundColor:
                                         FlutterFlowTheme.of(context).error,
                                   ),
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
@@ -576,7 +723,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   (_model.dropDownCategoryValue != ' ')) {
                                 _model.updatePrice =
                                     await action_blocks.tokenReload(context);
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (_model.updatePrice!) {
                                   _model.apiResultUpdatePrice =
                                       await StudyProgramGroup
@@ -594,12 +741,12 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     category: _model.dropDownCategoryValue,
                                     domain: _model.dropDownDomainValue,
                                   );
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if ((_model.apiResultUpdatePrice?.succeeded ??
                                       true)) {
                                     _model.addMarket = await action_blocks
                                         .tokenReload(context);
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if (_model.addMarket!) {
                                       _model.apiResultk6q =
                                           await StudyProgramGroup
@@ -611,49 +758,120 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                         categoryId:
                                             _model.dropDownCategoryValue,
                                       );
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if ((_model.apiResultk6q?.succeeded ??
                                           true)) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Đưa chương trình lên Market thành công!',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-                                        await _model
-                                            .deletePreProgramVersion(context);
-                                        setState(() {});
+                                        _model.reloadTockenStudyProgramGetOne =
+                                            await action_blocks
+                                                .tokenReload(context);
+                                        shouldSetState = true;
+                                        if (_model
+                                            .reloadTockenStudyProgramGetOne!) {
+                                          _model.apiResultProgramsOne =
+                                              await StudyProgramGroup
+                                                  .studyProgramGetOneCall
+                                                  .call(
+                                            accessToken:
+                                                FFAppState().accessToken,
+                                            id: getJsonField(
+                                              (_model.apiResultk6q?.jsonBody ??
+                                                  ''),
+                                              r'''$.id''',
+                                            ).toString(),
+                                          );
+                                          shouldSetState = true;
+                                          if ((_model.apiResultProgramsOne
+                                                  ?.succeeded ??
+                                              true)) {
+                                            while (_model.loop <
+                                                _model.checkBoxLession!.lessions
+                                                    .length) {
+                                              if ((_model.checkBoxLession
+                                                              ?.lessions[
+                                                          _model.loop])
+                                                      ?.lessionsId
+                                                      .checkLession ==
+                                                  true) {
+                                                _model.apiResulti06 =
+                                                    await LessonGroup
+                                                        .updateLessonStatusMarketCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                  id: (LessionDataMarketStatusStruct
+                                                              .maybeFromMap((_model
+                                                                      .apiResultProgramsOne
+                                                                      ?.jsonBody ??
+                                                                  ''))
+                                                          ?.data
+                                                          .lessions[_model.loop])
+                                                      ?.lessionsId
+                                                      .id,
+                                                  status: 'trial',
+                                                );
+                                                shouldSetState = true;
+                                                if ((_model.apiResulti06
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  setState(() {});
+                                                }
+                                              } else {
+                                                setState(() {});
+                                              }
 
-                                        context.pushNamed(
-                                          'StudyProgramList',
-                                          queryParameters: {
-                                            'checkpage': serializeParam(
-                                              widget.checkPage,
-                                              ParamType.String,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                            ),
-                                          },
-                                        );
+                                              _model.loop = _model.loop + 1;
+                                              setState(() {});
+                                            }
+                                            _model.loop = 0;
+                                            setState(() {});
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Đưa chương trình lên Market thành công!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                            await _model
+                                                .deletePreProgramVersion(
+                                                    context);
+                                            setState(() {});
+
+                                            context.pushNamed(
+                                              'StudyProgramList',
+                                              queryParameters: {
+                                                'checkpage': serializeParam(
+                                                  widget.checkPage,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          }
+                                        } else {
+                                          setState(() {});
+                                          if (shouldSetState) setState(() {});
+                                          return;
+                                        }
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -667,7 +885,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -685,33 +903,31 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        content: Text(
-                                            'Vui lòng chọn lĩnh vực và danh mục!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      content: const Text(
+                                          'Vui lòng chọn lĩnh vực và danh mục!'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).tertiary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -724,7 +940,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     fontWeight: FontWeight.normal,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -732,7 +948,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 12.0)),
+                      ].divide(const SizedBox(width: 12.0)),
                     ),
                   ),
                 ],

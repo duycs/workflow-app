@@ -1,21 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'update_author_widget.dart' show UpdateAuthorWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
   ///  Local state fields for this component.
@@ -59,6 +48,15 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
 
   bool checkName = false;
 
+  List<String> domainList = [];
+  void addToDomainList(String item) => domainList.add(item);
+  void removeFromDomainList(String item) => domainList.remove(item);
+  void removeAtIndexFromDomainList(int index) => domainList.removeAt(index);
+  void insertAtIndexInDomainList(int index, String item) =>
+      domainList.insert(index, item);
+  void updateDomainListAtIndex(int index, Function(String) updateFn) =>
+      domainList[index] = updateFn(domainList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -70,10 +68,27 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
   FocusNode? nameFocusNode;
   TextEditingController? nameTextController;
   String? Function(BuildContext, String?)? nameTextControllerValidator;
+  String? _nameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập tên tác giả';
+    }
+
+    return null;
+  }
+
   // State field(s) for description widget.
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  String? _descriptionTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập thông tin giới thiệu';
+    }
+
+    return null;
+  }
+
   // State field(s) for DropDown widget.
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;
@@ -87,7 +102,10 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
   ApiCallResponse? apiResultAuthorsUpdate;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    nameTextControllerValidator = _nameTextControllerValidator;
+    descriptionTextControllerValidator = _descriptionTextControllerValidator;
+  }
 
   @override
   void dispose() {
@@ -108,9 +126,9 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
       apiResultGetDomainList = await DomainGroup.getDomainsListCall.call(
         accessToken: FFAppState().accessToken,
       );
-      if ((apiResultGetDomainList?.succeeded ?? true)) {
+      if ((apiResultGetDomainList.succeeded ?? true)) {
         domains = DomainsListDataStruct.maybeFromMap(
-                (apiResultGetDomainList?.jsonBody ?? ''))!
+                (apiResultGetDomainList.jsonBody ?? ''))!
             .data
             .toList()
             .cast<DomainsListStruct>();
@@ -129,14 +147,14 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
       apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
         accessToken: FFAppState().accessToken,
       );
-      if ((apiResultGetListAuthors?.succeeded ?? true)) {
+      if ((apiResultGetListAuthors.succeeded ?? true)) {
         listAuthorName = (getJsonField(
-          (apiResultGetListAuthors?.jsonBody ?? ''),
+          (apiResultGetListAuthors.jsonBody ?? ''),
           r'''$.data[:].alias''',
           true,
         ) as List)
             .map<String>((s) => s.toString())
-            .toList()!
+            .toList()
             .toList()
             .cast<String>();
       }

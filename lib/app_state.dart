@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
-import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'dart:convert';
@@ -54,23 +53,23 @@ class FFAppState extends ChangeNotifier {
 
   String _accessToken = '';
   String get accessToken => _accessToken;
-  set accessToken(String _value) {
-    _accessToken = _value;
-    prefs.setString('ff_accessToken', _value);
+  set accessToken(String value) {
+    _accessToken = value;
+    prefs.setString('ff_accessToken', value);
   }
 
   String _refreshToken = '';
   String get refreshToken => _refreshToken;
-  set refreshToken(String _value) {
-    _refreshToken = _value;
-    prefs.setString('ff_refreshToken', _value);
+  set refreshToken(String value) {
+    _refreshToken = value;
+    prefs.setString('ff_refreshToken', value);
   }
 
   UserStruct _user = UserStruct();
   UserStruct get user => _user;
-  set user(UserStruct _value) {
-    _user = _value;
-    prefs.setString('ff_user', _value.serialize());
+  set user(UserStruct value) {
+    _user = value;
+    prefs.setString('ff_user', value.serialize());
   }
 
   void updateUserStruct(Function(UserStruct) updateFn) {
@@ -80,87 +79,87 @@ class FFAppState extends ChangeNotifier {
 
   int _expires = 0;
   int get expires => _expires;
-  set expires(int _value) {
-    _expires = _value;
-    prefs.setInt('ff_expires', _value);
+  set expires(int value) {
+    _expires = value;
+    prefs.setInt('ff_expires', value);
   }
 
   String _staffid = '';
   String get staffid => _staffid;
-  set staffid(String _value) {
-    _staffid = _value;
+  set staffid(String value) {
+    _staffid = value;
   }
 
   List<String> _listaResultado = [];
   List<String> get listaResultado => _listaResultado;
-  set listaResultado(List<String> _value) {
-    _listaResultado = _value;
+  set listaResultado(List<String> value) {
+    _listaResultado = value;
   }
 
-  void addToListaResultado(String _value) {
-    _listaResultado.add(_value);
+  void addToListaResultado(String value) {
+    _listaResultado.add(value);
   }
 
-  void removeFromListaResultado(String _value) {
-    _listaResultado.remove(_value);
+  void removeFromListaResultado(String value) {
+    _listaResultado.remove(value);
   }
 
-  void removeAtIndexFromListaResultado(int _index) {
-    _listaResultado.removeAt(_index);
+  void removeAtIndexFromListaResultado(int index) {
+    _listaResultado.removeAt(index);
   }
 
   void updateListaResultadoAtIndex(
-    int _index,
+    int index,
     String Function(String) updateFn,
   ) {
-    _listaResultado[_index] = updateFn(_listaResultado[_index]);
+    _listaResultado[index] = updateFn(_listaResultado[index]);
   }
 
-  void insertAtIndexInListaResultado(int _index, String _value) {
-    _listaResultado.insert(_index, _value);
+  void insertAtIndexInListaResultado(int index, String value) {
+    _listaResultado.insert(index, value);
   }
 
   dynamic _staffLogin;
   dynamic get staffLogin => _staffLogin;
-  set staffLogin(dynamic _value) {
-    _staffLogin = _value;
+  set staffLogin(dynamic value) {
+    _staffLogin = value;
   }
 
   dynamic _staffDepartment;
   dynamic get staffDepartment => _staffDepartment;
-  set staffDepartment(dynamic _value) {
-    _staffDepartment = _value;
+  set staffDepartment(dynamic value) {
+    _staffDepartment = value;
   }
 
   dynamic _staffBranch;
   dynamic get staffBranch => _staffBranch;
-  set staffBranch(dynamic _value) {
-    _staffBranch = _value;
+  set staffBranch(dynamic value) {
+    _staffBranch = value;
   }
 
   dynamic _staffOrganization;
   dynamic get staffOrganization => _staffOrganization;
-  set staffOrganization(dynamic _value) {
-    _staffOrganization = _value;
+  set staffOrganization(dynamic value) {
+    _staffOrganization = value;
   }
 
   int _dataTimeStartToken = 0;
   int get dataTimeStartToken => _dataTimeStartToken;
-  set dataTimeStartToken(int _value) {
-    _dataTimeStartToken = _value;
-    prefs.setInt('ff_dataTimeStartToken', _value);
+  set dataTimeStartToken(int value) {
+    _dataTimeStartToken = value;
+    prefs.setInt('ff_dataTimeStartToken', value);
   }
 
   String _alertCheck = '';
   String get alertCheck => _alertCheck;
-  set alertCheck(String _value) {
-    _alertCheck = _value;
+  set alertCheck(String value) {
+    _alertCheck = value;
   }
 
   String _idCheck = '';
   String get idCheck => _idCheck;
-  set idCheck(String _value) {
-    _idCheck = _value;
+  set idCheck(String value) {
+    _idCheck = value;
   }
 }
 

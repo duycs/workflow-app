@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -6,11 +5,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'filter_lesson_home_page_model.dart';
 export 'filter_lesson_home_page_model.dart';
 
@@ -27,15 +23,15 @@ class FilterLessonHomePageWidget extends StatefulWidget {
     String? statusDateHistory,
     String? programsId,
     String? checkPrograms,
-  })  : this.status = status ?? '',
-        this.dateStart = dateStart ?? '',
-        this.dateEnd = dateEnd ?? '',
-        this.lessonFavoriteStatus = lessonFavoriteStatus ?? '',
-        this.statusLoveFilter = statusLoveFilter ?? '',
-        this.statusDateToday = statusDateToday ?? '',
-        this.statusDateHistory = statusDateHistory ?? '',
-        this.programsId = programsId ?? '',
-        this.checkPrograms = checkPrograms ?? '';
+  })  : status = status ?? '',
+        dateStart = dateStart ?? '',
+        dateEnd = dateEnd ?? '',
+        lessonFavoriteStatus = lessonFavoriteStatus ?? '',
+        statusLoveFilter = statusLoveFilter ?? '',
+        statusDateToday = statusDateToday ?? '',
+        statusDateHistory = statusDateHistory ?? '',
+        programsId = programsId ?? '',
+        checkPrograms = checkPrograms ?? '';
 
   final Future Function(
       String? status,
@@ -91,11 +87,11 @@ class _FilterLessonHomePageWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -108,7 +104,7 @@ class _FilterLessonHomePageWidgetState
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -145,17 +141,13 @@ class _FilterLessonHomePageWidgetState
                 if (((widget.statusDateToday != 'dateToday') &&
                         (widget.statusDateHistory != 'lessonHistory')) ||
                     ((widget.statusDateToday != 'dateToday') &&
-                        (widget.statusDateHistory == null ||
-                            widget.statusDateHistory == '')) ||
-                    ((widget.statusDateToday == null ||
-                            widget.statusDateToday == '') &&
+                        (widget.statusDateHistory == '')) ||
+                    ((widget.statusDateToday == '') &&
                         (widget.statusDateHistory != 'lessonHistory')) ||
-                    ((widget.statusDateToday == null ||
-                            widget.statusDateToday == '') &&
-                        (widget.statusDateHistory == null ||
-                            widget.statusDateHistory == '')))
+                    ((widget.statusDateToday == '') &&
+                        (widget.statusDateHistory == '')))
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -166,18 +158,14 @@ class _FilterLessonHomePageWidgetState
                                 (widget.statusDateHistory !=
                                     'lessonHistory')) ||
                             ((widget.statusDateToday != 'dateToday') &&
-                                (widget.statusDateHistory == null ||
-                                    widget.statusDateHistory == '')) ||
-                            ((widget.statusDateToday == null ||
-                                    widget.statusDateToday == '') &&
+                                (widget.statusDateHistory == '')) ||
+                            ((widget.statusDateToday == '') &&
                                 (widget.statusDateHistory !=
                                     'lessonHistory')) ||
-                            ((widget.statusDateToday == null ||
-                                    widget.statusDateToday == '') &&
-                                (widget.statusDateHistory == null ||
-                                    widget.statusDateHistory == '')),
+                            ((widget.statusDateToday == '') &&
+                                (widget.statusDateHistory == '')),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -189,7 +177,7 @@ class _FilterLessonHomePageWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final _datePicked1Date = await showDatePicker(
+                                  final datePicked1Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
@@ -231,12 +219,12 @@ class _FilterLessonHomePageWidgetState
                                     },
                                   );
 
-                                  if (_datePicked1Date != null) {
+                                  if (datePicked1Date != null) {
                                     safeSetState(() {
                                       _model.datePicked1 = DateTime(
-                                        _datePicked1Date.year,
-                                        _datePicked1Date.month,
-                                        _datePicked1Date.day,
+                                        datePicked1Date.year,
+                                        datePicked1Date.month,
+                                        datePicked1Date.day,
                                       );
                                     });
                                   }
@@ -261,8 +249,7 @@ class _FilterLessonHomePageWidgetState
                                                   FFLocalizations.of(context)
                                                       .languageCode,
                                             )
-                                          : ((widget.dateStart != null &&
-                                                      widget.dateStart != '') &&
+                                          : ((widget.dateStart != '') &&
                                                   (widget.dateStart != '0')
                                               ? widget.dateStart
                                               : 'Từ ngày'),
@@ -282,7 +269,7 @@ class _FilterLessonHomePageWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final _datePicked2Date = await showDatePicker(
+                                  final datePicked2Date = await showDatePicker(
                                     context: context,
                                     initialDate: getCurrentTimestamp,
                                     firstDate: DateTime(1900),
@@ -324,12 +311,12 @@ class _FilterLessonHomePageWidgetState
                                     },
                                   );
 
-                                  if (_datePicked2Date != null) {
+                                  if (datePicked2Date != null) {
                                     safeSetState(() {
                                       _model.datePicked2 = DateTime(
-                                        _datePicked2Date.year,
-                                        _datePicked2Date.month,
-                                        _datePicked2Date.day,
+                                        datePicked2Date.year,
+                                        datePicked2Date.month,
+                                        datePicked2Date.day,
                                       );
                                     });
                                   }
@@ -354,8 +341,7 @@ class _FilterLessonHomePageWidgetState
                                                   FFLocalizations.of(context)
                                                       .languageCode,
                                             )
-                                          : ((widget.dateEnd != null &&
-                                                      widget.dateEnd != '') &&
+                                          : ((widget.dateEnd != '') &&
                                                   (widget.dateEnd != '0')
                                               ? widget.dateEnd
                                               : 'Đến hết ngày'),
@@ -377,16 +363,16 @@ class _FilterLessonHomePageWidgetState
                   ),
                 if ('2' == '1')
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownStatusValueController ??=
                           FormFieldController<String>(
                         _model.dropDownStatusValue ??=
-                            widget.status != null && widget.status != ''
+                            widget.status != ''
                                 ? () {
-                                    if ('${widget.status}' == 'published') {
+                                    if (widget.status == 'published') {
                                       return '2';
-                                    } else if ('${widget.status}' == 'draft') {
+                                    } else if (widget.status == 'draft') {
                                       return '1';
                                     } else {
                                       return null;
@@ -395,7 +381,7 @@ class _FilterLessonHomePageWidgetState
                                 : null,
                       ),
                       options: List<String>.from(['1', '2']),
-                      optionLabels: ['Không hoạt động', 'Hoạt động'],
+                      optionLabels: const ['Không hoạt động', 'Hoạt động'],
                       onChanged: (val) =>
                           setState(() => _model.dropDownStatusValue = val),
                       width: double.infinity,
@@ -417,15 +403,14 @@ class _FilterLessonHomePageWidgetState
                       borderWidth: 2.0,
                       borderRadius: 8.0,
                       margin:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                       hidesUnderline: true,
                       isOverButton: true,
                       isSearchable: false,
                       isMultiSelect: false,
                     ),
                   ),
-                if ((widget.statusLoveFilter == null ||
-                        widget.statusLoveFilter == '') ||
+                if ((widget.statusLoveFilter == '') ||
                     (widget.statusLoveFilter != 'love'))
                   Container(
                     width: double.infinity,
@@ -433,27 +418,25 @@ class _FilterLessonHomePageWidgetState
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
                     child: Visibility(
-                      visible: (widget.statusLoveFilter == null ||
-                              widget.statusLoveFilter == '') ||
+                      visible: (widget.statusLoveFilter == '') ||
                           (widget.statusLoveFilter != 'love'),
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: FlutterFlowDropDown<String>(
                           controller:
                               _model.lessonFavoriteStatusValueController ??=
                                   FormFieldController<String>(
                             _model.lessonFavoriteStatusValue ??=
-                                widget.lessonFavoriteStatus != null &&
-                                        widget.lessonFavoriteStatus != ''
-                                    ? ('${widget.lessonFavoriteStatus}' ==
+                                widget.lessonFavoriteStatus != ''
+                                    ? (widget.lessonFavoriteStatus ==
                                             'love'
                                         ? '1'
                                         : null)
                                     : null,
                           ),
                           options: List<String>.from(['1']),
-                          optionLabels: ['Yêu thích'],
+                          optionLabels: const ['Yêu thích'],
                           onChanged: (val) => setState(
                               () => _model.lessonFavoriteStatusValue = val),
                           width: double.infinity,
@@ -474,7 +457,7 @@ class _FilterLessonHomePageWidgetState
                           borderColor: FlutterFlowTheme.of(context).alternate,
                           borderWidth: 2.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -493,7 +476,7 @@ class _FilterLessonHomePageWidgetState
                     controller: _model.programsValueController ??=
                         FormFieldController<String>(
                       _model.programsValue ??=
-                          widget.programsId != null && widget.programsId != ''
+                          widget.programsId != ''
                               ? widget.programsId
                               : '',
                     ),
@@ -520,7 +503,7 @@ class _FilterLessonHomePageWidgetState
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -528,7 +511,7 @@ class _FilterLessonHomePageWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -554,9 +537,9 @@ class _FilterLessonHomePageWidgetState
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -593,8 +576,7 @@ class _FilterLessonHomePageWidgetState
                               () {
                                 if (_model.dateStart != null) {
                                   return _model.dateStart;
-                                } else if (widget.dateStart != null &&
-                                    widget.dateStart != '') {
+                                } else if (widget.dateStart != '') {
                                   return functions
                                       .stringToDateTime(widget.dateStart);
                                 } else {
@@ -604,8 +586,7 @@ class _FilterLessonHomePageWidgetState
                               () {
                                 if (_model.dateEnd != null) {
                                   return _model.dateEnd;
-                                } else if (widget.dateEnd != null &&
-                                    widget.dateEnd != '') {
+                                } else if (widget.dateEnd != '') {
                                   return functions
                                       .stringToDateTime(widget.dateEnd);
                                 } else {
@@ -623,11 +604,11 @@ class _FilterLessonHomePageWidgetState
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: Color(0xFF33BA45),
+                            color: const Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -636,7 +617,7 @@ class _FilterLessonHomePageWidgetState
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -644,10 +625,10 @@ class _FilterLessonHomePageWidgetState
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

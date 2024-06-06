@@ -1,30 +1,14 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_foud_row/data_not_foud_row_widget.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
 import 'dart:async';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'lesson_lists_homepage_widget.dart' show LessonListsHomepageWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class LessonListsHomepageModel
     extends FlutterFlowModel<LessonListsHomepageWidget> {
@@ -177,23 +161,23 @@ class LessonListsHomepageModel
       filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != null && status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != null && status != '') && (status != 'noData') ? status : ' '}${(status != null && status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStartList != null && dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStartList != null && dateStartList != '') && (dateStartList != 'noData') ? dateStartList : ' '}${(dateStartList != null && dateStartList != '') && (dateStartList != 'noData') ? '\"}}' : ' '}${(dateEndList != null && dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEndList != null && dateEndList != '') && (dateEndList != 'noData') ? ((String var1) {
-          return DateTime.parse(var1).add(Duration(days: 1)).toString();
-        }(dateEndList)) : ' '}${(dateEndList != null && dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != null && lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != null && lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != null && lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != null && programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != null && programsAllId != '' ? programsAllId : ' '}${programsAllId != null && programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"_neq\":\"${getJsonField(
+      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? dateStartList : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? '\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ((String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(dateEndList)) : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != '' ? programsAllId : ' '}${programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"_neq\":\"${getJsonField(
         FFAppState().staffDepartment,
         r'''$.id''',
       ).toString().toString()}\"}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
     );
-    if ((apiResultList?.succeeded ?? true)) {
+    if ((apiResultList.succeeded ?? true)) {
       listLesson =
-          LessonsListDataStruct.maybeFromMap((apiResultList?.jsonBody ?? ''))!
+          LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
               .data
               .toList()
               .cast<LessonsStruct>();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList?.jsonBody ?? ''),
+        jsonErrors: (apiResultList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -201,10 +185,10 @@ class LessonListsHomepageModel
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -221,23 +205,23 @@ class LessonListsHomepageModel
     apiResultListRow = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
       offset: 0,
       limit: 0,
     );
-    if ((apiResultListRow?.succeeded ?? true)) {
+    if ((apiResultListRow.succeeded ?? true)) {
       listLessonRow = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow?.jsonBody ?? ''))!
+              (apiResultListRow.jsonBody ?? ''))!
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
       metaRow = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow?.jsonBody ?? ''))
+              (apiResultListRow.jsonBody ?? ''))
           ?.meta;
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListRow?.jsonBody ?? ''),
+        jsonErrors: (apiResultListRow.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -245,10 +229,10 @@ class LessonListsHomepageModel
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -266,28 +250,28 @@ class LessonListsHomepageModel
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
-        return DateTime.parse(var1).add(Duration(days: 1)).toString();
+        return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+      ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
       offset: 0,
       limit: 0,
     );
-    if ((apiResultListRow2?.succeeded ?? true)) {
+    if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow2?.jsonBody ?? ''))!
+              (apiResultListRow2.jsonBody ?? ''))!
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
       metaRow2 = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow2?.jsonBody ?? ''))
+              (apiResultListRow2.jsonBody ?? ''))
           ?.meta;
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListRow2?.jsonBody ?? ''),
+        jsonErrors: (apiResultListRow2.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -295,10 +279,10 @@ class LessonListsHomepageModel
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -315,8 +299,8 @@ class LessonListsHomepageModel
     apiResultListRow3 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != null && nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
-        return DateTime.parse(var1).add(Duration(days: 1)).toString();
+          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
+        return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
         getCurrentTimestamp,
@@ -325,19 +309,19 @@ class LessonListsHomepageModel
       limit: 0,
       offset: 0,
     );
-    if ((apiResultListRow3?.succeeded ?? true)) {
+    if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow3?.jsonBody ?? ''))!
+              (apiResultListRow3.jsonBody ?? ''))!
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
       metaRow3 = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultListRow3?.jsonBody ?? ''))
+              (apiResultListRow3.jsonBody ?? ''))
           ?.meta;
     } else {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListRow3?.jsonBody ?? ''),
+        jsonErrors: (apiResultListRow3.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock3!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -345,10 +329,10 @@ class LessonListsHomepageModel
             content: Text(
               FFAppConstants.ErrorLoadData,
               style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -365,7 +349,7 @@ class LessonListsHomepageModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -381,7 +365,7 @@ class LessonListsHomepageModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController2?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -397,7 +381,7 @@ class LessonListsHomepageModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController3?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -413,7 +397,7 @@ class LessonListsHomepageModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController4?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -454,7 +438,7 @@ class LessonListsHomepageModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -495,7 +479,7 @@ class LessonListsHomepageModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController2?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -536,7 +520,7 @@ class LessonListsHomepageModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController3?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -576,7 +560,7 @@ class LessonListsHomepageModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController4?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

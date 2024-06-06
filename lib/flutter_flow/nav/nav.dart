@@ -1,19 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
 import '/index.dart';
-import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -41,7 +35,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
-                color: Colors.transparent,
+                color: FlutterFlowTheme.of(context).secondaryBackground,
                 child: Center(
                   child: Image.asset(
                     'assets/images/512.png',
@@ -51,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : LoginWidget(),
+          : const LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -59,7 +53,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => appStateNotifier.showSplashImage
               ? Builder(
                   builder: (context) => Container(
-                    color: Colors.transparent,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                     child: Center(
                       child: Image.asset(
                         'assets/images/512.png',
@@ -69,7 +63,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : LoginWidget(),
+              : const LoginWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -182,37 +176,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TrainingProgressUser',
           path: '/trainingProgressUser',
-          builder: (context, params) => TrainingProgressUserWidget(),
+          builder: (context, params) => const TrainingProgressUserWidget(),
         ),
         FFRoute(
           name: 'QuanLyQuyTrinh_2',
           path: '/quanLyQuyTrinh2',
-          builder: (context, params) => QuanLyQuyTrinh2Widget(),
+          builder: (context, params) => const QuanLyQuyTrinh2Widget(),
         ),
         FFRoute(
           name: 'TaoMoiQuyTrinh_1',
           path: '/taoMoiQuyTrinh1',
-          builder: (context, params) => TaoMoiQuyTrinh1Widget(),
+          builder: (context, params) => const TaoMoiQuyTrinh1Widget(),
         ),
         FFRoute(
           name: 'TaoMoiQuyTrinh-2',
           path: '/taoMoiQuyTrinh2',
-          builder: (context, params) => TaoMoiQuyTrinh2Widget(),
+          builder: (context, params) => const TaoMoiQuyTrinh2Widget(),
         ),
         FFRoute(
           name: 'chitietbuoc',
           path: '/chitietbuoc',
-          builder: (context, params) => ChitietbuocWidget(),
+          builder: (context, params) => const ChitietbuocWidget(),
         ),
         FFRoute(
           name: 'ProcedurePublishedList',
           path: '/procedurePublishedList',
-          builder: (context, params) => ProcedurePublishedListWidget(),
+          builder: (context, params) => const ProcedurePublishedListWidget(),
         ),
         FFRoute(
           name: 'ChiTietTienDoCongViec',
           path: '/chiTietTienDoCongViec',
-          builder: (context, params) => ChiTietTienDoCongViecWidget(),
+          builder: (context, params) => const ChiTietTienDoCongViecWidget(),
         ),
         FFRoute(
           name: 'StudyProgramList',
@@ -227,102 +221,102 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TaoCongViecMoi_Nhap',
           path: '/taoCongViecMoiNhap',
-          builder: (context, params) => TaoCongViecMoiNhapWidget(),
+          builder: (context, params) => const TaoCongViecMoiNhapWidget(),
         ),
         FFRoute(
           name: 'TrainingManage',
           path: '/trainingManage',
-          builder: (context, params) => TrainingManageWidget(),
+          builder: (context, params) => const TrainingManageWidget(),
         ),
         FFRoute(
           name: 'PersonnalDraft',
           path: '/personnalDraft',
-          builder: (context, params) => PersonnalDraftWidget(),
+          builder: (context, params) => const PersonnalDraftWidget(),
         ),
         FFRoute(
           name: 'TrainingRankList',
           path: '/trainingRankList',
-          builder: (context, params) => TrainingRankListWidget(),
+          builder: (context, params) => const TrainingRankListWidget(),
         ),
         FFRoute(
           name: 'TrainingRankCreate',
           path: '/trainingRankCreate',
-          builder: (context, params) => TrainingRankCreateWidget(),
+          builder: (context, params) => const TrainingRankCreateWidget(),
         ),
         FFRoute(
           name: 'StaffCreate',
           path: '/staffCreate',
-          builder: (context, params) => StaffCreateWidget(),
+          builder: (context, params) => const StaffCreateWidget(),
         ),
         FFRoute(
           name: 'ProdureStepDetailDraft',
           path: '/produreStepDetailDraft',
-          builder: (context, params) => ProdureStepDetailDraftWidget(),
+          builder: (context, params) => const ProdureStepDetailDraftWidget(),
         ),
         FFRoute(
           name: 'ProcedureList',
           path: '/procedureList',
-          builder: (context, params) => ProcedureListWidget(),
+          builder: (context, params) => const ProcedureListWidget(),
         ),
         FFRoute(
           name: 'Profile',
           path: '/profile',
-          builder: (context, params) => ProfileWidget(),
+          builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
           name: 'PersonnelList',
           path: '/personnelList',
-          builder: (context, params) => PersonnelListWidget(),
+          builder: (context, params) => const PersonnelListWidget(),
         ),
         FFRoute(
           name: 'Login',
           path: '/login',
-          builder: (context, params) => LoginWidget(),
+          builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
           name: 'ProdureStep01',
           path: '/produreStep01',
-          builder: (context, params) => ProdureStep01Widget(),
+          builder: (context, params) => const ProdureStep01Widget(),
         ),
         FFRoute(
           name: 'ProdureStep02',
           path: '/produreStep02',
-          builder: (context, params) => ProdureStep02Widget(),
+          builder: (context, params) => const ProdureStep02Widget(),
         ),
         FFRoute(
           name: 'ProdureStep03',
           path: '/produreStep03',
-          builder: (context, params) => ProdureStep03Widget(),
+          builder: (context, params) => const ProdureStep03Widget(),
         ),
         FFRoute(
           name: 'ProdureStep04',
           path: '/produreStep04',
-          builder: (context, params) => ProdureStep04Widget(),
+          builder: (context, params) => const ProdureStep04Widget(),
         ),
         FFRoute(
           name: 'ProdureStep05',
           path: '/produreStep05',
-          builder: (context, params) => ProdureStep05Widget(),
+          builder: (context, params) => const ProdureStep05Widget(),
         ),
         FFRoute(
           name: 'chitietbuocnangcaoChay',
           path: '/chitietbuocnangcaoChay',
-          builder: (context, params) => ChitietbuocnangcaoChayWidget(),
+          builder: (context, params) => const ChitietbuocnangcaoChayWidget(),
         ),
         FFRoute(
           name: 'quytrinhduocchay_chitietcongviec',
           path: '/quytrinhduocchayChitietcongviec',
-          builder: (context, params) => QuytrinhduocchayChitietcongviecWidget(),
+          builder: (context, params) => const QuytrinhduocchayChitietcongviecWidget(),
         ),
         FFRoute(
           name: 'ProcedurePublishing',
           path: '/procedurePublishing',
-          builder: (context, params) => ProcedurePublishingWidget(),
+          builder: (context, params) => const ProcedurePublishingWidget(),
         ),
         FFRoute(
           name: 'ProcedurePublishedDetail',
           path: '/procedurePublishedDetail',
-          builder: (context, params) => ProcedurePublishedDetailWidget(),
+          builder: (context, params) => const ProcedurePublishedDetailWidget(),
         ),
         FFRoute(
           name: 'TestCreate',
@@ -369,7 +363,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TrainingRankUpdate',
           path: '/trainingRankUpdate',
-          builder: (context, params) => TrainingRankUpdateWidget(),
+          builder: (context, params) => const TrainingRankUpdateWidget(),
         ),
         FFRoute(
           name: 'LessonUpdate',
@@ -456,12 +450,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'QuestionList',
           path: '/questionList',
-          builder: (context, params) => QuestionListWidget(),
+          builder: (context, params) => const QuestionListWidget(),
         ),
         FFRoute(
           name: 'StudyProgramListUserDraft',
           path: '/studyProgramListUserDraft',
-          builder: (context, params) => StudyProgramListUserDraftWidget(),
+          builder: (context, params) => const StudyProgramListUserDraftWidget(),
         ),
         FFRoute(
           name: 'LessonsList',
@@ -544,7 +538,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'TrainingProgress',
           path: '/trainingProgress',
-          builder: (context, params) => TrainingProgressWidget(),
+          builder: (context, params) => const TrainingProgressWidget(),
         ),
         FFRoute(
           name: 'TestUpdate',
@@ -580,7 +574,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'BranchList',
           path: '/branchList',
-          builder: (context, params) => BranchListWidget(),
+          builder: (context, params) => const BranchListWidget(),
         ),
         FFRoute(
           name: 'StaffDetail',
@@ -595,7 +589,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DepartmentList',
           path: '/departmentList',
-          builder: (context, params) => DepartmentListWidget(),
+          builder: (context, params) => const DepartmentListWidget(),
         ),
         FFRoute(
           name: 'DepartmentDetail',
@@ -688,32 +682,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SignUp',
           path: '/signUp',
-          builder: (context, params) => SignUpWidget(),
+          builder: (context, params) => const SignUpWidget(),
         ),
         FFRoute(
           name: 'TaskListDone',
           path: '/taskListDone',
-          builder: (context, params) => TaskListDoneWidget(),
+          builder: (context, params) => const TaskListDoneWidget(),
         ),
         FFRoute(
           name: 'TaskListWait',
           path: '/taskListWait',
-          builder: (context, params) => TaskListWaitWidget(),
+          builder: (context, params) => const TaskListWaitWidget(),
         ),
         FFRoute(
           name: 'ListBranchProfile',
           path: '/listBranchProfile',
-          builder: (context, params) => ListBranchProfileWidget(),
+          builder: (context, params) => const ListBranchProfileWidget(),
         ),
         FFRoute(
           name: 'ReportImage',
           path: '/reportImage',
-          builder: (context, params) => ReportImageWidget(),
+          builder: (context, params) => const ReportImageWidget(),
         ),
         FFRoute(
           name: 'ProfileCPN',
           path: '/profileCPN',
-          builder: (context, params) => ProfileCPNWidget(),
+          builder: (context, params) => const ProfileCPNWidget(),
         ),
         FFRoute(
           name: 'UpdateProfileCPN',
@@ -752,17 +746,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DetailProfileCPN',
           path: '/detailProfileCPN',
-          builder: (context, params) => DetailProfileCPNWidget(),
+          builder: (context, params) => const DetailProfileCPNWidget(),
         ),
         FFRoute(
           name: 'LessonsListUser',
           path: '/lessonsListUser',
-          builder: (context, params) => LessonsListUserWidget(),
+          builder: (context, params) => const LessonsListUserWidget(),
         ),
         FFRoute(
           name: 'ProfileUser',
           path: '/profileUser',
-          builder: (context, params) => ProfileUserWidget(),
+          builder: (context, params) => const ProfileUserWidget(),
         ),
         FFRoute(
           name: 'UpdateProfileUser',
@@ -777,7 +771,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'EditPassword',
           path: '/editPassword',
-          builder: (context, params) => EditPasswordWidget(),
+          builder: (context, params) => const EditPasswordWidget(),
         ),
         FFRoute(
           name: 'TaskDetail',
@@ -800,7 +794,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProcessTemplateList',
           path: '/processTemplateList',
-          builder: (context, params) => ProcessTemplateListWidget(),
+          builder: (context, params) => const ProcessTemplateListWidget(),
         ),
         FFRoute(
           name: 'ProcessTemplateDetail',
@@ -815,7 +809,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'WorkResultList',
           path: '/workResultList',
-          builder: (context, params) => WorkResultListWidget(),
+          builder: (context, params) => const WorkResultListWidget(),
         ),
         FFRoute(
           name: 'WorkResultDetail',
@@ -834,22 +828,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'OperationList',
           path: '/operationList',
-          builder: (context, params) => OperationListWidget(),
+          builder: (context, params) => const OperationListWidget(),
         ),
         FFRoute(
           name: 'LessonLists_Homepage',
           path: '/lessonListsHomepage',
-          builder: (context, params) => LessonListsHomepageWidget(),
+          builder: (context, params) => const LessonListsHomepageWidget(),
         ),
         FFRoute(
           name: 'MarketPlaceDraft',
           path: '/marketPlaceDraft',
-          builder: (context, params) => MarketPlaceDraftWidget(),
+          builder: (context, params) => const MarketPlaceDraftWidget(),
         ),
         FFRoute(
           name: 'MarketPlace',
           path: '/marketPlace',
-          builder: (context, params) => MarketPlaceWidget(),
+          builder: (context, params) => const MarketPlaceWidget(),
         ),
         FFRoute(
           name: 'ProgramListMarket',
@@ -876,17 +870,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CategoryMarket',
           path: '/categoryMarket',
-          builder: (context, params) => CategoryMarketWidget(),
+          builder: (context, params) => const CategoryMarketWidget(),
         ),
         FFRoute(
           name: 'AuthorList',
           path: '/authorList',
-          builder: (context, params) => AuthorListWidget(),
+          builder: (context, params) => const AuthorListWidget(),
         ),
         FFRoute(
           name: 'StudyProgramRank',
           path: '/studyProgramRank',
-          builder: (context, params) => StudyProgramRankWidget(),
+          builder: (context, params) => const StudyProgramRankWidget(),
         ),
         FFRoute(
           name: 'AuthorMarketProfile',
@@ -908,22 +902,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'idProgram',
               ParamType.String,
             ),
+            price: params.getParam(
+              'price',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
           name: 'AuthorProfile',
           path: '/authorProfile',
-          builder: (context, params) => AuthorProfileWidget(),
+          builder: (context, params) => const AuthorProfileWidget(),
         ),
         FFRoute(
           name: 'OrderList',
           path: '/orderList',
-          builder: (context, params) => OrderListWidget(),
+          builder: (context, params) => const OrderListWidget(),
         ),
         FFRoute(
           name: 'StudyProgramListUser',
           path: '/studyProgramListUser',
-          builder: (context, params) => StudyProgramListUserWidget(),
+          builder: (context, params) => const StudyProgramListUserWidget(),
         ),
         FFRoute(
           name: 'Staffs_programs_lesson',
@@ -942,7 +940,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Details43Receipt',
           path: '/details43Receipt',
-          builder: (context, params) => Details43ReceiptWidget(),
+          builder: (context, params) => const Details43ReceiptWidget(),
         ),
         FFRoute(
           name: 'StudyProgramListMarket',
@@ -955,14 +953,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'UpdateProfileCPNCopy',
-          path: '/updateProfileCPNCopy',
-          builder: (context, params) => UpdateProfileCPNCopyWidget(
-            data: params.getParam(
-              'data',
-              ParamType.DataStruct,
-              isList: false,
-              structBuilder: OrganizationListStruct.fromSerializableMap,
+          name: 'ReportTask',
+          path: '/reportTask',
+          builder: (context, params) => const ReportTaskWidget(),
+        ),
+        FFRoute(
+          name: 'ReportTaskDetail',
+          path: '/reportTaskDetail',
+          builder: (context, params) => ReportTaskDetailWidget(
+            staffId: params.getParam(
+              'staffId',
+              ParamType.String,
             ),
           ),
         )
@@ -1131,7 +1132,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

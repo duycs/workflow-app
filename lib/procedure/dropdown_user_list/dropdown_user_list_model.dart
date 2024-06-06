@@ -1,19 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dropdown_user_list_widget.dart' show DropdownUserListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class DropdownUserListModel extends FlutterFlowModel<DropdownUserListWidget> {
   ///  Local state fields for this component.
@@ -65,10 +55,10 @@ class DropdownUserListModel extends FlutterFlowModel<DropdownUserListWidget> {
   FocusNode? textNameFocusNode;
   TextEditingController? textNameTextController;
   String? Function(BuildContext, String?)? textNameTextControllerValidator;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
+  // State field(s) for Switch1 widget.
+  bool? switch1Value;
+  // State field(s) for Switch2 widget.
+  bool? switch2Value;
   // Models for checkBoxToggle dynamic component.
   late FlutterFlowDynamicModels<CheckBoxToggleModel> checkBoxToggleModels;
 

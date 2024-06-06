@@ -3,18 +3,12 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
-import 'dart:math';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_publishing_model.dart';
 export 'procedure_publishing_model.dart';
 
@@ -74,8 +68,8 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -130,7 +124,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -139,7 +133,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
           child: Column(
             children: [
               Align(
-                alignment: Alignment(0.0, 0),
+                alignment: const Alignment(0.0, 0),
                 child: TabBar(
                   labelColor: FlutterFlowTheme.of(context).primary,
                   unselectedLabelColor:
@@ -148,10 +142,10 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                         fontFamily: 'Nunito Sans',
                         letterSpacing: 0.0,
                       ),
-                  unselectedLabelStyle: TextStyle(),
+                  unselectedLabelStyle: const TextStyle(),
                   indicatorColor: FlutterFlowTheme.of(context).primary,
-                  padding: EdgeInsets.all(4.0),
-                  tabs: [
+                  padding: const EdgeInsets.all(4.0),
+                  tabs: const [
                     Tab(
                       text: 'Thông tin chung',
                     ),
@@ -174,14 +168,14 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 12.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -202,7 +196,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           controller: _model
                                                   .dropDownWorkflowValueController ??=
                                               FormFieldController<String>(null),
-                                          options: [
+                                          options: const [
                                             'Vận hành tiệc',
                                             'Chăm sóc khách hàng'
                                           ],
@@ -223,7 +217,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: Duration(
+                                                duration: const Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -271,7 +265,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           borderWidth: 1.0,
                                           borderRadius: 8.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -279,11 +273,11 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           isMultiSelect: false,
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 4.0)),
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -293,7 +287,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           controller: _model
                                                   .dropDownValueController ??=
                                               FormFieldController<String>(null),
-                                          options: [
+                                          options: const [
                                             'Không lặp',
                                             'Lặp hàng ngày',
                                             'Lặp theo tuần',
@@ -327,7 +321,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           borderWidth: 1.0,
                                           borderRadius: 8.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -335,11 +329,11 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                           isMultiSelect: false,
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 16.0)),
+                                    ].divide(const SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 16.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -364,7 +358,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                 .secondaryText,
                                             size: 24.0,
                                           ),
-                                        ].divide(SizedBox(height: 8.0)),
+                                        ].divide(const SizedBox(height: 8.0)),
                                       ),
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -384,13 +378,13 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                 .secondaryText,
                                             size: 24.0,
                                           ),
-                                        ].divide(SizedBox(height: 8.0)),
+                                        ].divide(const SizedBox(height: 8.0)),
                                       ),
-                                    ].divide(SizedBox(width: 16.0)),
+                                    ].divide(const SizedBox(width: 16.0)),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -398,10 +392,10 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Container(
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Text(
                                             'Nhắc trước khi chạy:',
                                             style: FlutterFlowTheme.of(context)
@@ -416,7 +410,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model.textController1,
@@ -504,7 +498,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model.textController2,
@@ -592,7 +586,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model.textController3,
@@ -681,7 +675,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -690,7 +684,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                     children: [
                                       Container(
                                         width: 60.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Tiêu đề:',
                                           style: FlutterFlowTheme.of(context)
@@ -704,7 +698,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model.textController4,
@@ -789,7 +783,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -798,7 +792,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                     children: [
                                       Container(
                                         width: 60.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Mô tả:',
                                           style: FlutterFlowTheme.of(context)
@@ -812,7 +806,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
                                           child: TextFormField(
                                             controller: _model.textController5,
@@ -897,7 +891,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -905,7 +899,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Text(
                                           'Ảnh đại diện:',
                                           style: FlutterFlowTheme.of(context)
@@ -918,7 +912,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                       ),
                                       Stack(
                                         alignment:
-                                            AlignmentDirectional(1.0, -1.0),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         children: [
                                           InkWell(
                                             splashColor: Colors.transparent,
@@ -996,20 +990,20 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                     ],
                                   ),
                                 ),
-                                Divider(
+                                const Divider(
                                   height: 24.0,
                                   thickness: 1.0,
                                   color: Color(0xFFE0E3E7),
                                 ).animateOnPageLoad(animationsMap[
                                     'dividerOnPageLoadAnimation']!),
-                              ].divide(SizedBox(height: 4.0)),
+                              ].divide(const SizedBox(height: 4.0)),
                             ),
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         primary: false,
                         child: Column(
@@ -1017,7 +1011,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Text(
                                 'Sơ đồ quy trình',
@@ -1051,7 +1045,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                               scrollDirection: Axis.vertical,
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1093,14 +1087,14 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '1',
                                                       maxLines: 2,
@@ -1117,7 +1111,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1159,13 +1153,13 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1176,33 +1170,28 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  WebViewAware(
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
                                                                 child:
-                                                                    GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                                    SizedBox(
+                                                                  height: 150.0,
+                                                                  width: 250.0,
                                                                   child:
-                                                                      Container(
-                                                                    height:
-                                                                        150.0,
-                                                                    width:
-                                                                        250.0,
-                                                                    child:
-                                                                        ProcedureStepMenuWidget(
-                                                                      callBack:
-                                                                          (upStep,
-                                                                              idItem) async {},
-                                                                      callBackDelete:
-                                                                          () async {},
-                                                                    ),
+                                                                      ProcedureStepMenuWidget(
+                                                                    callBack:
+                                                                        (upStep,
+                                                                            idItem) async {},
+                                                                    callBackDelete:
+                                                                        () async {},
                                                                   ),
                                                                 ),
                                                               ),
@@ -1223,7 +1212,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                   ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1265,14 +1254,14 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '2',
                                                       maxLines: 2,
@@ -1289,7 +1278,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1331,13 +1320,13 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1348,33 +1337,28 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  WebViewAware(
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
                                                                 child:
-                                                                    GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                                    SizedBox(
+                                                                  height: 150.0,
+                                                                  width: 250.0,
                                                                   child:
-                                                                      Container(
-                                                                    height:
-                                                                        150.0,
-                                                                    width:
-                                                                        250.0,
-                                                                    child:
-                                                                        ProcedureStepMenuWidget(
-                                                                      callBack:
-                                                                          (upStep,
-                                                                              idItem) async {},
-                                                                      callBackDelete:
-                                                                          () async {},
-                                                                    ),
+                                                                      ProcedureStepMenuWidget(
+                                                                    callBack:
+                                                                        (upStep,
+                                                                            idItem) async {},
+                                                                    callBackDelete:
+                                                                        () async {},
                                                                   ),
                                                                 ),
                                                               ),
@@ -1395,7 +1379,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                   ),
                                 ),
                                 Container(
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1437,14 +1421,14 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                       .primaryText,
                                                 ),
                                               ),
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(8.0),
                                                     child: Text(
                                                       '3',
                                                       maxLines: 2,
@@ -1461,7 +1445,7 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   8.0,
@@ -1503,13 +1487,13 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                           isGlobal: false,
                                                           avoidOverflow: true,
                                                           targetAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
                                                                           context)),
                                                           followerAnchor:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1520,33 +1504,28 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
                                                               color: Colors
                                                                   .transparent,
                                                               child:
-                                                                  WebViewAware(
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
                                                                 child:
-                                                                    GestureDetector(
-                                                                  onTap: () => _model
-                                                                          .unfocusNode
-                                                                          .canRequestFocus
-                                                                      ? FocusScope.of(
-                                                                              context)
-                                                                          .requestFocus(_model
-                                                                              .unfocusNode)
-                                                                      : FocusScope.of(
-                                                                              context)
-                                                                          .unfocus(),
+                                                                    SizedBox(
+                                                                  height: 150.0,
+                                                                  width: 250.0,
                                                                   child:
-                                                                      Container(
-                                                                    height:
-                                                                        150.0,
-                                                                    width:
-                                                                        250.0,
-                                                                    child:
-                                                                        ProcedureStepMenuWidget(
-                                                                      callBack:
-                                                                          (upStep,
-                                                                              idItem) async {},
-                                                                      callBackDelete:
-                                                                          () async {},
-                                                                    ),
+                                                                      ProcedureStepMenuWidget(
+                                                                    callBack:
+                                                                        (upStep,
+                                                                            idItem) async {},
+                                                                    callBackDelete:
+                                                                        () async {},
                                                                   ),
                                                                 ),
                                                               ),

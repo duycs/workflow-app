@@ -1,26 +1,15 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/training/order/payment/payment_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'order_update_widget.dart' show OrderUpdateWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
   ///  Local state fields for this component.
-
-  int? quatity = 0;
 
   List<ProgramOrderItemsCreateStruct> orderItems = [];
   void addToOrderItems(ProgramOrderItemsCreateStruct item) =>
@@ -74,7 +63,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
 
     addToOrderItems(ProgramOrderItemsCreateStruct(
       id: widget.programId,
-      totalItem: quatity,
+      totalItem: functions.stringToInt(textController1.text),
       private: functions.stringToInt(dropDownValue!),
     ));
     reloadOrderUpdate = await action_blocks.tokenReload(context);
@@ -93,7 +82,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
           ),
         },
       );
-      if (!(apiResultOrderUpdate?.succeeded ?? true)) {
+      if (!(apiResultOrderUpdate.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -102,7 +91,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

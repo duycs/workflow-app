@@ -1,28 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import 'dart:math';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'staff_create_widget.dart' show StaffCreateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   ///  Local state fields for this page.
@@ -89,7 +70,8 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final formKey = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
   // Stores action output result for [Action Block - tokenReload] action in StaffCreate widget.
   bool? listDeparmentToken;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in StaffCreate widget.
@@ -164,21 +146,6 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   FocusNode? cccdFocusNode;
   TextEditingController? cccdTextController;
   String? Function(BuildContext, String?)? cccdTextControllerValidator;
-  String? _cccdTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Vui lòng nhập cccd';
-    }
-
-    if (val.length < 12) {
-      return 'CCCD không hợp lệ';
-    }
-    if (val.length > 12) {
-      return 'CCCD không hợp lệ!';
-    }
-
-    return null;
-  }
-
   DateTime? datePicked;
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
@@ -192,14 +159,6 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
   FocusNode? titleTextFocusNode;
   TextEditingController? titleTextTextController;
   String? Function(BuildContext, String?)? titleTextTextControllerValidator;
-  String? _titleTextTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Chức vụ không thể để trống!';
-    }
-
-    return null;
-  }
-
   // State field(s) for branch widget.
   String? branchValue;
   FormFieldController<String>? branchValueController;
@@ -234,8 +193,6 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
     nameTextControllerValidator = _nameTextControllerValidator;
     emailTextControllerValidator = _emailTextControllerValidator;
     phoneTextControllerValidator = _phoneTextControllerValidator;
-    cccdTextControllerValidator = _cccdTextControllerValidator;
-    titleTextTextControllerValidator = _titleTextTextControllerValidator;
   }
 
   @override

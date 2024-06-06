@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -22,6 +21,7 @@ class LessonsStruct extends BaseStruct {
     String? organizationId,
     List<ProgramsIdddStruct>? programs,
     int? estimateInDay,
+    bool? checkLession,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -36,7 +36,8 @@ class LessonsStruct extends BaseStruct {
         _reacts = reacts,
         _organizationId = organizationId,
         _programs = programs,
-        _estimateInDay = estimateInDay;
+        _estimateInDay = estimateInDay,
+        _checkLession = checkLession;
 
   // "id" field.
   String? _id;
@@ -138,6 +139,12 @@ class LessonsStruct extends BaseStruct {
       _estimateInDay = estimateInDay + amount;
   bool hasEstimateInDay() => _estimateInDay != null;
 
+  // "checkLession" field.
+  bool? _checkLession;
+  bool get checkLession => _checkLession ?? false;
+  set checkLession(bool? val) => _checkLession = val;
+  bool hasCheckLession() => _checkLession != null;
+
   static LessonsStruct fromMap(Map<String, dynamic> data) => LessonsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -160,6 +167,7 @@ class LessonsStruct extends BaseStruct {
           ProgramsIdddStruct.fromMap,
         ),
         estimateInDay: castToType<int>(data['estimate_in_day']),
+        checkLession: data['checkLession'] as bool?,
       );
 
   static LessonsStruct? maybeFromMap(dynamic data) =>
@@ -181,6 +189,7 @@ class LessonsStruct extends BaseStruct {
         'organization_id': _organizationId,
         'programs': _programs?.map((e) => e.toMap()).toList(),
         'estimate_in_day': _estimateInDay,
+        'checkLession': _checkLession,
       }.withoutNulls;
 
   @override
@@ -246,6 +255,10 @@ class LessonsStruct extends BaseStruct {
         'estimate_in_day': serializeParam(
           _estimateInDay,
           ParamType.int,
+        ),
+        'checkLession': serializeParam(
+          _checkLession,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -329,6 +342,11 @@ class LessonsStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        checkLession: deserializeParam(
+          data['checkLession'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -352,7 +370,8 @@ class LessonsStruct extends BaseStruct {
         listEquality.equals(reacts, other.reacts) &&
         organizationId == other.organizationId &&
         listEquality.equals(programs, other.programs) &&
-        estimateInDay == other.estimateInDay;
+        estimateInDay == other.estimateInDay &&
+        checkLession == other.checkLession;
   }
 
   @override
@@ -371,7 +390,8 @@ class LessonsStruct extends BaseStruct {
         reacts,
         organizationId,
         programs,
-        estimateInDay
+        estimateInDay,
+        checkLession
       ]);
 }
 
@@ -389,6 +409,7 @@ LessonsStruct createLessonsStruct({
   FileStruct? file,
   String? organizationId,
   int? estimateInDay,
+  bool? checkLession,
 }) =>
     LessonsStruct(
       id: id,
@@ -404,4 +425,5 @@ LessonsStruct createLessonsStruct({
       file: file ?? FileStruct(),
       organizationId: organizationId,
       estimateInDay: estimateInDay,
+      checkLession: checkLession,
     );

@@ -1,26 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/process_template/domains_search/domains_search_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'process_template_list_widget.dart' show ProcessTemplateListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProcessTemplateListModel
     extends FlutterFlowModel<ProcessTemplateListWidget> {
@@ -120,13 +107,13 @@ class ProcessTemplateListModel
       apiResultListDataSearch =
           await ProcedureTemplateGroup.workflowsListCall.call(
         accessToken: FFAppState().accessToken,
-        filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${domainSearch.length > 0 ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
+        filter: '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${domainSearch.isNotEmpty ? ',{\"domain_id\":{\"_in\":[${(List<String> strings) {
             return strings.map((str) => '"$str"').join(',');
-          }(domainSearch.toList())}]}}' : ' '}${(categoryId != null && categoryId != '') && (categoryId != '1') && (categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"${categoryId}\"}}' : ' '}${textNameTextController.text != null && textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${textNameTextController.text}\"}}' : ' '}]}',
+          }(domainSearch.toList())}]}}' : ' '}${(categoryId != '') && (categoryId != '1') && (categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"$categoryId\"}}' : ' '}${textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${textNameTextController.text}\"}}' : ' '}]}',
       );
-      if ((apiResultListDataSearch?.succeeded ?? true)) {
+      if ((apiResultListDataSearch.succeeded ?? true)) {
         dataList = WorkflowsListDataStruct.maybeFromMap(
-                (apiResultListDataSearch?.jsonBody ?? ''))!
+                (apiResultListDataSearch.jsonBody ?? ''))!
             .data
             .toList()
             .cast<WorkflowsStruct>();
@@ -139,7 +126,7 @@ class ProcessTemplateListModel
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -157,7 +144,7 @@ class ProcessTemplateListModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (gridViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -197,7 +184,7 @@ class ProcessTemplateListModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         gridViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

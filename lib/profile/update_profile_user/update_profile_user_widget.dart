@@ -9,11 +9,8 @@ import '/flutter_flow/upload_data.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_profile_user_model.dart';
 export 'update_profile_user_model.dart';
 
@@ -109,7 +106,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -117,18 +114,18 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Stack(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(0.0),
                           bottomRight: Radius.circular(0.0),
                           topLeft: Radius.circular(16.0),
@@ -142,7 +139,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).accent4,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
                                 bottomRight: Radius.circular(0.0),
                                 topLeft: Radius.circular(16.0),
@@ -156,16 +153,16 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(12.0),
+                                    padding: const EdgeInsets.all(12.0),
                                     child: Container(
                                       width: double.infinity,
-                                      constraints: BoxConstraints(
+                                      constraints: const BoxConstraints(
                                         maxWidth: 800.0,
                                       ),
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 3.0,
                                             color: Color(0x33000000),
@@ -179,14 +176,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.all(12.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 16.0),
                                               child: Container(
@@ -199,7 +196,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(8.0),
+                                                  padding: const EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -226,7 +223,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 ),
                                                       ),
                                                     ].divide(
-                                                        SizedBox(width: 8.0)),
+                                                        const SizedBox(width: 8.0)),
                                                   ),
                                                 ),
                                               ),
@@ -235,7 +232,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -316,7 +313,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 .circular(40.0),
                                                       ),
                                                       contentPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   0.0,
@@ -338,7 +335,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -419,7 +416,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 .circular(40.0),
                                                       ),
                                                       contentPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   0.0,
@@ -444,7 +441,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                 if ('1' == '2')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -535,7 +532,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                       40.0),
                                                         ),
                                                         contentPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -559,7 +556,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     ),
                                                   ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: FlutterFlowDropDown<
@@ -569,15 +566,15 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                         FormFieldController<
                                                             String>(
                                                       _model.dropDownValue ??=
-                                                          '${getJsonField(
+                                                          getJsonField(
                                                                     widget.data,
                                                                     r'''$.gender''',
-                                                                  ).toString()}' ==
+                                                                  ).toString() ==
                                                                   'male'
                                                               ? 'Nam'
                                                               : 'Nữ',
                                                     ),
-                                                    options: ['Nam', 'Nữ'],
+                                                    options: const ['Nam', 'Nữ'],
                                                     onChanged: (val) =>
                                                         setState(() => _model
                                                                 .dropDownValue =
@@ -613,7 +610,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     borderWidth: 2.0,
                                                     borderRadius: 40.0,
                                                     margin:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 4.0,
                                                                 16.0, 4.0),
                                                     hidesUnderline: true,
@@ -623,7 +620,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: TextFormField(
@@ -705,7 +702,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 .circular(40.0),
                                                       ),
                                                       contentPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   0.0,
@@ -728,7 +725,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
                                                   child: InkWell(
@@ -741,7 +738,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      final _datePickedDate =
+                                                      final datePickedDate =
                                                           await showDatePicker(
                                                         context: context,
                                                         initialDate:
@@ -803,16 +800,16 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                         },
                                                       );
 
-                                                      if (_datePickedDate !=
+                                                      if (datePickedDate !=
                                                           null) {
                                                         safeSetState(() {
                                                           _model.datePicked =
                                                               DateTime(
-                                                            _datePickedDate
+                                                            datePickedDate
                                                                 .year,
-                                                            _datePickedDate
+                                                            datePickedDate
                                                                 .month,
-                                                            _datePickedDate.day,
+                                                            datePickedDate.day,
                                                           );
                                                         });
                                                       }
@@ -848,7 +845,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -900,17 +897,17 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(SizedBox(height: 20.0)),
+                                              ].divide(const SizedBox(height: 20.0)),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 1.0),
                                               child: Container(
                                                 width: double.infinity,
@@ -921,53 +918,49 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 4.0)),
+                                          ].divide(const SizedBox(height: 4.0)),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 20.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        var _shouldSetState = false;
+                                        var shouldSetState = false;
                                         var confirmDialogResponse =
                                             await showDialog<bool>(
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text('Xác nhận'),
-                                                        content: Text(
-                                                            'Bạn chắc chắn muốn lưu?'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child: Text('Hủy'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child: Text(
-                                                                'Xác nhận'),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    return AlertDialog(
+                                                      title: const Text('Xác nhận'),
+                                                      content: const Text(
+                                                          'Bạn chắc chắn muốn lưu?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: const Text('Hủy'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  true),
+                                                          child:
+                                                              const Text('Xác nhận'),
+                                                        ),
+                                                      ],
                                                     );
                                                   },
                                                 ) ??
                                                 false;
                                         if (confirmDialogResponse) {
-                                          if (_model.uploadedLocalFile !=
-                                                  null &&
-                                              (_model.uploadedLocalFile.bytes
+                                          if ((_model.uploadedLocalFile.bytes
                                                       ?.isNotEmpty ??
                                                   false)) {
                                             if (_model.formKey.currentState ==
@@ -979,7 +972,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                             _model.reloadTokenUpdateStaff =
                                                 await action_blocks
                                                     .tokenReload(context);
-                                            _shouldSetState = true;
+                                            shouldSetState = true;
                                             if (_model
                                                 .reloadTokenUpdateStaff!) {
                                               _model.apiResultUploadImage =
@@ -990,7 +983,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     FFAppState().accessToken,
                                                 file: _model.uploadedLocalFile,
                                               );
-                                              _shouldSetState = true;
+                                              shouldSetState = true;
                                               if ((_model.apiResultUploadImage
                                                       ?.succeeded ??
                                                   true)) {
@@ -1013,9 +1006,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     'first_name': _model
                                                         .nameTextController
                                                         .text,
-                                                    'avatar': _model.uploadedLocalFile !=
-                                                                null &&
-                                                            (_model
+                                                    'avatar': (_model
                                                                     .uploadedLocalFile
                                                                     .bytes
                                                                     ?.isNotEmpty ??
@@ -1027,7 +1018,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           ),
                                                   },
                                                 );
-                                                _shouldSetState = true;
+                                                shouldSetState = true;
                                                 if ((_model.apiResultUpdateStaff
                                                         ?.succeeded ??
                                                     true)) {
@@ -1080,7 +1071,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 ),
                                                     },
                                                   );
-                                                  _shouldSetState = true;
+                                                  shouldSetState = true;
                                                   if ((_model
                                                           .apiResultUpdateUserStaff
                                                           ?.succeeded ??
@@ -1097,7 +1088,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 .primaryText,
                                                           ),
                                                         ),
-                                                        duration: Duration(
+                                                        duration: const Duration(
                                                             milliseconds: 4000),
                                                         backgroundColor:
                                                             FlutterFlowTheme.of(
@@ -1110,7 +1101,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       'Profile',
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            TransitionInfo(
+                                                            const TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -1125,8 +1116,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                               }
                                             } else {
                                               setState(() {});
-                                              if (_shouldSetState)
+                                              if (shouldSetState) {
                                                 setState(() {});
+                                              }
                                               return;
                                             }
                                           } else {
@@ -1139,7 +1131,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                             _model.reloadTokenUpdateStaff1 =
                                                 await action_blocks
                                                     .tokenReload(context);
-                                            _shouldSetState = true;
+                                            shouldSetState = true;
                                             if (_model
                                                 .reloadTokenUpdateStaff1!) {
                                               _model.apiResultUpdateStaff1 =
@@ -1155,7 +1147,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                       .nameTextController.text,
                                                 },
                                               );
-                                              _shouldSetState = true;
+                                              shouldSetState = true;
                                               if ((_model.apiResultUpdateStaff1
                                                       ?.succeeded ??
                                                   true)) {
@@ -1208,7 +1200,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               ),
                                                   },
                                                 );
-                                                _shouldSetState = true;
+                                                shouldSetState = true;
                                                 if ((_model
                                                         .apiResultUpdateUserStaff1
                                                         ?.succeeded ??
@@ -1224,7 +1216,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               .primaryText,
                                                         ),
                                                       ),
-                                                      duration: Duration(
+                                                      duration: const Duration(
                                                           milliseconds: 4000),
                                                       backgroundColor:
                                                           FlutterFlowTheme.of(
@@ -1237,7 +1229,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                     'Profile',
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -1251,25 +1243,26 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                               }
                                             } else {
                                               setState(() {});
-                                              if (_shouldSetState)
+                                              if (shouldSetState) {
                                                 setState(() {});
+                                              }
                                               return;
                                             }
                                           }
                                         } else {
-                                          if (_shouldSetState) setState(() {});
+                                          if (shouldSetState) setState(() {});
                                           return;
                                         }
 
-                                        if (_shouldSetState) setState(() {});
+                                        if (shouldSetState) setState(() {});
                                       },
                                       text: 'Cập nhật',
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1283,7 +1276,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -1301,14 +1294,13 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: Stack(
-                        alignment: AlignmentDirectional(1.0, 1.0),
+                        alignment: const AlignmentDirectional(1.0, 1.0),
                         children: [
-                          if (_model.uploadedLocalFile == null ||
-                              (_model.uploadedLocalFile.bytes?.isEmpty ?? true))
+                          if ((_model.uploadedLocalFile.bytes?.isEmpty ?? true))
                             ClipRRect(
                               borderRadius: BorderRadius.circular(60.0),
                               child: Image.network(
@@ -1321,11 +1313,10 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                          if (_model.uploadedLocalFile != null &&
-                              (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                   false))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(60.0),
@@ -1395,7 +1386,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 ],
               ),
             ),
-          ].addToEnd(SizedBox(height: 38.0)),
+          ].addToEnd(const SizedBox(height: 38.0)),
         ),
       ),
     );
