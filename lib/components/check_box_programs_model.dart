@@ -1,6 +1,9 @@
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'check_box_programs_widget.dart' show CheckBoxProgramsWidget;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CheckBoxProgramsModel extends FlutterFlowModel<CheckBoxProgramsWidget> {
   ///  State fields for stateful widgets in this component.

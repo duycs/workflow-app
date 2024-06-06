@@ -3,10 +3,15 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'quytrinhduocchay_chitietcongviec_model.dart';
 export 'quytrinhduocchay_chitietcongviec_model.dart';
 
@@ -62,8 +67,8 @@ class _QuytrinhduocchayChitietcongviecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 30.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -81,8 +86,8 @@ class _QuytrinhduocchayChitietcongviecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 60.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 60.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -100,8 +105,8 @@ class _QuytrinhduocchayChitietcongviecWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 60.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 60.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -162,7 +167,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
               ),
             ],
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -175,14 +180,14 @@ class _QuytrinhduocchayChitietcongviecWidgetState
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -211,7 +216,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,7 +245,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -261,9 +266,9 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                     .primaryBackground,
                                 borderRadius: BorderRadius.circular(32.0),
                               ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -284,7 +289,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Icon(
                                         Icons.clear,
@@ -293,7 +298,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                         size: 24.0,
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 4.0)),
+                                  ].divide(SizedBox(width: 4.0)),
                                 ),
                               ),
                             ),
@@ -302,13 +307,13 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
                               width: 60.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Bộ phận:',
                                 style: FlutterFlowTheme.of(context)
@@ -329,9 +334,9 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                   width: 1.0,
                                 ),
                               ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: Text(
                                   'Sale',
@@ -346,12 +351,12 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 8.0)),
+                          ].divide(SizedBox(width: 8.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -359,7 +364,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.dropDownValueController ??=
                                     FormFieldController<String>(null),
-                                options: const [
+                                options: [
                                   'Không lặp',
                                   'Lặp hàng ngày',
                                   'Lặp theo tuần',
@@ -389,7 +394,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 isOverButton: true,
@@ -402,21 +407,21 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24.0,
                             ),
-                          ].divide(const SizedBox(width: 16.0)),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 8.0, 0.0),
                               child: Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Text(
                                   'Nhắc trước khi chạy:',
                                   style: FlutterFlowTheme.of(context)
@@ -430,7 +435,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController1,
@@ -499,7 +504,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController2,
@@ -568,7 +573,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController3,
@@ -640,14 +645,14 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               width: 60.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Tiêu đề:',
                                 style: FlutterFlowTheme.of(context)
@@ -660,7 +665,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController4,
@@ -729,14 +734,14 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
                               width: 60.0,
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Mô tả:',
                                 style: FlutterFlowTheme.of(context)
@@ -749,7 +754,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController5,
@@ -818,13 +823,13 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Text(
                                 'Ảnh đại diện:',
                                 style: FlutterFlowTheme.of(context)
@@ -836,7 +841,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                               ),
                             ),
                             Stack(
-                              alignment: const AlignmentDirectional(1.0, -1.0),
+                              alignment: AlignmentDirectional(1.0, -1.0),
                               children: [
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -857,7 +862,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                           ],
                         ),
                       ),
-                      const Divider(
+                      Divider(
                         height: 24.0,
                         thickness: 1.0,
                         color: Color(0xFFE0E3E7),
@@ -950,12 +955,12 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 4.0)),
+                    ].divide(SizedBox(height: 4.0)),
                   ),
                 ),
                 Flexible(
                   child: Padding(
-                    padding: const EdgeInsets.all(24.0),
+                    padding: EdgeInsets.all(24.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -997,7 +1002,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1069,7 +1074,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1141,7 +1146,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1180,7 +1185,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1226,7 +1231,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x7857636C),
+                                    color: Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -1251,7 +1256,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x7857636C),
+                                    color: Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -1269,7 +1274,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1282,7 +1287,7 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                   width: 60.0,
                                   height: 60.0,
                                   decoration: BoxDecoration(
-                                    color: const Color(0x7857636C),
+                                    color: Color(0x7857636C),
                                     borderRadius: BorderRadius.circular(90.0),
                                   ),
                                 ),
@@ -1300,9 +1305,9 @@ class _QuytrinhduocchayChitietcongviecWidgetState
                                 ),
                               ],
                             ),
-                          ].divide(const SizedBox(width: 24.0)),
+                          ].divide(SizedBox(width: 24.0)),
                         ),
-                      ].divide(const SizedBox(height: 24.0)),
+                      ].divide(SizedBox(height: 24.0)),
                     ),
                   ),
                 ),

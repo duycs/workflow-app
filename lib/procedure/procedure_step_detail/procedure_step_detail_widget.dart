@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'procedure_step_detail_model.dart';
 export 'procedure_step_detail_model.dart';
 
@@ -14,7 +16,7 @@ class ProcedureStepDetailWidget extends StatefulWidget {
     super.key,
     required this.item,
     bool? check,
-  }) : check = check ?? false;
+  }) : this.check = check ?? false;
 
   final WorkflowsStepCreateStruct? item;
   final bool check;
@@ -49,16 +51,16 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Container(
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -77,14 +79,14 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                      EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +94,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                             Expanded(
                               flex: 7,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   widget.item?.name != null &&
@@ -204,7 +206,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                        ].divide(const SizedBox(width: 1.0)),
+                        ].divide(SizedBox(width: 1.0)),
                       ),
                       if ('1' == '2')
                         Row(
@@ -224,7 +226,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 10.0),
                               child: Text(
                                 'Thời gian thực hiện: ${widget.item?.estimateInSecond != null ? formatNumber(
@@ -244,7 +246,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                         ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.actionTypeValueController ??=
                               FormFieldController<String>(
@@ -257,7 +259,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                             'to_do_list',
                             'approve'
                           ]),
-                          optionLabels: const [
+                          optionLabels: [
                             'Nhập văn bản',
                             'Chụp ảnh',
                             'Upload file',
@@ -285,7 +287,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               FlutterFlowTheme.of(context).primaryBackground,
                           borderWidth: 1.0,
                           borderRadius: 4.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
+                          margin: EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 4.0),
                           hidesUnderline: true,
                           disabled: '1' != '2',
@@ -296,7 +298,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
                         child: Text(
                           '#Nhiệm vụ',
                           style:
@@ -310,14 +312,14 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                       Builder(
                         builder: (context) {
                           final operationsView =
-                              widget.item?.operations.toList() ?? [];
+                              widget.item?.operations?.toList() ?? [];
                           return ListView.separated(
                             padding: EdgeInsets.zero,
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: operationsView.length,
-                            separatorBuilder: (_, __) => const SizedBox(height: 4.0),
+                            separatorBuilder: (_, __) => SizedBox(height: 4.0),
                             itemBuilder: (context, operationsViewIndex) {
                               final operationsViewItem =
                                   operationsView[operationsViewIndex];
@@ -328,7 +330,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 4.0, 8.0, 4.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -362,10 +364,10 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                          ].divide(const SizedBox(height: 8.0)),
+                                          ].divide(SizedBox(height: 8.0)),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                    ].divide(SizedBox(width: 4.0)),
                                   ),
                                 ),
                               );
@@ -375,7 +377,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 6.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 6.0),
                         child: Text(
                           '#Danh sách nhân viên hoặc bộ phận thực hiện',
                           style:
@@ -388,7 +390,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                       ),
                       if (widget.check != true)
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 6.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -414,7 +416,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -488,7 +490,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: staffsView.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 4.0),
+                                  SizedBox(height: 4.0),
                               itemBuilder: (context, staffsViewIndex) {
                                 final staffsViewItem =
                                     staffsView[staffsViewIndex];
@@ -500,7 +502,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 4.0, 8.0, 4.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -528,7 +530,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 4.0)),
+                                      ].divide(SizedBox(width: 4.0)),
                                     ),
                                   ),
                                 );
@@ -538,7 +540,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                         ),
                       if (widget.check != true)
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 6.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -564,7 +566,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -638,7 +640,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                               scrollDirection: Axis.vertical,
                               itemCount: departmentsView.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 4.0),
+                                  SizedBox(height: 4.0),
                               itemBuilder: (context, departmentsViewIndex) {
                                 final departmentsViewItem =
                                     departmentsView[departmentsViewIndex];
@@ -650,7 +652,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         8.0, 4.0, 8.0, 4.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -678,7 +680,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                      ].divide(const SizedBox(width: 4.0)),
+                                      ].divide(SizedBox(width: 4.0)),
                                     ),
                                   ),
                                 );

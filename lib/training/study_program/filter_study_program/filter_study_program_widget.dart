@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'filter_study_program_model.dart';
 export 'filter_study_program_model.dart';
 
@@ -75,11 +78,11 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x33000000),
@@ -92,7 +95,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -127,7 +130,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,7 +160,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final datePicked1Date = await showDatePicker(
+                          final _datePicked1Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -194,12 +197,12 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                             },
                           );
 
-                          if (datePicked1Date != null) {
+                          if (_datePicked1Date != null) {
                             safeSetState(() {
                               _model.datePicked1 = DateTime(
-                                datePicked1Date.year,
-                                datePicked1Date.month,
-                                datePicked1Date.day,
+                                _datePicked1Date.year,
+                                _datePicked1Date.month,
+                                _datePicked1Date.day,
                               );
                             });
                           }
@@ -243,7 +246,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          final datePicked2Date = await showDatePicker(
+                          final _datePicked2Date = await showDatePicker(
                             context: context,
                             initialDate: getCurrentTimestamp,
                             firstDate: DateTime(1900),
@@ -280,12 +283,12 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                             },
                           );
 
-                          if (datePicked2Date != null) {
+                          if (_datePicked2Date != null) {
                             safeSetState(() {
                               _model.datePicked2 = DateTime(
-                                datePicked2Date.year,
-                                datePicked2Date.month,
-                                datePicked2Date.day,
+                                _datePicked2Date.year,
+                                _datePicked2Date.month,
+                                _datePicked2Date.day,
                               );
                             });
                           }
@@ -322,7 +325,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                         ),
                       ),
                     ),
-                  ].divide(const SizedBox(width: 8.0)),
+                  ].divide(SizedBox(width: 8.0)),
                 ),
                 Text(
                   'Trạng thái :',
@@ -334,7 +337,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                       ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.statusValueController ??=
                         FormFieldController<String>(
@@ -347,7 +350,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                               ? 'Không hoạt động'
                               : ''),
                     ),
-                    options: const ['Hoạt động', 'Không hoạt động'],
+                    options: ['Hoạt động', 'Không hoạt động'],
                     onChanged: (val) =>
                         setState(() => _model.statusValue = val),
                     width: double.infinity,
@@ -368,7 +371,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: true,
                     isSearchable: false,
@@ -376,7 +379,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.lessionsTextController,
                     focusNode: _model.lessionsFocusNode,
@@ -432,7 +435,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
                   child: TextFormField(
                     controller: _model.nameTextController,
                     focusNode: _model.nameFocusNode,
@@ -488,7 +491,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -515,9 +518,9 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           text: 'Xoá bộ lọc',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -560,11 +563,11 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF33BA45),
+                            color: Color(0xFF33BA45),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -574,7 +577,7 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -582,10 +585,10 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                           ),
                         ),
                       ),
-                    ].divide(const SizedBox(width: 16.0)),
+                    ].divide(SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(SizedBox(height: 8.0)),
             ),
           ),
         ),

@@ -5,8 +5,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'lessions_dropdown_model.dart';
 export 'lessions_dropdown_model.dart';
@@ -79,7 +81,7 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
       key: _model.formKey,
       autovalidateMode: AutovalidateMode.disabled,
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 6.0),
         child: FlutterFlowDropDown<String>(
           controller: _model.dropDownValueController ??=
               FormFieldController<String>(
@@ -126,7 +128,7 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
           borderColor: FlutterFlowTheme.of(context).primaryBackground,
           borderWidth: 1.0,
           borderRadius: 8.0,
-          margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+          margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
           hidesUnderline: true,
           isOverButton: true,
           isSearchable: true,

@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'rating_staf_model.dart';
 export 'rating_staf_model.dart';
 
@@ -48,7 +50,7 @@ class _RatingStafWidgetState extends State<RatingStafWidget> {
         color: FlutterFlowTheme.of(context).tertiary,
       ),
       direction: Axis.horizontal,
-      rating: widget.list!.isNotEmpty
+      rating: widget.list!.length > 0
           ? ((List<String> listItem) {
               return listItem
                       .map(int.parse)

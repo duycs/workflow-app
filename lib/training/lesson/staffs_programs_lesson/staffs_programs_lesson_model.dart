@@ -1,11 +1,28 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
+import '/training/lesson/menu_delete/menu_delete_widget.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
+import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'staffs_programs_lesson_widget.dart' show StaffsProgramsLessonWidget;
+import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class StaffsProgramsLessonModel
     extends FlutterFlowModel<StaffsProgramsLessonWidget> {
@@ -100,10 +117,10 @@ class StaffsProgramsLessonModel
       lessionId: staffsLessionsListOne.first.lessionId.id,
       staffId: FFAppState().staffid,
     );
-    if (!(apiResultPostComment.succeeded ?? true)) {
+    if (!(apiResultPostComment?.succeeded ?? true)) {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPostComment.jsonBody ?? ''),
+        jsonErrors: (apiResultPostComment?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock3!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -114,7 +131,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -133,22 +150,22 @@ class StaffsProgramsLessonModel
       filter:
           '{\"_and\":[{\"id\":{\"_eq\":\"${staffsLessionsListOne.first.lessionId.id}\"}}]}',
     );
-    if ((apiResultGetCommment.succeeded ?? true)) {
+    if ((apiResultGetCommment?.succeeded ?? true)) {
       list = getJsonField(
-        (apiResultGetCommment.jsonBody ?? ''),
+        (apiResultGetCommment?.jsonBody ?? ''),
         r'''$.data[0].comments''',
         true,
       )!
           .toList()
           .cast<dynamic>();
       testId = getJsonField(
-        (apiResultGetCommment.jsonBody ?? ''),
+        (apiResultGetCommment?.jsonBody ?? ''),
         r'''$.data[0].test_id''',
       ).toString().toString();
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultGetCommment.jsonBody ?? ''),
+        jsonErrors: (apiResultGetCommment?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -159,7 +176,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -178,13 +195,13 @@ class StaffsProgramsLessonModel
       filter:
           '{\"_and\":[{\"id\":{\"_eq\":\"${staffsLessionsListOne.first.lessionId.id}\"}}]}',
     );
-    if ((apiResultHeart.succeeded ?? true)) {
+    if ((apiResultHeart?.succeeded ?? true)) {
       heart = getJsonField(
-        (apiResultHeart.jsonBody ?? ''),
+        (apiResultHeart?.jsonBody ?? ''),
         r'''$.data[0]''',
       );
       listStaffIdHeart = getJsonField(
-        (apiResultHeart.jsonBody ?? ''),
+        (apiResultHeart?.jsonBody ?? ''),
         r'''$.data[0].reacts''',
         true,
       )!
@@ -192,19 +209,21 @@ class StaffsProgramsLessonModel
           .cast<dynamic>();
       if (listStaffIdHeart
               .where((e) =>
-                  getJsonField(
+                  '${getJsonField(
                     e,
                     r'''$.reacts_id.staff_id''',
-                  ).toString().toString() ==
+                  ).toString().toString()}' ==
                   FFAppState().staffid)
-              .toList().isNotEmpty) {
+              .toList()
+              .length >
+          0) {
         checkLove = '1';
       } else {
         checkLove = '0';
       }
 
       heartId = getJsonField(
-        (apiResultHeart.jsonBody ?? ''),
+        (apiResultHeart?.jsonBody ?? ''),
         r'''$.data[0].reacts''',
         true,
       )!
@@ -213,7 +232,7 @@ class StaffsProgramsLessonModel
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultHeart.jsonBody ?? ''),
+        jsonErrors: (apiResultHeart?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -224,7 +243,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -245,9 +264,9 @@ class StaffsProgramsLessonModel
         r'''$.id''',
       ).toString().toString()}\"}}},{\"lession_id\":{\"id\":{\"_eq\":\"${widget.lessionId}\"}}},{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${widget.programsId}\"}}}}}]}',
     );
-    if ((apiResultList.succeeded ?? true)) {
+    if ((apiResultList?.succeeded ?? true)) {
       staffsLessionsListOne = EmployeeLessonListDataStruct.maybeFromMap(
-              (apiResultList.jsonBody ?? ''))!
+              (apiResultList?.jsonBody ?? ''))!
           .data
           .toList()
           .cast<EmployeeLessonListStruct>();
@@ -255,7 +274,7 @@ class StaffsProgramsLessonModel
     } else {
       checkRefreshTokenBlock2 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultList.jsonBody ?? ''),
+        jsonErrors: (apiResultList?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock2!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -266,7 +285,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -285,20 +304,20 @@ class StaffsProgramsLessonModel
       idHeart: functions.stringToInt(getJsonField(
         listStaffIdHeart
             .where((e) =>
-                getJsonField(
+                '${getJsonField(
                   e,
                   r'''$.reacts_id.staff_id''',
-                ).toString().toString() ==
+                ).toString().toString()}' ==
                 FFAppState().staffid)
             .toList()
             .first,
         r'''$.id''',
       ).toString().toString()),
     );
-    if (!(apiResultDeleteHeart.succeeded ?? true)) {
+    if (!(apiResultDeleteHeart?.succeeded ?? true)) {
       checkRefreshTokenBlock4 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultDeleteHeart.jsonBody ?? ''),
+        jsonErrors: (apiResultDeleteHeart?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock4!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -309,7 +328,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -332,10 +351,10 @@ class StaffsProgramsLessonModel
       status: 'love',
       lessionId: staffsLessionsListOne.first.lessionId.id,
     );
-    if (!(apiResultPostHeart.succeeded ?? true)) {
+    if (!(apiResultPostHeart?.succeeded ?? true)) {
       checkRefreshTokenBlock5 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPostHeart.jsonBody ?? ''),
+        jsonErrors: (apiResultPostHeart?.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock5!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -346,7 +365,7 @@ class StaffsProgramsLessonModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: const Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'result_work_grid_view_model.dart';
 export 'result_work_grid_view_model.dart';
@@ -61,13 +63,13 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
           children: List.generate(gripview.length, (gripviewIndex) {
             final gripviewItem = gripview[gripviewIndex];
             return Align(
-              alignment: const AlignmentDirectional(-1.0, 0.0),
+              alignment: AlignmentDirectional(-1.0, 0.0),
               child: Builder(
                 builder: (context) {
                   final imageItem = gripviewItem.operationsId.files.toList();
                   return GridView.builder(
                     padding: EdgeInsets.zero,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10.0,
                       mainAxisSpacing: 10.0,
@@ -80,7 +82,7 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                     itemBuilder: (context, imageItemIndex) {
                       final imageItemItem = imageItem[imageItemIndex];
                       return Stack(
-                        alignment: const AlignmentDirectional(1.0, -1.0),
+                        alignment: AlignmentDirectional(1.0, -1.0),
                         children: [
                           InkWell(
                             splashColor: Colors.transparent,
@@ -140,10 +142,10 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               _model.reloadImageGripview =
                                   await action_blocks.tokenReload(context);
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if (_model.reloadImageGripview!) {
                                 await actions.downloadFile(
                                   '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
@@ -154,11 +156,11 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                                 );
                               } else {
                                 setState(() {});
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                           ),
                         ],

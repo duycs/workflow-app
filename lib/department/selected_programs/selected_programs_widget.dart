@@ -1,8 +1,11 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'selected_programs_model.dart';
 export 'selected_programs_model.dart';
 
@@ -11,7 +14,7 @@ class SelectedProgramsWidget extends StatefulWidget {
     super.key,
     this.callBack,
     bool? itemCheck,
-  }) : itemCheck = itemCheck ?? false;
+  }) : this.itemCheck = itemCheck ?? false;
 
   final Future Function(bool? check)? callBack;
   final bool itemCheck;

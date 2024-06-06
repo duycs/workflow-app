@@ -11,6 +11,8 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'procedure_setting_model.dart';
 export 'procedure_setting_model.dart';
 
@@ -20,7 +22,7 @@ class ProcedureSettingWidget extends StatefulWidget {
     this.callBack,
     this.data,
     bool? detailCheck,
-  }) : detailCheck = detailCheck ?? false;
+  }) : this.detailCheck = detailCheck ?? false;
 
   final Future Function(RequestWorkflowsCreateStruct? cron)? callBack;
   final RequestWorkflowsCreateStruct? data;
@@ -48,9 +50,11 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (widget.data != null) {
         _model.settingAdd = RequestWorkflowsCreateStruct(
-          remind2: widget.data?.remind2 ?? 0,
-          remind: widget.data?.remind ?? 0,
-          remindInSecond: widget.data?.remindInSecond ?? 0,
+          remind2: widget.data?.remind2 != null ? widget.data?.remind2 : 0,
+          remind: widget.data?.remind != null ? widget.data?.remind : 0,
+          remindInSecond: widget.data?.remindInSecond != null
+              ? widget.data?.remindInSecond
+              : 0,
           cron: widget.data?.cron != null && widget.data?.cron != ''
               ? widget.data?.cron
               : 'null',
@@ -73,31 +77,31 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
             type: false,
             title: ((_model.loop!) + 1) < 10
                 ? '0${((_model.loop!) + 1).toString()}'
-                : ((_model.loop!) + 1).toString(),
+                : '${((_model.loop!) + 1).toString()}',
           ));
           _model.addToCheckTwo(CheckBoxGroupStruct(
             type: false,
             title: ((_model.loop!) + 7) < 10
                 ? '0${((_model.loop!) + 7).toString()}'
-                : ((_model.loop!) + 7).toString(),
+                : '${((_model.loop!) + 7).toString()}',
           ));
           _model.addToCheckThrees(CheckBoxGroupStruct(
             type: false,
             title: ((_model.loop!) + 13) < 10
                 ? '0${((_model.loop!) + 13).toString()}'
-                : ((_model.loop!) + 13).toString(),
+                : '${((_model.loop!) + 13).toString()}',
           ));
           _model.addToCheckBoxFour(CheckBoxGroupStruct(
             type: false,
             title: ((_model.loop!) + 19) < 10
                 ? '0${((_model.loop!) + 19).toString()}'
-                : ((_model.loop!) + 19).toString(),
+                : '${((_model.loop!) + 19).toString()}',
           ));
           _model.addToCheckBoxFive(CheckBoxGroupStruct(
             type: false,
             title: ((_model.loop!) + 25) < 10
                 ? '0${((_model.loop!) + 25).toString()}'
-                : ((_model.loop!) + 25).toString(),
+                : '${((_model.loop!) + 25).toString()}',
           ));
           setState(() {});
           _model.loop = _model.loop! + 1;
@@ -260,25 +264,25 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Container(
           width: double.infinity,
-          constraints: const BoxConstraints(
+          constraints: BoxConstraints(
             maxWidth: 570.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(
-              color: const Color(0xFFE0E3E7),
+              color: Color(0xFFE0E3E7),
             ),
           ),
           child: Visibility(
             visible: _model.isLoad == true,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 14.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 14.0),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -286,7 +290,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -321,7 +325,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               Navigator.pop(context);
                             },
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
+                        ].divide(SizedBox(width: 8.0)),
                       ),
                     ),
                     Row(
@@ -329,7 +333,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 22.0, 0.0, 16.0, 0.0),
                             child: Text(
                               'Thiết lập tuần lặp',
@@ -349,12 +353,12 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -372,7 +376,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                 ),
                                 options:
                                     List<String>.from(['0', '1', '2', '3']),
-                                optionLabels: const [
+                                optionLabels: [
                                   'Không lặp',
                                   'Lặp hàng ngày',
                                   'Lặp trong tuần',
@@ -406,34 +410,34 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         type: false,
                                         title: ((_model.loop!) + 1) < 10
                                             ? '0${((_model.loop!) + 1).toString()}'
-                                            : ((_model.loop!) + 1).toString(),
+                                            : '${((_model.loop!) + 1).toString()}',
                                       ));
                                       _model.addToCheckTwo(CheckBoxGroupStruct(
                                         type: false,
                                         title: ((_model.loop!) + 7) < 10
                                             ? '0${((_model.loop!) + 7).toString()}'
-                                            : ((_model.loop!) + 7).toString(),
+                                            : '${((_model.loop!) + 7).toString()}',
                                       ));
                                       _model
                                           .addToCheckThrees(CheckBoxGroupStruct(
                                         type: false,
                                         title: ((_model.loop!) + 12) < 10
                                             ? '0${((_model.loop!) + 13).toString()}'
-                                            : ((_model.loop!) + 13).toString(),
+                                            : '${((_model.loop!) + 13).toString()}',
                                       ));
                                       _model.addToCheckBoxFour(
                                           CheckBoxGroupStruct(
                                         type: false,
                                         title: ((_model.loop!) + 18) < 10
                                             ? '0${((_model.loop!) + 19).toString()}'
-                                            : ((_model.loop!) + 19).toString(),
+                                            : '${((_model.loop!) + 19).toString()}',
                                       ));
                                       _model.addToCheckBoxFive(
                                           CheckBoxGroupStruct(
                                         type: false,
                                         title: ((_model.loop!) + 24) < 10
                                             ? '0${((_model.loop!) + 25).toString()}'
-                                            : ((_model.loop!) + 25).toString(),
+                                            : '${((_model.loop!) + 25).toString()}',
                                       ));
                                       setState(() {});
                                       _model.loop = _model.loop! + 1;
@@ -472,7 +476,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
+                                margin: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 disabled: widget.detailCheck == true,
@@ -488,7 +492,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                 tablet: false,
                               ))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Container(
                                 width: double.infinity,
@@ -502,7 +506,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   children: [
                                     if (widget.detailCheck == false)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             8.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           '# Ngày cụ thể trong tuần (chọn một hoặc nhiều)',
@@ -518,7 +522,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                       ),
                                     if (widget.detailCheck == false)
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 8.0, 0.0, 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -540,7 +544,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                     ]));
                                                 while (_model.loop! < 7) {
                                                   _model.addToCheckCron(
-                                                      ((_model.loop!) + 1).toString());
+                                                      '${((_model.loop!) + 1).toString()}');
                                                   setState(() {});
                                                   _model.loop =
                                                       _model.loop! + 1;
@@ -553,11 +557,11 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                               options: FFButtonOptions(
                                                 width: 100.0,
                                                 height: 30.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 10.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -577,7 +581,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                       fontWeight:
                                                           FontWeight.normal,
                                                     ),
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -597,11 +601,11 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                               options: FFButtonOptions(
                                                 width: 100.0,
                                                 height: 30.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 10.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -621,7 +625,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                       fontWeight:
                                                           FontWeight.normal,
                                                     ),
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),
@@ -633,7 +637,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         ),
                                       ),
                                     FlutterFlowCheckboxGroup(
-                                      options: const [
+                                      options: [
                                         'Thứ Hai',
                                         'Thứ Ba',
                                         'Thứ Tư',
@@ -693,7 +697,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                         children: [
                           if (widget.detailCheck == false)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 10.0, 16.0, 0.0),
                               child: Text(
                                 '# Danh sách ngày cụ thể trong tháng (chọn một hoặc nhiều)',
@@ -709,7 +713,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           if (widget.detailCheck == false)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 8.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -760,10 +764,10 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     options: FFButtonOptions(
                                       width: 100.0,
                                       height: 30.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 10.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -777,7 +781,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -828,10 +832,10 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     options: FFButtonOptions(
                                       width: 100.0,
                                       height: 30.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 10.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -845,7 +849,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -856,7 +860,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               ),
                             ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 4.0),
                             child: Container(
                               width: double.infinity,
@@ -873,7 +877,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listOne.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listOneIndex) {
                                       final listOneItem = listOne[listOneIndex];
                                       return Container(
@@ -935,7 +939,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 4.0),
                             child: Container(
                               width: double.infinity,
@@ -952,7 +956,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listTwo.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listTwoIndex) {
                                       final listTwoItem = listTwo[listTwoIndex];
                                       return Container(
@@ -1015,7 +1019,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 4.0),
                             child: Container(
                               width: double.infinity,
@@ -1032,7 +1036,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listThree.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listThreeIndex) {
                                       final listThreeItem =
                                           listThree[listThreeIndex];
@@ -1097,7 +1101,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 4.0),
                             child: Container(
                               width: double.infinity,
@@ -1114,7 +1118,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listFour.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listFourIndex) {
                                       final listFourItem =
                                           listFour[listFourIndex];
@@ -1178,7 +1182,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 4.0),
                             child: Container(
                               width: double.infinity,
@@ -1195,7 +1199,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listFive.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listFiveIndex) {
                                       final listFiveItem =
                                           listFive[listFiveIndex];
@@ -1259,7 +1263,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -1276,7 +1280,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listSix.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(width: 4.0),
+                                        SizedBox(width: 4.0),
                                     itemBuilder: (context, listSixIndex) {
                                       final listSixItem = listSix[listSixIndex];
                                       return Container(
@@ -1342,7 +1346,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                       ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -1357,7 +1361,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               children: [
                                 Theme(
                                   data: ThemeData(
-                                    checkboxTheme: const CheckboxThemeData(
+                                    checkboxTheme: CheckboxThemeData(
                                       visualDensity: VisualDensity.compact,
                                       materialTapTargetSize:
                                           MaterialTapTargetSize.shrinkWrap,
@@ -1369,7 +1373,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   ),
                                   child: Checkbox(
                                     value: _model.checkboxValue1 ??=
-                                        '${_model.settingAdd?.remind.toString()}' ==
+                                        '${_model.settingAdd?.remind?.toString()}' ==
                                                 '1'
                                             ? true
                                             : false,
@@ -1416,7 +1420,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 8.0, 16.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1430,12 +1434,15 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         focusNode: _model.timeHourFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.timeHourTextController',
-                                          const Duration(milliseconds: 2000),
+                                          Duration(milliseconds: 2000),
                                           () async {
                                             _model.updateSettingAddStruct(
                                               (e) => e
                                                 ..remindInSecond = functions.timeToMinute(
                                                     _model.timeHourTextController
+                                                                    .text !=
+                                                                null &&
+                                                            _model.timeHourTextController
                                                                     .text !=
                                                                 ''
                                                         ? _model
@@ -1443,6 +1450,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                             .text
                                                         : '0',
                                                     _model.timeMinuteTextController
+                                                                    .text !=
+                                                                null &&
+                                                            _model.timeMinuteTextController
                                                                     .text !=
                                                                 ''
                                                         ? _model
@@ -1515,7 +1525,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 BorderRadius.circular(4.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -1538,12 +1548,15 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                         focusNode: _model.timeMinuteFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.timeMinuteTextController',
-                                          const Duration(milliseconds: 2000),
+                                          Duration(milliseconds: 2000),
                                           () async {
                                             _model.updateSettingAddStruct(
                                               (e) => e
                                                 ..remindInSecond = functions.timeToMinute(
                                                     _model.timeHourTextController
+                                                                    .text !=
+                                                                null &&
+                                                            _model.timeHourTextController
                                                                     .text !=
                                                                 ''
                                                         ? _model
@@ -1551,6 +1564,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                             .text
                                                         : '0',
                                                     _model.timeMinuteTextController
+                                                                    .text !=
+                                                                null &&
+                                                            _model.timeMinuteTextController
                                                                     .text !=
                                                                 ''
                                                         ? _model
@@ -1623,7 +1639,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                                 BorderRadius.circular(4.0),
                                           ),
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -1642,7 +1658,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                     flex: 1,
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         '(${formatNumber(
                                           _model.settingAdd?.remindInSecond,
@@ -1658,7 +1674,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ].divide(SizedBox(width: 8.0)),
                               ),
                             ),
                           ],
@@ -1667,7 +1683,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -1687,7 +1703,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                             ),
                             child: Checkbox(
                               value: _model.checkboxValue2 ??=
-                                  '${_model.settingAdd?.remind2.toString()}' ==
+                                  '${_model.settingAdd?.remind2?.toString()}' ==
                                           '1'
                                       ? true
                                       : false,
@@ -1734,7 +1750,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                     ),
                     if (widget.detailCheck == false)
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 6.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -1748,9 +1764,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                 text: 'Thoát',
                                 options: FFButtonOptions(
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -1899,9 +1915,9 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   text: 'Lưu',
                                   options: FFButtonOptions(
                                     height: 44.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1911,7 +1927,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                           fontSize: 14.0,
                                           letterSpacing: 0.0,
                                         ),
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1919,7 +1935,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                                   ),
                                 ),
                               ),
-                          ].divide(const SizedBox(width: 12.0)),
+                          ].divide(SizedBox(width: 12.0)),
                         ),
                       ),
                   ],

@@ -6,6 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'gridview_report_image_model.dart';
 export 'gridview_report_image_model.dart';
@@ -63,7 +65,7 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                 final gridviewImage = imageListItem.operationsId.files.toList();
                 return GridView.builder(
                   padding: EdgeInsets.zero,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
@@ -76,9 +78,9 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                   itemBuilder: (context, gridviewImageIndex) {
                     final gridviewImageItem = gridviewImage[gridviewImageIndex];
                     return Align(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
+                      alignment: AlignmentDirectional(1.0, -1.0),
                       child: Stack(
-                        alignment: const AlignmentDirectional(1.0, -1.0),
+                        alignment: AlignmentDirectional(1.0, -1.0),
                         children: [
                           InkWell(
                             splashColor: Colors.transparent,
@@ -128,10 +130,10 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               _model.reloadtokenReportImage =
                                   await action_blocks.tokenReload(context);
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if (_model.reloadtokenReportImage!) {
                                 await actions.downloadFile(
                                   gridviewImageItem.directusFilesId.id,
@@ -142,11 +144,11 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                                 );
                               } else {
                                 setState(() {});
-                                if (shouldSetState) setState(() {});
+                                if (_shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) setState(() {});
+                              if (_shouldSetState) setState(() {});
                             },
                           ),
                         ],
