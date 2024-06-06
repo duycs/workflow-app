@@ -4,9 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'ckeditor_create_lesson_model.dart';
 export 'ckeditor_create_lesson_model.dart';
 
@@ -71,27 +68,30 @@ class _CkeditorCreateLessonWidgetState
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).noColor,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: FlutterFlowTheme.of(context).noColor,
-                    icon: Icon(
-                      Icons.chevron_left,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 30.0,
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 0.0, 0.0),
+                    child: FlutterFlowIconButton(
+                      borderColor: FlutterFlowTheme.of(context).noColor,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      fillColor: FlutterFlowTheme.of(context).noColor,
+                      icon: Icon(
+                        Icons.chevron_left,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 30.0,
+                      ),
+                      onPressed: () async {
+                        Navigator.pop(context);
+                      },
                     ),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
                   ),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).noColor,
                       ),
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Text(
                         'Nội dung bài học',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -104,13 +104,13 @@ class _CkeditorCreateLessonWidgetState
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(1.0, -1.0),
+                    alignment: const AlignmentDirectional(1.0, -1.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if (_model.check != null && _model.check != '') {
+                          if (_model.check != '') {
                             await widget.callBack?.call(
                               widget.output != null && widget.output != ''
                                   ? widget.output
@@ -122,23 +122,21 @@ class _CkeditorCreateLessonWidgetState
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Thông báo!'),
-                                        content: Text('Bạn chưa nhập nội dung'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext, false),
-                                            child: Text('Đóng'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext, true),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: const Text('Thông báo!'),
+                                      content: const Text('Bạn chưa nhập nội dung'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, false),
+                                          child: const Text('Đóng'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, true),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 ) ??
@@ -148,9 +146,9 @@ class _CkeditorCreateLessonWidgetState
                         text: 'Lưu',
                         options: FFButtonOptions(
                           height: 35.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -162,7 +160,7 @@ class _CkeditorCreateLessonWidgetState
                                     fontWeight: FontWeight.normal,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -175,8 +173,8 @@ class _CkeditorCreateLessonWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
-              child: Container(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
+              child: SizedBox(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.9,
                 child: custom_widgets.CKEditor(

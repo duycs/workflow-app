@@ -1,26 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_foud_row/data_not_foud_row_widget.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/profile/profile_staff/profile_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'dart:async';
 import 'list_staff_profile_company_widget.dart'
     show ListStaffProfileCompanyWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ListStaffProfileCompanyModel
     extends FlutterFlowModel<ListStaffProfileCompanyWidget> {
@@ -84,9 +70,9 @@ class ListStaffProfileCompanyModel
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
-      if ((apiResultGetListStaff?.succeeded ?? true)) {
+      if ((apiResultGetListStaff.succeeded ?? true)) {
         listStaff = StaffListDataStruct.maybeFromMap(
-                (apiResultGetListStaff?.jsonBody ?? ''))!
+                (apiResultGetListStaff.jsonBody ?? ''))!
             .data
             .toList()
             .cast<StaffListStruct>();
@@ -105,7 +91,7 @@ class ListStaffProfileCompanyModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -121,7 +107,7 @@ class ListStaffProfileCompanyModel
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController2?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -161,7 +147,7 @@ class ListStaffProfileCompanyModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
@@ -201,7 +187,7 @@ class ListStaffProfileCompanyModel
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController2?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

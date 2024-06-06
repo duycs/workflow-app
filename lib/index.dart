@@ -167,5 +167,6 @@ export '/details43_receipt/details43_receipt_widget.dart'
     show Details43ReceiptWidget;
 export '/training/study_program/study_program_list_market/study_program_list_market_widget.dart'
     show StudyProgramListMarketWidget;
-export '/profile/update_profile_c_p_n_copy/update_profile_c_p_n_copy_widget.dart'
-    show UpdateProfileCPNCopyWidget;
+export '/tasks/report_task/report_task_widget.dart' show ReportTaskWidget;
+export '/tasks/report_task_detail/report_task_detail_widget.dart'
+    show ReportTaskDetailWidget;

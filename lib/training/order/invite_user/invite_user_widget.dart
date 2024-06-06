@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,12 +6,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/order/after_invite/after_invite_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'invite_user_model.dart';
 export 'invite_user_model.dart';
 
@@ -63,16 +59,16 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
-            maxHeight: 750.0,
+          constraints: const BoxConstraints(
+            maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -85,14 +81,14 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,7 +108,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -120,7 +116,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Container(
                               width: double.infinity,
@@ -134,7 +130,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 8.0, 12.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -155,7 +151,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       child: Visibility(
                                         visible: _model.program != null,
                                         child: Padding(
-                                          padding: EdgeInsets.all(2.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10.0),
@@ -170,7 +166,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -193,7 +189,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 2.0),
                                             child: Text(
                                               '',
@@ -218,7 +214,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -248,11 +244,11 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           ),
                                     ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -274,8 +270,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       formatNumber(
                                         functions
                                             .stringToInt(valueOrDefault<String>(
-                                          _model.program?.lessions?.length
-                                              ?.toString(),
+                                          _model.program?.lessions.length
+                                              .toString(),
                                           ' 0',
                                         )),
                                         formatType: FormatType.decimal,
@@ -291,11 +287,11 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -333,11 +329,11 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -374,7 +370,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                           fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           ),
                           Row(
@@ -397,12 +393,12 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 Text(
                                   () {
                                     if ((_model.program?.private == 1) &&
-                                        ('${formatNumber(
+                                        (formatNumber(
                                               _model.program!.inviteCount - 1,
                                               formatType: FormatType.decimal,
                                               decimalType:
                                                   DecimalType.commaDecimal,
-                                            )}' !=
+                                            ) !=
                                             '-1')) {
                                       return formatNumber(
                                         _model.program!.inviteCount - 1,
@@ -410,12 +406,12 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         decimalType: DecimalType.commaDecimal,
                                       );
                                     } else if ((_model.program?.private == 1) &&
-                                        ('${formatNumber(
+                                        (formatNumber(
                                               _model.program!.inviteCount - 1,
                                               formatType: FormatType.decimal,
                                               decimalType:
                                                   DecimalType.commaDecimal,
-                                            )}' ==
+                                            ) ==
                                             '-1')) {
                                       return '0';
                                     } else {
@@ -435,10 +431,10 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 16.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -463,7 +459,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                             : '1',
                                   ),
                                   options: List<String>.from(['0', '1']),
-                                  optionLabels: ['Tổ chức', 'Cá nhân'],
+                                  optionLabels: const ['Tổ chức', 'Cá nhân'],
                                   onChanged: (val) => setState(
                                       () => _model.dropDownValue1 = val),
                                   width: 200.0,
@@ -487,7 +483,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       FlutterFlowTheme.of(context).alternate,
                                   borderWidth: 1.0,
                                   borderRadius: 4.0,
-                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   disabled: '1' == '1',
@@ -504,7 +500,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.turned_in_not,
@@ -563,7 +559,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: ' thành viên khác của tổ chức.',
                                           style: TextStyle(),
                                         )
@@ -579,7 +575,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           if (_model.program?.private == 0)
                             Row(
@@ -587,7 +583,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: Icon(
                                     Icons.turned_in_not,
@@ -630,7 +626,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        TextSpan(
+                                        const TextSpan(
                                           text: ' thành viên khác của tổ chức.',
                                           style: TextStyle(),
                                         )
@@ -646,10 +642,10 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 4.0)),
+                              ].divide(const SizedBox(width: 4.0)),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               multiSelectController:
@@ -683,7 +679,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                   FlutterFlowTheme.of(context).alternate,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -700,9 +696,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                               e.id ==
                                               (_model.dropDownValue2?[
                                                   _model.loop!]))
-                                          .toList()
-                                          .length <
-                                      1) {
+                                          .toList().isEmpty) {
                                     _model.addToSelectedStaffList(_model
                                         .getStaffList
                                         .where((e) =>
@@ -722,7 +716,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 12.0, 0.0, 0.0),
                             child: Builder(
                               builder: (context) {
@@ -735,7 +729,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: staffList.length,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 8.0),
+                                      const SizedBox(height: 8.0),
                                   itemBuilder: (context, staffListIndex) {
                                     final staffListItem =
                                         staffList[staffListIndex];
@@ -746,7 +740,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       children: [
                                         Container(
                                           width: 25.0,
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Text(
                                             '${formatNumber(
                                               staffListIndex + 1,
@@ -764,13 +758,13 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 2.0, 0.0),
                                           child: Container(
                                             width: 35.0,
                                             height: 35.0,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
@@ -832,7 +826,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                             ],
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 2.0)),
+                                      ].divide(const SizedBox(width: 2.0)),
                                     );
                                   },
                                 );
@@ -845,7 +839,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -864,7 +858,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: TransitionInfo(
+                                kTransitionInfoKey: const TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -875,9 +869,9 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                           text: 'Về khóa học',
                           options: FFButtonOptions(
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -891,7 +885,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),
@@ -903,8 +897,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                         child: Builder(
                           builder: (context) => FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
-                              if (_model.selectedStaffList.length > 0) {
+                              var shouldSetState = false;
+                              if (_model.selectedStaffList.isNotEmpty) {
                                 if (_model.program?.private == 1) {
                                   if (_model.selectedStaffList.length >
                                       (_model.program!.limitInvite -
@@ -912,27 +906,25 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return WebViewAware(
-                                          child: AlertDialog(
-                                            content: Text((_model.program!
-                                                            .limitInvite -
-                                                        _model.program!
-                                                            .inviteCount) >
-                                                    0
-                                                ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
-                                                : 'Đã quá giới hạn chia sẻ khóa học!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
-                                          ),
+                                        return AlertDialog(
+                                          content: Text((_model.program!
+                                                          .limitInvite -
+                                                      _model.program!
+                                                          .inviteCount) >
+                                                  0
+                                              ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
+                                              : 'Đã quá giới hạn chia sẻ khóa học!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
                                         );
                                       },
                                     );
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   } else {
                                     while (_model.loop! <
@@ -946,62 +938,58 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         staffId: _model
                                             .selectedStaffList[_model.loop!].id,
                                       );
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if ((_model.apiResultInvite1?.succeeded ??
                                           true)) {
-                                        if ('${getJsonField(
+                                        if (getJsonField(
                                               (_model.apiResultInvite1
                                                       ?.jsonBody ??
                                                   ''),
                                               r'''$.message''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'Nhân viên đã được mời') {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  content: Text(
-                                                      'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                content: Text(
+                                                    'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
-                                        } else if ('${getJsonField(
+                                        } else if (getJsonField(
                                               (_model.apiResultInvite1
                                                       ?.jsonBody ??
                                                   ''),
                                               r'''$.message''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'Đã vượt quá giới hạn mời sử dụng') {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  content:
-                                                      Text('Quá giới hạn mời'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                content:
+                                                    const Text('Quá giới hạn mời'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
-                                          if (_shouldSetState) setState(() {});
+                                          if (shouldSetState) setState(() {});
                                           return;
                                         }
                                       } else {
@@ -1017,7 +1005,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1036,27 +1024,25 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return WebViewAware(
-                                          child: AlertDialog(
-                                            content: Text((_model.program!
-                                                            .limitInvite -
-                                                        _model.program!
-                                                            .inviteCount) >
-                                                    0
-                                                ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
-                                                : 'Đã quá giới hạn chia sẻ khóa học!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
-                                          ),
+                                        return AlertDialog(
+                                          content: Text((_model.program!
+                                                          .limitInvite -
+                                                      _model.program!
+                                                          .inviteCount) >
+                                                  0
+                                              ? 'Bạn chỉ được phép chia sẻ tối đa ${(_model.program!.limitInvite - _model.program!.inviteCount).toString()} lượt'
+                                              : 'Đã quá giới hạn chia sẻ khóa học!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
                                         );
                                       },
                                     );
-                                    if (_shouldSetState) setState(() {});
+                                    if (shouldSetState) setState(() {});
                                     return;
                                   } else {
                                     while (_model.loop! <
@@ -1070,62 +1056,58 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         staffId: _model
                                             .selectedStaffList[_model.loop!].id,
                                       );
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if ((_model.apiResultInvite0?.succeeded ??
                                           true)) {
-                                        if ('${getJsonField(
+                                        if (getJsonField(
                                               (_model.apiResultInvite0
                                                       ?.jsonBody ??
                                                   ''),
                                               r'''$.message''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'Nhân viên đã được mời') {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  content: Text(
-                                                      'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                content: Text(
+                                                    'Nhân viên ${_model.selectedStaffList[_model.loop!].userId.firstName} đã được mời'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
-                                        } else if ('${getJsonField(
+                                        } else if (getJsonField(
                                               (_model.apiResultInvite0
                                                       ?.jsonBody ??
                                                   ''),
                                               r'''$.message''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'Đã vượt quá giới hạn mời sử dụng') {
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  content:
-                                                      Text('Quá giới hạn mời'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                content:
+                                                    const Text('Quá giới hạn mời'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
-                                          if (_shouldSetState) setState(() {});
+                                          if (shouldSetState) setState(() {});
                                           return;
                                         }
                                       } else {
@@ -1141,7 +1123,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1170,20 +1152,18 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text(
-                                              'Chia sẻ khóa học thành công!'),
-                                          content: Text(
-                                              'Bạn đã hết lượt chia sẻ khoá học. Đi đến khóa học đã mua'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: const Text(
+                                            'Chia sẻ khóa học thành công!'),
+                                        content: const Text(
+                                            'Bạn đã hết lượt chia sẻ khoá học. Đi đến khóa học đã mua'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -1199,7 +1179,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -1207,7 +1187,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     },
                                   );
 
-                                  if (_shouldSetState) setState(() {});
+                                  if (shouldSetState) setState(() {});
                                   return;
                                 }
 
@@ -1218,16 +1198,13 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: WebViewAware(
-                                        child: AfterInviteWidget(
-                                          programId: widget.programId!,
-                                          checkPage:
-                                              _model.program?.private == 1
-                                                  ? 'private1'
-                                                  : 'private0',
-                                        ),
+                                      child: AfterInviteWidget(
+                                        programId: widget.programId!,
+                                        checkPage: _model.program?.private == 1
+                                            ? 'private1'
+                                            : 'private0',
                                       ),
                                     );
                                   },
@@ -1236,33 +1213,30 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        content:
-                                            Text('Vui lòng chọn nhân viên'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      content: const Text('Vui lòng chọn nhân viên'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: const Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Xác nhận',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -1274,7 +1248,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -1283,10 +1257,10 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                           ),
                         ),
                       ),
-                    ].divide(SizedBox(width: 16.0)),
+                    ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 8.0)),
             ),
           ),
         ),

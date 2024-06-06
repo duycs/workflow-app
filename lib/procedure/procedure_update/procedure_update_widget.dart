@@ -19,9 +19,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'procedure_update_model.dart';
 export 'procedure_update_model.dart';
 
@@ -31,7 +29,7 @@ class ProcedureUpdateWidget extends StatefulWidget {
     required this.itemData,
     required this.stepListPar,
     bool? check,
-  }) : this.check = check ?? false;
+  }) : check = check ?? false;
 
   final WorkflowsStepCreateStruct? itemData;
   final List<WorkflowsStepCreateStruct>? stepListPar;
@@ -71,12 +69,12 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
             ..updateDepartments(
               (e) => e.add(DepartmentsIdStruct(
                 departmentsId: DepartmentsStruct(
-                  id: (widget.itemData?.departments?[_model.loop])
+                  id: (widget.itemData?.departments[_model.loop])
                       ?.departmentsId
-                      ?.id,
-                  name: (widget.itemData?.departments?[_model.loop])
+                      .id,
+                  name: (widget.itemData?.departments[_model.loop])
                       ?.departmentsId
-                      ?.name,
+                      .name,
                 ),
               )),
             ),
@@ -87,7 +85,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
       }
       _model.loop = 0;
       setState(() {});
-      if (_model.dataUpdate!.departments.length > 0) {
+      if (_model.dataUpdate!.departments.isNotEmpty) {
         setState(() {});
       } else {
         while (widget.itemData!.staffs.length > _model.loop) {
@@ -127,15 +125,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                   (e) => e.add(StaffsStepStruct(
                     staffsId: StaffIdStruct(
                       id: ((widget.stepListPar?[_model.loop])
-                              ?.staffs?[_model.loop2])
+                              ?.staffs[_model.loop2])
                           ?.staffsId
-                          ?.id,
+                          .id,
                       userId: UserIdStruct(
                         firstName: ((widget.stepListPar?[_model.loop])
-                                ?.staffs?[_model.loop2])
+                                ?.staffs[_model.loop2])
                             ?.staffsId
-                            ?.userId
-                            ?.firstName,
+                            .userId
+                            .firstName,
                       ),
                     ),
                   )),
@@ -155,17 +153,17 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                 ..updateOperations(
                   (e) => e.add(OperationsStruct(
                     content: ((widget.stepListPar?[_model.loop])
-                            ?.operations?[_model.loop2])
+                            ?.operations[_model.loop2])
                         ?.operationsId
-                        ?.content,
+                        .content,
                     actionType: ((widget.stepListPar?[_model.loop])
-                            ?.operations?[_model.loop2])
+                            ?.operations[_model.loop2])
                         ?.operationsId
-                        ?.actionType,
+                        .actionType,
                     id: ((widget.stepListPar?[_model.loop])
-                            ?.operations?[_model.loop2])
+                            ?.operations[_model.loop2])
                         ?.operationsId
-                        ?.id,
+                        .id,
                   )),
                 ),
             );
@@ -207,25 +205,25 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
             type: false,
             title: (_model.loop + 1) < 10
                 ? '0${(_model.loop + 1).toString()}'
-                : '${(_model.loop + 1).toString()}',
+                : (_model.loop + 1).toString(),
           ));
           _model.addToCheckTwo(CheckBoxGroupStruct(
             type: false,
             title: (_model.loop + 7) < 10
                 ? '0${(_model.loop + 7).toString()}'
-                : '${(_model.loop + 7).toString()}',
+                : (_model.loop + 7).toString(),
           ));
           _model.addToCheckThrees(CheckBoxGroupStruct(
             type: false,
-            title: '${(_model.loop + 13).toString()}',
+            title: (_model.loop + 13).toString(),
           ));
           _model.addToCheckBoxFour(CheckBoxGroupStruct(
             type: false,
-            title: '${(_model.loop + 19).toString()}',
+            title: (_model.loop + 19).toString(),
           ));
           _model.addToCheckBoxFive(CheckBoxGroupStruct(
             type: false,
-            title: '${(_model.loop + 25).toString()}',
+            title: (_model.loop + 25).toString(),
           ));
           setState(() {});
           _model.loop = _model.loop + 1;
@@ -397,32 +395,57 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              var confirmDialogResponse = await showDialog<bool>(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: const Text('Thông báo'),
+                        content: const Text('Bạn có chắc chắn muốn thoát không?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: const Text('Không'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: const Text('Xác nhận'),
+                          ),
+                        ],
+                      );
+                    },
+                  ) ??
+                  false;
+              if (confirmDialogResponse) {
+                context.pop();
+              } else {
+                return;
+              }
             },
           ),
-          title: Text(
-            'Chỉnh sửa quy trình',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Nunito Sans',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: Text(
+                  'Chỉnh sửa quy trình',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
-          ),
-          actions: [
-            Container(
-              width: 100.0,
-              height: 100.0,
-              decoration: BoxDecoration(),
-              alignment: AlignmentDirectional(0.0, 0.0),
-              child: FFButtonWidget(
+              ),
+              FFButtonWidget(
                 onPressed: () async {
-                  var _shouldSetState = false;
+                  var shouldSetState = false;
 
                   setState(() {});
                   _model.tokenReloadProcedurUpdate =
                       await action_blocks.tokenReload(context);
-                  _shouldSetState = true;
+                  shouldSetState = true;
                   if (_model.tokenReloadProcedurUpdate!) {
                     _model.requestUpdate = null;
                     setState(() {});
@@ -533,9 +556,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             ..updateStaffs(
                               (e) => e.add(StaffsStepStruct(
                                 staffsId: StaffIdStruct(
-                                  id: (_model.dataUpdate?.staffs?[_model.loop])
+                                  id: (_model.dataUpdate?.staffs[_model.loop])
                                       ?.staffsId
-                                      ?.id,
+                                      .id,
                                 ),
                               )),
                             )
@@ -555,9 +578,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               (e) => e.add(DepartmentsIdStruct(
                                 departmentsId: DepartmentsStruct(
                                   id: (_model.dataUpdate
-                                          ?.departments?[_model.loop])
+                                          ?.departments[_model.loop])
                                       ?.departmentsId
-                                      ?.id,
+                                      .id,
                                 ),
                               )),
                             )
@@ -574,7 +597,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                         accessToken: FFAppState().accessToken,
                         requestDataJson: _model.requestUpdate?.toMap(),
                       );
-                      _shouldSetState = true;
+                      shouldSetState = true;
                       if ((_model.apiResultUpdate?.succeeded ?? true)) {
                         _model.apiResultDeleteStep =
                             await ProcedureTemplateGroup.deleteWorkflowsStepCall
@@ -583,7 +606,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           workflowsId: widget.itemData?.id,
                           stepIdList: _model.stepDelete,
                         );
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if ((_model.apiResultDeleteStep?.succeeded ?? true)) {
                           while (_model.loop < _model.stepList.length) {
                             _model.updateStepListAtIndex(
@@ -597,8 +620,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           _model.loop = 0;
                           setState(() {});
                           while (_model.loop < _model.stepList.length) {
-                            if (_model.stepList[_model.loop].id != null &&
-                                _model.stepList[_model.loop].id != '') {
+                            if (_model.stepList[_model.loop].id != '') {
                               _model
                                   .addToCreateUpdate(WorkflowsStepCreateStruct(
                                 id: _model.stepList[_model.loop].id,
@@ -667,9 +689,6 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                   _model.stepList[_model.loop].operations
                                       .length) {
                                 if (_model.stepList[_model.loop]
-                                            .operations[_model.loop2].id !=
-                                        null &&
-                                    _model.stepList[_model.loop]
                                             .operations[_model.loop2].id !=
                                         '') {
                                   _model.updateCreateUpdateAtIndex(
@@ -781,9 +800,6 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                       .length) {
                                 if (_model.stepList[_model.loop]
                                             .operations[_model.loop2].id !=
-                                        null &&
-                                    _model.stepList[_model.loop]
-                                            .operations[_model.loop2].id !=
                                         '') {
                                   _model.updateCreateStepAtIndex(
                                     _model.createStep.length - 1,
@@ -841,7 +857,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               requestDataJson:
                                   _model.createStep[_model.loop].toMap(),
                             );
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if ((_model.apiResultj7m?.succeeded ?? true)) {
                               setState(() {});
                             }
@@ -858,7 +874,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               requestDataJson:
                                   _model.createUpdate[_model.loop].toMap(),
                             );
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if ((_model.apiResult2eo?.succeeded ?? true)) {
                               setState(() {});
                             }
@@ -877,12 +893,12 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                       FlutterFlowTheme.of(context).primaryText,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
                           );
-                          if (_shouldSetState) setState(() {});
+                          if (shouldSetState) setState(() {});
                           return;
                         }
 
@@ -896,11 +912,11 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
-                            duration: Duration(milliseconds: 4000),
+                            duration: const Duration(milliseconds: 4000),
                             backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
-                        if (_shouldSetState) setState(() {});
+                        if (shouldSetState) setState(() {});
                         return;
                       }
 
@@ -912,7 +928,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 4000),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),
@@ -926,43 +942,49 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
-                      if (_shouldSetState) setState(() {});
+                      if (shouldSetState) setState(() {});
                       return;
                     }
                   } else {
                     setState(() {});
-                    if (_shouldSetState) setState(() {});
+                    if (shouldSetState) setState(() {});
                     return;
                   }
 
-                  if (_shouldSetState) setState(() {});
+                  if (shouldSetState) setState(() {});
                 },
                 text: 'Lưu',
+                icon: const Icon(
+                  Icons.save,
+                  size: 15.0,
+                ),
                 options: FFButtonOptions(
                   height: 36.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding: EdgeInsets.all(0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  iconPadding: const EdgeInsets.all(0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
                         color: Colors.white,
                         fontSize: 14.0,
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.normal,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -973,7 +995,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
             child: Column(
               children: [
                 Align(
-                  alignment: Alignment(0.0, 0),
+                  alignment: const Alignment(0.0, 0),
                   child: TabBar(
                     labelColor: FlutterFlowTheme.of(context).primaryText,
                     unselectedLabelColor:
@@ -984,10 +1006,10 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
-                    unselectedLabelStyle: TextStyle(),
+                    unselectedLabelStyle: const TextStyle(),
                     indicatorColor: FlutterFlowTheme.of(context).primary,
-                    padding: EdgeInsets.all(4.0),
-                    tabs: [
+                    padding: const EdgeInsets.all(4.0),
+                    tabs: const [
                       Tab(
                         text: 'Cài đặt chung',
                       ),
@@ -1008,84 +1030,2588 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       Form(
                         key: _model.formKey,
                         autovalidateMode: AutovalidateMode.disabled,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 0.0),
-                                child: SingleChildScrollView(
-                                  primary: false,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 16.0, 0.0, 16.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .accent4,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child: SingleChildScrollView(
+                            primary: false,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 16.0, 0.0, 16.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        decoration:
+                                                            const BoxDecoration(),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .textNameTextController,
+                                                          focusNode: _model
+                                                              .textNameFocusNode,
+                                                          onChanged: (_) =>
+                                                              EasyDebounce
+                                                                  .debounce(
+                                                            '_model.textNameTextController',
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    2000),
+                                                            () async {
+                                                              _model
+                                                                  .updateDataUpdateStruct(
+                                                                (e) => e
+                                                                  ..name = _model
+                                                                      .textNameTextController
+                                                                      .text,
+                                                              );
+                                                              setState(() {});
+                                                            },
+                                                          ),
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintText:
+                                                                'Nhập tên quy trình...',
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            errorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                            focusedErrorBorder:
+                                                                InputBorder
+                                                                    .none,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                          validator: _model
+                                                              .textNameTextControllerValidator
+                                                              .asValidator(
+                                                                  context),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(12.0),
-                                            child: Column(
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: TextFormField(
+                                                  controller: _model
+                                                      .textDescriptionTextController,
+                                                  focusNode: _model
+                                                      .textDescriptionFocusNode,
+                                                  onChanged: (_) =>
+                                                      EasyDebounce.debounce(
+                                                    '_model.textDescriptionTextController',
+                                                    const Duration(
+                                                        milliseconds: 2000),
+                                                    () async {
+                                                      _model
+                                                          .updateDataUpdateStruct(
+                                                        (e) => e
+                                                          ..description = _model
+                                                              .textDescriptionTextController
+                                                              .text,
+                                                      );
+                                                      setState(() {});
+                                                    },
+                                                  ),
+                                                  obscureText: false,
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Nhập mô tả...',
+                                                    hintStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w300,
+                                                        ),
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    errorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    focusedErrorBorder:
+                                                        OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    filled: true,
+                                                    fillColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryBackground,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  maxLines: 2,
+                                                  validator: _model
+                                                      .textDescriptionTextControllerValidator
+                                                      .asValidator(context),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 16.0, 16.0, 16.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 10.0),
+                                            child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Row(
+                                                Icon(
+                                                  Icons.settings_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    'Thiết lập người khởi chạy',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ].divide(const SizedBox(width: 8.0)),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 16.0),
+                                            child: Text(
+                                              '(Chỉ nhân viên hoặc bộ phận được chọn mới có quyền khởi chạy công việc theo quy trình)',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                    fontStyle: FontStyle.italic,
+                                                  ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 5.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: FlutterFlowDropDown<
+                                                      String>(
+                                                    controller: _model
+                                                            .dropDownRunValueController ??=
+                                                        FormFieldController<
+                                                            String>(
+                                                      _model.dropDownRunValue ??=
+                                                          () {
+                                                        if (_model
+                                                                .dataUpdate!
+                                                                .departments.isNotEmpty) {
+                                                          return '1';
+                                                        } else if (_model
+                                                                .dataUpdate!
+                                                                .staffs.isNotEmpty) {
+                                                          return '2';
+                                                        } else {
+                                                          return '0';
+                                                        }
+                                                      }(),
+                                                    ),
+                                                    options: List<String>.from(
+                                                        ['0', '1', '2']),
+                                                    optionLabels: const [
+                                                      'Tất cả bộ phận',
+                                                      'Chọn bộ phận',
+                                                      'Chọn nhân viên'
+                                                    ],
+                                                    onChanged: (val) async {
+                                                      setState(() => _model
+                                                              .dropDownRunValue =
+                                                          val);
+                                                      _model
+                                                          .updateDataUpdateStruct(
+                                                        (e) => e
+                                                          ..departments = []
+                                                          ..staffs = [],
+                                                      );
+                                                      setState(() {});
+                                                      if (_model
+                                                              .dropDownRunValue ==
+                                                          '1') {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    DropdownDepartmentsListWidget(
+                                                                  dataPar: _model
+                                                                      .dataUpdate
+                                                                      ?.departments,
+                                                                  callback:
+                                                                      (item) async {
+                                                                    _model
+                                                                        .updateDataUpdateStruct(
+                                                                      (e) => e
+                                                                        ..departments =
+                                                                            item!.toList(),
+                                                                    );
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      } else if (_model
+                                                              .dropDownRunValue ==
+                                                          '2') {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    DropdownUserListWidget(
+                                                                  dataPar: _model
+                                                                      .dataUpdate
+                                                                      ?.staffs,
+                                                                  callback:
+                                                                      (item) async {
+                                                                    await _model
+                                                                        .addStaff(
+                                                                      context,
+                                                                      item:
+                                                                          item,
+                                                                    );
+
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      }
+                                                    },
+                                                    width: 300.0,
+                                                    height: 56.0,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    hintText: 'Khởi chạy',
+                                                    icon: Icon(
+                                                      Icons
+                                                          .keyboard_arrow_down_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    elevation: 0.0,
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .alternate,
+                                                    borderWidth: 1.0,
+                                                    borderRadius: 8.0,
+                                                    margin:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 4.0,
+                                                                16.0, 4.0),
+                                                    hidesUnderline: true,
+                                                    isOverButton: true,
+                                                    isSearchable: false,
+                                                    isMultiSelect: false,
+                                                  ),
+                                                ),
+                                              ].divide(const SizedBox(width: 24.0)),
+                                            ),
+                                          ),
+                                          if (_model.dropDownRunValue == '2')
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 5.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    '# Danh sách nhân viên khởi chạy',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                  FlutterFlowIconButton(
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.add,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        enableDrag: false,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  DropdownUserListWidget(
+                                                                dataPar: _model
+                                                                    .dataUpdate
+                                                                    ?.staffs,
+                                                                callback:
+                                                                    (item) async {
+                                                                  await _model
+                                                                      .addStaff(
+                                                                    context,
+                                                                    item: item,
+                                                                  );
+
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          if (_model.dropDownRunValue == '2')
+                                            Container(
+                                              width: double.infinity,
+                                              height: 40.0,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .noColor,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 5.0, 0.0),
+                                                child: Builder(
+                                                  builder: (context) {
+                                                    final listStaff = _model
+                                                            .dataUpdate?.staffs
+                                                            .toList() ??
+                                                        [];
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount:
+                                                          listStaff.length,
+                                                      itemBuilder: (context,
+                                                          listStaffIndex) {
+                                                        final listStaffItem =
+                                                            listStaff[
+                                                                listStaffIndex];
+                                                        return Container(
+                                                          decoration:
+                                                              const BoxDecoration(),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed: () {
+                                                                print(
+                                                                    'Button pressed ...');
+                                                              },
+                                                              text: listStaffItem
+                                                                  .staffsId
+                                                                  .userId
+                                                                  .firstName,
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 25.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                                elevation: 3.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          if (_model.dropDownRunValue == '1')
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 5.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    '# Danh sác bộ phận khởi chạy',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                  ),
+                                                  FlutterFlowIconButton(
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.add,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        enableDrag: false,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  DropdownDepartmentsListWidget(
+                                                                dataPar: _model
+                                                                    .dataUpdate
+                                                                    ?.departments,
+                                                                callback:
+                                                                    (item) async {
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..departments =
+                                                                          item!
+                                                                              .toList(),
+                                                                  );
+                                                                  setState(
+                                                                      () {});
+
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          if (_model.dropDownRunValue == '1')
+                                            Container(
+                                              width: double.infinity,
+                                              height: 40.0,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .noColor,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 5.0, 0.0),
+                                                child: Builder(
+                                                  builder: (context) {
+                                                    final listStaff = _model
+                                                            .dataUpdate
+                                                            ?.departments
+                                                            .toList() ??
+                                                        [];
+                                                    return ListView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount:
+                                                          listStaff.length,
+                                                      itemBuilder: (context,
+                                                          listStaffIndex) {
+                                                        final listStaffItem =
+                                                            listStaff[
+                                                                listStaffIndex];
+                                                        return Container(
+                                                          decoration:
+                                                              const BoxDecoration(),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed: () {
+                                                                print(
+                                                                    'Button pressed ...');
+                                                              },
+                                                              text: listStaffItem
+                                                                  .departmentsId
+                                                                  .name,
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                height: 25.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                                elevation: 3.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 570.0,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        border: Border.all(
+                                          color: const Color(0xFFE0E3E7),
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 14.0),
+                                        child: SingleChildScrollView(
+                                          primary: false,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 16.0),
+                                                child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
+                                                    Icon(
+                                                      Icons.settings_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      size: 24.0,
+                                                    ),
                                                     Expanded(
-                                                      child: Padding(
+                                                      child: Text(
+                                                        'Thiết lập cấu hình',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .titleLarge
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      const SizedBox(width: 8.0)),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  22.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Thiết lập tuần lặp',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 50.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child:
+                                                            FlutterFlowDropDown<
+                                                                String>(
+                                                          controller: _model
+                                                                  .dropDownCronValueController ??=
+                                                              FormFieldController<
+                                                                  String>(
+                                                            _model.dropDownCronValue ??=
+                                                                functions.checkTypeCron(
+                                                                    _model
+                                                                        .dataUpdate!
+                                                                        .cron),
+                                                          ),
+                                                          options: List<
+                                                              String>.from([
+                                                            '0',
+                                                            '1',
+                                                            '2',
+                                                            '3'
+                                                          ]),
+                                                          optionLabels: const [
+                                                            'Không lặp',
+                                                            'Lặp hàng ngày',
+                                                            'Lặp trong tuần',
+                                                            'Lặp trong tháng'
+                                                          ],
+                                                          onChanged:
+                                                              (val) async {
+                                                            setState(() => _model
+                                                                    .dropDownCronValue =
+                                                                val);
+                                                            _model.checkCron =
+                                                                [];
+                                                            setState(() {});
+                                                            if (_model
+                                                                    .dropDownCronValue !=
+                                                                '3') {
+                                                              _model.loop = 0;
+                                                              _model.checkOne =
+                                                                  [];
+                                                              _model.checkTwo =
+                                                                  [];
+                                                              _model.checkThrees =
+                                                                  [];
+                                                              _model.checkBoxFour =
+                                                                  [];
+                                                              _model.checkBoxFive =
+                                                                  [];
+                                                              _model.checkBoxSix =
+                                                                  [];
+                                                              setState(() {});
+                                                              _model.checkType =
+                                                                  _model
+                                                                      .dropDownCronValue;
+                                                              setState(() {});
+                                                            } else {
+                                                              while (
+                                                                  _model.loop <
+                                                                      6) {
+                                                                _model.addToCheckOne(
+                                                                    CheckBoxGroupStruct(
+                                                                  type: false,
+                                                                  title: (_model.loop +
+                                                                              1) <
+                                                                          10
+                                                                      ? '0${(_model.loop + 1).toString()}'
+                                                                      : (_model.loop + 1).toString(),
+                                                                ));
+                                                                _model.addToCheckTwo(
+                                                                    CheckBoxGroupStruct(
+                                                                  type: false,
+                                                                  title: (_model.loop +
+                                                                              7) <
+                                                                          10
+                                                                      ? '0${(_model.loop + 7).toString()}'
+                                                                      : (_model.loop + 7).toString(),
+                                                                ));
+                                                                _model.addToCheckThrees(
+                                                                    CheckBoxGroupStruct(
+                                                                  type: false,
+                                                                  title:
+                                                                      (_model.loop + 13).toString(),
+                                                                ));
+                                                                _model.addToCheckBoxFour(
+                                                                    CheckBoxGroupStruct(
+                                                                  type: false,
+                                                                  title:
+                                                                      (_model.loop + 19).toString(),
+                                                                ));
+                                                                _model.addToCheckBoxFive(
+                                                                    CheckBoxGroupStruct(
+                                                                  type: false,
+                                                                  title:
+                                                                      (_model.loop + 25).toString(),
+                                                                ));
+                                                                setState(() {});
+                                                                _model.loop =
+                                                                    _model.loop +
+                                                                        1;
+                                                                setState(() {});
+                                                              }
+                                                              _model.addToCheckBoxSix(
+                                                                  CheckBoxGroupStruct(
+                                                                type: false,
+                                                                title: '31',
+                                                              ));
+                                                              setState(() {});
+                                                              _model.loop = 0;
+                                                              setState(() {});
+                                                              _model.checkType =
+                                                                  _model
+                                                                      .dropDownCronValue;
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                          width:
+                                                              double.infinity,
+                                                          height: 60.0,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintText:
+                                                              'Vui lòng chọn lặp',
+                                                          icon: Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          elevation: 1.0,
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          borderWidth: 1.0,
+                                                          borderRadius: 8.0,
+                                                          margin:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      4.0,
+                                                                      16.0,
+                                                                      4.0),
+                                                          hidesUnderline: true,
+                                                          isOverButton: true,
+                                                          isSearchable: false,
+                                                          isMultiSelect: false,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              if (_model.checkType == '2')
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            '# Ngày cụ thể trong tuần (chọn một hoặc nhiều)',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: [
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  setState(() =>
+                                                                      _model.groupWeekValueController
+                                                                              ?.value =
+                                                                          List.from([
+                                                                        'Thứ Hai',
+                                                                        'Thứ Ba',
+                                                                        'Thứ Tư',
+                                                                        'Thứ Năm',
+                                                                        'Thứ Sáu',
+                                                                        'Thứ Bảy',
+                                                                        'Chủ Nhật'
+                                                                      ]));
+                                                                  while (_model
+                                                                          .loop <
+                                                                      7) {
+                                                                    _model.addToCheckCron(
+                                                                        (_model.loop + 1).toString());
+                                                                    setState(
+                                                                        () {});
+                                                                    _model.loop =
+                                                                        _model.loop +
+                                                                            1;
+                                                                    setState(
+                                                                        () {});
+                                                                  }
+                                                                  _model.loop =
+                                                                      0;
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                text:
+                                                                    'Chọn tất cả',
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 100.0,
+                                                                  height: 30.0,
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                              ),
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  setState(() => _model
+                                                                      .groupWeekValueController
+                                                                      ?.value = []);
+                                                                  _model.checkCron =
+                                                                      [];
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                text: 'Bỏ chọn',
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 100.0,
+                                                                  height: 30.0,
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      1.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child:
+                                                              FlutterFlowCheckboxGroup(
+                                                            options: const [
+                                                              'Thứ Hai',
+                                                              'Thứ Ba',
+                                                              'Thứ Tư',
+                                                              'Thứ Năm',
+                                                              'Thứ Sáu',
+                                                              'Thứ Bảy',
+                                                              'Chủ Nhật'
+                                                            ],
+                                                            onChanged: (val) =>
+                                                                setState(() =>
+                                                                    _model.groupWeekValues =
+                                                                        val),
+                                                            controller: _model
+                                                                    .groupWeekValueController ??=
+                                                                FormFieldController<
+                                                                    List<
+                                                                        String>>(
+                                                              List.from(functions
+                                                                      .cronToType(_model
+                                                                          .dataUpdate!
+                                                                          .cron) ??
+                                                                  []),
+                                                            ),
+                                                            activeColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                            checkColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                            checkboxBorderColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                            unselectedTextStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            checkboxBorderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4.0),
+                                                            initialized: _model
+                                                                    .groupWeekValues !=
+                                                                null,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              if (_model.checkType == '3')
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  10.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        '# Danh sách ngày cụ thể trong tháng (chọn một hoặc nhiều)',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  8.0,
+                                                                  16.0,
+                                                                  8.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              while (
+                                                                  _model.loop <
+                                                                      6) {
+                                                                _model
+                                                                    .updateCheckOneAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        true,
+                                                                );
+                                                                _model
+                                                                    .updateCheckTwoAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        true,
+                                                                );
+                                                                _model
+                                                                    .updateCheckThreesAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        true,
+                                                                );
+                                                                _model
+                                                                    .updateCheckBoxFourAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        true,
+                                                                );
+                                                                _model
+                                                                    .updateCheckBoxFiveAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        true,
+                                                                );
+                                                                setState(() {});
+                                                                _model.loop =
+                                                                    _model.loop +
+                                                                        1;
+                                                                setState(() {});
+                                                              }
+                                                              _model
+                                                                  .updateCheckBoxSixAtIndex(
+                                                                0,
+                                                                (e) => e
+                                                                  ..type = true,
+                                                              );
+                                                              setState(() {});
+                                                              _model.loop = 0;
+                                                              setState(() {});
+                                                            },
+                                                            text: 'Chọn tất cả',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 100.0,
+                                                              height: 30.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                          FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              while (
+                                                                  _model.loop <
+                                                                      6) {
+                                                                _model
+                                                                    .updateCheckOneAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        false,
+                                                                );
+                                                                _model
+                                                                    .updateCheckTwoAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        false,
+                                                                );
+                                                                _model
+                                                                    .updateCheckThreesAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        false,
+                                                                );
+                                                                _model
+                                                                    .updateCheckBoxFourAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        false,
+                                                                );
+                                                                _model
+                                                                    .updateCheckBoxFiveAtIndex(
+                                                                  _model.loop,
+                                                                  (e) => e
+                                                                    ..type =
+                                                                        false,
+                                                                );
+                                                                setState(() {});
+                                                                _model.loop =
+                                                                    _model.loop +
+                                                                        1;
+                                                                setState(() {});
+                                                              }
+                                                              _model
+                                                                  .updateCheckBoxSixAtIndex(
+                                                                0,
+                                                                (e) => e
+                                                                  ..type =
+                                                                      false,
+                                                              );
+                                                              setState(() {});
+                                                              _model.loop = 0;
+                                                              setState(() {});
+                                                            },
+                                                            text: 'Bỏ chọn',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 100.0,
+                                                              height: 30.0,
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final listOne =
+                                                                _model.checkOne
+                                                                    .toList();
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount: listOne
+                                                                  .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              4.0),
+                                                              itemBuilder: (context,
+                                                                  listOneIndex) {
+                                                                final listOneItem =
+                                                                    listOne[
+                                                                        listOneIndex];
+                                                                return Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.15,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      wrapWithModel(
+                                                                        model: _model
+                                                                            .checkBoxToggleModels1
+                                                                            .getModel(
+                                                                          '${listOneItem.title}${listOneItem.type.toString()}',
+                                                                          listOneIndex,
+                                                                        ),
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                setState(() {}),
+                                                                        updateOnChange:
+                                                                            true,
+                                                                        child:
+                                                                            CheckBoxToggleWidget(
+                                                                          key:
+                                                                              Key(
+                                                                            'Keyr0a_${'${listOneItem.title}${listOneItem.type.toString()}'}',
+                                                                          ),
+                                                                          checkParam:
+                                                                              listOneItem.type,
+                                                                          callBack:
+                                                                              (checkCall) async {
+                                                                            _model.updateCheckOneAtIndex(
+                                                                              listOneIndex,
+                                                                              (e) => e..type = checkCall,
+                                                                            );
+                                                                            setState(() {});
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        listOneItem
+                                                                            .title,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final listTwo =
+                                                                _model.checkTwo
+                                                                    .toList();
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount: listTwo
+                                                                  .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              4.0),
+                                                              itemBuilder: (context,
+                                                                  listTwoIndex) {
+                                                                final listTwoItem =
+                                                                    listTwo[
+                                                                        listTwoIndex];
+                                                                return Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.15,
+                                                                  height: 30.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      wrapWithModel(
+                                                                        model: _model
+                                                                            .checkBoxToggleModels2
+                                                                            .getModel(
+                                                                          '${listTwoItem.title}${listTwoItem.type.toString()}',
+                                                                          listTwoIndex,
+                                                                        ),
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                setState(() {}),
+                                                                        updateOnChange:
+                                                                            true,
+                                                                        child:
+                                                                            CheckBoxToggleWidget(
+                                                                          key:
+                                                                              Key(
+                                                                            'Keyktf_${'${listTwoItem.title}${listTwoItem.type.toString()}'}',
+                                                                          ),
+                                                                          checkParam:
+                                                                              listTwoItem.type,
+                                                                          callBack:
+                                                                              (checkCall) async {
+                                                                            _model.updateCheckTwoAtIndex(
+                                                                              listTwoIndex,
+                                                                              (e) => e..type = checkCall,
+                                                                            );
+                                                                            setState(() {});
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        listTwoItem
+                                                                            .title,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final listThree =
+                                                                _model
+                                                                    .checkThrees
+                                                                    .toList();
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  listThree
+                                                                      .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              4.0),
+                                                              itemBuilder: (context,
+                                                                  listThreeIndex) {
+                                                                final listThreeItem =
+                                                                    listThree[
+                                                                        listThreeIndex];
+                                                                return Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.15,
+                                                                  height: 30.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      wrapWithModel(
+                                                                        model: _model
+                                                                            .checkBoxToggleModels3
+                                                                            .getModel(
+                                                                          '${listThreeItem.title}${listThreeItem.type.toString()}',
+                                                                          listThreeIndex,
+                                                                        ),
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                setState(() {}),
+                                                                        updateOnChange:
+                                                                            true,
+                                                                        child:
+                                                                            CheckBoxToggleWidget(
+                                                                          key:
+                                                                              Key(
+                                                                            'Keycnd_${'${listThreeItem.title}${listThreeItem.type.toString()}'}',
+                                                                          ),
+                                                                          checkParam:
+                                                                              listThreeItem.type,
+                                                                          callBack:
+                                                                              (checkCall) async {
+                                                                            _model.updateCheckThreesAtIndex(
+                                                                              listThreeIndex,
+                                                                              (e) => e..type = checkCall,
+                                                                            );
+                                                                            setState(() {});
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        listThreeItem
+                                                                            .title,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final listFour =
+                                                                _model
+                                                                    .checkBoxFour
+                                                                    .toList();
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  listFour
+                                                                      .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              4.0),
+                                                              itemBuilder: (context,
+                                                                  listFourIndex) {
+                                                                final listFourItem =
+                                                                    listFour[
+                                                                        listFourIndex];
+                                                                return Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.15,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      wrapWithModel(
+                                                                        model: _model
+                                                                            .checkBoxToggleModels4
+                                                                            .getModel(
+                                                                          '${listFourItem.title}${listFourItem.type.toString()}',
+                                                                          listFourIndex,
+                                                                        ),
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                setState(() {}),
+                                                                        updateOnChange:
+                                                                            true,
+                                                                        child:
+                                                                            CheckBoxToggleWidget(
+                                                                          key:
+                                                                              Key(
+                                                                            'Key6fy_${'${listFourItem.title}${listFourItem.type.toString()}'}',
+                                                                          ),
+                                                                          checkParam:
+                                                                              listFourItem.type,
+                                                                          callBack:
+                                                                              (checkCall) async {
+                                                                            _model.updateCheckBoxFourAtIndex(
+                                                                              listFourIndex,
+                                                                              (e) => e..type = checkCall,
+                                                                            );
+                                                                            setState(() {});
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        listFourItem
+                                                                            .title,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 60.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            final listFive =
+                                                                _model
+                                                                    .checkBoxFive
+                                                                    .toList();
+                                                            return ListView
+                                                                .separated(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              scrollDirection:
+                                                                  Axis.horizontal,
+                                                              itemCount:
+                                                                  listFive
+                                                                      .length,
+                                                              separatorBuilder:
+                                                                  (_, __) =>
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              4.0),
+                                                              itemBuilder: (context,
+                                                                  listFiveIndex) {
+                                                                final listFiveItem =
+                                                                    listFive[
+                                                                        listFiveIndex];
+                                                                return Container(
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      0.15,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      wrapWithModel(
+                                                                        model: _model
+                                                                            .checkBoxToggleModels5
+                                                                            .getModel(
+                                                                          '${listFiveItem.title}${listFiveItem.type.toString()}',
+                                                                          listFiveIndex,
+                                                                        ),
+                                                                        updateCallback:
+                                                                            () =>
+                                                                                setState(() {}),
+                                                                        updateOnChange:
+                                                                            true,
+                                                                        child:
+                                                                            CheckBoxToggleWidget(
+                                                                          key:
+                                                                              Key(
+                                                                            'Keyoxa_${'${listFiveItem.title}${listFiveItem.type.toString()}'}',
+                                                                          ),
+                                                                          checkParam:
+                                                                              listFiveItem.type,
+                                                                          callBack:
+                                                                              (checkCall) async {
+                                                                            _model.updateCheckBoxFiveAtIndex(
+                                                                              listFiveIndex,
+                                                                              (e) => e..type = checkCall,
+                                                                            );
+                                                                            setState(() {});
+                                                                          },
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        listFiveItem
+                                                                            .title,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: double.infinity,
+                                                      height: 60.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          final listSix = _model
+                                                              .checkBoxSix
+                                                              .toList();
+                                                          return ListView
+                                                              .separated(
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            scrollDirection:
+                                                                Axis.horizontal,
+                                                            itemCount:
+                                                                listSix.length,
+                                                            separatorBuilder: (_,
+                                                                    __) =>
+                                                                const SizedBox(
+                                                                    width: 4.0),
+                                                            itemBuilder: (context,
+                                                                listSixIndex) {
+                                                              final listSixItem =
+                                                                  listSix[
+                                                                      listSixIndex];
+                                                              return Container(
+                                                                width: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .width *
+                                                                    0.15,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    wrapWithModel(
+                                                                      model: _model
+                                                                          .checkBoxToggleModels6
+                                                                          .getModel(
+                                                                        '${listSixItem.title}${listSixItem.type.toString()}',
+                                                                        listSixIndex,
+                                                                      ),
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              setState(() {}),
+                                                                      updateOnChange:
+                                                                          true,
+                                                                      child:
+                                                                          CheckBoxToggleWidget(
+                                                                        key:
+                                                                            Key(
+                                                                          'Keyoyn_${'${listSixItem.title}${listSixItem.type.toString()}'}',
+                                                                        ),
+                                                                        checkParam:
+                                                                            listSixItem.type,
+                                                                        callBack:
+                                                                            (checkCall) async {
+                                                                          _model
+                                                                              .updateCheckBoxSixAtIndex(
+                                                                            listSixIndex,
+                                                                            (e) => e
+                                                                              ..type = checkCall,
+                                                                          );
+                                                                          setState(
+                                                                              () {});
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      listSixItem
+                                                                          .title,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            fontSize:
+                                                                                14.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 24.0, 16.0, 0.0),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  const CheckboxThemeData(
+                                                                visualDensity:
+                                                                    VisualDensity
+                                                                        .compact,
+                                                                materialTapTargetSize:
+                                                                    MaterialTapTargetSize
+                                                                        .shrinkWrap,
+                                                                shape:
+                                                                    CircleBorder(),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                            ),
+                                                            child: Checkbox(
+                                                              value: _model
+                                                                      .checkboxValue1 ??=
+                                                                  '${_model.dataUpdate?.remind.toString()}' ==
+                                                                          '1'
+                                                                      ? true
+                                                                      : false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxValue1 =
+                                                                        newValue!);
+                                                                if (newValue!) {
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..remind =
+                                                                          1,
+                                                                  );
+                                                                  setState(
+                                                                      () {});
+                                                                } else {
+                                                                  _model
+                                                                      .updateDataUpdateStruct(
+                                                                    (e) => e
+                                                                      ..remind =
+                                                                          0,
+                                                                  );
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                              },
+                                                              side: BorderSide(
+                                                                width: 2,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                              ),
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              checkColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .info,
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Thiết lập nhắc trước khi bắt đầu bước:',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
+                                                                    16.0,
                                                                     8.0,
-                                                                    0.0,
-                                                                    0.0,
+                                                                    16.0,
                                                                     0.0),
-                                                        child: Column(
+                                                        child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
-                                                                  .start,
+                                                                  .center,
                                                           children: [
-                                                            Container(
-                                                              decoration:
-                                                                  BoxDecoration(),
+                                                            Expanded(
                                                               child:
                                                                   TextFormField(
                                                                 controller: _model
-                                                                    .textNameTextController,
+                                                                    .timeHourTextController,
                                                                 focusNode: _model
-                                                                    .textNameFocusNode,
+                                                                    .timeHourFocusNode,
                                                                 onChanged: (_) =>
                                                                     EasyDebounce
                                                                         .debounce(
-                                                                  '_model.textNameTextController',
-                                                                  Duration(
+                                                                  '_model.timeHourTextController',
+                                                                  const Duration(
                                                                       milliseconds:
                                                                           2000),
                                                                   () async {
                                                                     _model
                                                                         .updateDataUpdateStruct(
                                                                       (e) => e
-                                                                        ..name = _model
-                                                                            .textNameTextController
-                                                                            .text,
+                                                                        ..remindInSecond = functions.timeToMinute(
+                                                                            _model.timeHourTextController.text != ''
+                                                                                ? _model.timeHourTextController.text
+                                                                                : '0',
+                                                                            _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0',
+                                                                            null),
                                                                     );
                                                                     setState(
                                                                         () {});
@@ -1097,19 +3623,18 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                     false,
                                                                 decoration:
                                                                     InputDecoration(
+                                                                  labelText:
+                                                                      'Giờ',
                                                                   labelStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelLarge
+                                                                      .labelMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Nunito Sans',
-                                                                        fontSize:
-                                                                            14.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                                  hintText:
-                                                                      'Nhập tên quy trình...',
+                                                                  hintText: ' ',
                                                                   hintStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1120,155 +3645,332 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                             0.0,
                                                                       ),
                                                                   enabledBorder:
-                                                                      InputBorder
-                                                                          .none,
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
                                                                   focusedBorder:
-                                                                      InputBorder
-                                                                          .none,
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
                                                                   errorBorder:
-                                                                      InputBorder
-                                                                          .none,
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
                                                                   focusedErrorBorder:
-                                                                      InputBorder
-                                                                          .none,
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                  contentPadding:
+                                                                      const EdgeInsetsDirectional.fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyLarge
+                                                                    .bodyMedium
                                                                     .override(
                                                                       fontFamily:
                                                                           'Nunito Sans',
-                                                                      fontSize:
-                                                                          14.0,
                                                                       letterSpacing:
                                                                           0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
                                                                     ),
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .number,
                                                                 validator: _model
-                                                                    .textNameTextControllerValidator
+                                                                    .timeHourTextControllerValidator
                                                                     .asValidator(
                                                                         context),
                                                               ),
                                                             ),
-                                                          ],
+                                                            Expanded(
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .timeMinuteTextController,
+                                                                focusNode: _model
+                                                                    .timeMinuteFocusNode,
+                                                                onChanged: (_) =>
+                                                                    EasyDebounce
+                                                                        .debounce(
+                                                                  '_model.timeMinuteTextController',
+                                                                  const Duration(
+                                                                      milliseconds:
+                                                                          2000),
+                                                                  () async {
+                                                                    _model
+                                                                        .updateDataUpdateStruct(
+                                                                      (e) => e
+                                                                        ..remindInSecond = functions.timeToMinute(
+                                                                            _model.timeHourTextController.text != ''
+                                                                                ? _model.timeHourTextController.text
+                                                                                : '0',
+                                                                            _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0',
+                                                                            null),
+                                                                    );
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                ),
+                                                                autofocus:
+                                                                    false,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  labelText:
+                                                                      'Phút',
+                                                                  labelStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                  hintText: ' ',
+                                                                  hintStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            4.0),
+                                                                  ),
+                                                                  contentPadding:
+                                                                      const EdgeInsetsDirectional.fromSTEB(
+                                                                          16.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .number,
+                                                                validator: _model
+                                                                    .timeMinuteTextControllerValidator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        -1.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  '(${_model.dataUpdate?.remindInSecond != null ? _model.dataUpdate?.remindInSecond.toString() : '0'} phút)',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ].divide(const SizedBox(
+                                                              width: 8.0)),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                                Row(
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 24.0, 16.0, 0.0),
+                                                child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
-                                                    Expanded(
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .textDescriptionTextController,
-                                                        focusNode: _model
-                                                            .textDescriptionFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.textDescriptionTextController',
-                                                          Duration(
-                                                              milliseconds:
-                                                                  2000),
-                                                          () async {
+                                                    Theme(
+                                                      data: ThemeData(
+                                                        checkboxTheme:
+                                                            CheckboxThemeData(
+                                                          visualDensity:
+                                                              VisualDensity
+                                                                  .compact,
+                                                          materialTapTargetSize:
+                                                              MaterialTapTargetSize
+                                                                  .shrinkWrap,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        90.0),
+                                                          ),
+                                                        ),
+                                                        unselectedWidgetColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                      ),
+                                                      child: Checkbox(
+                                                        value: _model
+                                                                .checkboxValue2 ??=
+                                                            '${_model.dataUpdate?.remind2.toString()}' ==
+                                                                    '1'
+                                                                ? true
+                                                                : false,
+                                                        onChanged:
+                                                            (newValue) async {
+                                                          setState(() => _model
+                                                                  .checkboxValue2 =
+                                                              newValue!);
+                                                          if (newValue!) {
                                                             _model
                                                                 .updateDataUpdateStruct(
                                                               (e) => e
-                                                                ..description =
-                                                                    _model
-                                                                        .textDescriptionTextController
-                                                                        .text,
+                                                                ..remind2 = 1,
                                                             );
                                                             setState(() {});
-                                                          },
-                                                        ),
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          hintText:
-                                                              'Nhập mô tả...',
-                                                          hintStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                  ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .error,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
-                                                          ),
-                                                          filled: true,
-                                                          fillColor: FlutterFlowTheme
+                                                          } else {
+                                                            _model
+                                                                .updateDataUpdateStruct(
+                                                              (e) => e
+                                                                ..remind2 = 0,
+                                                            );
+                                                            setState(() {});
+                                                          }
+                                                        },
+                                                        side: BorderSide(
+                                                          width: 2,
+                                                          color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .primaryBackground,
+                                                              .secondaryText,
                                                         ),
+                                                        activeColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        checkColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: Text(
+                                                        'Thiết lập nhắc chuyển bước',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1278,2867 +3980,430 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                       'Nunito Sans',
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
                                                                 ),
-                                                        maxLines: 2,
-                                                        validator: _model
-                                                            .textDescriptionTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 5.0),
-                                        child: Row(
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 24.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Sơ đồ quy trình',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    ProcedureStepCreateWidget(
+                                                  callBack: (addItem) async {
+                                                    _model.addToStepList(
+                                                        WorkflowsStepCreateStruct(
+                                                      name: addItem?.name,
+                                                      description:
+                                                          addItem?.description,
+                                                      staffs: addItem?.staffs,
+                                                      executeType:
+                                                          addItem?.executeType,
+                                                      actionType:
+                                                          addItem?.actionType,
+                                                      operations:
+                                                          addItem?.operations,
+                                                      status: 'published',
+                                                      staffsAlias:
+                                                          addItem?.staffsAlias,
+                                                      timeOperate:
+                                                          addItem?.timeOperate !=
+                                                                      null &&
+                                                                  addItem?.timeOperate !=
+                                                                      ''
+                                                              ? addItem
+                                                                  ?.timeOperate
+                                                              : '',
+                                                      estimateInSecond: addItem
+                                                              ?.estimateInSecond ?? 0,
+                                                    ));
+                                                    setState(() {});
+
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      text: 'Bước',
+                                      icon: const Icon(
+                                        Icons.add,
+                                        size: 15.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 36.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color: Colors.white,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 24.0)),
+                                ),
+                              ),
+                              Container(
+                                width: 25.0,
+                                height: 25.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                              ),
+                              Builder(
+                                builder: (context) {
+                                  final listView = _model.stepList.toList();
+                                  return ReorderableListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: listView.length,
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewItem =
+                                          listView[listViewIndex];
+                                      return Container(
+                                        key: ValueKey("ListView_4plixxgx" '_' +
+                                            listViewIndex.toString()),
+                                        child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.center,
+                                              CrossAxisAlignment.stretch,
                                           children: [
-                                            Expanded(
-                                              child:
-                                                  FlutterFlowDropDown<String>(
-                                                controller: _model
-                                                        .dropDownRunValueController ??=
-                                                    FormFieldController<String>(
-                                                  _model.dropDownRunValue ??=
-                                                      () {
-                                                    if (_model
-                                                            .dataUpdate!
-                                                            .departments
-                                                            .length >
-                                                        0) {
-                                                      return '1';
-                                                    } else if (_model
-                                                            .dataUpdate!
-                                                            .staffs
-                                                            .length >
-                                                        0) {
-                                                      return '2';
-                                                    } else {
-                                                      return '0';
-                                                    }
-                                                  }(),
-                                                ),
-                                                options: List<String>.from(
-                                                    ['0', '1', '2']),
-                                                optionLabels: [
-                                                  'Tất cả',
-                                                  'Phòng ban',
-                                                  'Nhân viên'
-                                                ],
-                                                onChanged: (val) async {
-                                                  setState(() => _model
-                                                      .dropDownRunValue = val);
-                                                  _model.updateDataUpdateStruct(
-                                                    (e) => e
-                                                      ..departments = []
-                                                      ..staffs = [],
-                                                  );
-                                                  setState(() {});
-                                                  if (_model.dropDownRunValue ==
-                                                      '1') {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return WebViewAware(
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  DropdownDepartmentsListWidget(
-                                                                dataPar: _model
-                                                                    .dataUpdate
-                                                                    ?.departments,
-                                                                callback:
-                                                                    (item) async {
-                                                                  _model
-                                                                      .updateDataUpdateStruct(
-                                                                    (e) => e
-                                                                      ..departments =
-                                                                          item!
-                                                                              .toList(),
-                                                                  );
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  } else if (_model
-                                                          .dropDownRunValue ==
-                                                      '2') {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return WebViewAware(
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  DropdownUserListWidget(
-                                                                dataPar: _model
-                                                                    .dataUpdate
-                                                                    ?.staffs,
-                                                                callback:
-                                                                    (item) async {
-                                                                  await _model
-                                                                      .addStaff(
-                                                                    context,
-                                                                    item: item,
-                                                                  );
-
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  }
-                                                },
-                                                width: 300.0,
-                                                height: 56.0,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                hintText: 'Khởi chạy',
-                                                icon: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                elevation: 0.0,
-                                                borderColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                borderWidth: 1.0,
-                                                borderRadius: 8.0,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 4.0, 16.0, 4.0),
-                                                hidesUnderline: true,
-                                                isOverButton: true,
-                                                isSearchable: false,
-                                                isMultiSelect: false,
-                                              ),
-                                            ),
-                                          ].divide(SizedBox(width: 24.0)),
-                                        ),
-                                      ),
-                                      if (_model.dropDownRunValue == '2')
-                                        Container(
-                                          width: double.infinity,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 5.0, 0.0),
-                                            child: Row(
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                  MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  '# Danh sách nhân viên khởi chạy',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                                FlutterFlowIconButton(
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons.add,
+                                                SizedBox(
+                                                  height: 30.0,
+                                                  child: VerticalDivider(
+                                                    width: 1.0,
+                                                    thickness: 1.0,
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryText,
-                                                    size: 24.0,
                                                   ),
-                                                  onPressed: () async {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return WebViewAware(
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  DropdownUserListWidget(
-                                                                dataPar: _model
-                                                                    .dataUpdate
-                                                                    ?.staffs,
-                                                                callback:
-                                                                    (item) async {
-                                                                  await _model
-                                                                      .addStaff(
-                                                                    context,
-                                                                    item: item,
-                                                                  );
-
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  },
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        ),
-                                      if (_model.dropDownRunValue == '2')
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 10.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .noColor,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: Builder(
-                                                builder: (context) {
-                                                  final listStaff = _model
-                                                          .dataUpdate?.staffs
-                                                          ?.toList() ??
-                                                      [];
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: listStaff.length,
-                                                    itemBuilder: (context,
-                                                        listStaffIndex) {
-                                                      final listStaffItem =
-                                                          listStaff[
-                                                              listStaffIndex];
-                                                      return Container(
-                                                        decoration:
-                                                            BoxDecoration(),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'Button pressed ...');
-                                                            },
-                                                            text: listStaffItem
-                                                                .staffsId
-                                                                .userId
-                                                                .firstName,
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 25.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      if (_model.dropDownRunValue == '1')
-                                        Container(
-                                          width: double.infinity,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 5.0, 0.0),
-                                            child: Row(
+                                            Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
                                               children: [
-                                                Text(
-                                                  '# Danh sác bộ phận khởi chạy',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FontStyle.italic,
+                                                Expanded(
+                                                  child: Container(
+                                                    width: 100.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                       ),
-                                                ),
-                                                FlutterFlowIconButton(
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons.add,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    await showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      enableDrag: false,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return WebViewAware(
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  DropdownDepartmentsListWidget(
-                                                                dataPar: _model
-                                                                    .dataUpdate
-                                                                    ?.departments,
-                                                                callback:
-                                                                    (item) async {
-                                                                  _model
-                                                                      .updateDataUpdateStruct(
-                                                                    (e) => e
-                                                                      ..departments =
-                                                                          item!
-                                                                              .toList(),
-                                                                  );
-                                                                  setState(
-                                                                      () {});
-
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      if (_model.dropDownRunValue == '1')
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 10.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .noColor,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: Builder(
-                                                builder: (context) {
-                                                  final listStaff = _model
-                                                          .dataUpdate
-                                                          ?.departments
-                                                          ?.toList() ??
-                                                      [];
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: listStaff.length,
-                                                    itemBuilder: (context,
-                                                        listStaffIndex) {
-                                                      final listStaffItem =
-                                                          listStaff[
-                                                              listStaffIndex];
-                                                      return Container(
-                                                        decoration:
-                                                            BoxDecoration(),
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'Button pressed ...');
-                                                            },
-                                                            text: listStaffItem
-                                                                .departmentsId
-                                                                .name,
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 25.0,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondary,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      SingleChildScrollView(
-                                        primary: false,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                constraints: BoxConstraints(
-                                                  maxWidth: 570.0,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  border: Border.all(
-                                                    color: Color(0xFFE0E3E7),
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 14.0),
-                                                  child: SingleChildScrollView(
-                                                    primary: false,
-                                                    child: Column(
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Row(
                                                       mainAxisSize:
-                                                          MainAxisSize.min,
+                                                          MainAxisSize.max,
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      16.0,
+                                                              const EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            '${(listViewIndex + 1).toString()}.',
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
                                                                       0.0,
-                                                                      16.0,
-                                                                      24.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .settings_outlined,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                              Expanded(
-                                                                child: Text(
-                                                                  'Thiết lập cấu hình',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
                                                                 ),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                width: 8.0)),
                                                           ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        22.0,
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                                child: Text(
-                                                                  'Thiết lập tuần lặp',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                        fontStyle:
-                                                                            FontStyle.italic,
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      16.0,
-                                                                      0.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 50.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      FlutterFlowDropDown<
-                                                                          String>(
-                                                                    controller: _model
-                                                                            .dropDownCronValueController ??=
-                                                                        FormFieldController<
-                                                                            String>(
-                                                                      _model.dropDownCronValue ??= functions.checkTypeCron(_model
-                                                                          .dataUpdate!
-                                                                          .cron),
-                                                                    ),
-                                                                    options: List<
-                                                                        String>.from([
-                                                                      '0',
-                                                                      '1',
-                                                                      '2',
-                                                                      '3'
-                                                                    ]),
-                                                                    optionLabels: [
-                                                                      'Không lặp',
-                                                                      'Lặp hàng ngày',
-                                                                      'Lặp trong tuần',
-                                                                      'Lặp trong tháng'
-                                                                    ],
-                                                                    onChanged:
-                                                                        (val) async {
-                                                                      setState(() =>
-                                                                          _model.dropDownCronValue =
-                                                                              val);
-                                                                      _model.checkCron =
-                                                                          [];
-                                                                      setState(
-                                                                          () {});
-                                                                      if (_model
-                                                                              .dropDownCronValue !=
-                                                                          '3') {
-                                                                        _model.loop =
-                                                                            0;
-                                                                        _model.checkOne =
-                                                                            [];
-                                                                        _model.checkTwo =
-                                                                            [];
-                                                                        _model.checkThrees =
-                                                                            [];
-                                                                        _model.checkBoxFour =
-                                                                            [];
-                                                                        _model.checkBoxFive =
-                                                                            [];
-                                                                        _model.checkBoxSix =
-                                                                            [];
-                                                                        setState(
-                                                                            () {});
-                                                                        _model.checkType =
-                                                                            _model.dropDownCronValue;
-                                                                        setState(
-                                                                            () {});
-                                                                      } else {
-                                                                        while (_model.loop <
-                                                                            6) {
-                                                                          _model
-                                                                              .addToCheckOne(CheckBoxGroupStruct(
-                                                                            type:
-                                                                                false,
-                                                                            title: (_model.loop + 1) < 10
-                                                                                ? '0${(_model.loop + 1).toString()}'
-                                                                                : '${(_model.loop + 1).toString()}',
-                                                                          ));
-                                                                          _model
-                                                                              .addToCheckTwo(CheckBoxGroupStruct(
-                                                                            type:
-                                                                                false,
-                                                                            title: (_model.loop + 7) < 10
-                                                                                ? '0${(_model.loop + 7).toString()}'
-                                                                                : '${(_model.loop + 7).toString()}',
-                                                                          ));
-                                                                          _model
-                                                                              .addToCheckThrees(CheckBoxGroupStruct(
-                                                                            type:
-                                                                                false,
-                                                                            title:
-                                                                                '${(_model.loop + 13).toString()}',
-                                                                          ));
-                                                                          _model
-                                                                              .addToCheckBoxFour(CheckBoxGroupStruct(
-                                                                            type:
-                                                                                false,
-                                                                            title:
-                                                                                '${(_model.loop + 19).toString()}',
-                                                                          ));
-                                                                          _model
-                                                                              .addToCheckBoxFive(CheckBoxGroupStruct(
-                                                                            type:
-                                                                                false,
-                                                                            title:
-                                                                                '${(_model.loop + 25).toString()}',
-                                                                          ));
-                                                                          setState(
-                                                                              () {});
-                                                                          _model.loop =
-                                                                              _model.loop + 1;
-                                                                          setState(
-                                                                              () {});
-                                                                        }
-                                                                        _model.addToCheckBoxSix(
-                                                                            CheckBoxGroupStruct(
-                                                                          type:
-                                                                              false,
-                                                                          title:
-                                                                              '31',
-                                                                        ));
-                                                                        setState(
-                                                                            () {});
-                                                                        _model.loop =
-                                                                            0;
-                                                                        setState(
-                                                                            () {});
-                                                                        _model.checkType =
-                                                                            _model.dropDownCronValue;
-                                                                        setState(
-                                                                            () {});
-                                                                      }
-                                                                    },
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        60.0,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                    hintText:
-                                                                        'Vui lòng chọn lặp',
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_down_rounded,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          24.0,
-                                                                    ),
-                                                                    fillColor: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    elevation:
-                                                                        1.0,
-                                                                    borderColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                    borderWidth:
-                                                                        1.0,
-                                                                    borderRadius:
-                                                                        8.0,
-                                                                    margin: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            4.0,
-                                                                            16.0,
-                                                                            4.0),
-                                                                    hidesUnderline:
-                                                                        true,
-                                                                    isOverButton:
-                                                                        true,
-                                                                    isSearchable:
-                                                                        false,
-                                                                    isMultiSelect:
-                                                                        false,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        if (_model.checkType ==
-                                                            '2')
-                                                          Padding(
+                                                        Expanded(
+                                                          child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
-                                                                        10.0,
+                                                                        8.0,
                                                                         0.0,
-                                                                        0.0),
-                                                            child: Container(
-                                                              width: double
-                                                                  .infinity,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      '# Ngày cụ thể trong tuần (chọn một hoặc nhiều)',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
+                                                                        8.0),
+                                                            child: Text(
+                                                              listViewItem
+                                                                              .name !=
+                                                                          ''
+                                                                  ? listViewItem
+                                                                      .name
+                                                                  : ' ',
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                   ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0,
-                                                                            8.0),
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceAround,
-                                                                      children: [
-                                                                        FFButtonWidget(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            setState(() =>
-                                                                                _model.groupWeekValueController?.value = List.from([
-                                                                                  'Thứ Hai',
-                                                                                  'Thứ Ba',
-                                                                                  'Thứ Tư',
-                                                                                  'Thứ Năm',
-                                                                                  'Thứ Sáu',
-                                                                                  'Thứ Bảy',
-                                                                                  'Chủ Nhật'
-                                                                                ]));
-                                                                            while (_model.loop <
-                                                                                7) {
-                                                                              _model.addToCheckCron('${(_model.loop + 1).toString()}');
-                                                                              setState(() {});
-                                                                              _model.loop = _model.loop + 1;
-                                                                              setState(() {});
-                                                                            }
-                                                                            _model.loop =
-                                                                                0;
-                                                                            setState(() {});
-                                                                          },
-                                                                          text:
-                                                                              'Chọn tất cả',
-                                                                          options:
-                                                                              FFButtonOptions(
-                                                                            width:
-                                                                                100.0,
-                                                                            height:
-                                                                                30.0,
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                10.0,
-                                                                                0.0),
-                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 14.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Colors.transparent,
-                                                                              width: 1.0,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                          ),
-                                                                        ),
-                                                                        FFButtonWidget(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            setState(() =>
-                                                                                _model.groupWeekValueController?.value = []);
-                                                                            _model.checkCron =
-                                                                                [];
-                                                                            setState(() {});
-                                                                          },
-                                                                          text:
-                                                                              'Bỏ chọn',
-                                                                          options:
-                                                                              FFButtonOptions(
-                                                                            width:
-                                                                                100.0,
-                                                                            height:
-                                                                                30.0,
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                10.0,
-                                                                                0.0),
-                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontSize: 14.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                ),
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Colors.transparent,
-                                                                              width: 1.0,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  FlutterFlowCheckboxGroup(
-                                                                    options: [
-                                                                      'Thứ Hai',
-                                                                      'Thứ Ba',
-                                                                      'Thứ Tư',
-                                                                      'Thứ Năm',
-                                                                      'Thứ Sáu',
-                                                                      'Thứ Bảy',
-                                                                      'Chủ Nhật'
-                                                                    ],
-                                                                    onChanged: (val) =>
-                                                                        setState(() =>
-                                                                            _model.groupWeekValues =
-                                                                                val),
-                                                                    controller: _model
-                                                                            .groupWeekValueController ??=
-                                                                        FormFieldController<
-                                                                            List<String>>(
-                                                                      List.from(
-                                                                          functions.cronToType(_model.dataUpdate!.cron) ??
-                                                                              []),
-                                                                    ),
-                                                                    activeColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondary,
-                                                                    checkColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .info,
-                                                                    checkboxBorderColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                    unselectedTextStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                    checkboxBorderRadius:
-                                                                        BorderRadius.circular(
-                                                                            4.0),
-                                                                    initialized:
-                                                                        _model.groupWeekValues !=
-                                                                            null,
-                                                                  ),
-                                                                ],
-                                                              ),
                                                             ),
                                                           ),
-                                                        if (_model.checkType ==
-                                                            '3')
-                                                          Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        24.0,
-                                                                        10.0,
-                                                                        16.0,
-                                                                        0.0),
-                                                                child: Text(
-                                                                  '# Danh sách ngày cụ thể trong tháng (chọn một hoặc nhiều)',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        16.0,
-                                                                        8.0,
-                                                                        16.0,
-                                                                        8.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceAround,
-                                                                  children: [
-                                                                    FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        while (_model.loop <
-                                                                            6) {
-                                                                          _model
-                                                                              .updateCheckOneAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = true,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckTwoAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = true,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckThreesAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = true,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckBoxFourAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = true,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckBoxFiveAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = true,
-                                                                          );
-                                                                          setState(
-                                                                              () {});
-                                                                          _model.loop =
-                                                                              _model.loop + 1;
-                                                                          setState(
-                                                                              () {});
-                                                                        }
-                                                                        _model
-                                                                            .updateCheckBoxSixAtIndex(
-                                                                          0,
-                                                                          (e) => e
-                                                                            ..type =
-                                                                                true,
-                                                                        );
-                                                                        setState(
-                                                                            () {});
-                                                                        _model.loop =
-                                                                            0;
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      text:
-                                                                          'Chọn tất cả',
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            100.0,
-                                                                        height:
-                                                                            30.0,
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              fontSize: 14.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                    ),
-                                                                    FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        while (_model.loop <
-                                                                            6) {
-                                                                          _model
-                                                                              .updateCheckOneAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = false,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckTwoAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = false,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckThreesAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = false,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckBoxFourAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = false,
-                                                                          );
-                                                                          _model
-                                                                              .updateCheckBoxFiveAtIndex(
-                                                                            _model.loop,
-                                                                            (e) => e
-                                                                              ..type = false,
-                                                                          );
-                                                                          setState(
-                                                                              () {});
-                                                                          _model.loop =
-                                                                              _model.loop + 1;
-                                                                          setState(
-                                                                              () {});
-                                                                        }
-                                                                        _model
-                                                                            .updateCheckBoxSixAtIndex(
-                                                                          0,
-                                                                          (e) => e
-                                                                            ..type =
-                                                                                false,
-                                                                        );
-                                                                        setState(
-                                                                            () {});
-                                                                        _model.loop =
-                                                                            0;
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      text:
-                                                                          'Bỏ chọn',
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            100.0,
-                                                                        height:
-                                                                            30.0,
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                              fontSize: 14.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 60.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final listOne = _model
-                                                                          .checkOne
-                                                                          .toList();
-                                                                      return ListView
-                                                                          .separated(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        scrollDirection:
-                                                                            Axis.horizontal,
-                                                                        itemCount:
-                                                                            listOne.length,
-                                                                        separatorBuilder:
-                                                                            (_, __) =>
-                                                                                SizedBox(width: 4.0),
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                listOneIndex) {
-                                                                          final listOneItem =
-                                                                              listOne[listOneIndex];
-                                                                          return Container(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.15,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                wrapWithModel(
-                                                                                  model: _model.checkBoxToggleModels1.getModel(
-                                                                                    '${listOneItem.title}${listOneItem.type.toString()}',
-                                                                                    listOneIndex,
-                                                                                  ),
-                                                                                  updateCallback: () => setState(() {}),
-                                                                                  updateOnChange: true,
-                                                                                  child: CheckBoxToggleWidget(
-                                                                                    key: Key(
-                                                                                      'Keyr0a_${'${listOneItem.title}${listOneItem.type.toString()}'}',
-                                                                                    ),
-                                                                                    checkParam: listOneItem.type,
-                                                                                    callBack: (checkCall) async {
-                                                                                      _model.updateCheckOneAtIndex(
-                                                                                        listOneIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                      setState(() {});
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listOneItem.title,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 60.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final listTwo = _model
-                                                                          .checkTwo
-                                                                          .toList();
-                                                                      return ListView
-                                                                          .separated(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        scrollDirection:
-                                                                            Axis.horizontal,
-                                                                        itemCount:
-                                                                            listTwo.length,
-                                                                        separatorBuilder:
-                                                                            (_, __) =>
-                                                                                SizedBox(width: 4.0),
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                listTwoIndex) {
-                                                                          final listTwoItem =
-                                                                              listTwo[listTwoIndex];
-                                                                          return Container(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.15,
-                                                                            height:
-                                                                                30.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                wrapWithModel(
-                                                                                  model: _model.checkBoxToggleModels2.getModel(
-                                                                                    '${listTwoItem.title}${listTwoItem.type.toString()}',
-                                                                                    listTwoIndex,
-                                                                                  ),
-                                                                                  updateCallback: () => setState(() {}),
-                                                                                  updateOnChange: true,
-                                                                                  child: CheckBoxToggleWidget(
-                                                                                    key: Key(
-                                                                                      'Keyktf_${'${listTwoItem.title}${listTwoItem.type.toString()}'}',
-                                                                                    ),
-                                                                                    checkParam: listTwoItem.type,
-                                                                                    callBack: (checkCall) async {
-                                                                                      _model.updateCheckTwoAtIndex(
-                                                                                        listTwoIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                      setState(() {});
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listTwoItem.title,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 60.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final listThree = _model
-                                                                          .checkThrees
-                                                                          .toList();
-                                                                      return ListView
-                                                                          .separated(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        scrollDirection:
-                                                                            Axis.horizontal,
-                                                                        itemCount:
-                                                                            listThree.length,
-                                                                        separatorBuilder:
-                                                                            (_, __) =>
-                                                                                SizedBox(width: 4.0),
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                listThreeIndex) {
-                                                                          final listThreeItem =
-                                                                              listThree[listThreeIndex];
-                                                                          return Container(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.15,
-                                                                            height:
-                                                                                30.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                wrapWithModel(
-                                                                                  model: _model.checkBoxToggleModels3.getModel(
-                                                                                    '${listThreeItem.title}${listThreeItem.type.toString()}',
-                                                                                    listThreeIndex,
-                                                                                  ),
-                                                                                  updateCallback: () => setState(() {}),
-                                                                                  updateOnChange: true,
-                                                                                  child: CheckBoxToggleWidget(
-                                                                                    key: Key(
-                                                                                      'Keycnd_${'${listThreeItem.title}${listThreeItem.type.toString()}'}',
-                                                                                    ),
-                                                                                    checkParam: listThreeItem.type,
-                                                                                    callBack: (checkCall) async {
-                                                                                      _model.updateCheckThreesAtIndex(
-                                                                                        listThreeIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                      setState(() {});
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listThreeItem.title,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 60.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final listFour = _model
-                                                                          .checkBoxFour
-                                                                          .toList();
-                                                                      return ListView
-                                                                          .separated(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        scrollDirection:
-                                                                            Axis.horizontal,
-                                                                        itemCount:
-                                                                            listFour.length,
-                                                                        separatorBuilder:
-                                                                            (_, __) =>
-                                                                                SizedBox(width: 4.0),
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                listFourIndex) {
-                                                                          final listFourItem =
-                                                                              listFour[listFourIndex];
-                                                                          return Container(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.15,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                wrapWithModel(
-                                                                                  model: _model.checkBoxToggleModels4.getModel(
-                                                                                    '${listFourItem.title}${listFourItem.type.toString()}',
-                                                                                    listFourIndex,
-                                                                                  ),
-                                                                                  updateCallback: () => setState(() {}),
-                                                                                  updateOnChange: true,
-                                                                                  child: CheckBoxToggleWidget(
-                                                                                    key: Key(
-                                                                                      'Key6fy_${'${listFourItem.title}${listFourItem.type.toString()}'}',
-                                                                                    ),
-                                                                                    checkParam: listFourItem.type,
-                                                                                    callBack: (checkCall) async {
-                                                                                      _model.updateCheckBoxFourAtIndex(
-                                                                                        listFourIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                      setState(() {});
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listFourItem.title,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 60.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) {
-                                                                      final listFive = _model
-                                                                          .checkBoxFive
-                                                                          .toList();
-                                                                      return ListView
-                                                                          .separated(
-                                                                        padding:
-                                                                            EdgeInsets.zero,
-                                                                        scrollDirection:
-                                                                            Axis.horizontal,
-                                                                        itemCount:
-                                                                            listFive.length,
-                                                                        separatorBuilder:
-                                                                            (_, __) =>
-                                                                                SizedBox(width: 4.0),
-                                                                        itemBuilder:
-                                                                            (context,
-                                                                                listFiveIndex) {
-                                                                          final listFiveItem =
-                                                                              listFive[listFiveIndex];
-                                                                          return Container(
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.15,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                wrapWithModel(
-                                                                                  model: _model.checkBoxToggleModels5.getModel(
-                                                                                    '${listFiveItem.title}${listFiveItem.type.toString()}',
-                                                                                    listFiveIndex,
-                                                                                  ),
-                                                                                  updateCallback: () => setState(() {}),
-                                                                                  updateOnChange: true,
-                                                                                  child: CheckBoxToggleWidget(
-                                                                                    key: Key(
-                                                                                      'Keyoxa_${'${listFiveItem.title}${listFiveItem.type.toString()}'}',
-                                                                                    ),
-                                                                                    checkParam: listFiveItem.type,
-                                                                                    callBack: (checkCall) async {
-                                                                                      _model.updateCheckBoxFiveAtIndex(
-                                                                                        listFiveIndex,
-                                                                                        (e) => e..type = checkCall,
-                                                                                      );
-                                                                                      setState(() {});
-                                                                                    },
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listFiveItem.title,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: 14.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Container(
-                                                                width: double
-                                                                    .infinity,
-                                                                height: 60.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Builder(
-                                                                  builder:
-                                                                      (context) {
-                                                                    final listSix = _model
-                                                                        .checkBoxSix
-                                                                        .toList();
-                                                                    return ListView
-                                                                        .separated(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      scrollDirection:
-                                                                          Axis.horizontal,
-                                                                      itemCount:
-                                                                          listSix
-                                                                              .length,
-                                                                      separatorBuilder: (_,
-                                                                              __) =>
-                                                                          SizedBox(
-                                                                              width: 4.0),
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              listSixIndex) {
-                                                                        final listSixItem =
-                                                                            listSix[listSixIndex];
-                                                                        return Container(
-                                                                          width:
-                                                                              MediaQuery.sizeOf(context).width * 0.15,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          ),
-                                                                          child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              wrapWithModel(
-                                                                                model: _model.checkBoxToggleModels6.getModel(
-                                                                                  '${listSixItem.title}${listSixItem.type.toString()}',
-                                                                                  listSixIndex,
-                                                                                ),
-                                                                                updateCallback: () => setState(() {}),
-                                                                                updateOnChange: true,
-                                                                                child: CheckBoxToggleWidget(
-                                                                                  key: Key(
-                                                                                    'Keyoyn_${'${listSixItem.title}${listSixItem.type.toString()}'}',
-                                                                                  ),
-                                                                                  checkParam: listSixItem.type,
-                                                                                  callBack: (checkCall) async {
-                                                                                    _model.updateCheckBoxSixAtIndex(
-                                                                                      listSixIndex,
-                                                                                      (e) => e..type = checkCall,
-                                                                                    );
-                                                                                    setState(() {});
-                                                                                  },
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                listSixItem.title,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Nunito Sans',
-                                                                                      fontSize: 14.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      16.0,
-                                                                      24.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                          child: Container(
-                                                            width:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
+                                                        ),
+                                                        Builder(
+                                                          builder: (context) =>
+                                                              FlutterFlowIconButton(
+                                                            borderRadius: 20.0,
+                                                            borderWidth: 1.0,
+                                                            buttonSize: 40.0,
+                                                            icon: Icon(
+                                                              Icons.more_vert,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryBackground,
+                                                                  .primaryText,
+                                                              size: 24.0,
                                                             ),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Theme(
-                                                                      data:
-                                                                          ThemeData(
-                                                                        checkboxTheme:
-                                                                            CheckboxThemeData(
-                                                                          visualDensity:
-                                                                              VisualDensity.compact,
-                                                                          materialTapTargetSize:
-                                                                              MaterialTapTargetSize.shrinkWrap,
-                                                                          shape:
-                                                                              CircleBorder(),
-                                                                        ),
-                                                                        unselectedWidgetColor:
-                                                                            FlutterFlowTheme.of(context).secondaryText,
-                                                                      ),
+                                                            onPressed:
+                                                                () async {
+                                                              await showAlignedDialog(
+                                                                context:
+                                                                    context,
+                                                                isGlobal: false,
+                                                                avoidOverflow:
+                                                                    true,
+                                                                targetAnchor:
+                                                                    const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                followerAnchor:
+                                                                    const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Material(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () => _model
+                                                                              .unfocusNode
+                                                                              .canRequestFocus
+                                                                          ? FocusScope.of(context).requestFocus(_model
+                                                                              .unfocusNode)
+                                                                          : FocusScope.of(context)
+                                                                              .unfocus(),
                                                                       child:
-                                                                          Checkbox(
-                                                                        value: _model
-                                                                            .checkboxValue1 ??= '${_model.dataUpdate?.remind?.toString()}' ==
-                                                                                '1'
-                                                                            ? true
-                                                                            : false,
-                                                                        onChanged:
-                                                                            (newValue) async {
-                                                                          setState(() =>
-                                                                              _model.checkboxValue1 = newValue!);
-                                                                          if (newValue!) {
-                                                                            _model.updateDataUpdateStruct(
-                                                                              (e) => e..remind = 1,
-                                                                            );
+                                                                          ProcedureStepMenuWidget(
+                                                                        item:
+                                                                            listViewItem,
+                                                                        idItem: listViewItem.id != ''
+                                                                            ? listViewItem.id
+                                                                            : 'null',
+                                                                        callBack:
+                                                                            (upStep,
+                                                                                idItem) async {
+                                                                          await _model
+                                                                              .updateStep(
+                                                                            context,
+                                                                            item:
+                                                                                upStep,
+                                                                            index:
+                                                                                listViewIndex,
+                                                                            idItem:
+                                                                                idItem,
+                                                                          );
+
+                                                                          setState(
+                                                                              () {});
+                                                                        },
+                                                                        callBackDelete:
+                                                                            () async {
+                                                                          if (listViewItem.id != '') {
+                                                                            _model.removeAtIndexFromStepList(listViewIndex);
+                                                                            _model.addToStepDelete(listViewItem.id);
                                                                             setState(() {});
                                                                           } else {
-                                                                            _model.updateDataUpdateStruct(
-                                                                              (e) => e..remind = 0,
-                                                                            );
+                                                                            _model.removeAtIndexFromStepList(listViewIndex);
                                                                             setState(() {});
                                                                           }
                                                                         },
-                                                                        side:
-                                                                            BorderSide(
-                                                                          width:
-                                                                              2,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                        ),
-                                                                        activeColor:
-                                                                            FlutterFlowTheme.of(context).primary,
-                                                                        checkColor:
-                                                                            FlutterFlowTheme.of(context).info,
                                                                       ),
                                                                     ),
-                                                                    Expanded(
-                                                                      child:
-                                                                          Text(
-                                                                        'Thiết lập nhắc trước khi bắt đầu bước:',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w500,
-                                                                              fontStyle: FontStyle.italic,
-                                                                              decoration: TextDecoration.underline,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          8.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            TextFormField(
-                                                                          controller:
-                                                                              _model.timeHourTextController,
-                                                                          focusNode:
-                                                                              _model.timeHourFocusNode,
-                                                                          onChanged: (_) =>
-                                                                              EasyDebounce.debounce(
-                                                                            '_model.timeHourTextController',
-                                                                            Duration(milliseconds: 2000),
-                                                                            () async {
-                                                                              _model.updateDataUpdateStruct(
-                                                                                (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != null && _model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != null && _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
-                                                                              );
-                                                                              setState(() {});
-                                                                            },
-                                                                          ),
-                                                                          autofocus:
-                                                                              false,
-                                                                          obscureText:
-                                                                              false,
-                                                                          decoration:
-                                                                              InputDecoration(
-                                                                            labelText:
-                                                                                'Giờ',
-                                                                            labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                            hintText:
-                                                                                ' ',
-                                                                            hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                            enabledBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).alternate,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            focusedBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            errorBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).error,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            focusedErrorBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).error,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                16.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                          keyboardType:
-                                                                              TextInputType.number,
-                                                                          validator: _model
-                                                                              .timeHourTextControllerValidator
-                                                                              .asValidator(context),
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            TextFormField(
-                                                                          controller:
-                                                                              _model.timeMinuteTextController,
-                                                                          focusNode:
-                                                                              _model.timeMinuteFocusNode,
-                                                                          onChanged: (_) =>
-                                                                              EasyDebounce.debounce(
-                                                                            '_model.timeMinuteTextController',
-                                                                            Duration(milliseconds: 2000),
-                                                                            () async {
-                                                                              _model.updateDataUpdateStruct(
-                                                                                (e) => e..remindInSecond = functions.timeToMinute(_model.timeHourTextController.text != null && _model.timeHourTextController.text != '' ? _model.timeHourTextController.text : '0', _model.timeMinuteTextController.text != null && _model.timeMinuteTextController.text != '' ? _model.timeMinuteTextController.text : '0', null),
-                                                                              );
-                                                                              setState(() {});
-                                                                            },
-                                                                          ),
-                                                                          autofocus:
-                                                                              false,
-                                                                          obscureText:
-                                                                              false,
-                                                                          decoration:
-                                                                              InputDecoration(
-                                                                            labelText:
-                                                                                'Phút',
-                                                                            labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                            hintText:
-                                                                                ' ',
-                                                                            hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                            enabledBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).alternate,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            focusedBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            errorBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).error,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            focusedErrorBorder:
-                                                                                OutlineInputBorder(
-                                                                              borderSide: BorderSide(
-                                                                                color: FlutterFlowTheme.of(context).error,
-                                                                                width: 1.0,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                            ),
-                                                                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                16.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                          ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                letterSpacing: 0.0,
-                                                                              ),
-                                                                          keyboardType:
-                                                                              TextInputType.number,
-                                                                          validator: _model
-                                                                              .timeMinuteTextControllerValidator
-                                                                              .asValidator(context),
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        flex: 1,
-                                                                        child:
-                                                                            Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              -1.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            '(${_model.dataUpdate?.remindInSecond != null ? _model.dataUpdate?.remindInSecond?.toString() : '0'} phút)',
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  letterSpacing: 0.0,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ].divide(SizedBox(
-                                                                        width:
-                                                                            8.0)),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      16.0,
-                                                                      24.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Theme(
-                                                                data: ThemeData(
-                                                                  checkboxTheme:
-                                                                      CheckboxThemeData(
-                                                                    visualDensity:
-                                                                        VisualDensity
-                                                                            .compact,
-                                                                    materialTapTargetSize:
-                                                                        MaterialTapTargetSize
-                                                                            .shrinkWrap,
-                                                                    shape:
-                                                                        RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              90.0),
-                                                                    ),
-                                                                  ),
-                                                                  unselectedWidgetColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                ),
-                                                                child: Checkbox(
-                                                                  value: _model
-                                                                          .checkboxValue2 ??=
-                                                                      '${_model.dataUpdate?.remind2?.toString()}' ==
-                                                                              '1'
-                                                                          ? true
-                                                                          : false,
-                                                                  onChanged:
-                                                                      (newValue) async {
-                                                                    setState(() =>
-                                                                        _model.checkboxValue2 =
-                                                                            newValue!);
-                                                                    if (newValue!) {
-                                                                      _model
-                                                                          .updateDataUpdateStruct(
-                                                                        (e) => e
-                                                                          ..remind2 =
-                                                                              1,
-                                                                      );
-                                                                      setState(
-                                                                          () {});
-                                                                    } else {
-                                                                      _model
-                                                                          .updateDataUpdateStruct(
-                                                                        (e) => e
-                                                                          ..remind2 =
-                                                                              0,
-                                                                      );
-                                                                      setState(
-                                                                          () {});
-                                                                    }
-                                                                  },
-                                                                  side:
-                                                                      BorderSide(
-                                                                    width: 2,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                  ),
-                                                                  activeColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                  checkColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .info,
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: Text(
-                                                                  'Thiết lập nhắc chuyển bước',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontStyle:
-                                                                            FontStyle.italic,
-                                                                        decoration:
-                                                                            TextDecoration.underline,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ],
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
-                                              ),
+                                              ],
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    },
+                                    onReorder: (int reorderableOldIndex,
+                                        int reorderableNewIndex) async {
+                                      _model.updateListView =
+                                          await actions.reorderItems(
+                                        _model.stepList.toList(),
+                                        reorderableOldIndex,
+                                        reorderableNewIndex,
+                                      );
+                                      _model.stepList = _model.updateListView!
+                                          .toList()
+                                          .cast<WorkflowsStepCreateStruct>();
+                                      setState(() {});
+
+                                      setState(() {});
+                                    },
+                                  );
+                                },
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30.0,
+                                    child: VerticalDivider(
+                                      width: 1.0,
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Container(
+                                width: 25.0,
+                                height: 25.0,
+                                decoration: BoxDecoration(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: SingleChildScrollView(
-                                primary: false,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 24.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            'Sơ đồ quy trình',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return WebViewAware(
-                                                    child: GestureDetector(
-                                                      onTap: () => _model
-                                                              .unfocusNode
-                                                              .canRequestFocus
-                                                          ? FocusScope.of(
-                                                                  context)
-                                                              .requestFocus(_model
-                                                                  .unfocusNode)
-                                                          : FocusScope.of(
-                                                                  context)
-                                                              .unfocus(),
-                                                      child: Padding(
-                                                        padding: MediaQuery
-                                                            .viewInsetsOf(
-                                                                context),
-                                                        child:
-                                                            ProcedureStepCreateWidget(
-                                                          callBack:
-                                                              (addItem) async {
-                                                            _model.addToStepList(
-                                                                WorkflowsStepCreateStruct(
-                                                              name:
-                                                                  addItem?.name,
-                                                              description: addItem
-                                                                  ?.description,
-                                                              staffs: addItem
-                                                                  ?.staffs,
-                                                              executeType: addItem
-                                                                  ?.executeType,
-                                                              actionType: addItem
-                                                                  ?.actionType,
-                                                              operations: addItem
-                                                                  ?.operations,
-                                                              status:
-                                                                  'published',
-                                                              staffsAlias: addItem
-                                                                  ?.staffsAlias,
-                                                              timeOperate: addItem
-                                                                              ?.timeOperate !=
-                                                                          null &&
-                                                                      addItem?.timeOperate !=
-                                                                          ''
-                                                                  ? addItem
-                                                                      ?.timeOperate
-                                                                  : '',
-                                                              estimateInSecond:
-                                                                  addItem?.estimateInSecond !=
-                                                                          null
-                                                                      ? addItem
-                                                                          ?.estimateInSecond
-                                                                      : 0,
-                                                            ));
-                                                            setState(() {});
-
-                                                            setState(() {});
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then((value) =>
-                                                  safeSetState(() {}));
-                                            },
-                                            text: 'Bước',
-                                            icon: Icon(
-                                              Icons.add,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              height: 40.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                          ),
-                                        ].divide(SizedBox(width: 24.0)),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 25.0,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                    ),
-                                    Builder(
-                                      builder: (context) {
-                                        final listView =
-                                            _model.stepList.toList();
-                                        return ReorderableListView.builder(
-                                          padding: EdgeInsets.zero,
-                                          primary: false,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.vertical,
-                                          itemCount: listView.length,
-                                          itemBuilder:
-                                              (context, listViewIndex) {
-                                            final listViewItem =
-                                                listView[listViewIndex];
-                                            return Container(
-                                              key: ValueKey(
-                                                  "ListView_4plixxgx" +
-                                                      '_' +
-                                                      listViewIndex.toString()),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 30.0,
-                                                        child: VerticalDivider(
-                                                          width: 1.0,
-                                                          thickness: 1.0,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        4.0),
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            8.0),
-                                                                child: Text(
-                                                                  '${(listViewIndex + 1).toString()}.',
-                                                                  maxLines: 2,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                  child: Text(
-                                                                    listViewItem.name !=
-                                                                                null &&
-                                                                            listViewItem.name !=
-                                                                                ''
-                                                                        ? listViewItem
-                                                                            .name
-                                                                        : ' ',
-                                                                    maxLines: 2,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        FlutterFlowIconButton(
-                                                                  borderRadius:
-                                                                      20.0,
-                                                                  borderWidth:
-                                                                      1.0,
-                                                                  buttonSize:
-                                                                      40.0,
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .more_vert,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await showAlignedDialog(
-                                                                      context:
-                                                                          context,
-                                                                      isGlobal:
-                                                                          false,
-                                                                      avoidOverflow:
-                                                                          true,
-                                                                      targetAnchor: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      followerAnchor: AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      builder:
-                                                                          (dialogContext) {
-                                                                        return Material(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: ProcedureStepMenuWidget(
-                                                                                item: listViewItem,
-                                                                                idItem: listViewItem.id != null && listViewItem.id != '' ? listViewItem.id : 'null',
-                                                                                callBack: (upStep, idItem) async {
-                                                                                  await _model.updateStep(
-                                                                                    context,
-                                                                                    item: upStep,
-                                                                                    index: listViewIndex,
-                                                                                    idItem: idItem,
-                                                                                  );
-
-                                                                                  setState(() {});
-                                                                                },
-                                                                                callBackDelete: () async {
-                                                                                  if (listViewItem.id != null && listViewItem.id != '') {
-                                                                                    _model.removeAtIndexFromStepList(listViewIndex);
-                                                                                    _model.addToStepDelete(listViewItem.id);
-                                                                                    setState(() {});
-                                                                                  } else {
-                                                                                    _model.removeAtIndexFromStepList(listViewIndex);
-                                                                                    setState(() {});
-                                                                                  }
-                                                                                },
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                          onReorder: (int reorderableOldIndex,
-                                              int reorderableNewIndex) async {
-                                            _model.updateListView =
-                                                await actions.reorderItems(
-                                              _model.stepList.toList(),
-                                              reorderableOldIndex,
-                                              reorderableNewIndex,
-                                            );
-                                            _model.stepList = _model
-                                                .updateListView!
-                                                .toList()
-                                                .cast<
-                                                    WorkflowsStepCreateStruct>();
-                                            setState(() {});
-
-                                            setState(() {});
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: 30.0,
-                                          child: VerticalDivider(
-                                            width: 1.0,
-                                            thickness: 1.0,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      width: 25.0,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),

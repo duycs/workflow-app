@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,7 +15,6 @@ class StudyProgramListStruct extends BaseStruct {
     List<StudyProgramListTestIdStruct>? tests,
     List<StaffsTestsListStruct>? studioIdTest,
     String? organizationId,
-    DepartmentsIdStruct? departments,
     int? estimateInDay,
     String? dateCreate,
     String? dateCreated,
@@ -32,6 +30,9 @@ class StudyProgramListStruct extends BaseStruct {
     int? inviteCount,
     String? domainId,
     String? categoryId,
+    List<DepartmentsIdStruct>? departments,
+    UserStruct? userCreated,
+    bool? checkBoxProgram,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -41,7 +42,6 @@ class StudyProgramListStruct extends BaseStruct {
         _tests = tests,
         _studioIdTest = studioIdTest,
         _organizationId = organizationId,
-        _departments = departments,
         _estimateInDay = estimateInDay,
         _dateCreate = dateCreate,
         _dateCreated = dateCreated,
@@ -56,7 +56,10 @@ class StudyProgramListStruct extends BaseStruct {
         _limitInvite = limitInvite,
         _inviteCount = inviteCount,
         _domainId = domainId,
-        _categoryId = categoryId;
+        _categoryId = categoryId,
+        _departments = departments,
+        _userCreated = userCreated,
+        _checkBoxProgram = checkBoxProgram;
 
   // "id" field.
   String? _id;
@@ -120,14 +123,6 @@ class StudyProgramListStruct extends BaseStruct {
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
   bool hasOrganizationId() => _organizationId != null;
-
-  // "departments" field.
-  DepartmentsIdStruct? _departments;
-  DepartmentsIdStruct get departments => _departments ?? DepartmentsIdStruct();
-  set departments(DepartmentsIdStruct? val) => _departments = val;
-  void updateDepartments(Function(DepartmentsIdStruct) updateFn) =>
-      updateFn(_departments ??= DepartmentsIdStruct());
-  bool hasDepartments() => _departments != null;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
@@ -226,6 +221,28 @@ class StudyProgramListStruct extends BaseStruct {
   set categoryId(String? val) => _categoryId = val;
   bool hasCategoryId() => _categoryId != null;
 
+  // "departments" field.
+  List<DepartmentsIdStruct>? _departments;
+  List<DepartmentsIdStruct> get departments => _departments ?? const [];
+  set departments(List<DepartmentsIdStruct>? val) => _departments = val;
+  void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) =>
+      updateFn(_departments ??= []);
+  bool hasDepartments() => _departments != null;
+
+  // "user_created" field.
+  UserStruct? _userCreated;
+  UserStruct get userCreated => _userCreated ?? UserStruct();
+  set userCreated(UserStruct? val) => _userCreated = val;
+  void updateUserCreated(Function(UserStruct) updateFn) =>
+      updateFn(_userCreated ??= UserStruct());
+  bool hasUserCreated() => _userCreated != null;
+
+  // "checkBoxProgram" field.
+  bool? _checkBoxProgram;
+  bool get checkBoxProgram => _checkBoxProgram ?? false;
+  set checkBoxProgram(bool? val) => _checkBoxProgram = val;
+  bool hasCheckBoxProgram() => _checkBoxProgram != null;
+
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
       StudyProgramListStruct(
         id: data['id'] as String?,
@@ -246,7 +263,6 @@ class StudyProgramListStruct extends BaseStruct {
           StaffsTestsListStruct.fromMap,
         ),
         organizationId: data['organization_id'] as String?,
-        departments: DepartmentsIdStruct.maybeFromMap(data['departments']),
         estimateInDay: castToType<int>(data['estimate_in_day']),
         dateCreate: data['date_create'] as String?,
         dateCreated: data['date_created'] as String?,
@@ -262,6 +278,12 @@ class StudyProgramListStruct extends BaseStruct {
         inviteCount: castToType<int>(data['invite_count']),
         domainId: data['domain_id'] as String?,
         categoryId: data['category_id'] as String?,
+        departments: getStructList(
+          data['departments'],
+          DepartmentsIdStruct.fromMap,
+        ),
+        userCreated: UserStruct.maybeFromMap(data['user_created']),
+        checkBoxProgram: data['checkBoxProgram'] as bool?,
       );
 
   static StudyProgramListStruct? maybeFromMap(dynamic data) => data is Map
@@ -278,7 +300,6 @@ class StudyProgramListStruct extends BaseStruct {
         'tests': _tests?.map((e) => e.toMap()).toList(),
         'studioIdTest': _studioIdTest?.map((e) => e.toMap()).toList(),
         'organization_id': _organizationId,
-        'departments': _departments?.toMap(),
         'estimate_in_day': _estimateInDay,
         'date_create': _dateCreate,
         'date_created': _dateCreated,
@@ -294,6 +315,9 @@ class StudyProgramListStruct extends BaseStruct {
         'invite_count': _inviteCount,
         'domain_id': _domainId,
         'category_id': _categoryId,
+        'departments': _departments?.map((e) => e.toMap()).toList(),
+        'user_created': _userCreated?.toMap(),
+        'checkBoxProgram': _checkBoxProgram,
       }.withoutNulls;
 
   @override
@@ -336,10 +360,6 @@ class StudyProgramListStruct extends BaseStruct {
         'organization_id': serializeParam(
           _organizationId,
           ParamType.String,
-        ),
-        'departments': serializeParam(
-          _departments,
-          ParamType.DataStruct,
         ),
         'estimate_in_day': serializeParam(
           _estimateInDay,
@@ -401,6 +421,19 @@ class StudyProgramListStruct extends BaseStruct {
           _categoryId,
           ParamType.String,
         ),
+        'departments': serializeParam(
+          _departments,
+          ParamType.DataStruct,
+          true,
+        ),
+        'user_created': serializeParam(
+          _userCreated,
+          ParamType.DataStruct,
+        ),
+        'checkBoxProgram': serializeParam(
+          _checkBoxProgram,
+          ParamType.bool,
+        ),
       }.withoutNulls;
 
   static StudyProgramListStruct fromSerializableMap(
@@ -453,12 +486,6 @@ class StudyProgramListStruct extends BaseStruct {
           data['organization_id'],
           ParamType.String,
           false,
-        ),
-        departments: deserializeStructParam(
-          data['departments'],
-          ParamType.DataStruct,
-          false,
-          structBuilder: DepartmentsIdStruct.fromSerializableMap,
         ),
         estimateInDay: deserializeParam(
           data['estimate_in_day'],
@@ -535,6 +562,23 @@ class StudyProgramListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        departments: deserializeStructParam<DepartmentsIdStruct>(
+          data['departments'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: DepartmentsIdStruct.fromSerializableMap,
+        ),
+        userCreated: deserializeStructParam(
+          data['user_created'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: UserStruct.fromSerializableMap,
+        ),
+        checkBoxProgram: deserializeParam(
+          data['checkBoxProgram'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -553,7 +597,6 @@ class StudyProgramListStruct extends BaseStruct {
         listEquality.equals(tests, other.tests) &&
         listEquality.equals(studioIdTest, other.studioIdTest) &&
         organizationId == other.organizationId &&
-        departments == other.departments &&
         estimateInDay == other.estimateInDay &&
         dateCreate == other.dateCreate &&
         dateCreated == other.dateCreated &&
@@ -568,7 +611,10 @@ class StudyProgramListStruct extends BaseStruct {
         limitInvite == other.limitInvite &&
         inviteCount == other.inviteCount &&
         domainId == other.domainId &&
-        categoryId == other.categoryId;
+        categoryId == other.categoryId &&
+        listEquality.equals(departments, other.departments) &&
+        userCreated == other.userCreated &&
+        checkBoxProgram == other.checkBoxProgram;
   }
 
   @override
@@ -582,7 +628,6 @@ class StudyProgramListStruct extends BaseStruct {
         tests,
         studioIdTest,
         organizationId,
-        departments,
         estimateInDay,
         dateCreate,
         dateCreated,
@@ -597,7 +642,10 @@ class StudyProgramListStruct extends BaseStruct {
         limitInvite,
         inviteCount,
         domainId,
-        categoryId
+        categoryId,
+        departments,
+        userCreated,
+        checkBoxProgram
       ]);
 }
 
@@ -608,7 +656,6 @@ StudyProgramListStruct createStudyProgramListStruct({
   String? description,
   int? durationHours,
   String? organizationId,
-  DepartmentsIdStruct? departments,
   int? estimateInDay,
   String? dateCreate,
   String? dateCreated,
@@ -624,6 +671,8 @@ StudyProgramListStruct createStudyProgramListStruct({
   int? inviteCount,
   String? domainId,
   String? categoryId,
+  UserStruct? userCreated,
+  bool? checkBoxProgram,
 }) =>
     StudyProgramListStruct(
       id: id,
@@ -632,7 +681,6 @@ StudyProgramListStruct createStudyProgramListStruct({
       description: description,
       durationHours: durationHours,
       organizationId: organizationId,
-      departments: departments ?? DepartmentsIdStruct(),
       estimateInDay: estimateInDay,
       dateCreate: dateCreate,
       dateCreated: dateCreated,
@@ -648,4 +696,6 @@ StudyProgramListStruct createStudyProgramListStruct({
       inviteCount: inviteCount,
       domainId: domainId,
       categoryId: categoryId,
+      userCreated: userCreated ?? UserStruct(),
+      checkBoxProgram: checkBoxProgram,
     );

@@ -1,19 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure/procedure_step_detail/procedure_step_detail_widget.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'procedure_detail_widget.dart' show ProcedureDetailWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class ProcedureDetailModel extends FlutterFlowModel<ProcedureDetailWidget> {
   ///  Local state fields for this page.

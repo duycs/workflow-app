@@ -9,11 +9,8 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'payment_model.dart';
 export 'payment_model.dart';
 
@@ -60,16 +57,16 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 750.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 4.0,
                 color: Color(0x33000000),
@@ -82,7 +79,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -118,7 +115,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -157,21 +154,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text(
-                                              'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
-                                            widget.qr,
-                                            r'''$.qrCode''',
-                                          ).toString()}'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text(
+                                            'https://qr.pexnic.com/webhook/create-qr-code?width=150&data=${getJsonField(
+                                          widget.qr,
+                                          r'''$.qrCode''',
+                                        ).toString()}'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -274,11 +269,11 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           ),
                         ],
                       ),
-                    ].divide(SizedBox(width: 8.0)),
+                    ].divide(const SizedBox(width: 8.0)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: Text(
                     'Ngân hàng',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -288,7 +283,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 50.0,
@@ -299,10 +294,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
                       child: Text(
                         getJsonField(
                           widget.qr,
@@ -318,7 +313,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Text(
                     'Chủ tài khoản',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -328,7 +323,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 50.0,
@@ -339,10 +334,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 9.0, 0.0),
                       child: Text(
                         getJsonField(
                           widget.qr,
@@ -358,7 +353,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Text(
                     'Số tài khoản',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -368,7 +363,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 50.0,
@@ -379,13 +374,13 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 9.0, 0.0),
                             child: Text(
                               getJsonField(
@@ -424,7 +419,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Text(
                     'Số tiền',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -434,7 +429,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 50.0,
@@ -445,13 +440,13 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 9.0, 0.0),
                             child: Text(
                               formatNumber(
@@ -495,7 +490,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                   child: Text(
                     'Nội dung',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -505,7 +500,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 50.0,
@@ -516,13 +511,13 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 9.0, 0.0),
                             child: Text(
                               getJsonField(
@@ -561,10 +556,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -572,10 +567,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         Expanded(
                           child: FFButtonWidget(
                             onPressed: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               _model.checkTransfer =
                                   await action_blocks.tokenReload(context);
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if (_model.checkTransfer!) {
                                 _model.apiResultCheckTransfer =
                                     await OrderGroup.checkTransferCall.call(
@@ -585,28 +580,26 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                     r'''$.pay_code''',
                                   ).toString(),
                                 );
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if ((_model.apiResultCheckTransfer?.succeeded ??
                                     true)) {
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text(getJsonField(
-                                            (_model.apiResultCheckTransfer
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.message''',
-                                          ).toString()),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text(getJsonField(
+                                          (_model.apiResultCheckTransfer
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.message''',
+                                        ).toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -620,7 +613,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                               .secondaryBackground,
                                         ),
                                       ),
-                                      duration: Duration(milliseconds: 4000),
+                                      duration: const Duration(milliseconds: 4000),
                                       backgroundColor:
                                           FlutterFlowTheme.of(context).error,
                                     ),
@@ -628,18 +621,18 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                 }
                               } else {
                                 setState(() {});
-                                if (_shouldSetState) setState(() {});
+                                if (shouldSetState) setState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                             },
                             text: 'Kiểm tra thanh toán',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -653,7 +646,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -667,7 +660,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                               context.pushNamed(
                                 'OrderList',
                                 extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
+                                  kTransitionInfoKey: const TransitionInfo(
                                     hasTransition: true,
                                     transitionType: PageTransitionType.fade,
                                     duration: Duration(milliseconds: 0),
@@ -678,9 +671,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             text: 'Đến đơn hàng',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -692,7 +685,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -700,11 +693,11 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ),
                 ),
-              ].divide(SizedBox(height: 4.0)),
+              ].divide(const SizedBox(height: 4.0)),
             ),
           ),
         ),

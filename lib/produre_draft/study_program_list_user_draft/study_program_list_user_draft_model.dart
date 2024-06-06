@@ -1,24 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
-import '/training/lesson/certificate/certificate_widget.dart';
-import '/training/study_program/filter_study_program_user/filter_study_program_user_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'study_program_list_user_draft_widget.dart'
     show StudyProgramListUserDraftWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class StudyProgramListUserDraftModel
     extends FlutterFlowModel<StudyProgramListUserDraftWidget> {
@@ -83,24 +70,24 @@ class StudyProgramListUserDraftModel
     apiResultStudyProgramList =
         await StudyProgramGroup.studyProgramOneCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${nameSearch}\"}}' : '  '}${(lessonNameSeach != null && lessonNameSeach != '') && (lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${lessonNameSeach}\"}}}}' : '  '}${(dateStartSeach != null && dateStartSeach != '') && (dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${dateStartSeach}\"}}}}' : ' '}${(dateEndSeach != null && dateEndSeach != '') && (dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String date) {
-          return DateTime.parse(date).add(Duration(days: 1)).toString();
+      filter: '{\"_and\":[{}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : '  '}${(lessonNameSeach != '') && (lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"$lessonNameSeach\"}}}}' : '  '}${(dateStartSeach != '') && (dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"$dateStartSeach\"}}}}' : ' '}${(dateEndSeach != '') && (dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${(String date) {
+          return DateTime.parse(date).add(const Duration(days: 1)).toString();
         }(dateEndSeach)}\"}}}}' : ' '}${',{\"departments\":{\"departments_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.department_id''',
       ).toString().toString()}\"}}}}'}]}',
     );
-    if ((apiResultStudyProgramList?.succeeded ?? true)) {
+    if ((apiResultStudyProgramList.succeeded ?? true)) {
       dataList = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramList?.jsonBody ?? ''))!
+              (apiResultStudyProgramList.jsonBody ?? ''))!
           .data
           .toList()
           .cast<StudyProgramListStruct>();
       meta = StudyProgramListDataStruct.maybeFromMap(
-              (apiResultStudyProgramList?.jsonBody ?? ''))
+              (apiResultStudyProgramList.jsonBody ?? ''))
           ?.meta;
       while (loop < dataList.length) {
-        if (dataList[loop].tests.length > 0) {
+        if (dataList[loop].tests.isNotEmpty) {
           apiResultGetDoTest2 = await DoTestGroup.staffsTestsListCall.call(
             accessToken: FFAppState().accessToken,
             filter: '{\"_and\":[{\"staff_id\":{\"_eq\":\"${getJsonField(
@@ -108,7 +95,7 @@ class StudyProgramListUserDraftModel
               r'''$.id''',
             ).toString().toString()}\"}},{\"test_id\":{\"_eq\":\"${dataList[loop].tests.first.testsId.id}\"}}]}',
           );
-          if ((apiResultGetDoTest2?.succeeded ?? true)) {
+          if ((apiResultGetDoTest2.succeeded ?? true)) {
             updateDataListAtIndex(
               loop,
               (e) => e
@@ -120,7 +107,7 @@ class StudyProgramListUserDraftModel
           } else {
             checkRefreshTokenBlock11 = await action_blocks.checkRefreshToken(
               context,
-              jsonErrors: (apiResultGetDoTest2?.jsonBody ?? ''),
+              jsonErrors: (apiResultGetDoTest2.jsonBody ?? ''),
             );
             if (!checkRefreshTokenBlock11!) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -131,7 +118,7 @@ class StudyProgramListUserDraftModel
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
                   ),
-                  duration: Duration(milliseconds: 4000),
+                  duration: const Duration(milliseconds: 4000),
                   backgroundColor: FlutterFlowTheme.of(context).error,
                 ),
               );
@@ -144,7 +131,7 @@ class StudyProgramListUserDraftModel
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultStudyProgramList?.jsonBody ?? ''),
+        jsonErrors: (apiResultStudyProgramList.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -155,7 +142,7 @@ class StudyProgramListUserDraftModel
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

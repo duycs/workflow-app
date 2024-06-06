@@ -12,7 +12,11 @@ import '/backend/schema/structs/index.dart';
 
 int stringToInt(String stringNumber) {
   // string to int
-  return int.parse(stringNumber);
+  try {
+    return int.parse(stringNumber);
+  } catch (e) {
+    return 0;
+  }
 }
 
 DateTime? stringToDateTime(String? dateString) {

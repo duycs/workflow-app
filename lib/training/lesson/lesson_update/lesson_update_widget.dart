@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -9,15 +8,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/training/lesson/ckeditor_update_lesson/ckeditor_update_lesson_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'lesson_update_model.dart';
 export 'lesson_update_model.dart';
 
@@ -80,10 +77,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       r'''$.estimate_in_day''',
                     ) !=
                     null) &&
-                ('${getJsonField(
+                (getJsonField(
                       widget.items,
                       r'''$.estimate_in_day''',
-                    ).toString().toString()}' !=
+                    ).toString().toString() !=
                     '0')
             ? getJsonField(
                 widget.items,
@@ -143,7 +140,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 1.0,
         ),
@@ -154,7 +151,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -162,7 +159,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -288,12 +285,12 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                         ),
                         if ('1' == '2')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: FlutterFlowDropDown<String>(
                               controller: _model.dropDownValueController ??=
                                   FormFieldController<String>(null),
-                              options: ['Option 1'],
+                              options: const ['Option 1'],
                               onChanged: (val) =>
                                   setState(() => _model.dropDownValue = val),
                               width: 300.0,
@@ -319,7 +316,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   .primaryBackground,
                               borderWidth: 1.0,
                               borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
+                              margin: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 4.0, 16.0, 4.0),
                               hidesUnderline: true,
                               isOverButton: true,
@@ -328,7 +325,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
@@ -342,7 +339,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: FlutterFlowDropDown<String>(
                             controller: _model.testIdValueController ??=
@@ -380,7 +377,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                             borderWidth: 1.0,
                             borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
+                            margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
@@ -389,7 +386,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -409,7 +406,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -468,7 +465,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -496,11 +493,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -530,7 +527,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 5.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -538,7 +535,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     focusNode: _model.estimateInDayFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.estimateInDayTextController',
-                                      Duration(milliseconds: 2000),
+                                      const Duration(milliseconds: 2000),
                                       () async {
                                         _model.checkTime = int.tryParse(_model
                                             .estimateInDayTextController.text);
@@ -598,7 +595,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -607,6 +604,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
+                                    textAlign: TextAlign.center,
                                     keyboardType: TextInputType.number,
                                     validator: _model
                                         .estimateInDayTextControllerValidator
@@ -625,21 +623,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
-                        if (((getJsonField(
-                                      widget.items,
-                                      r'''$.estimate_in_day''',
-                                    ) !=
-                                    null) &&
-                                (getJsonField(
-                                      widget.items,
-                                      r'''$.estimate_in_day''',
-                                    ) <
-                                    1)) ||
-                            ((_model.checkTime != null) &&
-                                (_model.checkTime! < 1)))
+                        if ((_model.checkTime != null) &&
+                            (_model.checkTime! < 1))
                           Text(
                             'Thời hạn học bài phải lớn hơn 0',
                             style: FlutterFlowTheme.of(context)
@@ -653,14 +641,14 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 3.0),
                                 child: Text(
                                   'Trạng thái bài học:',
@@ -679,10 +667,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                 onChanged: (val) => setState(() {}),
                                 controller: _model
                                         .radioButtonStatusValueController ??=
-                                    FormFieldController<String>('${getJsonField(
+                                    FormFieldController<String>(getJsonField(
                                               widget.items,
                                               r'''$.status''',
-                                            ).toString()}' ==
+                                            ).toString() ==
                                             'published'
                                         ? 'Hoạt động'
                                         : 'Không hoạt động'),
@@ -713,7 +701,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -731,8 +719,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               r'''$.image_cover''',
                                             ) !=
                                             null) &&
-                                        (_model.uploadedLocalFile1 == null ||
-                                            (_model.uploadedLocalFile1.bytes
+                                        ((_model.uploadedLocalFile1.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       ClipRRect(
@@ -748,8 +735,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile1 != null &&
-                                        (_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile1.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       ClipRRect(
@@ -768,8 +754,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               r'''$.image_cover''',
                                             ) ==
                                             null) &&
-                                        (_model.uploadedLocalFile1 == null ||
-                                            (_model.uploadedLocalFile1.bytes
+                                        ((_model.uploadedLocalFile1.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
@@ -784,7 +769,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -851,15 +836,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'Ảnh',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -872,7 +857,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -880,11 +865,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -914,8 +899,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               r'''$.video''',
                                             ) ==
                                             null) &&
-                                        (_model.uploadedLocalFile2 == null ||
-                                            (_model.uploadedLocalFile2.bytes
+                                        ((_model.uploadedLocalFile2.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
@@ -930,7 +914,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -950,15 +934,14 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               r'''$.video''',
                                             ) !=
                                             null) &&
-                                        (_model.uploadedLocalFile2 == null ||
-                                            (_model.uploadedLocalFile2.bytes
+                                        ((_model.uploadedLocalFile2.bytes
                                                     ?.isEmpty ??
                                                 true)))
                                       Container(
                                         width: 200.0,
                                         height: 50.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0x5D39D2C0),
+                                          color: const Color(0x5D39D2C0),
                                           borderRadius:
                                               BorderRadius.circular(25.0),
                                           border: Border.all(
@@ -967,7 +950,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Đã có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -982,8 +965,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                               ),
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile2 != null &&
-                                        (_model.uploadedLocalFile2.bytes
+                                    if ((_model.uploadedLocalFile2.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       Container(
@@ -1000,7 +982,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Tải Video thành công!',
                                           style: FlutterFlowTheme.of(context)
@@ -1066,15 +1048,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'Video',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1087,7 +1069,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1095,11 +1077,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1113,158 +1095,146 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              if ('1' == '2')
-                                                FlutterFlowPdfViewer(
-                                                  fileBytes: _model
-                                                      .uploadedLocalFile3.bytes,
-                                                  width: 200.0,
-                                                  height: 110.0,
-                                                  horizontalScroll: false,
-                                                ),
-                                              if ((_model.uploadedLocalFile3 ==
-                                                          null ||
-                                                      (_model.uploadedLocalFile3
-                                                              .bytes?.isEmpty ??
-                                                          true)) &&
-                                                  (getJsonField(
-                                                        widget.items,
-                                                        r'''$.file''',
-                                                      ) ==
-                                                      null))
-                                                Container(
-                                                  width: 200.0,
-                                                  height: 50.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                    ),
-                                                  ),
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Text(
-                                                    'Chưa có dữ liệu!',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
-                                                ),
-                                              if ((_model.uploadedLocalFile3 ==
-                                                          null ||
-                                                      (_model.uploadedLocalFile3
-                                                              .bytes?.isEmpty ??
-                                                          true)) &&
-                                                  (getJsonField(
-                                                        widget.items,
-                                                        r'''$.file''',
-                                                      ) !=
-                                                      null))
-                                                Container(
-                                                  width: 200.0,
-                                                  height: 50.0,
-                                                  decoration: BoxDecoration(
-                                                    color: Color(0x5D39D2C0),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
-                                                    ),
-                                                  ),
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Text(
-                                                    'Đã có dữ liệu!',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
-                                                ),
-                                              if (_model.uploadedLocalFile3 !=
-                                                      null &&
-                                                  (_model.uploadedLocalFile3
-                                                          .bytes?.isNotEmpty ??
-                                                      false))
-                                                Container(
-                                                  width: 200.0,
-                                                  height: 50.0,
-                                                  decoration: BoxDecoration(
+                                            const AlignmentDirectional(-1.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if ('1' == '2')
+                                              FlutterFlowPdfViewer(
+                                                fileBytes: _model
+                                                    .uploadedLocalFile3.bytes,
+                                                width: 200.0,
+                                                height: 110.0,
+                                                horizontalScroll: false,
+                                              ),
+                                            if (((_model.uploadedLocalFile3
+                                                            .bytes?.isEmpty ??
+                                                        true)) &&
+                                                (getJsonField(
+                                                      widget.items,
+                                                      r'''$.file''',
+                                                    ) ==
+                                                    null))
+                                              Container(
+                                                width: 200.0,
+                                                height: 50.0,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                  border: Border.all(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .secondary,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
-                                                    ),
-                                                  ),
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Text(
-                                                    'Tải File thành công!',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
+                                                        .secondaryText,
                                                   ),
                                                 ),
-                                            ],
-                                          ),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Chưa có dữ liệu!',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                            if (((_model.uploadedLocalFile3
+                                                            .bytes?.isEmpty ??
+                                                        true)) &&
+                                                (getJsonField(
+                                                      widget.items,
+                                                      r'''$.file''',
+                                                    ) !=
+                                                    null))
+                                              Container(
+                                                width: 200.0,
+                                                height: 50.0,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0x5D39D2C0),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .success,
+                                                  ),
+                                                ),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Đã có dữ liệu!',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                            if ((_model.uploadedLocalFile3.bytes
+                                                        ?.isNotEmpty ??
+                                                    false))
+                                              Container(
+                                                width: 200.0,
+                                                height: 50.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondary,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .success,
+                                                  ),
+                                                ),
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  'Tải File thành công!',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color: Colors.white,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -1312,15 +1282,15 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                     setState(() {});
                                   },
                                   text: 'File',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1333,7 +1303,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1341,11 +1311,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Nội dung',
@@ -1361,8 +1331,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                         Container(
                           width: double.infinity,
                           height: 45.0,
-                          decoration: BoxDecoration(),
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          decoration: const BoxDecoration(),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Builder(
                             builder: (context) => InkWell(
                               splashColor: Colors.transparent,
@@ -1377,46 +1347,40 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: WebViewAware(
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: CkeditorUpdateLessonWidget(
-                                            input: () {
-                                              if ((getJsonField(
-                                                        widget.items,
-                                                        r'''$.content''',
-                                                      ) !=
-                                                      null) &&
-                                                  (_model.output == null ||
-                                                      _model.output == '')) {
-                                                return getJsonField(
-                                                  widget.items,
-                                                  r'''$.content''',
-                                                ).toString();
-                                              } else if (_model.output !=
-                                                      null &&
-                                                  _model.output != '') {
-                                                return _model.output;
-                                              } else {
-                                                return '';
-                                              }
-                                            }(),
-                                            output: _model.output,
-                                            callBack: (input, output) async {
-                                              _model.checkContent = output!;
-                                              _model.input = input!;
-                                              _model.output = output!;
-                                              setState(() {});
-                                            },
-                                          ),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: CkeditorUpdateLessonWidget(
+                                          input: () {
+                                            if ((getJsonField(
+                                                      widget.items,
+                                                      r'''$.content''',
+                                                    ) !=
+                                                    null) &&
+                                                (_model.output == '')) {
+                                              return getJsonField(
+                                                widget.items,
+                                                r'''$.content''',
+                                              ).toString();
+                                            } else if (_model.output != '') {
+                                              return _model.output;
+                                            } else {
+                                              return '';
+                                            }
+                                          }(),
+                                          output: _model.output,
+                                          callBack: (input, output) async {
+                                            _model.checkContent = output!;
+                                            _model.input = input!;
+                                            _model.output = output;
+                                            setState(() {});
+                                          },
                                         ),
                                       ),
                                     );
@@ -1435,7 +1399,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -1482,71 +1446,63 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                         ),
                         Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(),
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Html(
-                            data: () {
-                              if (_model.checkContent != null &&
-                                  _model.checkContent != '') {
-                                return _model.checkContent;
-                              } else if (getJsonField(
-                                    widget.items,
-                                    r'''$.content''',
-                                  ) !=
-                                  null) {
-                                return functions.formatHtml(getJsonField(
+                          decoration: const BoxDecoration(),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                        ),
+                        custom_widgets.HTMLView(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: 100.0,
+                          html: functions.formatHtml(() {
+                            if (_model.checkContent != '') {
+                              return _model.checkContent;
+                            } else if (getJsonField(
                                   widget.items,
                                   r'''$.content''',
-                                ).toString());
-                              } else {
-                                return '';
-                              }
-                            }(),
-                            onLinkTap: (url, _, __, ___) => launchURL(url!),
-                          ),
+                                ) !=
+                                null) {
+                              return functions.formatHtml(getJsonField(
+                                widget.items,
+                                r'''$.content''',
+                              ).toString());
+                            } else {
+                              return '';
+                            }
+                          }()),
                         ),
-                      ].divide(SizedBox(height: 6.0)),
+                      ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.uploadedLocalFile2 != null &&
-                        (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileVideo(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile1 != null &&
-                        (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileImage(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile3 != null &&
-                        (_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileFile(context);
                       setState(() {});
                     }
-                    if ((_model.nameTextController.text != null &&
-                            _model.nameTextController.text != '') &&
-                        (_model.descriptionTextController.text != null &&
-                            _model.descriptionTextController.text != '') &&
-                        (_model.durationHoursTextController.text != null &&
-                            _model.durationHoursTextController.text != '') &&
-                        ((_model.uploadImage != null &&
-                                _model.uploadImage != '') ||
+                    if ((_model.nameTextController.text != '') &&
+                        (_model.descriptionTextController.text != '') &&
+                        (_model.durationHoursTextController.text != '') &&
+                        ((_model.uploadImage != '') ||
                             (getJsonField(
                                   widget.items,
                                   r'''$.image_cover''',
                                 ) !=
                                 null))) {
-                      if (_model.estimateInDayTextController.text != null &&
-                          _model.estimateInDayTextController.text != '') {
+                      if (_model.estimateInDayTextController.text != '') {
                         if (int.parse(_model.estimateInDayTextController.text) >
                             0) {
                           await _model.updateLesson(context);
@@ -1557,11 +1513,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                               content: Text(
                                 'Thời hạn học bài phải lớn hơn 0!',
                                 style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -1577,10 +1533,11 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           content: Text(
                             'Các trường ảnh bài học, tiêu đề, nội dung, mô tả, thời gian bắt buộc!',
                             style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                             ),
                           ),
-                          duration: Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
@@ -1591,10 +1548,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFF33BA45),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF33BA45),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color:
@@ -1603,7 +1560,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Color(0xFF33BA45),
                       width: 1.0,
                     ),

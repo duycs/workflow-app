@@ -8,12 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'department_detail_model.dart';
 export 'department_detail_model.dart';
 
@@ -101,7 +98,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -112,7 +109,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
           children: [
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
@@ -120,16 +117,16 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
@@ -142,14 +139,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         .primaryBackground,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Tên bộ phận: ',
@@ -163,7 +160,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
@@ -174,9 +171,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -198,9 +195,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
@@ -213,14 +210,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         .primaryBackground,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Mã bộ phận:',
@@ -234,7 +231,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
@@ -245,9 +242,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -269,9 +266,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
@@ -284,14 +281,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         .primaryBackground,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Mô tả:',
@@ -305,7 +302,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
@@ -316,9 +313,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -340,9 +337,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
@@ -355,14 +352,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         .primaryBackground,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Tên chi nhánh:',
@@ -376,7 +373,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
@@ -387,9 +384,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
                                             getJsonField(
                                               widget.items,
@@ -411,9 +408,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 8.0),
                               child: Container(
                                 width: double.infinity,
@@ -426,14 +423,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         .primaryBackground,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Số lượng nhân sự:',
@@ -447,7 +444,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 8.0, 12.0, 12.0),
                                       child: Container(
                                         width: double.infinity,
@@ -458,11 +455,11 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
-                                          padding: EdgeInsets.all(12.0),
+                                          padding: const EdgeInsets.all(12.0),
                                           child: Text(
-                                            '${DepartmentListStruct.maybeFromMap(widget.items)?.staffs?.length?.toString()}',
+                                            '${DepartmentListStruct.maybeFromMap(widget.items)?.staffs.length.toString()}',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -484,9 +481,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                               ) !=
                               null)
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Container(
                                   width: double.infinity,
@@ -499,7 +496,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                           .primaryBackground,
                                     ),
                                   ),
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: SingleChildScrollView(
                                     primary: false,
                                     child: Column(
@@ -511,14 +508,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 16.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           12.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -595,16 +592,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                         '1')
                                                       FFButtonWidget(
                                                         onPressed: () async {
-                                                          var _shouldSetState =
+                                                          var shouldSetState =
                                                               false;
                                                           if (_model
                                                                   .selectedPrograms
                                                                   .where((e) =>
                                                                       e.checkPrograms ==
                                                                       true)
-                                                                  .toList()
-                                                                  .length >
-                                                              0) {
+                                                                  .toList().isNotEmpty) {
                                                             _model.programItems = widget
                                                                 .programs!
                                                                 .where((e) =>
@@ -624,24 +619,21 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Xác nhận'),
-                                                                            content:
-                                                                                Text('Xác nhận thiết lập học lại chương trình cho bộ phận!'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: Text('Hủy'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: Text('Xác nhận'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              const Text('Xác nhận'),
+                                                                          content:
+                                                                              const Text('Xác nhận thiết lập học lại chương trình cho bộ phận!'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: const Text('Hủy'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: const Text('Xác nhận'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     ) ??
@@ -651,7 +643,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   await action_blocks
                                                                       .tokenReload(
                                                                           context);
-                                                              _shouldSetState =
+                                                              shouldSetState =
                                                                   true;
                                                               if (_model
                                                                   .reloadTokenUpdatePrograms!) {
@@ -686,7 +678,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                             .id,
                                                                       },
                                                                     );
-                                                                    _shouldSetState =
+                                                                    shouldSetState =
                                                                         true;
                                                                     if ((_model
                                                                             .apiResult8ul
@@ -720,7 +712,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                             .primaryText,
                                                                       ),
                                                                     ),
-                                                                    duration: Duration(
+                                                                    duration: const Duration(
                                                                         milliseconds:
                                                                             4000),
                                                                     backgroundColor:
@@ -754,14 +746,16 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                 setState(() {});
                                                               } else {
                                                                 setState(() {});
-                                                                if (_shouldSetState)
+                                                                if (shouldSetState) {
                                                                   setState(
                                                                       () {});
+                                                                }
                                                                 return;
                                                               }
                                                             } else {
-                                                              if (_shouldSetState)
+                                                              if (shouldSetState) {
                                                                 setState(() {});
+                                                              }
                                                               return;
                                                             }
                                                           } else {
@@ -778,7 +772,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                         .primaryText,
                                                                   ),
                                                                 ),
-                                                                duration: Duration(
+                                                                duration: const Duration(
                                                                     milliseconds:
                                                                         4000),
                                                                 backgroundColor:
@@ -787,27 +781,29 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                         .error,
                                                               ),
                                                             );
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               setState(() {});
+                                                            }
                                                             return;
                                                           }
 
-                                                          if (_shouldSetState)
+                                                          if (shouldSetState) {
                                                             setState(() {});
+                                                          }
                                                         },
                                                         text: 'Xác nhận',
                                                         options:
                                                             FFButtonOptions(
                                                           height: 35.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       24.0,
                                                                       0.0,
                                                                       24.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -833,7 +829,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -845,7 +841,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                         ),
                                                       ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
+                                                      const SizedBox(width: 4.0)),
                                                 ),
                                               ),
                                             ],
@@ -872,7 +868,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                       listItems[listItemsIndex];
                                                   return Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(12.0, 8.0,
                                                                 12.0, 2.0),
                                                     child: Container(
@@ -883,9 +879,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                             e ==
                                                                             listItemsItem
                                                                                 .programsId.id)
-                                                                        .toList()
-                                                                        .length >
-                                                                    0) &&
+                                                                        .toList().isNotEmpty) &&
                                                                 (listItemsItem
                                                                         .checkPrograms ==
                                                                     false)
@@ -901,7 +895,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     12.0,
                                                                     8.0,
@@ -988,7 +982,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                   },
                                                                 ),
                                                               ),
-                                                          ].divide(SizedBox(
+                                                          ].divide(const SizedBox(
                                                               width: 8.0)),
                                                         ),
                                                       ),
@@ -1005,7 +999,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                               ),
                             ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -1017,14 +1011,14 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                       .primaryBackground,
                                 ),
                               ),
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Trạng thái',
@@ -1038,7 +1032,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         12.0, 8.0, 12.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -1050,7 +1044,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                             BorderRadius.circular(10.0),
                                       ),
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: FlutterFlowRadioButton(
                                         options: [
                                           'Hoạt động',
@@ -1062,10 +1056,10 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                         controller: _model
                                                 .radioButtonValueController ??=
                                             FormFieldController<String>(
-                                                '${getJsonField(
+                                                getJsonField(
                                                           widget.items,
                                                           r'''$.status''',
-                                                        ).toString()}' ==
+                                                        ).toString() ==
                                                         'published'
                                                     ? 'Hoạt động'
                                                     : 'Không hoạt động'),
@@ -1112,9 +1106,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
@@ -1131,7 +1125,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -1143,9 +1137,9 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                   options: FFButtonOptions(
                     width: 200.0,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -1156,7 +1150,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                               fontWeight: FontWeight.w500,
                             ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

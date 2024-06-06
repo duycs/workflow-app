@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'alert_staff_check_departments_model.dart';
 export 'alert_staff_check_departments_model.dart';
 
@@ -47,11 +45,17 @@ class _AlertStaffCheckDepartmentsWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: 500.0,
+      constraints: const BoxConstraints(
+        maxHeight: 600.0,
       ),
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).primaryBackground,
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(0.0),
+          bottomRight: Radius.circular(0.0),
+          topLeft: Radius.circular(15.0),
+          topRight: Radius.circular(15.0),
+        ),
       ),
       child: SingleChildScrollView(
         primary: false,
@@ -59,15 +63,18 @@ class _AlertStaffCheckDepartmentsWidgetState
           mainAxisSize: MainAxisSize.min,
           children: [
             Align(
-              alignment: AlignmentDirectional(-1.0, 0.0),
+              alignment: const AlignmentDirectional(-1.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 10.0),
                 child: Text(
-                  '# Danh sách nhân viên đã có trong bộ phận',
+                  'Lưu ý: Không chọn nhân viên đã có trong bộ phận được chọn!',
+                  textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).error,
                         letterSpacing: 0.0,
                         fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.italic,
                       ),
                 ),
               ),
@@ -77,6 +84,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                 final list = widget.listParam!.toList();
                 return ListView.builder(
                   padding: EdgeInsets.zero,
+                  primary: false,
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: list.length,
@@ -84,13 +92,24 @@ class _AlertStaffCheckDepartmentsWidgetState
                     final listItem = list[listIndex];
                     return Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 5.0),
                       child: Container(
                         width: double.infinity,
                         height: 60.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 4.0,
+                              color: Color(0x33000000),
+                              offset: Offset(
+                                0.0,
+                                2.0,
+                              ),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -98,26 +117,29 @@ class _AlertStaffCheckDepartmentsWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    flex: 1,
+                                    flex: 4,
                                     child: Text(
                                       'Nhân viên ',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            fontSize: 13.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 4,
+                                    flex: 6,
                                     child: Text(
                                       ': ${listItem.firstName}',
                                       maxLines: 2,
@@ -125,6 +147,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 13.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -133,25 +156,26 @@ class _AlertStaffCheckDepartmentsWidgetState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Expanded(
-                                    flex: 1,
+                                    flex: 4,
                                     child: Text(
-                                      'Bộ phận ',
+                                      'Đã có trong bộ phận',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 13.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 4,
+                                    flex: 6,
                                     child: Text(
                                       ': ${listItem.name}',
                                       maxLines: 2,
@@ -159,6 +183,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
+                                            fontSize: 13.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -174,18 +199,35 @@ class _AlertStaffCheckDepartmentsWidgetState
                 );
               },
             ),
+            Align(
+              alignment: const AlignmentDirectional(-1.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 10.0),
+                child: Text(
+                  'Vui lòng chọn lại nhân viên hoặc bộ phận!',
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
+                        fontStyle: FontStyle.italic,
+                      ),
+                ),
+              ),
+            ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   Navigator.pop(context);
                 },
-                text: 'Thoát',
+                text: 'Tôi đã hiểu',
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
@@ -193,7 +235,7 @@ class _AlertStaffCheckDepartmentsWidgetState
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),

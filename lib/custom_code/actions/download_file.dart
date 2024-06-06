@@ -9,12 +9,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/custom_code/actions/index.dart';
+import '/flutter_flow/custom_functions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'dart:math';
 
 String generateRandomString(int length) {
@@ -51,7 +53,7 @@ Future<void> downloadFile(
         ? customFileExtension.split('.').last
         : fileName.split('.').last;
 
-    String extensionFirst = generateRandomString(9);
+    String extensionFirst = generateRandomString(12);
 
     String directoryPath;
     if (Platform.isAndroid) {
@@ -72,10 +74,7 @@ Future<void> downloadFile(
     await file.writeAsBytes(bytes);
     print("File saved at");
     Fluttertoast.showToast(msg: "Tệp đã được tải xuống thành công");
-    Fluttertoast.showToast(msg: "Sharing file...");
-    Share.shareFiles([path], text: " ");
-    Share.shareFiles([path], text: " ")?.catchError((e) => print(e));
-    Fluttertoast.showToast(msg: "File shared successfully.");
+    Share.shareXFiles([XFile(path)]);
   } catch (e) {
     Fluttertoast.showToast(msg: "Lỗi khi tải xuống tệp");
     print("Error downloading file");

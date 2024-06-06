@@ -1,17 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'sign_up_widget.dart' show SignUpWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   ///  Local state fields for this page.
@@ -98,7 +90,7 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       return 'Vui lòng nhập họ tên';
     }
 
-    if (val.length < 1) {
+    if (val.isEmpty) {
       return 'Tên không hợp lệ';
     }
     if (val.length > 50) {
@@ -129,25 +121,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
     return null;
   }
 
-  // State field(s) for cccd widget.
-  FocusNode? cccdFocusNode;
-  TextEditingController? cccdTextController;
-  String? Function(BuildContext, String?)? cccdTextControllerValidator;
-  String? _cccdTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Vui lòng nhập căn cước công dân';
-    }
-
-    if (val.length < 12) {
-      return 'CCCD gồm 12 số';
-    }
-    if (val.length > 12) {
-      return 'CCCD gồm 12 số';
-    }
-
-    return null;
-  }
-
   DateTime? datePicked;
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
@@ -163,7 +136,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
     organizationTextControllerValidator = _organizationTextControllerValidator;
     nameTextControllerValidator = _nameTextControllerValidator;
     phoneTextControllerValidator = _phoneTextControllerValidator;
-    cccdTextControllerValidator = _cccdTextControllerValidator;
   }
 
   @override
@@ -185,9 +157,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
 
     phoneFocusNode?.dispose();
     phoneTextController?.dispose();
-
-    cccdFocusNode?.dispose();
-    cccdTextController?.dispose();
   }
 
   /// Additional helper methods.

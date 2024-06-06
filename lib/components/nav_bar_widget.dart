@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'nav_bar_model.dart';
 export 'nav_bar_model.dart';
@@ -10,7 +9,7 @@ class NavBarWidget extends StatefulWidget {
   const NavBarWidget({
     super.key,
     int? selectedPageIndex,
-  }) : this.selectedPageIndex = selectedPageIndex ?? 1;
+  }) : selectedPageIndex = selectedPageIndex ?? 1;
 
   final int selectedPageIndex;
 
@@ -45,13 +44,13 @@ class _NavBarWidgetState extends State<NavBarWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 60.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 1.0,
               color: Color(0x33000000),
@@ -64,9 +63,9 @@ class _NavBarWidgetState extends State<NavBarWidget> {
           borderRadius: BorderRadius.circular(100.0),
           shape: BoxShape.rectangle,
         ),
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -82,7 +81,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     context.goNamed(
                       'TaskList',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -100,7 +99,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 1 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             12.0, 10.0, 12.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -116,7 +115,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                             ),
                             if (widget.selectedPageIndex == 1)
                               Text(
-                                'Task',
+                                'Tasks',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -127,7 +126,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ),
@@ -142,7 +141,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     context.goNamed(
                       'ProcedurePublishedList',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -163,7 +162,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 3 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -193,7 +192,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ),
@@ -208,7 +207,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     context.goNamed(
                       'WorkResultList',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -226,7 +225,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 5 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -252,7 +251,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ),
@@ -271,7 +270,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       context.goNamed(
                         'LessonLists_Homepage',
                         extra: <String, dynamic>{
-                          kTransitionInfoKey: TransitionInfo(
+                          kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
                             transitionType: PageTransitionType.fade,
                             duration: Duration(milliseconds: 0),
@@ -289,7 +288,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       child: Opacity(
                         opacity: widget.selectedPageIndex == 6 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -316,7 +315,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                       ),
@@ -331,7 +330,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     context.goNamed(
                       'ProfileCPN',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -352,7 +351,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 4 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -383,7 +382,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ),
@@ -398,7 +397,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     context.goNamed(
                       'Profile',
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -419,7 +418,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 2 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -449,7 +448,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ].divide(const SizedBox(width: 4.0)),
                         ),
                       ),
                     ),

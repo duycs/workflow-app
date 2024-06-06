@@ -4,3 +4,4 @@ export 'c_k_editor.dart' show CKEditor;
 export 'html_to_doc.dart' show HtmlToDoc;
 export 'c_k_editor_update.dart' show CKEditorUpdate;
 export 'custom_radio_button.dart' show CustomRadioButton;
+export 'h_t_m_l_view.dart' show HTMLView;
