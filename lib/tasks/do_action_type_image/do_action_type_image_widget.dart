@@ -7,11 +7,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'do_action_type_image_model.dart';
 export 'do_action_type_image_model.dart';
@@ -77,10 +74,10 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: Builder(
             builder: (context) {
-              final list = widget.image?.operations?.toList() ?? [];
+              final list = widget.image?.operations.toList() ?? [];
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: List.generate(list.length, (listIndex) {
@@ -88,15 +85,15 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   return Visibility(
                     visible: listIndex == 0,
                     child: Padding(
-                      padding: EdgeInsets.all(4.0),
+                      padding: const EdgeInsets.all(4.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           if ((widget.image != null) &&
-                              (listItem.operationsId.files.length > 0))
+                              (listItem.operationsId.files.isNotEmpty))
                             Container(
                               width: double.infinity,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Builder(
                                 builder: (context) {
                                   final listImage =
@@ -104,7 +101,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                   return GridView.builder(
                                     padding: EdgeInsets.zero,
                                     gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       crossAxisSpacing: 12.0,
                                       mainAxisSpacing: 10.0,
@@ -119,7 +116,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                           listImage[listImageIndex];
                                       return Stack(
                                         alignment:
-                                            AlignmentDirectional(1.0, -1.0),
+                                            const AlignmentDirectional(1.0, -1.0),
                                         children: [
                                           InkWell(
                                             splashColor: Colors.transparent,
@@ -134,12 +131,12 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                   child:
                                                       FlutterFlowExpandedImageView(
                                                     image: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                                       fit: BoxFit.contain,
                                                     ),
                                                     allowRotation: false,
                                                     tag:
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                                     useHeroAnimation: true,
                                                   ),
                                                 ),
@@ -147,13 +144,13 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                             },
                                             child: Hero(
                                               tag:
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem}?access_token=${FFAppState().accessToken}',
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -190,7 +187,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                 },
                               ),
                             ),
-                        ].divide(SizedBox(height: 8.0)),
+                        ].divide(const SizedBox(height: 8.0)),
                       ),
                     ),
                   );
@@ -199,16 +196,16 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
             },
           ),
         ),
-        if (_model.imageUpload.length > 0)
+        if (_model.imageUpload.isNotEmpty)
           Container(
             width: double.infinity,
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Builder(
               builder: (context) {
                 final listImageUpload = _model.imageUpload.toList();
                 return GridView.builder(
                   padding: EdgeInsets.zero,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 12.0,
                     mainAxisSpacing: 10.0,
@@ -222,7 +219,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     final listImageUploadItem =
                         listImageUpload[listImageUploadIndex];
                     return Stack(
-                      alignment: AlignmentDirectional(1.0, -1.0),
+                      alignment: const AlignmentDirectional(1.0, -1.0),
                       children: [
                         InkWell(
                           splashColor: Colors.transparent,
@@ -330,8 +327,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   }
                 }
 
-                if (_model.uploadedLocalFile != null &&
-                    (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                   _model.addToImageUpload(_model.uploadedLocalFile);
                   setState(() {});
                 }
@@ -345,8 +341,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               options: FFButtonOptions(
                 width: 150.0,
                 height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).alternate,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
@@ -356,7 +352,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       fontWeight: FontWeight.normal,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),
@@ -365,8 +361,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
             ),
             FFButtonWidget(
               onPressed: () async {
-                if (_model.uploadedLocalFile != null &&
-                    (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                   _model.imageToken = await action_blocks.tokenReload(context);
                   if (_model.imageToken!) {
                     _model.apiResultImage =
@@ -425,8 +420,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               options: FFButtonOptions(
                 width: 150.0,
                 height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
@@ -436,7 +431,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       fontWeight: FontWeight.normal,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),
@@ -445,7 +440,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
             ),
           ],
         ),
-      ].divide(SizedBox(height: 8.0)),
+      ].divide(const SizedBox(height: 8.0)),
     );
   }
 }

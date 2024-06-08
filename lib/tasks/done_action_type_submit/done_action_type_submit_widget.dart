@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'done_action_type_submit_model.dart';
 export 'done_action_type_submit_model.dart';
 
@@ -48,7 +46,7 @@ class _DoneActionTypeSubmitWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
       child: TextFormField(
         controller: _model.textController,
         focusNode: _model.textFieldFocusNode,
@@ -93,7 +91,7 @@ class _DoneActionTypeSubmitWidgetState
             ),
             borderRadius: BorderRadius.circular(8.0),
           ),
-          contentPadding: EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
+          contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
         ),
         style: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: 'Nunito Sans',

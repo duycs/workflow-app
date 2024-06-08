@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,6 +15,7 @@ class TestListStruct extends BaseStruct {
     String? organizationId,
     int? goodScore,
     String? percentCorrect,
+    TestUserCreatedStruct? userCreated,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -24,7 +24,8 @@ class TestListStruct extends BaseStruct {
         _questions = questions,
         _organizationId = organizationId,
         _goodScore = goodScore,
-        _percentCorrect = percentCorrect;
+        _percentCorrect = percentCorrect,
+        _userCreated = userCreated;
 
   // "id" field.
   String? _id;
@@ -85,6 +86,15 @@ class TestListStruct extends BaseStruct {
   set percentCorrect(String? val) => _percentCorrect = val;
   bool hasPercentCorrect() => _percentCorrect != null;
 
+  // "user_created" field.
+  TestUserCreatedStruct? _userCreated;
+  TestUserCreatedStruct get userCreated =>
+      _userCreated ?? TestUserCreatedStruct();
+  set userCreated(TestUserCreatedStruct? val) => _userCreated = val;
+  void updateUserCreated(Function(TestUserCreatedStruct) updateFn) =>
+      updateFn(_userCreated ??= TestUserCreatedStruct());
+  bool hasUserCreated() => _userCreated != null;
+
   static TestListStruct fromMap(Map<String, dynamic> data) => TestListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -98,6 +108,7 @@ class TestListStruct extends BaseStruct {
         organizationId: data['organization_id'] as String?,
         goodScore: castToType<int>(data['good_score']),
         percentCorrect: data['percent_correct'] as String?,
+        userCreated: TestUserCreatedStruct.maybeFromMap(data['user_created']),
       );
 
   static TestListStruct? maybeFromMap(dynamic data) =>
@@ -113,6 +124,7 @@ class TestListStruct extends BaseStruct {
         'organization_id': _organizationId,
         'good_score': _goodScore,
         'percent_correct': _percentCorrect,
+        'user_created': _userCreated?.toMap(),
       }.withoutNulls;
 
   @override
@@ -153,6 +165,10 @@ class TestListStruct extends BaseStruct {
         'percent_correct': serializeParam(
           _percentCorrect,
           ParamType.String,
+        ),
+        'user_created': serializeParam(
+          _userCreated,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -204,6 +220,12 @@ class TestListStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        userCreated: deserializeStructParam(
+          data['user_created'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: TestUserCreatedStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -221,7 +243,8 @@ class TestListStruct extends BaseStruct {
         listEquality.equals(questions, other.questions) &&
         organizationId == other.organizationId &&
         goodScore == other.goodScore &&
-        percentCorrect == other.percentCorrect;
+        percentCorrect == other.percentCorrect &&
+        userCreated == other.userCreated;
   }
 
   @override
@@ -234,7 +257,8 @@ class TestListStruct extends BaseStruct {
         questions,
         organizationId,
         goodScore,
-        percentCorrect
+        percentCorrect,
+        userCreated
       ]);
 }
 
@@ -247,6 +271,7 @@ TestListStruct createTestListStruct({
   String? organizationId,
   int? goodScore,
   String? percentCorrect,
+  TestUserCreatedStruct? userCreated,
 }) =>
     TestListStruct(
       id: id,
@@ -257,4 +282,5 @@ TestListStruct createTestListStruct({
       organizationId: organizationId,
       goodScore: goodScore,
       percentCorrect: percentCorrect,
+      userCreated: userCreated ?? TestUserCreatedStruct(),
     );

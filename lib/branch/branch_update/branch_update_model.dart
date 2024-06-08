@@ -1,16 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'branch_update_widget.dart' show BranchUpdateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
   ///  Local state fields for this component.
@@ -44,7 +36,7 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
     }
 
     if (val.length > 50) {
-      return 'Chi nhanh không được vượt quá 50 kí tự';
+      return 'Mã chi nhánh không được vượt quá 50 kí tự';
     }
 
     return null;
@@ -61,8 +53,8 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
       return 'Vui lòng nhập nội dung';
     }
 
-    if (val.length > 50) {
-      return 'Mã chi nhanh không được vượt quá 50 kí tự';
+    if (val.length > 200) {
+      return 'Mô tả không được vượt quá 200 kí tự';
     }
 
     return null;

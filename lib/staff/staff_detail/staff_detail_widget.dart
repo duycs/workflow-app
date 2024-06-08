@@ -9,8 +9,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'staff_detail_model.dart';
 export 'staff_detail_model.dart';
@@ -45,7 +43,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
           _model.apiResultGetStaffInfo = await UserGroup.getStaffIdCall.call(
             accessToken: FFAppState().accessToken,
             userId:
-                StaffListStruct.maybeFromMap(widget.staffDetail)?.userId?.id,
+                StaffListStruct.maybeFromMap(widget.staffDetail)?.userId.id,
           );
           if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
             _model.staffData = functions.stringToJson(getJsonField(
@@ -109,7 +107,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1.0,
       ),
@@ -126,13 +124,13 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Container(
                               width: 100.0,
@@ -142,7 +140,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(2.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -183,7 +181,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                       width: 90.0,
                                       height: 90.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -204,18 +202,18 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                       child: Form(
                         key: _model.formKey,
                         autovalidateMode: AutovalidateMode.disabled,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 16.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -226,6 +224,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.drive_file_rename_outline,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Tên nhân viên:',
                                       style: FlutterFlowTheme.of(context)
@@ -248,17 +252,14 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -269,6 +270,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.mail_outline,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Email:',
                                       style: FlutterFlowTheme.of(context)
@@ -291,17 +298,14 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -312,6 +316,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.phone,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Số điện thoại:',
                                       style: FlutterFlowTheme.of(context)
@@ -325,36 +335,39 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     Expanded(
                                       child: Text(
                                         getJsonField(
-                                          widget.staffDetail,
-                                          r'''$.phone''',
-                                        ).toString(),
+                                                  widget.staffDetail,
+                                                  r'''$.phone''',
+                                                ).toString() ==
+                                                'undefined'
+                                            ? ' '
+                                            : getJsonField(
+                                                widget.staffDetail,
+                                                r'''$.phone''',
+                                              ).toString(),
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            if ((getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.cccd''',
-                                    ) !=
-                                    null) &&
-                                ('${getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.cccd''',
-                                    ).toString()}' !=
-                                    'undefined'))
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 20.0),
-                                child: Container(
+                              if ((getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.cccd''',
+                                      ) !=
+                                      null) &&
+                                  (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.cccd''',
+                                      ).toString() !=
+                                      'undefined'))
+                                Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -365,6 +378,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Icon(
+                                        Icons.credit_card,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
                                       Text(
                                         'Căn cước công dân:',
                                         style: FlutterFlowTheme.of(context)
@@ -387,17 +406,14 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
-                                    ],
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
-                              ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -408,6 +424,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.date_range,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Ngày sinh:',
                                       style: FlutterFlowTheme.of(context)
@@ -436,17 +458,14 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -457,6 +476,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.transgender_sharp,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Giới tính:',
                                       style: FlutterFlowTheme.of(context)
@@ -469,30 +494,37 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        '${getJsonField(
-                                                  widget.staffDetail,
-                                                  r'''$.gender''',
-                                                ).toString()}' ==
-                                                'male'
-                                            ? 'Nam'
-                                            : 'Nữ',
+                                        () {
+                                          if (getJsonField(
+                                                widget.staffDetail,
+                                                r'''$.gender''',
+                                              ).toString() ==
+                                              'male') {
+                                            return 'Nam';
+                                          } else if (getJsonField(
+                                                widget.staffDetail,
+                                                r'''$.gender''',
+                                              ).toString() ==
+                                              'undefined') {
+                                            return ' ';
+                                          } else {
+                                            return 'Nữ';
+                                          }
+                                        }(),
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
-                              child: Container(
+                              Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
@@ -503,6 +535,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
+                                    Icon(
+                                      Icons.settings_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
                                     Text(
                                       'Chức vụ:',
                                       style: FlutterFlowTheme.of(context)
@@ -524,22 +562,19 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
-                            ),
-                            if ('${getJsonField(
-                                  widget.staffDetail,
-                                  r'''$.user_id.role''',
-                                ).toString()}' !=
-                                '82073000-1ba2-43a4-a55c-459d17c23b68')
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 20.0),
-                                child: Container(
+                              if (getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.user_id.role''',
+                                  ).toString() !=
+                                  '82073000-1ba2-43a4-a55c-459d17c23b68')
+                                Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -550,6 +585,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Icon(
+                                        Icons.business_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
                                       Text(
                                         'Chi nhánh:',
                                         style: FlutterFlowTheme.of(context)
@@ -572,27 +613,24 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
-                                    ],
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
-                              ),
-                            if (('${getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.user_id.role''',
-                                    ).toString()}' !=
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') &&
-                                ('${getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.user_id.role''',
-                                    ).toString()}' !=
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 20.0),
-                                child: Container(
+                              if ((getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() !=
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') &&
+                                  (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() !=
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -603,6 +641,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Icon(
+                                        Icons.meeting_room,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
                                       Text(
                                         'Bộ phận:',
                                         style: FlutterFlowTheme.of(context)
@@ -625,27 +669,24 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
-                                    ],
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
-                              ),
-                            if (('${getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.user_id.role''',
-                                    ).toString()}' !=
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') &&
-                                ('${getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.user_id.role''',
-                                    ).toString()}' !=
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 20.0),
-                                child: Container(
+                              if ((getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() !=
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') &&
+                                  (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() !=
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -656,6 +697,12 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Icon(
+                                        Icons.radio_button_checked,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
                                       Text(
                                         'Trạng thái hoạt động:',
                                         style: FlutterFlowTheme.of(context)
@@ -668,10 +715,10 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          '${getJsonField(
+                                          getJsonField(
                                                     widget.staffDetail,
                                                     r'''$.status''',
-                                                  ).toString()}' ==
+                                                  ).toString() ==
                                                   'active'
                                               ? 'Hoạt động'
                                               : 'Không hoạt động',
@@ -681,14 +728,15 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                               .override(
                                                 fontFamily: 'Nunito Sans',
                                                 letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                               ),
                                         ),
                                       ),
-                                    ],
+                                    ].divide(const SizedBox(width: 4.0)),
                                   ),
                                 ),
-                              ),
-                          ],
+                            ].divide(const SizedBox(height: 16.0)),
+                          ),
                         ),
                       ),
                     ),
@@ -697,9 +745,9 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(
@@ -711,7 +759,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -723,9 +771,9 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -735,7 +783,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

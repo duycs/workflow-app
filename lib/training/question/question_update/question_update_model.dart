@@ -1,18 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'question_update_widget.dart' show QuestionUpdateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
   ///  Local state fields for this component.
@@ -41,9 +32,6 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
     return null;
   }
 
-  // State field(s) for DropDownStatus widget.
-  String? dropDownStatusValue;
-  FormFieldController<String>? dropDownStatusValueController;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -58,6 +46,9 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
       textAnswerNumberTextControllerValidator;
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
+  // State field(s) for DropDownStatus widget.
+  String? dropDownStatusValue;
+  FormFieldController<String>? dropDownStatusValueController;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? tokenReloadQuestionUpdate;
   // Stores action output result for [Backend Call - API (questionUpdate)] action in Button widget.

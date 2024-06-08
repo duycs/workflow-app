@@ -7,10 +7,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_department_model.dart';
 export 'add_department_model.dart';
@@ -51,9 +49,9 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
         setState(() {});
         while (_model.loop < widget.detail!.departments.length) {
           _model.addToListAdd(DepartmentListStruct(
-            id: (widget.detail?.departments?[_model.loop])?.departmentsId?.id,
+            id: (widget.detail?.departments[_model.loop])?.departmentsId.id,
             name:
-                (widget.detail?.departments?[_model.loop])?.departmentsId?.name,
+                (widget.detail?.departments[_model.loop])?.departmentsId.name,
           ));
           setState(() {});
           _model.loop = _model.loop + 1;
@@ -140,20 +138,20 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
             borderRadius: BorderRadius.circular(0.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -213,12 +211,12 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                 context: context,
                                 builder: (alertDialogContext) {
                                   return AlertDialog(
-                                    content: Text('Bộ phận đã có!'),
+                                    content: const Text('Bộ phận đã có!'),
                                     actions: [
                                       TextButton(
                                         onPressed: () =>
                                             Navigator.pop(alertDialogContext),
-                                        child: Text('Đóng'),
+                                        child: const Text('Đóng'),
                                       ),
                                     ],
                                   );
@@ -252,11 +250,11 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                           ),
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
+                          elevation: 1.0,
                           borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
+                          borderWidth: 1.0,
                           borderRadius: 8.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
+                          margin: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 4.0, 16.0, 4.0),
                           hidesUnderline: true,
                           isOverButton: true,
@@ -280,7 +278,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 8.0, 0.0, 8.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -320,25 +318,25 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                       ),
                                     ),
                                   );
-                                }).divide(SizedBox(height: 6.0)),
+                                }).divide(const SizedBox(height: 6.0)),
                               ),
                             );
                           },
                         ),
-                      ].divide(SizedBox(height: 16.0)),
+                      ].divide(const SizedBox(height: 16.0)),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -348,9 +346,9 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                             text: 'Đóng',
                             options: FFButtonOptions(
                               height: 44.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -377,7 +375,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            var _shouldSetState = false;
+                            var shouldSetState = false;
                             _model.loop = 0;
                             setState(() {});
                             while (_model.loop < _model.listAdd.length) {
@@ -399,13 +397,13 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                             setState(() {});
                             _model.tokenReloadAddDepartmentListListCallApi =
                                 await action_blocks.tokenReload(context);
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if (_model
                                 .tokenReloadAddDepartmentListListCallApi!) {
                               setState(() {});
                             } else {
                               setState(() {});
-                              if (_shouldSetState) setState(() {});
+                              if (shouldSetState) setState(() {});
                               return;
                             }
 
@@ -428,20 +426,20 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                 ),
                               },
                             );
-                            _shouldSetState = true;
+                            shouldSetState = true;
                             if ((_model.studyProgramAddDepartment?.succeeded ??
                                 true)) {
                               await widget.callBack?.call();
                             }
                             Navigator.pop(context);
-                            if (_shouldSetState) setState(() {});
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Xác nhận',
                           options: FFButtonOptions(
                             height: 44.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -452,7 +450,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

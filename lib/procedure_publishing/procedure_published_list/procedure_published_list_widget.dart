@@ -5,20 +5,16 @@ import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/filter_procedure_published/filter_procedure_published_widget.dart';
 import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -94,7 +90,7 @@ class _ProcedurePublishedListWidgetState
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         floatingActionButton: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
           child: FloatingActionButton(
             onPressed: () async {
               await showModalBottomSheet(
@@ -144,7 +140,7 @@ class _ProcedurePublishedListWidgetState
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -152,9 +148,9 @@ class _ProcedurePublishedListWidgetState
           children: [
             if (_model.isLoad == true)
               Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 90.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 90.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +161,7 @@ class _ProcedurePublishedListWidgetState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 16.0, 16.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -176,7 +172,7 @@ class _ProcedurePublishedListWidgetState
                                       focusNode: _model.textFieldFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.textController',
-                                        Duration(milliseconds: 500),
+                                        const Duration(milliseconds: 500),
                                         () async {
                                           _model.searchName =
                                               _model.textController.text;
@@ -206,7 +202,7 @@ class _ProcedurePublishedListWidgetState
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0x00000000),
                                             width: 1.0,
                                           ),
@@ -244,9 +240,9 @@ class _ProcedurePublishedListWidgetState
                                         fillColor: FlutterFlowTheme.of(context)
                                             .primaryBackground,
                                         contentPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 20.0, 0.0, 0.0, 0.0),
-                                        prefixIcon: Icon(
+                                        prefixIcon: const Icon(
                                           Icons.search,
                                         ),
                                         suffixIcon: _model
@@ -343,7 +339,7 @@ class _ProcedurePublishedListWidgetState
                                                       ?.refresh());
                                                   setState(() {
                                                     _model.textController
-                                                        ?.text = name!;
+                                                        ?.text = name;
                                                   });
 
                                                   setState(() {});
@@ -358,16 +354,12 @@ class _ProcedurePublishedListWidgetState
                                 ],
                               ),
                             ),
-                            if ((_model.searchName != null &&
-                                    _model.searchName != '') ||
-                                (_model.dateStart != null &&
-                                    _model.dateStart != '') ||
-                                (_model.dateEnd != null &&
-                                    _model.dateEnd != '') ||
-                                (_model.searchUserCreated != null &&
-                                    _model.searchUserCreated != ''))
+                            if ((_model.searchName != '') ||
+                                (_model.dateStart != '') ||
+                                (_model.dateEnd != '') ||
+                                (_model.searchUserCreated != ''))
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   '#Kết quả hiển thị theo bộ lọc',
@@ -383,7 +375,7 @@ class _ProcedurePublishedListWidgetState
                               ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
                                 child: PagedListView<ApiPagingParams, dynamic>(
                                   pagingController:
@@ -420,11 +412,11 @@ class _ProcedurePublishedListWidgetState
                                             r'''$.id''',
                                           ).toString()}\"}}}}}';
                                         }
-                                      }()}${(_model.searchName != null && _model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != null && _model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != null && _model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
+                                      }()}${(_model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
                                           return DateTime.parse(var1)
-                                              .add(Duration(days: 1))
+                                              .add(const Duration(days: 1))
                                               .toString();
-                                        }(_model.dateEnd)}\"}}}}' : ' '}${(_model.searchUserCreated != null && _model.searchUserCreated != '') && (_model.searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.searchUserCreated}\"}}}}}' : ' '}]}',
+                                        }(_model.dateEnd)}\"}}}}' : ' '}${(_model.searchUserCreated != '') && (_model.searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.searchUserCreated}\"}}}}}' : ' '}]}',
                                     ),
                                   ),
                                   padding: EdgeInsets.zero,
@@ -463,8 +455,8 @@ class _ProcedurePublishedListWidgetState
                                         ),
                                       ),
                                     ),
-                                    noItemsFoundIndicatorBuilder: (_) => Center(
-                                      child: Container(
+                                    noItemsFoundIndicatorBuilder: (_) => const Center(
+                                      child: SizedBox(
                                         width: double.infinity,
                                         child: DataNotFoundWidget(),
                                       ),
@@ -483,7 +475,7 @@ class _ProcedurePublishedListWidgetState
                                                 .isNotEmpty),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 8.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -494,16 +486,16 @@ class _ProcedurePublishedListWidgetState
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Container(
                                                 width: double.infinity,
-                                                color: Color(0x00000000),
+                                                color: const Color(0x00000000),
                                                 child: ExpandableNotifier(
                                                   initialExpanded: false,
                                                   child: ExpandablePanel(
                                                     header: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   0.0,
@@ -602,7 +594,7 @@ class _ProcedurePublishedListWidgetState
                                                                           as Iterable<
                                                                               ProcedurePublishedStepTaskStruct?>)
                                                                       .withoutNulls
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [];
                                                           return Column(
                                                             mainAxisSize:
@@ -659,7 +651,7 @@ class _ProcedurePublishedListWidgetState
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          TransitionInfo(
+                                                                          const TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -686,7 +678,7 @@ class _ProcedurePublishedListWidgetState
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .alternate,
                                                                         offset:
-                                                                            Offset(
+                                                                            const Offset(
                                                                           0.0,
                                                                           1.0,
                                                                         ),
@@ -698,7 +690,7 @@ class _ProcedurePublishedListWidgetState
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             10.0,
@@ -754,7 +746,7 @@ class _ProcedurePublishedListWidgetState
                                                                                       letterSpacing: 0.0,
                                                                                     ),
                                                                               ),
-                                                                            ].divide(SizedBox(height: 4.0)),
+                                                                            ].divide(const SizedBox(height: 4.0)),
                                                                           ),
                                                                         ),
                                                                         Expanded(
@@ -770,7 +762,7 @@ class _ProcedurePublishedListWidgetState
                                                                                 ' ',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Nunito Sans',
-                                                                                      color: Color(0xFFFF0000),
+                                                                                      color: const Color(0xFFFF0000),
                                                                                       fontSize: 13.0,
                                                                                       letterSpacing: 0.0,
                                                                                       fontWeight: FontWeight.normal,
@@ -783,9 +775,9 @@ class _ProcedurePublishedListWidgetState
                                                                                 crossAxisAlignment: CrossAxisAlignment.end,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                                                                                     child: CircularPercentIndicator(
-                                                                                      percent: itemsItem.steps.where((e) => (e.tasks.where((e) => (('${e.publishedCount.toString()}' == '${itemPublishedListItem.publishedCount.toString()}') && (e.status == 'done')) == true).toList().isNotEmpty) == true).toList().length / itemsItem.steps.length,
+                                                                                      percent: itemsItem.steps.where((e) => (e.tasks.where((e) => ((e.publishedCount.toString() == itemPublishedListItem.publishedCount.toString()) && (e.status == 'done')) == true).toList().isNotEmpty) == true).toList().length / itemsItem.steps.length,
                                                                                       radius: 20.0,
                                                                                       lineWidth: 6.0,
                                                                                       animation: true,
@@ -795,7 +787,7 @@ class _ProcedurePublishedListWidgetState
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                    '${itemsItem.steps.where((e) => (e.tasks.where((e) => (('${e.publishedCount.toString()}' == '${itemPublishedListItem.publishedCount.toString()}') && (e.status == 'done')) == true).toList().isNotEmpty) == true).toList().length.toString()}/${itemsItem.steps.length.toString()}',
+                                                                                    '${itemsItem.steps.where((e) => (e.tasks.where((e) => ((e.publishedCount.toString() == itemPublishedListItem.publishedCount.toString()) && (e.status == 'done')) == true).toList().isNotEmpty) == true).toList().length.toString()}/${itemsItem.steps.length.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           fontFamily: 'Nunito Sans',
                                                                                           letterSpacing: 0.0,
@@ -804,7 +796,7 @@ class _ProcedurePublishedListWidgetState
                                                                                   ),
                                                                                 ],
                                                                               ),
-                                                                            ].divide(SizedBox(height: 5.0)),
+                                                                            ].divide(const SizedBox(height: 5.0)),
                                                                           ),
                                                                         ),
                                                                       ],
@@ -812,13 +804,13 @@ class _ProcedurePublishedListWidgetState
                                                                   ),
                                                                 ),
                                                               );
-                                                            }).divide(SizedBox(
+                                                            }).divide(const SizedBox(
                                                                 height: 4.0)),
                                                           );
                                                         },
                                                       ),
                                                     ),
-                                                    theme: ExpandableThemeData(
+                                                    theme: const ExpandableThemeData(
                                                       tapHeaderToExpand: true,
                                                       tapBodyToExpand: false,
                                                       tapBodyToCollapse: false,
@@ -839,7 +831,7 @@ class _ProcedurePublishedListWidgetState
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(const SizedBox(height: 8.0)),
                         ),
                       ),
                     ],
@@ -850,13 +842,13 @@ class _ProcedurePublishedListWidgetState
                 ? MediaQuery.viewInsetsOf(context).bottom > 0
                 : _isKeyboardVisible))
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                   child: wrapWithModel(
                     model: _model.navBarModel,
                     updateCallback: () => setState(() {}),
-                    child: NavBarWidget(
+                    child: const NavBarWidget(
                       selectedPageIndex: 3,
                     ),
                   ),

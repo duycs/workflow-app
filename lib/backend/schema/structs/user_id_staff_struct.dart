@@ -12,11 +12,13 @@ class UserIdStaffStruct extends BaseStruct {
     String? firstName,
     String? avatar,
     String? email,
+    String? status,
   })  : _id = id,
         _role = role,
         _firstName = firstName,
         _avatar = avatar,
-        _email = email;
+        _email = email,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -48,6 +50,12 @@ class UserIdStaffStruct extends BaseStruct {
   set email(String? val) => _email = val;
   bool hasEmail() => _email != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+  bool hasStatus() => _status != null;
+
   static UserIdStaffStruct fromMap(Map<String, dynamic> data) =>
       UserIdStaffStruct(
         id: data['id'] as String?,
@@ -55,6 +63,7 @@ class UserIdStaffStruct extends BaseStruct {
         firstName: data['first_name'] as String?,
         avatar: data['avatar'] as String?,
         email: data['email'] as String?,
+        status: data['status'] as String?,
       );
 
   static UserIdStaffStruct? maybeFromMap(dynamic data) => data is Map
@@ -67,6 +76,7 @@ class UserIdStaffStruct extends BaseStruct {
         'first_name': _firstName,
         'avatar': _avatar,
         'email': _email,
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -89,6 +99,10 @@ class UserIdStaffStruct extends BaseStruct {
         ),
         'email': serializeParam(
           _email,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -120,6 +134,11 @@ class UserIdStaffStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -132,12 +151,13 @@ class UserIdStaffStruct extends BaseStruct {
         role == other.role &&
         firstName == other.firstName &&
         avatar == other.avatar &&
-        email == other.email;
+        email == other.email &&
+        status == other.status;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([id, role, firstName, avatar, email]);
+      const ListEquality().hash([id, role, firstName, avatar, email, status]);
 }
 
 UserIdStaffStruct createUserIdStaffStruct({
@@ -146,6 +166,7 @@ UserIdStaffStruct createUserIdStaffStruct({
   String? firstName,
   String? avatar,
   String? email,
+  String? status,
 }) =>
     UserIdStaffStruct(
       id: id,
@@ -153,4 +174,5 @@ UserIdStaffStruct createUserIdStaffStruct({
       firstName: firstName,
       avatar: avatar,
       email: email,
+      status: status,
     );

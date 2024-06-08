@@ -1,24 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'profile_c_p_n_widget.dart' show ProfileCPNWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
   ///  Local state fields for this page.
@@ -73,13 +60,13 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
         ).toString().toString(),
         accessToken: FFAppState().accessToken,
       );
-      if ((apiResultGetOrganization?.succeeded ?? true)) {
+      if ((apiResultGetOrganization.succeeded ?? true)) {
         organizationDetail = OrganizationListDataStruct.maybeFromMap(
-                (apiResultGetOrganization?.jsonBody ?? ''))
+                (apiResultGetOrganization.jsonBody ?? ''))
             ?.data;
         while ((loop <
                 OrganizationListDataStruct.maybeFromMap(
-                        (apiResultGetOrganization?.jsonBody ?? ''))!
+                        (apiResultGetOrganization.jsonBody ?? ''))!
                     .data
                     .files
                     .length) &&

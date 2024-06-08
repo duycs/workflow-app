@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,8 +10,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'study_program_list_user_draft_model.dart';
 export 'study_program_list_user_draft_model.dart';
 
@@ -78,7 +75,7 @@ class _StudyProgramListUserDraftWidgetState
               context.pushNamed(
                 'Profile',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -100,7 +97,7 @@ class _StudyProgramListUserDraftWidgetState
                   context.pushNamed(
                     'StudyProgramListUser',
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -120,19 +117,19 @@ class _StudyProgramListUserDraftWidgetState
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 1.0,
         ),
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 24.0),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 8.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -142,7 +139,7 @@ class _StudyProgramListUserDraftWidgetState
                           focusNode: _model.textFieldNameSearchFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textFieldNameSearchTextController',
-                            Duration(milliseconds: 500),
+                            const Duration(milliseconds: 500),
                             () async {
                               _model.nameSearch =
                                   _model.textFieldNameSearchTextController.text;
@@ -204,9 +201,9 @@ class _StudyProgramListUserDraftWidgetState
                             filled: true,
                             fillColor:
                                 FlutterFlowTheme.of(context).primaryBackground,
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search_sharp,
                             ),
                             suffixIcon: _model
@@ -252,7 +249,7 @@ class _StudyProgramListUserDraftWidgetState
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowIconButton(
                           borderColor: Colors.transparent,
                           borderRadius: 10.0,
@@ -299,7 +296,7 @@ class _StudyProgramListUserDraftWidgetState
                                         setState(() {
                                           _model
                                               .textFieldNameSearchTextController
-                                              ?.text = name!;
+                                              ?.text = name;
                                         });
                                       },
                                     ),
@@ -313,13 +310,13 @@ class _StudyProgramListUserDraftWidgetState
                     ],
                   ),
                 ),
-                if ('${(_model.nameSearch != null && _model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessonNameSeach != null && _model.lessonNameSeach != '') && (_model.lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessonNameSeach}\"}}}}' : ' '}${(_model.dateStartSeach != null && _model.dateStartSeach != '') && (_model.dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSeach}\"}}}}' : ' '}${(_model.dateEndSeach != null && _model.dateEndSeach != '') && (_model.dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSeach}\"}}}}' : ' '}' !=
+                if ('${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.lessonNameSeach != '') && (_model.lessonNameSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"${_model.lessonNameSeach}\"}}}}' : ' '}${(_model.dateStartSeach != '') && (_model.dateStartSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_gte\":\"${_model.dateStartSeach}\"}}}}' : ' '}${(_model.dateEndSeach != '') && (_model.dateEndSeach != ' ') ? ',{\"lessions\":{\"lessions_id\":{\"date_created\":{\"_lte\":\"${_model.dateEndSeach}\"}}}}' : ' '}' !=
                     '    ')
                   Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       child: Text(
                         '#Kết quả hiển thị theo bộ lọc',
                         style:
@@ -336,8 +333,8 @@ class _StudyProgramListUserDraftWidgetState
                   builder: (context) {
                     final dataListView = _model.dataList.toList();
                     if (dataListView.isEmpty) {
-                      return Center(
-                        child: Container(
+                      return const Center(
+                        child: SizedBox(
                           width: double.infinity,
                           child: DataNotFoundWidget(),
                         ),
@@ -349,17 +346,17 @@ class _StudyProgramListUserDraftWidgetState
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: dataListView.length,
-                      separatorBuilder: (_, __) => SizedBox(height: 10.0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 10.0),
                       itemBuilder: (context, dataListViewIndex) {
                         final dataListViewItem =
                             dataListView[dataListViewIndex];
                         return Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 12.0, 12.0),
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -371,7 +368,7 @@ class _StudyProgramListUserDraftWidgetState
                                             .primaryBackground
                                         : FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         blurRadius: 4.0,
                                         color: Color(0x33000000),
@@ -384,7 +381,7 @@ class _StudyProgramListUserDraftWidgetState
                                     borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         5.0, 12.0, 5.0, 12.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -392,7 +389,7 @@ class _StudyProgramListUserDraftWidgetState
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '#${(dataListViewIndex + 1).toString()}: ${dataListViewItem.name != null && dataListViewItem.name != '' ? dataListViewItem.name : ' '}  (${'${valueOrDefault<String>(
+                                          '#${(dataListViewIndex + 1).toString()}: ${dataListViewItem.name != '' ? dataListViewItem.name : ' '}  (${'${valueOrDefault<String>(
                                             dataListViewItem.lessions.length
                                                 .toString(),
                                             '0',
@@ -416,7 +413,7 @@ class _StudyProgramListUserDraftWidgetState
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 3.0, 0.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -441,8 +438,7 @@ class _StudyProgramListUserDraftWidgetState
                                                       .spaceBetween,
                                               children: [
                                                 if (dataListViewItem
-                                                        .tests.length >
-                                                    0)
+                                                        .tests.isNotEmpty)
                                                   Builder(
                                                     builder: (context) =>
                                                         FFButtonWidget(
@@ -459,7 +455,7 @@ class _StudyProgramListUserDraftWidgetState
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: AlignmentDirectional(
+                                                              alignment: const AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -499,14 +495,14 @@ class _StudyProgramListUserDraftWidgetState
                                                       options: FFButtonOptions(
                                                         height: 25.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -534,7 +530,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                           .normal,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -560,7 +556,7 @@ class _StudyProgramListUserDraftWidgetState
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: AlignmentDirectional(
+                                                            alignment: const AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -578,7 +574,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                   : FocusScope.of(
                                                                           context)
                                                                       .unfocus(),
-                                                              child: Container(
+                                                              child: SizedBox(
                                                                 height: MediaQuery.sizeOf(
                                                                             context)
                                                                         .height *
@@ -588,7 +584,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                         .width *
                                                                     0.9,
                                                                 child:
-                                                                    CertificateWidget(),
+                                                                    const CertificateWidget(),
                                                               ),
                                                             ),
                                                           );
@@ -600,14 +596,14 @@ class _StudyProgramListUserDraftWidgetState
                                                     options: FFButtonOptions(
                                                       height: 25.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   8.0,
                                                                   0.0,
                                                                   8.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -634,7 +630,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                         .normal,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -705,7 +701,7 @@ class _StudyProgramListUserDraftWidgetState
                                                       ),
                                                   ],
                                                 ),
-                                              ].divide(SizedBox(width: 8.0)),
+                                              ].divide(const SizedBox(width: 8.0)),
                                             ),
                                           ),
                                         ),
@@ -729,7 +725,7 @@ class _StudyProgramListUserDraftWidgetState
                                                 dataListTestsViewIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 12.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -740,7 +736,7 @@ class _StudyProgramListUserDraftWidgetState
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -800,7 +796,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                         .normal,
                                                               ),
                                                         ),
-                                                      ].divide(SizedBox(
+                                                      ].divide(const SizedBox(
                                                           height: 4.0)),
                                                     ),
                                                   ),
@@ -813,14 +809,14 @@ class _StudyProgramListUserDraftWidgetState
                                                     options: FFButtonOptions(
                                                       height: 30.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   12.0,
                                                                   0.0,
                                                                   12.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -844,7 +840,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                     0.0,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -874,7 +870,7 @@ class _StudyProgramListUserDraftWidgetState
                                                           'IconButton pressed ...');
                                                     },
                                                   ),
-                                                ].divide(SizedBox(width: 8.0)),
+                                                ].divide(const SizedBox(width: 8.0)),
                                               ),
                                             ),
                                           ),
@@ -898,7 +894,7 @@ class _StudyProgramListUserDraftWidgetState
                                                 dataListLessionsViewIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 12.0, 12.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -909,7 +905,7 @@ class _StudyProgramListUserDraftWidgetState
                                                   BorderRadius.circular(8.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(6.0),
+                                              padding: const EdgeInsets.all(6.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -930,7 +926,7 @@ class _StudyProgramListUserDraftWidgetState
                                                           BorderRadius.circular(
                                                               8.0),
                                                       child: Image.network(
-                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != null && dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListLessionsViewItem.lessionsId.imageCover != '' ? dataListLessionsViewItem.lessionsId.imageCover : ' '}',
                                                         width: 300.0,
                                                         height: 200.0,
                                                         fit: BoxFit.cover,
@@ -956,8 +952,6 @@ class _StudyProgramListUserDraftWidgetState
                                                             children: [
                                                               Text(
                                                                 dataListLessionsViewItem.lessionsId.name !=
-                                                                            null &&
-                                                                        dataListLessionsViewItem.lessionsId.name !=
                                                                             ''
                                                                     ? dataListLessionsViewItem
                                                                         .lessionsId
@@ -984,8 +978,6 @@ class _StudyProgramListUserDraftWidgetState
                                                               ),
                                                               Text(
                                                                 dataListLessionsViewItem.lessionsId.dateCreated !=
-                                                                            null &&
-                                                                        dataListLessionsViewItem.lessionsId.dateCreated !=
                                                                             ''
                                                                     ? valueOrDefault<
                                                                         String>(
@@ -1033,14 +1025,14 @@ class _StudyProgramListUserDraftWidgetState
                                                                 FFButtonOptions(
                                                               height: 30.0,
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           12.0,
                                                                           0.0,
                                                                           12.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1065,7 +1057,7 @@ class _StudyProgramListUserDraftWidgetState
                                                                       ),
                                                               elevation: 3.0,
                                                               borderSide:
-                                                                  BorderSide(
+                                                                  const BorderSide(
                                                                 color: Colors
                                                                     .transparent,
                                                                 width: 1.0,
@@ -1098,7 +1090,7 @@ class _StudyProgramListUserDraftWidgetState
                                                           'IconButton pressed ...');
                                                     },
                                                   ),
-                                                ].divide(SizedBox(width: 8.0)),
+                                                ].divide(const SizedBox(width: 8.0)),
                                               ),
                                             ),
                                           ),

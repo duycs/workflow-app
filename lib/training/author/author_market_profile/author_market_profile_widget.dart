@@ -3,12 +3,9 @@ import '/components/rating_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'author_market_profile_model.dart';
 export 'author_market_profile_model.dart';
@@ -68,18 +65,18 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
-            alignment: AlignmentDirectional(-1.0, -1.0),
+            alignment: const AlignmentDirectional(-1.0, -1.0),
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Container(
                   width: double.infinity,
                   height: 270.0,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Image.network(
                     '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
                     width: double.infinity,
@@ -89,13 +86,13 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(4.0),
+                padding: const EdgeInsets.all(4.0),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30.0,
                   borderWidth: 1.0,
                   buttonSize: 60.0,
-                  fillColor: Color(0x90FFFFFF),
+                  fillColor: const Color(0x90FFFFFF),
                   icon: Icon(
                     Icons.arrow_back_rounded,
                     color: FlutterFlowTheme.of(context).primaryText,
@@ -107,7 +104,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -116,9 +113,9 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Align(
-                        alignment: AlignmentDirectional(0.0, 1.0),
+                        alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 200.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -126,7 +123,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              boxShadow: [
+                              boxShadow: const [
                                 BoxShadow(
                                   blurRadius: 4.0,
                                   color: Color(0x320E151B),
@@ -136,7 +133,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                   ),
                                 )
                               ],
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(0.0),
                                 bottomRight: Radius.circular(0.0),
                                 topLeft: Radius.circular(16.0),
@@ -144,14 +141,14 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 16.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Text(
                                       widget.itemAuthors!.alias,
@@ -165,7 +162,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -216,10 +213,10 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 28.0, 0.0),
                                           child: Text(
-                                            '${widget.itemAuthors?.orderCount?.toString()} lượt bán',
+                                            '${widget.itemAuthors?.orderCount.toString()} lượt bán',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -238,7 +235,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                     child: Column(
                                       children: [
                                         Align(
-                                          alignment: Alignment(0.0, 0),
+                                          alignment: const Alignment(0.0, 0),
                                           child: TabBar(
                                             labelColor:
                                                 FlutterFlowTheme.of(context)
@@ -263,7 +260,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                             indicatorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
-                                            tabs: [
+                                            tabs: const [
                                               Tab(
                                                 text: 'Khóa học',
                                               ),
@@ -289,7 +286,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                             controller: _model.tabBarController,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 24.0),
                                                 child: Builder(
@@ -313,7 +310,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                 itemListProgramsMarketIndex];
                                                         return Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       12.0,
@@ -345,7 +342,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
-                                                                      TransitionInfo(
+                                                                      const TransitionInfo(
                                                                     hasTransition:
                                                                         true,
                                                                     transitionType:
@@ -381,14 +378,12 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.start,
                                                                         children: [
-                                                                          if (itemListProgramsMarketItem.reacts.length >
-                                                                              0)
+                                                                          if (itemListProgramsMarketItem.reacts.isNotEmpty)
                                                                             RatingBarWidget(
                                                                               key: Key('Keyfuw_${itemListProgramsMarketIndex}_of_${itemListProgramsMarket.length}'),
                                                                               listReacts: itemListProgramsMarketItem.reacts,
                                                                             ),
-                                                                          if (itemListProgramsMarketItem.reacts.length <=
-                                                                              0)
+                                                                          if (itemListProgramsMarketItem.reacts.isEmpty)
                                                                             Text(
                                                                               'Chưa có đánh giá nào!',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -416,7 +411,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          if ((itemListProgramsMarketItem.price != null && itemListProgramsMarketItem.price != '') &&
+                                                                          if ((itemListProgramsMarketItem.price != '') &&
                                                                               (itemListProgramsMarketItem.price != '0'))
                                                                             RichText(
                                                                               textScaler: MediaQuery.of(context).textScaler,
@@ -436,14 +431,14 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                                           fontStyle: FontStyle.italic,
                                                                                         ),
                                                                                   ),
-                                                                                  TextSpan(
+                                                                                  const TextSpan(
                                                                                     text: 'đ',
                                                                                     style: TextStyle(
                                                                                       fontSize: 12.0,
                                                                                       fontStyle: FontStyle.italic,
                                                                                     ),
                                                                                   ),
-                                                                                  TextSpan(
+                                                                                  const TextSpan(
                                                                                     text: ' ',
                                                                                     style: TextStyle(
                                                                                       fontSize: 12.0,
@@ -455,14 +450,14 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                                       formatType: FormatType.decimal,
                                                                                       decimalType: DecimalType.commaDecimal,
                                                                                     ),
-                                                                                    style: TextStyle(
+                                                                                    style: const TextStyle(
                                                                                       color: Color(0xFFFF0000),
                                                                                       fontSize: 11.0,
                                                                                       decoration: TextDecoration.lineThrough,
                                                                                       fontStyle: FontStyle.italic,
                                                                                     ),
                                                                                   ),
-                                                                                  TextSpan(
+                                                                                  const TextSpan(
                                                                                     text: 'đ',
                                                                                     style: TextStyle(
                                                                                       color: Color(0xFFFF0000),
@@ -479,8 +474,8 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                                     ),
                                                                               ),
                                                                             ),
-                                                                          if (((itemListProgramsMarketItem.price != null && itemListProgramsMarketItem.price != '') && (itemListProgramsMarketItem.price == '0')) ||
-                                                                              (itemListProgramsMarketItem.price == null || itemListProgramsMarketItem.price == ''))
+                                                                          if (((itemListProgramsMarketItem.price != '') && (itemListProgramsMarketItem.price == '0')) ||
+                                                                              (itemListProgramsMarketItem.price == ''))
                                                                             Text(
                                                                               'Miễn phí',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -494,7 +489,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                         ],
                                                                       ),
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -524,19 +519,19 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                               letterSpacing: 0.0,
                                                                             ),
                                                                       ),
-                                                                    ].divide(SizedBox(
+                                                                    ].divide(const SizedBox(
                                                                         height:
                                                                             2.0)),
                                                                   ),
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -549,9 +544,9 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                       height:
                                                                           100.0,
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
@@ -572,7 +567,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                     ),
                                                                   ),
                                                                 ),
-                                                              ].divide(SizedBox(
+                                                              ].divide(const SizedBox(
                                                                   width: 8.0)),
                                                             ),
                                                           ),
@@ -583,18 +578,18 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.all(24.0),
+                                                padding: const EdgeInsets.all(24.0),
                                                 child: Builder(
                                                   builder: (context) {
                                                     final itemDomains = widget
                                                             .itemAuthors
                                                             ?.domains
-                                                            ?.toList() ??
+                                                            .toList() ??
                                                         [];
                                                     return GridView.builder(
                                                       padding: EdgeInsets.zero,
                                                       gridDelegate:
-                                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                                          const SliverGridDelegateWithFixedCrossAxisCount(
                                                         crossAxisCount: 2,
                                                         crossAxisSpacing: 20.0,
                                                         childAspectRatio: 1.0,
@@ -611,7 +606,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                 itemDomainsIndex];
                                                         return Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -658,7 +653,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                 extra: <String,
                                                                     dynamic>{
                                                                   kTransitionInfoKey:
-                                                                      TransitionInfo(
+                                                                      const TransitionInfo(
                                                                     hasTransition:
                                                                         true,
                                                                     transitionType:
@@ -690,13 +685,13 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                               ),
                                                               child: Stack(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.0,
                                                                         1.0),
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -715,14 +710,14 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                             FlutterFlowTheme.of(context).noColor,
                                                                             FlutterFlowTheme.of(context).primaryText
                                                                           ],
-                                                                          stops: [
+                                                                          stops: const [
                                                                             0.0,
                                                                             1.0
                                                                           ],
-                                                                          begin: AlignmentDirectional(
+                                                                          begin: const AlignmentDirectional(
                                                                               0.0,
                                                                               -1.0),
-                                                                          end: AlignmentDirectional(
+                                                                          end: const AlignmentDirectional(
                                                                               0,
                                                                               1.0),
                                                                         ),
@@ -732,7 +727,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -775,7 +770,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 16.0, 16.0),
                                                 child: SingleChildScrollView(
@@ -848,7 +843,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   16.0),
                                                           child: Text(
                                                             widget.itemAuthors!
