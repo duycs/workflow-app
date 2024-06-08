@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -14,8 +13,6 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'lesson_create_model.dart';
 export 'lesson_create_model.dart';
 
@@ -24,7 +21,7 @@ class LessonCreateWidget extends StatefulWidget {
     super.key,
     String? checkScroll,
     required this.checkPage,
-  }) : this.checkScroll = checkScroll ?? '0';
+  }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
   final String? checkPage;
@@ -104,7 +101,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -115,7 +112,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -123,7 +120,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.nameTextController,
@@ -187,7 +184,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.descriptionTextController,
@@ -247,55 +244,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
-                            maxLength: 50,
+                            maxLength: 100,
                             maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             validator: _model.descriptionTextControllerValidator
                                 .asValidator(context),
                           ),
                         ),
-                        if ('1' == '2')
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 3.0, 0.0, 0.0),
-                            child: FlutterFlowDropDown<String>(
-                              controller: _model.dropDownValueController ??=
-                                  FormFieldController<String>(null),
-                              options: ['Option 1'],
-                              onChanged: (val) =>
-                                  setState(() => _model.dropDownValue = val),
-                              width: 300.0,
-                              height: 50.0,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Danh sách danh mục ',
-                              icon: Icon(
-                                Icons.keyboard_arrow_down_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
-                              ),
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 0.0,
-                              borderColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              borderWidth: 0.5,
-                              borderRadius: 8.0,
-                              margin: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 4.0, 16.0, 4.0),
-                              hidesUnderline: true,
-                              isOverButton: true,
-                              isSearchable: false,
-                              isMultiSelect: false,
-                            ),
-                          ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
@@ -308,7 +264,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 3.0, 0.0, 0.0),
                           child: FlutterFlowDropDown<String>(
                             controller: _model.testIdValueController ??=
@@ -340,7 +296,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 0.5,
                             borderRadius: 8.0,
-                            margin: EdgeInsetsDirectional.fromSTEB(
+                            margin: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 4.0, 16.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
@@ -349,7 +305,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -369,7 +325,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -428,7 +384,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -456,11 +412,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -492,7 +448,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               Expanded(
                                 flex: 1,
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 5.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -500,7 +456,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     focusNode: _model.estimateInDayFocusNode,
                                     onChanged: (_) => EasyDebounce.debounce(
                                       '_model.estimateInDayTextController',
-                                      Duration(milliseconds: 2000),
+                                      const Duration(milliseconds: 2000),
                                       () async {
                                         _model.checkTime = int.tryParse(_model
                                             .estimateInDayTextController.text);
@@ -560,7 +516,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             BorderRadius.circular(0.0),
                                       ),
                                       contentPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -588,11 +544,10 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
-                        if (((_model.estimateInDayTextController.text != null &&
-                                    _model.estimateInDayTextController.text !=
+                        if (((_model.estimateInDayTextController.text !=
                                         '') &&
                                 (int.parse(_model
                                         .estimateInDayTextController.text) <
@@ -612,7 +567,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -625,13 +580,12 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (_model.uploadedLocalFile1 != null &&
-                                        (_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile1.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
@@ -644,8 +598,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile1 == null ||
-                                        (_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile1.bytes
                                                 ?.isEmpty ??
                                             true))
                                       Container(
@@ -662,7 +615,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -726,15 +679,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     setState(() {});
                                   },
                                   text: 'Ảnh',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -747,7 +700,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -755,11 +708,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -769,7 +722,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               Expanded(
                                 flex: 3,
                                 child: Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -787,8 +740,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             fit: BoxFit.cover,
                                           ),
                                         ),
-                                      if (_model.uploadedLocalFile2 == null ||
-                                          (_model.uploadedLocalFile2.bytes
+                                      if ((_model.uploadedLocalFile2.bytes
                                                   ?.isEmpty ??
                                               true))
                                         Container(
@@ -806,7 +758,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Chưa có dữ liệu!',
                                             style: FlutterFlowTheme.of(context)
@@ -817,8 +769,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                 ),
                                           ),
                                         ),
-                                      if (_model.uploadedLocalFile2 != null &&
-                                          (_model.uploadedLocalFile2.bytes
+                                      if ((_model.uploadedLocalFile2.bytes
                                                   ?.isNotEmpty ??
                                               false))
                                         Container(
@@ -836,7 +787,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             ),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             'Tải Video thành công!',
                                             style: FlutterFlowTheme.of(context)
@@ -902,15 +853,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     setState(() {});
                                   },
                                   text: ' Video',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -923,7 +874,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -931,11 +882,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -948,13 +899,12 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (_model.uploadedLocalFile3 == null ||
-                                        (_model.uploadedLocalFile3.bytes
+                                    if ((_model.uploadedLocalFile3.bytes
                                                 ?.isEmpty ??
                                             true))
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(
@@ -962,7 +912,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                 BorderRadius.circular(0.0),
                                           ),
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Visibility(
                                             visible: '1' == '2',
                                             child: FlutterFlowPdfViewer(
@@ -975,8 +925,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile3 == null ||
-                                        (_model.uploadedLocalFile3.bytes
+                                    if ((_model.uploadedLocalFile3.bytes
                                                 ?.isEmpty ??
                                             true))
                                       Container(
@@ -993,7 +942,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Chưa có dữ liệu!',
                                           style: FlutterFlowTheme.of(context)
@@ -1004,8 +953,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                               ),
                                         ),
                                       ),
-                                    if (_model.uploadedLocalFile3 != null &&
-                                        (_model.uploadedLocalFile3.bytes
+                                    if ((_model.uploadedLocalFile3.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       Container(
@@ -1022,7 +970,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Tải file thành công!',
                                           style: FlutterFlowTheme.of(context)
@@ -1079,15 +1027,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     setState(() {});
                                   },
                                   text: 'File',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1100,7 +1048,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           fontWeight: FontWeight.normal,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1108,11 +1056,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Nội dung',
@@ -1136,7 +1084,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               color: FlutterFlowTheme.of(context).noColor,
                             ),
                           ),
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Builder(
                             builder: (context) => InkWell(
                               splashColor: Colors.transparent,
@@ -1151,7 +1099,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: GestureDetector(
                                         onTap: () => _model
@@ -1166,7 +1114,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           callBack: (input, output) async {
                                             _model.checkContent = output!;
                                             _model.input = input!;
-                                            _model.output = output!;
+                                            _model.output = output;
                                             setState(() {});
                                           },
                                         ),
@@ -1187,7 +1135,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                         FlutterFlowTheme.of(context).alternate,
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(
@@ -1215,8 +1163,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           print('IconButton pressed ...');
                                         },
                                       ),
-                                      if (_model.checkContent == null ||
-                                          _model.checkContent == '')
+                                      if (_model.checkContent == '')
                                         Text(
                                           'Nhập nội dung',
                                           style: FlutterFlowTheme.of(context)
@@ -1227,8 +1174,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      if (_model.checkContent != null &&
-                                          _model.checkContent != '')
+                                      if (_model.checkContent != '')
                                         Text(
                                           'Chỉnh sửa nội dung',
                                           style: FlutterFlowTheme.of(context)
@@ -1245,8 +1191,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             ),
                           ),
                         ),
-                        if (_model.checkContent != null &&
-                            _model.checkContent != '')
+                        if (_model.checkContent != '')
                           Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
@@ -1257,52 +1202,43 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 color: FlutterFlowTheme.of(context).noColor,
                               ),
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                           ),
                         custom_widgets.HTMLView(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: 100.0,
                           html: functions.formatHtml(_model.checkContent),
                         ),
-                      ].divide(SizedBox(height: 6.0)),
+                      ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.uploadedLocalFile2 != null &&
-                        (_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFIleVideo(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile1 != null &&
-                        (_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFIleImage(context);
                       setState(() {});
                     }
-                    if (_model.uploadedLocalFile3 != null &&
-                        (_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileFile(context);
                       setState(() {});
                     }
-                    if ((_model.nameTextController.text != null &&
-                            _model.nameTextController.text != '') &&
-                        (_model.checkContent != null &&
-                            _model.checkContent != '') &&
-                        (_model.descriptionTextController.text != null &&
-                            _model.descriptionTextController.text != '') &&
-                        (_model.durationHoursTextController.text != null &&
-                            _model.durationHoursTextController.text != '') &&
-                        (_model.uploadImage != null &&
-                            _model.uploadImage != '')) {
-                      if (_model.estimateInDayTextController.text != null &&
-                          _model.estimateInDayTextController.text != '') {
+                    if ((_model.nameTextController.text != '') &&
+                        (_model.checkContent != '') &&
+                        (_model.descriptionTextController.text != '') &&
+                        (_model.durationHoursTextController.text != '') &&
+                        (_model.uploadImage != '')) {
+                      if (_model.estimateInDayTextController.text != '') {
                         if (int.parse(_model.estimateInDayTextController.text) >
                             0) {
                           await _model.createLesson(context);
@@ -1317,7 +1253,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       .secondaryBackground,
                                 ),
                               ),
-                              duration: Duration(milliseconds: 4000),
+                              duration: const Duration(milliseconds: 4000),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).error,
                             ),
@@ -1332,25 +1268,16 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                         SnackBar(
                           content: Text(
                             () {
-                              if (_model.nameTextController.text == null ||
-                                  _model.nameTextController.text == '') {
+                              if (_model.nameTextController.text == '') {
                                 return 'Tiêu đề chưa có dữ liệu!';
-                              } else if (_model.checkContent == null ||
-                                  _model.checkContent == '') {
+                              } else if (_model.checkContent == '') {
                                 return 'Nội dung chưa có dữ liệu!';
-                              } else if (_model
-                                          .descriptionTextController.text ==
-                                      null ||
-                                  _model.descriptionTextController.text == '') {
+                              } else if (_model.descriptionTextController.text == '') {
                                 return 'Mô tả chưa có dữ liệu!';
-                              } else if (_model
-                                          .durationHoursTextController.text ==
-                                      null ||
-                                  _model.durationHoursTextController.text ==
+                              } else if (_model.durationHoursTextController.text ==
                                       '') {
                                 return 'Thời gian học chưa có dữ liệu!';
-                              } else if (_model.uploadImage == null ||
-                                  _model.uploadImage == '') {
+                              } else if (_model.uploadImage == '') {
                                 return 'Chưa có ảnh tải lên!';
                               } else {
                                 return '';
@@ -1361,7 +1288,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   .secondaryBackground,
                             ),
                           ),
-                          duration: Duration(milliseconds: 4000),
+                          duration: const Duration(milliseconds: 4000),
                           backgroundColor: FlutterFlowTheme.of(context).error,
                         ),
                       );
@@ -1372,17 +1299,17 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFF33BA45),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF33BA45),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Nunito Sans',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

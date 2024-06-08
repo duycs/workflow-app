@@ -1,14 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/actions/actions.dart' as action_blocks;
 import 'branch_create_widget.dart' show BranchCreateWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
   ///  Local state fields for this component.
@@ -61,6 +54,10 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Vui lòng nhập nội dung';
+    }
+
+    if (val.length > 200) {
+      return 'Mô tả khôngđược vượt quá 200 kí tự';
     }
 
     return null;

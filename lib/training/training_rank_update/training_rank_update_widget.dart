@@ -5,12 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'training_rank_update_model.dart';
 export 'training_rank_update_model.dart';
 
@@ -69,8 +65,8 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -121,7 +117,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                 letterSpacing: 0.0,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 1.0,
       ),
@@ -137,13 +133,13 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
                             child: Container(
                               width: 100.0,
@@ -153,12 +149,12 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                 shape: BoxShape.circle,
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(2.0),
+                                padding: const EdgeInsets.all(2.0),
                                 child: Container(
                                   width: 90.0,
                                   height: 90.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -174,14 +170,14 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -202,14 +198,14 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 0.0),
                       child: TextFormField(
                         controller: _model.yourNameTextController,
                         focusNode: _model.yourNameFocusNode,
@@ -261,7 +257,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 0.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -275,7 +271,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: TextFormField(
                         controller: _model.myBioTextController,
                         focusNode: _model.myBioFocusNode,
@@ -327,7 +323,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 0.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -342,11 +338,11 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
                       child: FlutterFlowDropDown<String>(
                         controller: _model.stateValueController ??=
                             FormFieldController<String>(null),
-                        options: [
+                        options: const [
                           'Kinh doanh',
                           'Marketing',
                           ' Công nghệ',
@@ -376,7 +372,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                         borderColor: FlutterFlowTheme.of(context).alternate,
                         borderWidth: 1.0,
                         borderRadius: 8.0,
-                        margin: EdgeInsetsDirectional.fromSTEB(
+                        margin: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 4.0, 12.0, 4.0),
                         hidesUnderline: true,
                         isSearchable: false,
@@ -385,7 +381,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -398,12 +394,12 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Icon(
                                   Icons.power_settings_new_rounded,
@@ -417,7 +413,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                   value: _model.switchListTileValue ??= true,
                                   onChanged: (newValue) async {
                                     setState(() =>
-                                        _model.switchListTileValue = newValue!);
+                                        _model.switchListTileValue = newValue);
                                   },
                                   title: Text(
                                     'Trạng thái hoạt động',
@@ -438,7 +434,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                   controlAffinity:
                                       ListTileControlAffinity.trailing,
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 0.0, 4.0, 0.0),
                                 ),
                               ),
@@ -449,14 +445,14 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           animationsMap['containerOnPageLoadAnimation']!),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).alternate,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -477,13 +473,13 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -492,7 +488,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
                                 controller: _model.textController3,
                                 focusNode: _model.textFieldFocusNode1,
@@ -552,7 +548,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
@@ -564,7 +560,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Switch.adaptive(
                             value: _model.switchValue1!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue1 = newValue!);
+                              setState(() => _model.switchValue1 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -574,11 +570,11 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -587,7 +583,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
                                 controller: _model.textController4,
                                 focusNode: _model.textFieldFocusNode2,
@@ -647,7 +643,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
@@ -659,7 +655,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Switch.adaptive(
                             value: _model.switchValue2!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue2 = newValue!);
+                              setState(() => _model.switchValue2 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -669,11 +665,11 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           20.0, 16.0, 20.0, 16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -682,7 +678,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Expanded(
                             child: Container(
                               width: 200.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: TextFormField(
                                 controller: _model.textController5,
                                 focusNode: _model.textFieldFocusNode3,
@@ -742,7 +738,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      color: Color(0xFFDBE2E7),
+                                      color: const Color(0xFFDBE2E7),
                                       letterSpacing: 0.0,
                                     ),
                                 keyboardType: TextInputType.number,
@@ -754,7 +750,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                           Switch.adaptive(
                             value: _model.switchValue3!,
                             onChanged: (newValue) async {
-                              setState(() => _model.switchValue3 = newValue!);
+                              setState(() => _model.switchValue3 = newValue);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -764,7 +760,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                             inactiveThumbColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ),
                   ],
@@ -772,9 +768,9 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.0, 0.05),
+              alignment: const AlignmentDirectional(0.0, 0.05),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () {
                     print('Button pressed ...');
@@ -783,9 +779,9 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                   options: FFButtonOptions(
                     width: 270.0,
                     height: 50.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
@@ -795,7 +791,7 @@ class _TrainingRankUpdateWidgetState extends State<TrainingRankUpdateWidget>
                               letterSpacing: 0.0,
                             ),
                     elevation: 2.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

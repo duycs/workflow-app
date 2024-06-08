@@ -4,8 +4,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'update_profile_ck_popup_model.dart';
 export 'update_profile_ck_popup_model.dart';
 
@@ -69,7 +67,7 @@ class _UpdateProfileCkPopupWidgetState
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: Text(
                     'Nhập văn bản',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -83,34 +81,22 @@ class _UpdateProfileCkPopupWidgetState
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (_model.dataOutput != null && _model.dataOutput != '') {
+                  if (_model.dataOutput != '') {
                     await widget.action?.call(
                       widget.output,
                       _model.dataOutput,
                     );
                     Navigator.pop(context);
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Lỗi nhập liệu!',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).error,
-                      ),
-                    );
                     Navigator.pop(context);
                   }
                 },
                 text: 'Đóng',
                 options: FFButtonOptions(
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Nunito Sans',
@@ -119,7 +105,7 @@ class _UpdateProfileCkPopupWidgetState
                         letterSpacing: 0.0,
                       ),
                   elevation: 3.0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1.0,
                   ),
@@ -128,7 +114,7 @@ class _UpdateProfileCkPopupWidgetState
               ),
             ],
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
@@ -140,7 +126,7 @@ class _UpdateProfileCkPopupWidgetState
               color: FlutterFlowTheme.of(context).primaryBackground,
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -155,7 +141,7 @@ class _UpdateProfileCkPopupWidgetState
                           width: 2.0,
                         ),
                       ),
-                      child: Container(
+                      child: SizedBox(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 0.9,
                         child: custom_widgets.CKEditorUpdate(
@@ -175,7 +161,7 @@ class _UpdateProfileCkPopupWidgetState
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 8.0)),
+                ].divide(const SizedBox(height: 8.0)),
               ),
             ),
           ),

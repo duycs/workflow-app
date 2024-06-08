@@ -1,25 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/order/order_create/order_create_widget.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'program_market_detail_widget.dart' show ProgramMarketDetailWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class ProgramMarketDetailModel
     extends FlutterFlowModel<ProgramMarketDetailWidget> {
@@ -59,15 +44,15 @@ class ProgramMarketDetailModel
       accessToken: FFAppState().accessToken,
       idPrograms: widget.idProgram,
     );
-    if ((apiResultListGetOne?.succeeded ?? true)) {
+    if ((apiResultListGetOne.succeeded ?? true)) {
       dataGetOne = MarketLessonListStruct.maybeFromMap(getJsonField(
-        (apiResultListGetOne?.jsonBody ?? ''),
+        (apiResultListGetOne.jsonBody ?? ''),
         r'''$.data''',
       ));
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultListGetOne?.jsonBody ?? ''),
+        jsonErrors: (apiResultListGetOne.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +63,7 @@ class ProgramMarketDetailModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -102,21 +87,21 @@ class ProgramMarketDetailModel
         'program_id': widget.idProgram,
       },
     );
-    if ((apiResultPost?.succeeded ?? true)) {
+    if ((apiResultPost.succeeded ?? true)) {
       var confirmDialogResponse = await showDialog<bool>(
             context: context,
             builder: (alertDialogContext) {
               return AlertDialog(
-                title: Text('Thông báo!'),
-                content: Text('Áp dụng khoá học cho cá nhân thành công!'),
+                title: const Text('Thông báo!'),
+                content: const Text('Áp dụng khoá học cho cá nhân thành công!'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: Text('Ở lại'),
+                    child: const Text('Ở lại'),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: Text('Học khoá học'),
+                    child: const Text('Học khoá học'),
                   ),
                 ],
               );
@@ -127,7 +112,7 @@ class ProgramMarketDetailModel
         context.pushNamed(
           'StudyProgramListUser',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -142,7 +127,7 @@ class ProgramMarketDetailModel
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPost?.jsonBody ?? ''),
+        jsonErrors: (apiResultPost.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -153,7 +138,7 @@ class ProgramMarketDetailModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
@@ -186,21 +171,21 @@ class ProgramMarketDetailModel
         ),
       },
     );
-    if ((apiResultPostCopy?.succeeded ?? true)) {
+    if ((apiResultPostCopy.succeeded ?? true)) {
       var confirmDialogResponse = await showDialog<bool>(
             context: context,
             builder: (alertDialogContext) {
               return AlertDialog(
-                title: Text('Thông báo!'),
-                content: Text('Áp dụng khoá học cho tổ chức thành công!'),
+                title: const Text('Thông báo!'),
+                content: const Text('Áp dụng khoá học cho tổ chức thành công!'),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: Text('Ở lại'),
+                    child: const Text('Ở lại'),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: Text('Xem khoá học'),
+                    child: const Text('Xem khoá học'),
                   ),
                 ],
               );
@@ -211,7 +196,7 @@ class ProgramMarketDetailModel
         context.pushNamed(
           'StudyProgramList',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -226,7 +211,7 @@ class ProgramMarketDetailModel
     } else {
       checkRefreshTokenBlock1 = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultPostCopy?.jsonBody ?? ''),
+        jsonErrors: (apiResultPostCopy.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlock1!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -237,7 +222,7 @@ class ProgramMarketDetailModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );

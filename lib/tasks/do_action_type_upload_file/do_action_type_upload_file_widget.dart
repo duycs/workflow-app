@@ -7,12 +7,10 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'do_action_type_upload_file_model.dart';
 export 'do_action_type_upload_file_model.dart';
@@ -54,14 +52,14 @@ class _DoActionTypeUploadFileWidgetState
       while (_model.loop <
           widget.dataPass!.operations.first.operationsId.files.length) {
         _model.addToListFileId(FileIDDataTypeStruct(
-          id: (widget.dataPass?.operations?.first?.operationsId
-                  ?.files?[_model.loop])
+          id: (widget.dataPass?.operations.first.operationsId
+                  .files[_model.loop])
               ?.directusFilesId
-              ?.id,
-          filenameDownload: (widget.dataPass?.operations?.first?.operationsId
-                  ?.files?[_model.loop])
+              .id,
+          filenameDownload: (widget.dataPass?.operations.first.operationsId
+                  .files[_model.loop])
               ?.directusFilesId
-              ?.filenameDownload,
+              .filenameDownload,
         ));
         setState(() {});
         _model.loop = _model.loop + 1;
@@ -85,7 +83,7 @@ class _DoActionTypeUploadFileWidgetState
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,19 +101,19 @@ class _DoActionTypeUploadFileWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'video')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -123,15 +121,15 @@ class _DoActionTypeUploadFileWidgetState
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'exc')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -139,15 +137,15 @@ class _DoActionTypeUploadFileWidgetState
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'img')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -155,15 +153,15 @@ class _DoActionTypeUploadFileWidgetState
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'word')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -171,15 +169,15 @@ class _DoActionTypeUploadFileWidgetState
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'pptx')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -187,15 +185,15 @@ class _DoActionTypeUploadFileWidgetState
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                            if (functions.checkFileLast('${(String tail) {
+                            if (functions.checkFileLast((String tail) {
                                   return tail.split('.').last;
-                                }(dataItem.filenameDownload)}') ==
+                                }(dataItem.filenameDownload)) ==
                                 'pdf')
                               Container(
                                 width: 35.0,
                                 height: 35.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -217,13 +215,13 @@ class _DoActionTypeUploadFileWidgetState
                                     ),
                               ),
                             ),
-                            if ((functions.checkFileLast('${(String tail) {
+                            if ((functions.checkFileLast((String tail) {
                                       return tail.split('.').last;
-                                    }(dataItem.filenameDownload)}') ==
+                                    }(dataItem.filenameDownload)) ==
                                     'pdf') ||
-                                (functions.checkFileLast('${(String tail) {
+                                (functions.checkFileLast((String tail) {
                                       return tail.split('.').last;
-                                    }(dataItem.filenameDownload)}') ==
+                                    }(dataItem.filenameDownload)) ==
                                     'img'))
                               Builder(
                                 builder: (context) => FlutterFlowIconButton(
@@ -245,11 +243,11 @@ class _DoActionTypeUploadFileWidgetState
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
+                                          alignment: const AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: Container(
+                                          child: SizedBox(
                                             height: double.infinity,
                                             width: double.infinity,
                                             child: PopupSeeMoreWidget(
@@ -306,7 +304,7 @@ class _DoActionTypeUploadFileWidgetState
                                 setState(() {});
                               },
                             ),
-                          ].divide(SizedBox(width: 8.0)),
+                          ].divide(const SizedBox(width: 8.0)),
                         ),
                       ),
                     ],
@@ -315,7 +313,7 @@ class _DoActionTypeUploadFileWidgetState
               );
             },
           ),
-          if (_model.listFileUpload.length > 0)
+          if (_model.listFileUpload.isNotEmpty)
             Builder(
               builder: (context) {
                 final dataUpload = _model.listFileUpload.toList();
@@ -328,20 +326,20 @@ class _DoActionTypeUploadFileWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if (functions.checkFileLast('${(String tail) {
+                              if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}') ==
+                                  }(functions.fileName(dataUploadItem)!)) ==
                                   'video')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -349,15 +347,15 @@ class _DoActionTypeUploadFileWidgetState
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              if (functions.checkFileLast('${(String tail) {
+                              if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}') ==
+                                  }(functions.fileName(dataUploadItem)!)) ==
                                   'exc')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -365,15 +363,15 @@ class _DoActionTypeUploadFileWidgetState
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              if (functions.checkFileLast('${(String tail) {
+                              if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}') ==
+                                  }(functions.fileName(dataUploadItem)!)) ==
                                   'img')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -381,15 +379,15 @@ class _DoActionTypeUploadFileWidgetState
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              if (functions.checkFileLast('${(String tail) {
+                              if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}') ==
+                                  }(functions.fileName(dataUploadItem)!)) ==
                                   'word')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -398,15 +396,15 @@ class _DoActionTypeUploadFileWidgetState
                                   ),
                                 ),
                               if (functions.checkFileLast(
-                                      functions.checkFileLast('${(String tail) {
+                                      functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}')) ==
+                                  }(functions.fileName(dataUploadItem)!))) ==
                                   'pptx')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -414,15 +412,15 @@ class _DoActionTypeUploadFileWidgetState
                                     fit: BoxFit.cover,
                                   ),
                                 ),
-                              if (functions.checkFileLast('${(String tail) {
+                              if (functions.checkFileLast((String tail) {
                                     return tail.split('.').last;
-                                  }(functions.fileName(dataUploadItem)!)}') ==
+                                  }(functions.fileName(dataUploadItem)!)) ==
                                   'pdf')
                                 Container(
                                   width: 35.0,
                                   height: 35.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
@@ -448,7 +446,7 @@ class _DoActionTypeUploadFileWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
+                                alignment: const AlignmentDirectional(1.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
                                   borderRadius: 20.0,
@@ -466,7 +464,7 @@ class _DoActionTypeUploadFileWidgetState
                                   },
                                 ),
                               ),
-                            ].divide(SizedBox(width: 8.0)),
+                            ].divide(const SizedBox(width: 8.0)),
                           ),
                         ),
                       ],
@@ -514,23 +512,22 @@ class _DoActionTypeUploadFileWidgetState
                     }
                   }
 
-                  if (_model.uploadedLocalFile != null &&
-                      (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                     _model.addToListFileUpload(_model.uploadedLocalFile);
                     setState(() {});
                   }
                 },
                 text: 'Chọn file',
-                icon: Icon(
+                icon: const Icon(
                   Icons.attach_file,
                   size: 20.0,
                 ),
                 options: FFButtonOptions(
                   width: 140.0,
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).alternate,
                   textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                         fontFamily: 'Nunito Sans',
@@ -545,8 +542,7 @@ class _DoActionTypeUploadFileWidgetState
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (_model.uploadedLocalFile != null &&
-                      (_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
                     _model.uploadFileToken =
                         await action_blocks.tokenReload(context);
                     if (_model.uploadFileToken!) {
@@ -574,13 +570,13 @@ class _DoActionTypeUploadFileWidgetState
                               id: (FileUploadStruct.maybeFromMap((_model
                                               .apiResultUploadFile?.jsonBody ??
                                           ''))
-                                      ?.data?[_model.loop])
+                                      ?.data[_model.loop])
                                   ?.id,
                               filenameDownload: (FileUploadStruct.maybeFromMap(
                                           (_model.apiResultUploadFile
                                                   ?.jsonBody ??
                                               ''))
-                                      ?.data?[_model.loop])
+                                      ?.data[_model.loop])
                                   ?.id,
                             ));
                             setState(() {});
@@ -621,9 +617,9 @@ class _DoActionTypeUploadFileWidgetState
                 options: FFButtonOptions(
                   width: 140.0,
                   height: 40.0,
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   iconPadding:
-                      EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                         fontFamily: 'Nunito Sans',
@@ -634,9 +630,9 @@ class _DoActionTypeUploadFileWidgetState
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-            ].divide(SizedBox(width: 8.0)),
+            ].divide(const SizedBox(width: 8.0)),
           ),
-        ].divide(SizedBox(height: 8.0)),
+        ].divide(const SizedBox(height: 8.0)),
       ),
     );
   }

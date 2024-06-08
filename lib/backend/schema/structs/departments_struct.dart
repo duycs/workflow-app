@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,9 +9,11 @@ class DepartmentsStruct extends BaseStruct {
     String? id,
     String? name,
     List<StaffsStruct>? staffs,
+    String? status,
   })  : _id = id,
         _name = name,
-        _staffs = staffs;
+        _staffs = staffs,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -34,6 +35,12 @@ class DepartmentsStruct extends BaseStruct {
       updateFn(_staffs ??= []);
   bool hasStaffs() => _staffs != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+  bool hasStatus() => _status != null;
+
   static DepartmentsStruct fromMap(Map<String, dynamic> data) =>
       DepartmentsStruct(
         id: data['id'] as String?,
@@ -42,6 +49,7 @@ class DepartmentsStruct extends BaseStruct {
           data['staffs'],
           StaffsStruct.fromMap,
         ),
+        status: data['status'] as String?,
       );
 
   static DepartmentsStruct? maybeFromMap(dynamic data) => data is Map
@@ -52,6 +60,7 @@ class DepartmentsStruct extends BaseStruct {
         'id': _id,
         'name': _name,
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -68,6 +77,10 @@ class DepartmentsStruct extends BaseStruct {
           _staffs,
           ParamType.DataStruct,
           true,
+        ),
+        'status': serializeParam(
+          _status,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -89,6 +102,11 @@ class DepartmentsStruct extends BaseStruct {
           true,
           structBuilder: StaffsStruct.fromSerializableMap,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -100,18 +118,21 @@ class DepartmentsStruct extends BaseStruct {
     return other is DepartmentsStruct &&
         id == other.id &&
         name == other.name &&
-        listEquality.equals(staffs, other.staffs);
+        listEquality.equals(staffs, other.staffs) &&
+        status == other.status;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name, staffs]);
+  int get hashCode => const ListEquality().hash([id, name, staffs, status]);
 }
 
 DepartmentsStruct createDepartmentsStruct({
   String? id,
   String? name,
+  String? status,
 }) =>
     DepartmentsStruct(
       id: id,
       name: name,
+      status: status,
     );

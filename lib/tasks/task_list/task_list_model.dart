@@ -1,33 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
-import '/tasks/do_action_type_approve/do_action_type_approve_widget.dart';
-import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
-import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
-import '/tasks/filter_task_list/filter_task_list_widget.dart';
-import '/tasks/task_list_ck_popup/task_list_ck_popup_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'task_list_widget.dart' show TaskListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 
 class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   ///  Local state fields for this page.
@@ -172,9 +152,9 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
-      if ((apiResultGetTaskList?.succeeded ?? true)) {
+      if ((apiResultGetTaskList.succeeded ?? true)) {
         list = TaskListDataStruct.maybeFromMap(
-                (apiResultGetTaskList?.jsonBody ?? ''))!
+                (apiResultGetTaskList.jsonBody ?? ''))!
             .data
             .toList()
             .cast<TaskListStruct>();
@@ -200,9 +180,9 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultGetTaskDone?.succeeded ?? true)) {
+    if ((apiResultGetTaskDone.succeeded ?? true)) {
       totalDone = getJsonField(
-        (apiResultGetTaskDone?.jsonBody ?? ''),
+        (apiResultGetTaskDone.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -217,9 +197,9 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultGetTaskToDo?.succeeded ?? true)) {
+    if ((apiResultGetTaskToDo.succeeded ?? true)) {
       totalTodo = getJsonField(
-        (apiResultGetTaskToDo?.jsonBody ?? ''),
+        (apiResultGetTaskToDo.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -234,9 +214,9 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
       accessToken: FFAppState().accessToken,
     );
-    if ((apiResultGetTaskWait?.succeeded ?? true)) {
+    if ((apiResultGetTaskWait.succeeded ?? true)) {
       totalWait = getJsonField(
-        (apiResultGetTaskWait?.jsonBody ?? ''),
+        (apiResultGetTaskWait.jsonBody ?? ''),
         r'''$.meta.filter_count''',
       );
     }
@@ -249,7 +229,7 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController1?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -289,7 +269,7 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController1?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
