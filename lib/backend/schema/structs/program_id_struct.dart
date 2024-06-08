@@ -9,8 +9,10 @@ class ProgramIdStruct extends BaseStruct {
   ProgramIdStruct({
     String? id,
     String? name,
+    String? status,
   })  : _id = id,
-        _name = name;
+        _name = name,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -24,9 +26,16 @@ class ProgramIdStruct extends BaseStruct {
   set name(String? val) => _name = val;
   bool hasName() => _name != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+  bool hasStatus() => _status != null;
+
   static ProgramIdStruct fromMap(Map<String, dynamic> data) => ProgramIdStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
+        status: data['status'] as String?,
       );
 
   static ProgramIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -36,6 +45,7 @@ class ProgramIdStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -46,6 +56,10 @@ class ProgramIdStruct extends BaseStruct {
         ),
         'name': serializeParam(
           _name,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -62,6 +76,11 @@ class ProgramIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -69,18 +88,23 @@ class ProgramIdStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is ProgramIdStruct && id == other.id && name == other.name;
+    return other is ProgramIdStruct &&
+        id == other.id &&
+        name == other.name &&
+        status == other.status;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name]);
+  int get hashCode => const ListEquality().hash([id, name, status]);
 }
 
 ProgramIdStruct createProgramIdStruct({
   String? id,
   String? name,
+  String? status,
 }) =>
     ProgramIdStruct(
       id: id,
       name: name,
+      status: status,
     );

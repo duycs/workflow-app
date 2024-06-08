@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'question_detail_model.dart';
 export 'question_detail_model.dart';
 
@@ -47,16 +45,16 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3.0,
                 color: Color(0x33000000),
@@ -73,14 +71,14 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -88,7 +86,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 28.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -110,7 +108,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                   borderWidth: 1.0,
                                   buttonSize: 40.0,
                                   icon: Icon(
-                                    Icons.cancel,
+                                    Icons.close,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     size: 24.0,
@@ -123,7 +121,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
                               'Câu hỏi :',
@@ -138,7 +136,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
                               widget.itemOne!.content,
@@ -152,7 +150,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
                               'Kiểu đáp án :',
@@ -168,7 +166,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                           ),
                           Flexible(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 16.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.dropDownValueController ??=
@@ -189,7 +187,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                 ),
                                 options:
                                     List<String>.from(['0', '1', '2', '3']),
-                                optionLabels: [
+                                optionLabels: const [
                                   'Trắc nghiệm 1 đáp án',
                                   'Trắc nghiệm 1 hoặc nhiều đáp án',
                                   'Trả lời văn bản ngắn',
@@ -218,7 +216,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                     FlutterFlowTheme.of(context).alternate,
                                 borderWidth: 1.0,
                                 borderRadius: 8.0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
+                                margin: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 4.0, 16.0, 4.0),
                                 hidesUnderline: true,
                                 disabled: widget.itemOne?.answerType != null &&
@@ -230,7 +228,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: Text(
                               '# Danh sách đáp án',
@@ -243,11 +241,11 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                   ),
                             ),
                           ),
-                          if (widget.itemOne!.answers.length > 0)
+                          if (widget.itemOne!.answers.isNotEmpty)
                             Builder(
                               builder: (context) {
                                 final dataListView =
-                                    widget.itemOne?.answers?.toList() ?? [];
+                                    widget.itemOne?.answers.toList() ?? [];
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
@@ -255,7 +253,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                   scrollDirection: Axis.vertical,
                                   itemCount: dataListView.length,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 4.0),
+                                      const SizedBox(height: 4.0),
                                   itemBuilder: (context, dataListViewIndex) {
                                     final dataListViewItem =
                                         dataListView[dataListViewIndex];
@@ -268,7 +266,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                             BorderRadius.circular(4.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.all(8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -295,7 +293,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                                     ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 4.0)),
+                                          ].divide(const SizedBox(width: 4.0)),
                                         ),
                                       ),
                                     );

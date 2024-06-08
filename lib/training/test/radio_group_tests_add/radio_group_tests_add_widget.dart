@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'radio_group_tests_add_model.dart';
 export 'radio_group_tests_add_model.dart';
 
@@ -58,14 +56,14 @@ class _RadioGroupTestsAddWidgetState extends State<RadioGroupTestsAddWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
           child: FlutterFlowRadioButton(
             options:
                 _model.detail.map((e) => e.answersId.content).toList().toList(),
             onChanged: ('1' == '1') ? null : (val) => setState(() {}),
             controller: _model.radioButtonValueController ??=
                 FormFieldController<String>(
-                    widget.parameter1?.answersId?.correct == 1
+                    widget.parameter1?.answersId.correct == 1
                         ? widget.parameter1!.answersId.content
                         : ' '),
             optionHeight: 32.0,

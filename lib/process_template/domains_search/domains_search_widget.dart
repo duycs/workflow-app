@@ -6,11 +6,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure/check_box_toggle/check_box_toggle_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'domains_search_model.dart';
 export 'domains_search_model.dart';
@@ -73,7 +71,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
         }
 
         setState(() {});
-        if (widget.search!.length > 0) {
+        if (widget.search!.isNotEmpty) {
           while (_model.loop < widget.search!.length) {
             while (_model.loop2 < _model.domainList.length) {
               if ((widget.search?[_model.loop]) ==
@@ -125,17 +123,17 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
     return Visibility(
       visible: _model.isLoad == true,
       child: Align(
-        alignment: AlignmentDirectional(0.0, 0.0),
+        alignment: const AlignmentDirectional(0.0, 0.0),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxHeight: 700.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   blurRadius: 3.0,
                   color: Color(0x33000000),
@@ -151,19 +149,19 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                 width: 1.0,
               ),
             ),
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: const AlignmentDirectional(0.0, 1.0),
             child: Form(
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: SingleChildScrollView(
                           primary: false,
                           child: Column(
@@ -181,7 +179,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         .headlineMedium
                                         .override(
                                           fontFamily: 'Nunito Sans',
-                                          fontSize: 20.0,
+                                          fontSize: 18.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -190,7 +188,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                     borderWidth: 1.0,
                                     buttonSize: 40.0,
                                     icon: Icon(
-                                      Icons.cancel,
+                                      Icons.close,
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                       size: 24.0,
@@ -202,7 +200,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -214,7 +212,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         focusNode: _model.textNameFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.textNameTextController',
-                                          Duration(milliseconds: 2000),
+                                          const Duration(milliseconds: 2000),
                                           () => setState(() {}),
                                         ),
                                         autofocus: false,
@@ -278,9 +276,9 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
-                                          prefixIcon: Icon(
+                                          prefixIcon: const Icon(
                                             Icons.search_rounded,
                                           ),
                                           suffixIcon: _model
@@ -294,7 +292,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                         ?.clear();
                                                     setState(() {});
                                                   },
-                                                  child: Icon(
+                                                  child: const Icon(
                                                     Icons.clear,
                                                     size: 22,
                                                   ),
@@ -316,7 +314,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -330,9 +328,9 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         value: _model.switchValue1!,
                                         onChanged: (newValue) async {
                                           setState(() =>
-                                              _model.switchValue1 = newValue!);
+                                              _model.switchValue1 = newValue);
 
-                                          if (!newValue!) {
+                                          if (!newValue) {
                                             while (_model.loop <
                                                 _model.domainList.length) {
                                               _model.updateDomainListAtIndex(
@@ -372,8 +370,8 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                         value: _model.switchValue2!,
                                         onChanged: (newValue) async {
                                           setState(() =>
-                                              _model.switchValue2 = newValue!);
-                                          if (newValue!) {
+                                              _model.switchValue2 = newValue);
+                                          if (newValue) {
                                             while (_model.loop <
                                                 _model.domainList.length) {
                                               _model.updateDomainListAtIndex(
@@ -405,7 +403,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                 .primaryText,
                                       ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           8.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Chọn tất cả',
@@ -423,7 +421,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Builder(
                                   builder: (context) {
@@ -440,12 +438,12 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: listView.length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 8.0),
+                                          const SizedBox(height: 8.0),
                                       itemBuilder: (context, listViewIndex) {
                                         final listViewItem =
                                             listView[listViewIndex];
                                         return Container(
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -508,7 +506,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   4.0,
                                                                   0.0,
@@ -554,21 +552,21 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                   },
                                 ),
                               ),
-                            ].divide(SizedBox(height: 10.0)),
+                            ].divide(const SizedBox(height: 10.0)),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 12.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -577,9 +575,9 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                 text: 'Đóng',
                                 options: FFButtonOptions(
                                   height: 44.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -626,9 +624,9 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                               text: 'Xác nhận',
                               options: FFButtonOptions(
                                 height: 44.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -638,7 +636,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                       color: Colors.white,
                                       letterSpacing: 0.0,
                                     ),
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

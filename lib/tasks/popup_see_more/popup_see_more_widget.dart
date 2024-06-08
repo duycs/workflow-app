@@ -6,8 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'popup_see_more_model.dart';
 export 'popup_see_more_model.dart';
@@ -53,9 +51,9 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, -1.0),
+      alignment: const AlignmentDirectional(0.0, -1.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -90,13 +88,13 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
                       ),
                     ],
                   ),
-                  if (functions.checkFileLast('${(String tail) {
+                  if (functions.checkFileLast((String tail) {
                         return tail.split('.').last;
-                      }(widget.fileName!)}') ==
+                      }(widget.fileName!)) ==
                       'pdf')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
                       child: FlutterFlowPdfViewer(
                         networkPath:
                             '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
@@ -105,13 +103,13 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
                         horizontalScroll: false,
                       ),
                     ),
-                  if (functions.checkFileLast('${(String tail) {
+                  if (functions.checkFileLast((String tail) {
                         return tail.split('.').last;
-                      }(widget.fileName!)}') ==
+                      }(widget.fileName!)) ==
                       'img')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -150,13 +148,13 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
                         ),
                       ),
                     ),
-                  if (functions.checkFileLast('${(String tail) {
+                  if (functions.checkFileLast((String tail) {
                         return tail.split('.').last;
-                      }(widget.fileName!)}') ==
+                      }(widget.fileName!)) ==
                       'video')
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 16.0),
                       child: FlutterFlowVideoPlayer(
                         path:
                             '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',

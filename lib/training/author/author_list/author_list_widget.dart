@@ -1,15 +1,9 @@
-import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'author_list_model.dart';
 export 'author_list_model.dart';
@@ -88,28 +82,28 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                  child: Container(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  child: SizedBox(
                     width: double.infinity,
                     child: TextFormField(
                       controller: _model.searchAuthorsTextController,
                       focusNode: _model.searchAuthorsFocusNode,
                       onChanged: (_) => EasyDebounce.debounce(
                         '_model.searchAuthorsTextController',
-                        Duration(milliseconds: 500),
+                        const Duration(milliseconds: 500),
                         () async {
                           await _model.getListAuthorsSort(context);
                           setState(() {});
@@ -136,7 +130,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                               letterSpacing: 0.0,
                             ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Color(0x00000000),
                             width: 1.0,
                           ),
@@ -164,9 +158,9 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                           borderRadius: BorderRadius.circular(5.0),
                         ),
                         filled: true,
-                        fillColor: Color(0x15FF5963),
+                        fillColor: const Color(0x15FF5963),
                         contentPadding:
-                            EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 0.0, 8.0),
                         prefixIcon: Icon(
                           Icons.search,
                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -204,10 +198,9 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                     ),
                   ),
                 ),
-                if (_model.searchAuthorsTextController.text != null &&
-                    _model.searchAuthorsTextController.text != '')
+                if (_model.searchAuthorsTextController.text != '')
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 3.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 3.0),
                     child: Text(
                       '#Kết quả tìm kiếm theo bộ lọc',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -219,7 +212,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                     ),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
                   child: Text(
                     'Tác giả nổi tiếng',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -242,7 +235,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                           final itemAuthorsSortItem =
                               itemAuthorsSort[itemAuthorsSortIndex];
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 12.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -259,7 +252,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -271,7 +264,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Container(
                                       width: 50.0,
                                       height: 50.0,
@@ -285,9 +278,9 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                           width: 2.0,
                                         ),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsets.all(2.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(40.0),
@@ -302,7 +295,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 0.0),
                                     child: Text(
                                       itemAuthorsSortItem.alias,
@@ -325,19 +318,19 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                ].divide(SizedBox(height: 4.0)),
+                                ].divide(const SizedBox(height: 4.0)),
                               ),
                             ),
                           );
                         })
-                            .divide(SizedBox(width: 12.0))
-                            .addToEnd(SizedBox(width: 16.0)),
+                            .divide(const SizedBox(width: 12.0))
+                            .addToEnd(const SizedBox(width: 16.0)),
                       ),
                     );
                   },
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Text(
                     'Tất cả tác giả',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -350,7 +343,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final itemListAuthors = _model.listDataAuthors.toList();
@@ -363,7 +356,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                             final itemListAuthorsItem =
                                 itemListAuthors[itemListAuthorsIndex];
                             return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -380,7 +373,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -398,7 +391,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                         blurRadius: 0.0,
                                         color: FlutterFlowTheme.of(context)
                                             .alternate,
-                                        offset: Offset(
+                                        offset: const Offset(
                                           0.0,
                                           1.0,
                                         ),
@@ -406,19 +399,19 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                     ],
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Container(
                                             width: 60.0,
                                             height: 60.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(40.0),
@@ -438,7 +431,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -455,7 +448,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         12.0, 0.0, 0.0, 0.0),
                                                 child: Text(

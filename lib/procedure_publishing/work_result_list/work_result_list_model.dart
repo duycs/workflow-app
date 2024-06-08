@@ -1,28 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure_publishing/filter_work_result/filter_work_result_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'work_result_list_widget.dart' show WorkResultListWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:expandable/expandable.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:provider/provider.dart';
 
 class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
   ///  Local state fields for this page.
@@ -132,13 +117,13 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
               r'''$.id''',
             ).toString().toString()}\"}}}}}';
           }
-        }()}${(nameSearch != null && nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${nameSearch}\"}}' : ' '}${(dateStart != null && dateStart != '') && (dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${dateStart}\"}}}}' : ' '}${(dateEnd != null && dateEnd != '') && (dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
-            return DateTime.parse(var1).add(Duration(days: 1)).toString();
-          }(dateEnd)}\"}}}}' : ' '}${(userCreated != null && userCreated != '') && (userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"${userCreated}\"}}}}}' : ' '}]}',
+        }()}${(nameSearch != '') && (nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"$nameSearch\"}}' : ' '}${(dateStart != '') && (dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"$dateStart\"}}}}' : ' '}${(dateEnd != '') && (dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
+            return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+          }(dateEnd)}\"}}}}' : ' '}${(userCreated != '') && (userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$userCreated\"}}}}}' : ' '}]}',
       );
-      if ((apiResultProcedurePublishedList2?.succeeded ?? true)) {
+      if ((apiResultProcedurePublishedList2.succeeded ?? true)) {
         dataList = ProcedurePublishedListDataStruct.maybeFromMap(
-                (apiResultProcedurePublishedList2?.jsonBody ?? ''))!
+                (apiResultProcedurePublishedList2.jsonBody ?? ''))!
             .data
             .toList()
             .cast<ProcedurePublishedListStruct>();
@@ -157,7 +142,7 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
   }) async {
     final stopwatch = Stopwatch()..start();
     while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
+      await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
           (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
@@ -195,8 +180,8 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
                         listViewProcedurePublishedListResponse.jsonBody)!
                     .data
                     .where((e) =>
-                        (e.steps.length > 0) &&
-                        (e.steps.first.tasks.length > 0) &&
+                        (e.steps.isNotEmpty) &&
+                        (e.steps.first.tasks.isNotEmpty) &&
                         (functions.countJobDone(e.toMap()).toString() != '0'))
                     .toList() ??
                 [])
@@ -204,7 +189,7 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
         final newNumItems = nextPageMarker.numItems + pageItems.length;
         listViewPagingController?.appendPage(
           pageItems,
-          (pageItems.length > 0)
+          (pageItems.isNotEmpty)
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,

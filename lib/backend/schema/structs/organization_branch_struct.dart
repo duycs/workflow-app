@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,9 +9,11 @@ class OrganizationBranchStruct extends BaseStruct {
     String? id,
     String? name,
     List<DepartmentsStruct>? departments,
+    String? status,
   })  : _id = id,
         _name = name,
-        _departments = departments;
+        _departments = departments,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -34,6 +35,12 @@ class OrganizationBranchStruct extends BaseStruct {
       updateFn(_departments ??= []);
   bool hasDepartments() => _departments != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+  bool hasStatus() => _status != null;
+
   static OrganizationBranchStruct fromMap(Map<String, dynamic> data) =>
       OrganizationBranchStruct(
         id: data['id'] as String?,
@@ -42,6 +49,7 @@ class OrganizationBranchStruct extends BaseStruct {
           data['departments'],
           DepartmentsStruct.fromMap,
         ),
+        status: data['status'] as String?,
       );
 
   static OrganizationBranchStruct? maybeFromMap(dynamic data) => data is Map
@@ -52,6 +60,7 @@ class OrganizationBranchStruct extends BaseStruct {
         'id': _id,
         'name': _name,
         'departments': _departments?.map((e) => e.toMap()).toList(),
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -68,6 +77,10 @@ class OrganizationBranchStruct extends BaseStruct {
           _departments,
           ParamType.DataStruct,
           true,
+        ),
+        'status': serializeParam(
+          _status,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -90,6 +103,11 @@ class OrganizationBranchStruct extends BaseStruct {
           true,
           structBuilder: DepartmentsStruct.fromSerializableMap,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -101,18 +119,22 @@ class OrganizationBranchStruct extends BaseStruct {
     return other is OrganizationBranchStruct &&
         id == other.id &&
         name == other.name &&
-        listEquality.equals(departments, other.departments);
+        listEquality.equals(departments, other.departments) &&
+        status == other.status;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name, departments]);
+  int get hashCode =>
+      const ListEquality().hash([id, name, departments, status]);
 }
 
 OrganizationBranchStruct createOrganizationBranchStruct({
   String? id,
   String? name,
+  String? status,
 }) =>
     OrganizationBranchStruct(
       id: id,
       name: name,
+      status: status,
     );

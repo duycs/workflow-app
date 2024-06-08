@@ -1,19 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
-import '/actions/actions.dart' as action_blocks;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'update_profile_user_widget.dart' show UpdateProfileUserWidget;
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   ///  Local state fields for this page.
@@ -78,22 +67,11 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   FocusNode? addressFocusNode;
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
-  String? _addressTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    if (val.length < 12) {
-      return 'CCCD không hợp lệ';
-    }
-    if (val.length > 12) {
-      return 'CCCD không hợp lệ';
-    }
-
-    return null;
-  }
-
   DateTime? datePicked;
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? reloadTokenUpdateStaff;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
@@ -108,16 +86,12 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   ApiCallResponse? apiResultUpdateStaff1;
   // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
   ApiCallResponse? apiResultUpdateUserStaff1;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
 
   @override
   void initState(BuildContext context) {
     nameTextControllerValidator = _nameTextControllerValidator;
     hotlineTextControllerValidator = _hotlineTextControllerValidator;
     textController3Validator = _textController3Validator;
-    addressTextControllerValidator = _addressTextControllerValidator;
   }
 
   @override

@@ -7,12 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'detail_action_type_image_model.dart';
 export 'detail_action_type_image_model.dart';
@@ -74,16 +71,16 @@ class _DetailActionTypeImageWidgetState
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           if ((widget.image?.status == 'done') &&
-              (widget.image!.operations.first.operationsId.files.length > 0))
+              (widget.image!.operations.first.operationsId.files.isNotEmpty))
             Builder(
               builder: (context) {
-                final data = widget.image?.operations?.toList() ?? [];
+                final data = widget.image?.operations.toList() ?? [];
                 return Column(
                   mainAxisSize: MainAxisSize.max,
                   children: List.generate(data.length, (dataIndex) {
@@ -94,7 +91,7 @@ class _DetailActionTypeImageWidgetState
                         return GridView.builder(
                           padding: EdgeInsets.zero,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 12.0,
                             mainAxisSpacing: 10.0,
@@ -107,7 +104,7 @@ class _DetailActionTypeImageWidgetState
                           itemBuilder: (context, dataGridIndex) {
                             final dataGridItem = dataGrid[dataGridIndex];
                             return Stack(
-                              alignment: AlignmentDirectional(1.0, -1.0),
+                              alignment: const AlignmentDirectional(1.0, -1.0),
                               children: [
                                 InkWell(
                                   splashColor: Colors.transparent,
@@ -197,7 +194,7 @@ class _DetailActionTypeImageWidgetState
                       final dataTodoItem = _model.imagesList.toList();
                       return GridView.builder(
                         padding: EdgeInsets.zero,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 10.0,
@@ -211,7 +208,7 @@ class _DetailActionTypeImageWidgetState
                           final dataTodoItemItem =
                               dataTodoItem[dataTodoItemIndex];
                           return Stack(
-                            alignment: AlignmentDirectional(1.0, -1.0),
+                            alignment: const AlignmentDirectional(1.0, -1.0),
                             children: [
                               InkWell(
                                 splashColor: Colors.transparent,
@@ -225,12 +222,12 @@ class _DetailActionTypeImageWidgetState
                                       type: PageTransitionType.fade,
                                       child: FlutterFlowExpandedImageView(
                                         image: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
+                                          '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.contain,
                                         ),
                                         allowRotation: false,
                                         tag:
-                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
+                                            '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                         useHeroAnimation: true,
                                       ),
                                     ),
@@ -238,12 +235,12 @@ class _DetailActionTypeImageWidgetState
                                 },
                                 child: Hero(
                                   tag:
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                   transitionOnUserGestures: true,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataTodoItemItem}?access_token=${FFAppState().accessToken}',
+                                      '${FFAppConstants.ApiBaseUrl}/assets/$dataTodoItemItem?access_token=${FFAppState().accessToken}',
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -277,15 +274,15 @@ class _DetailActionTypeImageWidgetState
                     },
                   ),
                 ),
-              if (_model.images.length > 0)
+              if (_model.images.isNotEmpty)
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Builder(
                     builder: (context) {
                       final imageUpload = _model.images.toList();
                       return GridView.builder(
                         padding: EdgeInsets.zero,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 10.0,
@@ -298,7 +295,7 @@ class _DetailActionTypeImageWidgetState
                         itemBuilder: (context, imageUploadIndex) {
                           final imageUploadItem = imageUpload[imageUploadIndex];
                           return Stack(
-                            alignment: AlignmentDirectional(1.0, -1.0),
+                            alignment: const AlignmentDirectional(1.0, -1.0),
                             children: [
                               InkWell(
                                 splashColor: Colors.transparent,
@@ -412,8 +409,7 @@ class _DetailActionTypeImageWidgetState
                           }
                         }
 
-                        if (_model.uploadedLocalFile != null &&
-                            (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                 false)) {
                           _model.addToImages(_model.uploadedLocalFile);
                           setState(() {});
@@ -428,10 +424,10 @@ class _DetailActionTypeImageWidgetState
                       options: FFButtonOptions(
                         width: 150.0,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).alternate,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
@@ -443,7 +439,7 @@ class _DetailActionTypeImageWidgetState
                               fontWeight: FontWeight.normal,
                             ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -452,8 +448,7 @@ class _DetailActionTypeImageWidgetState
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        if (_model.uploadedLocalFile != null &&
-                            (_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
                                 false)) {
                           _model.uploadListImageToken =
                               await action_blocks.tokenReload(context);
@@ -522,10 +517,10 @@ class _DetailActionTypeImageWidgetState
                       options: FFButtonOptions(
                         width: 150.0,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -537,7 +532,7 @@ class _DetailActionTypeImageWidgetState
                                   fontWeight: FontWeight.normal,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -546,7 +541,7 @@ class _DetailActionTypeImageWidgetState
                     ),
                   ],
                 ),
-            ].divide(SizedBox(height: 8.0)),
+            ].divide(const SizedBox(height: 8.0)),
           ),
           if ((widget.image?.status == 'todo') && (widget.image?.current == 0))
             FFButtonWidget(
@@ -564,8 +559,8 @@ class _DetailActionTypeImageWidgetState
               options: FFButtonOptions(
                 width: 150.0,
                 height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).alternate,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
@@ -575,14 +570,14 @@ class _DetailActionTypeImageWidgetState
                       fontWeight: FontWeight.normal,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-        ].divide(SizedBox(height: 6.0)),
+        ].divide(const SizedBox(height: 6.0)),
       ),
     );
   }

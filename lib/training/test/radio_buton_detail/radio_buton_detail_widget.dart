@@ -2,8 +2,6 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'radio_buton_detail_model.dart';
 export 'radio_buton_detail_model.dart';
 
@@ -51,7 +49,7 @@ class _RadioButonDetailWidgetState extends State<RadioButonDetailWidget> {
           children: [
             Theme(
               data: ThemeData(
-                checkboxTheme: CheckboxThemeData(
+                checkboxTheme: const CheckboxThemeData(
                   visualDensity: VisualDensity.compact,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   shape: CircleBorder(),
@@ -61,7 +59,7 @@ class _RadioButonDetailWidgetState extends State<RadioButonDetailWidget> {
               ),
               child: Checkbox(
                 value: _model.checkboxValue ??=
-                    widget.parameter1?.answersId?.correct == 1,
+                    widget.parameter1?.answersId.correct == 1,
                 onChanged: ('1' == '1')
                     ? null
                     : (newValue) async {

@@ -3,8 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'rating_bar_model.dart';
 export 'rating_bar_model.dart';
 
@@ -50,7 +48,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         color: FlutterFlowTheme.of(context).tertiary,
       ),
       direction: Axis.horizontal,
-      rating: widget.listReacts!.length > 0
+      rating: widget.listReacts!.isNotEmpty
           ? ((List<String> listItem) {
               return listItem
                       .map(int.parse)

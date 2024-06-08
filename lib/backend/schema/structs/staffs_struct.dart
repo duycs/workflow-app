@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,9 +9,11 @@ class StaffsStruct extends BaseStruct {
     String? id,
     UserIdStaffStruct? userId,
     String? title,
+    String? status,
   })  : _id = id,
         _userId = userId,
-        _title = title;
+        _title = title,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -34,10 +35,17 @@ class StaffsStruct extends BaseStruct {
   set title(String? val) => _title = val;
   bool hasTitle() => _title != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+  bool hasStatus() => _status != null;
+
   static StaffsStruct fromMap(Map<String, dynamic> data) => StaffsStruct(
         id: data['id'] as String?,
         userId: UserIdStaffStruct.maybeFromMap(data['user_id']),
         title: data['title'] as String?,
+        status: data['status'] as String?,
       );
 
   static StaffsStruct? maybeFromMap(dynamic data) =>
@@ -47,6 +55,7 @@ class StaffsStruct extends BaseStruct {
         'id': _id,
         'user_id': _userId?.toMap(),
         'title': _title,
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -61,6 +70,10 @@ class StaffsStruct extends BaseStruct {
         ),
         'title': serializeParam(
           _title,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -83,6 +96,11 @@ class StaffsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -93,20 +111,23 @@ class StaffsStruct extends BaseStruct {
     return other is StaffsStruct &&
         id == other.id &&
         userId == other.userId &&
-        title == other.title;
+        title == other.title &&
+        status == other.status;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, userId, title]);
+  int get hashCode => const ListEquality().hash([id, userId, title, status]);
 }
 
 StaffsStruct createStaffsStruct({
   String? id,
   UserIdStaffStruct? userId,
   String? title,
+  String? status,
 }) =>
     StaffsStruct(
       id: id,
       userId: userId ?? UserIdStaffStruct(),
       title: title,
+      status: status,
     );

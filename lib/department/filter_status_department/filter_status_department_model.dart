@@ -1,18 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import 'filter_status_department_widget.dart' show FilterStatusDepartmentWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class FilterStatusDepartmentModel
     extends FlutterFlowModel<FilterStatusDepartmentWidget> {
@@ -58,16 +51,16 @@ class FilterStatusDepartmentModel
         r'''$.organization_id''',
       ).toString().toString()}\"}}}]}',
     );
-    if ((apiResultist?.succeeded ?? true)) {
+    if ((apiResultist.succeeded ?? true)) {
       branchList =
-          BranchListDataStruct.maybeFromMap((apiResultist?.jsonBody ?? ''))!
+          BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!
               .data
               .toList()
               .cast<BranchListStruct>();
     } else {
       checkRefreshTokenBlockadf = await action_blocks.checkRefreshToken(
         context,
-        jsonErrors: (apiResultist?.jsonBody ?? ''),
+        jsonErrors: (apiResultist.jsonBody ?? ''),
       );
       if (!checkRefreshTokenBlockadf!) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -78,7 +71,7 @@ class FilterStatusDepartmentModel
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: const Duration(milliseconds: 4000),
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
