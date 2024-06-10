@@ -4,6 +4,10 @@
 <dict>
   <key>CFBundleDevelopmentRegion</key>
   <string>$(DEVELOPMENT_LANGUAGE)</string>
+  <key>ITSAppUsesNonExemptEncryption</key>
+      <false/>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Location access for notification</string>
   <key>CFBundleExecutable</key>
   <string>App</string>
   <key>CFBundleIdentifier</key>
