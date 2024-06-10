@@ -7,7 +7,7 @@
   <key>ITSAppUsesNonExemptEncryption</key>
       <false/>
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Location access for notification</string>
+  <string>The app needs access to your location to perform location-based timekeeping</string>
   <key>CFBundleExecutable</key>
   <string>App</string>
   <key>CFBundleIdentifier</key>
