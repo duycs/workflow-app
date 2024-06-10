@@ -44,11 +44,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<string>Ứng dụng cần quyền truy cập vào máy ảnh để bạn có thể chụp ảnh và tải lên hồ sơ của mình. Ví dụ: chụp ảnh hồ sơ.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>In order to record audio for video, this app requires permission to access the microphone.</string>
+	<string>Ứng dụng cần quyền truy cập vào micro để bạn có thể ghi âm giọng nói hoặc ghi âm khi quay video. Việc này có thể giúp bạn tạo video và ghi âm cho bài học của mình.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>In order to upload data, this app requires permission to access the photo library.</string>
+	<string>Ứng dụng cần quyền truy cập vào thư viện ảnh để bạn có thể chọn và tải lên ảnh từ thiết bị của mình. Ví dụ: chọn ảnh từ thư viện để làm ảnh hồ sơ.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
