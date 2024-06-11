@@ -458,6 +458,79 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       );
                       _model.loop = 0;
                       setState(() {});
+                      if (_model.dropDownRunValue == '0') {
+                        _model.apiResult4dr =
+                            await DepartmentGroup.getDepartmentListCall.call(
+                          accessToken: FFAppState().accessToken,
+                          filter: '{\"_and\":[${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return '{\"organization_id\":{\"_eq\":\"';
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return '{\"branch_id\":{\"id\":{\"_eq\":\"';
+                            } else {
+                              return ' ';
+                            }
+                          }()}${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.organization_id''',
+                              ).toString();
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return getJsonField(
+                                FFAppState().staffBranch,
+                                r'''$.id''',
+                              ).toString();
+                            } else {
+                              return ' ';
+                            }
+                          }()}${() {
+                            if (FFAppState().user.role ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return '\"}}';
+                            } else if (FFAppState().user.role ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return '\"}}}';
+                            } else {
+                              return ' ';
+                            }
+                          }()},{\"status\":{\"_eq\":\"published\"}}]}',
+                        );
+                        shouldSetState = true;
+                        if ((_model.apiResult4dr?.succeeded ?? true)) {
+                          while (_model.loop <
+                              DepartmentListDataStruct.maybeFromMap(
+                                      (_model.apiResult4dr?.jsonBody ?? ''))!
+                                  .data
+                                  .length) {
+                            _model.updateDataUpdateStruct(
+                              (e) => e
+                                ..updateDepartments(
+                                  (e) => e.add(DepartmentsIdStruct(
+                                    departmentsId: DepartmentsStruct(
+                                      id: (DepartmentListDataStruct
+                                                  .maybeFromMap((_model
+                                                          .apiResult4dr
+                                                          ?.jsonBody ??
+                                                      ''))
+                                              ?.data[_model.loop])
+                                          ?.id,
+                                    ),
+                                  )),
+                                ),
+                            );
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
+                          }
+                          _model.loop = 0;
+                          setState(() {});
+                        }
+                      }
                       if (_model.checkType == '3') {
                         while (_model.loop < _model.checkOne.length) {
                           if (_model.checkOne[_model.loop].type == true) {
@@ -524,16 +597,28 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           setState(() {});
                         }
                         _model.loop = 0;
+                        _model.updateRequestUpdateStruct(
+                          (e) => e..type = 'schedule',
+                        );
                         setState(() {});
                       } else if (_model.checkType == '2') {
                         _model.checkCron =
                             _model.groupWeekValues!.toList().cast<String>();
+                        _model.updateRequestUpdateStruct(
+                          (e) => e..type = 'schedule',
+                        );
                         setState(() {});
                       } else if (_model.checkType == '1') {
                         _model.checkCron = [];
+                        _model.updateRequestUpdateStruct(
+                          (e) => e..type = 'schedule',
+                        );
                         setState(() {});
                       } else {
                         _model.checkCron = [];
+                        _model.updateRequestUpdateStruct(
+                          (e) => e..type = 'generate',
+                        );
                         setState(() {});
                       }
 
@@ -592,318 +677,177 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       }
                       _model.loop = 0;
                       setState(() {});
-                      _model.apiResultUpdate =
-                          await ProcedureTemplateGroup.workflowUpdateCall.call(
-                        accessToken: FFAppState().accessToken,
-                        requestDataJson: _model.requestUpdate?.toMap(),
-                      );
-                      shouldSetState = true;
-                      if ((_model.apiResultUpdate?.succeeded ?? true)) {
-                        _model.apiResultDeleteStep =
-                            await ProcedureTemplateGroup.deleteWorkflowsStepCall
-                                .call(
-                          accessToken: FFAppState().accessToken,
-                          workflowsId: widget.itemData?.id,
-                          stepIdList: _model.stepDelete,
+                      while (_model.loop < _model.stepList.length) {
+                        _model.updateStepListAtIndex(
+                          _model.loop,
+                          (e) => e..number = _model.loop + 1,
                         );
-                        shouldSetState = true;
-                        if ((_model.apiResultDeleteStep?.succeeded ?? true)) {
-                          while (_model.loop < _model.stepList.length) {
-                            _model.updateStepListAtIndex(
-                              _model.loop,
-                              (e) => e..number = _model.loop + 1,
+                        setState(() {});
+                        _model.loop = _model.loop + 1;
+                        setState(() {});
+                      }
+                      _model.loop = 0;
+                      _model.loop2 = 0;
+                      _model.updateRequestUpdateStruct(
+                        (e) => e..steps = [],
+                      );
+                      setState(() {});
+                      while (_model.loop < _model.stepList.length) {
+                        _model.updateRequestUpdateStruct(
+                          (e) => e
+                            ..updateSteps(
+                              (e) => e.add(WorkflowsStepCreateStruct(
+                                status: _model.stepList[_model.loop].status !=
+                                            ''
+                                    ? _model.stepList[_model.loop].status
+                                    : '',
+                                description: _model.stepList[_model.loop]
+                                                .description !=
+                                            ''
+                                    ? _model.stepList[_model.loop].description
+                                    : '',
+                                name: _model.stepList[_model.loop].name,
+                                actionType: _model.stepList[_model.loop]
+                                                .actionType !=
+                                            ''
+                                    ? _model.stepList[_model.loop].actionType
+                                    : '',
+                                staffsAlias: _model.stepList[_model.loop]
+                                                .staffsAlias !=
+                                            ''
+                                    ? _model.stepList[_model.loop].staffsAlias
+                                    : '',
+                                timeOperate: _model.stepList[_model.loop]
+                                                .timeOperate !=
+                                            ''
+                                    ? _model.stepList[_model.loop].timeOperate
+                                    : '',
+                                estimateInSecond: _model
+                                        .stepList[_model.loop].estimateInSecond ?? 0,
+                                number: _model.stepList[_model.loop].number,
+                              )),
+                            ),
+                        );
+                        setState(() {});
+                        if (_model.stepList[_model.loop].id != '') {
+                          _model.updateRequestUpdateStruct(
+                            (e) => e
+                              ..updateSteps(
+                                (e) => e[_model.loop]
+                                  ..id = _model.stepList[_model.loop].id,
+                              ),
+                          );
+                          setState(() {});
+                        }
+                        if (((_model.stepList[_model.loop].departments
+                                    .isNotEmpty) !=
+                                null) &&
+                            (_model.stepList[_model.loop].departments.isNotEmpty)) {
+                          while (_model.loop2 <
+                              _model.stepList[_model.loop].departments.length) {
+                            _model.updateRequestUpdateStruct(
+                              (e) => e
+                                ..updateSteps(
+                                  (e) => e[_model.loop]
+                                    ..updateDepartments(
+                                      (e) => e.add(DepartmentListStruct(
+                                        departmentsId: DepartmentsStruct(
+                                          id: _model
+                                              .stepList[_model.loop]
+                                              .departments[_model.loop2]
+                                              .departmentsId
+                                              .id,
+                                        ),
+                                      )),
+                                    ),
+                                ),
                             );
                             setState(() {});
-                            _model.loop = _model.loop + 1;
+                            _model.loop2 = _model.loop2 + 1;
                             setState(() {});
                           }
-                          _model.loop = 0;
-                          setState(() {});
-                          while (_model.loop < _model.stepList.length) {
-                            if (_model.stepList[_model.loop].id != '') {
-                              _model
-                                  .addToCreateUpdate(WorkflowsStepCreateStruct(
-                                id: _model.stepList[_model.loop].id,
-                                name: _model.stepList[_model.loop].name,
-                                status: _model.stepList[_model.loop].status,
-                                description:
-                                    _model.stepList[_model.loop].description,
-                                executeType:
-                                    _model.stepList[_model.loop].executeType,
-                                actionType:
-                                    _model.stepList[_model.loop].actionType,
-                                staffsAlias:
-                                    _model.stepList[_model.loop].staffsAlias,
-                                timeOperate:
-                                    _model.stepList[_model.loop].timeOperate,
-                                estimateInSecond: _model
-                                    .stepList[_model.loop].estimateInSecond,
-                                number: _model.stepList[_model.loop].number,
-                              ));
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].staffs.length) {
-                                _model.updateCreateUpdateAtIndex(
-                                  _model.createUpdate.length - 1,
-                                  (e) => e
-                                    ..updateStaffs(
-                                      (e) => e.add(StaffsStepStruct(
-                                        staffsId: StaffIdStruct(
-                                          id: _model.stepList[_model.loop]
-                                              .staffs[_model.loop2].staffsId.id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                                setState(() {});
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].departments
-                                      .length) {
-                                _model.updateCreateUpdateAtIndex(
-                                  _model.createUpdate.length - 1,
-                                  (e) => e
-                                    ..updateDepartments(
-                                      (e) => e.add(DepartmentListStruct(
-                                        departmentsId: DepartmentsStruct(
-                                          id: _model
-                                              .stepList[_model.loop]
-                                              .departments[_model.loop2]
-                                              .departmentsId
-                                              .id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                                setState(() {});
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].operations
-                                      .length) {
-                                if (_model.stepList[_model.loop]
-                                            .operations[_model.loop2].id !=
-                                        '') {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                          id: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].id,
-                                        )),
-                                      ),
-                                  );
-                                  setState(() {});
-                                } else {
-                                  _model.updateCreateUpdateAtIndex(
-                                    _model.createUpdate.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                        )),
-                                      ),
-                                  );
-                                  setState(() {});
-                                }
-
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                            } else {
-                              _model.addToCreateStep(WorkflowsStepCreateStruct(
-                                name: _model.stepList[_model.loop].name,
-                                status: _model.stepList[_model.loop].status,
-                                description:
-                                    _model.stepList[_model.loop].description,
-                                executeType:
-                                    _model.stepList[_model.loop].executeType,
-                                actionType:
-                                    _model.stepList[_model.loop].actionType,
-                                staffsAlias:
-                                    _model.stepList[_model.loop].staffsAlias,
-                                timeOperate:
-                                    _model.stepList[_model.loop].timeOperate,
-                                estimateInSecond: _model
-                                    .stepList[_model.loop].estimateInSecond,
-                                number: _model.stepList[_model.loop].number,
-                                workflowId: widget.itemData?.id,
-                              ));
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].staffs.length) {
-                                _model.updateCreateStepAtIndex(
-                                  _model.createStep.length - 1,
-                                  (e) => e
-                                    ..updateStaffs(
-                                      (e) => e.add(StaffsStepStruct(
-                                        staffsId: StaffIdStruct(
-                                          id: _model.stepList[_model.loop]
-                                              .staffs[_model.loop2].staffsId.id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                                setState(() {});
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].departments
-                                      .length) {
-                                _model.updateCreateStepAtIndex(
-                                  _model.createStep.length - 1,
-                                  (e) => e
-                                    ..updateDepartments(
-                                      (e) => e.add(DepartmentListStruct(
-                                        departmentsId: DepartmentsStruct(
-                                          id: _model
-                                              .stepList[_model.loop]
-                                              .departments[_model.loop2]
-                                              .departmentsId
-                                              .id,
-                                        ),
-                                      )),
-                                    ),
-                                );
-                                setState(() {});
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                              while (_model.loop2 <
-                                  _model.stepList[_model.loop].operations
-                                      .length) {
-                                if (_model.stepList[_model.loop]
-                                            .operations[_model.loop2].id !=
-                                        '') {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                          id: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].id,
-                                        )),
-                                      ),
-                                  );
-                                  setState(() {});
-                                } else {
-                                  _model.updateCreateStepAtIndex(
-                                    _model.createStep.length - 1,
-                                    (e) => e
-                                      ..updateOperations(
-                                        (e) => e.add(OperationsStruct(
-                                          content: _model.stepList[_model.loop]
-                                              .operations[_model.loop2].content,
-                                          actionType: _model
-                                              .stepList[_model.loop]
-                                              .operations[_model.loop2]
-                                              .actionType,
-                                        )),
-                                      ),
-                                  );
-                                  setState(() {});
-                                }
-
-                                _model.loop2 = _model.loop2 + 1;
-                                setState(() {});
-                              }
-                              _model.loop2 = 0;
-                              setState(() {});
-                            }
-
-                            _model.loop = _model.loop + 1;
-                            setState(() {});
-                          }
-                          _model.loop = 0;
                           _model.loop2 = 0;
                           setState(() {});
-                          while (_model.loop < _model.createStep.length) {
-                            _model.apiResultj7m = await ProcedureTemplateGroup
-                                .stepCreateWorkflowsCall
-                                .call(
-                              accessToken: FFAppState().accessToken,
-                              requestDataJson:
-                                  _model.createStep[_model.loop].toMap(),
-                            );
-                            shouldSetState = true;
-                            if ((_model.apiResultj7m?.succeeded ?? true)) {
-                              setState(() {});
-                            }
-                            _model.loop = _model.loop + 1;
-                            setState(() {});
-                          }
-                          _model.loop = 0;
-                          setState(() {});
-                          while (_model.loop < _model.createUpdate.length) {
-                            _model.apiResult2eo = await ProcedureTemplateGroup
-                                .stepUpdateCall
-                                .call(
-                              accessToken: FFAppState().accessToken,
-                              requestDataJson:
-                                  _model.createUpdate[_model.loop].toMap(),
-                            );
-                            shouldSetState = true;
-                            if ((_model.apiResult2eo?.succeeded ?? true)) {
-                              setState(() {});
-                            }
-                            _model.loop = _model.loop + 1;
-                            setState(() {});
-                          }
-                          _model.loop = 0;
-                          setState(() {});
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Lỗi cập nhật dữ liệu!',
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).error,
-                            ),
-                          );
-                          if (shouldSetState) setState(() {});
-                          return;
                         }
-
+                        if (((_model.stepList[_model.loop].staffs.isNotEmpty) !=
+                                null) &&
+                            (_model.stepList[_model.loop].staffs.isNotEmpty)) {
+                          while (_model.loop2 <
+                              _model.stepList[_model.loop].staffs.length) {
+                            _model.updateRequestUpdateStruct(
+                              (e) => e
+                                ..updateSteps(
+                                  (e) => e[_model.loop]
+                                    ..updateStaffs(
+                                      (e) => e.add(StaffsStepStruct(
+                                        staffsId: StaffIdStruct(
+                                          id: _model.stepList[_model.loop]
+                                              .staffs[_model.loop2].staffsId.id,
+                                        ),
+                                      )),
+                                    ),
+                                ),
+                            );
+                            setState(() {});
+                            _model.loop2 = _model.loop2 + 1;
+                            setState(() {});
+                          }
+                          _model.loop2 = 0;
+                          setState(() {});
+                        }
+                        if (_model.stepList[_model.loop].operations.isNotEmpty) {
+                          while (
+                              _model.stepList[_model.loop].operations.length >
+                                  _model.loop2) {
+                            _model.updateRequestUpdateStruct(
+                              (e) => e
+                                ..updateSteps(
+                                  (e) => e[_model.loop]
+                                    ..updateOperations(
+                                      (e) => e.add(_model.stepList[_model.loop]
+                                          .operations[_model.loop2]),
+                                    ),
+                                ),
+                            );
+                            setState(() {});
+                            _model.loop2 = _model.loop2 + 1;
+                            setState(() {});
+                          }
+                          _model.loop2 = 0;
+                          setState(() {});
+                        }
+                        _model.loop = _model.loop + 1;
+                        setState(() {});
+                      }
+                      _model.loop = 0;
+                      _model.loop2 = 0;
+                      setState(() {});
+                      _model.postProcedureUpdateAll =
+                          await ProcedureTemplateGroup.updateWorkflowsAllCall
+                              .call(
+                        requestDataJson: _model.requestUpdate?.toMap(),
+                        accessToken: FFAppState().accessToken,
+                      );
+                      shouldSetState = true;
+                      if ((_model.postProcedureUpdateAll?.succeeded ?? true)) {
                         context.pushNamed('ProcedureList');
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Cập nhật quy trình thành công!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
                       } else {
+                        context.pushNamed('ProcedureList');
+
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -916,23 +860,10 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
-                        if (shouldSetState) setState(() {});
-                        return;
                       }
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Cập nhật quy trình thành công!',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
+                      if (shouldSetState) setState(() {});
+                      return;
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -1001,12 +932,15 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                     unselectedLabelColor:
                         FlutterFlowTheme.of(context).secondaryText,
                     labelStyle:
-                        FlutterFlowTheme.of(context).titleMedium.override(
+                        FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Nunito Sans',
-                              fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
-                    unselectedLabelStyle: const TextStyle(),
+                    unselectedLabelStyle:
+                        FlutterFlowTheme.of(context).labelMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
                     indicatorColor: FlutterFlowTheme.of(context).primary,
                     padding: const EdgeInsets.all(4.0),
                     tabs: const [
@@ -4020,19 +3954,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                     0.0, 0.0, 0.0, 24.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      'Sơ đồ quy trình',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
                                     FFButtonWidget(
                                       onPressed: () async {
                                         await showModalBottomSheet(
@@ -4124,20 +4048,18 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                             BorderRadius.circular(8.0),
                                       ),
                                     ),
+                                    Text(
+                                      'Sơ đồ quy trình',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
                                   ].divide(const SizedBox(width: 24.0)),
-                                ),
-                              ),
-                              Container(
-                                width: 25.0,
-                                height: 25.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
                                 ),
                               ),
                               Builder(
@@ -4162,195 +4084,459 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.stretch,
                                           children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                SizedBox(
-                                                  height: 30.0,
-                                                  child: VerticalDivider(
-                                                    width: 1.0,
-                                                    thickness: 1.0,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                  ),
+                                            if (listViewIndex > 0)
+                                              const Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        25.0, 0.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      height: 15.0,
+                                                      child: VerticalDivider(
+                                                        thickness: 4.0,
+                                                        color:
+                                                            Color(0xB00F0E0E),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Expanded(
-                                                  child: Container(
-                                                    width: 100.0,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              4.0),
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
+                                                  child: Stack(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  8.0),
-                                                          child: Text(
-                                                            '${(listViewIndex + 1).toString()}.',
-                                                            maxLines: 2,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                            -1.0, 0.0),
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    40.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          height: 50.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: () {
+                                                              if ((int var1) {
+                                                                return var1 %
+                                                                            5 ==
+                                                                        0
+                                                                    ? true
+                                                                    : false;
+                                                              }(
+                                                                  listViewIndex)) {
+                                                                return const Color(
+                                                                    0xFF3ABEF9);
+                                                              } else if ((int
+                                                                      var1) {
+                                                                return var1 %
+                                                                            5 ==
+                                                                        1
+                                                                    ? true
+                                                                    : false;
+                                                              }(
+                                                                  listViewIndex)) {
+                                                                return const Color(
+                                                                    0xFF26355D);
+                                                              } else if ((int
+                                                                      var1) {
+                                                                return var1 %
+                                                                            5 ==
+                                                                        2
+                                                                    ? true
+                                                                    : false;
+                                                              }(
+                                                                  listViewIndex)) {
+                                                                return const Color(
+                                                                    0xFF059212);
+                                                              } else if ((int
+                                                                      var1) {
+                                                                return var1 %
+                                                                            5 ==
+                                                                        3
+                                                                    ? true
+                                                                    : false;
+                                                              }(
+                                                                  listViewIndex)) {
+                                                                return const Color(
+                                                                    0xFFFF407D);
+                                                              } else if ((int
+                                                                  var1) {
+                                                                return var1 %
+                                                                            5 ==
+                                                                        4
+                                                                    ? true
+                                                                    : false;
+                                                              }(listViewIndex)) {
+                                                                return const Color(
+                                                                    0xFF7E8EF1);
+                                                              } else {
+                                                                return const Color(
+                                                                    0x00000000);
+                                                              }
+                                                            }(),
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                blurRadius: 4.0,
+                                                                color: Color(
+                                                                    0x33000000),
+                                                                offset: Offset(
+                                                                  2.0,
+                                                                  10.0,
                                                                 ),
-                                                          ),
-                                                        ),
-                                                        Expanded(
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        8.0,
-                                                                        0.0,
-                                                                        8.0),
-                                                            child: Text(
-                                                              listViewItem
-                                                                              .name !=
-                                                                          ''
-                                                                  ? listViewItem
-                                                                      .name
-                                                                  : ' ',
-                                                              maxLines: 2,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                              )
+                                                            ],
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      30.0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          30.0),
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      30.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      30.0),
                                                             ),
                                                           ),
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          30.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    listViewItem.name !=
+                                                                                ''
+                                                                        ? listViewItem
+                                                                            .name
+                                                                        : ' ',
+                                                                    maxLines: 2,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              Colors.white,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        FlutterFlowIconButton(
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderRadius:
+                                                                      20.0,
+                                                                  borderWidth:
+                                                                      1.0,
+                                                                  buttonSize:
+                                                                      40.0,
+                                                                  icon: const Icon(
+                                                                    Icons
+                                                                        .more_vert,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 24.0,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () async {
+                                                                    await showAlignedDialog(
+                                                                      context:
+                                                                          context,
+                                                                      isGlobal:
+                                                                          false,
+                                                                      avoidOverflow:
+                                                                          true,
+                                                                      targetAnchor: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      followerAnchor: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      builder:
+                                                                          (dialogContext) {
+                                                                        return Material(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          child:
+                                                                              GestureDetector(
+                                                                            onTap: () => _model.unfocusNode.canRequestFocus
+                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                                : FocusScope.of(context).unfocus(),
+                                                                            child:
+                                                                                ProcedureStepMenuWidget(
+                                                                              item: listViewItem,
+                                                                              idItem: listViewItem.id != '' ? listViewItem.id : 'null',
+                                                                              callBack: (upStep, idItem) async {
+                                                                                await _model.updateStep(
+                                                                                  context,
+                                                                                  item: upStep,
+                                                                                  index: listViewIndex,
+                                                                                  idItem: idItem,
+                                                                                );
+
+                                                                                setState(() {});
+                                                                              },
+                                                                              callBackDelete: () async {
+                                                                                if (listViewItem.id != '') {
+                                                                                  _model.removeAtIndexFromStepList(listViewIndex);
+                                                                                  _model.addToStepDelete(listViewItem.id);
+                                                                                  setState(() {});
+                                                                                } else {
+                                                                                  _model.removeAtIndexFromStepList(listViewIndex);
+                                                                                  setState(() {});
+                                                                                }
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                        Builder(
-                                                          builder: (context) =>
-                                                              FlutterFlowIconButton(
-                                                            borderRadius: 20.0,
-                                                            borderWidth: 1.0,
-                                                            buttonSize: 40.0,
-                                                            icon: Icon(
-                                                              Icons.more_vert,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width: 55.0,
+                                                          height: 55.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBtnText,
+                                                            boxShadow: const [
+                                                              BoxShadow(
+                                                                blurRadius: 4.0,
+                                                                color: Color(
+                                                                    0x6814181B),
+                                                                offset: Offset(
+                                                                  0.0,
+                                                                  2.0,
+                                                                ),
+                                                                spreadRadius:
+                                                                    1.0,
+                                                              )
+                                                            ],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        100.0),
+                                                            shape: BoxShape
+                                                                .rectangle,
+                                                            border: Border.all(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .primaryText,
-                                                              size: 24.0,
+                                                                  .noColor,
+                                                              width: 1.0,
                                                             ),
-                                                            onPressed:
-                                                                () async {
-                                                              await showAlignedDialog(
-                                                                context:
-                                                                    context,
-                                                                isGlobal: false,
-                                                                avoidOverflow:
-                                                                    true,
-                                                                targetAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                followerAnchor:
-                                                                    const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                builder:
-                                                                    (dialogContext) {
-                                                                  return Material(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    child:
-                                                                        GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
-                                                                      child:
-                                                                          ProcedureStepMenuWidget(
-                                                                        item:
-                                                                            listViewItem,
-                                                                        idItem: listViewItem.id != ''
-                                                                            ? listViewItem.id
-                                                                            : 'null',
-                                                                        callBack:
-                                                                            (upStep,
-                                                                                idItem) async {
-                                                                          await _model
-                                                                              .updateStep(
-                                                                            context,
-                                                                            item:
-                                                                                upStep,
-                                                                            index:
-                                                                                listViewIndex,
-                                                                            idItem:
-                                                                                idItem,
-                                                                          );
-
-                                                                          setState(
-                                                                              () {});
-                                                                        },
-                                                                        callBackDelete:
-                                                                            () async {
-                                                                          if (listViewItem.id != '') {
-                                                                            _model.removeAtIndexFromStepList(listViewIndex);
-                                                                            _model.addToStepDelete(listViewItem.id);
-                                                                            setState(() {});
-                                                                          } else {
-                                                                            _model.removeAtIndexFromStepList(listViewIndex);
-                                                                            setState(() {});
-                                                                          }
-                                                                        },
-                                                                      ),
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Text(
+                                                                'Bước',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color:
+                                                                          () {
+                                                                        if ((int
+                                                                            var1) {
+                                                                          return var1 % 5 == 0
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF3ABEF9);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 1
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF26355D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 2
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF059212);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 3
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFFFF407D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 4
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF7E8EF1);
+                                                                        } else {
+                                                                          return const Color(
+                                                                              0x00000000);
+                                                                        }
+                                                                      }(),
+                                                                      fontSize:
+                                                                          10.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
                                                                     ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
-                                                            },
+                                                              ),
+                                                              Text(
+                                                                (listViewIndex + 1).toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color:
+                                                                          () {
+                                                                        if ((int
+                                                                            var1) {
+                                                                          return var1 % 5 == 0
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF3ABEF9);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 1
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF26355D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 2
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF059212);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 3
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFFFF407D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 4
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF7E8EF1);
+                                                                        } else {
+                                                                          return const Color(
+                                                                              0x00000000);
+                                                                        }
+                                                                      }(),
+                                                                      fontSize:
+                                                                          16.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
                                               ],
                                             ),
+                                            if (listViewIndex ==
+                                                (_model.stepList.length - 1))
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 30.0, 0.0, 0.0),
+                                                child: Container(
+                                                  width: 100.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                  ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       );
@@ -4372,34 +4558,6 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                     },
                                   );
                                 },
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 30.0,
-                                    child: VerticalDivider(
-                                      width: 1.0,
-                                      thickness: 1.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: 25.0,
-                                height: 25.0,
-                                decoration: BoxDecoration(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
                               ),
                             ],
                           ),

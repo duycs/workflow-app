@@ -769,7 +769,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                       TextStyle(
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .primaryText,
+                                                                        .secondaryBackground,
                                                                   ),
                                                                 ),
                                                                 duration: const Duration(
@@ -973,39 +973,15 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                       .status,
                                                                   callBack:
                                                                       (check) async {
-                                                                    if (listItemsItem
-                                                                            .programsId
-                                                                            .status ==
-                                                                        'published') {
-                                                                      _model
-                                                                          .updateSelectedProgramsAtIndex(
-                                                                        listItemsIndex,
-                                                                        (e) => e
-                                                                          ..checkPrograms =
-                                                                              check,
-                                                                      );
-                                                                      setState(
-                                                                          () {});
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Không thể thiết lập lại khóa học. Vui lòng kiểm tra lại !',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              const Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).error,
-                                                                        ),
-                                                                      );
-                                                                    }
+                                                                    _model
+                                                                        .updateSelectedProgramsAtIndex(
+                                                                      listItemsIndex,
+                                                                      (e) => e
+                                                                        ..checkPrograms =
+                                                                            check,
+                                                                    );
+                                                                    setState(
+                                                                        () {});
                                                                   },
                                                                 ),
                                                               ),
@@ -1018,6 +994,48 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                 },
                                               );
                                             },
+                                          ),
+                                        if (getJsonField(
+                                              widget.items,
+                                              r'''$.programs[:]''',
+                                            ) ==
+                                            null)
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 8.0, 12.0, 0.0),
+                                            child: Container(
+                                              width: double.infinity,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 8.0, 12.0, 8.0),
+                                                  child: Text(
+                                                    'Chưa có chương trình nào!',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                       ],
                                     ),

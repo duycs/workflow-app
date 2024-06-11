@@ -151,14 +151,10 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? tokenReloadProcedurUpdate;
-  // Stores action output result for [Backend Call - API (workflowUpdate)] action in Button widget.
-  ApiCallResponse? apiResultUpdate;
-  // Stores action output result for [Backend Call - API (DeleteWorkflowsStep)] action in Button widget.
-  ApiCallResponse? apiResultDeleteStep;
-  // Stores action output result for [Backend Call - API (stepCreateWorkflows)] action in Button widget.
-  ApiCallResponse? apiResultj7m;
-  // Stores action output result for [Backend Call - API (stepUpdate)] action in Button widget.
-  ApiCallResponse? apiResult2eo;
+  // Stores action output result for [Backend Call - API (GetDepartmentList)] action in Button widget.
+  ApiCallResponse? apiResult4dr;
+  // Stores action output result for [Backend Call - API (UpdateWorkflowsAll)] action in Button widget.
+  ApiCallResponse? postProcedureUpdateAll;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>

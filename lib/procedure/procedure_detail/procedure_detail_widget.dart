@@ -18,10 +18,12 @@ class ProcedureDetailWidget extends StatefulWidget {
     super.key,
     required this.workflowsId,
     String? checkScroll,
+    required this.idCreate,
   }) : checkScroll = checkScroll ?? '0';
 
   final String? workflowsId;
   final String checkScroll;
+  final String? idCreate;
 
   @override
   State<ProcedureDetailWidget> createState() => _ProcedureDetailWidgetState();
@@ -1076,7 +1078,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 16.0, 16.0, 16.0),
+                                  16.0, 16.0, 16.0, 60.0),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1096,19 +1098,6 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 25.0,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
                                       ),
                                     ),
                                     if (_model.idLoad == true)
@@ -1137,158 +1126,367 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                       CrossAxisAlignment
                                                           .stretch,
                                                   children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 30.0,
-                                                          child:
-                                                              VerticalDivider(
-                                                            width: 1.0,
-                                                            thickness: 1.0,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                          ),
+                                                    if (listViewIndex > 0)
+                                                      const Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    25.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 15.0,
+                                                              child:
+                                                                  VerticalDivider(
+                                                                thickness: 4.0,
+                                                                color: Color(
+                                                                    0xB00F0E0E),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
                                                     Row(
                                                       mainAxisSize:
-                                                          MainAxisSize.min,
+                                                          MainAxisSize.max,
                                                       children: [
                                                         Expanded(
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                enableDrag:
-                                                                    false,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: MediaQuery
-                                                                          .viewInsetsOf(
-                                                                              context),
-                                                                      child:
-                                                                          ProcedureStepDetailWidget(
-                                                                        item:
-                                                                            listViewItem,
-                                                                        check:
-                                                                            false,
+                                                          child: Stack(
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    -1.0, 0.0),
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            40.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      enableDrag:
+                                                                          false,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return GestureDetector(
+                                                                          onTap: () => _model.unfocusNode.canRequestFocus
+                                                                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                              : FocusScope.of(context).unfocus(),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
+                                                                            child:
+                                                                                ProcedureStepDetailWidget(
+                                                                              item: listViewItem,
+                                                                              check: false,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        safeSetState(
+                                                                            () {}));
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        50.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color:
+                                                                          () {
+                                                                        if ((int
+                                                                            var1) {
+                                                                          return var1 % 5 == 0
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF3ABEF9);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 1
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF26355D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 2
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF059212);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 3
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFFFF407D);
+                                                                        } else if ((int var1) {
+                                                                          return var1 % 5 == 4
+                                                                              ? true
+                                                                              : false;
+                                                                        }(listViewIndex)) {
+                                                                          return const Color(
+                                                                              0xFF7E8EF1);
+                                                                        } else {
+                                                                          return const Color(
+                                                                              0x00000000);
+                                                                        }
+                                                                      }(),
+                                                                      boxShadow: const [
+                                                                        BoxShadow(
+                                                                          blurRadius:
+                                                                              4.0,
+                                                                          color:
+                                                                              Color(0x33000000),
+                                                                          offset:
+                                                                              Offset(
+                                                                            2.0,
+                                                                            10.0,
+                                                                          ),
+                                                                        )
+                                                                      ],
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(30.0),
+                                                                        bottomRight:
+                                                                            Radius.circular(30.0),
+                                                                        topLeft:
+                                                                            Radius.circular(30.0),
+                                                                        topRight:
+                                                                            Radius.circular(30.0),
                                                                       ),
                                                                     ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  safeSetState(
-                                                                      () {}));
-                                                            },
-                                                            child: Container(
-                                                              width: 100.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            4.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets.all(
-                                                                            8.0),
-                                                                    child: Text(
-                                                                      '${(listViewIndex + 1).toString()}.',
-                                                                      maxLines:
-                                                                          2,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            letterSpacing:
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                30.0,
                                                                                 0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              listViewItem.name,
+                                                                              maxLines: 2,
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    color: Colors.white,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                  ),
+                                                                            ),
                                                                           ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
-                                                                  Expanded(
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child:
+                                                                    Container(
+                                                                  width: 55.0,
+                                                                  height: 55.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBtnText,
+                                                                    boxShadow: const [
+                                                                      BoxShadow(
+                                                                        blurRadius:
+                                                                            4.0,
+                                                                        color: Color(
+                                                                            0x6814181B),
+                                                                        offset:
+                                                                            Offset(
                                                                           0.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                                      child:
-                                                                          Text(
-                                                                        (listViewItem.name != '') &&
-                                                                                (listViewItem.name != 'null')
-                                                                            ? listViewItem.name
-                                                                            : ' ',
-                                                                        maxLines:
-                                                                            2,
+                                                                          2.0,
+                                                                        ),
+                                                                        spreadRadius:
+                                                                            1.0,
+                                                                      )
+                                                                    ],
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            100.0),
+                                                                    shape: BoxShape
+                                                                        .rectangle,
+                                                                    border:
+                                                                        Border
+                                                                            .all(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .noColor,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                  ),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .min,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Text(
+                                                                        'Bước',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Nunito Sans',
+                                                                              color: () {
+                                                                                if ((int var1) {
+                                                                                  return var1 % 5 == 0 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF3ABEF9);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 1 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF26355D);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 2 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF059212);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 3 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFFFF407D);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 4 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF7E8EF1);
+                                                                                } else {
+                                                                                  return const Color(0x00000000);
+                                                                                }
+                                                                              }(),
+                                                                              fontSize: 10.0,
                                                                               letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
                                                                             ),
                                                                       ),
-                                                                    ),
+                                                                      Text(
+                                                                        (listViewIndex + 1).toString(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              color: () {
+                                                                                if ((int var1) {
+                                                                                  return var1 % 5 == 0 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF3ABEF9);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 1 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF26355D);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 2 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF059212);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 3 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFFFF407D);
+                                                                                } else if ((int var1) {
+                                                                                  return var1 % 5 == 4 ? true : false;
+                                                                                }(listViewIndex)) {
+                                                                                  return const Color(0xFF7E8EF1);
+                                                                                } else {
+                                                                                  return const Color(0x00000000);
+                                                                                }
+                                                                              }(),
+                                                                              fontSize: 16.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ],
+                                                                ),
                                                               ),
-                                                            ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
                                                     ),
+                                                    if (listViewIndex ==
+                                                        (_model.stepsList
+                                                                .length -
+                                                            1))
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    30.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width: 100.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                        ),
+                                                      ),
                                                   ],
                                                 ),
                                               );
@@ -1296,35 +1494,6 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                           );
                                         },
                                       ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: 30.0,
-                                          child: VerticalDivider(
-                                            width: 1.0,
-                                            thickness: 1.0,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      width: 25.0,
-                                      height: 25.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -1334,7 +1503,8 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                       ),
                     ],
                   ),
-                if (_model.idLoad == true)
+                if ((_model.idLoad == true) &&
+                    (widget.idCreate == FFAppState().user.id))
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: FFButtonWidget(

@@ -155,7 +155,6 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                               child: Image.network(
                                 '${FFAppConstants.ApiBaseUrl}/assets/${widget.data?.avatar}?access_token=${FFAppState().accessToken}',
                                 width: double.infinity,
-                                height: 470.0,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -200,7 +199,6 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                     _model.uploadedLocalFile4.bytes ??
                                         Uint8List.fromList([]),
                                     width: double.infinity,
-                                    height: 470.0,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -210,7 +208,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                             alignment: const AlignmentDirectional(0.0, 1.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 370.0, 0.0, 0.0),
+                                  0.0, 200.0, 0.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(0.0),
@@ -268,7 +266,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Padding(
                                                       padding:
@@ -961,28 +959,70 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          if ((_model.description2 ==
-                                                                      '') ||
-                                                              (_model.description2 ==
-                                                                  ' ') ||
-                                                              (_model.description2 ==
-                                                                  '') ||
-                                                              (_model.description2 ==
-                                                                  'undefined'))
-                                                            Text(
-                                                              'Chưa có nội dung mô tả',
+                                                    if ((_model.description2 !=
+                                                                '') &&
+                                                        (_model.description2 !=
+                                                            ' ') &&
+                                                        (_model.description2 !=
+                                                            '') &&
+                                                        (_model.description2 !=
+                                                            'undefined'))
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                          ),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  8.0),
+                                                          child: custom_widgets
+                                                              .HtmlToDoc(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 150.0,
+                                                            html: functions
+                                                                .formatHtml(_model
+                                                                    .description2),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        if ((_model.description2 ==
+                                                                    '') ||
+                                                            (_model.description2 ==
+                                                                ' ') ||
+                                                            (_model.description2 ==
+                                                                '') ||
+                                                            (_model.description2 ==
+                                                                'undefined'))
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        15.0),
+                                                            child: Text(
+                                                              'Chưa có nội dung mô tả 1',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -999,48 +1039,8 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                             .italic,
                                                                   ),
                                                             ),
-                                                          if ((_model.description2 !=
-                                                                      '') &&
-                                                              (_model.description2 !=
-                                                                  ' ') &&
-                                                              (_model.description2 !=
-                                                                  '') &&
-                                                              (_model.description2 !=
-                                                                  'undefined'))
-                                                            Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                ),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(
-                                                                            8.0),
-                                                                child: custom_widgets
-                                                                    .HtmlToDoc(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 100.0,
-                                                                  html: functions
-                                                                      .formatHtml(
-                                                                          _model
-                                                                              .description2),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                        ].divide(const SizedBox(
-                                                            height: 20.0)),
-                                                      ),
+                                                          ),
+                                                      ],
                                                     ),
                                                     Padding(
                                                       padding:
@@ -1125,18 +1125,21 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                     .start,
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
-                                                                    .start,
+                                                                    .center,
                                                             children: [
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  if ((_model
+                                                              if (((_model
                                                                               .uploadedLocalFile1
                                                                               .bytes
                                                                               ?.isEmpty ??
-                                                                          true))
+                                                                          true)) &&
+                                                                  (widget.data
+                                                                          ?.video !=
+                                                                      '1fdaeaf9-74e3-42e9-94b5-acb9f3996949'))
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
                                                                     Expanded(
                                                                       child:
                                                                           FlutterFlowVideoPlayer(
@@ -1156,20 +1159,23 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                             false,
                                                                       ),
                                                                     ),
-                                                                ].divide(const SizedBox(
-                                                                    width:
-                                                                        8.0)),
-                                                              ),
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  if ((_model
-                                                                              .uploadedLocalFile1
-                                                                              .bytes
-                                                                              ?.isNotEmpty ??
-                                                                          false))
+                                                                  ].divide(const SizedBox(
+                                                                      width:
+                                                                          8.0)),
+                                                                ),
+                                                              if ((_model
+                                                                          .uploadedLocalFile1
+                                                                          .bytes
+                                                                          ?.isNotEmpty ??
+                                                                      false))
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
                                                                     Text(
                                                                       'Upload video thành công!',
                                                                       style: FlutterFlowTheme.of(
@@ -1184,10 +1190,46 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                                 0.0,
                                                                           ),
                                                                     ),
-                                                                ].divide(const SizedBox(
-                                                                    width:
-                                                                        8.0)),
-                                                              ),
+                                                                  ].divide(const SizedBox(
+                                                                      width:
+                                                                          8.0)),
+                                                                ),
+                                                              if (((_model
+                                                                              .uploadedLocalFile1
+                                                                              .bytes
+                                                                              ?.isEmpty ??
+                                                                          true)) &&
+                                                                  (widget.data
+                                                                          ?.video ==
+                                                                      '1fdaeaf9-74e3-42e9-94b5-acb9f3996949'))
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Chưa có nội dung video',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                          ),
+                                                                    ),
+                                                                  ].divide(const SizedBox(
+                                                                      width:
+                                                                          8.0)),
+                                                                ),
                                                               FFButtonWidget(
                                                                 onPressed:
                                                                     () async {
@@ -1242,7 +1284,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                   }
                                                                 },
                                                                 text:
-                                                                    'Upload Video',
+                                                                    'Cập nhật video',
                                                                 options:
                                                                     FFButtonOptions(
                                                                   height: 40.0,
@@ -1350,6 +1392,40 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                       ),
                                                     ),
+                                                    if (((_model
+                                                                    .uploadedLocalFile2
+                                                                    .bytes
+                                                                    ?.isEmpty ??
+                                                                true)) &&
+                                                        (widget.data!.files.isEmpty))
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            'Chưa có nội dung ảnh',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 8.0)),
+                                                      ),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
@@ -1420,32 +1496,65 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                             .cover,
                                                                       ),
                                                                     ),
-                                                                    FlutterFlowIconButton(
-                                                                      borderRadius:
-                                                                          20.0,
-                                                                      borderWidth:
-                                                                          1.0,
-                                                                      buttonSize:
-                                                                          40.0,
-                                                                      fillColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .alternate,
-                                                                      icon:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .close,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            24.0,
+                                                                    Opacity(
+                                                                      opacity:
+                                                                          0.7,
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            6.0,
+                                                                            6.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            FlutterFlowIconButton(
+                                                                          borderRadius:
+                                                                              20.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              30.0,
+                                                                          fillColor:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.close,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                15.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () async {
+                                                                            var confirmDialogResponse = await showDialog<bool>(
+                                                                                  context: context,
+                                                                                  builder: (alertDialogContext) {
+                                                                                    return AlertDialog(
+                                                                                      title: const Text('Xác nhận'),
+                                                                                      content: const Text('Bạn chắc chắn muốn xóa ảnh?'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                          child: const Text('Hủy'),
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                          child: const Text('Xác nhận'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    );
+                                                                                  },
+                                                                                ) ??
+                                                                                false;
+                                                                            if (confirmDialogResponse) {
+                                                                              _model.removeAtIndexFromImageId(listImageIndex);
+                                                                              setState(() {});
+                                                                            } else {
+                                                                              return;
+                                                                            }
+                                                                          },
+                                                                        ),
                                                                       ),
-                                                                      onPressed:
-                                                                          () async {
-                                                                        _model.removeAtIndexFromImageId(
-                                                                            listImageIndex);
-                                                                        setState(
-                                                                            () {});
-                                                                      },
                                                                     ),
                                                                   ],
                                                                 );
@@ -1528,31 +1637,63 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                               .cover,
                                                                         ),
                                                                       ),
-                                                                      FlutterFlowIconButton(
-                                                                        borderRadius:
-                                                                            20.0,
-                                                                        borderWidth:
-                                                                            1.0,
-                                                                        buttonSize:
-                                                                            40.0,
-                                                                        fillColor:
-                                                                            FlutterFlowTheme.of(context).alternate,
-                                                                        icon:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .close,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryText,
-                                                                          size:
-                                                                              24.0,
+                                                                      Opacity(
+                                                                        opacity:
+                                                                            0.7,
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              6.0,
+                                                                              6.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              FlutterFlowIconButton(
+                                                                            borderRadius:
+                                                                                20.0,
+                                                                            borderWidth:
+                                                                                1.0,
+                                                                            buttonSize:
+                                                                                30.0,
+                                                                            fillColor:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.close,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              size: 15.0,
+                                                                            ),
+                                                                            onPressed:
+                                                                                () async {
+                                                                              var confirmDialogResponse = await showDialog<bool>(
+                                                                                    context: context,
+                                                                                    builder: (alertDialogContext) {
+                                                                                      return AlertDialog(
+                                                                                        title: const Text('Xác nhận'),
+                                                                                        content: const Text('Bạn chắc chắn muốn xóa ảnh?'),
+                                                                                        actions: [
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                            child: const Text('Hủy'),
+                                                                                          ),
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                            child: const Text('Xác nhận'),
+                                                                                          ),
+                                                                                        ],
+                                                                                      );
+                                                                                    },
+                                                                                  ) ??
+                                                                                  false;
+                                                                              if (confirmDialogResponse) {
+                                                                                _model.removeAtIndexFromImages(listImageUploadIndex);
+                                                                                setState(() {});
+                                                                              } else {
+                                                                                return;
+                                                                              }
+                                                                            },
+                                                                          ),
                                                                         ),
-                                                                        onPressed:
-                                                                            () async {
-                                                                          _model
-                                                                              .removeAtIndexFromImages(listImageUploadIndex);
-                                                                          setState(
-                                                                              () {});
-                                                                        },
                                                                       ),
                                                                     ],
                                                                   );
@@ -1562,139 +1703,142 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                    FFButtonWidget(
-                                                      onPressed: () async {
-                                                        setState(() {
-                                                          _model.isDataUploading2 =
-                                                              false;
-                                                          _model.uploadedLocalFile2 =
-                                                              FFUploadedFile(
-                                                                  bytes: Uint8List
-                                                                      .fromList(
-                                                                          []));
-                                                        });
-
-                                                        final selectedMedia =
-                                                            await selectMedia(
-                                                          imageQuality: 100,
-                                                          includeDimensions:
-                                                              true,
-                                                          mediaSource:
-                                                              MediaSource
-                                                                  .photoGallery,
-                                                          multiImage: false,
-                                                        );
-                                                        if (selectedMedia !=
-                                                                null &&
-                                                            selectedMedia.every((m) =>
-                                                                validateFileFormat(
-                                                                    m.storagePath,
-                                                                    context))) {
-                                                          setState(() => _model
-                                                                  .isDataUploading2 =
-                                                              true);
-                                                          var selectedUploadedFiles =
-                                                              <FFUploadedFile>[];
-
-                                                          try {
-                                                            selectedUploadedFiles =
-                                                                selectedMedia
-                                                                    .map((m) =>
-                                                                        FFUploadedFile(
-                                                                          name: m
-                                                                              .storagePath
-                                                                              .split('/')
-                                                                              .last,
-                                                                          bytes:
-                                                                              m.bytes,
-                                                                          height: m
-                                                                              .dimensions
-                                                                              ?.height,
-                                                                          width: m
-                                                                              .dimensions
-                                                                              ?.width,
-                                                                          blurHash:
-                                                                              m.blurHash,
-                                                                        ))
-                                                                    .toList();
-                                                          } finally {
-                                                            _model.isDataUploading2 =
-                                                                false;
-                                                          }
-                                                          if (selectedUploadedFiles
-                                                                  .length ==
-                                                              selectedMedia
-                                                                  .length) {
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        FFButtonWidget(
+                                                          onPressed: () async {
                                                             setState(() {
+                                                              _model.isDataUploading2 =
+                                                                  false;
                                                               _model.uploadedLocalFile2 =
-                                                                  selectedUploadedFiles
-                                                                      .first;
+                                                                  FFUploadedFile(
+                                                                      bytes: Uint8List
+                                                                          .fromList(
+                                                                              []));
                                                             });
-                                                          } else {
-                                                            setState(() {});
-                                                            return;
-                                                          }
-                                                        }
 
-                                                        if ((_model
-                                                                    .uploadedLocalFile2
-                                                                    .bytes
-                                                                    ?.isNotEmpty ??
-                                                                false)) {
-                                                          _model.addToImages(_model
-                                                              .uploadedLocalFile2);
-                                                          setState(() {});
-                                                        }
-                                                      },
-                                                      text: 'Upload Image',
-                                                      options: FFButtonOptions(
-                                                        height: 40.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                            final selectedMedia =
+                                                                await selectMedia(
+                                                              imageQuality: 100,
+                                                              includeDimensions:
+                                                                  true,
+                                                              mediaSource:
+                                                                  MediaSource
+                                                                      .photoGallery,
+                                                              multiImage: false,
+                                                            );
+                                                            if (selectedMedia !=
+                                                                    null &&
+                                                                selectedMedia.every((m) =>
+                                                                    validateFileFormat(
+                                                                        m.storagePath,
+                                                                        context))) {
+                                                              setState(() =>
+                                                                  _model.isDataUploading2 =
+                                                                      true);
+                                                              var selectedUploadedFiles =
+                                                                  <FFUploadedFile>[];
+
+                                                              try {
+                                                                selectedUploadedFiles =
+                                                                    selectedMedia
+                                                                        .map((m) =>
+                                                                            FFUploadedFile(
+                                                                              name: m.storagePath.split('/').last,
+                                                                              bytes: m.bytes,
+                                                                              height: m.dimensions?.height,
+                                                                              width: m.dimensions?.width,
+                                                                              blurHash: m.blurHash,
+                                                                            ))
+                                                                        .toList();
+                                                              } finally {
+                                                                _model.isDataUploading2 =
+                                                                    false;
+                                                              }
+                                                              if (selectedUploadedFiles
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                                setState(() {
+                                                                  _model.uploadedLocalFile2 =
+                                                                      selectedUploadedFiles
+                                                                          .first;
+                                                                });
+                                                              } else {
+                                                                setState(() {});
+                                                                return;
+                                                              }
+                                                            }
+
+                                                            if ((_model
+                                                                        .uploadedLocalFile2
+                                                                        .bytes
+                                                                        ?.isNotEmpty ??
+                                                                    false)) {
+                                                              _model.addToImages(
+                                                                  _model
+                                                                      .uploadedLocalFile2);
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                          text: 'Cập nhật  ảnh',
+                                                          options:
+                                                              FFButtonOptions(
+                                                            height: 40.0,
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .alternate,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: const BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
                                                         ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
+                                                      ],
                                                     ),
                                                   ].divide(
                                                       const SizedBox(height: 4.0)),
@@ -1724,8 +1868,8 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 16.0, 0.0, 0.0),
                                       child: Container(
-                                        width: 120.0,
-                                        height: 120.0,
+                                        width: 100.0,
+                                        height: 100.0,
                                         clipBehavior: Clip.antiAlias,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
@@ -1771,8 +1915,8 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                           tag: 'circleImageTag2',
                                           transitionOnUserGestures: true,
                                           child: Container(
-                                            width: 120.0,
-                                            height: 120.0,
+                                            width: 100.0,
+                                            height: 100.0,
                                             clipBehavior: Clip.antiAlias,
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
@@ -1786,136 +1930,140 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                         ),
                                       ),
                                     ),
-                                  FlutterFlowIconButton(
-                                    borderColor: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    borderRadius: 90.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 50.0,
-                                    fillColor:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    icon: Icon(
-                                      Icons.camera_alt,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () async {
-                                      final selectedMedia =
-                                          await selectMediaWithSourceBottomSheet(
-                                        context: context,
-                                        allowPhoto: true,
-                                      );
-                                      if (selectedMedia != null &&
-                                          selectedMedia.every((m) =>
-                                              validateFileFormat(
-                                                  m.storagePath, context))) {
-                                        setState(() =>
-                                            _model.isDataUploading3 = true);
-                                        var selectedUploadedFiles =
-                                            <FFUploadedFile>[];
+                                  Opacity(
+                                    opacity: 0.7,
+                                    child: FlutterFlowIconButton(
+                                      borderRadius: 90.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      icon: Icon(
+                                        Icons.camera_alt,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        final selectedMedia =
+                                            await selectMediaWithSourceBottomSheet(
+                                          context: context,
+                                          allowPhoto: true,
+                                        );
+                                        if (selectedMedia != null &&
+                                            selectedMedia.every((m) =>
+                                                validateFileFormat(
+                                                    m.storagePath, context))) {
+                                          setState(() =>
+                                              _model.isDataUploading3 = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
 
-                                        try {
-                                          selectedUploadedFiles = selectedMedia
-                                              .map((m) => FFUploadedFile(
-                                                    name: m.storagePath
-                                                        .split('/')
-                                                        .last,
-                                                    bytes: m.bytes,
-                                                    height:
-                                                        m.dimensions?.height,
-                                                    width: m.dimensions?.width,
-                                                    blurHash: m.blurHash,
-                                                  ))
-                                              .toList();
-                                        } finally {
-                                          _model.isDataUploading3 = false;
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedMedia
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                          height: m.dimensions
+                                                              ?.height,
+                                                          width: m.dimensions
+                                                              ?.width,
+                                                          blurHash: m.blurHash,
+                                                        ))
+                                                    .toList();
+                                          } finally {
+                                            _model.isDataUploading3 = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                              selectedMedia.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile3 =
+                                                  selectedUploadedFiles.first;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
                                         }
-                                        if (selectedUploadedFiles.length ==
-                                            selectedMedia.length) {
-                                          setState(() {
-                                            _model.uploadedLocalFile3 =
-                                                selectedUploadedFiles.first;
-                                          });
-                                        } else {
-                                          setState(() {});
-                                          return;
-                                        }
-                                      }
-                                    },
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: const AlignmentDirectional(1.0, -1.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 304.0, 16.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                borderRadius: 90.0,
-                                borderWidth: 1.0,
-                                buttonSize: 50.0,
-                                fillColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                icon: Icon(
-                                  Icons.camera_alt,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: true,
-                                  );
-                                  if (selectedMedia != null &&
-                                      selectedMedia.every((m) =>
-                                          validateFileFormat(
-                                              m.storagePath, context))) {
-                                    setState(
-                                        () => _model.isDataUploading4 = true);
-                                    var selectedUploadedFiles =
-                                        <FFUploadedFile>[];
+                          Opacity(
+                            opacity: 0.7,
+                            child: Align(
+                              alignment: const AlignmentDirectional(1.0, -1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 150.0, 16.0, 0.0),
+                                child: FlutterFlowIconButton(
+                                  borderRadius: 90.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  icon: Icon(
+                                    Icons.camera_alt,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    final selectedMedia =
+                                        await selectMediaWithSourceBottomSheet(
+                                      context: context,
+                                      allowPhoto: true,
+                                    );
+                                    if (selectedMedia != null &&
+                                        selectedMedia.every((m) =>
+                                            validateFileFormat(
+                                                m.storagePath, context))) {
+                                      setState(
+                                          () => _model.isDataUploading4 = true);
+                                      var selectedUploadedFiles =
+                                          <FFUploadedFile>[];
 
-                                    try {
-                                      selectedUploadedFiles = selectedMedia
-                                          .map((m) => FFUploadedFile(
-                                                name: m.storagePath
-                                                    .split('/')
-                                                    .last,
-                                                bytes: m.bytes,
-                                                height: m.dimensions?.height,
-                                                width: m.dimensions?.width,
-                                                blurHash: m.blurHash,
-                                              ))
-                                          .toList();
-                                    } finally {
-                                      _model.isDataUploading4 = false;
+                                      try {
+                                        selectedUploadedFiles = selectedMedia
+                                            .map((m) => FFUploadedFile(
+                                                  name: m.storagePath
+                                                      .split('/')
+                                                      .last,
+                                                  bytes: m.bytes,
+                                                  height: m.dimensions?.height,
+                                                  width: m.dimensions?.width,
+                                                  blurHash: m.blurHash,
+                                                ))
+                                            .toList();
+                                      } finally {
+                                        _model.isDataUploading4 = false;
+                                      }
+                                      if (selectedUploadedFiles.length ==
+                                          selectedMedia.length) {
+                                        setState(() {
+                                          _model.uploadedLocalFile4 =
+                                              selectedUploadedFiles.first;
+                                        });
+                                      } else {
+                                        setState(() {});
+                                        return;
+                                      }
                                     }
-                                    if (selectedUploadedFiles.length ==
-                                        selectedMedia.length) {
-                                      setState(() {
-                                        _model.uploadedLocalFile4 =
-                                            selectedUploadedFiles.first;
-                                      });
-                                    } else {
-                                      setState(() {});
-                                      return;
-                                    }
-                                  }
-                                },
+                                  },
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
+                  ].addToEnd(const SizedBox(height: 16.0)),
                 ),
               ),
             ),

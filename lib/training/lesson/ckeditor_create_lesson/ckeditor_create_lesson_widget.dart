@@ -176,10 +176,10 @@ class _CkeditorCreateLessonWidgetState
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
               child: SizedBox(
                 width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 0.9,
+                height: MediaQuery.sizeOf(context).height * 0.85,
                 child: custom_widgets.CKEditor(
                   width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: MediaQuery.sizeOf(context).height * 0.9,
+                  height: MediaQuery.sizeOf(context).height * 0.85,
                   initialData: widget.output != null && widget.output != ''
                       ? widget.output!
                       : '',

@@ -56,7 +56,7 @@ class _DataNotFoundWidgetState extends State<DataNotFoundWidget> {
                 'Không có dữ liệu !',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Nunito Sans',
-                      fontSize: 18.0,
+                      fontSize: 16.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w600,
                     ),

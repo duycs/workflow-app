@@ -134,6 +134,10 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                         shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                        ),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(2.0),
@@ -2248,7 +2252,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Nunito Sans',
-                                            fontSize: 14.0,
+                                            fontSize: 16.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -2617,13 +2621,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               ),
-                            if (((FFAppState().user.role ==
-                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                    (FFAppState().user.role ==
-                                        '82073000-1ba2-43a4-a55c-459d17c23b68') ||
-                                    (FFAppState().user.role ==
-                                        'a8d33527-375b-4599-ac70-6a3fcad1de39')) &&
-                                ('1' == '2'))
+                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                (FFAppState().user.role ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                (FFAppState().user.role ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
@@ -2713,7 +2715,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 12.0, 16.0, 0.0),
+                                  16.0, 24.0, 16.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -3205,7 +3207,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Thiết lập',
+                                            'Thiết lập tài khoản',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(

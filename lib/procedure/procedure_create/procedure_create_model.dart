@@ -137,6 +137,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
           Function(WorkflowsStepCreateStruct) updateFn) =>
       updateFn(stepsListRequest ??= WorkflowsStepCreateStruct());
 
+  String checkUpdate = ' ';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -145,10 +147,8 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
   bool? tokenReloadProcedureCreate;
   // Stores action output result for [Backend Call - API (GetDepartmentList)] action in Button widget.
   ApiCallResponse? apiResult4dr;
-  // Stores action output result for [Backend Call - API (workflowsCreate)] action in Button widget.
+  // Stores action output result for [Backend Call - API (CreateWorkflowsAll)] action in Button widget.
   ApiCallResponse? apiResultWorkflowCreate;
-  // Stores action output result for [Backend Call - API (stepCreateWorkflows)] action in Button widget.
-  ApiCallResponse? apiResultStepCreate;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>

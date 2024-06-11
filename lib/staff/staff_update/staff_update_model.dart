@@ -1,7 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'staff_update_widget.dart' show StaffUpdateWidget;
 import 'package:flutter/material.dart';
 
@@ -40,6 +42,12 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
       branchList[index] = updateFn(branchList[index]);
 
   bool selectRole = false;
+
+  bool checkDepartment = false;
+
+  dynamic requestStaff;
+
+  dynamic requestUserStaff;
 
   ///  State fields for stateful widgets in this page.
 
@@ -148,25 +156,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadImage;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateStaffToken;
-  // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
-  ApiCallResponse? apiResultUpdateStaff;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateUserStaff2Token;
-  // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
-  ApiCallResponse? apiResultUpdateUserStaff2;
-  // Stores action output result for [Backend Call - API (CreateProgramStaff)] action in Button widget.
-  ApiCallResponse? apiCreateProgramStaff;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateNoImageToken;
-  // Stores action output result for [Backend Call - API (UpdateStaff)] action in Button widget.
-  ApiCallResponse? apiResultUpdateNoImage;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateUserStaffToken;
-  // Stores action output result for [Backend Call - API (UpdateUserStaff)] action in Button widget.
-  ApiCallResponse? apiResultUpdateUserStaff;
-  // Stores action output result for [Backend Call - API (CreateProgramStaff)] action in Button widget.
-  ApiCallResponse? apiCreateProgramStaff1;
+  bool? uploadImageToken2;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultUploadImage2;
 
   @override
   void initState(BuildContext context) {
@@ -191,6 +183,80 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
 
     titleTextFocusNode?.dispose();
     titleTextTextController?.dispose();
+  }
+
+  /// Action blocks.
+  Future callRequest(BuildContext context) async {
+    bool? updateStaffTokenTotal;
+    ApiCallResponse? apiResultUpdateStaffTotal;
+    bool? updateUserStaffTotal;
+    ApiCallResponse? apiResultUpdateUserStaffTotal;
+    ApiCallResponse? apiCreateProgramStaffTotal;
+
+    updateStaffTokenTotal = await action_blocks.tokenReload(context);
+    if (updateStaffTokenTotal!) {
+      apiResultUpdateStaffTotal = await StaffGroup.updateStaffCall.call(
+        accessToken: FFAppState().accessToken,
+        id: getJsonField(
+          widget.staffDetail,
+          r'''$.user_id.id''',
+        ).toString().toString(),
+        requestDataJson: requestStaff,
+      );
+      if ((apiResultUpdateStaffTotal.succeeded ?? true)) {
+        updateUserStaffTotal = await action_blocks.tokenReload(context);
+        if (updateUserStaffTotal!) {
+          apiResultUpdateUserStaffTotal =
+              await StaffGroup.updateUserStaffCall.call(
+            accessToken: FFAppState().accessToken,
+            staffId: getJsonField(
+              widget.staffDetail,
+              r'''$.id''',
+            ).toString().toString(),
+            requestDataJson: requestUserStaff,
+          );
+          if ((apiResultUpdateUserStaffTotal.succeeded ?? true)) {
+            apiCreateProgramStaffTotal =
+                await StaffGroup.createProgramStaffCall.call(
+              accessToken: FFAppState().accessToken,
+              staffId: getJsonField(
+                widget.staffDetail,
+                r'''$.id''',
+              ).toString().toString(),
+            );
+            if ((apiCreateProgramStaffTotal.succeeded ?? true)) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Cập nhật thành công',
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  ),
+                  duration: const Duration(milliseconds: 4000),
+                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                ),
+              );
+
+              context.pushNamed(
+                'PersonnelList',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+            }
+          }
+        } else {
+          FFAppState().update(() {});
+        }
+      }
+    } else {
+      FFAppState().update(() {});
+    }
   }
 
   /// Additional helper methods.

@@ -593,7 +593,9 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                       .secondary,
                                             ),
                                           );
-
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
                                             'BranchList',
                                             extra: <String, dynamic>{

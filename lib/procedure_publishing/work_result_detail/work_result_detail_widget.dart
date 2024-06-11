@@ -722,15 +722,39 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                custom_widgets.HtmlToDoc(
-                                                  width: double.infinity,
-                                                  height: 100.0,
-                                                  html: functions.formatHtml(
-                                                      dataListItem
-                                                          .operations
-                                                          .first
-                                                          .operationsId
-                                                          .result),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                    ),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 6.0,
+                                                                8.0, 0.0),
+                                                    child: custom_widgets
+                                                        .HtmlToDoc(
+                                                      width: double.infinity,
+                                                      height: 150.0,
+                                                      html:
+                                                          functions.formatHtml(
+                                                              dataListItem
+                                                                  .operations
+                                                                  .first
+                                                                  .operationsId
+                                                                  .result),
+                                                    ),
+                                                  ),
                                                 ),
                                               ],
                                             ),

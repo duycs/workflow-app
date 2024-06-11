@@ -102,7 +102,10 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
           } else {
             return ' ';
           }
-        }()}]}',
+        }()}${FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725' ? ',{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.department_id''',
+          ).toString().toString()}\"}}' : ' '}]}',
         accessToken: FFAppState().accessToken,
       );
       if ((_model.addDepartmentListcall?.succeeded ?? true)) {
@@ -179,6 +182,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
+                                  await widget.callBack?.call();
                                   Navigator.pop(context);
                                 },
                               ),
@@ -297,23 +301,27 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                                       ),
                                             ),
                                           ),
-                                          FlutterFlowIconButton(
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            icon: Icon(
-                                              Icons.delete_outline,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              size: 24.0,
+                                          if ((FFAppState().user.role ==
+                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                              (FFAppState().user.role ==
+                                                  'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                            FlutterFlowIconButton(
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              icon: Icon(
+                                                Icons.delete_outline,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                size: 24.0,
+                                              ),
+                                              onPressed: () async {
+                                                _model.removeAtIndexFromListAdd(
+                                                    listShowIndex);
+                                                setState(() {});
+                                              },
                                             ),
-                                            onPressed: () async {
-                                              _model.removeAtIndexFromListAdd(
-                                                  listShowIndex);
-                                              setState(() {});
-                                            },
-                                          ),
                                         ],
                                       ),
                                     ),

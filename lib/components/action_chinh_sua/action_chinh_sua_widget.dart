@@ -278,7 +278,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               id: widget.dataDetail!.id,
                               price: widget.dataDetail?.price,
                               version: widget.dataDetail?.version,
-                              checkPage: widget.checkMarket.toString(),
+                              checkPage: widget.checkpage,
                               nameLession: widget.dataDetail?.lessions
                                   .map((e) => e.lessionsId.name)
                                   .toList(),

@@ -754,7 +754,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
-                                                                            0.0,
+                                                                            4.0,
                                                                             0.0,
                                                                             5.0),
                                                                 child: Text(
@@ -878,36 +878,22 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                             ),
                                                           ],
                                                         ),
-                                                        Text(
-                                                          '${valueOrDefault<String>(
-                                                            dataListViewItem
-                                                                .lessions.length
-                                                                .toString(),
-                                                            '0',
-                                                          )} bài học',
-                                                          maxLines: 2,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
-                                                                      4.0,
-                                                                      0.0),
+                                                                      0.0,
+                                                                      8.0),
                                                           child: Text(
-                                                            'Người tạo: ${dataListViewItem.userCreated.firstName}',
-                                                            textAlign:
-                                                                TextAlign.start,
+                                                            '${valueOrDefault<String>(
+                                                              dataListViewItem
+                                                                  .lessions
+                                                                  .length
+                                                                  .toString(),
+                                                              '0',
+                                                            )} bài học',
                                                             maxLines: 2,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -920,6 +906,47 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 ),
                                                           ),
                                                         ),
+                                                        if ((dataListViewItem
+                                                                    .userCreated
+                                                                    .firstName !=
+                                                                'null') &&
+                                                            (dataListViewItem
+                                                                        .userCreated
+                                                                        .firstName !=
+                                                                    null &&
+                                                                dataListViewItem
+                                                                        .userCreated
+                                                                        .firstName !=
+                                                                    '') &&
+                                                            (dataListViewItem
+                                                                    .userCreated
+                                                                    .firstName !=
+                                                                'undefined'))
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        4.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Người tạo: ${dataListViewItem.userCreated.firstName}',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              maxLines: 2,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
                                                         if ((widget.checkpage ==
                                                                 'authorProfile') &&
                                                             ('1' == '2'))
@@ -1633,213 +1660,133 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                               height: 4.0)),
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        flex: 2,
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'TestDetail',
-                                                              queryParameters: {
-                                                                'id':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'name':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .name,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'description':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .description,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'time':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .durationMinutes
-                                                                      .toString(),
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'checkScroll':
-                                                                    serializeParam(
-                                                                  'StudyProgramList',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'goodScore':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .goodScore,
-                                                                  ParamType.int,
-                                                                ),
-                                                              }.withoutNulls,
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                kTransitionInfoKey:
-                                                                    const TransitionInfo(
-                                                                  hasTransition:
-                                                                      true,
-                                                                  transitionType:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                ),
-                                                              },
-                                                            );
-                                                          },
-                                                          text: 'Bài thi',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            height: 30.0,
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12.0,
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          context.pushNamed(
+                                                            'TestDetail',
+                                                            queryParameters: {
+                                                              'id':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId.id,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'name':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .name,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'description':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .description,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'time':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .durationMinutes
+                                                                    .toString(),
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'checkScroll':
+                                                                  serializeParam(
+                                                                'StudyProgramList',
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'goodScore':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .goodScore,
+                                                                ParamType.int,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  const TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        0),
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        text: 'Bài thi',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 70.0,
+                                                          height: 30.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12.0,
+                                                                      0.0,
+                                                                      12.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .error,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
                                                                         0.0,
-                                                                        12.0,
-                                                                        0.0),
-                                                            iconPadding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
-                                                            elevation: 3.0,
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8.0),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
                                                           ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child:
-                                                            FlutterFlowIconButton(
-                                                          borderColor: Colors
-                                                              .transparent,
-                                                          borderRadius: 20.0,
-                                                          borderWidth: 1.0,
-                                                          buttonSize: 40.0,
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_right,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          onPressed: () async {
-                                                            context.pushNamed(
-                                                              'TestDetail',
-                                                              queryParameters: {
-                                                                'id':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .id,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'name':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .name,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'description':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .description,
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'time':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .durationMinutes
-                                                                      .toString(),
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'checkScroll':
-                                                                    serializeParam(
-                                                                  'StudyProgramList',
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                                'goodScore':
-                                                                    serializeParam(
-                                                                  dataListTestsViewItem
-                                                                      .testsId
-                                                                      .goodScore,
-                                                                  ParamType.int,
-                                                                ),
-                                                              }.withoutNulls,
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                kTransitionInfoKey:
-                                                                    const TransitionInfo(
-                                                                  hasTransition:
-                                                                      true,
-                                                                  transitionType:
-                                                                      PageTransitionType
-                                                                          .fade,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          0),
-                                                                ),
-                                                              },
-                                                            );
-                                                          },
-                                                        ),
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_right,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
                                                       ),
                                                     ].divide(
                                                         const SizedBox(width: 8.0)),
@@ -2033,106 +1980,92 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Expanded(
-                                                              flex: 1,
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  context
-                                                                      .pushNamed(
-                                                                    'LessonDetail',
-                                                                    queryParameters:
-                                                                        {
-                                                                      'idLesson':
-                                                                          serializeParam(
-                                                                        dataListLessionsViewItem
-                                                                            .lessionsId
-                                                                            .id,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                      'checkSrcoll':
-                                                                          serializeParam(
-                                                                        'StudyProgramList',
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                  );
-                                                                },
-                                                                text: 'Bài học',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  height: 30.0,
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
+                                                            FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'LessonDetail',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'idLesson':
+                                                                        serializeParam(
+                                                                      dataListLessionsViewItem
+                                                                          .lessionsId
+                                                                          .id,
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'checkSrcoll':
+                                                                        serializeParam(
+                                                                      'StudyProgramList',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              text: 'Bài học',
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 70.0,
+                                                                height: 30.0,
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                                  elevation:
-                                                                      3.0,
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                    ),
+                                                                elevation: 3.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1.0,
                                                                 ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
                                                               ),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child:
-                                                            FlutterFlowIconButton(
-                                                          borderRadius: 20.0,
-                                                          borderWidth: 1.0,
-                                                          buttonSize: 40.0,
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_right,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          onPressed: () {
-                                                            print(
-                                                                'IconButton pressed ...');
-                                                          },
-                                                        ),
+                                                      Icon(
+                                                        Icons
+                                                            .keyboard_arrow_right,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
                                                       ),
                                                     ].divide(
                                                         const SizedBox(width: 8.0)),

@@ -537,9 +537,18 @@ class _FilterReportTaskWidgetState extends State<FilterReportTaskWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             await widget.callback?.call(
-                              _model.statusValue,
-                              _model.departmentValue,
-                              _model.branchValue,
+                              _model.statusValue != null &&
+                                      _model.statusValue != ''
+                                  ? _model.statusValue
+                                  : '',
+                              _model.departmentValue != null &&
+                                      _model.departmentValue != ''
+                                  ? _model.departmentValue
+                                  : '',
+                              _model.branchValue != null &&
+                                      _model.branchValue != ''
+                                  ? _model.branchValue
+                                  : '',
                             );
                             Navigator.pop(context);
                           },

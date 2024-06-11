@@ -20,6 +20,8 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
     List<StaffsStepStruct>? staffs,
     List<DepartmentsIdStruct>? departments,
     String? id,
+    List<WorkflowsStepCreateStruct>? steps,
+    String? type,
   })  : _name = name,
         _description = description,
         _status = status,
@@ -33,7 +35,9 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         _organizationId = organizationId,
         _staffs = staffs,
         _departments = departments,
-        _id = id;
+        _id = id,
+        _steps = steps,
+        _type = type;
 
   // "name" field.
   String? _name;
@@ -129,6 +133,20 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
   set id(String? val) => _id = val;
   bool hasId() => _id != null;
 
+  // "steps" field.
+  List<WorkflowsStepCreateStruct>? _steps;
+  List<WorkflowsStepCreateStruct> get steps => _steps ?? const [];
+  set steps(List<WorkflowsStepCreateStruct>? val) => _steps = val;
+  void updateSteps(Function(List<WorkflowsStepCreateStruct>) updateFn) =>
+      updateFn(_steps ??= []);
+  bool hasSteps() => _steps != null;
+
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  set type(String? val) => _type = val;
+  bool hasType() => _type != null;
+
   static RequestWorkflowsCreateStruct fromMap(Map<String, dynamic> data) =>
       RequestWorkflowsCreateStruct(
         name: data['name'] as String?,
@@ -151,6 +169,11 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
           DepartmentsIdStruct.fromMap,
         ),
         id: data['id'] as String?,
+        steps: getStructList(
+          data['steps'],
+          WorkflowsStepCreateStruct.fromMap,
+        ),
+        type: data['type'] as String?,
       );
 
   static RequestWorkflowsCreateStruct? maybeFromMap(dynamic data) => data is Map
@@ -172,6 +195,8 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
         'departments': _departments?.map((e) => e.toMap()).toList(),
         'id': _id,
+        'steps': _steps?.map((e) => e.toMap()).toList(),
+        'type': _type,
       }.withoutNulls;
 
   @override
@@ -232,6 +257,15 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         ),
         'id': serializeParam(
           _id,
+          ParamType.String,
+        ),
+        'steps': serializeParam(
+          _steps,
+          ParamType.DataStruct,
+          true,
+        ),
+        'type': serializeParam(
+          _type,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -311,6 +345,17 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        steps: deserializeStructParam<WorkflowsStepCreateStruct>(
+          data['steps'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: WorkflowsStepCreateStruct.fromSerializableMap,
+        ),
+        type: deserializeParam(
+          data['type'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -333,7 +378,9 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         organizationId == other.organizationId &&
         listEquality.equals(staffs, other.staffs) &&
         listEquality.equals(departments, other.departments) &&
-        id == other.id;
+        id == other.id &&
+        listEquality.equals(steps, other.steps) &&
+        type == other.type;
   }
 
   @override
@@ -351,7 +398,9 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         organizationId,
         staffs,
         departments,
-        id
+        id,
+        steps,
+        type
       ]);
 }
 
@@ -368,6 +417,7 @@ RequestWorkflowsCreateStruct createRequestWorkflowsCreateStruct({
   String? branchId,
   String? organizationId,
   String? id,
+  String? type,
 }) =>
     RequestWorkflowsCreateStruct(
       name: name,
@@ -382,4 +432,5 @@ RequestWorkflowsCreateStruct createRequestWorkflowsCreateStruct({
       branchId: branchId,
       organizationId: organizationId,
       id: id,
+      type: type,
     );

@@ -142,33 +142,43 @@ class _DetailActionTypeImageWidgetState
                                     ),
                                   ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.download_sharp,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    _model.downloadImageToken =
-                                        await action_blocks
-                                            .tokenReload(context);
-                                    if (_model.downloadImageToken!) {
-                                      await actions.downloadFile(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                        dataGridItem
-                                            .directusFilesId.filenameDownload,
-                                        dataGridItem
-                                            .directusFilesId.filenameDownload,
-                                      );
-                                    } else {
-                                      setState(() {});
-                                    }
+                                Opacity(
+                                  opacity: 0.7,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 6.0, 6.0, 0.0),
+                                    child: FlutterFlowIconButton(
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 30.0,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      icon: Icon(
+                                        Icons.download,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 15.0,
+                                      ),
+                                      onPressed: () async {
+                                        _model.downloadImageToken =
+                                            await action_blocks
+                                                .tokenReload(context);
+                                        if (_model.downloadImageToken!) {
+                                          await actions.downloadFile(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                            dataGridItem.directusFilesId
+                                                .filenameDownload,
+                                            dataGridItem.directusFilesId
+                                                .filenameDownload,
+                                          );
+                                        } else {
+                                          setState(() {});
+                                        }
 
-                                    setState(() {});
-                                  },
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
                                 ),
                               ],
                             );
@@ -247,24 +257,60 @@ class _DetailActionTypeImageWidgetState
                                 ),
                               ),
                               Opacity(
-                                opacity: 0.8,
-                                child: FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                opacity: 0.7,
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 6.0, 6.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 30.0,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    icon: Icon(
+                                      Icons.close,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 15.0,
+                                    ),
+                                    onPressed: () async {
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: const Text('Xác nhận'),
+                                                    content: const Text(
+                                                        'Bạn chắc chắn muốn xóa?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: const Text('Hủy'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: const Text('Xác nhận'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.removeAtIndexFromImagesList(
+                                            dataTodoItemIndex);
+                                        setState(() {});
+                                      } else {
+                                        return;
+                                      }
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    _model.removeAtIndexFromImagesList(
-                                        dataTodoItemIndex);
-                                    setState(() {});
-                                  },
                                 ),
                               ),
                             ],
@@ -334,24 +380,60 @@ class _DetailActionTypeImageWidgetState
                                 ),
                               ),
                               Opacity(
-                                opacity: 0.8,
-                                child: FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
+                                opacity: 0.7,
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 6.0, 6.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 30.0,
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    icon: Icon(
+                                      Icons.close,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 15.0,
+                                    ),
+                                    onPressed: () async {
+                                      var confirmDialogResponse =
+                                          await showDialog<bool>(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: const Text('Xác nhận'),
+                                                    content: const Text(
+                                                        'Bạn chắc chắn muốn xóa?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: const Text('Hủy'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: const Text('Xác nhận'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              ) ??
+                                              false;
+                                      if (confirmDialogResponse) {
+                                        _model.removeAtIndexFromImages(
+                                            imageUploadIndex);
+                                        setState(() {});
+                                      } else {
+                                        return;
+                                      }
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    _model.removeAtIndexFromImages(
-                                        imageUploadIndex);
-                                    setState(() {});
-                                  },
                                 ),
                               ),
                             ],

@@ -539,7 +539,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                         options: FFButtonOptions(
                                           width: 115.0,
                                           height: 30.0,
-                                          padding: const EdgeInsets.all(0.0),
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 0.0, 12.0, 0.0),
                                           iconPadding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
@@ -761,7 +763,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 16.0, 4.0, 16.0),
+                                            8.0, 8.0, 8.0, 16.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
@@ -2637,7 +2639,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                               .HtmlToDoc(
                                                             width:
                                                                 double.infinity,
-                                                            height: 100.0,
+                                                            height: 150.0,
                                                             html: functions.formatHtml(
                                                                 dataListItem
                                                                     .operations

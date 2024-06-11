@@ -800,7 +800,9 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                               .secondary,
                                     ),
                                   );
-
+                                  if (Navigator.of(context).canPop()) {
+                                    context.pop();
+                                  }
                                   context.pushNamed(
                                     'TestList',
                                     extra: <String, dynamic>{

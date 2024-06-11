@@ -1227,7 +1227,10 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             false)) {
                       await _model.uploadFIleImage(context);
                       setState(() {});
+                    } else {
+                      return;
                     }
+
                     if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileFile(context);

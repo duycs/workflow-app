@@ -733,13 +733,20 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     text: valueOrDefault<String>(
                                       formatNumber(
                                         valueOrDefault<int>(
-                                              functions.stringToInt(_model.quantityTextController
-                                                              .text !=
-                                                          ''
-                                                  ? _model
-                                                      .quantityTextController
-                                                      .text
-                                                  : '1'),
+                                              functions.stringToInt(
+                                                  valueOrDefault<String>(
+                                                _model.quantityTextController
+                                                                .text !=
+                                                            ''
+                                                    ? valueOrDefault<String>(
+                                                        _model
+                                                            .quantityTextController
+                                                            .text,
+                                                        '1',
+                                                      )
+                                                    : '1',
+                                                '1',
+                                              )),
                                               1,
                                             ) -
                                             1,

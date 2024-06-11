@@ -199,7 +199,7 @@ class GetDepartmentListCall {
         },
         params: {
           'fields[]':
-              "id, status, name, description, branch_id.id, branch_id.name, code,programs.programs_id.id, programs.programs_id.name, programs.programs_id.lessions.lessions_id.id, programs.programs_id.lessions.lessions_id.name,staffs.id, staffs.user_id.id, staffs.user_id.emaile,staffs.user_id.first_name,staffs.user_id.role,organization_id",
+              "id, status, name, description, branch_id.id, branch_id.name, code,programs.programs_id.id, programs.programs_id.name, programs.programs_id.lessions.lessions_id.id, programs.programs_id.lessions.lessions_id.name,staffs.id, staffs.user_id.id, staffs.user_id.emaile,staffs.user_id.first_name,staffs.user_id.role,organization_id,programs.programs_id.status",
           'filter': filter,
           'sort': "-date_created",
           'limit': limit,
@@ -819,6 +819,7 @@ class EmployeeLessonListCall {
           'limit': limit,
           'offset': offset,
           'meta': "total_count,filter_count",
+          'sort': "-date_created",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -1432,6 +1433,7 @@ class StaffsProgramsCall {
           'filter': filter,
           'limit': limit,
           'offset': offset,
+          'sort': "-date_created",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -1588,15 +1590,23 @@ class StaffsProgramsPostCall {
 
 class CoppyStaffProgramsCall {
   Future<ApiCallResponse> call({
-    dynamic requestDataJson,
+    String? programId = '',
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
-    final requestData = _serializeJson(requestDataJson);
-    final ffApiRequestBody = requestData;
+    final ffApiRequestBody = '''
+{
+  "programs": [
+    {
+      "program_id": "$programId",
+      "limit_invite": 0,
+      "private": 0
+    }
+  ]
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'coppyStaffPrograms',
       apiUrl: '$baseUrl/flows/trigger/80fe65e9-f22f-4c5a-9ee2-39b4c1ddc462',
@@ -2279,6 +2289,10 @@ class ProcedureTemplateGroup {
       DeleteWorkflowsStepCall();
   static WorkflowCopyCall workflowCopyCall = WorkflowCopyCall();
   static WorkflowMarketCall workflowMarketCall = WorkflowMarketCall();
+  static CreateWorkflowsAllCall createWorkflowsAllCall =
+      CreateWorkflowsAllCall();
+  static UpdateWorkflowsAllCall updateWorkflowsAllCall =
+      UpdateWorkflowsAllCall();
 }
 
 class WorkflowsListCall {
@@ -2768,6 +2782,68 @@ class WorkflowMarketCall {
     return ApiManager.instance.makeApiCall(
       callName: 'workflowMarket',
       apiUrl: '$baseUrl/flows/trigger/462eabbb-b130-4500-b4dd-32d4801cbdd0',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateWorkflowsAllCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateWorkflowsAll',
+      apiUrl: '$baseUrl/flows/trigger/70307d27-4a51-4562-968c-a07441932397',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateWorkflowsAllCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = ProcedureTemplateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateWorkflowsAll',
+      apiUrl: '$baseUrl/flows/trigger/86f7cb77-4c2b-4afe-9b21-248d70a9385e',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

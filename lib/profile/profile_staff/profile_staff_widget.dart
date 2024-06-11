@@ -598,10 +598,12 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 12.0, 0.0, 12.0),
                                         child: Text(
-                                          valueOrDefault<String>(
-                                            widget.phone,
-                                            '0',
-                                          ),
+                                          (widget.phone != 'null') &&
+                                                  (widget.phone !=
+                                                      'undefined') &&
+                                                  (widget.phone != '')
+                                              ? widget.phone!
+                                              : '',
                                           style: FlutterFlowTheme.of(context)
                                               .bodySmall
                                               .override(

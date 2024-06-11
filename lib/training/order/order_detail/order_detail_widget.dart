@@ -507,6 +507,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                 controller: _model.textController1,
                                 focusNode: _model.textFieldFocusNode1,
                                 autofocus: false,
+                                readOnly: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelStyle: FlutterFlowTheme.of(context)

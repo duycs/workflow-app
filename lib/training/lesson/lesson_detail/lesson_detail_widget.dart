@@ -1652,7 +1652,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                                     12.0, 5.0, 12.0, 0.0),
                                 child: custom_widgets.HtmlToDoc(
                                   width: double.infinity,
-                                  height: 100.0,
+                                  height: 150.0,
                                   html: functions.formatHtml(getJsonField(
                                     _model.listDetail,
                                     r'''$.content''',

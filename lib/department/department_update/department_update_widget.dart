@@ -375,6 +375,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
+                            maxLines: 3,
                             validator: _model.descriptionTextControllerValidator
                                 .asValidator(context),
                           ),

@@ -55,9 +55,29 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
     return ToggleIcon(
       onPressed: () async {
         setState(() => _model.check = !_model.check);
-        await widget.callBack?.call(
-          _model.check,
-        );
+        if (widget.status == 'published') {
+          await widget.callBack?.call(
+            _model.check,
+          );
+        } else {
+          _model.check = false;
+          setState(() {});
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Khóa học đang không hoạt động. Vui lòng kiểm tra lại.',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).error,
+            ),
+          );
+          await widget.callBack?.call(
+            _model.check,
+          );
+        }
       },
       value: _model.check,
       onIcon: Icon(

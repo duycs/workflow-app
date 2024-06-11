@@ -242,7 +242,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                 '{\"_and\":[{}${(_model.search != '') && (_model.search != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.search}\"}}' : ' '}${',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
-                            ).toString()}\"}}}'}${',{\"departments\":{\"status\":{\"_eq\":\"published\"}}}'}${',{\"status\":{\"_eq\":\"published\"}}'}]}',
+                            ).toString()}\"}}}'}${',{\"status\":{\"_eq\":\"published\"}}'}]}',
                           ),
                         ),
                         padding: EdgeInsets.zero,
@@ -463,155 +463,170 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                               final departmentList1Item =
                                                   departmentList1[
                                                       departmentList1Index];
-                                              return Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        12.0, 0.0, 12.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                      'ListStaffProfileCompany',
-                                                      queryParameters: {
-                                                        'id': serializeParam(
-                                                          departmentList1Item
-                                                              .id,
-                                                          ParamType.String,
-                                                        ),
-                                                        'nameBranch':
-                                                            serializeParam(
-                                                          listItemItem.name,
-                                                          ParamType.String,
-                                                        ),
-                                                        'boPhan':
-                                                            serializeParam(
-                                                          departmentList1Item
-                                                              .name,
-                                                          ParamType.String,
-                                                        ),
-                                                        'checkScroll':
-                                                            serializeParam(
-                                                          'ListBranchProfile',
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        kTransitionInfoKey:
-                                                            const TransitionInfo(
-                                                          hasTransition: true,
-                                                          transitionType:
-                                                              PageTransitionType
-                                                                  .fade,
-                                                          duration: Duration(
-                                                              milliseconds: 0),
-                                                        ),
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            formatNumber(
-                                                              departmentList1Index +
-                                                                  1,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .decimal,
-                                                              decimalType:
-                                                                  DecimalType
-                                                                      .commaDecimal,
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                              return Visibility(
+                                                visible: departmentList1Item
+                                                        .status ==
+                                                    'published',
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          12.0, 0.0, 12.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'ListStaffProfileCompany',
+                                                        queryParameters: {
+                                                          'id': serializeParam(
+                                                            departmentList1Item
+                                                                .id,
+                                                            ParamType.String,
                                                           ),
-                                                          Expanded(
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          16.0,
-                                                                          8.0,
-                                                                          16.0),
-                                                              child: Text(
-                                                                departmentList1Item
-                                                                    .name,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                    ),
+                                                          'nameBranch':
+                                                              serializeParam(
+                                                            listItemItem.name,
+                                                            ParamType.String,
+                                                          ),
+                                                          'boPhan':
+                                                              serializeParam(
+                                                            departmentList1Item
+                                                                .name,
+                                                            ParamType.String,
+                                                          ),
+                                                          'checkScroll':
+                                                              serializeParam(
+                                                            'ListBranchProfile',
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              formatNumber(
+                                                                departmentList1Index +
+                                                                    1,
+                                                                formatType:
+                                                                    FormatType
+                                                                        .decimal,
+                                                                decimalType:
+                                                                    DecimalType
+                                                                        .commaDecimal,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        16.0,
+                                                                        8.0,
+                                                                        16.0),
+                                                                child: Text(
+                                                                  departmentList1Item
+                                                                      .name,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          Text(
-                                                            ' (${departmentList1Item.staffs.where((e) => e.status == 'active').toList().length.toString()} nhân viên)',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ].divide(const SizedBox(
-                                                            width: 4.0)),
+                                                            Text(
+                                                              ' (${departmentList1Item.staffs.where((e) => e.status == 'active').toList().length.toString()} nhân viên)',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ].divide(const SizedBox(
+                                                              width: 4.0)),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               );
                                             })
-                                                .divide(const SizedBox(height: 8.0))
+                                                .divide(
+                                                  const SizedBox(height: 8.0),
+                                                  filterFn:
+                                                      (departmentList1Index) {
+                                                    final departmentList1Item =
+                                                        departmentList1[
+                                                            departmentList1Index];
+                                                    return departmentList1Item
+                                                            .status ==
+                                                        'published';
+                                                  },
+                                                )
                                                 .addToStart(
                                                     const SizedBox(height: 12.0))
                                                 .addToEnd(

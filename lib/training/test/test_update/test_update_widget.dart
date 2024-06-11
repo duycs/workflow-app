@@ -918,7 +918,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   }
                                 }
 
-                                context.pushNamed(
+                                context.goNamed(
                                   'TestList',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(

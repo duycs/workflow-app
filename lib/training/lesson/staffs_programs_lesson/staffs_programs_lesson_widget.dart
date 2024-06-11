@@ -1265,8 +1265,9 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                                       }
                                                                     },
                                                                     child: Text(
-                                                                      _model.staffsLessionsListOne.first.lessionId.file.toMap() !=
-                                                                              null
+                                                                      (_model.staffsLessionsListOne.first.lessionId.file.toMap() != null) &&
+                                                                              (_model.staffsLessionsListOne.first.lessionId.file.type != '') &&
+                                                                              (_model.staffsLessionsListOne.first.lessionId.file.filenameDownload != '')
                                                                           ? '${(String name) {
                                                                               return name.toLowerCase().replaceAll(' ', '-');
                                                                             }(_model.staffsLessionsListOne.first.lessionId.name)}.${(String type) {
@@ -2083,7 +2084,16 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                     ),
                           ),
                         ),
-                        if ('2' == '1')
+                        if ((_model.staffsLessionsListOne.first != null) &&
+                            (_model.staffsLessionsListOne.first.lessionId
+                                        .content !=
+                                    '') &&
+                            (functions.formatHtml(_model
+                                        .staffsLessionsListOne
+                                        .first
+                                        .lessionId
+                                        .content) !=
+                                    ''))
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 16.0),
@@ -2091,19 +2101,30 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 5.0, 12.0, 0.0),
-                                  child: custom_widgets.HtmlToDoc(
-                                    width: double.infinity,
-                                    height: 100.0,
-                                    html: functions.formatHtml(_model
-                                        .staffsLessionsListOne
-                                        .first
-                                        .lessionId
-                                        .content),
+                                if ((_model.staffsLessionsListOne.first !=
+                                        null) &&
+                                    (_model.staffsLessionsListOne.first
+                                                .lessionId.content !=
+                                            '') &&
+                                    (functions.formatHtml(_model
+                                                .staffsLessionsListOne
+                                                .first
+                                                .lessionId
+                                                .content) !=
+                                            ''))
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 5.0, 12.0, 0.0),
+                                    child: custom_widgets.HtmlToDoc(
+                                      width: double.infinity,
+                                      height: 150.0,
+                                      html: functions.formatHtml(_model
+                                          .staffsLessionsListOne
+                                          .first
+                                          .lessionId
+                                          .content),
+                                    ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
@@ -2212,14 +2233,14 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                 ).toString()}?access_token=${FFAppState().accessToken}',
                                                 width: 40.0,
                                                 height: 40.0,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                         stackTrace) =>
                                                     Image.asset(
                                                   'assets/images/error_image.jpg',
                                                   width: 40.0,
                                                   height: 40.0,
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
