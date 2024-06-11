@@ -143,10 +143,10 @@ class _UpdateProfileCkPopupWidgetState
                       ),
                       child: SizedBox(
                         width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height * 0.9,
+                        height: MediaQuery.sizeOf(context).height * 0.85,
                         child: custom_widgets.CKEditorUpdate(
                           width: double.infinity,
-                          height: MediaQuery.sizeOf(context).height * 0.9,
+                          height: MediaQuery.sizeOf(context).height * 0.85,
                           initialData:
                               (widget.input != null && widget.input != '') &&
                                       (widget.input != 'undefined') &&

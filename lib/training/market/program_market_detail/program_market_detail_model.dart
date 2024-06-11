@@ -14,15 +14,6 @@ class ProgramMarketDetailModel
   void updateDataGetOneStruct(Function(MarketLessonListStruct) updateFn) =>
       updateFn(dataGetOne ??= MarketLessonListStruct());
 
-  List<String> listPrograms = [];
-  void addToListPrograms(String item) => listPrograms.add(item);
-  void removeFromListPrograms(String item) => listPrograms.remove(item);
-  void removeAtIndexFromListPrograms(int index) => listPrograms.removeAt(index);
-  void insertAtIndexInListPrograms(int index, String item) =>
-      listPrograms.insert(index, item);
-  void updateListProgramsAtIndex(int index, Function(String) updateFn) =>
-      listPrograms[index] = updateFn(listPrograms[index]);
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -156,20 +147,7 @@ class ProgramMarketDetailModel
 
     apiResultPostCopy = await StudyProgramGroup.coppyStaffProgramsCall.call(
       accessToken: FFAppState().accessToken,
-      requestDataJson: <String, dynamic>{
-        'private': getJsonField(
-          <String, int>{
-            'map': 0,
-          },
-          r'''$.map''',
-        ),
-        'programs': getJsonField(
-          <String, List<String>>{
-            'map': listPrograms,
-          },
-          r'''$.map''',
-        ),
-      },
+      programId: widget.idProgram,
     );
     if ((apiResultPostCopy.succeeded ?? true)) {
       var confirmDialogResponse = await showDialog<bool>(

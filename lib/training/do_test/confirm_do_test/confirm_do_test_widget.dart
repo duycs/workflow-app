@@ -60,6 +60,9 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
       } else {
         setState(() {});
       }
+
+      _model.isLoading = true;
+      setState(() {});
     });
   }
 
@@ -126,7 +129,20 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                     ),
                   ],
                 ),
-                if (_model.list == null)
+                if (_model.isLoading == false)
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    child: Text(
+                      'Đang kiểm tra dữ liệu bài thi',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            letterSpacing: 0.0,
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                  ),
+                if ((_model.list == null) && (_model.isLoading == true))
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                     child: Text(

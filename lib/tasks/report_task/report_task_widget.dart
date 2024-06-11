@@ -351,6 +351,9 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                           _model.branch = branch!;
                                           _model.department = department!;
                                           setState(() {});
+                                          setState(() => _model
+                                              .listViewPagingController
+                                              ?.refresh());
                                         },
                                       ),
                                     ),
@@ -411,7 +414,19 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                             } else {
                               return ' ';
                             }
-                          }()}]}',
+                          }()}${() {
+                            if ((_model.statusFilter != '') &&
+                                (_model.statusFilter == 'Hoạt động') &&
+                                (_model.statusFilter != ' ')) {
+                              return ',{\"status\":{\"_eq\":\"active\"}}';
+                            } else if ((_model.statusFilter != '') &&
+                                (_model.statusFilter == 'Không hoạt động') &&
+                                (_model.statusFilter != ' ')) {
+                              return ',{\"status\":{\"_neq\":\"active\"}}';
+                            } else {
+                              return ' ';
+                            }
+                          }()}${(_model.branch != '1') && (_model.branch != ' ') && (_model.branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branch}\"}}}' : ' '}${(_model.department != '1') && (_model.department != ' ') && (_model.department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"${_model.department}\"}}}' : ' '}]}',
                           accessToken: FFAppState().accessToken,
                           limit: 20,
                           offset: nextPageMarker.nextPageNumber * 20,

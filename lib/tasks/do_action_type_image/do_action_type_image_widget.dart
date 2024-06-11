@@ -157,27 +157,67 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                             ),
                                           ),
                                           Opacity(
-                                            opacity: 0.8,
-                                            child: FlutterFlowIconButton(
-                                              borderRadius: 20.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 40.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              icon: Icon(
-                                                Icons.close,
-                                                color:
+                                            opacity: 0.7,
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 6.0, 6.0, 0.0),
+                                              child: FlutterFlowIconButton(
+                                                borderRadius: 20.0,
+                                                borderWidth: 1.0,
+                                                buttonSize: 30.0,
+                                                fillColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
+                                                        .alternate,
+                                                icon: Icon(
+                                                  Icons.close,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 15.0,
+                                                ),
+                                                onPressed: () async {
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                    'Xác nhận'),
+                                                                content: const Text(
+                                                                    'Bạn chắc chắn muốn xóa'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: const Text(
+                                                                        'Hủy '),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: const Text(
+                                                                        'Confirm'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    _model
+                                                        .removeAtIndexFromListUploadImage(
+                                                            listImageIndex);
+                                                    setState(() {});
+                                                  } else {
+                                                    return;
+                                                  }
+                                                },
                                               ),
-                                              onPressed: () async {
-                                                _model
-                                                    .removeAtIndexFromListUploadImage(
-                                                        listImageIndex);
-                                                setState(() {});
-                                              },
                                             ),
                                           ),
                                         ],
@@ -258,21 +298,49 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                           ),
                         ),
                         Opacity(
-                          opacity: 0.8,
+                          opacity: 0.7,
                           child: FlutterFlowIconButton(
                             borderRadius: 20.0,
                             borderWidth: 1.0,
-                            buttonSize: 40.0,
+                            buttonSize: 30.0,
                             fillColor: FlutterFlowTheme.of(context).alternate,
                             icon: Icon(
                               Icons.close,
                               color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                              size: 15.0,
                             ),
                             onPressed: () async {
-                              _model.removeAtIndexFromImageUpload(
-                                  listImageUploadIndex);
-                              setState(() {});
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Xác nhận'),
+                                            content:
+                                                const Text('Bạn chắc chắn muốn xóa'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Hủy '),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Confirm'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                _model.removeAtIndexFromImageUpload(
+                                    listImageUploadIndex);
+                                setState(() {});
+                              } else {
+                                return;
+                              }
                             },
                           ),
                         ),

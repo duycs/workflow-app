@@ -539,7 +539,9 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                                       .secondary,
                                             ),
                                           );
-
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
                                             'BranchList',
                                             extra: <String, dynamic>{

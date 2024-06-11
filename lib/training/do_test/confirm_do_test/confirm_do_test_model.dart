@@ -13,6 +13,8 @@ class ConfirmDoTestModel extends FlutterFlowModel<ConfirmDoTestWidget> {
 
   String testId = '';
 
+  bool isLoading = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in ConfirmDoTest widget.

@@ -607,7 +607,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 8.0, 4.0, 16.0),
+                                            8.0, 8.0, 8.0, 16.0),
                                         child: SingleChildScrollView(
                                           primary: false,
                                           child: Column(
@@ -1895,37 +1895,43 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              20.0,
-                                                                          borderWidth:
-                                                                              1.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              Icon(
-                                                                            Icons.download_sharp,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primary,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            _model.downloadIamgeToken =
-                                                                                await action_blocks.tokenReload(context);
-                                                                            if (_model.downloadIamgeToken!) {
-                                                                              await actions.downloadFile(
-                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                                dataListItem.name,
-                                                                                listImageGridItem.directusFilesId.filenameDownload,
-                                                                              );
-                                                                            } else {
-                                                                              setState(() {});
-                                                                            }
+                                                                        Opacity(
+                                                                          opacity:
+                                                                              0.7,
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                6.0,
+                                                                                6.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                FlutterFlowIconButton(
+                                                                              borderRadius: 20.0,
+                                                                              borderWidth: 1.0,
+                                                                              buttonSize: 30.0,
+                                                                              fillColor: FlutterFlowTheme.of(context).alternate,
+                                                                              icon: Icon(
+                                                                                Icons.download,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                size: 15.0,
+                                                                              ),
+                                                                              onPressed: () async {
+                                                                                _model.downloadIamgeToken = await action_blocks.tokenReload(context);
+                                                                                if (_model.downloadIamgeToken!) {
+                                                                                  await actions.downloadFile(
+                                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${listImageGridItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                    dataListItem.name,
+                                                                                    listImageGridItem.directusFilesId.filenameDownload,
+                                                                                  );
+                                                                                } else {
+                                                                                  setState(() {});
+                                                                                }
 
-                                                                            setState(() {});
-                                                                          },
+                                                                                setState(() {});
+                                                                              },
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ],
                                                                     );
@@ -1940,39 +1946,54 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                   ),
                                                 ),
                                               if (dataListItem.status == 'done')
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 16.0, 0.0, 0.0),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                      ),
-                                                    ),
-                                                    child: Padding(
+                                                Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    Padding(
                                                       padding:
-                                                          const EdgeInsets.all(8.0),
-                                                      child: custom_widgets
-                                                          .HtmlToDoc(
-                                                        width: double.infinity,
-                                                        height: 100.0,
-                                                        html: functions
-                                                            .formatHtml(
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                          ),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  8.0),
+                                                          child: custom_widgets
+                                                              .HtmlToDoc(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 150.0,
+                                                            html: functions.formatHtml(
                                                                 dataListItem
                                                                     .operations
                                                                     .first
                                                                     .operationsId
                                                                     .result),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
                                             ],
                                           ),

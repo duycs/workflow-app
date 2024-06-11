@@ -118,7 +118,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                 'StudyProgramList',
                 queryParameters: {
                   'checkpage': serializeParam(
-                    widget.checkpage,
+                    'profile',
                     ParamType.String,
                   ),
                 }.withoutNulls,
@@ -443,6 +443,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                               },
                               child: Container(
                                 width: double.infinity,
+                                height: 120.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -459,7 +460,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(3.0),
@@ -476,182 +477,197 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                         ),
                                       ),
                                       Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              listItemsItem.name,
-                                              maxLines: 1,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyLarge
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                            Text(
-                                              listItemsItem.description,
-                                              textAlign: TextAlign.start,
-                                              maxLines: 2,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        lineHeight: 1.0,
-                                                      ),
-                                            ),
-                                            Text(
-                                              '',
-                                              textAlign: TextAlign.start,
-                                              maxLines: 2,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        lineHeight: 1.0,
-                                                      ),
-                                            ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                SingleChildScrollView(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  child: Row(
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          decoration: const BoxDecoration(),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 6.0),
+                                                  child: Column(
                                                     mainAxisSize:
-                                                        MainAxisSize.max,
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    3.0,
-                                                                    0.0),
-                                                        child: Icon(
-                                                          Icons
-                                                              .timelapse_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 20.0,
-                                                        ),
-                                                      ),
                                                       Text(
-                                                        listItemsItem
-                                                            .durationHours
-                                                            .toString(),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                      Text(
-                                                        'phút',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 2.0)),
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          1.0, 0.0),
-                                                  child: Container(
-                                                    height: 30.0,
-                                                    decoration: BoxDecoration(
-                                                      color: listItemsItem
-                                                                  .status ==
-                                                              'published'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  8.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        listItemsItem.status ==
-                                                                'published'
-                                                            ? 'Hoạt động'
-                                                            : 'Không hoạt động',
-                                                        textAlign:
-                                                            TextAlign.center,
+                                                        listItemsItem.name,
+                                                        maxLines: 2,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
-                                                            .bodyMedium
+                                                            .bodyLarge
                                                             .override(
                                                               fontFamily:
                                                                   'Nunito Sans',
-                                                              color: listItemsItem
-                                                                          .status ==
-                                                                      'published'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                      ),
+                                                      Text(
+                                                        listItemsItem
+                                                            .description,
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 2,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
+                                                              lineHeight: 1.0,
                                                             ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(height: 6.0)),
+                                                  ),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  SingleChildScrollView(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      3.0,
+                                                                      0.0),
+                                                          child: Icon(
+                                                            Icons
+                                                                .timelapse_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 20.0,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          listItemsItem
+                                                              .durationHours
+                                                              .toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          'phút',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 2.0)),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Container(
+                                                      height: 30.0,
+                                                      decoration: BoxDecoration(
+                                                        color: listItemsItem
+                                                                    .status ==
+                                                                'published'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                      ),
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listItemsItem
+                                                                      .status ==
+                                                                  'published'
+                                                              ? 'Hoạt động'
+                                                              : 'Không hoạt động',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: listItemsItem
+                                                                            .status ==
+                                                                        'published'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ].divide(const SizedBox(width: 4.0)),
-                                            ),
-                                          ].divide(const SizedBox(height: 6.0)),
+                                                ].divide(const SizedBox(width: 4.0)),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ].divide(const SizedBox(width: 8.0)),

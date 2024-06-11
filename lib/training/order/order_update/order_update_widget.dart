@@ -473,7 +473,7 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                                   focusNode: _model.textFieldFocusNode1,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController1',
-                                    const Duration(milliseconds: 2000),
+                                    const Duration(milliseconds: 50),
                                     () async {
                                       setState(() {});
                                     },
@@ -697,8 +697,14 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                                   ),
                                   TextSpan(
                                     text: formatNumber(
-                                      functions.stringToInt(
-                                              _model.textController1.text) -
+                                      valueOrDefault<int>(
+                                            functions.stringToInt(
+                                                valueOrDefault<String>(
+                                              _model.textController1.text,
+                                              '1',
+                                            )),
+                                            1,
+                                          ) -
                                           1,
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.commaDecimal,

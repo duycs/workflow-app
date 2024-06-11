@@ -341,6 +341,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
+                            maxLines: 3,
                             validator: _model.descriptionTextControllerValidator
                                 .asValidator(context),
                           ),

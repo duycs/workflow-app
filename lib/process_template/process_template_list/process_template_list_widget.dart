@@ -596,278 +596,254 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Container(
-                                                    width: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    height: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Builder(
-                                                    builder: (context) {
-                                                      final listStep =
-                                                          listGridItem.steps
-                                                              .toList();
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        primary: false,
-                                                        shrinkWrap: true,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            listStep.length,
-                                                        itemBuilder: (context,
-                                                            listStepIndex) {
-                                                          final listStepItem =
-                                                              listStep[
-                                                                  listStepIndex];
-                                                          return Container(
-                                                            decoration:
-                                                                const BoxDecoration(),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .stretch,
-                                                              children: [
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Container(
-                                                                      width:
-                                                                          1.0,
-                                                                      height: functions
-                                                                          .stringToInt((int var1) {
-                                                                            return var1 != 0
-                                                                                ? (num.parse((30 / var1.round()).toStringAsFixed(0))).toString()
-                                                                                : 0.toString();
-                                                                          }(listGridItem.steps.length))
-                                                                          .toDouble(),
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Row(
+                                                  Align(
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Builder(
+                                                      builder: (context) {
+                                                        final listStep =
+                                                            listGridItem.steps
+                                                                .toList();
+                                                        return ListView.builder(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          primary: false,
+                                                          shrinkWrap: true,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listStep.length,
+                                                          itemBuilder: (context,
+                                                              listStepIndex) {
+                                                            final listStepItem =
+                                                                listStep[
+                                                                    listStepIndex];
+                                                            return Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              decoration:
+                                                                  const BoxDecoration(),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .stretch,
+                                                                children: [
+                                                                  Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
-                                                                            .min,
+                                                                            .max,
                                                                     mainAxisAlignment:
                                                                         MainAxisAlignment
-                                                                            .center,
+                                                                            .spaceBetween,
                                                                     children: [
-                                                                      Container(
-                                                                        width: functions
-                                                                            .stringToInt((int var1, double var2) {
-                                                                              return var1 != 1 && var1 != 0
-                                                                                  ? (num.parse((((var2 / 2).round()) / var1.round()).toStringAsFixed(0))).toString()
-                                                                                  : var1 == 0
-                                                                                      ? 0.toString()
-                                                                                      : (var2 / 3).round().toString();
-                                                                            }(listGridItem.steps.length, MediaQuery.sizeOf(context).width))
-                                                                            .toDouble(),
-                                                                        height: functions
-                                                                            .stringToInt((int var1) {
-                                                                              return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                            }(listGridItem.steps.length))
-                                                                            .toDouble(),
-                                                                        constraints:
-                                                                            const BoxConstraints(
-                                                                          maxWidth:
-                                                                              double.infinity,
-                                                                          maxHeight:
-                                                                              double.infinity,
-                                                                        ),
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(2.0),
-                                                                          shape:
-                                                                              BoxShape.rectangle,
-                                                                          border:
-                                                                              Border.all(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                          ),
-                                                                        ),
-                                                                        alignment: const AlignmentDirectional(
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
                                                                             0.0,
                                                                             0.0),
                                                                         child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: EdgeInsets.all(valueOrDefault<double>(
-                                                                                functions
-                                                                                    .stringToInt((int var1) {
-                                                                                      return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                    }(listGridItem.steps.length))
-                                                                                    .toDouble(),
-                                                                                0.0,
-                                                                              )),
-                                                                              child: Text(
-                                                                                '${(listStepIndex + 1).toString()}.',
-                                                                                maxLines: 2,
+                                                                            Container(
+                                                                          width: functions.stringToInt((int var1) {
+                                                                                return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                              }(listGridItem.steps.length)) *
+                                                                              2,
+                                                                          height: functions.stringToInt((int var1) {
+                                                                                return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                              }(listGridItem.steps.length)) *
+                                                                              2,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBtnText,
+                                                                            boxShadow: const [
+                                                                              BoxShadow(
+                                                                                blurRadius: 4.0,
+                                                                                color: Color(0x6814181B),
+                                                                                offset: Offset(
+                                                                                  0.0,
+                                                                                  2.0,
+                                                                                ),
+                                                                                spreadRadius: 1.0,
+                                                                              )
+                                                                            ],
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(100.0),
+                                                                            shape:
+                                                                                BoxShape.rectangle,
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: FlutterFlowTheme.of(context).noColor,
+                                                                              width: 1.0,
+                                                                            ),
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            children: [
+                                                                              Text(
+                                                                                (listStepIndex + 1).toString(),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Nunito Sans',
-                                                                                      fontSize: functions
-                                                                                          .stringToInt((int var1) {
+                                                                                      color: () {
+                                                                                        if ((int var1) {
+                                                                                          return var1 % 5 == 0 ? true : false;
+                                                                                        }(listStepIndex)) {
+                                                                                          return const Color(0xFF3ABEF9);
+                                                                                        } else if ((int var1) {
+                                                                                          return var1 % 5 == 1 ? true : false;
+                                                                                        }(listStepIndex)) {
+                                                                                          return const Color(0xFF26355D);
+                                                                                        } else if ((int var1) {
+                                                                                          return var1 % 5 == 2 ? true : false;
+                                                                                        }(listStepIndex)) {
+                                                                                          return const Color(0xFF059212);
+                                                                                        } else if ((int var1) {
+                                                                                          return var1 % 5 == 3 ? true : false;
+                                                                                        }(listStepIndex)) {
+                                                                                          return const Color(0xFFFF407D);
+                                                                                        } else if ((int var1) {
+                                                                                          return var1 % 5 == 4 ? true : false;
+                                                                                        }(listStepIndex)) {
+                                                                                          return const Color(0xFF7E8EF1);
+                                                                                        } else {
+                                                                                          return const Color(0x00000000);
+                                                                                        }
+                                                                                      }(),
+                                                                                      fontSize: functions.stringToInt((int var1) {
                                                                                             return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                          }(listGridItem.steps.length))
-                                                                                          .toDouble(),
+                                                                                          }(listGridItem.steps.length)) *
+                                                                                          2,
                                                                                       letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.w600,
                                                                                     ),
                                                                               ),
-                                                                            ),
-                                                                            Expanded(
-                                                                              child: Padding(
-                                                                                padding: EdgeInsets.all(valueOrDefault<double>(
-                                                                                  functions
-                                                                                      .stringToInt((int var1) {
-                                                                                        return var1 != 0 ? (num.parse((8 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                      }(listGridItem.steps.length))
-                                                                                      .toDouble(),
-                                                                                  0.0,
-                                                                                )),
-                                                                                child: Text(
-                                                                                  listStepItem.name != null && listStepItem.name != '' ? listStepItem.name : ' ',
-                                                                                  maxLines: 2,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Nunito Sans',
-                                                                                        fontSize: functions
-                                                                                            .stringToInt((int var1) {
-                                                                                              return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
-                                                                                            }(listGridItem.steps.length))
-                                                                                            .toDouble(),
-                                                                                        letterSpacing: 0.0,
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Align(
+                                                                          alignment: const AlignmentDirectional(
+                                                                              1.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Container(
+                                                                              width: double.infinity,
+                                                                              height: functions.stringToInt((int var1) {
+                                                                                    return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                  }(listGridItem.steps.length)) *
+                                                                                  2,
+                                                                              decoration: BoxDecoration(
+                                                                                color: () {
+                                                                                  if ((int var1) {
+                                                                                    return var1 % 5 == 0 ? true : false;
+                                                                                  }(listStepIndex)) {
+                                                                                    return const Color(0xFF3ABEF9);
+                                                                                  } else if ((int var1) {
+                                                                                    return var1 % 5 == 1 ? true : false;
+                                                                                  }(listStepIndex)) {
+                                                                                    return const Color(0xFF26355D);
+                                                                                  } else if ((int var1) {
+                                                                                    return var1 % 5 == 2 ? true : false;
+                                                                                  }(listStepIndex)) {
+                                                                                    return const Color(0xFF059212);
+                                                                                  } else if ((int var1) {
+                                                                                    return var1 % 5 == 3 ? true : false;
+                                                                                  }(listStepIndex)) {
+                                                                                    return const Color(0xFFFF407D);
+                                                                                  } else if ((int var1) {
+                                                                                    return var1 % 5 == 4 ? true : false;
+                                                                                  }(listStepIndex)) {
+                                                                                    return const Color(0xFF7E8EF1);
+                                                                                  } else {
+                                                                                    return const Color(0x00000000);
+                                                                                  }
+                                                                                }(),
+                                                                                boxShadow: const [
+                                                                                  BoxShadow(
+                                                                                    blurRadius: 4.0,
+                                                                                    color: Color(0x33000000),
+                                                                                    offset: Offset(
+                                                                                      2.0,
+                                                                                      10.0,
+                                                                                    ),
+                                                                                  )
+                                                                                ],
+                                                                                borderRadius: BorderRadius.circular(30.0),
+                                                                              ),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                                children: [
+                                                                                  Expanded(
+                                                                                    child: Padding(
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        listStepItem.name != null && listStepItem.name != '' ? listStepItem.name : ' ',
+                                                                                        textAlign: TextAlign.start,
+                                                                                        maxLines: 2,
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Nunito Sans',
+                                                                                              color: Colors.white,
+                                                                                              fontSize: functions.stringToInt((int var1) {
+                                                                                                    return var1 != 0 ? (num.parse((14 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                                  }(listGridItem.steps.length)) *
+                                                                                                  2,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                            ),
                                                                                       ),
-                                                                                ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
                                                                               ),
                                                                             ),
-                                                                          ],
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Container(
-                                                        width: 1.0,
-                                                        height: functions
-                                                            .stringToInt(
-                                                                (int var1) {
-                                                              return var1 != 0
-                                                                  ? (30 / var1)
-                                                                      .round()
-                                                                      .toString()
-                                                                  : 0.toString();
-                                                            }(listGridItem.steps.length))
-                                                            .toDouble(),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Container(
-                                                    width: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    height: functions
-                                                        .stringToInt(
-                                                            (int var1) {
-                                                          return var1 != 0
-                                                              ? (25 / var1)
-                                                                  .round()
-                                                                  .toString()
-                                                              : 0.toString();
-                                                        }(listGridItem.steps.length))
-                                                        .toDouble(),
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      shape: BoxShape.circle,
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                      ),
+                                                                  Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height: ((functions.stringToInt((int var1) {
+                                                                                  return var1 != 0 ? (num.parse((40 / var1.round()).toStringAsFixed(0))).toString() : 0.toString();
+                                                                                }(listGridItem.steps.length)) /
+                                                                                2)
+                                                                            .round())
+                                                                        .toDouble(),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .noColor,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
                                                     ),
                                                   ),
                                                 ],

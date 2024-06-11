@@ -69,7 +69,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
         padding: const EdgeInsets.all(16.0),
         child: Container(
           constraints: const BoxConstraints(
-            maxHeight: 800.0,
+            maxHeight: 700.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -640,19 +640,20 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 _model.loop = 0;
                                 setState(() {});
                                 if (_model.selectedDomainList.isEmpty) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Vui lòng chọn lĩnh vực',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context).error,
-                                    ),
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Vui lòng chọn lĩnh vực'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                   if (shouldSetState) setState(() {});
                                   return;

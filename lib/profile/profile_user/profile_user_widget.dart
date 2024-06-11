@@ -316,16 +316,31 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              getJsonField(
-                                                        _model.user,
-                                                        r'''$.phone''',
-                                                      ) !=
-                                                      null
+                                              (getJsonField(
+                                                            _model.user,
+                                                            r'''$.phone''',
+                                                          ) !=
+                                                          null) &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.phone''',
+                                                          ).toString() !=
+                                                          'undefined') &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.phone''',
+                                                          ).toString() !=
+                                                          'null') &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.phone''',
+                                                          ).toString() !=
+                                                          '')
                                                   ? getJsonField(
                                                       _model.user,
                                                       r'''$.phone''',
                                                     ).toString()
-                                                  : ' ',
+                                                  : '',
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -438,16 +453,31 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 0.0, 0.0),
                                             child: Text(
-                                              getJsonField(
-                                                        _model.user,
-                                                        r'''$.cccd''',
-                                                      ) !=
-                                                      null
+                                              (getJsonField(
+                                                            _model.user,
+                                                            r'''$.cccd''',
+                                                          ) !=
+                                                          null) &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.cccd''',
+                                                          ).toString() !=
+                                                          'undefined') &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.cccd''',
+                                                          ).toString() !=
+                                                          'null') &&
+                                                      (getJsonField(
+                                                            _model.user,
+                                                            r'''$.cccd''',
+                                                          ).toString() !=
+                                                          '')
                                                   ? getJsonField(
                                                       _model.user,
                                                       r'''$.cccd''',
                                                     ).toString()
-                                                  : ' ',
+                                                  : '',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

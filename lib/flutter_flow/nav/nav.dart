@@ -523,6 +523,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'checkScroll',
               ParamType.String,
             ),
+            idCreate: params.getParam(
+              'idCreate',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

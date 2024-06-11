@@ -134,7 +134,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                   ) ??
                   false;
               if (confirmDialogResponse) {
-                context.pop();
+                context.pushNamed('ProcedureList');
               } else {
                 return;
               }
@@ -189,10 +189,23 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                           _model.loop = 0;
                           setState(() {});
                         } else if (_model.dropDownRunValue == '1') {
-                          _model.updateRequestDataStruct(
-                            (e) => e
-                              ..departments = _model.departmentsList.toList(),
-                          );
+                          while (_model.loop < _model.departmentsList.length) {
+                            _model.updateRequestDataStruct(
+                              (e) => e
+                                ..updateDepartments(
+                                  (e) => e.add(DepartmentsIdStruct(
+                                    departmentsId: DepartmentsStruct(
+                                      id: _model.departmentsList[_model.loop]
+                                          .departmentsId.id,
+                                    ),
+                                  )),
+                                ),
+                            );
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
+                          }
+                          _model.loop = 0;
                           setState(() {});
                         } else {
                           _model.apiResult4dr =
@@ -362,6 +375,10 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                               _model.checkType!, _model.checkCron.toList()),
                       );
                       setState(() {});
+                      _model.updateRequestDataStruct(
+                        (e) => e..type = 'schedule',
+                      );
+                      setState(() {});
                     } else if (_model.checkType == '2') {
                       _model.updateRequestDataStruct(
                         (e) => e
@@ -369,11 +386,24 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                               _model.groupWeekValues?.toList()),
                       );
                       setState(() {});
+                      _model.updateRequestDataStruct(
+                        (e) => e..type = 'schedule',
+                      );
+                      setState(() {});
                     } else if (_model.checkType == '1') {
                       _model.updateRequestDataStruct(
                         (e) => e
                           ..cron = functions.limitPublished(_model.checkType!,
                               _model.groupWeekValues?.toList()),
+                      );
+                      setState(() {});
+                      _model.updateRequestDataStruct(
+                        (e) => e..type = 'schedule',
+                      );
+                      setState(() {});
+                    } else {
+                      _model.updateRequestDataStruct(
+                        (e) => e..type = 'generate',
                       );
                       setState(() {});
                     }
@@ -421,22 +451,11 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                       );
                       setState(() {});
                     }
-                    _model.apiResultWorkflowCreate =
-                        await ProcedureTemplateGroup.workflowsCreateCall.call(
-                      requestDataJson: _model.requestData?.toMap(),
-                      accessToken: FFAppState().accessToken,
-                    );
-                    shouldSetState = true;
-                    if ((_model.apiResultWorkflowCreate?.succeeded ?? true)) {
+                    if ('1' == '1') {
                       while (_model.loop < _model.stepsList.length) {
                         _model.updateStepsListAtIndex(
                           _model.loop,
-                          (e) => e
-                            ..workflowId = getJsonField(
-                              (_model.apiResultWorkflowCreate?.jsonBody ?? ''),
-                              r'''$.data.id''',
-                            ).toString()
-                            ..number = _model.loop + 1,
+                          (e) => e..number = _model.loop + 1,
                         );
                         setState(() {});
                         _model.loop = _model.loop + 1;
@@ -464,8 +483,6 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                             ..status = _model.stepsList[_model.loop].status
                             ..timeOperate =
                                 _model.stepsList[_model.loop].timeOperate
-                            ..workflowId =
-                                _model.stepsList[_model.loop].workflowId
                             ..cron = _model.stepsList[_model.loop].cron,
                         );
                         setState(() {});
@@ -549,81 +566,92 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                         }
                         _model.loop2 = 0;
                         setState(() {});
-                        _model.apiResultStepCreate =
-                            await ProcedureTemplateGroup.stepCreateWorkflowsCall
-                                .call(
-                          accessToken: FFAppState().accessToken,
-                          requestDataJson: _model.stepsListRequest?.toMap(),
+                        _model.updateRequestDataStruct(
+                          (e) => e
+                            ..updateSteps(
+                              (e) => e.add(_model.stepsListRequest!),
+                            ),
                         );
-                        shouldSetState = true;
-                        if ((_model.apiResultStepCreate?.succeeded ?? true)) {
-                          setState(() {});
-                        }
+                        setState(() {});
                         _model.loop = _model.loop + 1;
                         setState(() {});
                       }
-                      _model.loop = 0;
-                      setState(() {});
-                      if (widget.checkRouter == 'task') {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Tạo mới quy trình thành công!',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
+                      _model.apiResultWorkflowCreate =
+                          await ProcedureTemplateGroup.createWorkflowsAllCall
+                              .call(
+                        requestDataJson: _model.requestData?.toMap(),
+                        accessToken: FFAppState().accessToken,
+                      );
+                      shouldSetState = true;
+                      if ((_model.apiResultWorkflowCreate?.succeeded ?? true)) {
+                        _model.loop = 0;
+                        setState(() {});
+                        if (widget.checkRouter == 'task') {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Tạo mới quy trình thành công!',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
                               ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
                             ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
+                          );
 
-                        context.pushNamed(
-                          'TaskList',
-                          queryParameters: {
-                            'checkRouter': serializeParam(
-                              'workflow',
-                              ParamType.String,
+                          context.pushNamed(
+                            'TaskList',
+                            queryParameters: {
+                              'checkRouter': serializeParam(
+                                'workflow',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+
+                          if (shouldSetState) setState(() {});
+                          return;
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Tạo mới quy trình thành công!',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                ),
+                              ),
+                              duration: const Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
                             ),
-                          }.withoutNulls,
-                        );
+                          );
 
-                        if (shouldSetState) setState(() {});
-                        return;
+                          context.pushNamed('ProcedureList');
+
+                          if (shouldSetState) setState(() {});
+                          return;
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Tạo mới quy trình thành công!',
+                              'Tạo quy trình mới thất bại!',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
                             ),
                             duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
+                            backgroundColor: FlutterFlowTheme.of(context).error,
                           ),
                         );
-
-                        context.pushNamed('ProcedureList');
-
                         if (shouldSetState) setState(() {});
                         return;
                       }
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Lỗi tạo mới quy trình!',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor: FlutterFlowTheme.of(context).error,
-                        ),
-                      );
                       if (shouldSetState) setState(() {});
                       return;
                     }
@@ -3566,7 +3594,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -3719,17 +3747,57 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                   "ListView_sdtnx31w" '_' +
                                                       listViewIndex.toString()),
                                               child: Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft: Radius.circular(
+                                                        valueOrDefault<double>(
+                                                      _model.checkUpdate ==
+                                                              listViewItem.id
+                                                          ? 100.0
+                                                          : 0.0,
+                                                      0.0,
+                                                    )),
+                                                    bottomRight:
+                                                        Radius.circular(
+                                                            valueOrDefault<
+                                                                double>(
+                                                      _model.checkUpdate ==
+                                                              listViewItem.id
+                                                          ? 30.0
+                                                          : 0.0,
+                                                      0.0,
+                                                    )),
+                                                    topLeft: Radius.circular(
+                                                        valueOrDefault<double>(
+                                                      _model.checkUpdate ==
+                                                              listViewItem.id
+                                                          ? 100.0
+                                                          : 0.0,
+                                                      0.0,
+                                                    )),
+                                                    topRight: Radius.circular(
+                                                        valueOrDefault<double>(
+                                                      _model.checkUpdate ==
+                                                              listViewItem.id
+                                                          ? 30.0
+                                                          : 0.0,
+                                                      0.0,
+                                                    )),
+                                                  ),
+                                                ),
                                                 child: Column(
                                                   mainAxisSize:
-                                                      MainAxisSize.max,
+                                                      MainAxisSize.min,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment
                                                           .stretch,
                                                   children: [
-                                                    if (listViewIndex > 0)
+                                                    if ((listViewIndex > 0) &&
+                                                        (_model.checkUpdate !=
+                                                            listViewItem.id))
                                                       const Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -3802,7 +3870,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                       }(
                                                                           listViewIndex)) {
                                                                         return const Color(
-                                                                            0xFFFF9EAA);
+                                                                            0xFF26355D);
                                                                       } else if ((int
                                                                               var1) {
                                                                         return var1 % 5 ==
@@ -3812,7 +3880,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                       }(
                                                                           listViewIndex)) {
                                                                         return const Color(
-                                                                            0xFFA1DD70);
+                                                                            0xFF059212);
                                                                       } else if ((int
                                                                               var1) {
                                                                         return var1 % 5 ==
@@ -3891,9 +3959,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                 2,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  color: Colors.white,
                                                                                   letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontWeight: FontWeight.bold,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -3909,10 +3977,10 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           buttonSize:
                                                                               40.0,
                                                                           icon:
-                                                                              Icon(
+                                                                              const Icon(
                                                                             Icons.more_vert,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                                Colors.white,
                                                                             size:
                                                                                 24.0,
                                                                           ),
@@ -4031,11 +4099,11 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 1 ? true : false;
                                                                                 }(listViewIndex)) {
-                                                                                  return const Color(0xFFFF9EAA);
+                                                                                  return const Color(0xFF26355D);
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 2 ? true : false;
                                                                                 }(listViewIndex)) {
-                                                                                  return const Color(0xFFA1DD70);
+                                                                                  return const Color(0xFF059212);
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 3 ? true : false;
                                                                                 }(listViewIndex)) {
@@ -4048,6 +4116,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                   return const Color(0x00000000);
                                                                                 }
                                                                               }(),
+                                                                              fontSize: 10.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
@@ -4066,11 +4135,11 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 1 ? true : false;
                                                                                 }(listViewIndex)) {
-                                                                                  return const Color(0xFFFF9EAA);
+                                                                                  return const Color(0xFF26355D);
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 2 ? true : false;
                                                                                 }(listViewIndex)) {
-                                                                                  return const Color(0xFFA1DD70);
+                                                                                  return const Color(0xFF059212);
                                                                                 } else if ((int var1) {
                                                                                   return var1 % 5 == 3 ? true : false;
                                                                                 }(listViewIndex)) {
@@ -4083,7 +4152,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                                   return const Color(0x00000000);
                                                                                 }
                                                                               }(),
-                                                                              fontSize: 18.0,
+                                                                              fontSize: 16.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
@@ -4097,6 +4166,30 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                         ),
                                                       ],
                                                     ),
+                                                    if ((listViewIndex ==
+                                                            (_model.stepsList
+                                                                    .length -
+                                                                1)) &&
+                                                        (_model.checkUpdate !=
+                                                            listViewItem.id))
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    30.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Container(
+                                                          width: 100.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                        ),
+                                                      ),
                                                   ],
                                                 ),
                                               ),
@@ -4104,12 +4197,18 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                           },
                                           onReorder: (int reorderableOldIndex,
                                               int reorderableNewIndex) async {
+                                            _model.checkUpdate =
+                                                listView[reorderableOldIndex]
+                                                    .id;
+                                            setState(() {});
                                             _model.updateListView =
                                                 await actions.reorderItems(
                                               _model.stepsList.toList(),
                                               reorderableOldIndex,
                                               reorderableNewIndex,
                                             );
+                                            _model.checkUpdate = ' ';
+                                            setState(() {});
                                             _model.stepsList = _model
                                                 .updateListView!
                                                 .toList()

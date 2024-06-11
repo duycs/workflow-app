@@ -977,9 +977,11 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                 ),
                                                       ),
                                                     ),
-                                                  if (listLessonsItem
-                                                          .lessionsId.status !=
-                                                      'trial')
+                                                  if ((listLessonsItem
+                                                              .lessionsId
+                                                              .status !=
+                                                          'trial') &&
+                                                      (widget.price == '0'))
                                                     Text(
                                                       'Áp dụng để xem',
                                                       style: FlutterFlowTheme
@@ -999,9 +1001,16 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                     .underline,
                                                           ),
                                                     ),
-                                                  if (listLessonsItem
-                                                          .lessionsId.status !=
-                                                      'trial')
+                                                  if ((listLessonsItem
+                                                              .lessionsId
+                                                              .status !=
+                                                          'trial') &&
+                                                      ((listLessonsItem
+                                                                  .lessionsId
+                                                                  .status !=
+                                                              'trial') &&
+                                                          (widget.price !=
+                                                              '0')))
                                                     Text(
                                                       'Mua để xem',
                                                       style: FlutterFlowTheme
@@ -1105,8 +1114,6 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                       Expanded(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            _model.addToListPrograms(widget.idProgram);
-                            setState(() {});
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {

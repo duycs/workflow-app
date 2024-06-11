@@ -2206,39 +2206,34 @@ class _LessonDetailHomePageWidgetState
                                   r'''$.content''',
                                 ) !=
                                 null))
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  if ((widget.listItems != null) &&
-                                      (getJsonField(
-                                            widget.listItems,
-                                            r'''$.content''',
-                                          ) !=
-                                          null) &&
-                                      (functions.formatHtml(getJsonField(
-                                                widget.listItems,
-                                                r'''$.content''',
-                                              ).toString()) !=
-                                              ''))
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 5.0, 12.0, 0.0),
-                                      child: custom_widgets.HtmlToDoc(
-                                        width: double.infinity,
-                                        height: 100.0,
-                                        html: functions.formatHtml(getJsonField(
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 5.0, 12.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if ((widget.listItems != null) &&
+                                    (getJsonField(
                                           widget.listItems,
                                           r'''$.content''',
-                                        ).toString()),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ],
+                                        ) !=
+                                        null) &&
+                                    (functions.formatHtml(getJsonField(
+                                              widget.listItems,
+                                              r'''$.content''',
+                                            ).toString()) !=
+                                            ''))
+                                  custom_widgets.HtmlToDoc(
+                                    width: double.infinity,
+                                    height: 180.0,
+                                    html: functions.formatHtml(getJsonField(
+                                      widget.listItems,
+                                      r'''$.content''',
+                                    ).toString()),
+                                  ),
+                              ],
+                            ),
                           ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2335,7 +2330,7 @@ class _LessonDetailHomePageWidgetState
                                             ),
                                             child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(90.0),
+                                                  BorderRadius.circular(40.0),
                                               child: Image.network(
                                                 '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                                   listItemsItem,
@@ -2343,14 +2338,14 @@ class _LessonDetailHomePageWidgetState
                                                 ).toString()}?access_token=${FFAppState().accessToken}',
                                                 width: 40.0,
                                                 height: 40.0,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.cover,
                                                 errorBuilder: (context, error,
                                                         stackTrace) =>
                                                     Image.asset(
                                                   'assets/images/error_image.jpg',
                                                   width: 40.0,
                                                   height: 40.0,
-                                                  fit: BoxFit.fill,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
@@ -2624,6 +2619,13 @@ class _LessonDetailHomePageWidgetState
                         width: 40.0,
                         height: 40.0,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset(
+                          'assets/images/error_image.jpg',
+                          width: 40.0,
+                          height: 40.0,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Flexible(

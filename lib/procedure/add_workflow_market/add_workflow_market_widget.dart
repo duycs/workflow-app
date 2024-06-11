@@ -203,11 +203,6 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                               ],
                             ),
                           ),
-                          Divider(
-                            height: 1.0,
-                            thickness: 1.0,
-                            color: FlutterFlowTheme.of(context).alternate,
-                          ),
                           Align(
                             alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(

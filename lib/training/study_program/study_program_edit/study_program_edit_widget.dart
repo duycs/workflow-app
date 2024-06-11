@@ -177,6 +177,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
+                                  await widget.callBackList1?.call();
                                   Navigator.pop(context);
                                 },
                               ),
@@ -986,7 +987,9 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                     '') &&
                             (_model.estimateInDayTextController.text !=
                                 'null') &&
-                            (_model.estimateInDayTextController.text != '0')) {
+                            (_model.estimateInDayTextController.text != '0') &&
+                            (_model.requestData?.imageCover != null &&
+                                _model.requestData?.imageCover != '')) {
                           if (int.parse(
                                   _model.estimateInDayTextController.text) >
                               0) {
@@ -1085,11 +1088,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                             requestDataJson: <String, dynamic>{
                               'name': _model.requestData?.name,
                               'description': _model.requestData?.description,
-                              'image_cover':
-                                  _model.requestData?.imageCover != null &&
-                                          _model.requestData?.imageCover != ''
-                                      ? _model.requestData?.imageCover
-                                      : null,
+                              'image_cover': null,
                               'estimate_in_day': null,
                               'lessions': getJsonField(
                                 <String, List<dynamic>>{

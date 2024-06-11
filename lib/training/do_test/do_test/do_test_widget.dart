@@ -1410,7 +1410,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                         );
                                         if (widget.lessionId != null &&
                                             widget.lessionId != '') {
-                                          context.pushNamed(
+                                          context.goNamed(
                                             'DoTestDetail',
                                             queryParameters: {
                                               'testId': serializeParam(
@@ -1451,10 +1451,23 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                 ParamType.String,
                                               ),
                                             }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
                                           );
                                         } else {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
                                           context.pushNamed(
-                                            'StudyProgramListUserDraft',
+                                            'StudyProgramListUser',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
                                                   const TransitionInfo(

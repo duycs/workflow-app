@@ -1610,6 +1610,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
                                                     children: [
                                                       if (dataListItem
                                                                   .operations
@@ -1639,7 +1642,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     .HtmlToDoc(
                                                               width: double
                                                                   .infinity,
-                                                              height: 100.0,
+                                                              height: 150.0,
                                                               html: functions.formatHtml(
                                                                   dataListItem
                                                                       .operations
@@ -1649,200 +1652,231 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                             ),
                                                           ),
                                                         ),
-                                                      Builder(
-                                                        builder: (context) =>
-                                                            Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (dialogContext) {
-                                                                  return Dialog(
-                                                                    elevation:
-                                                                        0,
-                                                                    insetPadding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    alignment: const AlignmentDirectional(
-                                                                            0.0,
-                                                                            0.0)
-                                                                        .resolve(
-                                                                            Directionality.of(context)),
-                                                                    child:
-                                                                        GestureDetector(
-                                                                      onTap: () => _model
-                                                                              .unfocusNode
-                                                                              .canRequestFocus
-                                                                          ? FocusScope.of(context).requestFocus(_model
-                                                                              .unfocusNode)
-                                                                          : FocusScope.of(context)
-                                                                              .unfocus(),
-                                                                      child:
-                                                                          TaskDetailCkPopupWidget(
-                                                                        item: dataListItem
-                                                                            .operations
-                                                                            .first
-                                                                            .operationsId
-                                                                            .result,
-                                                                        workflowId:
-                                                                            widget.workflowId!,
-                                                                        publishedCount:
-                                                                            dataListItem.publishedCount,
-                                                                        paramBack:
-                                                                            widget.paramBack,
-                                                                        action:
-                                                                            (ckString) async {
-                                                                          _model.apiResultx5lTokenCopy =
-                                                                              await action_blocks.tokenReload(context);
-                                                                          if (_model
-                                                                              .apiResultx5lTokenCopy!) {
-                                                                            _model.apiResultx5lCopy =
-                                                                                await TaskGroup.updateOperationCall.call(
-                                                                              accessToken: FFAppState().accessToken,
-                                                                              operationId: dataListItem.operations.first.operationsId.id,
-                                                                              requestDataJson: <String, dynamic>{
-                                                                                'status': 'done',
-                                                                                'result': ckString,
-                                                                              },
-                                                                            );
-                                                                            if (!(_model.apiResultx5lCopy?.succeeded ??
-                                                                                true)) {
-                                                                              ScaffoldMessenger.of(context).showSnackBar(
-                                                                                SnackBar(
-                                                                                  content: Text(
-                                                                                    'Xác nhận thất bại',
-                                                                                    style: TextStyle(
-                                                                                      color: FlutterFlowTheme.of(context).primaryText,
-                                                                                    ),
-                                                                                  ),
-                                                                                  duration: const Duration(milliseconds: 4000),
-                                                                                  backgroundColor: FlutterFlowTheme.of(context).error,
-                                                                                ),
-                                                                              );
-                                                                            }
-
-                                                                            setState(() {});
-                                                                          } else {
-                                                                            setState(() {});
-                                                                          }
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
-
-                                                              setState(() {});
-                                                            },
-                                                            text:
-                                                                'Nhập văn bản',
-                                                            icon: Icon(
-                                                              Icons.edit_note,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 20.0,
-                                                            ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              height: 40.0,
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          24.0,
-                                                                          0.0,
-                                                                          24.0,
-                                                                          0.0),
-                                                              iconPadding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                              elevation: 3.0,
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          8.0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
                                                     ],
                                                   ),
                                                 if (dataListItem.status ==
                                                     'done')
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      border: Border.all(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                    children: [
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .alternate,
-                                                      ),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(8.0),
-                                                      child: custom_widgets
-                                                          .HtmlToDoc(
-                                                        width: double.infinity,
-                                                        height: 100.0,
-                                                        html: functions
-                                                            .formatHtml(
+                                                          ),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  8.0),
+                                                          child: custom_widgets
+                                                              .HtmlToDoc(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 150.0,
+                                                            html: functions.formatHtml(
                                                                 dataListItem
                                                                     .operations
                                                                     .first
                                                                     .operationsId
                                                                     .result),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                if ((dataListItem.status ==
+                                                        'todo') &&
+                                                    (dataListItem.current == 1))
+                                                  Builder(
+                                                    builder: (context) =>
+                                                        Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  16.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Dialog(
+                                                                elevation: 0,
+                                                                insetPadding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                alignment: const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      TaskDetailCkPopupWidget(
+                                                                    item: dataListItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .result,
+                                                                    workflowId:
+                                                                        widget
+                                                                            .workflowId!,
+                                                                    publishedCount:
+                                                                        dataListItem
+                                                                            .publishedCount,
+                                                                    paramBack:
+                                                                        widget
+                                                                            .paramBack,
+                                                                    action:
+                                                                        (ckString) async {
+                                                                      _model.apiResultx5lTokenCopy =
+                                                                          await action_blocks
+                                                                              .tokenReload(context);
+                                                                      if (_model
+                                                                          .apiResultx5lTokenCopy!) {
+                                                                        _model.apiResultx5lCopy = await TaskGroup
+                                                                            .updateOperationCall
+                                                                            .call(
+                                                                          accessToken:
+                                                                              FFAppState().accessToken,
+                                                                          operationId: dataListItem
+                                                                              .operations
+                                                                              .first
+                                                                              .operationsId
+                                                                              .id,
+                                                                          requestDataJson: <String,
+                                                                              dynamic>{
+                                                                            'status':
+                                                                                'done',
+                                                                            'result':
+                                                                                ckString,
+                                                                          },
+                                                                        );
+                                                                        if (!(_model.apiResultx5lCopy?.succeeded ??
+                                                                            true)) {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                'Xác nhận thất bại',
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: const Duration(milliseconds: 4000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).error,
+                                                                            ),
+                                                                          );
+                                                                        }
+
+                                                                        setState(
+                                                                            () {});
+                                                                      } else {
+                                                                        setState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              setState(() {}));
+
+                                                          setState(() {});
+                                                        },
+                                                        text: 'Nhập văn bản',
+                                                        icon: Icon(
+                                                          Icons.edit_note,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 20.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 40.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
+                                                                      0.0,
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                              ],
+                                              ].divide(const SizedBox(height: 8.0)),
                                             ),
                                           ),
                                         ),

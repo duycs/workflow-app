@@ -1266,7 +1266,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                       focusNode: _model.operationsTextFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.operationsTextTextController',
-                                        const Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 50),
                                         () => setState(() {}),
                                       ),
                                       autofocus: false,

@@ -71,8 +71,8 @@ class _WaitActionTypeSubmitTextWidgetState
             borderRadius: BorderRadius.circular(8.0),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: FlutterFlowTheme.of(context).primary,
+            borderSide: const BorderSide(
+              color: Color(0x00000000),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8.0),

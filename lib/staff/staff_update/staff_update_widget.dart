@@ -121,7 +121,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                   r'''$.phone''',
                 ).toString().toString() ==
                 'undefined'
-            ? ' '
+            ? null
             : getJsonField(
                 widget.staffDetail,
                 r'''$.phone''',
@@ -907,6 +907,8 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     fontSize: 13.0,
                                     letterSpacing: 0.0,
                                   ),
+                              textPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 36.0, 0.0),
                               buttonPosition: RadioButtonPosition.left,
                               direction: Axis.horizontal,
                               radioButtonColor:
@@ -1425,7 +1427,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                   '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 20.0),
+                                  20.0, 0.0, 20.0, 4.0),
                               child: FlutterFlowDropDown<String>(
                                 controller: _model.departmentValueController ??=
                                     FormFieldController<String>(
@@ -1489,6 +1491,24 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     '6a8bc644-cb2d-4a31-b11e-b86e19824725',
                                 isSearchable: true,
                                 isMultiSelect: false,
+                              ),
+                            ),
+                          if (_model.checkDepartment)
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  30.0, 0.0, 0.0, 20.0),
+                              child: Text(
+                                'Vui lòng chọn bộ phận',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      fontStyle: FontStyle.italic,
+                                    ),
                               ),
                             ),
                         ],
@@ -1585,129 +1605,143 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey1.currentState!.validate()) {
                         return;
                       }
-                      _model.uploadImageToken =
-                          await action_blocks.tokenReload(context);
-                      if (_model.uploadImageToken!) {
-                        _model.apiResultUploadImage =
-                            await UploadFileGroup.uploadFileCall.call(
-                          file: _model.uploadedLocalFile,
-                          accessToken: FFAppState().accessToken,
-                        );
-                        if ((_model.apiResultUploadImage?.succeeded ?? true)) {
-                          _model.avatarid = getJsonField(
-                            (_model.apiResultUploadImage?.jsonBody ?? ''),
-                            r'''$.data.id''',
-                          ).toString();
+                      if (_model.departmentValue == null ||
+                          _model.departmentValue == '') {
+                        if ((_model.roleValue ==
+                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                            (_model.roleValue ==
+                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
+                          _model.checkDepartment = true;
                           setState(() {});
-                        }
-                        _model.updateStaffToken =
-                            await action_blocks.tokenReload(context);
-                        if (_model.updateStaffToken!) {
-                          _model.apiResultUpdateStaff =
-                              await StaffGroup.updateStaffCall.call(
-                            accessToken: FFAppState().accessToken,
-                            id: getJsonField(
-                              widget.staffDetail,
-                              r'''$.user_id.id''',
-                            ).toString(),
-                            requestDataJson: <String, dynamic>{
+                        } else {
+                          _model.checkDepartment = false;
+                          setState(() {});
+                          _model.uploadImageToken =
+                              await action_blocks.tokenReload(context);
+                          if (_model.uploadImageToken!) {
+                            _model.apiResultUploadImage =
+                                await UploadFileGroup.uploadFileCall.call(
+                              file: _model.uploadedLocalFile,
+                              accessToken: FFAppState().accessToken,
+                            );
+                            if ((_model.apiResultUploadImage?.succeeded ??
+                                true)) {
+                              _model.avatarid = getJsonField(
+                                (_model.apiResultUploadImage?.jsonBody ?? ''),
+                                r'''$.data.id''',
+                              ).toString();
+                              setState(() {});
+                            }
+                            _model.requestStaff = <String, dynamic>{
                               'first_name': _model.nameTextController.text,
                               'last_name': _model.nameTextController.text,
                               'email': _model.emailTextController.text,
                               'role': _model.roleValue,
                               'avatar': _model.avatarid,
-                            },
-                          );
-                          if ((_model.apiResultUpdateStaff?.succeeded ??
-                              true)) {
-                            _model.updateUserStaff2Token =
-                                await action_blocks.tokenReload(context);
-                            if (_model.updateUserStaff2Token!) {
-                              _model.apiResultUpdateUserStaff2 =
-                                  await StaffGroup.updateUserStaffCall.call(
-                                accessToken: FFAppState().accessToken,
-                                staffId: getJsonField(
-                                  widget.staffDetail,
-                                  r'''$.id''',
-                                ).toString(),
-                                requestDataJson: <String, dynamic>{
-                                  'status': _model.switchListTileValue == true
-                                      ? 'active'
-                                      : 'draff',
-                                  'cccd': _model.cccdTextController.text,
-                                  'gender': _model.radioButtonValue == 'Nam'
-                                      ? 'male'
-                                      : 'female',
-                                  'dob': _model.dob,
-                                  'phone': _model.phoneTextController.text,
-                                  'department_id': () {
-                                    if (_model.selectDepartment != null) {
-                                      return _model.departmentValue;
-                                    } else if (_model.roleValue ==
-                                        'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                      return null;
-                                    } else {
-                                      return getJsonField(
-                                        widget.staffDetail,
-                                        r'''$.department_id.id''',
-                                      );
-                                    }
-                                  }(),
-                                  'branch_id': _model.branchValue,
-                                  'title': _model.titleTextTextController.text,
-                                },
-                              );
-                              if ((_model
-                                      .apiResultUpdateUserStaff2?.succeeded ??
-                                  true)) {
-                                _model.apiCreateProgramStaff = await StaffGroup
-                                    .createProgramStaffCall
-                                    .call(
-                                  accessToken: FFAppState().accessToken,
-                                  staffId: getJsonField(
-                                    widget.staffDetail,
-                                    r'''$.id''',
-                                  ).toString(),
-                                );
-                                if ((_model.apiCreateProgramStaff?.succeeded ??
-                                    true)) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Cập nhật thành công',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: const Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
-                                  );
-
-                                  context.pushNamed(
-                                    'PersonnelList',
-                                    extra: <String, dynamic>{
-                                      kTransitionInfoKey: const TransitionInfo(
-                                        hasTransition: true,
-                                        transitionType: PageTransitionType.fade,
-                                        duration: Duration(milliseconds: 0),
-                                      ),
-                                    },
-                                  );
+                            };
+                            _model.requestUserStaff = <String, dynamic>{
+                              'status': _model.switchListTileValue == true
+                                  ? 'active'
+                                  : 'draff',
+                              'cccd': _model.cccdTextController.text,
+                              'gender': _model.radioButtonValue == 'Nam'
+                                  ? 'male'
+                                  : 'female',
+                              'dob': _model.dob == ''
+                                  ? null
+                                  : _model.dob,
+                              'phone': _model.phoneTextController.text,
+                              'department_id': null,
+                              'branch_id': _model.branchValue,
+                              'title': _model.titleTextTextController.text,
+                              'sort': () {
+                                if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return '1';
+                                } else if (_model.roleValue ==
+                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                  return '2';
+                                } else if (getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                  return '0';
+                                } else {
+                                  return '3';
                                 }
-                              }
-                            } else {
-                              setState(() {});
-                            }
+                              }(),
+                            };
+                            setState(() {});
+                            await _model.callRequest(context);
+                          } else {
+                            setState(() {});
                           }
+                        }
+                      } else {
+                        _model.checkDepartment = false;
+                        setState(() {});
+                        _model.uploadImageToken2 =
+                            await action_blocks.tokenReload(context);
+                        if (_model.uploadImageToken2!) {
+                          _model.apiResultUploadImage2 =
+                              await UploadFileGroup.uploadFileCall.call(
+                            file: _model.uploadedLocalFile,
+                            accessToken: FFAppState().accessToken,
+                          );
+                          if ((_model.apiResultUploadImage2?.succeeded ??
+                              true)) {
+                            _model.avatarid = getJsonField(
+                              (_model.apiResultUploadImage2?.jsonBody ?? ''),
+                              r'''$.data.id''',
+                            ).toString();
+                            setState(() {});
+                          }
+                          _model.requestStaff = <String, dynamic>{
+                            'first_name': _model.nameTextController.text,
+                            'last_name': _model.nameTextController.text,
+                            'email': _model.emailTextController.text,
+                            'role': _model.roleValue,
+                            'avatar': _model.avatarid,
+                          };
+                          _model.requestUserStaff = <String, dynamic>{
+                            'status': _model.switchListTileValue == true
+                                ? 'active'
+                                : 'draff',
+                            'cccd': _model.cccdTextController.text,
+                            'gender': _model.radioButtonValue == 'Nam'
+                                ? 'male'
+                                : 'female',
+                            'dob': _model.dob == ''
+                                ? null
+                                : _model.dob,
+                            'phone': _model.phoneTextController.text,
+                            'department_id': _model.departmentValue,
+                            'branch_id': _model.branchValue,
+                            'title': _model.titleTextTextController.text,
+                            'sort': () {
+                              if (_model.roleValue ==
+                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                return '1';
+                              } else if (_model.roleValue ==
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                return '2';
+                              } else if (getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.user_id.role''',
+                                  ).toString() ==
+                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                return '0';
+                              } else {
+                                return '3';
+                              }
+                            }(),
+                          };
+                          setState(() {});
+                          await _model.callRequest(context);
                         } else {
                           setState(() {});
                         }
-                      } else {
-                        setState(() {});
                       }
                     } else {
                       if (_model.formKey2.currentState == null ||
@@ -1718,17 +1752,17 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey1.currentState!.validate()) {
                         return;
                       }
-                      _model.updateNoImageToken =
-                          await action_blocks.tokenReload(context);
-                      if (_model.updateNoImageToken!) {
-                        _model.apiResultUpdateNoImage =
-                            await StaffGroup.updateStaffCall.call(
-                          accessToken: FFAppState().accessToken,
-                          id: getJsonField(
-                            widget.staffDetail,
-                            r'''$.user_id.id''',
-                          ).toString(),
-                          requestDataJson: <String, dynamic>{
+                      if (_model.departmentValue == null ||
+                          _model.departmentValue == '') {
+                        if ((_model.roleValue ==
+                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                            (_model.roleValue ==
+                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
+                          _model.checkDepartment = true;
+                          setState(() {});
+                        } else {
+                          _model.checkDepartment = false;
+                          _model.requestStaff = <String, dynamic>{
                             'first_name': _model.nameTextController.text,
                             'last_name': _model.nameTextController.text,
                             'email': _model.emailTextController.text,
@@ -1737,92 +1771,89 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               widget.staffDetail,
                               r'''$.user_id.avatar''',
                             ),
-                          },
-                        );
-                        if ((_model.apiResultUpdateNoImage?.succeeded ??
-                            true)) {
-                          _model.updateUserStaffToken =
-                              await action_blocks.tokenReload(context);
-                          if (_model.updateUserStaffToken!) {
-                            _model.apiResultUpdateUserStaff =
-                                await StaffGroup.updateUserStaffCall.call(
-                              accessToken: FFAppState().accessToken,
-                              staffId: getJsonField(
-                                widget.staffDetail,
-                                r'''$.id''',
-                              ).toString(),
-                              requestDataJson: <String, dynamic>{
-                                'status': _model.switchListTileValue == true
-                                    ? 'active'
-                                    : 'draff',
-                                'cccd': _model.cccdTextController.text,
-                                'gender': _model.radioButtonValue == 'Nam'
-                                    ? 'male'
-                                    : 'female',
-                                'dob': _model.dob,
-                                'phone': _model.phoneTextController.text,
-                                'department_id': () {
-                                  if (_model.selectDepartment != null) {
-                                    return _model.departmentValue;
-                                  } else if (_model.roleValue ==
-                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                    return null;
-                                  } else {
-                                    return getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.department_id.id''',
-                                    );
-                                  }
-                                }(),
-                                'branch_id': _model.branchValue,
-                                'title': _model.titleTextTextController.text,
-                              },
-                            );
-                            if ((_model.apiResultUpdateUserStaff?.succeeded ??
-                                true)) {
-                              _model.apiCreateProgramStaff1 =
-                                  await StaffGroup.createProgramStaffCall.call(
-                                accessToken: FFAppState().accessToken,
-                                staffId: getJsonField(
-                                  widget.staffDetail,
-                                  r'''$.id''',
-                                ).toString(),
-                              );
-                              if ((_model.apiCreateProgramStaff1?.succeeded ??
-                                  true)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Cập nhật thành công',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-
-                                context.pushNamed(
-                                  'PersonnelList',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
+                          };
+                          _model.requestUserStaff = <String, dynamic>{
+                            'status': _model.switchListTileValue == true
+                                ? 'active'
+                                : 'draff',
+                            'cccd': _model.cccdTextController.text,
+                            'gender': _model.radioButtonValue == 'Nam'
+                                ? 'male'
+                                : 'female',
+                            'dob': _model.dob == ''
+                                ? null
+                                : _model.dob,
+                            'phone': _model.phoneTextController.text,
+                            'department_id': null,
+                            'branch_id': _model.branchValue,
+                            'title': _model.titleTextTextController.text,
+                            'sort': () {
+                              if (_model.roleValue ==
+                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                return '1';
+                              } else if (_model.roleValue ==
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                return '2';
+                              } else if (getJsonField(
+                                    widget.staffDetail,
+                                    r'''$.user_id.role''',
+                                  ).toString() ==
+                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                return '0';
+                              } else {
+                                return '3';
                               }
-                            }
-                          } else {
-                            setState(() {});
-                          }
+                            }(),
+                          };
+                          setState(() {});
+                          await _model.callRequest(context);
                         }
                       } else {
+                        _model.requestStaff = <String, dynamic>{
+                          'first_name': _model.nameTextController.text,
+                          'last_name': _model.nameTextController.text,
+                          'email': _model.emailTextController.text,
+                          'role': _model.roleValue,
+                          'avatar': getJsonField(
+                            widget.staffDetail,
+                            r'''$.user_id.avatar''',
+                          ),
+                        };
+                        _model.requestUserStaff = <String, dynamic>{
+                          'status': _model.switchListTileValue == true
+                              ? 'active'
+                              : 'draff',
+                          'cccd': _model.cccdTextController.text,
+                          'gender': _model.radioButtonValue == 'Nam'
+                              ? 'male'
+                              : 'female',
+                          'dob': _model.dob == ''
+                              ? null
+                              : _model.dob,
+                          'phone': _model.phoneTextController.text,
+                          'department_id': _model.departmentValue,
+                          'branch_id': _model.branchValue,
+                          'title': _model.titleTextTextController.text,
+                          'sort': () {
+                            if (_model.roleValue ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              return '1';
+                            } else if (_model.roleValue ==
+                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                              return '2';
+                            } else if (getJsonField(
+                                  widget.staffDetail,
+                                  r'''$.user_id.role''',
+                                ).toString() ==
+                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                              return '0';
+                            } else {
+                              return '3';
+                            }
+                          }(),
+                        };
                         setState(() {});
+                        await _model.callRequest(context);
                       }
                     }
 
