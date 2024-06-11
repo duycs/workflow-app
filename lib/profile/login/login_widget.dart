@@ -165,7 +165,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 48.0),
                       child: Text(
-                        'eWorkflow',
+                        'ComOS',
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Nunito Sans',
@@ -228,7 +228,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 16.0, 0.0, 0.0),
                                       child: Text(
-                                        'Đăng nhập!',
+                                        'Đăng nhập',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -256,7 +256,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Welcome Back',
+                                            'Welcome Back,',
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium
@@ -270,7 +270,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 4.0, 0.0, 24.0),
                                             child: Text(
-                                              'Chúc ngày mới tốt lành. Chào mừng bạn quay trở lại với hệ thống quản lý eWorkflow',
+                                              'Chúc ngày mới tốt lành! Chào mừng bạn quay trở lại với ComOS',
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
