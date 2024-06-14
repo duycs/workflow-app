@@ -9,13 +9,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Automatic FlutterFlow importsCustom action checkNofiLoad cannot be parsed
-
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-Future checkNofiLoad() async {
+Future checkNofiLoad(BuildContext context) async {
   // Add your function code here!
-
   OneSignal.initialize("014e851d-ca32-4c5e-840e-236166738a06");
 
   Future<Map<String, String>> tagsFuture = OneSignal.User.getTags();
@@ -26,57 +23,57 @@ Future checkNofiLoad() async {
       var additionalData = event.notification.additionalData;
       print("additionalData: $additionalData");
       var payload = NotiPayload.fromJson(additionalData ?? {});
-      print("payload.scrren: ${payload.screen}");
+      print("payload.screen: ${payload.screen}");
       // if (alert != null) {
       //   context.goNamed("ProcedurePublishedList");
       // }
-      // switch (payload.screen) {
-      //   case "2":
-      //     {
-      //       context.pushNamed('TaskListWait');
-      //       return;
-      //     }
-      //   case "3":
-      //     {
-      //       context.pushNamed('StudyProgramListUser');
-      //       return;
-      //     }
-      //   case "4":
-      //     {
-      //       context.pushNamed('StudyProgramListUser');
-      //       return;
-      //     }
-      //   case "5":
-      //     {
-      //       context.pushNamed(
-      //         'LessonDetail',
-      //         queryParameters: {
-      //           'idLesson': serializeParam(
-      //             FFAppState().idCheck,
-      //             ParamType.String,
-      //           ),
-      //         }.withoutNulls,
-      //       );
-      //       return;
-      //     }
-      //   default:
-      //     {
-      //       context.pushNamed(
-      //         'TaskList',
-      //         extra: <String, dynamic>{
-      //           kTransitionInfoKey: const TransitionInfo(
-      //             hasTransition: true,
-      //             transitionType: PageTransitionType.fade,
-      //             duration: Duration(milliseconds: 0),
-      //           ),
-      //         },
-      //       );
-      //       return;
-      //     }
-      // }
+      switch (payload.screen) {
+        case "2":
+          {
+            context.pushNamed('TaskListWait');
+            return;
+          }
+        case "3":
+          {
+            context.pushNamed('StudyProgramListUser');
+            return;
+          }
+        case "4":
+          {
+            context.pushNamed('StudyProgramListUser');
+            return;
+          }
+        case "5":
+          {
+            context.pushNamed(
+              'LessonDetail',
+              queryParameters: {
+                'idLesson': serializeParam(
+                  payload.data.id,
+                  ParamType.String,
+                ),
+              }.withoutNulls,
+            );
+            return;
+          }
+        default:
+          {
+            context.pushNamed(
+              'TaskList',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
+            return;
+          }
+      }
 
       FFAppState().update(() {
-        FFAppState().alertCheck = payload.screen;
+        FFAppState().alertCheck = payload.screen.toString();
         FFAppState().idCheck = payload.data.id;
       });
     });
