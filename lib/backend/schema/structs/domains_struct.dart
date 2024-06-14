@@ -15,15 +15,20 @@ class DomainsStruct extends BaseStruct {
   DomainsIdStruct? _domainsId;
   DomainsIdStruct get domainsId => _domainsId ?? DomainsIdStruct();
   set domainsId(DomainsIdStruct? val) => _domainsId = val;
-  void updateDomainsId(Function(DomainsIdStruct) updateFn) =>
-      updateFn(_domainsId ??= DomainsIdStruct());
+
+  void updateDomainsId(Function(DomainsIdStruct) updateFn) {
+    updateFn(domainsId ??= DomainsIdStruct());
+  }
+
   bool hasDomainsId() => _domainsId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static DomainsStruct fromMap(Map<String, dynamic> data) => DomainsStruct(

@@ -13,8 +13,11 @@ class AnswersListStruct extends BaseStruct {
   TestAnswersIdStruct? _answersId;
   TestAnswersIdStruct get answersId => _answersId ?? TestAnswersIdStruct();
   set answersId(TestAnswersIdStruct? val) => _answersId = val;
-  void updateAnswersId(Function(TestAnswersIdStruct) updateFn) =>
-      updateFn(_answersId ??= TestAnswersIdStruct());
+
+  void updateAnswersId(Function(TestAnswersIdStruct) updateFn) {
+    updateFn(answersId ??= TestAnswersIdStruct());
+  }
+
   bool hasAnswersId() => _answersId != null;
 
   static AnswersListStruct fromMap(Map<String, dynamic> data) =>

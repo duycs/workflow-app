@@ -18,8 +18,9 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
       list[index] = updateFn(list[index]);
 
   UpdateTaskDataTypeStruct? responseData;
-  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) =>
-      updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) {
+    updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 

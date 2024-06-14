@@ -21,8 +21,9 @@ class ProcedureDetailModel extends FlutterFlowModel<ProcedureDetailWidget> {
   bool idLoad = false;
 
   WorkflowsStepCreateStruct? data;
-  void updateDataStruct(Function(WorkflowsStepCreateStruct) updateFn) =>
-      updateFn(data ??= WorkflowsStepCreateStruct());
+  void updateDataStruct(Function(WorkflowsStepCreateStruct) updateFn) {
+    updateFn(data ??= WorkflowsStepCreateStruct());
+  }
 
   int loop = 0;
 

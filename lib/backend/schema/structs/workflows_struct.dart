@@ -35,78 +35,96 @@ class WorkflowsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "user_created" field.
   UserStruct? _userCreated;
   UserStruct get userCreated => _userCreated ?? UserStruct();
   set userCreated(UserStruct? val) => _userCreated = val;
-  void updateUserCreated(Function(UserStruct) updateFn) =>
-      updateFn(_userCreated ??= UserStruct());
+
+  void updateUserCreated(Function(UserStruct) updateFn) {
+    updateFn(userCreated ??= UserStruct());
+  }
+
   bool hasUserCreated() => _userCreated != null;
 
   // "steps" field.
   List<StepsStruct>? _steps;
   List<StepsStruct> get steps => _steps ?? const [];
   set steps(List<StepsStruct>? val) => _steps = val;
-  void updateSteps(Function(List<StepsStruct>) updateFn) =>
-      updateFn(_steps ??= []);
+
+  void updateSteps(Function(List<StepsStruct>) updateFn) {
+    updateFn(steps ??= []);
+  }
+
   bool hasSteps() => _steps != null;
 
   // "cron" field.
   String? _cron;
   String get cron => _cron ?? '';
   set cron(String? val) => _cron = val;
+
   bool hasCron() => _cron != null;
 
   // "number" field.
   int? _number;
   int get number => _number ?? 0;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "domain_id" field.
   String? _domainId;
   String get domainId => _domainId ?? '';
   set domainId(String? val) => _domainId = val;
+
   bool hasDomainId() => _domainId != null;
 
   // "category_id" field.
   String? _categoryId;
   String get categoryId => _categoryId ?? '';
   set categoryId(String? val) => _categoryId = val;
+
   bool hasCategoryId() => _categoryId != null;
 
   // "template" field.
   int? _template;
   int get template => _template ?? 0;
   set template(int? val) => _template = val;
-  void incrementTemplate(int amount) => _template = template + amount;
+
+  void incrementTemplate(int amount) => template = template + amount;
+
   bool hasTemplate() => _template != null;
 
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   set type(String? val) => _type = val;
+
   bool hasType() => _type != null;
 
   static WorkflowsStruct fromMap(Map<String, dynamic> data) => WorkflowsStruct(
@@ -171,7 +189,7 @@ class WorkflowsStruct extends BaseStruct {
         'steps': serializeParam(
           _steps,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'cron': serializeParam(
           _cron,

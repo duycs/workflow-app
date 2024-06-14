@@ -23,38 +23,46 @@ class AuthorIdMarketStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "alias" field.
   String? _alias;
   String get alias => _alias ?? '';
   set alias(String? val) => _alias = val;
+
   bool hasAlias() => _alias != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "domains" field.
   List<DomainsMarketStruct>? _domains;
   List<DomainsMarketStruct> get domains => _domains ?? const [];
   set domains(List<DomainsMarketStruct>? val) => _domains = val;
-  void updateDomains(Function(List<DomainsMarketStruct>) updateFn) =>
-      updateFn(_domains ??= []);
+
+  void updateDomains(Function(List<DomainsMarketStruct>) updateFn) {
+    updateFn(domains ??= []);
+  }
+
   bool hasDomains() => _domains != null;
 
   // "avatar" field.
   String? _avatar;
   String get avatar => _avatar ?? '';
   set avatar(String? val) => _avatar = val;
+
   bool hasAvatar() => _avatar != null;
 
   static AuthorIdMarketStruct fromMap(Map<String, dynamic> data) =>
@@ -104,7 +112,7 @@ class AuthorIdMarketStruct extends BaseStruct {
         'domains': serializeParam(
           _domains,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'avatar': serializeParam(
           _avatar,

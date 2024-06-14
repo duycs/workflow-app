@@ -19,26 +19,32 @@ class OrganizationBranchStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "departments" field.
   List<DepartmentsStruct>? _departments;
   List<DepartmentsStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentsStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentsStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentsStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   static OrganizationBranchStruct fromMap(Map<String, dynamic> data) =>
@@ -76,7 +82,7 @@ class OrganizationBranchStruct extends BaseStruct {
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'status': serializeParam(
           _status,

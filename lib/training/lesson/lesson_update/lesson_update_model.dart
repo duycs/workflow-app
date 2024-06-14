@@ -225,7 +225,9 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
-
+      if (Navigator.of(context).canPop()) {
+        context.pop();
+      }
       context.pushNamed(
         'LessonsList',
         queryParameters: {

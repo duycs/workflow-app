@@ -30,12 +30,14 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   String description2 = '';
 
   UpdateOrganizationStruct? request;
-  void updateRequestStruct(Function(UpdateOrganizationStruct) updateFn) =>
-      updateFn(request ??= UpdateOrganizationStruct());
+  void updateRequestStruct(Function(UpdateOrganizationStruct) updateFn) {
+    updateFn(request ??= UpdateOrganizationStruct());
+  }
 
   UploadListFileStruct? files;
-  void updateFilesStruct(Function(UploadListFileStruct) updateFn) =>
-      updateFn(files ??= UploadListFileStruct());
+  void updateFilesStruct(Function(UploadListFileStruct) updateFn) {
+    updateFn(files ??= UploadListFileStruct());
+  }
 
   int? loop = 0;
 

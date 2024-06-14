@@ -16,15 +16,20 @@ class TestQuestionsStruct extends BaseStruct {
   TestQuestionsIdStruct get questionsId =>
       _questionsId ?? TestQuestionsIdStruct();
   set questionsId(TestQuestionsIdStruct? val) => _questionsId = val;
-  void updateQuestionsId(Function(TestQuestionsIdStruct) updateFn) =>
-      updateFn(_questionsId ??= TestQuestionsIdStruct());
+
+  void updateQuestionsId(Function(TestQuestionsIdStruct) updateFn) {
+    updateFn(questionsId ??= TestQuestionsIdStruct());
+  }
+
   bool hasQuestionsId() => _questionsId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static TestQuestionsStruct fromMap(Map<String, dynamic> data) =>

@@ -318,6 +318,13 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                                   (nameFilter != ' ')
                                               ? nameFilter
                                               : '');
+                                          _model.questionNameTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .questionNameTextController!
+                                                      .text
+                                                      .length);
                                         });
                                         setState(() => _model
                                             .listViewPagingController

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class CKEditorUpdate extends StatefulWidget {
   factory CKEditorUpdate({
@@ -56,6 +57,9 @@ class _CKEditorUpdateState extends State<CKEditorUpdate> {
   late HtmlEditorController controller;
   final FocusNode focusNode = FocusNode();
   bool isShow = true;
+  Color selectedColor = Colors.black;
+  bool isColorPickerOpen = false;
+  Color pickedColor = Colors.white;
 
   @override
   void initState() {
@@ -63,68 +67,225 @@ class _CKEditorUpdateState extends State<CKEditorUpdate> {
     controller = HtmlEditorController();
   }
 
+  void openColorPicker() {
+    setState(() {
+      isColorPickerOpen = true;
+    });
+  }
+
+  void setColor(color) {
+    setState(() {
+      pickedColor = color;
+    });
+  }
+
+  void closeColorPicker() {
+    setState(() {
+      isColorPickerOpen = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: widget.width,
-      height: widget.height,
-      color: Colors.white,
-      child: SingleChildScrollView(
-          child: HtmlEditor(
-        controller: controller,
-
-        htmlToolbarOptions: HtmlToolbarOptions(
-          toolbarPosition: ToolbarPosition.belowEditor,
-          toolbarType:
-              !isShow ? ToolbarType.nativeGrid : ToolbarType.nativeScrollable,
-          // customToolbarButtons: [
-          //   TextButton(
-          //     onPressed: () {
-          //       setState(() {
-          //         isShow = !isShow;
-          //       });
-          //       // Hide keyboard if it's currently open
-          //       FocusScope.of(context).unfocus();
-          //     },
-          //     child: Icon(Icons.more_vert),
-          //     // child: isShow ? Icon(Icons.arrow_drop_up) : Icon(arrow_drop_down),
-          //   ),
-          // ],
-          defaultToolbarButtons: [
-            FontButtons(),
-            FontSettingButtons(),
-            StyleButtons(),
-            FontButtons(),
-            ColorButtons(),
-            ListButtons(),
-            ParagraphButtons(),
-            InsertButtons(),
-            OtherButtons(),
+    if (!isColorPickerOpen) {
+      return Stack(
+        children: [
+          GestureDetector(
+            onTap: () {
+              if (isColorPickerOpen) {
+                closeColorPicker();
+              }
+            },
+            child: Container(
+              width: widget.width,
+              height: widget.height,
+              color: Colors.white,
+              child: SingleChildScrollView(
+                child: HtmlEditor(
+                  controller: controller,
+                  htmlToolbarOptions: HtmlToolbarOptions(
+                    toolbarPosition: ToolbarPosition.belowEditor,
+                    toolbarType: ToolbarType.nativeScrollable,
+                    customToolbarButtons: [
+                      TextButton(
+                        onPressed: openColorPicker,
+                        child: Icon(Icons.color_lens_sharp),
+                      ),
+                    ],
+                    defaultToolbarButtons: [
+                      FontButtons(),
+                      FontSettingButtons(),
+                      StyleButtons(),
+                      FontButtons(),
+                      ListButtons(),
+                      ColorButtons(),
+                      ParagraphButtons(),
+                      InsertButtons(),
+                      OtherButtons(),
+                    ],
+                  ),
+                  htmlEditorOptions: HtmlEditorOptions(
+                    hint: "Nhập văn bản",
+                    shouldEnsureVisible: true,
+                    autoAdjustHeight: false,
+                    adjustHeightForKeyboard: false,
+                    spellCheck: true,
+                    initialText: widget.initialData,
+                  ),
+                  otherOptions: OtherOptions(height: widget.height! - 40),
+                  callbacks: Callbacks(
+                    onChangeContent: (String? currentHtml) {
+                      if (widget.action != null) {
+                        widget.action!((currentHtml ?? "") as String);
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    } else {
+      return Container(
+        alignment: Alignment.bottomLeft,
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(bottom: 50),
+              child: Text(
+                'Chọn màu!',
+                key: ValueKey(1), // Đặt key ở đây nếu cần
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.blue, // Sử dụng Colors.blue thay vì Color.blue
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.symmetric(vertical: 20),
+              child: ColorPicker(
+                pickerColor: pickedColor,
+                onColorChanged: (color) {
+                  setColor(color);
+                },
+                colorPickerWidth: 300.0,
+                pickerAreaHeightPercent: 0.7,
+                enableAlpha: true,
+                displayThumbColor: true,
+                showLabel: true,
+                paletteType: PaletteType.hsv,
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.symmetric(vertical: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      closeColorPicker();
+                    },
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(100, 40)),
+                    ),
+                    child: Text('Thoát'),
+                  ),
+                  SizedBox(width: 20), // Khoảng cách giữa hai nút
+                  ElevatedButton(
+                    onPressed: () {
+                      print('pickedColor: $pickedColor');
+                    },
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all(Size(100, 40)),
+                    ),
+                    child: Text('Lưu'),
+                  ),
+                ],
+              ),
+            ),
           ],
-
-          // Customize the toolbar further from here
         ),
-        // Set up additional options as needed, this is just a basic check the docs
-        htmlEditorOptions: HtmlEditorOptions(
-          hint: "Nhập văn bản",
-          shouldEnsureVisible: true,
-          autoAdjustHeight: false,
-          adjustHeightForKeyboard: false,
-          spellCheck: true,
-          // initialText: initialData,
-          initialText: widget.initialData,
-          // ... other options will come here, add a comma after each
-        ),
-        otherOptions: OtherOptions(height: widget.height! - 40),
-        callbacks: Callbacks(onChangeContent: (String? currentHtml) {
-          if (widget.action != null) {
-            widget.action!((currentHtml ?? "") as String);
-          }
-          // FFAppState().update(() {
-          //   FFAppState().dataCkEditor = currentHtml ?? "";
-          // });
-        }),
-      )),
-    );
+      );
+    }
   }
 }
+
+// class ColorPickerOverlay extends StatelessWidget {
+//   final bool isColorPickerOpen;
+//   final Color selectedColor;
+//   final ValueChanged<Color> onColorChanged;
+//   final VoidCallback onSave;
+//   final VoidCallback onClose;
+
+//   const ColorPickerOverlay({
+//     Key? key,
+//     required this.isColorPickerOpen,
+//     required this.selectedColor,
+//     required this.onColorChanged,
+//     required this.onSave,
+//     required this.onClose,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedSwitcher(
+//       duration: const Duration(milliseconds: 300),
+//       child: isColorPickerOpen ? _buildColorPicker(context) : SizedBox.shrink(),
+//     );
+//   }
+
+//   Widget _buildColorPicker(BuildContext context) {
+//     return IgnorePointer(
+//       ignoring: true,
+//       child: Positioned(
+//         left: 0,
+//         bottom: 0,
+//         child: Container(
+//           width: MediaQuery.of(context).size.width,
+//           height: 500,
+//           color: Colors.white,
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.stretch,
+//             children: [
+//               ColorPicker(
+//                 pickerColor: selectedColor,
+//                 onColorChanged: onColorChanged,
+//                 colorPickerWidth: 300.0,
+//                 pickerAreaHeightPercent: 0.7,
+//                 enableAlpha: true,
+//                 displayThumbColor: true,
+//                 showLabel: true,
+//                 paletteType: PaletteType.hsv,
+//               ),
+//               SizedBox(height: 20),
+//               ElevatedButton(
+//                 onPressed: onSave,
+//                 style: ButtonStyle(
+//                   minimumSize: MaterialStateProperty.all(Size(100, 40)),
+//                 ),
+//                 child: Text('Lưu'),
+//               ),
+//               SizedBox(height: 10),
+//               TextButton(
+//                 onPressed: onClose,
+//                 style: ButtonStyle(
+//                   minimumSize: MaterialStateProperty.all(Size(100, 40)),
+//                 ),
+//                 child: Text('Thoát'),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }

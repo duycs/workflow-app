@@ -11,8 +11,9 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
 
   RequestWorkflowsCreateStruct? requestData;
   void updateRequestDataStruct(
-          Function(RequestWorkflowsCreateStruct) updateFn) =>
-      updateFn(requestData ??= RequestWorkflowsCreateStruct());
+      Function(RequestWorkflowsCreateStruct) updateFn) {
+    updateFn(requestData ??= RequestWorkflowsCreateStruct());
+  }
 
   String? checkDrag;
 
@@ -30,8 +31,9 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
   int loop = 0;
 
   WorkflowsStepCreateStruct? dataRequest;
-  void updateDataRequestStruct(Function(WorkflowsStepCreateStruct) updateFn) =>
-      updateFn(dataRequest ??= WorkflowsStepCreateStruct());
+  void updateDataRequestStruct(Function(WorkflowsStepCreateStruct) updateFn) {
+    updateFn(dataRequest ??= WorkflowsStepCreateStruct());
+  }
 
   int loop2 = 0;
 
@@ -134,8 +136,9 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
 
   WorkflowsStepCreateStruct? stepsListRequest;
   void updateStepsListRequestStruct(
-          Function(WorkflowsStepCreateStruct) updateFn) =>
-      updateFn(stepsListRequest ??= WorkflowsStepCreateStruct());
+      Function(WorkflowsStepCreateStruct) updateFn) {
+    updateFn(stepsListRequest ??= WorkflowsStepCreateStruct());
+  }
 
   String checkUpdate = ' ';
 
@@ -179,7 +182,6 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
   FormFieldController<String>? dropDownCronValueController;
   // State field(s) for groupWeek widget.
   FormFieldController<List<String>>? groupWeekValueController;
-
   List<String>? get groupWeekValues => groupWeekValueController?.value;
   set groupWeekValues(List<String>? v) => groupWeekValueController?.value = v;
 

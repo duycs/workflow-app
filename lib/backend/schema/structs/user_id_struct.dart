@@ -18,18 +18,21 @@ class UserIdStruct extends BaseStruct {
   String? _firstName;
   String get firstName => _firstName ?? '';
   set firstName(String? val) => _firstName = val;
+
   bool hasFirstName() => _firstName != null;
 
   // "last_name" field.
   String? _lastName;
   String get lastName => _lastName ?? '';
   set lastName(String? val) => _lastName = val;
+
   bool hasLastName() => _lastName != null;
 
   // "avatar" field.
   String? _avatar;
   String get avatar => _avatar ?? '';
   set avatar(String? val) => _avatar = val;
+
   bool hasAvatar() => _avatar != null;
 
   static UserIdStruct fromMap(Map<String, dynamic> data) => UserIdStruct(

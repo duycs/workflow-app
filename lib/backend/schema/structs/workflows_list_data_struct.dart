@@ -13,8 +13,11 @@ class WorkflowsListDataStruct extends BaseStruct {
   List<WorkflowsStruct>? _data;
   List<WorkflowsStruct> get data => _data ?? const [];
   set data(List<WorkflowsStruct>? val) => _data = val;
-  void updateData(Function(List<WorkflowsStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<WorkflowsStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static WorkflowsListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class WorkflowsListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

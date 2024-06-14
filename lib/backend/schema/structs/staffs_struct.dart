@@ -19,26 +19,32 @@ class StaffsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "user_id" field.
   UserIdStaffStruct? _userId;
   UserIdStaffStruct get userId => _userId ?? UserIdStaffStruct();
   set userId(UserIdStaffStruct? val) => _userId = val;
-  void updateUserId(Function(UserIdStaffStruct) updateFn) =>
-      updateFn(_userId ??= UserIdStaffStruct());
+
+  void updateUserId(Function(UserIdStaffStruct) updateFn) {
+    updateFn(userId ??= UserIdStaffStruct());
+  }
+
   bool hasUserId() => _userId != null;
 
   // "title" field.
   String? _title;
   String get title => _title ?? '';
   set title(String? val) => _title = val;
+
   bool hasTitle() => _title != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   static StaffsStruct fromMap(Map<String, dynamic> data) => StaffsStruct(

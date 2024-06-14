@@ -18,20 +18,25 @@ class ProgramOrderItemsCreateStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "total_item" field.
   int? _totalItem;
   int get totalItem => _totalItem ?? 0;
   set totalItem(int? val) => _totalItem = val;
-  void incrementTotalItem(int amount) => _totalItem = totalItem + amount;
+
+  void incrementTotalItem(int amount) => totalItem = totalItem + amount;
+
   bool hasTotalItem() => _totalItem != null;
 
   // "private" field.
   int? _private;
   int get private => _private ?? 0;
   set private(int? val) => _private = val;
-  void incrementPrivate(int amount) => _private = private + amount;
+
+  void incrementPrivate(int amount) => private = private + amount;
+
   bool hasPrivate() => _private != null;
 
   static ProgramOrderItemsCreateStruct fromMap(Map<String, dynamic> data) =>

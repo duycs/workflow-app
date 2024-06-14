@@ -46,7 +46,7 @@ class LessonDetailHomePageModel
 
   String testId = '';
 
-  String status = 'inprogress';
+  String status = '';
 
   ///  State fields for stateful widgets in this page.
 
@@ -55,14 +55,6 @@ class LessonDetailHomePageModel
   FocusNode? commentsFocusNode;
   TextEditingController? commentsTextController;
   String? Function(BuildContext, String?)? commentsTextControllerValidator;
-  // Stores action output result for [Backend Call - API (UpdateStaffLessonStatus)] action in Button widget.
-  ApiCallResponse? apiResultUpdateStatus;
-  // Stores action output result for [Action Block - CheckRefreshToken] action in Button widget.
-  bool? checkRefreshTokenBlockabcd;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? updateStatusStaffProgram;
-  // Stores action output result for [Backend Call - API (UpdateStaffProgramStatus)] action in Button widget.
-  ApiCallResponse? apiResultUpdateStaffProgramStatus;
 
   @override
   void initState(BuildContext context) {}
@@ -310,5 +302,52 @@ class LessonDetailHomePageModel
       return;
     }
     await getHeart(context);
+  }
+
+  Future startLesson(BuildContext context) async {
+    ApiCallResponse? apiResultStartLesson;
+    bool? checkRefreshTokenBlockStartLesson;
+
+    apiResultStartLesson = await LessonGroup.updateStaffLessonStatusCall.call(
+      accessToken: FFAppState().accessToken,
+      id: widget.id,
+      dateStart: getCurrentTimestamp.toString(),
+    );
+    if ((apiResultStartLesson.succeeded ?? true)) {
+      status = 'inprogress';
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Đã ghim bài đang học',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+    } else {
+      checkRefreshTokenBlockStartLesson = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultStartLesson.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockStartLesson!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi cập nhật trạng thái đang học của chương trình',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await startLesson(context);
+      }
+    }
   }
 }

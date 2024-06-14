@@ -15,16 +15,22 @@ class StudyProgramListDataStruct extends BaseStruct {
   List<StudyProgramListStruct>? _data;
   List<StudyProgramListStruct> get data => _data ?? const [];
   set data(List<StudyProgramListStruct>? val) => _data = val;
-  void updateData(Function(List<StudyProgramListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<StudyProgramListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   // "meta" field.
   MetaDataStruct? _meta;
   MetaDataStruct get meta => _meta ?? MetaDataStruct();
   set meta(MetaDataStruct? val) => _meta = val;
-  void updateMeta(Function(MetaDataStruct) updateFn) =>
-      updateFn(_meta ??= MetaDataStruct());
+
+  void updateMeta(Function(MetaDataStruct) updateFn) {
+    updateFn(meta ??= MetaDataStruct());
+  }
+
   bool hasMeta() => _meta != null;
 
   static StudyProgramListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -50,7 +56,7 @@ class StudyProgramListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'meta': serializeParam(
           _meta,

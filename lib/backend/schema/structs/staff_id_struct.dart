@@ -19,14 +19,18 @@ class StaffIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "user_id" field.
   UserIdStruct? _userId;
   UserIdStruct get userId => _userId ?? UserIdStruct();
   set userId(UserIdStruct? val) => _userId = val;
-  void updateUserId(Function(UserIdStruct) updateFn) =>
-      updateFn(_userId ??= UserIdStruct());
+
+  void updateUserId(Function(UserIdStruct) updateFn) {
+    updateFn(userId ??= UserIdStruct());
+  }
+
   bool hasUserId() => _userId != null;
 
   // "department_id" field.
@@ -34,14 +38,18 @@ class StaffIdStruct extends BaseStruct {
   DepartmentListStruct get departmentId =>
       _departmentId ?? DepartmentListStruct();
   set departmentId(DepartmentListStruct? val) => _departmentId = val;
-  void updateDepartmentId(Function(DepartmentListStruct) updateFn) =>
-      updateFn(_departmentId ??= DepartmentListStruct());
+
+  void updateDepartmentId(Function(DepartmentListStruct) updateFn) {
+    updateFn(departmentId ??= DepartmentListStruct());
+  }
+
   bool hasDepartmentId() => _departmentId != null;
 
   // "staffName" field.
   String? _staffName;
   String get staffName => _staffName ?? '';
   set staffName(String? val) => _staffName = val;
+
   bool hasStaffName() => _staffName != null;
 
   static StaffIdStruct fromMap(Map<String, dynamic> data) => StaffIdStruct(

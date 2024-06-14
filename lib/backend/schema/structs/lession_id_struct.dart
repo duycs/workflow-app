@@ -39,92 +39,112 @@ class LessionIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   // "video" field.
   String? _video;
   String get video => _video ?? '';
   set video(String? val) => _video = val;
+
   bool hasVideo() => _video != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "duration_hours" field.
   int? _durationHours;
   int get durationHours => _durationHours ?? 0;
   set durationHours(int? val) => _durationHours = val;
+
   void incrementDurationHours(int amount) =>
-      _durationHours = durationHours + amount;
+      durationHours = durationHours + amount;
+
   bool hasDurationHours() => _durationHours != null;
 
   // "test_id" field.
   String? _testId;
   String get testId => _testId ?? '';
   set testId(String? val) => _testId = val;
+
   bool hasTestId() => _testId != null;
 
   // "file" field.
   FileStruct? _file;
   FileStruct get file => _file ?? FileStruct();
   set file(FileStruct? val) => _file = val;
-  void updateFile(Function(FileStruct) updateFn) =>
-      updateFn(_file ??= FileStruct());
+
+  void updateFile(Function(FileStruct) updateFn) {
+    updateFn(file ??= FileStruct());
+  }
+
   bool hasFile() => _file != null;
 
   // "programs" field.
   List<ProgramsIdddStruct>? _programs;
   List<ProgramsIdddStruct> get programs => _programs ?? const [];
   set programs(List<ProgramsIdddStruct>? val) => _programs = val;
-  void updatePrograms(Function(List<ProgramsIdddStruct>) updateFn) =>
-      updateFn(_programs ??= []);
+
+  void updatePrograms(Function(List<ProgramsIdddStruct>) updateFn) {
+    updateFn(programs ??= []);
+  }
+
   bool hasPrograms() => _programs != null;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
   int get estimateInDay => _estimateInDay ?? 0;
   set estimateInDay(int? val) => _estimateInDay = val;
+
   void incrementEstimateInDay(int amount) =>
-      _estimateInDay = estimateInDay + amount;
+      estimateInDay = estimateInDay + amount;
+
   bool hasEstimateInDay() => _estimateInDay != null;
 
   static LessionIdStruct fromMap(Map<String, dynamic> data) => LessionIdStruct(
@@ -221,7 +241,7 @@ class LessionIdStruct extends BaseStruct {
         'programs': serializeParam(
           _programs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'estimate_in_day': serializeParam(
           _estimateInDay,

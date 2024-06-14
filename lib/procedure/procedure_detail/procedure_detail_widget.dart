@@ -1519,7 +1519,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                             'stepListPar': serializeParam(
                               _model.stepsList,
                               ParamType.DataStruct,
-                              true,
+                              isList: true,
                             ),
                             'check': serializeParam(
                               true,

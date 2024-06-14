@@ -23,41 +23,52 @@ class QuestionAnswersStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "answer_type" field.
   String? _answerType;
   String get answerType => _answerType ?? '';
   set answerType(String? val) => _answerType = val;
+
   bool hasAnswerType() => _answerType != null;
 
   // "auto_correct" field.
   int? _autoCorrect;
   int get autoCorrect => _autoCorrect ?? 0;
   set autoCorrect(int? val) => _autoCorrect = val;
-  void incrementAutoCorrect(int amount) => _autoCorrect = autoCorrect + amount;
+
+  void incrementAutoCorrect(int amount) => autoCorrect = autoCorrect + amount;
+
   bool hasAutoCorrect() => _autoCorrect != null;
 
   // "answers" field.
   List<QuestionAnswersIdStruct>? _answers;
   List<QuestionAnswersIdStruct> get answers => _answers ?? const [];
   set answers(List<QuestionAnswersIdStruct>? val) => _answers = val;
-  void updateAnswers(Function(List<QuestionAnswersIdStruct>) updateFn) =>
-      updateFn(_answers ??= []);
+
+  void updateAnswers(Function(List<QuestionAnswersIdStruct>) updateFn) {
+    updateFn(answers ??= []);
+  }
+
   bool hasAnswers() => _answers != null;
 
   // "answers_id" field.
   List<QuestionAnswersIdStruct>? _answersId;
   List<QuestionAnswersIdStruct> get answersId => _answersId ?? const [];
   set answersId(List<QuestionAnswersIdStruct>? val) => _answersId = val;
-  void updateAnswersId(Function(List<QuestionAnswersIdStruct>) updateFn) =>
-      updateFn(_answersId ??= []);
+
+  void updateAnswersId(Function(List<QuestionAnswersIdStruct>) updateFn) {
+    updateFn(answersId ??= []);
+  }
+
   bool hasAnswersId() => _answersId != null;
 
   static QuestionAnswersStruct fromMap(Map<String, dynamic> data) =>
@@ -110,12 +121,12 @@ class QuestionAnswersStruct extends BaseStruct {
         'answers': serializeParam(
           _answers,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'answers_id': serializeParam(
           _answersId,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

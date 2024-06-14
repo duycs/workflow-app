@@ -26,42 +26,49 @@ class StaffListInfoStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "user_id" field.
   String? _userId;
   String get userId => _userId ?? '';
   set userId(String? val) => _userId = val;
+
   bool hasUserId() => _userId != null;
 
   // "cccd" field.
   String? _cccd;
   String get cccd => _cccd ?? '';
   set cccd(String? val) => _cccd = val;
+
   bool hasCccd() => _cccd != null;
 
   // "gender" field.
   String? _gender;
   String get gender => _gender ?? '';
   set gender(String? val) => _gender = val;
+
   bool hasGender() => _gender != null;
 
   // "phone" field.
   String? _phone;
   String get phone => _phone ?? '';
   set phone(String? val) => _phone = val;
+
   bool hasPhone() => _phone != null;
 
   // "dob" field.
   String? _dob;
   String get dob => _dob ?? '';
   set dob(String? val) => _dob = val;
+
   bool hasDob() => _dob != null;
 
   static StaffListInfoStruct fromMap(Map<String, dynamic> data) =>

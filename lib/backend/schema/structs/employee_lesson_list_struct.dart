@@ -13,7 +13,6 @@ class EmployeeLessonListStruct extends BaseStruct {
     String? dateEnd,
     StaffIdStruct? staffId,
     LessionIdStruct? lessionId,
-    ProgramsIdStruct? programsId,
     ProgramsIddStruct? programId,
     String? dateCreated,
   })  : _id = id,
@@ -23,7 +22,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         _dateEnd = dateEnd,
         _staffId = staffId,
         _lessionId = lessionId,
-        _programsId = programsId,
         _programId = programId,
         _dateCreated = dateCreated;
 
@@ -31,69 +29,77 @@ class EmployeeLessonListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "progress" field.
   double? _progress;
   double get progress => _progress ?? 0.0;
   set progress(double? val) => _progress = val;
-  void incrementProgress(double amount) => _progress = progress + amount;
+
+  void incrementProgress(double amount) => progress = progress + amount;
+
   bool hasProgress() => _progress != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "staff_id" field.
   StaffIdStruct? _staffId;
   StaffIdStruct get staffId => _staffId ?? StaffIdStruct();
   set staffId(StaffIdStruct? val) => _staffId = val;
-  void updateStaffId(Function(StaffIdStruct) updateFn) =>
-      updateFn(_staffId ??= StaffIdStruct());
+
+  void updateStaffId(Function(StaffIdStruct) updateFn) {
+    updateFn(staffId ??= StaffIdStruct());
+  }
+
   bool hasStaffId() => _staffId != null;
 
   // "lession_id" field.
   LessionIdStruct? _lessionId;
   LessionIdStruct get lessionId => _lessionId ?? LessionIdStruct();
   set lessionId(LessionIdStruct? val) => _lessionId = val;
-  void updateLessionId(Function(LessionIdStruct) updateFn) =>
-      updateFn(_lessionId ??= LessionIdStruct());
-  bool hasLessionId() => _lessionId != null;
 
-  // "programs_id" field.
-  ProgramsIdStruct? _programsId;
-  ProgramsIdStruct get programsId => _programsId ?? ProgramsIdStruct();
-  set programsId(ProgramsIdStruct? val) => _programsId = val;
-  void updateProgramsId(Function(ProgramsIdStruct) updateFn) =>
-      updateFn(_programsId ??= ProgramsIdStruct());
-  bool hasProgramsId() => _programsId != null;
+  void updateLessionId(Function(LessionIdStruct) updateFn) {
+    updateFn(lessionId ??= LessionIdStruct());
+  }
+
+  bool hasLessionId() => _lessionId != null;
 
   // "program_id" field.
   ProgramsIddStruct? _programId;
   ProgramsIddStruct get programId => _programId ?? ProgramsIddStruct();
   set programId(ProgramsIddStruct? val) => _programId = val;
-  void updateProgramId(Function(ProgramsIddStruct) updateFn) =>
-      updateFn(_programId ??= ProgramsIddStruct());
+
+  void updateProgramId(Function(ProgramsIddStruct) updateFn) {
+    updateFn(programId ??= ProgramsIddStruct());
+  }
+
   bool hasProgramId() => _programId != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   static EmployeeLessonListStruct fromMap(Map<String, dynamic> data) =>
@@ -105,7 +111,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         dateEnd: data['date_end'] as String?,
         staffId: StaffIdStruct.maybeFromMap(data['staff_id']),
         lessionId: LessionIdStruct.maybeFromMap(data['lession_id']),
-        programsId: ProgramsIdStruct.maybeFromMap(data['programs_id']),
         programId: ProgramsIddStruct.maybeFromMap(data['program_id']),
         dateCreated: data['date_created'] as String?,
       );
@@ -122,7 +127,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         'date_end': _dateEnd,
         'staff_id': _staffId?.toMap(),
         'lession_id': _lessionId?.toMap(),
-        'programs_id': _programsId?.toMap(),
         'program_id': _programId?.toMap(),
         'date_created': _dateCreated,
       }.withoutNulls;
@@ -155,10 +159,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         ),
         'lession_id': serializeParam(
           _lessionId,
-          ParamType.DataStruct,
-        ),
-        'programs_id': serializeParam(
-          _programsId,
           ParamType.DataStruct,
         ),
         'program_id': serializeParam(
@@ -211,12 +211,6 @@ class EmployeeLessonListStruct extends BaseStruct {
           false,
           structBuilder: LessionIdStruct.fromSerializableMap,
         ),
-        programsId: deserializeStructParam(
-          data['programs_id'],
-          ParamType.DataStruct,
-          false,
-          structBuilder: ProgramsIdStruct.fromSerializableMap,
-        ),
         programId: deserializeStructParam(
           data['program_id'],
           ParamType.DataStruct,
@@ -243,7 +237,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         dateEnd == other.dateEnd &&
         staffId == other.staffId &&
         lessionId == other.lessionId &&
-        programsId == other.programsId &&
         programId == other.programId &&
         dateCreated == other.dateCreated;
   }
@@ -257,7 +250,6 @@ class EmployeeLessonListStruct extends BaseStruct {
         dateEnd,
         staffId,
         lessionId,
-        programsId,
         programId,
         dateCreated
       ]);
@@ -271,7 +263,6 @@ EmployeeLessonListStruct createEmployeeLessonListStruct({
   String? dateEnd,
   StaffIdStruct? staffId,
   LessionIdStruct? lessionId,
-  ProgramsIdStruct? programsId,
   ProgramsIddStruct? programId,
   String? dateCreated,
 }) =>
@@ -283,7 +274,6 @@ EmployeeLessonListStruct createEmployeeLessonListStruct({
       dateEnd: dateEnd,
       staffId: staffId ?? StaffIdStruct(),
       lessionId: lessionId ?? LessionIdStruct(),
-      programsId: programsId ?? ProgramsIdStruct(),
       programId: programId ?? ProgramsIddStruct(),
       dateCreated: dateCreated,
     );

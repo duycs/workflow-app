@@ -27,51 +27,62 @@ class RequestAnswerStaffStruct extends BaseStruct {
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "correct" field.
   int? _correct;
   int get correct => _correct ?? 0;
   set correct(int? val) => _correct = val;
-  void incrementCorrect(int amount) => _correct = correct + amount;
+
+  void incrementCorrect(int amount) => correct = correct + amount;
+
   bool hasCorrect() => _correct != null;
 
   // "answer_type" field.
   String? _answerType;
   String get answerType => _answerType ?? '';
   set answerType(String? val) => _answerType = val;
+
   bool hasAnswerType() => _answerType != null;
 
   // "staff_id" field.
   String? _staffId;
   String get staffId => _staffId ?? '';
   set staffId(String? val) => _staffId = val;
+
   bool hasStaffId() => _staffId != null;
 
   // "question_id" field.
   String? _questionId;
   String get questionId => _questionId ?? '';
   set questionId(String? val) => _questionId = val;
+
   bool hasQuestionId() => _questionId != null;
 
   // "answers" field.
   List<AnswersListStruct>? _answers;
   List<AnswersListStruct> get answers => _answers ?? const [];
   set answers(List<AnswersListStruct>? val) => _answers = val;
-  void updateAnswers(Function(List<AnswersListStruct>) updateFn) =>
-      updateFn(_answers ??= []);
+
+  void updateAnswers(Function(List<AnswersListStruct>) updateFn) {
+    updateFn(answers ??= []);
+  }
+
   bool hasAnswers() => _answers != null;
 
   // "answer_content" field.
   String? _answerContent;
   String get answerContent => _answerContent ?? '';
   set answerContent(String? val) => _answerContent = val;
+
   bool hasAnswerContent() => _answerContent != null;
 
   // "staff_test_id" field.
   String? _staffTestId;
   String get staffTestId => _staffTestId ?? '';
   set staffTestId(String? val) => _staffTestId = val;
+
   bool hasStaffTestId() => _staffTestId != null;
 
   static RequestAnswerStaffStruct fromMap(Map<String, dynamic> data) =>
@@ -129,7 +140,7 @@ class RequestAnswerStaffStruct extends BaseStruct {
         'answers': serializeParam(
           _answers,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'answer_content': serializeParam(
           _answerContent,

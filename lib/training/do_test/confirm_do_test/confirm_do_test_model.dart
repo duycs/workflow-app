@@ -8,8 +8,9 @@ class ConfirmDoTestModel extends FlutterFlowModel<ConfirmDoTestWidget> {
   ///  Local state fields for this component.
 
   TestListStruct? list;
-  void updateListStruct(Function(TestListStruct) updateFn) =>
-      updateFn(list ??= TestListStruct());
+  void updateListStruct(Function(TestListStruct) updateFn) {
+    updateFn(list ??= TestListStruct());
+  }
 
   String testId = '';
 

@@ -13,8 +13,11 @@ class ProgramsIdddStruct extends BaseStruct {
   ProgramsIdStruct? _programsId;
   ProgramsIdStruct get programsId => _programsId ?? ProgramsIdStruct();
   set programsId(ProgramsIdStruct? val) => _programsId = val;
-  void updateProgramsId(Function(ProgramsIdStruct) updateFn) =>
-      updateFn(_programsId ??= ProgramsIdStruct());
+
+  void updateProgramsId(Function(ProgramsIdStruct) updateFn) {
+    updateFn(programsId ??= ProgramsIdStruct());
+  }
+
   bool hasProgramsId() => _programsId != null;
 
   static ProgramsIdddStruct fromMap(Map<String, dynamic> data) =>

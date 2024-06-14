@@ -18,16 +18,18 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
       list[index] = updateFn(list[index]);
 
   UpdateTaskDataTypeStruct? responseData;
-  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) =>
-      updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) {
+    updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  }
 
   String submitText = '';
 
   bool isLoad = false;
 
   WorkflowsStruct? stepList;
-  void updateStepListStruct(Function(WorkflowsStruct) updateFn) =>
-      updateFn(stepList ??= WorkflowsStruct());
+  void updateStepListStruct(Function(WorkflowsStruct) updateFn) {
+    updateFn(stepList ??= WorkflowsStruct());
+  }
 
   int loop = 0;
 

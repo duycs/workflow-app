@@ -44,8 +44,9 @@ class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
   int loop = 0;
 
   TestListStruct? questionId;
-  void updateQuestionIdStruct(Function(TestListStruct) updateFn) =>
-      updateFn(questionId ??= TestListStruct());
+  void updateQuestionIdStruct(Function(TestListStruct) updateFn) {
+    updateFn(questionId ??= TestListStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 

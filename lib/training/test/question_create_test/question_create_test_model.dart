@@ -10,8 +10,9 @@ class QuestionCreateTestModel
   ///  Local state fields for this component.
 
   RequestQuestionsStruct? requestData;
-  void updateRequestDataStruct(Function(RequestQuestionsStruct) updateFn) =>
-      updateFn(requestData ??= RequestQuestionsStruct());
+  void updateRequestDataStruct(Function(RequestQuestionsStruct) updateFn) {
+    updateFn(requestData ??= RequestQuestionsStruct());
+  }
 
   List<QuestionObjectStruct> questionList = [];
   void addToQuestionList(QuestionObjectStruct item) => questionList.add(item);

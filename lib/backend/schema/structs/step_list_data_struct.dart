@@ -13,8 +13,11 @@ class StepListDataStruct extends BaseStruct {
   List<StepsStruct>? _data;
   List<StepsStruct> get data => _data ?? const [];
   set data(List<StepsStruct>? val) => _data = val;
-  void updateData(Function(List<StepsStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<StepsStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static StepListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class StepListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

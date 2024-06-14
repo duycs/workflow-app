@@ -11,8 +11,9 @@ class ProgramMarketDetailModel
   ///  Local state fields for this page.
 
   MarketLessonListStruct? dataGetOne;
-  void updateDataGetOneStruct(Function(MarketLessonListStruct) updateFn) =>
-      updateFn(dataGetOne ??= MarketLessonListStruct());
+  void updateDataGetOneStruct(Function(MarketLessonListStruct) updateFn) {
+    updateFn(dataGetOne ??= MarketLessonListStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 
@@ -100,6 +101,9 @@ class ProgramMarketDetailModel
           ) ??
           false;
       if (confirmDialogResponse) {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
         context.pushNamed(
           'StudyProgramListUser',
           extra: <String, dynamic>{
@@ -171,6 +175,9 @@ class ProgramMarketDetailModel
           ) ??
           false;
       if (confirmDialogResponse) {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
         context.pushNamed(
           'StudyProgramList',
           extra: <String, dynamic>{

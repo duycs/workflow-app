@@ -130,39 +130,45 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 6.0, 6.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.download_sharp,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                var shouldSetState = false;
-                                _model.reloadImageGripview =
-                                    await action_blocks.tokenReload(context);
-                                shouldSetState = true;
-                                if (_model.reloadImageGripview!) {
-                                  await actions.downloadFile(
-                                    '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                    imageItemItem
-                                        .directusFilesId.filenameDownload,
-                                    imageItemItem
-                                        .directusFilesId.filenameDownload,
-                                  );
-                                } else {
-                                  setState(() {});
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                }
+                          Opacity(
+                            opacity: 0.7,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 6.0, 6.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 30.0,
+                                fillColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                icon: Icon(
+                                  Icons.download_sharp,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 15.0,
+                                ),
+                                onPressed: () async {
+                                  var shouldSetState = false;
+                                  _model.reloadImageGripview =
+                                      await action_blocks.tokenReload(context);
+                                  shouldSetState = true;
+                                  if (_model.reloadImageGripview!) {
+                                    await actions.downloadFile(
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                      imageItemItem
+                                          .directusFilesId.filenameDownload,
+                                      imageItemItem
+                                          .directusFilesId.filenameDownload,
+                                    );
+                                  } else {
+                                    setState(() {});
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
 
-                                if (shouldSetState) setState(() {});
-                              },
+                                  if (shouldSetState) setState(() {});
+                                },
+                              ),
                             ),
                           ),
                         ],

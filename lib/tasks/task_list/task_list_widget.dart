@@ -522,6 +522,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                          elevation: 0.0,
                                           borderRadius:
                                               BorderRadius.circular(20.0),
                                         ),
@@ -558,6 +559,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
+                                          elevation: 0.0,
                                           borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
@@ -609,6 +611,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                          elevation: 0.0,
                                           borderSide: const BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
@@ -826,7 +829,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                     ),
                                                               ),
                                                             ),
-                                                          if (((dataListItem.actionType !=
+                                                          if (((dataListItem
+                                                                          .actionType !=
                                                                       'submit_text') &&
                                                                   (dataListItem
                                                                           .operations
@@ -843,15 +847,18 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                                   getJsonField(
                                                                                     FFAppState().staffLogin,
                                                                                     r'''$.id''',
-                                                                                  ))
+                                                                                  )
+                                                                                      .toString())
                                                                           .toList()
                                                                           .length >
                                                                       0) &&
                                                                   ('1' ==
                                                                       '2')) ||
-                                                              ((dataListItem.actionType !=
+                                                              ((dataListItem
+                                                                          .actionType !=
                                                                       'to_do_list') &&
-                                                                  (dataListItem.operations
+                                                                  (dataListItem
+                                                                          .operations
                                                                           .where((e) =>
                                                                               e.operationsId
                                                                                   .status ==
@@ -870,13 +877,15 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                                   getJsonField(
                                                                                     FFAppState().staffLogin,
                                                                                     r'''$.id''',
-                                                                                  ))
+                                                                                  )
+                                                                                      .toString())
                                                                           .toList()
                                                                           .length >
                                                                       0) &&
                                                                   ('1' ==
                                                                       '2')) ||
-                                                              ((dataListItem.actionType !=
+                                                              ((dataListItem
+                                                                          .actionType !=
                                                                       'image') &&
                                                                   (dataListItem
                                                                           .operations
@@ -887,35 +896,25 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                       0) &&
                                                                   (dataListItem
                                                                           .staffs
-                                                                          .where(
-                                                                              (e) =>
-                                                                                  e
-                                                                                      .staffsId.id ==
-                                                                                  getJsonField(
-                                                                                    FFAppState().staffLogin,
-                                                                                    r'''$.id''',
-                                                                                  ))
+                                                                          .where((e) =>
+                                                                              e.staffsId.id ==
+                                                                              getJsonField(
+                                                                                FFAppState().staffLogin,
+                                                                                r'''$.id''',
+                                                                              ).toString())
                                                                           .toList()
                                                                           .length >
                                                                       0) &&
-                                                                  ('1' ==
-                                                                      '2')) ||
-                                                              ((dataListItem.actionType !=
-                                                                      'upload_file') &&
-                                                                  (dataListItem
-                                                                          .operations
-                                                                          .first
-                                                                          .operationsId
-                                                                          .files
-                                                                          .length >
-                                                                      0) &&
+                                                                  ('1' == '2')) ||
+                                                              ((dataListItem.actionType != 'upload_file') &&
+                                                                  (dataListItem.operations.first.operationsId.files.length > 0) &&
                                                                   (dataListItem.staffs
                                                                           .where((e) =>
                                                                               e.staffsId.id ==
                                                                               getJsonField(
                                                                                 FFAppState().staffLogin,
                                                                                 r'''$.id''',
-                                                                              ))
+                                                                              ).toString())
                                                                           .toList()
                                                                           .length >
                                                                       0) &&
@@ -927,7 +926,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                               getJsonField(
                                                                                 FFAppState().staffLogin,
                                                                                 r'''$.id''',
-                                                                              ))
+                                                                              ).toString())
                                                                           .toList()
                                                                           .length >
                                                                       0) &&

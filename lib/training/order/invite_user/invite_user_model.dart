@@ -37,8 +37,9 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
       getStaffList[index] = updateFn(getStaffList[index]);
 
   MarketLessonListStruct? program;
-  void updateProgramStruct(Function(MarketLessonListStruct) updateFn) =>
-      updateFn(program ??= MarketLessonListStruct());
+  void updateProgramStruct(Function(MarketLessonListStruct) updateFn) {
+    updateFn(program ??= MarketLessonListStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

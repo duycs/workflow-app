@@ -14,6 +14,7 @@ class CreateDomainAuthorsStruct extends BaseStruct {
   String? _domainsId;
   String get domainsId => _domainsId ?? '';
   set domainsId(String? val) => _domainsId = val;
+
   bool hasDomainsId() => _domainsId != null;
 
   static CreateDomainAuthorsStruct fromMap(Map<String, dynamic> data) =>

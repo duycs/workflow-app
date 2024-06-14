@@ -341,6 +341,13 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                     setState(() {
                                                       _model.textController
                                                           ?.text = name;
+                                                      _model.textController
+                                                              ?.selection =
+                                                          TextSelection.collapsed(
+                                                              offset: _model
+                                                                  .textController!
+                                                                  .text
+                                                                  .length);
                                                     });
                                                   },
                                                 ),

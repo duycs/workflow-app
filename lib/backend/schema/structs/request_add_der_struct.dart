@@ -13,8 +13,11 @@ class RequestAddDerStruct extends BaseStruct {
   List<DepartmentListStruct>? _departments;
   List<DepartmentListStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentListStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentListStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentListStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   static RequestAddDerStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class RequestAddDerStruct extends BaseStruct {
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

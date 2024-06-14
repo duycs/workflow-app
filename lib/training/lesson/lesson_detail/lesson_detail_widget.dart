@@ -1968,6 +1968,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                 padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    if (Navigator.of(context).canPop()) {
+                      context.pop();
+                    }
                     context.pushNamed(
                       'LessonUpdate',
                       queryParameters: {

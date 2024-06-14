@@ -21,9 +21,9 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
       stepList[index] = updateFn(stepList[index]);
 
   RequestWorkflowsCreateStruct? dataUpdate;
-  void updateDataUpdateStruct(
-          Function(RequestWorkflowsCreateStruct) updateFn) =>
-      updateFn(dataUpdate ??= RequestWorkflowsCreateStruct());
+  void updateDataUpdateStruct(Function(RequestWorkflowsCreateStruct) updateFn) {
+    updateFn(dataUpdate ??= RequestWorkflowsCreateStruct());
+  }
 
   List<String> stepDelete = [];
   void addToStepDelete(String item) => stepDelete.add(item);
@@ -140,8 +140,9 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
 
   RequestWorkflowsCreateStruct? requestUpdate;
   void updateRequestUpdateStruct(
-          Function(RequestWorkflowsCreateStruct) updateFn) =>
-      updateFn(requestUpdate ??= RequestWorkflowsCreateStruct());
+      Function(RequestWorkflowsCreateStruct) updateFn) {
+    updateFn(requestUpdate ??= RequestWorkflowsCreateStruct());
+  }
 
   int loop3 = 0;
 
@@ -177,7 +178,6 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
   FormFieldController<String>? dropDownCronValueController;
   // State field(s) for groupWeek widget.
   FormFieldController<List<String>>? groupWeekValueController;
-
   List<String>? get groupWeekValues => groupWeekValueController?.value;
   set groupWeekValues(List<String>? v) => groupWeekValueController?.value = v;
 

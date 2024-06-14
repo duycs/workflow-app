@@ -13,8 +13,11 @@ class DepartmentListDataStruct extends BaseStruct {
   List<DepartmentListStruct>? _data;
   List<DepartmentListStruct> get data => _data ?? const [];
   set data(List<DepartmentListStruct>? val) => _data = val;
-  void updateData(Function(List<DepartmentListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<DepartmentListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static DepartmentListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class DepartmentListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

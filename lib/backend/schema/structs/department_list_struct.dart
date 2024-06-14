@@ -35,82 +35,104 @@ class DepartmentListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "code" field.
   String? _code;
   String get code => _code ?? '';
   set code(String? val) => _code = val;
+
   bool hasCode() => _code != null;
 
   // "branch_id" field.
   BranchIdStruct? _branchId;
   BranchIdStruct get branchId => _branchId ?? BranchIdStruct();
   set branchId(BranchIdStruct? val) => _branchId = val;
-  void updateBranchId(Function(BranchIdStruct) updateFn) =>
-      updateFn(_branchId ??= BranchIdStruct());
+
+  void updateBranchId(Function(BranchIdStruct) updateFn) {
+    updateFn(branchId ??= BranchIdStruct());
+  }
+
   bool hasBranchId() => _branchId != null;
 
   // "programs" field.
   List<ProgramStruct>? _programs;
   List<ProgramStruct> get programs => _programs ?? const [];
   set programs(List<ProgramStruct>? val) => _programs = val;
-  void updatePrograms(Function(List<ProgramStruct>) updateFn) =>
-      updateFn(_programs ??= []);
+
+  void updatePrograms(Function(List<ProgramStruct>) updateFn) {
+    updateFn(programs ??= []);
+  }
+
   bool hasPrograms() => _programs != null;
 
   // "staffs" field.
   List<StaffListStruct>? _staffs;
   List<StaffListStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffListStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffListStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffListStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "checkDep" field.
   bool? _checkDep;
   bool get checkDep => _checkDep ?? false;
   set checkDep(bool? val) => _checkDep = val;
+
   bool hasCheckDep() => _checkDep != null;
 
   // "departments_id" field.
   DepartmentsStruct? _departmentsId;
   DepartmentsStruct get departmentsId => _departmentsId ?? DepartmentsStruct();
   set departmentsId(DepartmentsStruct? val) => _departmentsId = val;
-  void updateDepartmentsId(Function(DepartmentsStruct) updateFn) =>
-      updateFn(_departmentsId ??= DepartmentsStruct());
+
+  void updateDepartmentsId(Function(DepartmentsStruct) updateFn) {
+    updateFn(departmentsId ??= DepartmentsStruct());
+  }
+
   bool hasDepartmentsId() => _departmentsId != null;
 
   // "checkStaff" field.
   List<StaffsStepStruct>? _checkStaff;
   List<StaffsStepStruct> get checkStaff => _checkStaff ?? const [];
   set checkStaff(List<StaffsStepStruct>? val) => _checkStaff = val;
-  void updateCheckStaff(Function(List<StaffsStepStruct>) updateFn) =>
-      updateFn(_checkStaff ??= []);
+
+  void updateCheckStaff(Function(List<StaffsStepStruct>) updateFn) {
+    updateFn(checkStaff ??= []);
+  }
+
   bool hasCheckStaff() => _checkStaff != null;
 
   static DepartmentListStruct fromMap(Map<String, dynamic> data) =>
@@ -186,12 +208,12 @@ class DepartmentListStruct extends BaseStruct {
         'programs': serializeParam(
           _programs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'organization_id': serializeParam(
           _organizationId,
@@ -208,7 +230,7 @@ class DepartmentListStruct extends BaseStruct {
         'checkStaff': serializeParam(
           _checkStaff,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

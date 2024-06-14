@@ -39,44 +39,53 @@ class StaffListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "cccd" field.
   String? _cccd;
   String get cccd => _cccd ?? '';
   set cccd(String? val) => _cccd = val;
+
   bool hasCccd() => _cccd != null;
 
   // "gender" field.
   String? _gender;
   String get gender => _gender ?? '';
   set gender(String? val) => _gender = val;
+
   bool hasGender() => _gender != null;
 
   // "phone" field.
   String? _phone;
   String get phone => _phone ?? '';
   set phone(String? val) => _phone = val;
+
   bool hasPhone() => _phone != null;
 
   // "dob" field.
   String? _dob;
   String get dob => _dob ?? '';
   set dob(String? val) => _dob = val;
+
   bool hasDob() => _dob != null;
 
   // "branch_id" field.
   BranchListStruct? _branchId;
   BranchListStruct get branchId => _branchId ?? BranchListStruct();
   set branchId(BranchListStruct? val) => _branchId = val;
-  void updateBranchId(Function(BranchListStruct) updateFn) =>
-      updateFn(_branchId ??= BranchListStruct());
+
+  void updateBranchId(Function(BranchListStruct) updateFn) {
+    updateFn(branchId ??= BranchListStruct());
+  }
+
   bool hasBranchId() => _branchId != null;
 
   // "department_id" field.
@@ -84,52 +93,69 @@ class StaffListStruct extends BaseStruct {
   DepartmentListStruct get departmentId =>
       _departmentId ?? DepartmentListStruct();
   set departmentId(DepartmentListStruct? val) => _departmentId = val;
-  void updateDepartmentId(Function(DepartmentListStruct) updateFn) =>
-      updateFn(_departmentId ??= DepartmentListStruct());
+
+  void updateDepartmentId(Function(DepartmentListStruct) updateFn) {
+    updateFn(departmentId ??= DepartmentListStruct());
+  }
+
   bool hasDepartmentId() => _departmentId != null;
 
   // "user_id" field.
   UserStruct? _userId;
   UserStruct get userId => _userId ?? UserStruct();
   set userId(UserStruct? val) => _userId = val;
-  void updateUserId(Function(UserStruct) updateFn) =>
-      updateFn(_userId ??= UserStruct());
+
+  void updateUserId(Function(UserStruct) updateFn) {
+    updateFn(userId ??= UserStruct());
+  }
+
   bool hasUserId() => _userId != null;
 
   // "title" field.
   String? _title;
   String get title => _title ?? '';
   set title(String? val) => _title = val;
+
   bool hasTitle() => _title != null;
 
   // "tasks" field.
   List<StaffTasksStruct>? _tasks;
   List<StaffTasksStruct> get tasks => _tasks ?? const [];
   set tasks(List<StaffTasksStruct>? val) => _tasks = val;
-  void updateTasks(Function(List<StaffTasksStruct>) updateFn) =>
-      updateFn(_tasks ??= []);
+
+  void updateTasks(Function(List<StaffTasksStruct>) updateFn) {
+    updateFn(tasks ??= []);
+  }
+
   bool hasTasks() => _tasks != null;
 
   // "check" field.
   bool? _check;
   bool get check => _check ?? false;
   set check(bool? val) => _check = val;
+
   bool hasCheck() => _check != null;
 
   // "staff_lessions" field.
   List<StaffLessionStruct>? _staffLessions;
   List<StaffLessionStruct> get staffLessions => _staffLessions ?? const [];
   set staffLessions(List<StaffLessionStruct>? val) => _staffLessions = val;
-  void updateStaffLessions(Function(List<StaffLessionStruct>) updateFn) =>
-      updateFn(_staffLessions ??= []);
+
+  void updateStaffLessions(Function(List<StaffLessionStruct>) updateFn) {
+    updateFn(staffLessions ??= []);
+  }
+
   bool hasStaffLessions() => _staffLessions != null;
 
   // "staff_tests" field.
   List<TestListStruct>? _staffTests;
   List<TestListStruct> get staffTests => _staffTests ?? const [];
   set staffTests(List<TestListStruct>? val) => _staffTests = val;
-  void updateStaffTests(Function(List<TestListStruct>) updateFn) =>
-      updateFn(_staffTests ??= []);
+
+  void updateStaffTests(Function(List<TestListStruct>) updateFn) {
+    updateFn(staffTests ??= []);
+  }
+
   bool hasStaffTests() => _staffTests != null;
 
   static StaffListStruct fromMap(Map<String, dynamic> data) => StaffListStruct(
@@ -224,7 +250,7 @@ class StaffListStruct extends BaseStruct {
         'tasks': serializeParam(
           _tasks,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'check': serializeParam(
           _check,
@@ -233,12 +259,12 @@ class StaffListStruct extends BaseStruct {
         'staff_lessions': serializeParam(
           _staffLessions,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'staff_tests': serializeParam(
           _staffTests,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

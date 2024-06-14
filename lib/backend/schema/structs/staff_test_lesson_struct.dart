@@ -18,18 +18,21 @@ class StaffTestLessonStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   static StaffTestLessonStruct fromMap(Map<String, dynamic> data) =>

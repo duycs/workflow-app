@@ -562,8 +562,6 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                     if ((_model
                                             .apiResultOperationAdd?.succeeded ??
                                         true)) {
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 2000));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(

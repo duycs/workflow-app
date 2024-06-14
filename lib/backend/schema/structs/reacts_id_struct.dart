@@ -16,12 +16,14 @@ class ReactsIdStruct extends BaseStruct {
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "staff_id" field.
   String? _staffId;
   String get staffId => _staffId ?? '';
   set staffId(String? val) => _staffId = val;
+
   bool hasStaffId() => _staffId != null;
 
   static ReactsIdStruct fromMap(Map<String, dynamic> data) => ReactsIdStruct(

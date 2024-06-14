@@ -19,26 +19,32 @@ class DepartmentsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "staffs" field.
   List<StaffsStruct>? _staffs;
   List<StaffsStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffsStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffsStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffsStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   static DepartmentsStruct fromMap(Map<String, dynamic> data) =>
@@ -76,7 +82,7 @@ class DepartmentsStruct extends BaseStruct {
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'status': serializeParam(
           _status,

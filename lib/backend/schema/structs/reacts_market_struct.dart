@@ -15,15 +15,20 @@ class ReactsMarketStruct extends BaseStruct {
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   // "reacts_id" field.
   ReactsIdMarketStruct? _reactsId;
   ReactsIdMarketStruct get reactsId => _reactsId ?? ReactsIdMarketStruct();
   set reactsId(ReactsIdMarketStruct? val) => _reactsId = val;
-  void updateReactsId(Function(ReactsIdMarketStruct) updateFn) =>
-      updateFn(_reactsId ??= ReactsIdMarketStruct());
+
+  void updateReactsId(Function(ReactsIdMarketStruct) updateFn) {
+    updateFn(reactsId ??= ReactsIdMarketStruct());
+  }
+
   bool hasReactsId() => _reactsId != null;
 
   static ReactsMarketStruct fromMap(Map<String, dynamic> data) =>

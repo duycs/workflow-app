@@ -27,50 +27,60 @@ class TasksStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "staffs" field.
   List<TasksStaffsIdStruct>? _staffs;
   List<TasksStaffsIdStruct> get staffs => _staffs ?? const [];
   set staffs(List<TasksStaffsIdStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<TasksStaffsIdStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<TasksStaffsIdStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   static TasksStruct fromMap(Map<String, dynamic> data) => TasksStruct(
@@ -134,7 +144,7 @@ class TasksStruct extends BaseStruct {
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

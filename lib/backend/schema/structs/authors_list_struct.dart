@@ -37,81 +37,97 @@ class AuthorsListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "user_created" field.
   String? _userCreated;
   String get userCreated => _userCreated ?? '';
   set userCreated(String? val) => _userCreated = val;
+
   bool hasUserCreated() => _userCreated != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "user_updated" field.
   String? _userUpdated;
   String get userUpdated => _userUpdated ?? '';
   set userUpdated(String? val) => _userUpdated = val;
+
   bool hasUserUpdated() => _userUpdated != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   // "staff_id" field.
   String? _staffId;
   String get staffId => _staffId ?? '';
   set staffId(String? val) => _staffId = val;
+
   bool hasStaffId() => _staffId != null;
 
   // "alias" field.
   String? _alias;
   String get alias => _alias ?? '';
   set alias(String? val) => _alias = val;
+
   bool hasAlias() => _alias != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "domains" field.
   List<DomainsStruct>? _domains;
   List<DomainsStruct> get domains => _domains ?? const [];
   set domains(List<DomainsStruct>? val) => _domains = val;
-  void updateDomains(Function(List<DomainsStruct>) updateFn) =>
-      updateFn(_domains ??= []);
+
+  void updateDomains(Function(List<DomainsStruct>) updateFn) {
+    updateFn(domains ??= []);
+  }
+
   bool hasDomains() => _domains != null;
 
   // "avatar" field.
   String? _avatar;
   String get avatar => _avatar ?? '';
   set avatar(String? val) => _avatar = val;
+
   bool hasAvatar() => _avatar != null;
 
   // "order_count" field.
   int? _orderCount;
   int get orderCount => _orderCount ?? 0;
   set orderCount(int? val) => _orderCount = val;
-  void incrementOrderCount(int amount) => _orderCount = orderCount + amount;
+
+  void incrementOrderCount(int amount) => orderCount = orderCount + amount;
+
   bool hasOrderCount() => _orderCount != null;
 
   static AuthorsListStruct fromMap(Map<String, dynamic> data) =>
@@ -199,7 +215,7 @@ class AuthorsListStruct extends BaseStruct {
         'domains': serializeParam(
           _domains,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'avatar': serializeParam(
           _avatar,

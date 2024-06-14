@@ -8,6 +8,8 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
 
   String checkCode = '';
 
+  bool checkName = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -21,7 +23,7 @@ class BranchCreateModel extends FlutterFlowModel<BranchCreateWidget> {
       return 'Vui lòng nhập tên chi nhánh!';
     }
 
-    if (val.length > 50) {
+    if (val.length > 250) {
       return 'Tên chi nhanh không được vượt quá 50 ki tự';
     }
 

@@ -13,8 +13,11 @@ class LessonMarketStruct extends BaseStruct {
   LessonIdMarketStruct? _lessionsId;
   LessonIdMarketStruct get lessionsId => _lessionsId ?? LessonIdMarketStruct();
   set lessionsId(LessonIdMarketStruct? val) => _lessionsId = val;
-  void updateLessionsId(Function(LessonIdMarketStruct) updateFn) =>
-      updateFn(_lessionsId ??= LessonIdMarketStruct());
+
+  void updateLessionsId(Function(LessonIdMarketStruct) updateFn) {
+    updateFn(lessionsId ??= LessonIdMarketStruct());
+  }
+
   bool hasLessionsId() => _lessionsId != null;
 
   static LessonMarketStruct fromMap(Map<String, dynamic> data) =>

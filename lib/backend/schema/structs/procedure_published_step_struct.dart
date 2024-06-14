@@ -19,29 +19,38 @@ class ProcedurePublishedStepStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "number" field.
   int? _number;
   int get number => _number ?? 0;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "tasks" field.
   List<ProcedurePublishedStepTaskStruct>? _tasks;
   List<ProcedurePublishedStepTaskStruct> get tasks => _tasks ?? const [];
   set tasks(List<ProcedurePublishedStepTaskStruct>? val) => _tasks = val;
-  void updateTasks(Function(List<ProcedurePublishedStepTaskStruct>) updateFn) =>
-      updateFn(_tasks ??= []);
+
+  void updateTasks(Function(List<ProcedurePublishedStepTaskStruct>) updateFn) {
+    updateFn(tasks ??= []);
+  }
+
   bool hasTasks() => _tasks != null;
 
   // "staffs" field.
   List<StaffStepOneStruct>? _staffs;
   List<StaffStepOneStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffStepOneStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffStepOneStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffStepOneStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   static ProcedurePublishedStepStruct fromMap(Map<String, dynamic> data) =>
@@ -82,12 +91,12 @@ class ProcedurePublishedStepStruct extends BaseStruct {
         'tasks': serializeParam(
           _tasks,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

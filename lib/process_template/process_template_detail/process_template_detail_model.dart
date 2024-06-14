@@ -22,8 +22,9 @@ class ProcessTemplateDetailModel
   bool isLoad = false;
 
   WorkflowsStepCreateStruct? data;
-  void updateDataStruct(Function(WorkflowsStepCreateStruct) updateFn) =>
-      updateFn(data ??= WorkflowsStepCreateStruct());
+  void updateDataStruct(Function(WorkflowsStepCreateStruct) updateFn) {
+    updateFn(data ??= WorkflowsStepCreateStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 

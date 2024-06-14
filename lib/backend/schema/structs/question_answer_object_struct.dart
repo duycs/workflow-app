@@ -16,15 +16,20 @@ class QuestionAnswerObjectStruct extends BaseStruct {
   QuestionAnswersIdStruct get answersId =>
       _answersId ?? QuestionAnswersIdStruct();
   set answersId(QuestionAnswersIdStruct? val) => _answersId = val;
-  void updateAnswersId(Function(QuestionAnswersIdStruct) updateFn) =>
-      updateFn(_answersId ??= QuestionAnswersIdStruct());
+
+  void updateAnswersId(Function(QuestionAnswersIdStruct) updateFn) {
+    updateFn(answersId ??= QuestionAnswersIdStruct());
+  }
+
   bool hasAnswersId() => _answersId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static QuestionAnswerObjectStruct fromMap(Map<String, dynamic> data) =>

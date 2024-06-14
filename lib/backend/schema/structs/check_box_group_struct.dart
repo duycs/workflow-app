@@ -16,12 +16,14 @@ class CheckBoxGroupStruct extends BaseStruct {
   bool? _type;
   bool get type => _type ?? false;
   set type(bool? val) => _type = val;
+
   bool hasType() => _type != null;
 
   // "title" field.
   String? _title;
   String get title => _title ?? '';
   set title(String? val) => _title = val;
+
   bool hasTitle() => _title != null;
 
   static CheckBoxGroupStruct fromMap(Map<String, dynamic> data) =>

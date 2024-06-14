@@ -13,8 +13,11 @@ class TestOneDataStruct extends BaseStruct {
   TestListStruct? _data;
   TestListStruct get data => _data ?? TestListStruct();
   set data(TestListStruct? val) => _data = val;
-  void updateData(Function(TestListStruct) updateFn) =>
-      updateFn(_data ??= TestListStruct());
+
+  void updateData(Function(TestListStruct) updateFn) {
+    updateFn(data ??= TestListStruct());
+  }
+
   bool hasData() => _data != null;
 
   static TestOneDataStruct fromMap(Map<String, dynamic> data) =>

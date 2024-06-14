@@ -22,6 +22,7 @@ class StaffsTestsListStruct extends BaseStruct {
     StaffTestLessonStruct? lessionId,
     String? percentCorrect,
     int? goodScore,
+    TestUserCreatedStruct? userCreated,
   })  : _id = id,
         _status = status,
         _score = score,
@@ -37,115 +38,153 @@ class StaffsTestsListStruct extends BaseStruct {
         _description = description,
         _lessionId = lessionId,
         _percentCorrect = percentCorrect,
-        _goodScore = goodScore;
+        _goodScore = goodScore,
+        _userCreated = userCreated;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "score" field.
   int? _score;
   int get score => _score ?? 0;
   set score(int? val) => _score = val;
-  void incrementScore(int amount) => _score = score + amount;
+
+  void incrementScore(int amount) => score = score + amount;
+
   bool hasScore() => _score != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "total_correct" field.
   int? _totalCorrect;
   int get totalCorrect => _totalCorrect ?? 0;
   set totalCorrect(int? val) => _totalCorrect = val;
+
   void incrementTotalCorrect(int amount) =>
-      _totalCorrect = totalCorrect + amount;
+      totalCorrect = totalCorrect + amount;
+
   bool hasTotalCorrect() => _totalCorrect != null;
 
   // "total_incorrect" field.
   int? _totalIncorrect;
   int get totalIncorrect => _totalIncorrect ?? 0;
   set totalIncorrect(int? val) => _totalIncorrect = val;
+
   void incrementTotalIncorrect(int amount) =>
-      _totalIncorrect = totalIncorrect + amount;
+      totalIncorrect = totalIncorrect + amount;
+
   bool hasTotalIncorrect() => _totalIncorrect != null;
 
   // "staff_id" field.
   String? _staffId;
   String get staffId => _staffId ?? '';
   set staffId(String? val) => _staffId = val;
+
   bool hasStaffId() => _staffId != null;
 
   // "test_id" field.
   TestListStruct? _testId;
   TestListStruct get testId => _testId ?? TestListStruct();
   set testId(TestListStruct? val) => _testId = val;
-  void updateTestId(Function(TestListStruct) updateFn) =>
-      updateFn(_testId ??= TestListStruct());
+
+  void updateTestId(Function(TestListStruct) updateFn) {
+    updateFn(testId ??= TestListStruct());
+  }
+
   bool hasTestId() => _testId != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "duration_minutes" field.
   int? _durationMinutes;
   int get durationMinutes => _durationMinutes ?? 0;
   set durationMinutes(int? val) => _durationMinutes = val;
+
   void incrementDurationMinutes(int amount) =>
-      _durationMinutes = durationMinutes + amount;
+      durationMinutes = durationMinutes + amount;
+
   bool hasDurationMinutes() => _durationMinutes != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "lession_id" field.
   StaffTestLessonStruct? _lessionId;
   StaffTestLessonStruct get lessionId => _lessionId ?? StaffTestLessonStruct();
   set lessionId(StaffTestLessonStruct? val) => _lessionId = val;
-  void updateLessionId(Function(StaffTestLessonStruct) updateFn) =>
-      updateFn(_lessionId ??= StaffTestLessonStruct());
+
+  void updateLessionId(Function(StaffTestLessonStruct) updateFn) {
+    updateFn(lessionId ??= StaffTestLessonStruct());
+  }
+
   bool hasLessionId() => _lessionId != null;
 
   // "percent_correct" field.
   String? _percentCorrect;
   String get percentCorrect => _percentCorrect ?? '';
   set percentCorrect(String? val) => _percentCorrect = val;
+
   bool hasPercentCorrect() => _percentCorrect != null;
 
   // "good_score" field.
   int? _goodScore;
   int get goodScore => _goodScore ?? 0;
   set goodScore(int? val) => _goodScore = val;
-  void incrementGoodScore(int amount) => _goodScore = goodScore + amount;
+
+  void incrementGoodScore(int amount) => goodScore = goodScore + amount;
+
   bool hasGoodScore() => _goodScore != null;
+
+  // "user_created" field.
+  TestUserCreatedStruct? _userCreated;
+  TestUserCreatedStruct get userCreated =>
+      _userCreated ?? TestUserCreatedStruct();
+  set userCreated(TestUserCreatedStruct? val) => _userCreated = val;
+
+  void updateUserCreated(Function(TestUserCreatedStruct) updateFn) {
+    updateFn(userCreated ??= TestUserCreatedStruct());
+  }
+
+  bool hasUserCreated() => _userCreated != null;
 
   static StaffsTestsListStruct fromMap(Map<String, dynamic> data) =>
       StaffsTestsListStruct(
@@ -165,6 +204,7 @@ class StaffsTestsListStruct extends BaseStruct {
         lessionId: StaffTestLessonStruct.maybeFromMap(data['lession_id']),
         percentCorrect: data['percent_correct'] as String?,
         goodScore: castToType<int>(data['good_score']),
+        userCreated: TestUserCreatedStruct.maybeFromMap(data['user_created']),
       );
 
   static StaffsTestsListStruct? maybeFromMap(dynamic data) => data is Map
@@ -188,6 +228,7 @@ class StaffsTestsListStruct extends BaseStruct {
         'lession_id': _lessionId?.toMap(),
         'percent_correct': _percentCorrect,
         'good_score': _goodScore,
+        'user_created': _userCreated?.toMap(),
       }.withoutNulls;
 
   @override
@@ -255,6 +296,10 @@ class StaffsTestsListStruct extends BaseStruct {
         'good_score': serializeParam(
           _goodScore,
           ParamType.int,
+        ),
+        'user_created': serializeParam(
+          _userCreated,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -342,6 +387,12 @@ class StaffsTestsListStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        userCreated: deserializeStructParam(
+          data['user_created'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: TestUserCreatedStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -365,7 +416,8 @@ class StaffsTestsListStruct extends BaseStruct {
         description == other.description &&
         lessionId == other.lessionId &&
         percentCorrect == other.percentCorrect &&
-        goodScore == other.goodScore;
+        goodScore == other.goodScore &&
+        userCreated == other.userCreated;
   }
 
   @override
@@ -385,7 +437,8 @@ class StaffsTestsListStruct extends BaseStruct {
         description,
         lessionId,
         percentCorrect,
-        goodScore
+        goodScore,
+        userCreated
       ]);
 }
 
@@ -406,6 +459,7 @@ StaffsTestsListStruct createStaffsTestsListStruct({
   StaffTestLessonStruct? lessionId,
   String? percentCorrect,
   int? goodScore,
+  TestUserCreatedStruct? userCreated,
 }) =>
     StaffsTestsListStruct(
       id: id,
@@ -424,4 +478,5 @@ StaffsTestsListStruct createStaffsTestsListStruct({
       lessionId: lessionId ?? StaffTestLessonStruct(),
       percentCorrect: percentCorrect,
       goodScore: goodScore,
+      userCreated: userCreated ?? TestUserCreatedStruct(),
     );

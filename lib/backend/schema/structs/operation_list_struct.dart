@@ -15,15 +15,20 @@ class OperationListStruct extends BaseStruct {
   OperationsIdStruct? _operationsId;
   OperationsIdStruct get operationsId => _operationsId ?? OperationsIdStruct();
   set operationsId(OperationsIdStruct? val) => _operationsId = val;
-  void updateOperationsId(Function(OperationsIdStruct) updateFn) =>
-      updateFn(_operationsId ??= OperationsIdStruct());
+
+  void updateOperationsId(Function(OperationsIdStruct) updateFn) {
+    updateFn(operationsId ??= OperationsIdStruct());
+  }
+
   bool hasOperationsId() => _operationsId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static OperationListStruct fromMap(Map<String, dynamic> data) =>

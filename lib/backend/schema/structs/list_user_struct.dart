@@ -13,8 +13,11 @@ class ListUserStruct extends BaseStruct {
   List<UserStruct>? _data;
   List<UserStruct> get data => _data ?? const [];
   set data(List<UserStruct>? val) => _data = val;
-  void updateData(Function(List<UserStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<UserStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static ListUserStruct fromMap(Map<String, dynamic> data) => ListUserStruct(
@@ -36,7 +39,7 @@ class ListUserStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

@@ -9,8 +9,9 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
   ///  Local state fields for this page.
 
   LoginResourceDataStruct? loginData;
-  void updateLoginDataStruct(Function(LoginResourceDataStruct) updateFn) =>
-      updateFn(loginData ??= LoginResourceDataStruct());
+  void updateLoginDataStruct(Function(LoginResourceDataStruct) updateFn) {
+    updateFn(loginData ??= LoginResourceDataStruct());
+  }
 
   bool checkPassword = false;
 

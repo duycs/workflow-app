@@ -298,6 +298,13 @@ class _StudyProgramListMarketWidgetState
                                           _model
                                               .textFieldNameSearchTextController
                                               ?.text = name!;
+                                          _model.textFieldNameSearchTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .textFieldNameSearchTextController!
+                                                      .text
+                                                      .length);
                                         });
 
                                         setState(() {});

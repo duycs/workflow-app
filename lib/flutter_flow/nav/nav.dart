@@ -668,6 +668,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'status',
               ParamType.String,
             ),
+            itemNameList: params.getParam<String>(
+              'itemNameList',
+              ParamType.String,
+              isList: true,
+            ),
           ),
         ),
         FFRoute(

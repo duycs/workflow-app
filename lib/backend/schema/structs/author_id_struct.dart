@@ -16,12 +16,14 @@ class AuthorIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "alias" field.
   String? _alias;
   String get alias => _alias ?? '';
   set alias(String? val) => _alias = val;
+
   bool hasAlias() => _alias != null;
 
   static AuthorIdStruct fromMap(Map<String, dynamic> data) => AuthorIdStruct(

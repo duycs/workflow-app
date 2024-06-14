@@ -21,6 +21,7 @@ class BranchUpdateWidget extends StatefulWidget {
     this.description,
     this.codeList,
     String? status,
+    this.nameList,
   }) : status = status ?? '';
 
   final String? id;
@@ -29,6 +30,7 @@ class BranchUpdateWidget extends StatefulWidget {
   final String? description;
   final List<String>? codeList;
   final String status;
+  final List<String>? nameList;
 
   @override
   State<BranchUpdateWidget> createState() => _BranchUpdateWidgetState();
@@ -166,6 +168,26 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                             TextFormField(
                               controller: _model.branchNameTextController,
                               focusNode: _model.branchNameFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.branchNameTextController',
+                                const Duration(milliseconds: 2000),
+                                () async {
+                                  if (widget.name ==
+                                      _model.branchNameTextController.text) {
+                                    _model.checkCode = '0';
+                                    setState(() {});
+                                  } else {
+                                    if ((widget.nameList!).toList().contains(
+                                        _model.branchNameTextController.text)) {
+                                      _model.checkName = true;
+                                      setState(() {});
+                                    } else {
+                                      _model.checkName = false;
+                                      setState(() {});
+                                    }
+                                  }
+                                },
+                              ),
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -218,11 +240,30 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                              maxLength: 50,
+                              maxLength: 250,
                               validator: _model
                                   .branchNameTextControllerValidator
                                   .asValidator(context),
                             ),
+                            if (_model.checkName == true)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 20.0),
+                                child: Text(
+                                  'Mã chi nhánh đã tồn tại. Vui lòng chọn lại!',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ),
                             Text(
                               'Mã chi nhánh:',
                               style: FlutterFlowTheme.of(context)
@@ -238,7 +279,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                               focusNode: _model.branchCodeFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.branchCodeTextController',
-                                const Duration(milliseconds: 500),
+                                const Duration(milliseconds: 2000),
                                 () async {
                                   if (widget.code ==
                                       _model.branchCodeTextController.text) {
@@ -407,7 +448,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 maxLines: 3,
-                                maxLength: 200,
+                                maxLength: 250,
                                 validator: _model
                                     .descriptionBranchTextControllerValidator
                                     .asValidator(context),
@@ -593,6 +634,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                       .secondary,
                                             ),
                                           );
+                                          Navigator.pop(context);
                                           if (Navigator.of(context).canPop()) {
                                             context.pop();
                                           }

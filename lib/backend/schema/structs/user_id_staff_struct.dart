@@ -24,36 +24,42 @@ class UserIdStaffStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "role" field.
   String? _role;
   String get role => _role ?? '';
   set role(String? val) => _role = val;
+
   bool hasRole() => _role != null;
 
   // "first_name" field.
   String? _firstName;
   String get firstName => _firstName ?? '';
   set firstName(String? val) => _firstName = val;
+
   bool hasFirstName() => _firstName != null;
 
   // "avatar" field.
   String? _avatar;
   String get avatar => _avatar ?? '';
   set avatar(String? val) => _avatar = val;
+
   bool hasAvatar() => _avatar != null;
 
   // "email" field.
   String? _email;
   String get email => _email ?? '';
   set email(String? val) => _email = val;
+
   bool hasEmail() => _email != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   static UserIdStaffStruct fromMap(Map<String, dynamic> data) =>

@@ -208,6 +208,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
+                            maxLength: 250,
                             validator: _model.nameTextControllerValidator
                                 .asValidator(context),
                           ),
@@ -293,6 +294,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   fontFamily: 'Nunito Sans',
                                   letterSpacing: 0.0,
                                 ),
+                            maxLength: 50,
                             validator: _model.codeTextControllerValidator
                                 .asValidator(context),
                           ),
@@ -376,6 +378,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             maxLines: 3,
+                            maxLength: 250,
                             validator: _model.descriptionTextControllerValidator
                                 .asValidator(context),
                           ),

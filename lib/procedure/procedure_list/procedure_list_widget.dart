@@ -320,6 +320,13 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                         setState(() {
                                           _model.textNameTextController?.text =
                                               name!;
+                                          _model.textNameTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .textNameTextController!
+                                                      .text
+                                                      .length);
                                         });
 
                                         setState(() {});

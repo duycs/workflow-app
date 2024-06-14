@@ -27,55 +27,70 @@ class StaffAnswerListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "correct" field.
   int? _correct;
   int get correct => _correct ?? 0;
   set correct(int? val) => _correct = val;
-  void incrementCorrect(int amount) => _correct = correct + amount;
+
+  void incrementCorrect(int amount) => correct = correct + amount;
+
   bool hasCorrect() => _correct != null;
 
   // "answer_content" field.
   String? _answerContent;
   String get answerContent => _answerContent ?? '';
   set answerContent(String? val) => _answerContent = val;
+
   bool hasAnswerContent() => _answerContent != null;
 
   // "answer_type" field.
   String? _answerType;
   String get answerType => _answerType ?? '';
   set answerType(String? val) => _answerType = val;
+
   bool hasAnswerType() => _answerType != null;
 
   // "test_id" field.
   TestListStruct? _testId;
   TestListStruct get testId => _testId ?? TestListStruct();
   set testId(TestListStruct? val) => _testId = val;
-  void updateTestId(Function(TestListStruct) updateFn) =>
-      updateFn(_testId ??= TestListStruct());
+
+  void updateTestId(Function(TestListStruct) updateFn) {
+    updateFn(testId ??= TestListStruct());
+  }
+
   bool hasTestId() => _testId != null;
 
   // "answers" field.
   List<AnswersListStruct>? _answers;
   List<AnswersListStruct> get answers => _answers ?? const [];
   set answers(List<AnswersListStruct>? val) => _answers = val;
-  void updateAnswers(Function(List<AnswersListStruct>) updateFn) =>
-      updateFn(_answers ??= []);
+
+  void updateAnswers(Function(List<AnswersListStruct>) updateFn) {
+    updateFn(answers ??= []);
+  }
+
   bool hasAnswers() => _answers != null;
 
   // "question_id" field.
   QuestionObjectStruct? _questionId;
   QuestionObjectStruct get questionId => _questionId ?? QuestionObjectStruct();
   set questionId(QuestionObjectStruct? val) => _questionId = val;
-  void updateQuestionId(Function(QuestionObjectStruct) updateFn) =>
-      updateFn(_questionId ??= QuestionObjectStruct());
+
+  void updateQuestionId(Function(QuestionObjectStruct) updateFn) {
+    updateFn(questionId ??= QuestionObjectStruct());
+  }
+
   bool hasQuestionId() => _questionId != null;
 
   static StaffAnswerListStruct fromMap(Map<String, dynamic> data) =>
@@ -137,7 +152,7 @@ class StaffAnswerListStruct extends BaseStruct {
         'answers': serializeParam(
           _answers,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'question_id': serializeParam(
           _questionId,

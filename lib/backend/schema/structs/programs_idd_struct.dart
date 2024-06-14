@@ -18,20 +18,24 @@ class ProgramsIddStruct extends BaseStruct {
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
   int get estimateInDay => _estimateInDay ?? 0;
   set estimateInDay(int? val) => _estimateInDay = val;
+
   void incrementEstimateInDay(int amount) =>
-      _estimateInDay = estimateInDay + amount;
+      estimateInDay = estimateInDay + amount;
+
   bool hasEstimateInDay() => _estimateInDay != null;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   static ProgramsIddStruct fromMap(Map<String, dynamic> data) =>

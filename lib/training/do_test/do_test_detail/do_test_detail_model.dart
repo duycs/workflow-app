@@ -33,7 +33,6 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
   // Stores action output result for [Backend Call - API (StaffAnswerList)] action in DoTestDetail widget.
   ApiCallResponse? apiResultGetStaffAnswerList;
   // State field(s) for Checkbox widget.
-
   Map<QuestionAnswerObjectStruct, bool> checkboxValueMap1 = {};
   List<QuestionAnswerObjectStruct> get checkboxCheckedItems1 =>
       checkboxValueMap1.entries
@@ -42,7 +41,6 @@ class DoTestDetailModel extends FlutterFlowModel<DoTestDetailWidget> {
           .toList();
 
   // State field(s) for Checkbox widget.
-
   Map<QuestionAnswerObjectStruct, bool> checkboxValueMap2 = {};
   List<QuestionAnswerObjectStruct> get checkboxCheckedItems2 =>
       checkboxValueMap2.entries

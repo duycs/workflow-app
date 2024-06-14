@@ -10,7 +10,6 @@ class MultiSelecListQuestionModel
 
   // State field(s) for CheckboxGroup widget.
   FormFieldController<List<String>>? checkboxGroupValueController;
-
   List<String>? get checkboxGroupValues => checkboxGroupValueController?.value;
   set checkboxGroupValues(List<String>? v) =>
       checkboxGroupValueController?.value = v;

@@ -13,8 +13,11 @@ class DomainsMarketStruct extends BaseStruct {
   DomainsIdMarketStruct? _domainsId;
   DomainsIdMarketStruct get domainsId => _domainsId ?? DomainsIdMarketStruct();
   set domainsId(DomainsIdMarketStruct? val) => _domainsId = val;
-  void updateDomainsId(Function(DomainsIdMarketStruct) updateFn) =>
-      updateFn(_domainsId ??= DomainsIdMarketStruct());
+
+  void updateDomainsId(Function(DomainsIdMarketStruct) updateFn) {
+    updateFn(domainsId ??= DomainsIdMarketStruct());
+  }
+
   bool hasDomainsId() => _domainsId != null;
 
   static DomainsMarketStruct fromMap(Map<String, dynamic> data) =>

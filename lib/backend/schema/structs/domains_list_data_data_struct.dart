@@ -13,8 +13,11 @@ class DomainsListDataDataStruct extends BaseStruct {
   List<DomainsListListStruct>? _data;
   List<DomainsListListStruct> get data => _data ?? const [];
   set data(List<DomainsListListStruct>? val) => _data = val;
-  void updateData(Function(List<DomainsListListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<DomainsListListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static DomainsListDataDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class DomainsListDataDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

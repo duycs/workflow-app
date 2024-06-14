@@ -1210,6 +1210,13 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                                       return ' ';
                                                     }
                                                   }();
+                                                  _model.titleTextTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .titleTextTextController!
+                                                              .text
+                                                              .length);
                                                 });
 
                                                 setState(() {});
@@ -2230,6 +2237,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       setState(() {});
                                     }
 
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
                                     context.pushNamed(
                                       'PersonnelList',
                                       extra: <String, dynamic>{
@@ -2385,6 +2395,9 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                       );
                                     }
 
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
                                     context.pushNamed(
                                       'PersonnelList',
                                       extra: <String, dynamic>{

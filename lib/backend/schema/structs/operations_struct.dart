@@ -35,76 +35,92 @@ class OperationsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "operations_id" field.
   OperationsIdStruct? _operationsId;
   OperationsIdStruct get operationsId => _operationsId ?? OperationsIdStruct();
   set operationsId(OperationsIdStruct? val) => _operationsId = val;
-  void updateOperationsId(Function(OperationsIdStruct) updateFn) =>
-      updateFn(_operationsId ??= OperationsIdStruct());
+
+  void updateOperationsId(Function(OperationsIdStruct) updateFn) {
+    updateFn(operationsId ??= OperationsIdStruct());
+  }
+
   bool hasOperationsId() => _operationsId != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "action_type" field.
   String? _actionType;
   String get actionType => _actionType ?? '';
   set actionType(String? val) => _actionType = val;
+
   bool hasActionType() => _actionType != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "execute_id" field.
   String? _executeId;
   String get executeId => _executeId ?? '';
   set executeId(String? val) => _executeId = val;
+
   bool hasExecuteId() => _executeId != null;
 
   // "flow_id" field.
   String? _flowId;
   String get flowId => _flowId ?? '';
   set flowId(String? val) => _flowId = val;
+
   bool hasFlowId() => _flowId != null;
 
   // "user_created" field.
   UserOperationStruct? _userCreated;
   UserOperationStruct get userCreated => _userCreated ?? UserOperationStruct();
   set userCreated(UserOperationStruct? val) => _userCreated = val;
-  void updateUserCreated(Function(UserOperationStruct) updateFn) =>
-      updateFn(_userCreated ??= UserOperationStruct());
+
+  void updateUserCreated(Function(UserOperationStruct) updateFn) {
+    updateFn(userCreated ??= UserOperationStruct());
+  }
+
   bool hasUserCreated() => _userCreated != null;
 
   static OperationsStruct fromMap(Map<String, dynamic> data) =>

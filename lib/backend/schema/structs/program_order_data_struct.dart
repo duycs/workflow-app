@@ -13,8 +13,11 @@ class ProgramOrderDataStruct extends BaseStruct {
   List<ProgramOrderStruct>? _data;
   List<ProgramOrderStruct> get data => _data ?? const [];
   set data(List<ProgramOrderStruct>? val) => _data = val;
-  void updateData(Function(List<ProgramOrderStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<ProgramOrderStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static ProgramOrderDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class ProgramOrderDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

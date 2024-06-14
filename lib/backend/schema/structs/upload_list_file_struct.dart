@@ -15,15 +15,22 @@ class UploadListFileStruct extends BaseStruct {
   List<FileDataStruct>? _create;
   List<FileDataStruct> get create => _create ?? const [];
   set create(List<FileDataStruct>? val) => _create = val;
-  void updateCreate(Function(List<FileDataStruct>) updateFn) =>
-      updateFn(_create ??= []);
+
+  void updateCreate(Function(List<FileDataStruct>) updateFn) {
+    updateFn(create ??= []);
+  }
+
   bool hasCreate() => _create != null;
 
   // "delete" field.
   List<int>? _delete;
   List<int> get delete => _delete ?? const [];
   set delete(List<int>? val) => _delete = val;
-  void updateDelete(Function(List<int>) updateFn) => updateFn(_delete ??= []);
+
+  void updateDelete(Function(List<int>) updateFn) {
+    updateFn(delete ??= []);
+  }
+
   bool hasDelete() => _delete != null;
 
   static UploadListFileStruct fromMap(Map<String, dynamic> data) =>
@@ -49,12 +56,12 @@ class UploadListFileStruct extends BaseStruct {
         'create': serializeParam(
           _create,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'delete': serializeParam(
           _delete,
           ParamType.int,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

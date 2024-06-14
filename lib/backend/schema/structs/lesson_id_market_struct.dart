@@ -33,68 +33,81 @@ class LessonIdMarketStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "video" field.
   String? _video;
   String get video => _video ?? '';
   set video(String? val) => _video = val;
+
   bool hasVideo() => _video != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   // "duration_hours" field.
   String? _durationHours;
   String get durationHours => _durationHours ?? '';
   set durationHours(String? val) => _durationHours = val;
+
   bool hasDurationHours() => _durationHours != null;
 
   // "file" field.
   FileStruct? _file;
   FileStruct get file => _file ?? FileStruct();
   set file(FileStruct? val) => _file = val;
-  void updateFile(Function(FileStruct) updateFn) =>
-      updateFn(_file ??= FileStruct());
+
+  void updateFile(Function(FileStruct) updateFn) {
+    updateFn(file ??= FileStruct());
+  }
+
   bool hasFile() => _file != null;
 
   static LessonIdMarketStruct fromMap(Map<String, dynamic> data) =>

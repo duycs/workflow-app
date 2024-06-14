@@ -1156,13 +1156,16 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    if (Navigator.of(context).canPop()) {
+                      context.pop();
+                    }
                     context.pushNamed(
                       'DepartmentUpdate',
                       queryParameters: {
                         'checkCode': serializeParam(
                           widget.checkCode,
                           ParamType.String,
-                          true,
+                          isList: true,
                         ),
                         'items': serializeParam(
                           widget.items,

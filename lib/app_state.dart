@@ -76,7 +76,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   void updateUserStruct(Function(UserStruct) updateFn) {
-    updateFn(_user);
+    updateFn(user);
     prefs.setString('ff_user', _user.serialize());
   }
 
@@ -100,26 +100,26 @@ class FFAppState extends ChangeNotifier {
   }
 
   void addToListaResultado(String value) {
-    _listaResultado.add(value);
+    listaResultado.add(value);
   }
 
   void removeFromListaResultado(String value) {
-    _listaResultado.remove(value);
+    listaResultado.remove(value);
   }
 
   void removeAtIndexFromListaResultado(int index) {
-    _listaResultado.removeAt(index);
+    listaResultado.removeAt(index);
   }
 
   void updateListaResultadoAtIndex(
     int index,
     String Function(String) updateFn,
   ) {
-    _listaResultado[index] = updateFn(_listaResultado[index]);
+    listaResultado[index] = updateFn(_listaResultado[index]);
   }
 
   void insertAtIndexInListaResultado(int index, String value) {
-    _listaResultado.insert(index, value);
+    listaResultado.insert(index, value);
   }
 
   dynamic _staffLogin;
@@ -165,7 +165,7 @@ class FFAppState extends ChangeNotifier {
     _idCheck = value;
   }
 
-  bool _marketOn = false;
+  bool _marketOn = true;
   bool get marketOn => _marketOn;
   set marketOn(bool value) {
     _marketOn = value;

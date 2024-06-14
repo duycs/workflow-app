@@ -1,4 +1,4 @@
-import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,13 +7,13 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/menu_delete/menu_delete_widget.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_home_page_model.dart';
 export 'lesson_detail_home_page_model.dart';
@@ -45,11 +45,13 @@ class LessonDetailHomePageWidget extends StatefulWidget {
       _LessonDetailHomePageWidgetState();
 }
 
-class _LessonDetailHomePageWidgetState
-    extends State<LessonDetailHomePageWidget> {
+class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
+    with TickerProviderStateMixin {
   late LessonDetailHomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -58,15 +60,33 @@ class _LessonDetailHomePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.status = widget.status!;
-      await _model.getComments(context);
-      setState(() {});
-      await _model.getHeart(context);
-      setState(() {});
+      if (widget.listItems != null) {
+        _model.status = widget.status!;
+        await _model.getComments(context);
+        setState(() {});
+        await _model.getHeart(context);
+        setState(() {});
+      }
     });
 
     _model.commentsTextController ??= TextEditingController();
     _model.commentsFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'textOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 550.0.ms,
+            duration: 600.0.ms,
+            begin: const Offset(0, 0),
+            end: const Offset(0, 0.349),
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -134,7 +154,8 @@ class _LessonDetailHomePageWidgetState
                       ),
                 ),
               ),
-              if ((_model.status == 'draft') &&
+              if ((_model.status != '') &&
+                  (_model.status == 'draft') &&
                   (widget.id != ''))
                 FFButtonWidget(
                   onPressed: () async {
@@ -160,83 +181,9 @@ class _LessonDetailHomePageWidgetState
                         ) ??
                         false;
                     if (confirmDialogResponse) {
-                      _model.apiResultUpdateStatus =
-                          await LessonGroup.updateStaffLessonStatusCall.call(
-                        accessToken: FFAppState().accessToken,
-                        id: widget.id,
-                        dateStart: getCurrentTimestamp.toString(),
-                      );
-                      if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
-                        _model.status = 'inprogress';
-                        setState(() {});
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Đã ghim bài đang học',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-                      } else {
-                        _model.checkRefreshTokenBlockabcd =
-                            await action_blocks.checkRefreshToken(
-                          context,
-                          jsonErrors:
-                              (_model.apiResultUpdateStatus?.jsonBody ?? ''),
-                        );
-                        if (!_model.checkRefreshTokenBlockabcd!) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                FFAppConstants.ErrorLoadData,
-                                style: TextStyle(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                              duration: const Duration(milliseconds: 4000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).error,
-                            ),
-                          );
-                        }
-                      }
-                    }
-                    _model.updateStatusStaffProgram =
-                        await action_blocks.tokenReload(context);
-                    if (_model.updateStatusStaffProgram!) {
-                      _model.apiResultUpdateStaffProgramStatus =
-                          await LessonGroup.updateStaffProgramStatusCall.call(
-                        accessToken: FFAppState().accessToken,
-                        staffId: FFAppState().staffid,
-                        programId: widget.programId,
-                      );
-                      if (!(_model
-                              .apiResultUpdateStaffProgramStatus?.succeeded ??
-                          true)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Lỗi cập nhật trạng thái đang học của Chương trình',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor: FlutterFlowTheme.of(context).error,
-                          ),
-                        );
-                      }
-                    } else {
+                      await _model.startLesson(context);
                       setState(() {});
                     }
-
-                    setState(() {});
                   },
                   text: 'Bắt đầu học',
                   options: FFButtonOptions(
@@ -269,7 +216,9 @@ class _LessonDetailHomePageWidgetState
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (widget.listItems != null)
+            if ((widget.listItems != null) &&
+                (_model.status != '') &&
+                (widget.id != ''))
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
@@ -1806,149 +1755,157 @@ class _LessonDetailHomePageWidgetState
                               ),
                             ),
                           ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 4.0, 12.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (_model.checkLove == '1')
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            _model.checkLove = '0';
-                                            setState(() {});
-                                            await _model.deleteHeart(context);
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.favorite_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            size: 24.0,
+                        Container(
+                          width: double.infinity,
+                          height: 35.0,
+                          decoration: const BoxDecoration(),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12.0, 4.0, 12.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (_model.checkLove == '1')
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              _model.checkLove = '0';
+                                              setState(() {});
+                                              await _model.deleteHeart(context);
+                                              setState(() {});
+                                            },
+                                            child: Icon(
+                                              Icons.favorite_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
+                                              size: 24.0,
+                                            ),
                                           ),
-                                        ),
-                                      if (_model.checkLove == '0')
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            _model.checkLove = '1';
-                                            setState(() {});
-                                            await _model.postHeart(context);
-                                            setState(() {});
-                                          },
-                                          child: Icon(
-                                            Icons.favorite_border_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
+                                        if (_model.checkLove == '0')
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              await _model.postHeart(context);
+                                              setState(() {});
+                                              _model.checkLove = '1';
+                                              setState(() {});
+                                            },
+                                            child: Icon(
+                                              Icons.favorite_border_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
                                           ),
-                                        ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        _model.listStaffIdHeart.length
-                                            .toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Lượt thích',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ].divide(const SizedBox(width: 2.0)),
-                                  ),
-                                ].divide(const SizedBox(width: 4.0)),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.mode_comment_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 20.0,
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        _model.list.length.toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Bình luận',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ].divide(const SizedBox(width: 2.0)),
-                                  ),
-                                ].divide(const SizedBox(width: 4.0)),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
-                                    child: Text(
-                                      dateTimeFormat(
-                                        'dd/MM/yyyy',
-                                        functions.stringToDateTime(getJsonField(
-                                          widget.listItems,
-                                          r'''$.date_created''',
-                                        ).toString()),
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
+                                      ],
                                     ),
-                                  ),
-                                ].divide(const SizedBox(width: 4.0)),
-                              ),
-                            ].divide(const SizedBox(width: 24.0)),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          _model.listStaffIdHeart.length
+                                              .toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Text(
+                                          'Lượt thích',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ].divide(const SizedBox(width: 2.0)),
+                                    ),
+                                  ].divide(const SizedBox(width: 4.0)),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.mode_comment_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 20.0,
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          _model.list.length.toString(),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Text(
+                                          'Bình luận',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ].divide(const SizedBox(width: 2.0)),
+                                    ),
+                                  ].divide(const SizedBox(width: 4.0)),
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Align(
+                                      alignment: const AlignmentDirectional(1.0, 0.0),
+                                      child: Text(
+                                        dateTimeFormat(
+                                          'dd/MM/yyyy',
+                                          functions
+                                              .stringToDateTime(getJsonField(
+                                            widget.listItems,
+                                            r'''$.date_created''',
+                                          ).toString()),
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 4.0)),
+                                ),
+                              ].divide(const SizedBox(width: 24.0)),
+                            ),
                           ),
                         ),
                         if ((_model.testId != '') &&
@@ -2605,121 +2562,157 @@ class _LessonDetailHomePageWidgetState
                   ),
                 ),
               ),
-            if ((widget.listItems != null) && (_model.status != 'draft'))
+            if ((_model.status != '') &&
+                (widget.listItems != null) &&
+                (_model.status != 'draft'))
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(40.0),
-                      child: Image.network(
-                        '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
-                        width: 40.0,
-                        height: 40.0,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            Image.asset(
-                          'assets/images/error_image.jpg',
+                    if ((_model.status != '') &&
+                        (widget.listItems != null) &&
+                        (_model.status != 'draft') &&
+                        (widget.id != ''))
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: Image.network(
+                          '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
                           width: 40.0,
                           height: 40.0,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Image.asset(
+                            'assets/images/error_image.jpg',
+                            width: 40.0,
+                            height: 40.0,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            borderRadius: BorderRadius.circular(16.0),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 8.0, 0.0),
-                                  child: TextFormField(
-                                    controller: _model.commentsTextController,
-                                    focusNode: _model.commentsFocusNode,
-                                    autofocus: false,
-                                    textInputAction: TextInputAction.send,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                    if ((_model.status != '') &&
+                        (widget.listItems != null) &&
+                        (_model.status != 'draft') &&
+                        (widget.id != ''))
+                      Flexible(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 0.0),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 8.0, 0.0),
+                                    child: TextFormField(
+                                      controller: _model.commentsTextController,
+                                      focusNode: _model.commentsFocusNode,
+                                      autofocus: false,
+                                      textInputAction: TextInputAction.send,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintText: 'Viết bình luận...',
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
                                           .override(
                                             fontFamily: 'Nunito Sans',
                                             letterSpacing: 0.0,
                                           ),
-                                      hintText: 'Viết bình luận...',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      errorBorder: InputBorder.none,
-                                      focusedErrorBorder: InputBorder.none,
+                                      validator: _model
+                                          .commentsTextControllerValidator
+                                          .asValidator(context),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .commentsTextControllerValidator
-                                        .asValidator(context),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 3.0, 0.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor:
-                                      FlutterFlowTheme.of(context).noColor,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor:
-                                      FlutterFlowTheme.of(context).noColor,
-                                  icon: Icon(
-                                    Icons.send,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 3.0, 0.0),
+                                  child: FlutterFlowIconButton(
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).noColor,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    fillColor:
+                                        FlutterFlowTheme.of(context).noColor,
+                                    icon: Icon(
+                                      Icons.send,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      if (_model.commentsTextController.text !=
+                                              '') {
+                                        await _model.postComment(context);
+                                        setState(() {});
+                                        setState(() {
+                                          _model.commentsTextController
+                                              ?.clear();
+                                        });
+                                        await _model.getComments(context);
+                                        setState(() {});
+                                      }
+                                    },
                                   ),
-                                  onPressed: () async {
-                                    if (_model.commentsTextController.text !=
-                                            '') {
-                                      await _model.postComment(context);
-                                      setState(() {});
-                                      setState(() {
-                                        _model.commentsTextController?.clear();
-                                      });
-                                      await _model.getComments(context);
-                                      setState(() {});
-                                    }
-                                  },
                                 ),
-                              ),
-                            ].divide(const SizedBox(width: 6.0)),
+                              ].divide(const SizedBox(width: 6.0)),
+                            ),
                           ),
                         ),
                       ),
-                    ),
                   ],
+                ),
+              ),
+            if (_model.status == '')
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.sizeOf(context).height * 0.7,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                  ),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Text(
+                    'Đang tải dữ liệu...',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          fontStyle: FontStyle.italic,
+                        ),
+                  ).animateOnPageLoad(
+                      animationsMap['textOnPageLoadAnimation']!),
                 ),
               ),
           ],

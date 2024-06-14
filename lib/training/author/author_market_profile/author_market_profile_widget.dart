@@ -99,7 +99,16 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                     size: 30.0,
                   ),
                   onPressed: () async {
-                    context.safePop();
+                    context.pushNamed(
+                      'Profile',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
                   },
                 ),
               ),

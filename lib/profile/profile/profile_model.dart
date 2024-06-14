@@ -9,8 +9,9 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   ///  Local state fields for this page.
 
   StaffListStruct? staffDetail;
-  void updateStaffDetailStruct(Function(StaffListStruct) updateFn) =>
-      updateFn(staffDetail ??= StaffListStruct());
+  void updateStaffDetailStruct(Function(StaffListStruct) updateFn) {
+    updateFn(staffDetail ??= StaffListStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 

@@ -84,7 +84,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       ),
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Text(
-                        'eWorkflow',
+                        'ComOS',
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Nunito Sans',
@@ -1057,7 +1057,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         ),
                                       );
 
-                                      context.pushNamed(
+                                      context.goNamed(
                                         'Login',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: const TransitionInfo(

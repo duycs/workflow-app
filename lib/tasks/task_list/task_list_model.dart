@@ -22,12 +22,14 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       list[index] = updateFn(list[index]);
 
   UpdateTaskDataTypeStruct? responseData;
-  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) =>
-      updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  void updateResponseDataStruct(Function(UpdateTaskDataTypeStruct) updateFn) {
+    updateFn(responseData ??= UpdateTaskDataTypeStruct());
+  }
 
   WorkflowsStruct? stepList;
-  void updateStepListStruct(Function(WorkflowsStruct) updateFn) =>
-      updateFn(stepList ??= WorkflowsStruct());
+  void updateStepListStruct(Function(WorkflowsStruct) updateFn) {
+    updateFn(stepList ??= WorkflowsStruct());
+  }
 
   String staffId = '';
 

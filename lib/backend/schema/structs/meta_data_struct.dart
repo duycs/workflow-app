@@ -16,14 +16,18 @@ class MetaDataStruct extends BaseStruct {
   int? _totalCount;
   int get totalCount => _totalCount ?? 0;
   set totalCount(int? val) => _totalCount = val;
-  void incrementTotalCount(int amount) => _totalCount = totalCount + amount;
+
+  void incrementTotalCount(int amount) => totalCount = totalCount + amount;
+
   bool hasTotalCount() => _totalCount != null;
 
   // "filter_count" field.
   int? _filterCount;
   int get filterCount => _filterCount ?? 0;
   set filterCount(int? val) => _filterCount = val;
-  void incrementFilterCount(int amount) => _filterCount = filterCount + amount;
+
+  void incrementFilterCount(int amount) => filterCount = filterCount + amount;
+
   bool hasFilterCount() => _filterCount != null;
 
   static MetaDataStruct fromMap(Map<String, dynamic> data) => MetaDataStruct(

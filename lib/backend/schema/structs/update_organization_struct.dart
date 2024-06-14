@@ -27,50 +27,60 @@ class UpdateOrganizationStruct extends BaseStruct {
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "hotline" field.
   String? _hotline;
   String get hotline => _hotline ?? '';
   set hotline(String? val) => _hotline = val;
+
   bool hasHotline() => _hotline != null;
 
   // "avatar" field.
   String? _avatar;
   String get avatar => _avatar ?? '';
   set avatar(String? val) => _avatar = val;
+
   bool hasAvatar() => _avatar != null;
 
   // "logo" field.
   String? _logo;
   String get logo => _logo ?? '';
   set logo(String? val) => _logo = val;
+
   bool hasLogo() => _logo != null;
 
   // "address" field.
   String? _address;
   String get address => _address ?? '';
   set address(String? val) => _address = val;
+
   bool hasAddress() => _address != null;
 
   // "video" field.
   String? _video;
   String get video => _video ?? '';
   set video(String? val) => _video = val;
+
   bool hasVideo() => _video != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "files" field.
   UploadListFileStruct? _files;
   UploadListFileStruct get files => _files ?? UploadListFileStruct();
   set files(UploadListFileStruct? val) => _files = val;
-  void updateFiles(Function(UploadListFileStruct) updateFn) =>
-      updateFn(_files ??= UploadListFileStruct());
+
+  void updateFiles(Function(UploadListFileStruct) updateFn) {
+    updateFn(files ??= UploadListFileStruct());
+  }
+
   bool hasFiles() => _files != null;
 
   static UpdateOrganizationStruct fromMap(Map<String, dynamic> data) =>

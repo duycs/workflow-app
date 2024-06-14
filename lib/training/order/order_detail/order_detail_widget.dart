@@ -832,6 +832,8 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     );
                                   },
                                 ).then((value) => safeSetState(() {}));
+
+                                Navigator.pop(context);
                               },
                               text: 'Chỉnh sửa',
                               icon: const Icon(

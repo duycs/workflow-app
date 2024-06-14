@@ -55,116 +55,145 @@ class TaskListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "action_type" field.
   String? _actionType;
   String get actionType => _actionType ?? '';
   set actionType(String? val) => _actionType = val;
+
   bool hasActionType() => _actionType != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "deadline" field.
   String? _deadline;
   String get deadline => _deadline ?? '';
   set deadline(String? val) => _deadline = val;
+
   bool hasDeadline() => _deadline != null;
 
   // "estimate_in_second" field.
   int? _estimateInSecond;
   int get estimateInSecond => _estimateInSecond ?? 0;
   set estimateInSecond(int? val) => _estimateInSecond = val;
+
   void incrementEstimateInSecond(int amount) =>
-      _estimateInSecond = estimateInSecond + amount;
+      estimateInSecond = estimateInSecond + amount;
+
   bool hasEstimateInSecond() => _estimateInSecond != null;
 
   // "staffs" field.
   List<StaffInTaskListStruct>? _staffs;
   List<StaffInTaskListStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffInTaskListStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffInTaskListStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffInTaskListStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "workflow_id" field.
   TaskStruct? _workflowId;
   TaskStruct get workflowId => _workflowId ?? TaskStruct();
   set workflowId(TaskStruct? val) => _workflowId = val;
-  void updateWorkflowId(Function(TaskStruct) updateFn) =>
-      updateFn(_workflowId ??= TaskStruct());
+
+  void updateWorkflowId(Function(TaskStruct) updateFn) {
+    updateFn(workflowId ??= TaskStruct());
+  }
+
   bool hasWorkflowId() => _workflowId != null;
 
   // "operations" field.
   List<OperationListStruct>? _operations;
   List<OperationListStruct> get operations => _operations ?? const [];
   set operations(List<OperationListStruct>? val) => _operations = val;
-  void updateOperations(Function(List<OperationListStruct>) updateFn) =>
-      updateFn(_operations ??= []);
+
+  void updateOperations(Function(List<OperationListStruct>) updateFn) {
+    updateFn(operations ??= []);
+  }
+
   bool hasOperations() => _operations != null;
 
   // "published_count" field.
   int? _publishedCount;
   int get publishedCount => _publishedCount ?? 0;
   set publishedCount(int? val) => _publishedCount = val;
+
   void incrementPublishedCount(int amount) =>
-      _publishedCount = publishedCount + amount;
+      publishedCount = publishedCount + amount;
+
   bool hasPublishedCount() => _publishedCount != null;
 
   // "step_id" field.
   List<StepsStruct>? _stepId;
   List<StepsStruct> get stepId => _stepId ?? const [];
   set stepId(List<StepsStruct>? val) => _stepId = val;
-  void updateStepId(Function(List<StepsStruct>) updateFn) =>
-      updateFn(_stepId ??= []);
+
+  void updateStepId(Function(List<StepsStruct>) updateFn) {
+    updateFn(stepId ??= []);
+  }
+
   bool hasStepId() => _stepId != null;
 
   // "number" field.
   int? _number;
   int get number => _number ?? 0;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "current" field.
   int? _current;
   int get current => _current ?? 0;
   set current(int? val) => _current = val;
-  void incrementCurrent(int amount) => _current = current + amount;
+
+  void incrementCurrent(int amount) => current = current + amount;
+
   bool hasCurrent() => _current != null;
 
   // "organization_id" field.
@@ -172,8 +201,11 @@ class TaskListStruct extends BaseStruct {
   OrganizationIdStruct get organizationId =>
       _organizationId ?? OrganizationIdStruct();
   set organizationId(OrganizationIdStruct? val) => _organizationId = val;
-  void updateOrganizationId(Function(OrganizationIdStruct) updateFn) =>
-      updateFn(_organizationId ??= OrganizationIdStruct());
+
+  void updateOrganizationId(Function(OrganizationIdStruct) updateFn) {
+    updateFn(organizationId ??= OrganizationIdStruct());
+  }
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "submit_staff_id" field.
@@ -181,28 +213,36 @@ class TaskListStruct extends BaseStruct {
   SubmitStaffIdStruct get submitStaffId =>
       _submitStaffId ?? SubmitStaffIdStruct();
   set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
-  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) =>
-      updateFn(_submitStaffId ??= SubmitStaffIdStruct());
+
+  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) {
+    updateFn(submitStaffId ??= SubmitStaffIdStruct());
+  }
+
   bool hasSubmitStaffId() => _submitStaffId != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "time_operate" field.
   String? _timeOperate;
   String get timeOperate => _timeOperate ?? '';
   set timeOperate(String? val) => _timeOperate = val;
+
   bool hasTimeOperate() => _timeOperate != null;
 
   // "created_user_id" field.
   UserStruct? _createdUserId;
   UserStruct get createdUserId => _createdUserId ?? UserStruct();
   set createdUserId(UserStruct? val) => _createdUserId = val;
-  void updateCreatedUserId(Function(UserStruct) updateFn) =>
-      updateFn(_createdUserId ??= UserStruct());
+
+  void updateCreatedUserId(Function(UserStruct) updateFn) {
+    updateFn(createdUserId ??= UserStruct());
+  }
+
   bool hasCreatedUserId() => _createdUserId != null;
 
   static TaskListStruct fromMap(Map<String, dynamic> data) => TaskListStruct(
@@ -314,7 +354,7 @@ class TaskListStruct extends BaseStruct {
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'workflow_id': serializeParam(
           _workflowId,
@@ -323,7 +363,7 @@ class TaskListStruct extends BaseStruct {
         'operations': serializeParam(
           _operations,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'published_count': serializeParam(
           _publishedCount,
@@ -332,7 +372,7 @@ class TaskListStruct extends BaseStruct {
         'step_id': serializeParam(
           _stepId,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'number': serializeParam(
           _number,

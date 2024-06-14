@@ -16,12 +16,14 @@ class ProcedurePublishedUserCreatedStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "first_name" field.
   String? _firstName;
   String get firstName => _firstName ?? '';
   set firstName(String? val) => _firstName = val;
+
   bool hasFirstName() => _firstName != null;
 
   static ProcedurePublishedUserCreatedStruct fromMap(

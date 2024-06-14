@@ -12,52 +12,75 @@ class ProgramsIdStruct extends BaseStruct {
     String? imageCover,
     AuthorIdStruct? authorId,
     String? price,
+    List<DepartmentsIddddStruct>? departments,
   })  : _id = id,
         _name = name,
         _lessions = lessions,
         _imageCover = imageCover,
         _authorId = authorId,
-        _price = price;
+        _price = price,
+        _departments = departments;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "lessions" field.
   List<LessionIdStruct>? _lessions;
   List<LessionIdStruct> get lessions => _lessions ?? const [];
   set lessions(List<LessionIdStruct>? val) => _lessions = val;
-  void updateLessions(Function(List<LessionIdStruct>) updateFn) =>
-      updateFn(_lessions ??= []);
+
+  void updateLessions(Function(List<LessionIdStruct>) updateFn) {
+    updateFn(lessions ??= []);
+  }
+
   bool hasLessions() => _lessions != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   // "author_id" field.
   AuthorIdStruct? _authorId;
   AuthorIdStruct get authorId => _authorId ?? AuthorIdStruct();
   set authorId(AuthorIdStruct? val) => _authorId = val;
-  void updateAuthorId(Function(AuthorIdStruct) updateFn) =>
-      updateFn(_authorId ??= AuthorIdStruct());
+
+  void updateAuthorId(Function(AuthorIdStruct) updateFn) {
+    updateFn(authorId ??= AuthorIdStruct());
+  }
+
   bool hasAuthorId() => _authorId != null;
 
   // "price" field.
   String? _price;
   String get price => _price ?? '';
   set price(String? val) => _price = val;
+
   bool hasPrice() => _price != null;
+
+  // "departments" field.
+  List<DepartmentsIddddStruct>? _departments;
+  List<DepartmentsIddddStruct> get departments => _departments ?? const [];
+  set departments(List<DepartmentsIddddStruct>? val) => _departments = val;
+
+  void updateDepartments(Function(List<DepartmentsIddddStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
+  bool hasDepartments() => _departments != null;
 
   static ProgramsIdStruct fromMap(Map<String, dynamic> data) =>
       ProgramsIdStruct(
@@ -70,6 +93,10 @@ class ProgramsIdStruct extends BaseStruct {
         imageCover: data['image_cover'] as String?,
         authorId: AuthorIdStruct.maybeFromMap(data['author_id']),
         price: data['price'] as String?,
+        departments: getStructList(
+          data['departments'],
+          DepartmentsIddddStruct.fromMap,
+        ),
       );
 
   static ProgramsIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -83,6 +110,7 @@ class ProgramsIdStruct extends BaseStruct {
         'image_cover': _imageCover,
         'author_id': _authorId?.toMap(),
         'price': _price,
+        'departments': _departments?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -98,7 +126,7 @@ class ProgramsIdStruct extends BaseStruct {
         'lessions': serializeParam(
           _lessions,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'image_cover': serializeParam(
           _imageCover,
@@ -111,6 +139,11 @@ class ProgramsIdStruct extends BaseStruct {
         'price': serializeParam(
           _price,
           ParamType.String,
+        ),
+        'departments': serializeParam(
+          _departments,
+          ParamType.DataStruct,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -148,6 +181,12 @@ class ProgramsIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        departments: deserializeStructParam<DepartmentsIddddStruct>(
+          data['departments'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: DepartmentsIddddStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -162,12 +201,13 @@ class ProgramsIdStruct extends BaseStruct {
         listEquality.equals(lessions, other.lessions) &&
         imageCover == other.imageCover &&
         authorId == other.authorId &&
-        price == other.price;
+        price == other.price &&
+        listEquality.equals(departments, other.departments);
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, name, lessions, imageCover, authorId, price]);
+      .hash([id, name, lessions, imageCover, authorId, price, departments]);
 }
 
 ProgramsIdStruct createProgramsIdStruct({

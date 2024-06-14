@@ -13,8 +13,11 @@ class AuthorsListDataStruct extends BaseStruct {
   List<AuthorsListStruct>? _data;
   List<AuthorsListStruct> get data => _data ?? const [];
   set data(List<AuthorsListStruct>? val) => _data = val;
-  void updateData(Function(List<AuthorsListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<AuthorsListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static AuthorsListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class AuthorsListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

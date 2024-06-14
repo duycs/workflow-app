@@ -467,6 +467,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                           _model
                                               .textFieldNameSearchTextController
                                               ?.text = name!;
+                                          _model.textFieldNameSearchTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .textFieldNameSearchTextController!
+                                                      .text
+                                                      .length);
                                         });
 
                                         setState(() {});
@@ -840,7 +847,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                                     getJsonField(
                                                                                                       FFAppState().staffOrganization,
                                                                                                       r'''$.authors[0]''',
-                                                                                                    )))) &&
+                                                                                                    ).toString()))) &&
                                                                                         (dataListViewItem.copyrightOrganizationId == null || dataListViewItem.copyrightOrganizationId == '') &&
                                                                                         (dataListViewItem.version == 0)) ==
                                                                                     true
@@ -982,7 +989,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               getJsonField(
                                                                                 FFAppState().staffOrganization,
                                                                                 r'''$.authors[0]''',
-                                                                              )))) &&
+                                                                              )
+                                                                                  .toString()))) &&
                                                                   (dataListViewItem
                                                                               .copyrightOrganizationId ==
                                                                           null ||
@@ -1102,7 +1110,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               getJsonField(
                                                                                 FFAppState().staffOrganization,
                                                                                 r'''$.authors[0]''',
-                                                                              )))) &&
+                                                                              )
+                                                                                  .toString()))) &&
                                                                   (dataListViewItem
                                                                               .copyrightOrganizationId ==
                                                                           null ||
@@ -1226,7 +1235,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                               getJsonField(
                                                                                 FFAppState().staffOrganization,
                                                                                 r'''$.authors[0]''',
-                                                                              )))) &&
+                                                                              )
+                                                                                  .toString()))) &&
                                                                   (dataListViewItem
                                                                               .copyrightOrganizationId !=
                                                                           null &&
@@ -1709,6 +1719,15 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     .testsId
                                                                     .goodScore,
                                                                 ParamType.int,
+                                                              ),
+                                                              'idUser':
+                                                                  serializeParam(
+                                                                dataListTestsViewItem
+                                                                    .testsId
+                                                                    .userCreated
+                                                                    .id,
+                                                                ParamType
+                                                                    .String,
                                                               ),
                                                             }.withoutNulls,
                                                             extra: <String,

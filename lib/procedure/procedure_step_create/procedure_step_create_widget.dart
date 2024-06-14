@@ -387,7 +387,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                           },
                                         ),
                                         Text(
-                                          'Bắt đầu: ${(_model.datePicked != null) && (_model.stepsEdit?.timeOperate != null && _model.stepsEdit?.timeOperate != '') ? dateTimeFormat(
+                                          'Bắt đầu ${(_model.datePicked != null) && (_model.stepsEdit?.timeOperate != null && _model.stepsEdit?.timeOperate != '') ? dateTimeFormat(
                                               'Hm',
                                               _model.datePicked,
                                               locale:
@@ -427,372 +427,348 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                               ),
                             ),
                           ),
-                          if ('1' == '2')
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.update_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
-                                  },
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  Icons.update_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
                                 ),
-                                Text(
-                                  'Thời gian thực hiện: ${formatNumber(
-                                    _model.stepsEdit?.estimateInSecond,
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.commaDecimal,
-                                  )} phút',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          if ('1' == '2')
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 10.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: 90.0,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.estimateDayTextController,
-                                        focusNode: _model.estimateDayFocusNode,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.estimateDayTextController',
-                                          const Duration(milliseconds: 2000),
-                                          () async {
-                                            _model.updateStepsEditStruct(
-                                              (e) => e
-                                                ..estimateInSecond = functions.timeToMinute(
-                                                    _model.estimateHourTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateHourTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateMinuteTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateMinuteTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateDayTextController.text != ''
-                                                        ? _model.estimateDayTextController.text
-                                                        : '0'),
-                                            );
-                                            setState(() {});
-                                          },
-                                        ),
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Ngày',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        maxLines: null,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .estimateDayTextControllerValidator
-                                            .asValidator(context),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: 90.0,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.estimateHourTextController,
-                                        focusNode: _model.estimateHourFocusNode,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.estimateHourTextController',
-                                          const Duration(milliseconds: 2000),
-                                          () async {
-                                            _model.updateStepsEditStruct(
-                                              (e) => e
-                                                ..estimateInSecond = functions.timeToMinute(
-                                                    _model.estimateHourTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateHourTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateMinuteTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateMinuteTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateDayTextController.text != ''
-                                                        ? _model.estimateDayTextController.text
-                                                        : '0'),
-                                            );
-                                            setState(() {});
-                                          },
-                                        ),
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Giờ',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        maxLines: null,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .estimateHourTextControllerValidator
-                                            .asValidator(context),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      width: 90.0,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.estimateMinuteTextController,
-                                        focusNode:
-                                            _model.estimateMinuteFocusNode,
-                                        onChanged: (_) => EasyDebounce.debounce(
-                                          '_model.estimateMinuteTextController',
-                                          const Duration(milliseconds: 2000),
-                                          () async {
-                                            _model.updateStepsEditStruct(
-                                              (e) => e
-                                                ..estimateInSecond = functions.timeToMinute(
-                                                    _model.estimateHourTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateHourTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateMinuteTextController.text !=
-                                                                ''
-                                                        ? _model
-                                                            .estimateMinuteTextController
-                                                            .text
-                                                        : '0',
-                                                    _model.estimateDayTextController.text != ''
-                                                        ? _model.estimateDayTextController.text
-                                                        : '0'),
-                                            );
-                                            setState(() {});
-                                          },
-                                        ),
-                                        autofocus: false,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Phút',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 1.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        maxLines: null,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .estimateMinuteTextControllerValidator
-                                            .asValidator(context),
-                                      ),
-                                    ),
-                                  ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                onPressed: () {
+                                  print('IconButton pressed ...');
+                                },
                               ),
+                              Text(
+                                'Thời gian thực hiện: ${formatNumber(
+                                  _model.stepsEdit?.estimateInSecond,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                )} phút',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 10.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 90.0,
+                                    child: TextFormField(
+                                      controller:
+                                          _model.estimateDayTextController,
+                                      focusNode: _model.estimateDayFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.estimateDayTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () async {
+                                          _model.updateStepsEditStruct(
+                                            (e) => e
+                                              ..estimateInSecond = functions.timeToMinute(
+                                                  _model.estimateHourTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateHourTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateMinuteTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateMinuteTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateDayTextController.text != ''
+                                                      ? _model.estimateDayTextController.text
+                                                      : '0'),
+                                          );
+                                          setState(() {});
+                                        },
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Ngày',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      maxLines: null,
+                                      keyboardType: TextInputType.number,
+                                      validator: _model
+                                          .estimateDayTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 90.0,
+                                    child: TextFormField(
+                                      controller:
+                                          _model.estimateHourTextController,
+                                      focusNode: _model.estimateHourFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.estimateHourTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () async {
+                                          _model.updateStepsEditStruct(
+                                            (e) => e
+                                              ..estimateInSecond = functions.timeToMinute(
+                                                  _model.estimateHourTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateHourTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateMinuteTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateMinuteTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateDayTextController.text != ''
+                                                      ? _model.estimateDayTextController.text
+                                                      : '0'),
+                                          );
+                                          setState(() {});
+                                        },
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Giờ',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      maxLines: null,
+                                      keyboardType: TextInputType.number,
+                                      validator: _model
+                                          .estimateHourTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SizedBox(
+                                    width: 90.0,
+                                    child: TextFormField(
+                                      controller:
+                                          _model.estimateMinuteTextController,
+                                      focusNode: _model.estimateMinuteFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.estimateMinuteTextController',
+                                        const Duration(milliseconds: 2000),
+                                        () async {
+                                          _model.updateStepsEditStruct(
+                                            (e) => e
+                                              ..estimateInSecond = functions.timeToMinute(
+                                                  _model.estimateHourTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateHourTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateMinuteTextController.text !=
+                                                              ''
+                                                      ? _model
+                                                          .estimateMinuteTextController
+                                                          .text
+                                                      : '0',
+                                                  _model.estimateDayTextController.text != ''
+                                                      ? _model.estimateDayTextController.text
+                                                      : '0'),
+                                          );
+                                          setState(() {});
+                                        },
+                                      ),
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'Phút',
+                                        labelStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      maxLines: null,
+                                      keyboardType: TextInputType.number,
+                                      validator: _model
+                                          .estimateMinuteTextControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                              ].divide(const SizedBox(width: 8.0)),
                             ),
+                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 5.0),
@@ -956,6 +932,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                   _model
                                                       .operationsTextTextController
                                                       ?.text = '';
+                                                  _model.operationsTextTextController
+                                                          ?.selection =
+                                                      TextSelection.collapsed(
+                                                          offset: _model
+                                                              .operationsTextTextController!
+                                                              .text
+                                                              .length);
                                                 });
                                               },
                                               textStyle:
@@ -1020,6 +1003,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                     _model
                                                         .operationsTextTextController
                                                         ?.text = '';
+                                                    _model.operationsTextTextController
+                                                            ?.selection =
+                                                        TextSelection.collapsed(
+                                                            offset: _model
+                                                                .operationsTextTextController!
+                                                                .text
+                                                                .length);
                                                   });
                                                 } else {
                                                   if (_model
@@ -1065,6 +1055,13 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                                       _model
                                                           .operationsTextTextController
                                                           ?.text = '';
+                                                      _model.operationsTextTextController
+                                                              ?.selection =
+                                                          TextSelection.collapsed(
+                                                              offset: _model
+                                                                  .operationsTextTextController!
+                                                                  .text
+                                                                  .length);
                                                     });
                                                   }
                                                 }

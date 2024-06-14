@@ -14,6 +14,7 @@ class ErorrExtensionStruct extends BaseStruct {
   String? _code;
   String get code => _code ?? '';
   set code(String? val) => _code = val;
+
   bool hasCode() => _code != null;
 
   static ErorrExtensionStruct fromMap(Map<String, dynamic> data) =>

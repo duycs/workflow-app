@@ -246,7 +246,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               getJsonField(
                                 FFAppState().staffOrganization,
                                 r'''$.authors[0]''',
-                              )))) &&
+                              ).toString()))) &&
                   (widget.dataDetail?.copyrightOrganizationId == null ||
                       widget.dataDetail?.copyrightOrganizationId == '') &&
                   (FFAppState().marketOn == true) &&
@@ -335,7 +335,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               getJsonField(
                                 FFAppState().staffOrganization,
                                 r'''$.authors[0]''',
-                              )))) &&
+                              ).toString()))) &&
                   (widget.dataDetail?.copyrightOrganizationId == null ||
                       widget.dataDetail?.copyrightOrganizationId == '') &&
                   (widget.dataDetail!.version > 0) &&

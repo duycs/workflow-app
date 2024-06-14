@@ -13,8 +13,11 @@ class StaffTasksDataStruct extends BaseStruct {
   StaffListStruct? _data;
   StaffListStruct get data => _data ?? StaffListStruct();
   set data(StaffListStruct? val) => _data = val;
-  void updateData(Function(StaffListStruct) updateFn) =>
-      updateFn(_data ??= StaffListStruct());
+
+  void updateData(Function(StaffListStruct) updateFn) {
+    updateFn(data ??= StaffListStruct());
+  }
+
   bool hasData() => _data != null;
 
   static StaffTasksDataStruct fromMap(Map<String, dynamic> data) =>

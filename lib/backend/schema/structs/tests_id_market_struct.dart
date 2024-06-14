@@ -22,32 +22,38 @@ class TestsIdMarketStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "duration_minutes" field.
   int? _durationMinutes;
   int get durationMinutes => _durationMinutes ?? 0;
   set durationMinutes(int? val) => _durationMinutes = val;
+
   void incrementDurationMinutes(int amount) =>
-      _durationMinutes = durationMinutes + amount;
+      durationMinutes = durationMinutes + amount;
+
   bool hasDurationMinutes() => _durationMinutes != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   static TestsIdMarketStruct fromMap(Map<String, dynamic> data) =>

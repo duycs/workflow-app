@@ -247,6 +247,9 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
         return;
       }
 
+      if (Navigator.of(context).canPop()) {
+        context.pop();
+      }
       context.pushNamed(
         'DepartmentList',
         extra: <String, dynamic>{

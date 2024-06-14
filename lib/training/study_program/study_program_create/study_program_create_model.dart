@@ -13,8 +13,9 @@ class StudyProgramCreateModel
   ///  Local state fields for this component.
 
   StudyProgramListStruct? requestData;
-  void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) =>
-      updateFn(requestData ??= StudyProgramListStruct());
+  void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) {
+    updateFn(requestData ??= StudyProgramListStruct());
+  }
 
   String uploadImage = '';
 
