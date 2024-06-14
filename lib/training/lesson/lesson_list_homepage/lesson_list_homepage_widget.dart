@@ -340,8 +340,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         return 'Bài học hoàn thành';
                       } else if (widget.statusLove == 'love') {
                         return 'Bài học yêu thích';
-                      } else {
+                      } else if (widget.checkLesson == 'obligatory') {
                         return 'Bài học bắt buộc';
+                      } else {
+                        return '';
                       }
                     }(),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -533,43 +535,42 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.stretch,
                                                 children: [
-                                                  Text(
-                                                    listItem.lessionId.name,
-                                                    maxLines: 2,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
-                                                                0.0, 4.0),
+                                                                0.0, 0.0),
                                                     child: Text(
-                                                      listItem.lessionId
-                                                          .description,
+                                                      listItem.lessionId.name,
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .bodySmall
+                                                          .bodyLarge
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 13.0,
+                                                            fontSize: 14.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                                FontWeight.w500,
                                                           ),
                                                     ),
+                                                  ),
+                                                  Text(
+                                                    listItem
+                                                        .lessionId.description,
+                                                    maxLines: 2,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
                                                   ),
                                                   if (widget.checkLesson ==
                                                       'obligatory')

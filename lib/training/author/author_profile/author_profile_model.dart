@@ -28,7 +28,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in AuthorProfile widget.
-  bool? getOneAuthor1;
+  bool? checkIsTokenReload;
   // Stores action output result for [Backend Call - API (GetOneAuthors)] action in AuthorProfile widget.
   ApiCallResponse? apiResultGetOneAuthors1;
   // Stores action output result for [Backend Call - API (GetListMarketLesson)] action in AuthorProfile widget.

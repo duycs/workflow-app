@@ -36,8 +36,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.getOneAuthor1 = await action_blocks.tokenReload(context);
-      if (_model.getOneAuthor1!) {
+      _model.checkIsTokenReload = await action_blocks.tokenReload(context);
+      if (_model.checkIsTokenReload!) {
         _model.apiResultGetOneAuthors1 =
             await GroupAuthorsGroup.getOneAuthorsCall.call(
           accessToken: FFAppState().accessToken,
@@ -60,7 +60,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
               r'''$.authors[0]''',
             ).toString().toString()}\"}}]}',
           );
-          if ((_model.apiResultGetOneAuthors1?.succeeded ?? true)) {
+          if ((_model.apiResultGetListProgram1?.succeeded ?? true)) {
             _model.programs = MarketLessonListDataStruct.maybeFromMap(
                     (_model.apiResultGetListProgram1?.jsonBody ?? ''))!
                 .data

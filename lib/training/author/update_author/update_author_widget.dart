@@ -759,21 +759,6 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                   if ((_model
                                           .apiResultAuthorsUpdate?.succeeded ??
                                       true)) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Cập nhật tác giả thành công!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondary,
-                                      ),
-                                    );
                                     await widget.callBack?.call();
                                     Navigator.pop(context);
                                   }

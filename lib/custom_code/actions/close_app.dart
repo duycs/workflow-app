@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:flutter/services.dart';
+
 Future<void> closeApp(BuildContext context) async {
   showDialog(
     context: context,
@@ -69,7 +71,7 @@ Future<void> closeApp(BuildContext context) async {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      SystemNavigator.pop();
                     },
                     child: Text('Exit'),
                   ),
