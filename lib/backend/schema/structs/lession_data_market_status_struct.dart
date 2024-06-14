@@ -13,8 +13,11 @@ class LessionDataMarketStatusStruct extends BaseStruct {
   StudyProgramListStruct? _data;
   StudyProgramListStruct get data => _data ?? StudyProgramListStruct();
   set data(StudyProgramListStruct? val) => _data = val;
-  void updateData(Function(StudyProgramListStruct) updateFn) =>
-      updateFn(_data ??= StudyProgramListStruct());
+
+  void updateData(Function(StudyProgramListStruct) updateFn) {
+    updateFn(data ??= StudyProgramListStruct());
+  }
+
   bool hasData() => _data != null;
 
   static LessionDataMarketStatusStruct fromMap(Map<String, dynamic> data) =>

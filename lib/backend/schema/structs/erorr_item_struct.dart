@@ -15,14 +15,18 @@ class ErorrItemStruct extends BaseStruct {
   String? _message;
   String get message => _message ?? '';
   set message(String? val) => _message = val;
+
   bool hasMessage() => _message != null;
 
   // "extensions" field.
   ErorrExtensionStruct? _extensions;
   ErorrExtensionStruct get extensions => _extensions ?? ErorrExtensionStruct();
   set extensions(ErorrExtensionStruct? val) => _extensions = val;
-  void updateExtensions(Function(ErorrExtensionStruct) updateFn) =>
-      updateFn(_extensions ??= ErorrExtensionStruct());
+
+  void updateExtensions(Function(ErorrExtensionStruct) updateFn) {
+    updateFn(extensions ??= ErorrExtensionStruct());
+  }
+
   bool hasExtensions() => _extensions != null;
 
   static ErorrItemStruct fromMap(Map<String, dynamic> data) => ErorrItemStruct(

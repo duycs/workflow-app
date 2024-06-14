@@ -9,8 +9,9 @@ class ProcedureStepCreateModel
   ///  Local state fields for this component.
 
   StepsStruct? stepsEdit;
-  void updateStepsEditStruct(Function(StepsStruct) updateFn) =>
-      updateFn(stepsEdit ??= StepsStruct());
+  void updateStepsEditStruct(Function(StepsStruct) updateFn) {
+    updateFn(stepsEdit ??= StepsStruct());
+  }
 
   List<DepartmentsIdStruct> stafStepDepartments = [];
   void addToStafStepDepartments(DepartmentsIdStruct item) =>
@@ -53,8 +54,9 @@ class ProcedureStepCreateModel
       checkStaff[index] = updateFn(checkStaff[index]);
 
   StaffsAliasStruct? staffAlias;
-  void updateStaffAliasStruct(Function(StaffsAliasStruct) updateFn) =>
-      updateFn(staffAlias ??= StaffsAliasStruct());
+  void updateStaffAliasStruct(Function(StaffsAliasStruct) updateFn) {
+    updateFn(staffAlias ??= StaffsAliasStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

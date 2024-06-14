@@ -13,8 +13,11 @@ class UserResourceDataStruct extends BaseStruct {
   UserStruct? _data;
   UserStruct get data => _data ?? UserStruct();
   set data(UserStruct? val) => _data = val;
-  void updateData(Function(UserStruct) updateFn) =>
-      updateFn(_data ??= UserStruct());
+
+  void updateData(Function(UserStruct) updateFn) {
+    updateFn(data ??= UserStruct());
+  }
+
   bool hasData() => _data != null;
 
   static UserResourceDataStruct fromMap(Map<String, dynamic> data) =>

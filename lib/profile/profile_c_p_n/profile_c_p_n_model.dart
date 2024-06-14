@@ -12,8 +12,9 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
 
   OrganizationListStruct? organizationDetail;
   void updateOrganizationDetailStruct(
-          Function(OrganizationListStruct) updateFn) =>
-      updateFn(organizationDetail ??= OrganizationListStruct());
+      Function(OrganizationListStruct) updateFn) {
+    updateFn(organizationDetail ??= OrganizationListStruct());
+  }
 
   List<String> listImage = [];
   void addToListImage(String item) => listImage.add(item);

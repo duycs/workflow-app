@@ -22,8 +22,9 @@ class ProcedurePushlishedModel
       workflowList[index] = updateFn(workflowList[index]);
 
   WorkflowsStruct? workflowSelected;
-  void updateWorkflowSelectedStruct(Function(WorkflowsStruct) updateFn) =>
-      updateFn(workflowSelected ??= WorkflowsStruct());
+  void updateWorkflowSelectedStruct(Function(WorkflowsStruct) updateFn) {
+    updateFn(workflowSelected ??= WorkflowsStruct());
+  }
 
   int? limitPublished = 0;
 

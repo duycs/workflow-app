@@ -13,8 +13,11 @@ class StaffStepOneStruct extends BaseStruct {
   IdStruct? _staffsId;
   IdStruct get staffsId => _staffsId ?? IdStruct();
   set staffsId(IdStruct? val) => _staffsId = val;
-  void updateStaffsId(Function(IdStruct) updateFn) =>
-      updateFn(_staffsId ??= IdStruct());
+
+  void updateStaffsId(Function(IdStruct) updateFn) {
+    updateFn(staffsId ??= IdStruct());
+  }
+
   bool hasStaffsId() => _staffsId != null;
 
   static StaffStepOneStruct fromMap(Map<String, dynamic> data) =>

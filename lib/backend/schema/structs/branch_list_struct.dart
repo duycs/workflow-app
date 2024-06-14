@@ -35,70 +35,85 @@ class BranchListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "sort" field.
   String? _sort;
   String get sort => _sort ?? '';
   set sort(String? val) => _sort = val;
+
   bool hasSort() => _sort != null;
 
   // "user_created" field.
   String? _userCreated;
   String get userCreated => _userCreated ?? '';
   set userCreated(String? val) => _userCreated = val;
+
   bool hasUserCreated() => _userCreated != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "code" field.
   String? _code;
   String get code => _code ?? '';
   set code(String? val) => _code = val;
+
   bool hasCode() => _code != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "staffs" field.
   List<StaffsStruct>? _staffs;
   List<StaffsStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffsStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffsStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffsStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "departments" field.
   List<DepartmentsStruct>? _departments;
   List<DepartmentsStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentsStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentsStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentsStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   // "organization_id" field.
@@ -106,8 +121,11 @@ class BranchListStruct extends BaseStruct {
   OrganizationIdStruct get organizationId =>
       _organizationId ?? OrganizationIdStruct();
   set organizationId(OrganizationIdStruct? val) => _organizationId = val;
-  void updateOrganizationId(Function(OrganizationIdStruct) updateFn) =>
-      updateFn(_organizationId ??= OrganizationIdStruct());
+
+  void updateOrganizationId(Function(OrganizationIdStruct) updateFn) {
+    updateFn(organizationId ??= OrganizationIdStruct());
+  }
+
   bool hasOrganizationId() => _organizationId != null;
 
   static BranchListStruct fromMap(Map<String, dynamic> data) =>
@@ -193,12 +211,12 @@ class BranchListStruct extends BaseStruct {
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'organization_id': serializeParam(
           _organizationId,

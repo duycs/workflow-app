@@ -142,6 +142,7 @@ export 'workflows_struct.dart';
 export 'workflows_list_data_struct.dart';
 export 'workflows_step_create_struct.dart';
 export 'departments_struct.dart';
+export 'departments_idddd_struct.dart';
 export 'file_data_type_struct.dart';
 export 'file_i_d_data_type_struct.dart';
 export 'meta_data_struct.dart';

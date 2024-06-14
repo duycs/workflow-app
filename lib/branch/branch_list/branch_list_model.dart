@@ -37,6 +37,15 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
 
   bool isShow = false;
 
+  List<String> nameList = [];
+  void addToNameList(String item) => nameList.add(item);
+  void removeFromNameList(String item) => nameList.remove(item);
+  void removeAtIndexFromNameList(int index) => nameList.removeAt(index);
+  void insertAtIndexInNameList(int index, String item) =>
+      nameList.insert(index, item);
+  void updateNameListAtIndex(int index, Function(String) updateFn) =>
+      nameList[index] = updateFn(nameList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -84,6 +93,8 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
             .cast<BranchListStruct>();
         codeList =
             listBranch.map((e) => e.code).toList().toList().cast<String>();
+        nameList =
+            listBranch.map((e) => e.name).toList().toList().cast<String>();
         checkData = '1';
       }
     } else {

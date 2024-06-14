@@ -15,14 +15,18 @@ class SubmitStaffIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "user_id" field.
   UserStruct? _userId;
   UserStruct get userId => _userId ?? UserStruct();
   set userId(UserStruct? val) => _userId = val;
-  void updateUserId(Function(UserStruct) updateFn) =>
-      updateFn(_userId ??= UserStruct());
+
+  void updateUserId(Function(UserStruct) updateFn) {
+    updateFn(userId ??= UserStruct());
+  }
+
   bool hasUserId() => _userId != null;
 
   static SubmitStaffIdStruct fromMap(Map<String, dynamic> data) =>

@@ -1058,6 +1058,13 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                       _model
                                                           .operationsTextTextController
                                                           ?.text = '';
+                                                      _model.operationsTextTextController
+                                                              ?.selection =
+                                                          TextSelection.collapsed(
+                                                              offset: _model
+                                                                  .operationsTextTextController!
+                                                                  .text
+                                                                  .length);
                                                     });
                                                   } else {
                                                     if (_model
@@ -1104,6 +1111,13 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                                         _model
                                                             .operationsTextTextController
                                                             ?.text = '';
+                                                        _model.operationsTextTextController
+                                                                ?.selection =
+                                                            TextSelection.collapsed(
+                                                                offset: _model
+                                                                    .operationsTextTextController!
+                                                                    .text
+                                                                    .length);
                                                       });
                                                     }
                                                   }

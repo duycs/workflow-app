@@ -13,8 +13,11 @@ class TestsMarketStruct extends BaseStruct {
   TestsIdMarketStruct? _testsId;
   TestsIdMarketStruct get testsId => _testsId ?? TestsIdMarketStruct();
   set testsId(TestsIdMarketStruct? val) => _testsId = val;
-  void updateTestsId(Function(TestsIdMarketStruct) updateFn) =>
-      updateFn(_testsId ??= TestsIdMarketStruct());
+
+  void updateTestsId(Function(TestsIdMarketStruct) updateFn) {
+    updateFn(testsId ??= TestsIdMarketStruct());
+  }
+
   bool hasTestsId() => _testsId != null;
 
   static TestsMarketStruct fromMap(Map<String, dynamic> data) =>

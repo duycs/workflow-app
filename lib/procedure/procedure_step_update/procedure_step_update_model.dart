@@ -9,8 +9,9 @@ class ProcedureStepUpdateModel
   ///  Local state fields for this component.
 
   StepsStruct? stepsEdit;
-  void updateStepsEditStruct(Function(StepsStruct) updateFn) =>
-      updateFn(stepsEdit ??= StepsStruct());
+  void updateStepsEditStruct(Function(StepsStruct) updateFn) {
+    updateFn(stepsEdit ??= StepsStruct());
+  }
 
   List<DepartmentsIdStruct> stafStepDepartments = [];
   void addToStafStepDepartments(DepartmentsIdStruct item) =>
@@ -55,8 +56,9 @@ class ProcedureStepUpdateModel
   bool isLoad = false;
 
   StaffsAliasStruct? staffAlias;
-  void updateStaffAliasStruct(Function(StaffsAliasStruct) updateFn) =>
-      updateFn(staffAlias ??= StaffsAliasStruct());
+  void updateStaffAliasStruct(Function(StaffsAliasStruct) updateFn) {
+    updateFn(staffAlias ??= StaffsAliasStruct());
+  }
 
   List<DepartmentListStruct> dataDeparList = [];
   void addToDataDeparList(DepartmentListStruct item) => dataDeparList.add(item);
@@ -71,8 +73,9 @@ class ProcedureStepUpdateModel
       dataDeparList[index] = updateFn(dataDeparList[index]);
 
   DepartmentListStruct? itemCheckDepar;
-  void updateItemCheckDeparStruct(Function(DepartmentListStruct) updateFn) =>
-      updateFn(itemCheckDepar ??= DepartmentListStruct());
+  void updateItemCheckDeparStruct(Function(DepartmentListStruct) updateFn) {
+    updateFn(itemCheckDepar ??= DepartmentListStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

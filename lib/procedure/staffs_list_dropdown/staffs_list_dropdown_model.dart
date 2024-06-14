@@ -23,8 +23,9 @@ class StaffsListDropdownModel
   int loop2 = 0;
 
   StaffListStruct? checkStaffList;
-  void updateCheckStaffListStruct(Function(StaffListStruct) updateFn) =>
-      updateFn(checkStaffList ??= StaffListStruct());
+  void updateCheckStaffListStruct(Function(StaffListStruct) updateFn) {
+    updateFn(checkStaffList ??= StaffListStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

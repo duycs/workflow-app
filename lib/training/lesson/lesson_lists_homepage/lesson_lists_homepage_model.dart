@@ -88,16 +88,19 @@ class LessonListsHomepageModel
       listPrograms[index] = updateFn(listPrograms[index]);
 
   MetaDataStruct? metaRow;
-  void updateMetaRowStruct(Function(MetaDataStruct) updateFn) =>
-      updateFn(metaRow ??= MetaDataStruct());
+  void updateMetaRowStruct(Function(MetaDataStruct) updateFn) {
+    updateFn(metaRow ??= MetaDataStruct());
+  }
 
   MetaDataStruct? metaRow2;
-  void updateMetaRow2Struct(Function(MetaDataStruct) updateFn) =>
-      updateFn(metaRow2 ??= MetaDataStruct());
+  void updateMetaRow2Struct(Function(MetaDataStruct) updateFn) {
+    updateFn(metaRow2 ??= MetaDataStruct());
+  }
 
   MetaDataStruct? metaRow3;
-  void updateMetaRow3Struct(Function(MetaDataStruct) updateFn) =>
-      updateFn(metaRow3 ??= MetaDataStruct());
+  void updateMetaRow3Struct(Function(MetaDataStruct) updateFn) {
+    updateFn(metaRow3 ??= MetaDataStruct());
+  }
 
   bool isLoad = false;
 
@@ -110,13 +113,10 @@ class LessonListsHomepageModel
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
   String? Function(BuildContext, String?)? nameSearchTextControllerValidator;
-  Completer<ApiCallResponse>? apiRequestCompleter1;
-  Completer<ApiCallResponse>? apiRequestCompleter2;
-  Completer<ApiCallResponse>? apiRequestCompleter3;
   // State field(s) for ListView widget.
 
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController4;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall4;
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   // Model for navBar component.
   late NavBarModel navBarModel;
@@ -132,7 +132,7 @@ class LessonListsHomepageModel
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 
-    listViewPagingController4?.dispose();
+    listViewPagingController?.dispose();
     navBarModel.dispose();
   }
 
@@ -148,10 +148,10 @@ class LessonListsHomepageModel
         r'''$.organization_id''',
       ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? dateStartList : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? '\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ((String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEndList)) : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != '' ? programsAllId : ' '}${programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"_neq\":\"${getJsonField(
+        }(dateEndList)) : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != '' ? programsAllId : ' '}${programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
         FFAppState().staffDepartment,
         r'''$.id''',
-      ).toString().toString()}\"}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
+      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
     );
     if ((apiResultList.succeeded ?? true)) {
       listLesson =
@@ -192,7 +192,7 @@ class LessonListsHomepageModel
       filter:
           '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
       offset: 0,
-      limit: 0,
+      limit: 11,
     );
     if ((apiResultListRow.succeeded ?? true)) {
       listLessonRow = EmployeeLessonListDataStruct.maybeFromMap(
@@ -234,7 +234,7 @@ class LessonListsHomepageModel
     apiResultListRow2 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
+          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
@@ -242,7 +242,7 @@ class LessonListsHomepageModel
         locale: FFLocalizations.of(context).languageCode,
       ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
       offset: 0,
-      limit: 0,
+      limit: 11,
     );
     if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
@@ -291,7 +291,7 @@ class LessonListsHomepageModel
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
       ))}\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
-      limit: 0,
+      limit: 11,
       offset: 0,
     );
     if ((apiResultListRow3.succeeded ?? true)) {
@@ -328,52 +328,7 @@ class LessonListsHomepageModel
   }
 
   /// Additional helper methods.
-  Future waitForApiRequestCompleted1({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter1?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForApiRequestCompleted2({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter2?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForApiRequestCompleted3({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter3?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForOnePageForListView4({
+  Future waitForOnePageForListView({
     double minWait = 0,
     double maxWait = double.infinity,
   }) async {
@@ -382,21 +337,21 @@ class LessonListsHomepageModel
       await Future.delayed(const Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete =
-          (listViewPagingController4?.nextPageKey?.nextPageNumber ?? 0) > 0;
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }
     }
   }
 
-  PagingController<ApiPagingParams, dynamic> setListViewController4(
+  PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
-    listViewApiCall4 = apiCall;
-    return listViewPagingController4 ??= _createListViewController4(apiCall);
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
   }
 
-  PagingController<ApiPagingParams, dynamic> _createListViewController4(
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
     Function(ApiPagingParams) query,
   ) {
     final controller = PagingController<ApiPagingParams, dynamic>(
@@ -406,18 +361,18 @@ class LessonListsHomepageModel
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewGetLessonListPage4);
+    return controller..addPageRequestListener(listViewGetLessonListPage);
   }
 
-  void listViewGetLessonListPage4(ApiPagingParams nextPageMarker) =>
-      listViewApiCall4!(nextPageMarker).then((listViewGetLessonListResponse) {
+  void listViewGetLessonListPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewGetLessonListResponse) {
         final pageItems = (LessonsListDataStruct.maybeFromMap(
                         listViewGetLessonListResponse.jsonBody)!
                     .data ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController4?.appendPage(
+        listViewPagingController?.appendPage(
           pageItems,
           (pageItems.isNotEmpty)
               ? ApiPagingParams(

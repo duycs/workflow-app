@@ -31,57 +31,68 @@ class StaffsProgramsListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "staff_id" field.
   String? _staffId;
   String get staffId => _staffId ?? '';
   set staffId(String? val) => _staffId = val;
+
   bool hasStaffId() => _staffId != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "lession_done" field.
   int? _lessionDone;
   int get lessionDone => _lessionDone ?? 0;
   set lessionDone(int? val) => _lessionDone = val;
-  void incrementLessionDone(int amount) => _lessionDone = lessionDone + amount;
+
+  void incrementLessionDone(int amount) => lessionDone = lessionDone + amount;
+
   bool hasLessionDone() => _lessionDone != null;
 
   // "lession_count" field.
   int? _lessionCount;
   int get lessionCount => _lessionCount ?? 0;
   set lessionCount(int? val) => _lessionCount = val;
+
   void incrementLessionCount(int amount) =>
-      _lessionCount = lessionCount + amount;
+      lessionCount = lessionCount + amount;
+
   bool hasLessionCount() => _lessionCount != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "program_id" field.
@@ -89,8 +100,11 @@ class StaffsProgramsListStruct extends BaseStruct {
   StudyProgramListStruct get programId =>
       _programId ?? StudyProgramListStruct();
   set programId(StudyProgramListStruct? val) => _programId = val;
-  void updateProgramId(Function(StudyProgramListStruct) updateFn) =>
-      updateFn(_programId ??= StudyProgramListStruct());
+
+  void updateProgramId(Function(StudyProgramListStruct) updateFn) {
+    updateFn(programId ??= StudyProgramListStruct());
+  }
+
   bool hasProgramId() => _programId != null;
 
   static StaffsProgramsListStruct fromMap(Map<String, dynamic> data) =>

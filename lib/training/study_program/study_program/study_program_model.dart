@@ -9,8 +9,9 @@ class StudyProgramModel extends FlutterFlowModel<StudyProgramWidget> {
   ///  Local state fields for this component.
 
   StudyProgramListStruct? requestData;
-  void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) =>
-      updateFn(requestData ??= StudyProgramListStruct());
+  void updateRequestDataStruct(Function(StudyProgramListStruct) updateFn) {
+    updateFn(requestData ??= StudyProgramListStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

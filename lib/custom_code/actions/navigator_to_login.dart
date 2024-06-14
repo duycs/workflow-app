@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:e_workflow/index.dart';
+import '/index.dart';
 
 Future navigatorToLogin() async {
   // Add your function code here!

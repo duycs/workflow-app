@@ -13,8 +13,11 @@ class ErorrsStruct extends BaseStruct {
   List<ErorrItemStruct>? _errors;
   List<ErorrItemStruct> get errors => _errors ?? const [];
   set errors(List<ErorrItemStruct>? val) => _errors = val;
-  void updateErrors(Function(List<ErorrItemStruct>) updateFn) =>
-      updateFn(_errors ??= []);
+
+  void updateErrors(Function(List<ErorrItemStruct>) updateFn) {
+    updateFn(errors ??= []);
+  }
+
   bool hasErrors() => _errors != null;
 
   static ErorrsStruct fromMap(Map<String, dynamic> data) => ErorrsStruct(
@@ -36,7 +39,7 @@ class ErorrsStruct extends BaseStruct {
         'errors': serializeParam(
           _errors,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

@@ -15,16 +15,22 @@ class DataStruct extends BaseStruct {
   ProgramsIdStruct? _programsId;
   ProgramsIdStruct get programsId => _programsId ?? ProgramsIdStruct();
   set programsId(ProgramsIdStruct? val) => _programsId = val;
-  void updateProgramsId(Function(ProgramsIdStruct) updateFn) =>
-      updateFn(_programsId ??= ProgramsIdStruct());
+
+  void updateProgramsId(Function(ProgramsIdStruct) updateFn) {
+    updateFn(programsId ??= ProgramsIdStruct());
+  }
+
   bool hasProgramsId() => _programsId != null;
 
   // "lessions_id" field.
   LessonsStruct? _lessionsId;
   LessonsStruct get lessionsId => _lessionsId ?? LessonsStruct();
   set lessionsId(LessonsStruct? val) => _lessionsId = val;
-  void updateLessionsId(Function(LessonsStruct) updateFn) =>
-      updateFn(_lessionsId ??= LessonsStruct());
+
+  void updateLessionsId(Function(LessonsStruct) updateFn) {
+    updateFn(lessionsId ??= LessonsStruct());
+  }
+
   bool hasLessionsId() => _lessionsId != null;
 
   static DataStruct fromMap(Map<String, dynamic> data) => DataStruct(

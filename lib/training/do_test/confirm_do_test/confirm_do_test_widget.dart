@@ -293,7 +293,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
                             Expanded(
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed(
+                                  context.goNamed(
                                     'DoTest',
                                     queryParameters: {
                                       'testId': serializeParam(

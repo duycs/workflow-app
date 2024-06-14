@@ -17,24 +17,33 @@ class GetStaffInfoStruct extends BaseStruct {
   StaffListInfoStruct? _staff;
   StaffListInfoStruct get staff => _staff ?? StaffListInfoStruct();
   set staff(StaffListInfoStruct? val) => _staff = val;
-  void updateStaff(Function(StaffListInfoStruct) updateFn) =>
-      updateFn(_staff ??= StaffListInfoStruct());
+
+  void updateStaff(Function(StaffListInfoStruct) updateFn) {
+    updateFn(staff ??= StaffListInfoStruct());
+  }
+
   bool hasStaff() => _staff != null;
 
   // "department" field.
   DepartmentListStruct? _department;
   DepartmentListStruct get department => _department ?? DepartmentListStruct();
   set department(DepartmentListStruct? val) => _department = val;
-  void updateDepartment(Function(DepartmentListStruct) updateFn) =>
-      updateFn(_department ??= DepartmentListStruct());
+
+  void updateDepartment(Function(DepartmentListStruct) updateFn) {
+    updateFn(department ??= DepartmentListStruct());
+  }
+
   bool hasDepartment() => _department != null;
 
   // "branch" field.
   BranchListStruct? _branch;
   BranchListStruct get branch => _branch ?? BranchListStruct();
   set branch(BranchListStruct? val) => _branch = val;
-  void updateBranch(Function(BranchListStruct) updateFn) =>
-      updateFn(_branch ??= BranchListStruct());
+
+  void updateBranch(Function(BranchListStruct) updateFn) {
+    updateFn(branch ??= BranchListStruct());
+  }
+
   bool hasBranch() => _branch != null;
 
   static GetStaffInfoStruct fromMap(Map<String, dynamic> data) =>

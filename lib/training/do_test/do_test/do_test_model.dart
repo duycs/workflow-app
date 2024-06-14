@@ -12,8 +12,9 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   ///  Local state fields for this page.
 
   TestListStruct? list;
-  void updateListStruct(Function(TestListStruct) updateFn) =>
-      updateFn(list ??= TestListStruct());
+  void updateListStruct(Function(TestListStruct) updateFn) {
+    updateFn(list ??= TestListStruct());
+  }
 
   String? dateStart = '';
 
@@ -101,7 +102,6 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   // Stores action output result for [Backend Call - API (CalculateTestScores)] action in Timer widget.
   ApiCallResponse? apiResultCaculatorScores1;
   // State field(s) for Checkbox widget.
-
   Map<AnswersListStruct, bool> checkboxValueMap = {};
   List<AnswersListStruct> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();

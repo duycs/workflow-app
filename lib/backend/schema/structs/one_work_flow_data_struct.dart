@@ -13,8 +13,11 @@ class OneWorkFlowDataStruct extends BaseStruct {
   WorkflowsStruct? _data;
   WorkflowsStruct get data => _data ?? WorkflowsStruct();
   set data(WorkflowsStruct? val) => _data = val;
-  void updateData(Function(WorkflowsStruct) updateFn) =>
-      updateFn(_data ??= WorkflowsStruct());
+
+  void updateData(Function(WorkflowsStruct) updateFn) {
+    updateFn(data ??= WorkflowsStruct());
+  }
+
   bool hasData() => _data != null;
 
   static OneWorkFlowDataStruct fromMap(Map<String, dynamic> data) =>

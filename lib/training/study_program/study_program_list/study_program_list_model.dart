@@ -22,8 +22,9 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
       dataList[index] = updateFn(dataList[index]);
 
   MetaDataStruct? meta;
-  void updateMetaStruct(Function(MetaDataStruct) updateFn) =>
-      updateFn(meta ??= MetaDataStruct());
+  void updateMetaStruct(Function(MetaDataStruct) updateFn) {
+    updateFn(meta ??= MetaDataStruct());
+  }
 
   bool isLoad = false;
 

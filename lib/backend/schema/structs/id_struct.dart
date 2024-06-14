@@ -14,6 +14,7 @@ class IdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   static IdStruct fromMap(Map<String, dynamic> data) => IdStruct(

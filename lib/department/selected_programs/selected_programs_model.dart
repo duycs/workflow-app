@@ -7,8 +7,9 @@ class SelectedProgramsModel extends FlutterFlowModel<SelectedProgramsWidget> {
   ///  Local state fields for this component.
 
   ProgramStruct? selectedPrograms;
-  void updateSelectedProgramsStruct(Function(ProgramStruct) updateFn) =>
-      updateFn(selectedPrograms ??= ProgramStruct());
+  void updateSelectedProgramsStruct(Function(ProgramStruct) updateFn) {
+    updateFn(selectedPrograms ??= ProgramStruct());
+  }
 
   bool check = false;
 

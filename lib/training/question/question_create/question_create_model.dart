@@ -9,8 +9,9 @@ class QuestionCreateModel extends FlutterFlowModel<QuestionCreateWidget> {
   ///  Local state fields for this component.
 
   RequestQuestionsStruct? requestData;
-  void updateRequestDataStruct(Function(RequestQuestionsStruct) updateFn) =>
-      updateFn(requestData ??= RequestQuestionsStruct());
+  void updateRequestDataStruct(Function(RequestQuestionsStruct) updateFn) {
+    updateFn(requestData ??= RequestQuestionsStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

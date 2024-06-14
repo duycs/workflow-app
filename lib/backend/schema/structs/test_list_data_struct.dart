@@ -13,8 +13,11 @@ class TestListDataStruct extends BaseStruct {
   List<TestListStruct>? _data;
   List<TestListStruct> get data => _data ?? const [];
   set data(List<TestListStruct>? val) => _data = val;
-  void updateData(Function(List<TestListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<TestListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static TestListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class TestListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

@@ -164,7 +164,9 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
-
+      if (Navigator.of(context).canPop()) {
+        context.pop();
+      }
       context.pushNamed(
         'LessonsList',
         extra: <String, dynamic>{

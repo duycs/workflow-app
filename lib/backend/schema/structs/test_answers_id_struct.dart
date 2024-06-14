@@ -20,25 +20,30 @@ class TestAnswersIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "correct" field.
   int? _correct;
   int get correct => _correct ?? 0;
   set correct(int? val) => _correct = val;
-  void incrementCorrect(int amount) => _correct = correct + amount;
+
+  void incrementCorrect(int amount) => correct = correct + amount;
+
   bool hasCorrect() => _correct != null;
 
   // "check" field.
   bool? _check;
   bool get check => _check ?? false;
   set check(bool? val) => _check = val;
+
   bool hasCheck() => _check != null;
 
   static TestAnswersIdStruct fromMap(Map<String, dynamic> data) =>

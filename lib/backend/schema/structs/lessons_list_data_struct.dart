@@ -13,8 +13,11 @@ class LessonsListDataStruct extends BaseStruct {
   List<LessonsStruct>? _data;
   List<LessonsStruct> get data => _data ?? const [];
   set data(List<LessonsStruct>? val) => _data = val;
-  void updateData(Function(List<LessonsStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<LessonsStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static LessonsListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class LessonsListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

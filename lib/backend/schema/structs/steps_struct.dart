@@ -47,121 +47,151 @@ class StepsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "execute_type" field.
   String? _executeType;
   String get executeType => _executeType ?? '';
   set executeType(String? val) => _executeType = val;
+
   bool hasExecuteType() => _executeType != null;
 
   // "date_start" field.
   String? _dateStart;
   String get dateStart => _dateStart ?? '';
   set dateStart(String? val) => _dateStart = val;
+
   bool hasDateStart() => _dateStart != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "cron" field.
   String? _cron;
   String get cron => _cron ?? '';
   set cron(String? val) => _cron = val;
+
   bool hasCron() => _cron != null;
 
   // "number" field.
   int? _number;
   int get number => _number ?? 0;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   // "workflow_id" field.
   WorkflowsStruct? _workflowId;
   WorkflowsStruct get workflowId => _workflowId ?? WorkflowsStruct();
   set workflowId(WorkflowsStruct? val) => _workflowId = val;
-  void updateWorkflowId(Function(WorkflowsStruct) updateFn) =>
-      updateFn(_workflowId ??= WorkflowsStruct());
+
+  void updateWorkflowId(Function(WorkflowsStruct) updateFn) {
+    updateFn(workflowId ??= WorkflowsStruct());
+  }
+
   bool hasWorkflowId() => _workflowId != null;
 
   // "task_id" field.
   TasksStruct? _taskId;
   TasksStruct get taskId => _taskId ?? TasksStruct();
   set taskId(TasksStruct? val) => _taskId = val;
-  void updateTaskId(Function(TasksStruct) updateFn) =>
-      updateFn(_taskId ??= TasksStruct());
+
+  void updateTaskId(Function(TasksStruct) updateFn) {
+    updateFn(taskId ??= TasksStruct());
+  }
+
   bool hasTaskId() => _taskId != null;
 
   // "operations" field.
   List<OperationsStruct>? _operations;
   List<OperationsStruct> get operations => _operations ?? const [];
   set operations(List<OperationsStruct>? val) => _operations = val;
-  void updateOperations(Function(List<OperationsStruct>) updateFn) =>
-      updateFn(_operations ??= []);
+
+  void updateOperations(Function(List<OperationsStruct>) updateFn) {
+    updateFn(operations ??= []);
+  }
+
   bool hasOperations() => _operations != null;
 
   // "staffs" field.
   List<StaffsStepStruct>? _staffs;
   List<StaffsStepStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffsStepStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffsStepStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffsStepStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "action_type" field.
   String? _actionType;
   String get actionType => _actionType ?? '';
   set actionType(String? val) => _actionType = val;
+
   bool hasActionType() => _actionType != null;
 
   // "staffs_alias" field.
   String? _staffsAlias;
   String get staffsAlias => _staffsAlias ?? '';
   set staffsAlias(String? val) => _staffsAlias = val;
+
   bool hasStaffsAlias() => _staffsAlias != null;
 
   // "estimate_in_second" field.
   int? _estimateInSecond;
   int get estimateInSecond => _estimateInSecond ?? 0;
   set estimateInSecond(int? val) => _estimateInSecond = val;
+
   void incrementEstimateInSecond(int amount) =>
-      _estimateInSecond = estimateInSecond + amount;
+      estimateInSecond = estimateInSecond + amount;
+
   bool hasEstimateInSecond() => _estimateInSecond != null;
 
   // "time_operate" field.
   String? _timeOperate;
   String get timeOperate => _timeOperate ?? '';
   set timeOperate(String? val) => _timeOperate = val;
+
   bool hasTimeOperate() => _timeOperate != null;
 
   // "departments" field.
   List<DepartmentListStruct>? _departments;
   List<DepartmentListStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentListStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentListStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentListStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   static StepsStruct fromMap(Map<String, dynamic> data) => StepsStruct(
@@ -263,12 +293,12 @@ class StepsStruct extends BaseStruct {
         'operations': serializeParam(
           _operations,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'name': serializeParam(
           _name,
@@ -293,7 +323,7 @@ class StepsStruct extends BaseStruct {
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

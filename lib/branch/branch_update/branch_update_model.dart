@@ -9,6 +9,8 @@ class BranchUpdateModel extends FlutterFlowModel<BranchUpdateWidget> {
 
   String checkCode = '';
 
+  bool checkName = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

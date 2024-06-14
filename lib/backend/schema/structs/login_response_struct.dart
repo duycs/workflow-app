@@ -18,19 +18,23 @@ class LoginResponseStruct extends BaseStruct {
   String? _accessToken;
   String get accessToken => _accessToken ?? '';
   set accessToken(String? val) => _accessToken = val;
+
   bool hasAccessToken() => _accessToken != null;
 
   // "expires" field.
   int? _expires;
   int get expires => _expires ?? 0;
   set expires(int? val) => _expires = val;
-  void incrementExpires(int amount) => _expires = expires + amount;
+
+  void incrementExpires(int amount) => expires = expires + amount;
+
   bool hasExpires() => _expires != null;
 
   // "refresh_token" field.
   String? _refreshToken;
   String get refreshToken => _refreshToken ?? '';
   set refreshToken(String? val) => _refreshToken = val;
+
   bool hasRefreshToken() => _refreshToken != null;
 
   static LoginResponseStruct fromMap(Map<String, dynamic> data) =>

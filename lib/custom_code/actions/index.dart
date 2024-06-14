@@ -1,5 +1,6 @@
 export 'reorder_items.dart' show reorderItems;
 export 'download_file.dart' show downloadFile;
+export 'close_app.dart' show closeApp;
 export 'save_info_user.dart' show saveInfoUser;
 export 'clear_info_user.dart' show clearInfoUser;
 export 'check_login_share_preferences.dart' show checkLoginSharePreferences;

@@ -546,7 +546,7 @@ String checkFileLast(String text) {
 }
 
 String aDayInThePast(DateTime today) {
-  DateTime pastDateTime = today.subtract(Duration(days: 7));
+  DateTime pastDateTime = today.subtract(Duration(days: 30));
   String formattedPastDate = DateFormat('yyyy-MM-dd').format(pastDateTime);
 
   return formattedPastDate;

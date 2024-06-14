@@ -17,20 +17,25 @@ class ProcedurePublishedListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "steps" field.
   List<ProcedurePublishedStepStruct>? _steps;
   List<ProcedurePublishedStepStruct> get steps => _steps ?? const [];
   set steps(List<ProcedurePublishedStepStruct>? val) => _steps = val;
-  void updateSteps(Function(List<ProcedurePublishedStepStruct>) updateFn) =>
-      updateFn(_steps ??= []);
+
+  void updateSteps(Function(List<ProcedurePublishedStepStruct>) updateFn) {
+    updateFn(steps ??= []);
+  }
+
   bool hasSteps() => _steps != null;
 
   static ProcedurePublishedListStruct fromMap(Map<String, dynamic> data) =>
@@ -66,7 +71,7 @@ class ProcedurePublishedListStruct extends BaseStruct {
         'steps': serializeParam(
           _steps,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

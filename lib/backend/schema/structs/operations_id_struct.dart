@@ -31,62 +31,74 @@ class OperationsIdStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "action_type" field.
   String? _actionType;
   String get actionType => _actionType ?? '';
   set actionType(String? val) => _actionType = val;
+
   bool hasActionType() => _actionType != null;
 
   // "operation_id" field.
   String? _operationId;
   String get operationId => _operationId ?? '';
   set operationId(String? val) => _operationId = val;
+
   bool hasOperationId() => _operationId != null;
 
   // "result" field.
   String? _result;
   String get result => _result ?? '';
   set result(String? val) => _result = val;
+
   bool hasResult() => _result != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "files" field.
   List<FileDataTypeStruct>? _files;
   List<FileDataTypeStruct> get files => _files ?? const [];
   set files(List<FileDataTypeStruct>? val) => _files = val;
-  void updateFiles(Function(List<FileDataTypeStruct>) updateFn) =>
-      updateFn(_files ??= []);
+
+  void updateFiles(Function(List<FileDataTypeStruct>) updateFn) {
+    updateFn(files ??= []);
+  }
+
   bool hasFiles() => _files != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   static OperationsIdStruct fromMap(Map<String, dynamic> data) =>
@@ -160,7 +172,7 @@ class OperationsIdStruct extends BaseStruct {
         'files': serializeParam(
           _files,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'date_updated': serializeParam(
           _dateUpdated,

@@ -26,42 +26,49 @@ class DomainsListListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "user_created" field.
   String? _userCreated;
   String get userCreated => _userCreated ?? '';
   set userCreated(String? val) => _userCreated = val;
+
   bool hasUserCreated() => _userCreated != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   static DomainsListListStruct fromMap(Map<String, dynamic> data) =>

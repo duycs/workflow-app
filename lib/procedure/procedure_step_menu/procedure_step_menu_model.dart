@@ -9,8 +9,9 @@ class ProcedureStepMenuModel extends FlutterFlowModel<ProcedureStepMenuWidget> {
   bool isLoad = false;
 
   StepsStruct? data;
-  void updateDataStruct(Function(StepsStruct) updateFn) =>
-      updateFn(data ??= StepsStruct());
+  void updateDataStruct(Function(StepsStruct) updateFn) {
+    updateFn(data ??= StepsStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

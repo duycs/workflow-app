@@ -13,8 +13,11 @@ class LoginResourceDataStruct extends BaseStruct {
   LoginResourceStruct? _data;
   LoginResourceStruct get data => _data ?? LoginResourceStruct();
   set data(LoginResourceStruct? val) => _data = val;
-  void updateData(Function(LoginResourceStruct) updateFn) =>
-      updateFn(_data ??= LoginResourceStruct());
+
+  void updateData(Function(LoginResourceStruct) updateFn) {
+    updateFn(data ??= LoginResourceStruct());
+  }
+
   bool hasData() => _data != null;
 
   static LoginResourceDataStruct fromMap(Map<String, dynamic> data) =>

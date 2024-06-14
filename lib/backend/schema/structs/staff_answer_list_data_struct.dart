@@ -13,8 +13,11 @@ class StaffAnswerListDataStruct extends BaseStruct {
   List<StaffAnswerListStruct>? _data;
   List<StaffAnswerListStruct> get data => _data ?? const [];
   set data(List<StaffAnswerListStruct>? val) => _data = val;
-  void updateData(Function(List<StaffAnswerListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<StaffAnswerListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static StaffAnswerListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class StaffAnswerListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

@@ -9,8 +9,9 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
   ///  Local state fields for this component.
 
   RequestQuestionsStruct? dataList;
-  void updateDataListStruct(Function(RequestQuestionsStruct) updateFn) =>
-      updateFn(dataList ??= RequestQuestionsStruct());
+  void updateDataListStruct(Function(RequestQuestionsStruct) updateFn) {
+    updateFn(dataList ??= RequestQuestionsStruct());
+  }
 
   int? loop = 0;
 

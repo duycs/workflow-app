@@ -13,8 +13,11 @@ class StudyProgramListLessionsIdStruct extends BaseStruct {
   LessonsStruct? _lessionsId;
   LessonsStruct get lessionsId => _lessionsId ?? LessonsStruct();
   set lessionsId(LessonsStruct? val) => _lessionsId = val;
-  void updateLessionsId(Function(LessonsStruct) updateFn) =>
-      updateFn(_lessionsId ??= LessonsStruct());
+
+  void updateLessionsId(Function(LessonsStruct) updateFn) {
+    updateFn(lessionsId ??= LessonsStruct());
+  }
+
   bool hasLessionsId() => _lessionsId != null;
 
   static StudyProgramListLessionsIdStruct fromMap(Map<String, dynamic> data) =>

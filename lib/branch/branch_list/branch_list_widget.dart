@@ -5,6 +5,7 @@ import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -80,6 +81,14 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           : FocusScope.of(context).unfocus(),
                       child: BranchCreateWidget(
                         listCode: _model.codeList,
+                        listName: _model.nameList,
+                        reloadDataList: () async {
+                          await Future.delayed(
+                              const Duration(milliseconds: 500));
+                          await _model.getLinkBranch(context);
+                          setState(
+                              () => _model.listViewPagingController?.refresh());
+                        },
                       ),
                     ),
                   );
@@ -417,11 +426,16 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                                       'codeListitem': serializeParam(
                                         _model.codeList,
                                         ParamType.String,
-                                        true,
+                                        isList: true,
                                       ),
                                       'status': serializeParam(
                                         branchItemItem.status,
                                         ParamType.String,
+                                      ),
+                                      'itemNameList': serializeParam(
+                                        _model.nameList,
+                                        ParamType.String,
+                                        isList: true,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{

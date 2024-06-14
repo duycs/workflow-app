@@ -98,7 +98,7 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                   'checkCode': serializeParam(
                     _model.dataParam,
                     ParamType.String,
-                    true,
+                    isList: true,
                   ),
                 }.withoutNulls,
                 extra: <String, dynamic>{
@@ -449,12 +449,12 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                                       'checkCode': serializeParam(
                                         _model.dataParam,
                                         ParamType.String,
-                                        true,
+                                        isList: true,
                                       ),
                                       'programs': serializeParam(
                                         listItemsItem.programs,
                                         ParamType.DataStruct,
-                                        true,
+                                        isList: true,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{

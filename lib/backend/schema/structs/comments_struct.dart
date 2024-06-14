@@ -15,14 +15,18 @@ class CommentsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "comments_id" field.
   CommentsIdStruct? _commentsId;
   CommentsIdStruct get commentsId => _commentsId ?? CommentsIdStruct();
   set commentsId(CommentsIdStruct? val) => _commentsId = val;
-  void updateCommentsId(Function(CommentsIdStruct) updateFn) =>
-      updateFn(_commentsId ??= CommentsIdStruct());
+
+  void updateCommentsId(Function(CommentsIdStruct) updateFn) {
+    updateFn(commentsId ??= CommentsIdStruct());
+  }
+
   bool hasCommentsId() => _commentsId != null;
 
   static CommentsStruct fromMap(Map<String, dynamic> data) => CommentsStruct(

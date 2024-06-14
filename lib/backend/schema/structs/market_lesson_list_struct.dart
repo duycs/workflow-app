@@ -51,141 +51,180 @@ class MarketLessonListStruct extends BaseStruct {
   int? _estimateInDay;
   int get estimateInDay => _estimateInDay ?? 0;
   set estimateInDay(int? val) => _estimateInDay = val;
+
   void incrementEstimateInDay(int amount) =>
-      _estimateInDay = estimateInDay + amount;
+      estimateInDay = estimateInDay + amount;
+
   bool hasEstimateInDay() => _estimateInDay != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "duration_hours" field.
   int? _durationHours;
   int get durationHours => _durationHours ?? 0;
   set durationHours(int? val) => _durationHours = val;
+
   void incrementDurationHours(int amount) =>
-      _durationHours = durationHours + amount;
+      durationHours = durationHours + amount;
+
   bool hasDurationHours() => _durationHours != null;
 
   // "template" field.
   int? _template;
   int get template => _template ?? 0;
   set template(int? val) => _template = val;
-  void incrementTemplate(int amount) => _template = template + amount;
+
+  void incrementTemplate(int amount) => template = template + amount;
+
   bool hasTemplate() => _template != null;
 
   // "lessions" field.
   List<LessonMarketStruct>? _lessions;
   List<LessonMarketStruct> get lessions => _lessions ?? const [];
   set lessions(List<LessonMarketStruct>? val) => _lessions = val;
-  void updateLessions(Function(List<LessonMarketStruct>) updateFn) =>
-      updateFn(_lessions ??= []);
+
+  void updateLessions(Function(List<LessonMarketStruct>) updateFn) {
+    updateFn(lessions ??= []);
+  }
+
   bool hasLessions() => _lessions != null;
 
   // "tests" field.
   List<TestsMarketStruct>? _tests;
   List<TestsMarketStruct> get tests => _tests ?? const [];
   set tests(List<TestsMarketStruct>? val) => _tests = val;
-  void updateTests(Function(List<TestsMarketStruct>) updateFn) =>
-      updateFn(_tests ??= []);
+
+  void updateTests(Function(List<TestsMarketStruct>) updateFn) {
+    updateFn(tests ??= []);
+  }
+
   bool hasTests() => _tests != null;
 
   // "price" field.
   String? _price;
   String get price => _price ?? '';
   set price(String? val) => _price = val;
+
   bool hasPrice() => _price != null;
 
   // "author_id" field.
   AuthorIdMarketStruct? _authorId;
   AuthorIdMarketStruct get authorId => _authorId ?? AuthorIdMarketStruct();
   set authorId(AuthorIdMarketStruct? val) => _authorId = val;
-  void updateAuthorId(Function(AuthorIdMarketStruct) updateFn) =>
-      updateFn(_authorId ??= AuthorIdMarketStruct());
+
+  void updateAuthorId(Function(AuthorIdMarketStruct) updateFn) {
+    updateFn(authorId ??= AuthorIdMarketStruct());
+  }
+
   bool hasAuthorId() => _authorId != null;
 
   // "domain_id" field.
   DomainsIdStruct? _domainId;
   DomainsIdStruct get domainId => _domainId ?? DomainsIdStruct();
   set domainId(DomainsIdStruct? val) => _domainId = val;
-  void updateDomainId(Function(DomainsIdStruct) updateFn) =>
-      updateFn(_domainId ??= DomainsIdStruct());
+
+  void updateDomainId(Function(DomainsIdStruct) updateFn) {
+    updateFn(domainId ??= DomainsIdStruct());
+  }
+
   bool hasDomainId() => _domainId != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   // "order_count" field.
   int? _orderCount;
   int get orderCount => _orderCount ?? 0;
   set orderCount(int? val) => _orderCount = val;
-  void incrementOrderCount(int amount) => _orderCount = orderCount + amount;
+
+  void incrementOrderCount(int amount) => orderCount = orderCount + amount;
+
   bool hasOrderCount() => _orderCount != null;
 
   // "reacts" field.
   List<ReactsMarketStruct>? _reacts;
   List<ReactsMarketStruct> get reacts => _reacts ?? const [];
   set reacts(List<ReactsMarketStruct>? val) => _reacts = val;
-  void updateReacts(Function(List<ReactsMarketStruct>) updateFn) =>
-      updateFn(_reacts ??= []);
+
+  void updateReacts(Function(List<ReactsMarketStruct>) updateFn) {
+    updateFn(reacts ??= []);
+  }
+
   bool hasReacts() => _reacts != null;
 
   // "category_id" field.
   CategoryIdStruct? _categoryId;
   CategoryIdStruct get categoryId => _categoryId ?? CategoryIdStruct();
   set categoryId(CategoryIdStruct? val) => _categoryId = val;
-  void updateCategoryId(Function(CategoryIdStruct) updateFn) =>
-      updateFn(_categoryId ??= CategoryIdStruct());
+
+  void updateCategoryId(Function(CategoryIdStruct) updateFn) {
+    updateFn(categoryId ??= CategoryIdStruct());
+  }
+
   bool hasCategoryId() => _categoryId != null;
 
   // "limit_invite" field.
   int? _limitInvite;
   int get limitInvite => _limitInvite ?? 0;
   set limitInvite(int? val) => _limitInvite = val;
-  void incrementLimitInvite(int amount) => _limitInvite = limitInvite + amount;
+
+  void incrementLimitInvite(int amount) => limitInvite = limitInvite + amount;
+
   bool hasLimitInvite() => _limitInvite != null;
 
   // "invite_count" field.
   int? _inviteCount;
   int get inviteCount => _inviteCount ?? 0;
   set inviteCount(int? val) => _inviteCount = val;
-  void incrementInviteCount(int amount) => _inviteCount = inviteCount + amount;
+
+  void incrementInviteCount(int amount) => inviteCount = inviteCount + amount;
+
   bool hasInviteCount() => _inviteCount != null;
 
   // "private" field.
   int? _private;
   int get private => _private ?? 0;
   set private(int? val) => _private = val;
-  void incrementPrivate(int amount) => _private = private + amount;
+
+  void incrementPrivate(int amount) => private = private + amount;
+
   bool hasPrivate() => _private != null;
 
   static MarketLessonListStruct fromMap(Map<String, dynamic> data) =>
@@ -285,12 +324,12 @@ class MarketLessonListStruct extends BaseStruct {
         'lessions': serializeParam(
           _lessions,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'tests': serializeParam(
           _tests,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'price': serializeParam(
           _price,
@@ -315,7 +354,7 @@ class MarketLessonListStruct extends BaseStruct {
         'reacts': serializeParam(
           _reacts,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'category_id': serializeParam(
           _categoryId,

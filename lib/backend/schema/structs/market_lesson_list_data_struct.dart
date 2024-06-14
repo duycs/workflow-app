@@ -13,8 +13,11 @@ class MarketLessonListDataStruct extends BaseStruct {
   List<MarketLessonListStruct>? _data;
   List<MarketLessonListStruct> get data => _data ?? const [];
   set data(List<MarketLessonListStruct>? val) => _data = val;
-  void updateData(Function(List<MarketLessonListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<MarketLessonListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static MarketLessonListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class MarketLessonListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

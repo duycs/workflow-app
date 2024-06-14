@@ -10,8 +10,9 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
   ///  Local state fields for this page.
 
   AuthorsListStruct? author;
-  void updateAuthorStruct(Function(AuthorsListStruct) updateFn) =>
-      updateFn(author ??= AuthorsListStruct());
+  void updateAuthorStruct(Function(AuthorsListStruct) updateFn) {
+    updateFn(author ??= AuthorsListStruct());
+  }
 
   List<MarketLessonListStruct> programs = [];
   void addToPrograms(MarketLessonListStruct item) => programs.add(item);
@@ -26,6 +27,12 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in AuthorProfile widget.
+  bool? getOneAuthor;
+  // Stores action output result for [Backend Call - API (GetOneAuthors)] action in AuthorProfile widget.
+  ApiCallResponse? apiResultGetOneAuthors1;
+  // Stores action output result for [Backend Call - API (GetListMarketLesson)] action in AuthorProfile widget.
+  ApiCallResponse? apiResultGetListProgram1;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>

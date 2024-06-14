@@ -22,6 +22,7 @@ class BranchDetailWidget extends StatefulWidget {
     this.description,
     this.codeListitem,
     this.status,
+    this.itemNameList,
   });
 
   final String? id;
@@ -30,6 +31,7 @@ class BranchDetailWidget extends StatefulWidget {
   final String? description;
   final List<String>? codeListitem;
   final String? status;
+  final List<String>? itemNameList;
 
   @override
   State<BranchDetailWidget> createState() => _BranchDetailWidgetState();
@@ -708,6 +710,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                               description: widget.description,
                               codeList: widget.codeListitem,
                               status: widget.status,
+                              nameList: widget.itemNameList,
                             ),
                           );
                         },

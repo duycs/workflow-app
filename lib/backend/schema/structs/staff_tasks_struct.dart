@@ -15,15 +15,20 @@ class StaffTasksStruct extends BaseStruct {
   StaffTasksIdStruct? _tasksId;
   StaffTasksIdStruct get tasksId => _tasksId ?? StaffTasksIdStruct();
   set tasksId(StaffTasksIdStruct? val) => _tasksId = val;
-  void updateTasksId(Function(StaffTasksIdStruct) updateFn) =>
-      updateFn(_tasksId ??= StaffTasksIdStruct());
+
+  void updateTasksId(Function(StaffTasksIdStruct) updateFn) {
+    updateFn(tasksId ??= StaffTasksIdStruct());
+  }
+
   bool hasTasksId() => _tasksId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static StaffTasksStruct fromMap(Map<String, dynamic> data) =>

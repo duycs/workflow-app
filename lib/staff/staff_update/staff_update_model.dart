@@ -26,8 +26,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   String dob = '';
 
   DepartmentListStruct? selectDepartment;
-  void updateSelectDepartmentStruct(Function(DepartmentListStruct) updateFn) =>
-      updateFn(selectDepartment ??= DepartmentListStruct());
+  void updateSelectDepartmentStruct(Function(DepartmentListStruct) updateFn) {
+    updateFn(selectDepartment ??= DepartmentListStruct());
+  }
 
   String avatarid = '';
 
@@ -48,6 +49,8 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   dynamic requestStaff;
 
   dynamic requestUserStaff;
+
+  bool checkDob = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -237,7 +240,9 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
                   backgroundColor: FlutterFlowTheme.of(context).secondary,
                 ),
               );
-
+              if (Navigator.of(context).canPop()) {
+                context.pop();
+              }
               context.pushNamed(
                 'PersonnelList',
                 extra: <String, dynamic>{

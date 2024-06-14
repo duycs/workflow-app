@@ -27,51 +27,62 @@ class QuestionsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "content" field.
   String? _content;
   String get content => _content ?? '';
   set content(String? val) => _content = val;
+
   bool hasContent() => _content != null;
 
   // "answer_type" field.
   String? _answerType;
   String get answerType => _answerType ?? '';
   set answerType(String? val) => _answerType = val;
+
   bool hasAnswerType() => _answerType != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   // "auto_correct" field.
   int? _autoCorrect;
   int get autoCorrect => _autoCorrect ?? 0;
   set autoCorrect(int? val) => _autoCorrect = val;
-  void incrementAutoCorrect(int amount) => _autoCorrect = autoCorrect + amount;
+
+  void incrementAutoCorrect(int amount) => autoCorrect = autoCorrect + amount;
+
   bool hasAutoCorrect() => _autoCorrect != null;
 
   // "answers" field.
   List<QuestionAnswersStruct>? _answers;
   List<QuestionAnswersStruct> get answers => _answers ?? const [];
   set answers(List<QuestionAnswersStruct>? val) => _answers = val;
-  void updateAnswers(Function(List<QuestionAnswersStruct>) updateFn) =>
-      updateFn(_answers ??= []);
+
+  void updateAnswers(Function(List<QuestionAnswersStruct>) updateFn) {
+    updateFn(answers ??= []);
+  }
+
   bool hasAnswers() => _answers != null;
 
   static QuestionsStruct fromMap(Map<String, dynamic> data) => QuestionsStruct(
@@ -136,7 +147,7 @@ class QuestionsStruct extends BaseStruct {
         'answers': serializeParam(
           _answers,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

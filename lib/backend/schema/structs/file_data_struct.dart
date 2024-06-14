@@ -17,6 +17,7 @@ class FileDataStruct extends BaseStruct {
   String? _organizationsId;
   String get organizationsId => _organizationsId ?? '';
   set organizationsId(String? val) => _organizationsId = val;
+
   bool hasOrganizationsId() => _organizationsId != null;
 
   // "directus_files_id" field.
@@ -24,15 +25,20 @@ class FileDataStruct extends BaseStruct {
   FileIDDataTypeStruct get directusFilesId =>
       _directusFilesId ?? FileIDDataTypeStruct();
   set directusFilesId(FileIDDataTypeStruct? val) => _directusFilesId = val;
-  void updateDirectusFilesId(Function(FileIDDataTypeStruct) updateFn) =>
-      updateFn(_directusFilesId ??= FileIDDataTypeStruct());
+
+  void updateDirectusFilesId(Function(FileIDDataTypeStruct) updateFn) {
+    updateFn(directusFilesId ??= FileIDDataTypeStruct());
+  }
+
   bool hasDirectusFilesId() => _directusFilesId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static FileDataStruct fromMap(Map<String, dynamic> data) => FileDataStruct(

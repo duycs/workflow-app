@@ -8,8 +8,9 @@ class DetailProfileCPNModel extends FlutterFlowModel<DetailProfileCPNWidget> {
   ///  Local state fields for this page.
 
   OrganizationListStruct? data;
-  void updateDataStruct(Function(OrganizationListStruct) updateFn) =>
-      updateFn(data ??= OrganizationListStruct());
+  void updateDataStruct(Function(OrganizationListStruct) updateFn) {
+    updateFn(data ??= OrganizationListStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 

@@ -29,20 +29,24 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "published_count" field.
   int? _publishedCount;
   int get publishedCount => _publishedCount ?? 0;
   set publishedCount(int? val) => _publishedCount = val;
+
   void incrementPublishedCount(int amount) =>
-      _publishedCount = publishedCount + amount;
+      publishedCount = publishedCount + amount;
+
   bool hasPublishedCount() => _publishedCount != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "user_created" field.
@@ -51,15 +55,19 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
       _userCreated ?? ProcedurePublishedUserCreatedStruct();
   set userCreated(ProcedurePublishedUserCreatedStruct? val) =>
       _userCreated = val;
+
   void updateUserCreated(
-          Function(ProcedurePublishedUserCreatedStruct) updateFn) =>
-      updateFn(_userCreated ??= ProcedurePublishedUserCreatedStruct());
+      Function(ProcedurePublishedUserCreatedStruct) updateFn) {
+    updateFn(userCreated ??= ProcedurePublishedUserCreatedStruct());
+  }
+
   bool hasUserCreated() => _userCreated != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "created_user_id" field.
@@ -68,15 +76,19 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
       _createdUserId ?? ProcedurePublishedUserCreatedIdStruct();
   set createdUserId(ProcedurePublishedUserCreatedIdStruct? val) =>
       _createdUserId = val;
+
   void updateCreatedUserId(
-          Function(ProcedurePublishedUserCreatedIdStruct) updateFn) =>
-      updateFn(_createdUserId ??= ProcedurePublishedUserCreatedIdStruct());
+      Function(ProcedurePublishedUserCreatedIdStruct) updateFn) {
+    updateFn(createdUserId ??= ProcedurePublishedUserCreatedIdStruct());
+  }
+
   bool hasCreatedUserId() => _createdUserId != null;
 
   // "date_end" field.
   String? _dateEnd;
   String get dateEnd => _dateEnd ?? '';
   set dateEnd(String? val) => _dateEnd = val;
+
   bool hasDateEnd() => _dateEnd != null;
 
   // "submit_staff_id" field.
@@ -84,15 +96,20 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
   SubmitStaffIdStruct get submitStaffId =>
       _submitStaffId ?? SubmitStaffIdStruct();
   set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
-  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) =>
-      updateFn(_submitStaffId ??= SubmitStaffIdStruct());
+
+  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) {
+    updateFn(submitStaffId ??= SubmitStaffIdStruct());
+  }
+
   bool hasSubmitStaffId() => _submitStaffId != null;
 
   // "number" field.
   int? _number;
   int get number => _number ?? 0;
   set number(int? val) => _number = val;
-  void incrementNumber(int amount) => _number = number + amount;
+
+  void incrementNumber(int amount) => number = number + amount;
+
   bool hasNumber() => _number != null;
 
   static ProcedurePublishedStepTaskStruct fromMap(Map<String, dynamic> data) =>

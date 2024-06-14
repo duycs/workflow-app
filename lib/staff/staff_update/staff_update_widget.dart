@@ -763,97 +763,139 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                30.0, 0.0, 20.0, 20.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final datePickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: getCurrentTimestamp,
-                                  firstDate: DateTime(1900),
-                                  lastDate: getCurrentTimestamp,
-                                  builder: (context, child) {
-                                    return wrapInMaterialDatePickerTheme(
-                                      context,
-                                      child!,
-                                      headerBackgroundColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      headerForegroundColor:
-                                          FlutterFlowTheme.of(context).info,
-                                      headerTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .headlineLarge
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                fontSize: 32.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                      pickerBackgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                      pickerForegroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                      selectedDateTimeBackgroundColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      selectedDateTimeForegroundColor:
-                                          FlutterFlowTheme.of(context).info,
-                                      actionButtonForegroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                      iconSize: 24.0,
-                                    );
-                                  },
-                                );
-
-                                if (datePickedDate != null) {
-                                  safeSetState(() {
-                                    _model.datePicked = DateTime(
-                                      datePickedDate.year,
-                                      datePickedDate.month,
-                                      datePickedDate.day,
-                                    );
-                                  });
-                                }
-                                _model.dob = _model.datePicked!.toString();
-                                setState(() {});
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Icon(
-                                    Icons.calendar_today,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
-                                  ),
-                                  Text(
-                                    valueOrDefault<String>(
-                                      dateTimeFormat(
-                                        'dd/MM/yyyy',
-                                        functions.stringToDateTime(_model.dob),
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 10.0),
+                                child: Text(
+                                  'Ngày sinh',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyLarge
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
                                       ),
-                                      'Ngày sinh',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    30.0, 0.0, 20.0, 4.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    final datePickedDate =
+                                        await showDatePicker(
+                                      context: context,
+                                      initialDate: getCurrentTimestamp,
+                                      firstDate: DateTime(1900),
+                                      lastDate: getCurrentTimestamp,
+                                      builder: (context, child) {
+                                        return wrapInMaterialDatePickerTheme(
+                                          context,
+                                          child!,
+                                          headerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          headerForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          headerTextStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineLarge
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    fontSize: 32.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                          pickerBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          pickerForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          selectedDateTimeBackgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          selectedDateTimeForegroundColor:
+                                              FlutterFlowTheme.of(context).info,
+                                          actionButtonForegroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          iconSize: 24.0,
+                                        );
+                                      },
+                                    );
+
+                                    if (datePickedDate != null) {
+                                      safeSetState(() {
+                                        _model.datePicked = DateTime(
+                                          datePickedDate.year,
+                                          datePickedDate.month,
+                                          datePickedDate.day,
+                                        );
+                                      });
+                                    }
+                                    _model.dob = _model.datePicked!.toString();
+                                    setState(() {});
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Icon(
+                                        Icons.calendar_today,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        valueOrDefault<String>(
+                                          dateTimeFormat(
+                                            'dd/MM/yyyy',
+                                            functions
+                                                .stringToDateTime(_model.dob),
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          'Ngày sinh',
                                         ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (_model.checkDob == true)
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  30.0, 0.0, 0.0, 20.0),
+                              child: Text(
+                                'Bạn chưa chọn ngày sinh',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
                             ),
-                          ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 10.0),
@@ -1111,79 +1153,79 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       ],
                                     ),
                                   ),
-                                  Expanded(
-                                    child: FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.titleValueController ??=
-                                              FormFieldController<String>(
-                                        _model.titleValue ??= '',
-                                      ),
-                                      options: List<String>.from(
-                                          ['1', '2', '3', '4', '5']),
-                                      optionLabels: const [
-                                        'Trưởng chi nhánh',
-                                        'Phó chi nhánh',
-                                        'Trưởng bộ phận',
-                                        'Phó bộ phận',
-                                        'Nhân viên'
-                                      ],
-                                      onChanged: (val) async {
-                                        setState(() => _model.titleValue = val);
-                                        setState(() {
-                                          _model.titleTextTextController?.text =
-                                              () {
-                                            if (_model.titleValue == '5') {
-                                              return 'Nhân viên';
-                                            } else if (_model.titleValue ==
-                                                '4') {
-                                              return 'Phó bộ phận';
-                                            } else if (_model.titleValue ==
-                                                '3') {
-                                              return 'Trưởng bộ phận';
-                                            } else if (_model.titleValue ==
-                                                '2') {
-                                              return 'Phó chi nhánh';
-                                            } else if (_model.titleValue ==
-                                                '1') {
-                                              return 'Trưởng chi nhánh';
-                                            } else {
-                                              return ' ';
-                                            }
-                                          }();
-                                        });
-
-                                        setState(() {});
-                                      },
-                                      width: 200.0,
-                                      height: 40.0,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintText: 'Chức vụ gợi ý',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 15.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      elevation: 1.0,
-                                      borderColor: Colors.transparent,
-                                      borderWidth: 1.0,
-                                      borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 4.0, 8.0, 4.0),
-                                      hidesUnderline: true,
-                                      isSearchable: false,
-                                      isMultiSelect: false,
+                                  FlutterFlowDropDown<String>(
+                                    controller: _model.titleValueController ??=
+                                        FormFieldController<String>(
+                                      _model.titleValue ??= '',
                                     ),
+                                    options: List<String>.from(
+                                        ['1', '2', '3', '4', '5']),
+                                    optionLabels: const [
+                                      'Trưởng chi nhánh',
+                                      'Phó chi nhánh',
+                                      'Trưởng bộ phận',
+                                      'Phó bộ phận',
+                                      'Nhân viên'
+                                    ],
+                                    onChanged: (val) async {
+                                      setState(() => _model.titleValue = val);
+                                      setState(() {
+                                        _model.titleTextTextController?.text =
+                                            () {
+                                          if (_model.titleValue == '5') {
+                                            return 'Nhân viên';
+                                          } else if (_model.titleValue == '4') {
+                                            return 'Phó bộ phận';
+                                          } else if (_model.titleValue == '3') {
+                                            return 'Trưởng bộ phận';
+                                          } else if (_model.titleValue == '2') {
+                                            return 'Phó chi nhánh';
+                                          } else if (_model.titleValue == '1') {
+                                            return 'Trưởng chi nhánh';
+                                          } else {
+                                            return ' ';
+                                          }
+                                        }();
+                                        _model.titleTextTextController
+                                                ?.selection =
+                                            TextSelection.collapsed(
+                                                offset: _model
+                                                    .titleTextTextController!
+                                                    .text
+                                                    .length);
+                                      });
+
+                                      setState(() {});
+                                    },
+                                    width: 200.0,
+                                    height: 40.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 13.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'Chức vụ gợi ý',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 15.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    elevation: 1.0,
+                                    borderColor: Colors.transparent,
+                                    borderWidth: 1.0,
+                                    borderRadius: 8.0,
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 4.0, 8.0, 4.0),
+                                    hidesUnderline: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
                                   ),
                                 ],
                               ),
@@ -1269,14 +1311,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       getJsonField(
                                         widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ))) ||
+                                      ).toString())) ||
                               ((FFAppState().user.role ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
                                         widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ))))
+                                      ).toString())))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 10.0),
@@ -1300,14 +1342,14 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       getJsonField(
                                         widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ))) ||
+                                      ).toString())) ||
                               ((FFAppState().user.role ==
                                       '82073000-1ba2-43a4-a55c-459d17c23b68') &&
                                   (FFAppState().user.role !=
                                       getJsonField(
                                         widget.staffDetail,
                                         r'''$.user_id.role''',
-                                      ))))
+                                      ).toString())))
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
@@ -1420,97 +1462,115 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     ),
                               ),
                             ),
-                          if ((_model.selectRole == true) ||
-                              (_model.roleValue ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                              (_model.roleValue ==
-                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 4.0),
-                              child: FlutterFlowDropDown<String>(
-                                controller: _model.departmentValueController ??=
-                                    FormFieldController<String>(
-                                  _model.departmentValue ??= getJsonField(
-                                    widget.staffDetail,
-                                    r'''$.department_id.id''',
-                                  ).toString(),
-                                ),
-                                options: List<String>.from(_model.listDepartment
-                                    .map((e) => e.id)
-                                    .toList()),
-                                optionLabels: _model.listDepartment
-                                    .map((e) => e.name)
-                                    .toList(),
-                                onChanged: (val) async {
-                                  setState(() => _model.departmentValue = val);
-                                  _model.selectDepartment = _model
-                                      .listDepartment
-                                      .where(
-                                          (e) => e.id == _model.departmentValue)
-                                      .toList()
-                                      .first;
-                                  setState(() {});
-                                },
-                                width: double.infinity,
-                                height: 56.0,
-                                searchHintTextStyle: const TextStyle(),
-                                searchTextStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 20.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if ((_model.selectRole == true) ||
+                                    (_model.roleValue ==
+                                        '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                    (_model.roleValue ==
+                                        '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 0.0, 20.0, 4.0),
+                                    child: FlutterFlowDropDown<String>(
+                                      controller:
+                                          _model.departmentValueController ??=
+                                              FormFieldController<String>(
+                                        _model.departmentValue ??=
+                                            _model.selectRole == false
+                                                ? getJsonField(
+                                                    widget.staffDetail,
+                                                    r'''$.department_id.id''',
+                                                  ).toString()
+                                                : null,
+                                      ),
+                                      options: List<String>.from(_model
+                                          .listDepartment
+                                          .map((e) => e.id)
+                                          .toList()),
+                                      optionLabels: _model.listDepartment
+                                          .map((e) => e.name)
+                                          .toList(),
+                                      onChanged: (val) async {
+                                        setState(
+                                            () => _model.departmentValue = val);
+                                        _model.selectDepartment = _model
+                                            .listDepartment
+                                            .where((e) =>
+                                                e.id == _model.departmentValue)
+                                            .toList()
+                                            .first;
+                                        setState(() {});
+                                      },
+                                      width: double.infinity,
+                                      height: 56.0,
+                                      searchHintTextStyle: const TextStyle(),
+                                      searchTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Chọn bộ phận',
+                                      searchHintText: 'Tìm kiếm bộ phận:',
+                                      icon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 15.0,
+                                      ),
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      elevation: 1.0,
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderWidth: 1.0,
+                                      borderRadius: 8.0,
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 4.0, 12.0, 4.0),
+                                      hidesUnderline: true,
+                                      disabled: FFAppState().user.role ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725',
+                                      isSearchable: true,
+                                      isMultiSelect: false,
                                     ),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
+                                  ),
+                                if (_model.checkDepartment)
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        30.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Vui lòng chọn bộ phận',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle: FontStyle.italic,
+                                          ),
                                     ),
-                                hintText: 'Chọn bộ phận',
-                                searchHintText: 'Tìm kiếm bộ phận:',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 15.0,
-                                ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 1.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 1.0,
-                                borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 4.0, 12.0, 4.0),
-                                hidesUnderline: true,
-                                disabled: FFAppState().user.role ==
-                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725',
-                                isSearchable: true,
-                                isMultiSelect: false,
-                              ),
+                                  ),
+                              ],
                             ),
-                          if (_model.checkDepartment)
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  30.0, 0.0, 0.0, 20.0),
-                              child: Text(
-                                'Vui lòng chọn bộ phận',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context).error,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                              ),
-                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -1605,29 +1665,105 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           !_model.formKey1.currentState!.validate()) {
                         return;
                       }
-                      if (_model.departmentValue == null ||
-                          _model.departmentValue == '') {
-                        if ((_model.roleValue ==
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                            (_model.roleValue ==
-                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
-                          _model.checkDepartment = true;
-                          setState(() {});
+                      if ((_model.dob == '') ||
+                          (_model.dob == ' ')) {
+                        _model.checkDob = true;
+                        setState(() {});
+                      } else {
+                        _model.checkDob = false;
+                        setState(() {});
+                        if ((_model.departmentValue == null ||
+                                _model.departmentValue == '') ||
+                            (_model.departmentValue == 'null')) {
+                          if ((_model.roleValue ==
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                              (_model.roleValue ==
+                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
+                            _model.checkDepartment = true;
+                            setState(() {});
+                          } else {
+                            _model.checkDepartment = false;
+                            setState(() {});
+                            _model.uploadImageToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.uploadImageToken!) {
+                              _model.apiResultUploadImage =
+                                  await UploadFileGroup.uploadFileCall.call(
+                                file: _model.uploadedLocalFile,
+                                accessToken: FFAppState().accessToken,
+                              );
+                              if ((_model.apiResultUploadImage?.succeeded ??
+                                  true)) {
+                                _model.avatarid = getJsonField(
+                                  (_model.apiResultUploadImage?.jsonBody ?? ''),
+                                  r'''$.data.id''',
+                                ).toString();
+                                setState(() {});
+                              }
+                              _model.requestStaff = <String, dynamic>{
+                                'first_name': _model.nameTextController.text,
+                                'last_name': _model.nameTextController.text,
+                                'email': _model.emailTextController.text,
+                                'role': _model.roleValue,
+                                'avatar': _model.avatarid,
+                              };
+                              _model.requestUserStaff = <String, dynamic>{
+                                'status': _model.switchListTileValue == true
+                                    ? 'active'
+                                    : 'draff',
+                                'cccd': _model.cccdTextController.text,
+                                'gender': _model.radioButtonValue == 'Nam'
+                                    ? 'male'
+                                    : 'female',
+                                'dob': _model.dob,
+                                'phone': _model.phoneTextController.text,
+                                'department_id': getJsonField(
+                                  <String, dynamic>{
+                                    'map': null,
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'branch_id': _model.branchValue,
+                                'title': _model.titleTextTextController.text,
+                                'sort': () {
+                                  if (_model.roleValue ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return '1';
+                                  } else if (_model.roleValue ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return '2';
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return '0';
+                                  } else {
+                                    return '3';
+                                  }
+                                }(),
+                              };
+                              setState(() {});
+                              await _model.callRequest(context);
+                            } else {
+                              setState(() {});
+                            }
+                          }
                         } else {
                           _model.checkDepartment = false;
                           setState(() {});
-                          _model.uploadImageToken =
+                          _model.uploadImageToken2 =
                               await action_blocks.tokenReload(context);
-                          if (_model.uploadImageToken!) {
-                            _model.apiResultUploadImage =
+                          if (_model.uploadImageToken2!) {
+                            _model.apiResultUploadImage2 =
                                 await UploadFileGroup.uploadFileCall.call(
                               file: _model.uploadedLocalFile,
                               accessToken: FFAppState().accessToken,
                             );
-                            if ((_model.apiResultUploadImage?.succeeded ??
+                            if ((_model.apiResultUploadImage2?.succeeded ??
                                 true)) {
                               _model.avatarid = getJsonField(
-                                (_model.apiResultUploadImage?.jsonBody ?? ''),
+                                (_model.apiResultUploadImage2?.jsonBody ?? ''),
                                 r'''$.data.id''',
                               ).toString();
                               setState(() {});
@@ -1647,11 +1783,9 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               'gender': _model.radioButtonValue == 'Nam'
                                   ? 'male'
                                   : 'female',
-                              'dob': _model.dob == ''
-                                  ? null
-                                  : _model.dob,
+                              'dob': _model.dob,
                               'phone': _model.phoneTextController.text,
-                              'department_id': null,
+                              'department_id': _model.departmentValue,
                               'branch_id': _model.branchValue,
                               'title': _model.titleTextTextController.text,
                               'sort': () {
@@ -1678,31 +1812,93 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             setState(() {});
                           }
                         }
-                      } else {
-                        _model.checkDepartment = false;
+                      }
+                    } else {
+                      if (_model.formKey2.currentState == null ||
+                          !_model.formKey2.currentState!.validate()) {
+                        return;
+                      }
+                      if (_model.formKey1.currentState == null ||
+                          !_model.formKey1.currentState!.validate()) {
+                        return;
+                      }
+                      if ((_model.dob == '') ||
+                          (_model.dob == ' ')) {
+                        _model.checkDob = true;
                         setState(() {});
-                        _model.uploadImageToken2 =
-                            await action_blocks.tokenReload(context);
-                        if (_model.uploadImageToken2!) {
-                          _model.apiResultUploadImage2 =
-                              await UploadFileGroup.uploadFileCall.call(
-                            file: _model.uploadedLocalFile,
-                            accessToken: FFAppState().accessToken,
-                          );
-                          if ((_model.apiResultUploadImage2?.succeeded ??
-                              true)) {
-                            _model.avatarid = getJsonField(
-                              (_model.apiResultUploadImage2?.jsonBody ?? ''),
-                              r'''$.data.id''',
-                            ).toString();
+                      } else {
+                        _model.checkDob = false;
+                        setState(() {});
+                        if ((_model.departmentValue == null ||
+                                _model.departmentValue == '') ||
+                            (_model.departmentValue == 'null')) {
+                          if ((_model.roleValue ==
+                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                              (_model.roleValue ==
+                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
+                            _model.checkDepartment = true;
                             setState(() {});
+                          } else {
+                            _model.checkDepartment = false;
+                            _model.requestStaff = <String, dynamic>{
+                              'first_name': _model.nameTextController.text,
+                              'last_name': _model.nameTextController.text,
+                              'email': _model.emailTextController.text,
+                              'role': _model.roleValue,
+                              'avatar': getJsonField(
+                                widget.staffDetail,
+                                r'''$.user_id.avatar''',
+                              ),
+                            };
+                            _model.requestUserStaff = <String, dynamic>{
+                              'status': _model.switchListTileValue == true
+                                  ? 'active'
+                                  : 'draff',
+                              'cccd': _model.cccdTextController.text,
+                              'gender': _model.radioButtonValue == 'Nam'
+                                  ? 'male'
+                                  : 'female',
+                              'dob': _model.dob,
+                              'phone': _model.phoneTextController.text,
+                              'department_id': getJsonField(
+                                <String, dynamic>{
+                                  'map': null,
+                                },
+                                r'''$.map''',
+                              ),
+                              'branch_id': _model.branchValue,
+                              'title': _model.titleTextTextController.text,
+                              'sort': () {
+                                if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return '1';
+                                } else if (_model.roleValue ==
+                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                  return '2';
+                                } else if (getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                  return '0';
+                                } else {
+                                  return '3';
+                                }
+                              }(),
+                            };
+                            setState(() {});
+                            await _model.callRequest(context);
                           }
+                        } else {
                           _model.requestStaff = <String, dynamic>{
                             'first_name': _model.nameTextController.text,
                             'last_name': _model.nameTextController.text,
                             'email': _model.emailTextController.text,
                             'role': _model.roleValue,
-                            'avatar': _model.avatarid,
+                            'avatar': getJsonField(
+                              widget.staffDetail,
+                              r'''$.user_id.avatar''',
+                            ),
                           };
                           _model.requestUserStaff = <String, dynamic>{
                             'status': _model.switchListTileValue == true
@@ -1712,9 +1908,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             'gender': _model.radioButtonValue == 'Nam'
                                 ? 'male'
                                 : 'female',
-                            'dob': _model.dob == ''
-                                ? null
-                                : _model.dob,
+                            'dob': _model.dob,
                             'phone': _model.phoneTextController.text,
                             'department_id': _model.departmentValue,
                             'branch_id': _model.branchValue,
@@ -1739,121 +1933,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           };
                           setState(() {});
                           await _model.callRequest(context);
-                        } else {
-                          setState(() {});
                         }
-                      }
-                    } else {
-                      if (_model.formKey2.currentState == null ||
-                          !_model.formKey2.currentState!.validate()) {
-                        return;
-                      }
-                      if (_model.formKey1.currentState == null ||
-                          !_model.formKey1.currentState!.validate()) {
-                        return;
-                      }
-                      if (_model.departmentValue == null ||
-                          _model.departmentValue == '') {
-                        if ((_model.roleValue ==
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                            (_model.roleValue ==
-                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')) {
-                          _model.checkDepartment = true;
-                          setState(() {});
-                        } else {
-                          _model.checkDepartment = false;
-                          _model.requestStaff = <String, dynamic>{
-                            'first_name': _model.nameTextController.text,
-                            'last_name': _model.nameTextController.text,
-                            'email': _model.emailTextController.text,
-                            'role': _model.roleValue,
-                            'avatar': getJsonField(
-                              widget.staffDetail,
-                              r'''$.user_id.avatar''',
-                            ),
-                          };
-                          _model.requestUserStaff = <String, dynamic>{
-                            'status': _model.switchListTileValue == true
-                                ? 'active'
-                                : 'draff',
-                            'cccd': _model.cccdTextController.text,
-                            'gender': _model.radioButtonValue == 'Nam'
-                                ? 'male'
-                                : 'female',
-                            'dob': _model.dob == ''
-                                ? null
-                                : _model.dob,
-                            'phone': _model.phoneTextController.text,
-                            'department_id': null,
-                            'branch_id': _model.branchValue,
-                            'title': _model.titleTextTextController.text,
-                            'sort': () {
-                              if (_model.roleValue ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return '1';
-                              } else if (_model.roleValue ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return '2';
-                              } else if (getJsonField(
-                                    widget.staffDetail,
-                                    r'''$.user_id.role''',
-                                  ).toString() ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return '0';
-                              } else {
-                                return '3';
-                              }
-                            }(),
-                          };
-                          setState(() {});
-                          await _model.callRequest(context);
-                        }
-                      } else {
-                        _model.requestStaff = <String, dynamic>{
-                          'first_name': _model.nameTextController.text,
-                          'last_name': _model.nameTextController.text,
-                          'email': _model.emailTextController.text,
-                          'role': _model.roleValue,
-                          'avatar': getJsonField(
-                            widget.staffDetail,
-                            r'''$.user_id.avatar''',
-                          ),
-                        };
-                        _model.requestUserStaff = <String, dynamic>{
-                          'status': _model.switchListTileValue == true
-                              ? 'active'
-                              : 'draff',
-                          'cccd': _model.cccdTextController.text,
-                          'gender': _model.radioButtonValue == 'Nam'
-                              ? 'male'
-                              : 'female',
-                          'dob': _model.dob == ''
-                              ? null
-                              : _model.dob,
-                          'phone': _model.phoneTextController.text,
-                          'department_id': _model.departmentValue,
-                          'branch_id': _model.branchValue,
-                          'title': _model.titleTextTextController.text,
-                          'sort': () {
-                            if (_model.roleValue ==
-                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return '1';
-                            } else if (_model.roleValue ==
-                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                              return '2';
-                            } else if (getJsonField(
-                                  widget.staffDetail,
-                                  r'''$.user_id.role''',
-                                ).toString() ==
-                                '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                              return '0';
-                            } else {
-                              return '3';
-                            }
-                          }(),
-                        };
-                        setState(() {});
-                        await _model.callRequest(context);
                       }
                     }
 

@@ -918,7 +918,10 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                   }
                                 }
 
-                                context.goNamed(
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
+                                context.pushNamed(
                                   'TestList',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(

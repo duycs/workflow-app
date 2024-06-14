@@ -13,8 +13,11 @@ class BranchListDataStruct extends BaseStruct {
   List<BranchListStruct>? _data;
   List<BranchListStruct> get data => _data ?? const [];
   set data(List<BranchListStruct>? val) => _data = val;
-  void updateData(Function(List<BranchListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<BranchListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static BranchListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class BranchListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

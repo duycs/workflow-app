@@ -43,108 +43,134 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "cron" field.
   String? _cron;
   String get cron => _cron ?? '';
   set cron(String? val) => _cron = val;
+
   bool hasCron() => _cron != null;
 
   // "limit_published" field.
   int? _limitPublished;
   int get limitPublished => _limitPublished ?? 0;
   set limitPublished(int? val) => _limitPublished = val;
+
   void incrementLimitPublished(int amount) =>
-      _limitPublished = limitPublished + amount;
+      limitPublished = limitPublished + amount;
+
   bool hasLimitPublished() => _limitPublished != null;
 
   // "remind" field.
   int? _remind;
   int get remind => _remind ?? 0;
   set remind(int? val) => _remind = val;
-  void incrementRemind(int amount) => _remind = remind + amount;
+
+  void incrementRemind(int amount) => remind = remind + amount;
+
   bool hasRemind() => _remind != null;
 
   // "remind_in_second" field.
   int? _remindInSecond;
   int get remindInSecond => _remindInSecond ?? 0;
   set remindInSecond(int? val) => _remindInSecond = val;
+
   void incrementRemindInSecond(int amount) =>
-      _remindInSecond = remindInSecond + amount;
+      remindInSecond = remindInSecond + amount;
+
   bool hasRemindInSecond() => _remindInSecond != null;
 
   // "remind_2" field.
   int? _remind2;
   int get remind2 => _remind2 ?? 0;
   set remind2(int? val) => _remind2 = val;
-  void incrementRemind2(int amount) => _remind2 = remind2 + amount;
+
+  void incrementRemind2(int amount) => remind2 = remind2 + amount;
+
   bool hasRemind2() => _remind2 != null;
 
   // "department_id" field.
   String? _departmentId;
   String get departmentId => _departmentId ?? '';
   set departmentId(String? val) => _departmentId = val;
+
   bool hasDepartmentId() => _departmentId != null;
 
   // "branch_id" field.
   String? _branchId;
   String get branchId => _branchId ?? '';
   set branchId(String? val) => _branchId = val;
+
   bool hasBranchId() => _branchId != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "staffs" field.
   List<StaffsStepStruct>? _staffs;
   List<StaffsStepStruct> get staffs => _staffs ?? const [];
   set staffs(List<StaffsStepStruct>? val) => _staffs = val;
-  void updateStaffs(Function(List<StaffsStepStruct>) updateFn) =>
-      updateFn(_staffs ??= []);
+
+  void updateStaffs(Function(List<StaffsStepStruct>) updateFn) {
+    updateFn(staffs ??= []);
+  }
+
   bool hasStaffs() => _staffs != null;
 
   // "departments" field.
   List<DepartmentsIdStruct>? _departments;
   List<DepartmentsIdStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentsIdStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   // "id" field.
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "steps" field.
   List<WorkflowsStepCreateStruct>? _steps;
   List<WorkflowsStepCreateStruct> get steps => _steps ?? const [];
   set steps(List<WorkflowsStepCreateStruct>? val) => _steps = val;
-  void updateSteps(Function(List<WorkflowsStepCreateStruct>) updateFn) =>
-      updateFn(_steps ??= []);
+
+  void updateSteps(Function(List<WorkflowsStepCreateStruct>) updateFn) {
+    updateFn(steps ??= []);
+  }
+
   bool hasSteps() => _steps != null;
 
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   set type(String? val) => _type = val;
+
   bool hasType() => _type != null;
 
   static RequestWorkflowsCreateStruct fromMap(Map<String, dynamic> data) =>
@@ -248,12 +274,12 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         'staffs': serializeParam(
           _staffs,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'id': serializeParam(
           _id,
@@ -262,7 +288,7 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
         'steps': serializeParam(
           _steps,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'type': serializeParam(
           _type,

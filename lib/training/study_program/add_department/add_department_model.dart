@@ -31,8 +31,9 @@ class AddDepartmentModel extends FlutterFlowModel<AddDepartmentWidget> {
       listAdd[index] = updateFn(listAdd[index]);
 
   RequestAddDerStruct? request;
-  void updateRequestStruct(Function(RequestAddDerStruct) updateFn) =>
-      updateFn(request ??= RequestAddDerStruct());
+  void updateRequestStruct(Function(RequestAddDerStruct) updateFn) {
+    updateFn(request ??= RequestAddDerStruct());
+  }
 
   int loop = 0;
 

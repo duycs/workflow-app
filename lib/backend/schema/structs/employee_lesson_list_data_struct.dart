@@ -15,16 +15,22 @@ class EmployeeLessonListDataStruct extends BaseStruct {
   List<EmployeeLessonListStruct>? _data;
   List<EmployeeLessonListStruct> get data => _data ?? const [];
   set data(List<EmployeeLessonListStruct>? val) => _data = val;
-  void updateData(Function(List<EmployeeLessonListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<EmployeeLessonListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   // "meta" field.
   MetaDataStruct? _meta;
   MetaDataStruct get meta => _meta ?? MetaDataStruct();
   set meta(MetaDataStruct? val) => _meta = val;
-  void updateMeta(Function(MetaDataStruct) updateFn) =>
-      updateFn(_meta ??= MetaDataStruct());
+
+  void updateMeta(Function(MetaDataStruct) updateFn) {
+    updateFn(meta ??= MetaDataStruct());
+  }
+
   bool hasMeta() => _meta != null;
 
   static EmployeeLessonListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -50,7 +56,7 @@ class EmployeeLessonListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'meta': serializeParam(
           _meta,

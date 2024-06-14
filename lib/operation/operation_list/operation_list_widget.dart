@@ -124,6 +124,8 @@ class _OperationListWidgetState extends State<OperationListWidget>
                             setState(() {
                               _model.textController?.clear();
                             });
+                            await Future.delayed(
+                                const Duration(milliseconds: 500));
                             setState(() =>
                                 _model.listViewOnePagingController?.refresh());
                             setState(() =>
@@ -370,6 +372,10 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                           ?.refresh());
                                       setState(() {
                                         _model.textController?.text = name;
+                                        _model.textController?.selection =
+                                            TextSelection.collapsed(
+                                                offset: _model.textController!
+                                                    .text.length);
                                       });
 
                                       setState(() {});

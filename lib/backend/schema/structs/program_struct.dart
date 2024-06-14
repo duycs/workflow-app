@@ -15,14 +15,18 @@ class ProgramStruct extends BaseStruct {
   ProgramIdStruct? _programsId;
   ProgramIdStruct get programsId => _programsId ?? ProgramIdStruct();
   set programsId(ProgramIdStruct? val) => _programsId = val;
-  void updateProgramsId(Function(ProgramIdStruct) updateFn) =>
-      updateFn(_programsId ??= ProgramIdStruct());
+
+  void updateProgramsId(Function(ProgramIdStruct) updateFn) {
+    updateFn(programsId ??= ProgramIdStruct());
+  }
+
   bool hasProgramsId() => _programsId != null;
 
   // "checkPrograms" field.
   bool? _checkPrograms;
   bool get checkPrograms => _checkPrograms ?? false;
   set checkPrograms(bool? val) => _checkPrograms = val;
+
   bool hasCheckPrograms() => _checkPrograms != null;
 
   static ProgramStruct fromMap(Map<String, dynamic> data) => ProgramStruct(

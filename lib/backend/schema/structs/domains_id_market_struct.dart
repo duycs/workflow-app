@@ -16,12 +16,14 @@ class DomainsIdMarketStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   static DomainsIdMarketStruct fromMap(Map<String, dynamic> data) =>

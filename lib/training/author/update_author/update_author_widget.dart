@@ -772,7 +772,9 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                                 .secondary,
                                       ),
                                     );
-
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
                                     context.pushNamed(
                                       'AuthorProfile',
                                       extra: <String, dynamic>{

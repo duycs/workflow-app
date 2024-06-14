@@ -846,7 +846,10 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                                 .deletePreProgramVersion(
                                                     context);
                                             setState(() {});
-
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
                                             context.pushNamed(
                                               'StudyProgramList',
                                               queryParameters: {

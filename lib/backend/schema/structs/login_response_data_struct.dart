@@ -13,8 +13,11 @@ class LoginResponseDataStruct extends BaseStruct {
   LoginResponseStruct? _data;
   LoginResponseStruct get data => _data ?? LoginResponseStruct();
   set data(LoginResponseStruct? val) => _data = val;
-  void updateData(Function(LoginResponseStruct) updateFn) =>
-      updateFn(_data ??= LoginResponseStruct());
+
+  void updateData(Function(LoginResponseStruct) updateFn) {
+    updateFn(data ??= LoginResponseStruct());
+  }
+
   bool hasData() => _data != null;
 
   static LoginResponseDataStruct fromMap(Map<String, dynamic> data) =>

@@ -14,8 +14,11 @@ class ProgaramsCreateDepartmentsStruct extends BaseStruct {
   ProgramIdCreateDepartmentsStruct get programsId =>
       _programsId ?? ProgramIdCreateDepartmentsStruct();
   set programsId(ProgramIdCreateDepartmentsStruct? val) => _programsId = val;
-  void updateProgramsId(Function(ProgramIdCreateDepartmentsStruct) updateFn) =>
-      updateFn(_programsId ??= ProgramIdCreateDepartmentsStruct());
+
+  void updateProgramsId(Function(ProgramIdCreateDepartmentsStruct) updateFn) {
+    updateFn(programsId ??= ProgramIdCreateDepartmentsStruct());
+  }
+
   bool hasProgramsId() => _programsId != null;
 
   static ProgaramsCreateDepartmentsStruct fromMap(Map<String, dynamic> data) =>

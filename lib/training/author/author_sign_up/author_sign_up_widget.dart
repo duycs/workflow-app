@@ -775,7 +775,10 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                         );
                                         setState(() {});
                                       }
-
+                                      Navigator.pop(context);
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
                                       context.pushNamed(
                                         'AuthorProfile',
                                         extra: <String, dynamic>{
@@ -787,8 +790,6 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                           ),
                                         },
                                       );
-
-                                      Navigator.pop(context);
                                     }
                                   }
                                 }

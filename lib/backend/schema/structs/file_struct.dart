@@ -18,18 +18,21 @@ class FileStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   set type(String? val) => _type = val;
+
   bool hasType() => _type != null;
 
   // "filename_download" field.
   String? _filenameDownload;
   String get filenameDownload => _filenameDownload ?? '';
   set filenameDownload(String? val) => _filenameDownload = val;
+
   bool hasFilenameDownload() => _filenameDownload != null;
 
   static FileStruct fromMap(Map<String, dynamic> data) => FileStruct(

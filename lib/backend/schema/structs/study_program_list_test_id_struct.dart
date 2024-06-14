@@ -13,8 +13,11 @@ class StudyProgramListTestIdStruct extends BaseStruct {
   StaffsTestsListStruct? _testsId;
   StaffsTestsListStruct get testsId => _testsId ?? StaffsTestsListStruct();
   set testsId(StaffsTestsListStruct? val) => _testsId = val;
-  void updateTestsId(Function(StaffsTestsListStruct) updateFn) =>
-      updateFn(_testsId ??= StaffsTestsListStruct());
+
+  void updateTestsId(Function(StaffsTestsListStruct) updateFn) {
+    updateFn(testsId ??= StaffsTestsListStruct());
+  }
+
   bool hasTestsId() => _testsId != null;
 
   static StudyProgramListTestIdStruct fromMap(Map<String, dynamic> data) =>

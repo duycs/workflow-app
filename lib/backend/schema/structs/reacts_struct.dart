@@ -15,15 +15,20 @@ class ReactsStruct extends BaseStruct {
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   // "reacts_id" field.
   ReactsIdStruct? _reactsId;
   ReactsIdStruct get reactsId => _reactsId ?? ReactsIdStruct();
   set reactsId(ReactsIdStruct? val) => _reactsId = val;
-  void updateReactsId(Function(ReactsIdStruct) updateFn) =>
-      updateFn(_reactsId ??= ReactsIdStruct());
+
+  void updateReactsId(Function(ReactsIdStruct) updateFn) {
+    updateFn(reactsId ??= ReactsIdStruct());
+  }
+
   bool hasReactsId() => _reactsId != null;
 
   static ReactsStruct fromMap(Map<String, dynamic> data) => ReactsStruct(

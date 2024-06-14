@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/author/update_author/update_author_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -33,10 +36,41 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getOneAuthor(context);
-      setState(() {});
-      await _model.getListProgramAuthors(context);
-      setState(() {});
+      _model.getOneAuthor = await action_blocks.tokenReload(context);
+      if (getOneAuthor!) {
+        _model.apiResultGetOneAuthors1 =
+            await GroupAuthorsGroup.getOneAuthorsCall.call(
+          accessToken: FFAppState().accessToken,
+          id: getJsonField(
+            FFAppState().staffOrganization,
+            r'''$.authors[0]''',
+          ).toString().toString(),
+        );
+        if ((_model.apiResultGetOneAuthors1?.succeeded ?? true)) {
+          _model.author = AuthorsListStruct.maybeFromMap(getJsonField(
+            (_model.apiResultGetOneAuthors1?.jsonBody ?? ''),
+            r'''$.data''',
+          ));
+          _model.apiResultGetListProgram1 =
+              await GroupMarketLessonGroup.getListMarketLessonCall.call(
+            accessToken: FFAppState().accessToken,
+            filter:
+                '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"_eq\":\"${getJsonField(
+              FFAppState().staffOrganization,
+              r'''$.authors[0]''',
+            ).toString().toString()}\"}}]}',
+          );
+          if ((_model.apiResultGetOneAuthors1?.succeeded ?? true)) {
+            _model.programs = MarketLessonListDataStruct.maybeFromMap(
+                    (_model.apiResultGetListProgram1?.jsonBody ?? ''))!
+                .data
+                .toList()
+                .cast<MarketLessonListStruct>();
+          }
+        }
+      } else {
+        return;
+      }
     });
 
     _model.tabBarController = TabController(
@@ -1289,6 +1323,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         ).then((value) =>
                                                             safeSetState(
                                                                 () {}));
+
+                                                        Navigator.pop(context);
                                                       },
                                                       text: 'Chỉnh sửa',
                                                       icon: const Icon(

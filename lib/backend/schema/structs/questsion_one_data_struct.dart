@@ -13,8 +13,11 @@ class QuestsionOneDataStruct extends BaseStruct {
   QuestionObjectStruct? _data;
   QuestionObjectStruct get data => _data ?? QuestionObjectStruct();
   set data(QuestionObjectStruct? val) => _data = val;
-  void updateData(Function(QuestionObjectStruct) updateFn) =>
-      updateFn(_data ??= QuestionObjectStruct());
+
+  void updateData(Function(QuestionObjectStruct) updateFn) {
+    updateFn(data ??= QuestionObjectStruct());
+  }
+
   bool hasData() => _data != null;
 
   static QuestsionOneDataStruct fromMap(Map<String, dynamic> data) =>

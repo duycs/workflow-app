@@ -22,8 +22,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
       listDepartment[index] = updateFn(listDepartment[index]);
 
   DepartmentListStruct? selectDepartment;
-  void updateSelectDepartmentStruct(Function(DepartmentListStruct) updateFn) =>
-      updateFn(selectDepartment ??= DepartmentListStruct());
+  void updateSelectDepartmentStruct(Function(DepartmentListStruct) updateFn) {
+    updateFn(selectDepartment ??= DepartmentListStruct());
+  }
 
   String dob = '';
 
@@ -57,8 +58,9 @@ class StaffCreateModel extends FlutterFlowModel<StaffCreateWidget> {
       branchList[index] = updateFn(branchList[index]);
 
   BranchListStruct? selectBranch;
-  void updateSelectBranchStruct(Function(BranchListStruct) updateFn) =>
-      updateFn(selectBranch ??= BranchListStruct());
+  void updateSelectBranchStruct(Function(BranchListStruct) updateFn) {
+    updateFn(selectBranch ??= BranchListStruct());
+  }
 
   bool checkBranch = false;
 

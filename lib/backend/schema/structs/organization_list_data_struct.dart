@@ -13,8 +13,11 @@ class OrganizationListDataStruct extends BaseStruct {
   OrganizationListStruct? _data;
   OrganizationListStruct get data => _data ?? OrganizationListStruct();
   set data(OrganizationListStruct? val) => _data = val;
-  void updateData(Function(OrganizationListStruct) updateFn) =>
-      updateFn(_data ??= OrganizationListStruct());
+
+  void updateData(Function(OrganizationListStruct) updateFn) {
+    updateFn(data ??= OrganizationListStruct());
+  }
+
   bool hasData() => _data != null;
 
   static OrganizationListDataStruct fromMap(Map<String, dynamic> data) =>

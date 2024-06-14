@@ -354,6 +354,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
+                                        elevation: 0.0,
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
@@ -399,6 +400,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
+                                        elevation: 0.0,
                                         borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
@@ -448,6 +450,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                             ),
+                                        elevation: 0.0,
                                         borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,

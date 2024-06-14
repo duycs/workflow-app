@@ -601,7 +601,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                   FlutterFlowTheme.of(context).secondary,
                             ),
                           );
-
+                          if (Navigator.of(context).canPop()) {
+                            context.pop();
+                          }
                           context.pushNamed(
                             'TaskList',
                             queryParameters: {
@@ -629,7 +631,9 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                   FlutterFlowTheme.of(context).secondary,
                             ),
                           );
-
+                          if (Navigator.of(context).canPop()) {
+                            context.pop();
+                          }
                           context.pushNamed('ProcedureList');
 
                           if (shouldSetState) setState(() {});

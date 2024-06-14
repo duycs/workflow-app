@@ -11,9 +11,9 @@ class ProcedureSettingModel extends FlutterFlowModel<ProcedureSettingWidget> {
   String addTime = '0';
 
   RequestWorkflowsCreateStruct? settingAdd;
-  void updateSettingAddStruct(
-          Function(RequestWorkflowsCreateStruct) updateFn) =>
-      updateFn(settingAdd ??= RequestWorkflowsCreateStruct());
+  void updateSettingAddStruct(Function(RequestWorkflowsCreateStruct) updateFn) {
+    updateFn(settingAdd ??= RequestWorkflowsCreateStruct());
+  }
 
   List<String> checkCron = [];
   void addToCheckCron(String item) => checkCron.add(item);
@@ -103,7 +103,6 @@ class ProcedureSettingModel extends FlutterFlowModel<ProcedureSettingWidget> {
   FormFieldController<String>? dropDownCronValueController;
   // State field(s) for groupWeek widget.
   FormFieldController<List<String>>? groupWeekValueController;
-
   List<String>? get groupWeekValues => groupWeekValueController?.value;
   set groupWeekValues(List<String>? v) => groupWeekValueController?.value = v;
 

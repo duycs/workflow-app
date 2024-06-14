@@ -64,8 +64,9 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
       indexCheckbox[index] = updateFn(indexCheckbox[index]);
 
   StudyProgramListStruct? checkBoxLession;
-  void updateCheckBoxLessionStruct(Function(StudyProgramListStruct) updateFn) =>
-      updateFn(checkBoxLession ??= StudyProgramListStruct());
+  void updateCheckBoxLessionStruct(Function(StudyProgramListStruct) updateFn) {
+    updateFn(checkBoxLession ??= StudyProgramListStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 

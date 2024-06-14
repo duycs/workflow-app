@@ -830,7 +830,19 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       );
                       shouldSetState = true;
                       if ((_model.postProcedureUpdateAll?.succeeded ?? true)) {
-                        context.pushNamed('ProcedureList');
+                        if (Navigator.of(context).canPop()) {
+                          context.pop();
+                        }
+                        context.pushNamed(
+                          'ProcedureList',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -846,7 +858,19 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           ),
                         );
                       } else {
-                        context.pushNamed('ProcedureList');
+                        if (Navigator.of(context).canPop()) {
+                          context.pop();
+                        }
+                        context.pushNamed(
+                          'ProcedureList',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

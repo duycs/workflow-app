@@ -17,20 +17,25 @@ class UpdateTaskDataTypeStruct extends BaseStruct {
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "result" field.
   String? _result;
   String get result => _result ?? '';
   set result(String? val) => _result = val;
+
   bool hasResult() => _result != null;
 
   // "files" field.
   List<FileDataTypeStruct>? _files;
   List<FileDataTypeStruct> get files => _files ?? const [];
   set files(List<FileDataTypeStruct>? val) => _files = val;
-  void updateFiles(Function(List<FileDataTypeStruct>) updateFn) =>
-      updateFn(_files ??= []);
+
+  void updateFiles(Function(List<FileDataTypeStruct>) updateFn) {
+    updateFn(files ??= []);
+  }
+
   bool hasFiles() => _files != null;
 
   static UpdateTaskDataTypeStruct fromMap(Map<String, dynamic> data) =>
@@ -66,7 +71,7 @@ class UpdateTaskDataTypeStruct extends BaseStruct {
         'files': serializeParam(
           _files,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

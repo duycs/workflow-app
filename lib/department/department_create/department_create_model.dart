@@ -209,7 +209,10 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
-
+      await Future.delayed(const Duration(milliseconds: 500));
+      if (Navigator.of(context).canPop()) {
+        context.pop();
+      }
       context.pushNamed(
         'DepartmentList',
         extra: <String, dynamic>{

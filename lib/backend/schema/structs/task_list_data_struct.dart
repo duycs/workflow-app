@@ -13,8 +13,11 @@ class TaskListDataStruct extends BaseStruct {
   List<TaskListStruct>? _data;
   List<TaskListStruct> get data => _data ?? const [];
   set data(List<TaskListStruct>? val) => _data = val;
-  void updateData(Function(List<TaskListStruct>) updateFn) =>
-      updateFn(_data ??= []);
+
+  void updateData(Function(List<TaskListStruct>) updateFn) {
+    updateFn(data ??= []);
+  }
+
   bool hasData() => _data != null;
 
   static TaskListDataStruct fromMap(Map<String, dynamic> data) =>
@@ -38,7 +41,7 @@ class TaskListDataStruct extends BaseStruct {
         'data': serializeParam(
           _data,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

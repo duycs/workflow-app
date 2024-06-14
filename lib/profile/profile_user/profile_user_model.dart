@@ -8,8 +8,9 @@ class ProfileUserModel extends FlutterFlowModel<ProfileUserWidget> {
   ///  Local state fields for this page.
 
   StaffListStruct? profileUser;
-  void updateProfileUserStruct(Function(StaffListStruct) updateFn) =>
-      updateFn(profileUser ??= StaffListStruct());
+  void updateProfileUserStruct(Function(StaffListStruct) updateFn) {
+    updateFn(profileUser ??= StaffListStruct());
+  }
 
   dynamic user;
 

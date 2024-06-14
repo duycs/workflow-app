@@ -182,196 +182,187 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 2.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.manage_accounts_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                Text(
-                                  'Người tạo: ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    _model.list.first.createdUserId
-                                                    .firstName !=
-                                                ''
-                                        ? _model
-                                            .list.first.createdUserId.firstName
-                                        : ' ',
-                                    textAlign: TextAlign.end,
+                                0.0, 2.0, 4.0, 0.0),
+                            child: Icon(
+                              Icons.settings_sharp,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 24.0,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 2.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Text(
+                                    _model.list.first.workflowId.name,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
-                                ),
-                              ].divide(const SizedBox(width: 8.0)),
+                                  Text(
+                                    'Chạy lần thứ: ${widget.publishedCount?.toString()}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 13.0,
+                                          letterSpacing: 0.0,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                  ),
+                                ].divide(const SizedBox(height: 2.0)),
+                              ),
                             ),
+                          ),
+                          CircularPercentIndicator(
+                            percent: _model.list.isNotEmpty
+                                ? (double.parse((_model.list
+                                            .where((e) => e.status == 'done')
+                                            .toList()
+                                            .length /
+                                        _model.list.length)
+                                    .toStringAsFixed(1)))
+                                : 0.0,
+                            radius: 20.0,
+                            lineWidth: 6.0,
+                            animation: true,
+                            animateFromLastPercent: true,
+                            progressColor: FlutterFlowTheme.of(context).primary,
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).alternate,
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 2.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.date_range_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  size: 24.0,
-                                ),
-                                Text(
-                                  'Ngày tạo:',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    dateTimeFormat(
-                                      'HH:mm dd/MM/yyyy',
-                                      functions.stringToDateTime(
-                                          _model.list.first.dateCreated),
-                                      locale: FFLocalizations.of(context)
-                                          .languageCode,
-                                    ),
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
+                                0.0, 22.0, 0.0, 0.0),
+                            child: Text(
+                              '${_model.list.where((e) => e.status == 'done').toList().length.toString()}/${_model.list.length.toString()}',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                                ),
-                              ].divide(const SizedBox(width: 8.0)),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 2.0, 4.0, 0.0),
-                                  child: Icon(
-                                    Icons.settings_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 2.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Text(
-                                          _model.list.first.workflowId.name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        Text(
-                                          'Chạy lần thứ: ${widget.publishedCount?.toString()}',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                fontSize: 13.0,
-                                                letterSpacing: 0.0,
-                                                fontStyle: FontStyle.italic,
-                                              ),
-                                        ),
-                                      ].divide(const SizedBox(height: 2.0)),
-                                    ),
-                                  ),
-                                ),
-                                CircularPercentIndicator(
-                                  percent: _model.list.isNotEmpty
-                                      ? (double.parse((_model.list
-                                                  .where(
-                                                      (e) => e.status == 'done')
-                                                  .toList()
-                                                  .length /
-                                              _model.list.length)
-                                          .toStringAsFixed(1)))
-                                      : 0.0,
-                                  radius: 20.0,
-                                  lineWidth: 6.0,
-                                  animation: true,
-                                  animateFromLastPercent: true,
-                                  progressColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).alternate,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 22.0, 0.0, 0.0),
-                                  child: Text(
-                                    '${_model.list.where((e) => e.status == 'done').toList().length.toString()}/${_model.list.length.toString()}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                  ),
-                                ),
-                              ].divide(const SizedBox(width: 4.0)),
-                            ),
-                          ),
-                        ],
+                        ].divide(const SizedBox(width: 4.0)),
                       ),
+                    ),
+                  if (_model.isLoad)
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.manage_accounts_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              Text(
+                                'Người tạo: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  _model.list.first.createdUserId
+                                                  .firstName !=
+                                              ''
+                                      ? _model
+                                          .list.first.createdUserId.firstName
+                                      : ' ',
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 2.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Icon(
+                                Icons.date_range_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              Text(
+                                'Ngày tạo:',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  dateTimeFormat(
+                                    'HH:mm dd/MM/yyyy',
+                                    functions.stringToDateTime(
+                                        _model.list.first.dateCreated),
+                                    locale: FFLocalizations.of(context)
+                                        .languageCode,
+                                  ),
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                        ),
+                      ],
                     ),
                   if (_model.list.isNotEmpty)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                       child: Builder(
                         builder: (context) {
                           final dataList = _model.list.toList();
@@ -392,560 +383,541 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'B${dataListItem.number.toString()}:',
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'B${dataListItem.number.toString()}:',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              dataListItem.name,
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ),
+                                          if (((dataListItem.status ==
+                                                      'todo') &&
+                                                  (dataListItem.current == 1) &&
+                                                  (dataListItem.staffs
+                                                          .where((e) =>
+                                                              e.staffsId.id ==
+                                                              getJsonField(
+                                                                FFAppState()
+                                                                    .staffLogin,
+                                                                r'''$.id''',
+                                                              ).toString())
+                                                          .toList().isNotEmpty) &&
+                                                  (dataListItem.actionType ==
+                                                      'submit_text') &&
+                                                  (dataListItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .status ==
+                                                      'done')) ||
+                                              ((dataListItem.status ==
+                                                      'todo') &&
+                                                  (dataListItem.current == 1) &&
+                                                  (dataListItem.staffs
+                                                          .where((e) =>
+                                                              e.staffsId.id ==
+                                                              getJsonField(
+                                                                FFAppState()
+                                                                    .staffLogin,
+                                                                r'''$.id''',
+                                                              ).toString())
+                                                          .toList().isNotEmpty) &&
+                                                  (dataListItem.actionType ==
+                                                      'to_do_list') &&
+                                                  (dataListItem.operations
+                                                          .where((e) =>
+                                                              e.operationsId
+                                                                  .status ==
+                                                              'done')
+                                                          .toList()
+                                                          .length ==
+                                                      dataListItem.operations
+                                                          .length)) ||
+                                              ((dataListItem.status ==
+                                                      'todo') &&
+                                                  (dataListItem.current == 1) &&
+                                                  (dataListItem.staffs
+                                                          .where((e) =>
+                                                              e.staffsId.id ==
+                                                              getJsonField(
+                                                                FFAppState()
+                                                                    .staffLogin,
+                                                                r'''$.id''',
+                                                              ).toString())
+                                                          .toList().isNotEmpty) &&
+                                                  (dataListItem.actionType ==
+                                                      'image') &&
+                                                  (dataListItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .files.isNotEmpty)) ||
+                                              ((dataListItem.status ==
+                                                      'todo') &&
+                                                  (dataListItem.current == 1) &&
+                                                  (dataListItem.staffs
+                                                          .where((e) =>
+                                                              e.staffsId.id ==
+                                                              getJsonField(
+                                                                FFAppState()
+                                                                    .staffLogin,
+                                                                r'''$.id''',
+                                                              ).toString())
+                                                          .toList().isNotEmpty) &&
+                                                  (dataListItem.actionType ==
+                                                      'upload_file') &&
+                                                  (dataListItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .files.isNotEmpty)) ||
+                                              ((dataListItem.status == 'todo') &&
+                                                  (dataListItem.current == 1) &&
+                                                  (dataListItem.staffs
+                                                          .where((e) =>
+                                                              e.staffsId.id ==
+                                                              getJsonField(
+                                                                FFAppState()
+                                                                    .staffLogin,
+                                                                r'''$.id''',
+                                                              ).toString())
+                                                          .toList().isNotEmpty) &&
+                                                  (dataListItem.actionType == 'approve')))
+                                            FFButtonWidget(
+                                              onPressed: () async {
+                                                var shouldSetState = false;
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              content: const Text(
+                                                                  'Xác nhận hoàn thành task!'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Đóng'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Xác nhận'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  _model.confirmOperationDetail2Token =
+                                                      await action_blocks
+                                                          .tokenReload(context);
+                                                  shouldSetState = true;
+                                                  if (_model
+                                                      .confirmOperationDetail2Token!) {
+                                                    _model.apiResultConfirmOperationDetail2 =
+                                                        await TaskGroup
+                                                            .confirmOperationCall
+                                                            .call(
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                      staffId:
+                                                          FFAppState().staffid,
+                                                      taskId: dataListItem.id,
+                                                      submitType: dataListItem
+                                                                  .actionType ==
+                                                              'approve'
+                                                          ? 'approve'
+                                                          : 'submit',
+                                                    );
+                                                    shouldSetState = true;
+                                                    if ((_model
+                                                            .apiResultConfirmOperationDetail2
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Submit thành công',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                        ),
+                                                      );
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Submit thất bại',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .error,
+                                                        ),
+                                                      );
+                                                    }
+
+                                                    _model.getWorkflowDetailToken2 =
+                                                        await action_blocks
+                                                            .tokenReload(
+                                                                context);
+                                                    shouldSetState = true;
+                                                    if (_model
+                                                        .getWorkflowDetailToken2!) {
+                                                      _model.apiResultGetWorkflowDetail =
+                                                          await ProcedureTemplateGroup
+                                                              .workflowsOneCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        id: dataListItem
+                                                            .workflowId.id,
+                                                      );
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultGetWorkflowDetail
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        _model.stepList =
+                                                            OneWorkFlowDataStruct
+                                                                    .maybeFromMap(
+                                                                        (_model.apiResultGetWorkflowDetail?.jsonBody ??
+                                                                            ''))
+                                                                ?.data;
+                                                        setState(() {});
+                                                      }
+                                                      if (_model.stepList!.steps
+                                                              .length >
+                                                          dataListItem.number) {
+                                                        while (_model.loop <
+                                                            _model
+                                                                .stepList!.steps
+                                                                .where((e) =>
+                                                                    e.number ==
+                                                                    (dataListItem
+                                                                            .number +
+                                                                        1))
+                                                                .toList()
+                                                                .first
+                                                                .staffs
+                                                                .length) {
+                                                          _model.receiveTaskDetailToken =
+                                                              await action_blocks
+                                                                  .tokenReload(
+                                                                      context);
+                                                          shouldSetState =
+                                                              true;
+                                                          if (_model
+                                                              .receiveTaskDetailToken!) {
+                                                            _model.apiResultReceiveTaskDetail =
+                                                                await TaskGroup
+                                                                    .receiveTaskCall
+                                                                    .call(
+                                                              accessToken:
+                                                                  FFAppState()
+                                                                      .accessToken,
+                                                              workflowId:
+                                                                  dataListItem
+                                                                      .workflowId
+                                                                      .id,
+                                                              staffId: (_model
+                                                                      .stepList
+                                                                      ?.steps
+                                                                      .where((e) =>
+                                                                          e.number ==
+                                                                          (dataListItem.number +
+                                                                              1))
+                                                                      .toList()
+                                                                      .first
+                                                                      .staffs[_model.loop])
+                                                                  ?.staffsId
+                                                                  .id,
+                                                              publishedCount:
+                                                                  dataListItem
+                                                                      .publishedCount,
+                                                            );
+                                                            shouldSetState =
+                                                                true;
+                                                            if (!(_model
+                                                                    .apiResultReceiveTaskDetail
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Nhận thất bại',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                    ),
+                                                                  ),
+                                                                  duration: const Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary,
+                                                                ),
+                                                              );
+                                                            }
+                                                          } else {
+                                                            setState(() {});
+                                                            if (shouldSetState) {
+                                                              setState(() {});
+                                                            }
+                                                            return;
+                                                          }
+
+                                                          _model.loop =
+                                                              _model.loop + 1;
+                                                          setState(() {});
+                                                        }
+                                                        _model.loop = 0;
+                                                        setState(() {});
+                                                      }
+                                                      _model.getTaskListDetailToken =
+                                                          await action_blocks
+                                                              .tokenReload(
+                                                                  context);
+                                                      shouldSetState = true;
+                                                      if (_model
+                                                          .getTaskListDetailToken!) {
+                                                        _model.apiResultGetTaskListDetail2 =
+                                                            await TaskGroup
+                                                                .getListTaskCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                          filter:
+                                                              '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
+                                                          sort: 'number',
+                                                        );
+                                                        shouldSetState = true;
+                                                        if ((_model
+                                                                .apiResultGetTaskListDetail2
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          _model
+                                                              .list = TaskListDataStruct
+                                                                  .maybeFromMap((_model
+                                                                          .apiResultGetTaskListDetail2
+                                                                          ?.jsonBody ??
+                                                                      ''))!
+                                                              .data
+                                                              .toList()
+                                                              .cast<
+                                                                  TaskListStruct>();
+                                                          setState(() {});
+                                                        }
+                                                      } else {
+                                                        setState(() {});
+                                                      }
+                                                    } else {
+                                                      setState(() {});
+                                                    }
+                                                  } else {
+                                                    setState(() {});
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                    return;
+                                                  }
+                                                } else {
+                                                  if (shouldSetState) {
+                                                    setState(() {});
+                                                  }
+                                                  return;
+                                                }
+
+                                                if (shouldSetState) {
+                                                  setState(() {});
+                                                }
+                                              },
+                                              text: 'Xác nhận',
+                                              options: FFButtonOptions(
+                                                height: 30.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        6.0, 0.0, 6.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: Colors.white,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                        ].divide(const SizedBox(width: 4.0)),
+                                      ),
+                                      Align(
+                                        alignment:
+                                            const AlignmentDirectional(-1.0, 0.0),
+                                        child: Container(
+                                          width: 120.0,
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            color: () {
+                                              if (dataListItem.status ==
+                                                  'done') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .secondary;
+                                              } else if ((dataListItem.status ==
+                                                      'todo') &&
+                                                  (dataListItem.current == 1)) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .primary;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .alternate;
+                                              }
+                                            }(),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 4.0, 8.0, 4.0),
+                                            child: Text(
+                                              () {
+                                                if ((dataListItem.status ==
+                                                        'todo') &&
+                                                    (dataListItem.current ==
+                                                        1)) {
+                                                  return 'Đang thực hiện';
+                                                } else if ((dataListItem
+                                                            .status ==
+                                                        'todo') &&
+                                                    (dataListItem.current ==
+                                                        0)) {
+                                                  return 'Chờ thực hiện';
+                                                } else {
+                                                  return 'Hoàn thành';
+                                                }
+                                              }(),
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Nunito Sans',
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                dataListItem.name,
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                            ),
-                                            if (((dataListItem.status ==
-                                                        'todo') &&
-                                                    (dataListItem.current ==
-                                                        1) &&
-                                                    (dataListItem.staffs
-                                                            .where((e) =>
-                                                                e.staffsId.id ==
-                                                                getJsonField(
-                                                                  FFAppState()
-                                                                      .staffLogin,
-                                                                  r'''$.id''',
-                                                                ))
-                                                            .toList().isNotEmpty) &&
-                                                    (dataListItem.actionType ==
-                                                        'submit_text') &&
-                                                    (dataListItem.operations.first.operationsId.status ==
-                                                        'done')) ||
-                                                ((dataListItem.status ==
-                                                        'todo') &&
-                                                    (dataListItem.current ==
-                                                        1) &&
-                                                    (dataListItem.staffs
-                                                            .where((e) =>
-                                                                e.staffsId.id ==
-                                                                getJsonField(
-                                                                  FFAppState()
-                                                                      .staffLogin,
-                                                                  r'''$.id''',
-                                                                ))
-                                                            .toList().isNotEmpty) &&
-                                                    (dataListItem.actionType ==
-                                                        'to_do_list') &&
-                                                    (dataListItem.operations
-                                                            .where((e) =>
-                                                                e.operationsId.status ==
-                                                                'done')
-                                                            .toList()
-                                                            .length ==
-                                                        dataListItem.operations
-                                                            .length)) ||
-                                                ((dataListItem.status ==
-                                                        'todo') &&
-                                                    (dataListItem.current ==
-                                                        1) &&
-                                                    (dataListItem.staffs
-                                                            .where((e) =>
-                                                                e.staffsId.id ==
-                                                                getJsonField(
-                                                                  FFAppState()
-                                                                      .staffLogin,
-                                                                  r'''$.id''',
-                                                                ))
-                                                            .toList().isNotEmpty) &&
-                                                    (dataListItem.actionType ==
-                                                        'image') &&
-                                                    (dataListItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .files.isNotEmpty)) ||
-                                                ((dataListItem.status ==
-                                                        'todo') &&
-                                                    (dataListItem.current ==
-                                                        1) &&
-                                                    (dataListItem.staffs
-                                                            .where((e) =>
-                                                                e.staffsId.id ==
-                                                                getJsonField(
-                                                                  FFAppState()
-                                                                      .staffLogin,
-                                                                  r'''$.id''',
-                                                                ))
-                                                            .toList().isNotEmpty) &&
-                                                    (dataListItem.actionType ==
-                                                        'upload_file') &&
-                                                    (dataListItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .files.isNotEmpty)) ||
-                                                ((dataListItem.status == 'todo') &&
-                                                    (dataListItem.current == 1) &&
-                                                    (dataListItem.staffs
-                                                            .where((e) =>
-                                                                e.staffsId.id ==
-                                                                getJsonField(
-                                                                  FFAppState()
-                                                                      .staffLogin,
-                                                                  r'''$.id''',
-                                                                ))
-                                                            .toList().isNotEmpty) &&
-                                                    (dataListItem.actionType == 'approve')))
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  var shouldSetState = false;
-                                                  var confirmDialogResponse =
-                                                      await showDialog<bool>(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                content: const Text(
-                                                                    'Xác nhận hoàn thành task!'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                    child: const Text(
-                                                                        'Đóng'),
-                                                                  ),
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                    child: const Text(
-                                                                        'Xác nhận'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ) ??
-                                                          false;
-                                                  if (confirmDialogResponse) {
-                                                    _model.confirmOperationDetail2Token =
-                                                        await action_blocks
-                                                            .tokenReload(
-                                                                context);
-                                                    shouldSetState = true;
-                                                    if (_model
-                                                        .confirmOperationDetail2Token!) {
-                                                      _model.apiResultConfirmOperationDetail2 =
-                                                          await TaskGroup
-                                                              .confirmOperationCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        staffId: FFAppState()
-                                                            .staffid,
-                                                        taskId: dataListItem.id,
-                                                        submitType: dataListItem
-                                                                    .actionType ==
-                                                                'approve'
-                                                            ? 'approve'
-                                                            : 'submit',
-                                                      );
-                                                      shouldSetState = true;
-                                                      if ((_model
-                                                              .apiResultConfirmOperationDetail2
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Submit thành công',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Submit thất bại',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                          ),
-                                                        );
-                                                      }
-
-                                                      _model.getWorkflowDetailToken2 =
-                                                          await action_blocks
-                                                              .tokenReload(
-                                                                  context);
-                                                      shouldSetState = true;
-                                                      if (_model
-                                                          .getWorkflowDetailToken2!) {
-                                                        _model.apiResultGetWorkflowDetail =
-                                                            await ProcedureTemplateGroup
-                                                                .workflowsOneCall
-                                                                .call(
-                                                          accessToken:
-                                                              FFAppState()
-                                                                  .accessToken,
-                                                          id: dataListItem
-                                                              .workflowId.id,
-                                                        );
-                                                        shouldSetState = true;
-                                                        if ((_model
-                                                                .apiResultGetWorkflowDetail
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          _model.stepList =
-                                                              OneWorkFlowDataStruct
-                                                                      .maybeFromMap(
-                                                                          (_model.apiResultGetWorkflowDetail?.jsonBody ??
-                                                                              ''))
-                                                                  ?.data;
-                                                          setState(() {});
-                                                        }
-                                                        if (_model.stepList!
-                                                                .steps.length >
-                                                            dataListItem
-                                                                .number) {
-                                                          while (_model.loop <
-                                                              _model.stepList!
-                                                                  .steps
-                                                                  .where((e) =>
-                                                                      e.number ==
-                                                                      (dataListItem
-                                                                              .number +
-                                                                          1))
-                                                                  .toList()
-                                                                  .first
-                                                                  .staffs
-                                                                  .length) {
-                                                            _model.receiveTaskDetailToken =
-                                                                await action_blocks
-                                                                    .tokenReload(
-                                                                        context);
-                                                            shouldSetState =
-                                                                true;
-                                                            if (_model
-                                                                .receiveTaskDetailToken!) {
-                                                              _model.apiResultReceiveTaskDetail =
-                                                                  await TaskGroup
-                                                                      .receiveTaskCall
-                                                                      .call(
-                                                                accessToken:
-                                                                    FFAppState()
-                                                                        .accessToken,
-                                                                workflowId:
-                                                                    dataListItem
-                                                                        .workflowId
-                                                                        .id,
-                                                                staffId: (_model
-                                                                        .stepList
-                                                                        ?.steps
-                                                                        .where((e) =>
-                                                                            e.number ==
-                                                                            (dataListItem.number +
-                                                                                1))
-                                                                        .toList()
-                                                                        .first
-                                                                        .staffs[_model.loop])
-                                                                    ?.staffsId
-                                                                    .id,
-                                                                publishedCount:
-                                                                    dataListItem
-                                                                        .publishedCount,
-                                                              );
-                                                              shouldSetState =
-                                                                  true;
-                                                              if (!(_model
-                                                                      .apiResultReceiveTaskDetail
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                ScaffoldMessenger.of(
-                                                                        context)
-                                                                    .showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        Text(
-                                                                      'Nhận thất bại',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                      ),
-                                                                    ),
-                                                                    duration: const Duration(
-                                                                        milliseconds:
-                                                                            4000),
-                                                                    backgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondary,
-                                                                  ),
-                                                                );
-                                                              }
-                                                            } else {
-                                                              setState(() {});
-                                                              if (shouldSetState) {
-                                                                setState(() {});
-                                                              }
-                                                              return;
-                                                            }
-
-                                                            _model.loop =
-                                                                _model.loop + 1;
-                                                            setState(() {});
-                                                          }
-                                                          _model.loop = 0;
-                                                          setState(() {});
-                                                        }
-                                                        _model.getTaskListDetailToken =
-                                                            await action_blocks
-                                                                .tokenReload(
-                                                                    context);
-                                                        shouldSetState = true;
-                                                        if (_model
-                                                            .getTaskListDetailToken!) {
-                                                          _model.apiResultGetTaskListDetail2 =
-                                                              await TaskGroup
-                                                                  .getListTaskCall
-                                                                  .call(
-                                                            accessToken:
-                                                                FFAppState()
-                                                                    .accessToken,
-                                                            filter:
-                                                                '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
-                                                            sort: 'number',
-                                                          );
-                                                          shouldSetState =
-                                                              true;
-                                                          if ((_model
-                                                                  .apiResultGetTaskListDetail2
-                                                                  ?.succeeded ??
-                                                              true)) {
-                                                            _model
-                                                                .list = TaskListDataStruct
-                                                                    .maybeFromMap((_model
-                                                                            .apiResultGetTaskListDetail2
-                                                                            ?.jsonBody ??
-                                                                        ''))!
-                                                                .data
-                                                                .toList()
-                                                                .cast<
-                                                                    TaskListStruct>();
-                                                            setState(() {});
-                                                          }
-                                                        } else {
-                                                          setState(() {});
-                                                        }
-                                                      } else {
-                                                        setState(() {});
-                                                      }
-                                                    } else {
-                                                      setState(() {});
-                                                      if (shouldSetState) {
-                                                        setState(() {});
-                                                      }
-                                                      return;
-                                                    }
-                                                  } else {
-                                                    if (shouldSetState) {
-                                                      setState(() {});
-                                                    }
-                                                    return;
-                                                  }
-
-                                                  if (shouldSetState) {
-                                                    setState(() {});
-                                                  }
-                                                },
-                                                text: 'Xác nhận',
-                                                options: FFButtonOptions(
-                                                  height: 30.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          6.0, 0.0, 6.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondary,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color: Colors.white,
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                              ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Container(
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: () {
-                                                    if (dataListItem.status ==
-                                                        'done') {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondary;
-                                                    } else if ((dataListItem
-                                                                .status ==
-                                                            'todo') &&
-                                                        (dataListItem.current ==
-                                                            1)) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .primary;
-                                                    } else {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .alternate;
-                                                    }
-                                                  }(),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 4.0, 8.0, 4.0),
-                                                  child: Text(
-                                                    () {
-                                                      if ((dataListItem
-                                                                  .status ==
-                                                              'todo') &&
-                                                          (dataListItem
-                                                                  .current ==
-                                                              1)) {
-                                                        return 'Đang thực hiện';
+                                                    color: () {
+                                                      if (dataListItem.status ==
+                                                          'done') {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground;
                                                       } else if ((dataListItem
                                                                   .status ==
                                                               'todo') &&
                                                           (dataListItem
                                                                   .current ==
-                                                              0)) {
-                                                        return 'Chờ thực hiện';
+                                                              1)) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground;
                                                       } else {
-                                                        return 'Hoàn thành';
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryText;
                                                       }
                                                     }(),
-                                                    textAlign: TextAlign.center,
-                                                    style:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              color: () {
-                                                                if (dataListItem
-                                                                        .status ==
-                                                                    'done') {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground;
-                                                                } else if ((dataListItem
-                                                                            .status ==
-                                                                        'todo') &&
-                                                                    (dataListItem
-                                                                            .current ==
-                                                                        1)) {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground;
-                                                                } else {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText;
-                                                                }
-                                                              }(),
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
                                                   ),
-                                                ),
-                                              ),
                                             ),
-                                          ].divide(const SizedBox(width: 4.0)),
+                                          ),
                                         ),
                                       ),
                                       if (dataListItem.description != '')

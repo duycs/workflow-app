@@ -10,8 +10,9 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   ///  Local state fields for this page.
 
   LoginResourceDataStruct? loginData;
-  void updateLoginDataStruct(Function(LoginResourceDataStruct) updateFn) =>
-      updateFn(loginData ??= LoginResourceDataStruct());
+  void updateLoginDataStruct(Function(LoginResourceDataStruct) updateFn) {
+    updateFn(loginData ??= LoginResourceDataStruct());
+  }
 
   bool isLoad = false;
 
@@ -190,7 +191,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             r'''$.organization''',
           );
 
-          context.pushNamed(
+          context.goNamed(
             'TaskList',
             extra: <String, dynamic>{
               kTransitionInfoKey: const TransitionInfo(

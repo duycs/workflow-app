@@ -31,59 +31,72 @@ class TestListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "duration_minutes" field.
   int? _durationMinutes;
   int get durationMinutes => _durationMinutes ?? 0;
   set durationMinutes(int? val) => _durationMinutes = val;
+
   void incrementDurationMinutes(int amount) =>
-      _durationMinutes = durationMinutes + amount;
+      durationMinutes = durationMinutes + amount;
+
   bool hasDurationMinutes() => _durationMinutes != null;
 
   // "questions" field.
   List<TestQuestionsStruct>? _questions;
   List<TestQuestionsStruct> get questions => _questions ?? const [];
   set questions(List<TestQuestionsStruct>? val) => _questions = val;
-  void updateQuestions(Function(List<TestQuestionsStruct>) updateFn) =>
-      updateFn(_questions ??= []);
+
+  void updateQuestions(Function(List<TestQuestionsStruct>) updateFn) {
+    updateFn(questions ??= []);
+  }
+
   bool hasQuestions() => _questions != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "good_score" field.
   int? _goodScore;
   int get goodScore => _goodScore ?? 0;
   set goodScore(int? val) => _goodScore = val;
-  void incrementGoodScore(int amount) => _goodScore = goodScore + amount;
+
+  void incrementGoodScore(int amount) => goodScore = goodScore + amount;
+
   bool hasGoodScore() => _goodScore != null;
 
   // "percent_correct" field.
   String? _percentCorrect;
   String get percentCorrect => _percentCorrect ?? '';
   set percentCorrect(String? val) => _percentCorrect = val;
+
   bool hasPercentCorrect() => _percentCorrect != null;
 
   // "user_created" field.
@@ -91,8 +104,11 @@ class TestListStruct extends BaseStruct {
   TestUserCreatedStruct get userCreated =>
       _userCreated ?? TestUserCreatedStruct();
   set userCreated(TestUserCreatedStruct? val) => _userCreated = val;
-  void updateUserCreated(Function(TestUserCreatedStruct) updateFn) =>
-      updateFn(_userCreated ??= TestUserCreatedStruct());
+
+  void updateUserCreated(Function(TestUserCreatedStruct) updateFn) {
+    updateFn(userCreated ??= TestUserCreatedStruct());
+  }
+
   bool hasUserCreated() => _userCreated != null;
 
   static TestListStruct fromMap(Map<String, dynamic> data) => TestListStruct(
@@ -152,7 +168,7 @@ class TestListStruct extends BaseStruct {
         'questions': serializeParam(
           _questions,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'organization_id': serializeParam(
           _organizationId,

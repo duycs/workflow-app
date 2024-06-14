@@ -13,8 +13,11 @@ class CreateDomainAuthorsListStruct extends BaseStruct {
   List<CreateDomainAuthorsStruct>? _create;
   List<CreateDomainAuthorsStruct> get create => _create ?? const [];
   set create(List<CreateDomainAuthorsStruct>? val) => _create = val;
-  void updateCreate(Function(List<CreateDomainAuthorsStruct>) updateFn) =>
-      updateFn(_create ??= []);
+
+  void updateCreate(Function(List<CreateDomainAuthorsStruct>) updateFn) {
+    updateFn(create ??= []);
+  }
+
   bool hasCreate() => _create != null;
 
   static CreateDomainAuthorsListStruct fromMap(Map<String, dynamic> data) =>
@@ -39,7 +42,7 @@ class CreateDomainAuthorsListStruct extends BaseStruct {
         'create': serializeParam(
           _create,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
       }.withoutNulls;
 

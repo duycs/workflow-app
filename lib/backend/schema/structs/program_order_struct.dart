@@ -37,67 +37,79 @@ class ProgramOrderStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "user_created" field.
   String? _userCreated;
   String get userCreated => _userCreated ?? '';
   set userCreated(String? val) => _userCreated = val;
+
   bool hasUserCreated() => _userCreated != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "user_updated" field.
   String? _userUpdated;
   String get userUpdated => _userUpdated ?? '';
   set userUpdated(String? val) => _userUpdated = val;
+
   bool hasUserUpdated() => _userUpdated != null;
 
   // "date_updated" field.
   String? _dateUpdated;
   String get dateUpdated => _dateUpdated ?? '';
   set dateUpdated(String? val) => _dateUpdated = val;
+
   bool hasDateUpdated() => _dateUpdated != null;
 
   // "code" field.
   String? _code;
   String get code => _code ?? '';
   set code(String? val) => _code = val;
+
   bool hasCode() => _code != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "total_item" field.
   int? _totalItem;
   int get totalItem => _totalItem ?? 0;
   set totalItem(int? val) => _totalItem = val;
-  void incrementTotalItem(int amount) => _totalItem = totalItem + amount;
+
+  void incrementTotalItem(int amount) => totalItem = totalItem + amount;
+
   bool hasTotalItem() => _totalItem != null;
 
   // "total_price" field.
   String? _totalPrice;
   String get totalPrice => _totalPrice ?? '';
   set totalPrice(String? val) => _totalPrice = val;
+
   bool hasTotalPrice() => _totalPrice != null;
 
   // "program_order_items" field.
@@ -106,16 +118,21 @@ class ProgramOrderStruct extends BaseStruct {
       _programOrderItems ?? const [];
   set programOrderItems(List<ProgramOrderItemsStruct>? val) =>
       _programOrderItems = val;
+
   void updateProgramOrderItems(
-          Function(List<ProgramOrderItemsStruct>) updateFn) =>
-      updateFn(_programOrderItems ??= []);
+      Function(List<ProgramOrderItemsStruct>) updateFn) {
+    updateFn(programOrderItems ??= []);
+  }
+
   bool hasProgramOrderItems() => _programOrderItems != null;
 
   // "private" field.
   int? _private;
   int get private => _private ?? 0;
   set private(int? val) => _private = val;
-  void incrementPrivate(int amount) => _private = private + amount;
+
+  void incrementPrivate(int amount) => private = private + amount;
+
   bool hasPrivate() => _private != null;
 
   static ProgramOrderStruct fromMap(Map<String, dynamic> data) =>
@@ -208,7 +225,7 @@ class ProgramOrderStruct extends BaseStruct {
         'program_order_items': serializeParam(
           _programOrderItems,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'private': serializeParam(
           _private,

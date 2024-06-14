@@ -832,7 +832,9 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                                       FlutterFlowTheme.of(context).secondary,
                                 ),
                               );
-
+                              if (Navigator.of(context).canPop()) {
+                                context.pop();
+                              }
                               context.pushNamed(
                                 'OrderList',
                                 extra: <String, dynamic>{

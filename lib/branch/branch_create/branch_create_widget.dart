@@ -14,9 +14,13 @@ class BranchCreateWidget extends StatefulWidget {
   const BranchCreateWidget({
     super.key,
     this.listCode,
+    this.reloadDataList,
+    this.listName,
   });
 
   final List<String>? listCode;
+  final Future Function()? reloadDataList;
+  final List<String>? listName;
 
   @override
   State<BranchCreateWidget> createState() => _BranchCreateWidgetState();
@@ -151,6 +155,20 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                             TextFormField(
                               controller: _model.branchNameTextController,
                               focusNode: _model.branchNameFocusNode,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.branchNameTextController',
+                                const Duration(milliseconds: 2000),
+                                () async {
+                                  if ((widget.listName!).toList().contains(
+                                      _model.branchNameTextController.text)) {
+                                    _model.checkName = true;
+                                    setState(() {});
+                                  } else {
+                                    _model.checkName = false;
+                                    setState(() {});
+                                  }
+                                },
+                              ),
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -203,11 +221,31 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                              maxLength: 50,
+                              maxLength: 250,
                               validator: _model
                                   .branchNameTextControllerValidator
                                   .asValidator(context),
                             ),
+                            if (_model.checkName == true)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 20.0),
+                                child: Text(
+                                  'Tên chi nhánh đã tồn tại. Vui lòng chọn lại!',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ),
                             Text(
                               'Mã chi nhánh:',
                               style: FlutterFlowTheme.of(context)
@@ -223,7 +261,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                               focusNode: _model.branchCodeFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.branchCodeTextController',
-                                const Duration(milliseconds: 500),
+                                const Duration(milliseconds: 2000),
                                 () async {
                                   if ((widget.listCode!).toList().contains(
                                       _model.branchCodeTextController.text)) {
@@ -301,19 +339,24 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                   .asValidator(context),
                             ),
                             if (_model.checkCode == '1')
-                              Text(
-                                'Mã chi nhánh đã tồn tại. Vui lòng chọn lại!',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context).error,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
-                                      fontStyle: FontStyle.italic,
-                                    ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 20.0),
+                                child: Text(
+                                  'Mã chi nhánh đã tồn tại. Vui lòng chọn lại!',
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w300,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
                               ),
                             Text(
                               'Mô tả:',
@@ -386,7 +429,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 maxLines: 3,
-                                maxLength: 200,
+                                maxLength: 250,
                                 validator: _model
                                     .descriptionBranchTextControllerValidator
                                     .asValidator(context),
@@ -521,40 +564,8 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??
                                             true)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Tạo mới thành công!',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                          if (Navigator.of(context).canPop()) {
-                                            context.pop();
-                                          }
-                                          context.pushNamed(
-                                            'BranchList',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
+                                          await widget.reloadDataList?.call();
+                                          Navigator.pop(context);
                                         } else {
                                           await showDialog(
                                             context: context,

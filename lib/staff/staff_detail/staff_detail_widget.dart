@@ -636,34 +636,25 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Icon(
-                                        Icons.meeting_room,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      Text(
-                                        'Bộ phận:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          getJsonField(
-                                            widget.staffDetail,
-                                            r'''$.department_id.name''',
-                                          ).toString(),
-                                          textAlign: TextAlign.end,
+                                  child: Visibility(
+                                    visible: getJsonField(
+                                          widget.staffDetail,
+                                          r'''$.department_id.name''',
+                                        ) !=
+                                        null,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(
+                                          Icons.meeting_room,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        Text(
+                                          'Bộ phận:',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -672,8 +663,24 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                         ),
-                                      ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                        Expanded(
+                                          child: Text(
+                                            getJsonField(
+                                              widget.staffDetail,
+                                              r'''$.department_id.name''',
+                                            ).toString(),
+                                            textAlign: TextAlign.end,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                      ].divide(const SizedBox(width: 4.0)),
+                                    ),
                                   ),
                                 ),
                               if ((getJsonField(
@@ -750,6 +757,9 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    if (Navigator.of(context).canPop()) {
+                      context.pop();
+                    }
                     context.pushNamed(
                       'StaffUpdate',
                       queryParameters: {

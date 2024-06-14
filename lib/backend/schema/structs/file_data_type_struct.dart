@@ -16,15 +16,20 @@ class FileDataTypeStruct extends BaseStruct {
   FileIDDataTypeStruct get directusFilesId =>
       _directusFilesId ?? FileIDDataTypeStruct();
   set directusFilesId(FileIDDataTypeStruct? val) => _directusFilesId = val;
-  void updateDirectusFilesId(Function(FileIDDataTypeStruct) updateFn) =>
-      updateFn(_directusFilesId ??= FileIDDataTypeStruct());
+
+  void updateDirectusFilesId(Function(FileIDDataTypeStruct) updateFn) {
+    updateFn(directusFilesId ??= FileIDDataTypeStruct());
+  }
+
   bool hasDirectusFilesId() => _directusFilesId != null;
 
   // "id" field.
   int? _id;
   int get id => _id ?? 0;
   set id(int? val) => _id = val;
-  void incrementId(int amount) => _id = id + amount;
+
+  void incrementId(int amount) => id = id + amount;
+
   bool hasId() => _id != null;
 
   static FileDataTypeStruct fromMap(Map<String, dynamic> data) =>

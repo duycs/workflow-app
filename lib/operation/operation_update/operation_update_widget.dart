@@ -549,7 +549,9 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                                 .secondary,
                                       ),
                                     );
-
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
                                     context.pushNamed(
                                       'OperationList',
                                       extra: <String, dynamic>{

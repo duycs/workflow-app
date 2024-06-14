@@ -65,182 +65,226 @@ class StudyProgramListStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "status" field.
   String? _status;
   String get status => _status ?? '';
   set status(String? val) => _status = val;
+
   bool hasStatus() => _status != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "duration_hours" field.
   int? _durationHours;
   int get durationHours => _durationHours ?? 0;
   set durationHours(int? val) => _durationHours = val;
+
   void incrementDurationHours(int amount) =>
-      _durationHours = durationHours + amount;
+      durationHours = durationHours + amount;
+
   bool hasDurationHours() => _durationHours != null;
 
   // "lessions" field.
   List<StudyProgramListLessionsIdStruct>? _lessions;
   List<StudyProgramListLessionsIdStruct> get lessions => _lessions ?? const [];
   set lessions(List<StudyProgramListLessionsIdStruct>? val) => _lessions = val;
+
   void updateLessions(
-          Function(List<StudyProgramListLessionsIdStruct>) updateFn) =>
-      updateFn(_lessions ??= []);
+      Function(List<StudyProgramListLessionsIdStruct>) updateFn) {
+    updateFn(lessions ??= []);
+  }
+
   bool hasLessions() => _lessions != null;
 
   // "tests" field.
   List<StudyProgramListTestIdStruct>? _tests;
   List<StudyProgramListTestIdStruct> get tests => _tests ?? const [];
   set tests(List<StudyProgramListTestIdStruct>? val) => _tests = val;
-  void updateTests(Function(List<StudyProgramListTestIdStruct>) updateFn) =>
-      updateFn(_tests ??= []);
+
+  void updateTests(Function(List<StudyProgramListTestIdStruct>) updateFn) {
+    updateFn(tests ??= []);
+  }
+
   bool hasTests() => _tests != null;
 
   // "studioIdTest" field.
   List<StaffsTestsListStruct>? _studioIdTest;
   List<StaffsTestsListStruct> get studioIdTest => _studioIdTest ?? const [];
   set studioIdTest(List<StaffsTestsListStruct>? val) => _studioIdTest = val;
-  void updateStudioIdTest(Function(List<StaffsTestsListStruct>) updateFn) =>
-      updateFn(_studioIdTest ??= []);
+
+  void updateStudioIdTest(Function(List<StaffsTestsListStruct>) updateFn) {
+    updateFn(studioIdTest ??= []);
+  }
+
   bool hasStudioIdTest() => _studioIdTest != null;
 
   // "organization_id" field.
   String? _organizationId;
   String get organizationId => _organizationId ?? '';
   set organizationId(String? val) => _organizationId = val;
+
   bool hasOrganizationId() => _organizationId != null;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
   int get estimateInDay => _estimateInDay ?? 0;
   set estimateInDay(int? val) => _estimateInDay = val;
+
   void incrementEstimateInDay(int amount) =>
-      _estimateInDay = estimateInDay + amount;
+      estimateInDay = estimateInDay + amount;
+
   bool hasEstimateInDay() => _estimateInDay != null;
 
   // "date_create" field.
   String? _dateCreate;
   String get dateCreate => _dateCreate ?? '';
   set dateCreate(String? val) => _dateCreate = val;
+
   bool hasDateCreate() => _dateCreate != null;
 
   // "date_created" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
   set dateCreated(String? val) => _dateCreated = val;
+
   bool hasDateCreated() => _dateCreated != null;
 
   // "image_cover" field.
   String? _imageCover;
   String get imageCover => _imageCover ?? '';
   set imageCover(String? val) => _imageCover = val;
+
   bool hasImageCover() => _imageCover != null;
 
   // "template" field.
   int? _template;
   int get template => _template ?? 0;
   set template(int? val) => _template = val;
-  void incrementTemplate(int amount) => _template = template + amount;
+
+  void incrementTemplate(int amount) => template = template + amount;
+
   bool hasTemplate() => _template != null;
 
   // "price" field.
   String? _price;
   String get price => _price ?? '';
   set price(String? val) => _price = val;
+
   bool hasPrice() => _price != null;
 
   // "author_id" field.
   String? _authorId;
   String get authorId => _authorId ?? '';
   set authorId(String? val) => _authorId = val;
+
   bool hasAuthorId() => _authorId != null;
 
   // "copyright_program_id" field.
   String? _copyrightProgramId;
   String get copyrightProgramId => _copyrightProgramId ?? '';
   set copyrightProgramId(String? val) => _copyrightProgramId = val;
+
   bool hasCopyrightProgramId() => _copyrightProgramId != null;
 
   // "copyright_organization_id" field.
   String? _copyrightOrganizationId;
   String get copyrightOrganizationId => _copyrightOrganizationId ?? '';
   set copyrightOrganizationId(String? val) => _copyrightOrganizationId = val;
+
   bool hasCopyrightOrganizationId() => _copyrightOrganizationId != null;
 
   // "version" field.
   int? _version;
   int get version => _version ?? 0;
   set version(int? val) => _version = val;
-  void incrementVersion(int amount) => _version = version + amount;
+
+  void incrementVersion(int amount) => version = version + amount;
+
   bool hasVersion() => _version != null;
 
   // "private" field.
   int? _private;
   int get private => _private ?? 0;
   set private(int? val) => _private = val;
-  void incrementPrivate(int amount) => _private = private + amount;
+
+  void incrementPrivate(int amount) => private = private + amount;
+
   bool hasPrivate() => _private != null;
 
   // "limit_invite" field.
   int? _limitInvite;
   int get limitInvite => _limitInvite ?? 0;
   set limitInvite(int? val) => _limitInvite = val;
-  void incrementLimitInvite(int amount) => _limitInvite = limitInvite + amount;
+
+  void incrementLimitInvite(int amount) => limitInvite = limitInvite + amount;
+
   bool hasLimitInvite() => _limitInvite != null;
 
   // "invite_count" field.
   int? _inviteCount;
   int get inviteCount => _inviteCount ?? 0;
   set inviteCount(int? val) => _inviteCount = val;
-  void incrementInviteCount(int amount) => _inviteCount = inviteCount + amount;
+
+  void incrementInviteCount(int amount) => inviteCount = inviteCount + amount;
+
   bool hasInviteCount() => _inviteCount != null;
 
   // "domain_id" field.
   String? _domainId;
   String get domainId => _domainId ?? '';
   set domainId(String? val) => _domainId = val;
+
   bool hasDomainId() => _domainId != null;
 
   // "category_id" field.
   String? _categoryId;
   String get categoryId => _categoryId ?? '';
   set categoryId(String? val) => _categoryId = val;
+
   bool hasCategoryId() => _categoryId != null;
 
   // "departments" field.
   List<DepartmentsIdStruct>? _departments;
   List<DepartmentsIdStruct> get departments => _departments ?? const [];
   set departments(List<DepartmentsIdStruct>? val) => _departments = val;
-  void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) =>
-      updateFn(_departments ??= []);
+
+  void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) {
+    updateFn(departments ??= []);
+  }
+
   bool hasDepartments() => _departments != null;
 
   // "user_created" field.
   UserStruct? _userCreated;
   UserStruct get userCreated => _userCreated ?? UserStruct();
   set userCreated(UserStruct? val) => _userCreated = val;
-  void updateUserCreated(Function(UserStruct) updateFn) =>
-      updateFn(_userCreated ??= UserStruct());
+
+  void updateUserCreated(Function(UserStruct) updateFn) {
+    updateFn(userCreated ??= UserStruct());
+  }
+
   bool hasUserCreated() => _userCreated != null;
 
   // "checkBoxProgram" field.
   bool? _checkBoxProgram;
   bool get checkBoxProgram => _checkBoxProgram ?? false;
   set checkBoxProgram(bool? val) => _checkBoxProgram = val;
+
   bool hasCheckBoxProgram() => _checkBoxProgram != null;
 
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
@@ -345,17 +389,17 @@ class StudyProgramListStruct extends BaseStruct {
         'lessions': serializeParam(
           _lessions,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'tests': serializeParam(
           _tests,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'studioIdTest': serializeParam(
           _studioIdTest,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'organization_id': serializeParam(
           _organizationId,
@@ -424,7 +468,7 @@ class StudyProgramListStruct extends BaseStruct {
         'departments': serializeParam(
           _departments,
           ParamType.DataStruct,
-          true,
+          isList: true,
         ),
         'user_created': serializeParam(
           _userCreated,
