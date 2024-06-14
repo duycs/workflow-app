@@ -9,48 +9,74 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:flutter/services.dart';
-
 Future<void> closeApp(BuildContext context) async {
   showDialog(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     barrierColor: Colors.black.withOpacity(0.4),
     builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Đóng ứng dụng"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
+      return PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) async {
+          if (didPop) {
+            return;
+          }
+        },
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    },
+  );
+
+  // Close the dialog after the specified duration
+  await showDialog(
+    context: context,
+    barrierDismissible: false,
+    barrierColor: Colors.black.withOpacity(0.4),
+    builder: (BuildContext context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.close),
                   onPressed: () {
-                    // Close the dialog
                     Navigator.of(context).pop();
                   },
-                  child: Text("Thoát"),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Exit the app
-                    Navigator.of(context).pop();
-                    Future.delayed(Duration(milliseconds: 500), () {
-                      SystemNavigator.pop();
-                    });
-                  },
-                  child: Text("Đóng"),
-                ),
-              ],
-            ),
-          ],
+              ),
+              Text(
+                'Do you really want to exit?',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Stay'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Exit'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       );
     },
