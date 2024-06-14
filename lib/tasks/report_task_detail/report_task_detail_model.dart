@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'report_task_detail_widget.dart' show ReportTaskDetailWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -31,6 +32,11 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
       listPercent.insert(index, item);
   void updateListPercentAtIndex(int index, Function(double) updateFn) =>
       listPercent[index] = updateFn(listPercent[index]);
+
+  StaffListStruct? staff;
+  void updateStaffStruct(Function(StaffListStruct) updateFn) {
+    updateFn(staff ??= StaffListStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 
@@ -79,6 +85,25 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
     textController2?.dispose();
 
     listViewPagingController2?.dispose();
+  }
+
+  /// Action blocks.
+  Future getOneUser(BuildContext context) async {
+    bool? getOneStaff;
+    ApiCallResponse? apiResultGetOneStaff;
+
+    getOneStaff = await action_blocks.tokenReload(context);
+    if (getOneStaff!) {
+      apiResultGetOneStaff = await StaffGroup.getStaffGetOneCall.call();
+      if ((apiResultGetOneStaff.succeeded ?? true)) {
+        staff = StaffListStruct.maybeFromMap(getJsonField(
+          (apiResultGetOneStaff.jsonBody ?? ''),
+          r'''$.data''',
+        ));
+      }
+    } else {
+      return;
+    }
   }
 
   /// Additional helper methods.

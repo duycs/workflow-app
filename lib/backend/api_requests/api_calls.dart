@@ -4049,7 +4049,7 @@ class GetOneAuthorsCall {
 class ListAthorsSortCall {
   Future<ApiCallResponse> call({
     String? filter = '',
-    int? limit = 10,
+    int? limit = 5000,
     int? offset = 0,
     String? accessToken = '',
   }) async {
@@ -4070,7 +4070,7 @@ class ListAthorsSortCall {
         'fields[]':
             "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
-        'limit': "10",
+        'limit': limit,
         'sort': "-order_count",
       },
       returnBody: true,

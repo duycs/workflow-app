@@ -711,7 +711,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       await action_blocks.tokenReload(context);
                                   shouldSetState = true;
                                   if (_model.authorsSignUp!) {
-                                    _model.apiResultu1j =
+                                    _model.apiResultAuthorSignUp =
                                         await GroupAuthorsGroup
                                             .authorsSignUpCall
                                             .call(
@@ -731,7 +731,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       },
                                     );
                                     shouldSetState = true;
-                                    if ((_model.apiResultu1j?.succeeded ??
+                                    if ((_model
+                                            .apiResultAuthorSignUp?.succeeded ??
                                         true)) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
@@ -760,39 +761,23 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                       if ((_model
                                               .apiResultGetStaffId?.succeeded ??
                                           true)) {
-                                        FFAppState().staffLogin = getJsonField(
-                                          (_model.apiResultGetStaffId
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.staff''',
-                                        );
-                                        FFAppState().staffOrganization =
+                                        FFAppState().OrganizationId =
                                             getJsonField(
                                           (_model.apiResultGetStaffId
                                                   ?.jsonBody ??
                                               ''),
                                           r'''$.organization''',
                                         );
-                                        setState(() {});
+                                        FFAppState().update(() {});
+                                        FFAppState().staffLogin = getJsonField(
+                                          (_model.apiResultGetStaffId
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.staff''',
+                                        );
+                                        _model.updatePage(() {});
                                       }
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            content: Text((_model.apiResultu1j
-                                                        ?.jsonBody ??
-                                                    '')
-                                                .toString()),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
+                                      Navigator.pop(context);
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -807,8 +792,6 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                           ),
                                         },
                                       );
-
-                                      Navigator.pop(context);
                                     }
                                   }
                                 }

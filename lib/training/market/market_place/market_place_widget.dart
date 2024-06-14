@@ -369,146 +369,244 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   if (_model.listDataProgramsFree.isNotEmpty)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 140.0,
                         decoration: const BoxDecoration(),
-                        child: Builder(
-                          builder: (context) {
-                            final listProgramsFree =
-                                _model.listDataProgramsFree.toList();
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: listProgramsFree.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(width: 24.0),
-                              itemBuilder: (context, listProgramsFreeIndex) {
-                                final listProgramsFreeItem =
-                                    listProgramsFree[listProgramsFreeIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'ProgramMarketDetail',
-                                      queryParameters: {
-                                        'idProgram': serializeParam(
-                                          listProgramsFreeItem.id,
-                                          ParamType.String,
-                                        ),
-                                        'price': serializeParam(
-                                          listProgramsFreeItem.price,
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 150.0,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${listProgramsFreeItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                        ).image,
-                                      ),
-                                      borderRadius: BorderRadius.circular(4.0),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width: 180.0,
-                                          height: 180.0,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Builder(
+                                builder: (context) {
+                                  final listProgramsFree =
+                                      _model.listDataProgramsFree.toList();
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children:
+                                        List.generate(listProgramsFree.length,
+                                            (listProgramsFreeIndex) {
+                                      final listProgramsFreeItem =
+                                          listProgramsFree[
+                                              listProgramsFreeIndex];
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'ProgramMarketDetail',
+                                            queryParameters: {
+                                              'idProgram': serializeParam(
+                                                listProgramsFreeItem.id,
+                                                ParamType.String,
+                                              ),
+                                              'price': serializeParam(
+                                                listProgramsFreeItem.price,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  const TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                                duration:
+                                                    Duration(milliseconds: 0),
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 150.0,
                                           decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                FlutterFlowTheme.of(context)
-                                                    .noColor,
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText
-                                              ],
-                                              stops: const [0.0, 1.0],
-                                              begin: const AlignmentDirectional(
-                                                  0.0, -1.0),
-                                              end: const AlignmentDirectional(0, 1.0),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.network(
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${listProgramsFreeItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                              ).image,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(4.0),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 4.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          child: Stack(
                                             children: [
-                                              Text(
-                                                listProgramsFreeItem.name,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                              Text(
-                                                listProgramsFreeItem
-                                                    .authorId.alias,
-                                                maxLines: 2,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
+                                              if (listProgramsFreeIndex != 10)
+                                                Container(
+                                                  width: 180.0,
+                                                  height: 180.0,
+                                                  decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .noColor,
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText
+                                                      ],
+                                                      stops: const [0.0, 1.0],
+                                                      begin:
+                                                          const AlignmentDirectional(
+                                                              0.0, -1.0),
+                                                      end: const AlignmentDirectional(
+                                                          0, 1.0),
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4.0),
+                                                  ),
+                                                ),
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 4.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      listProgramsFreeItem.name,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      listProgramsFreeItem
+                                                          .authorId.alias,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ],
+                                      );
+                                    }).divide(const SizedBox(width: 24.0)),
+                                  );
+                                },
+                              ),
+                              if (_model.listDataProgramsFree.length == 11)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'ProgramListMarket',
+                                        queryParameters: {
+                                          'price': serializeParam(
+                                            'free',
+                                            ParamType.String,
+                                          ),
+                                          'idAuthor': serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                          'idDomain': serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                          'domainToProgramListMarket':
+                                              serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 150.0,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Xem tất cả',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          Icon(
+                                            Icons.arrow_right,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                );
-                              },
-                            );
-                          },
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -614,288 +712,440 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   if (_model.listDataProgramsNoFree.isNotEmpty)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         height: 220.0,
                         decoration: const BoxDecoration(),
-                        child: Builder(
-                          builder: (context) {
-                            final listProgramsNoFree =
-                                _model.listDataProgramsNoFree.toList();
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: listProgramsNoFree.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(width: 24.0),
-                              itemBuilder: (context, listProgramsNoFreeIndex) {
-                                final listProgramsNoFreeItem =
-                                    listProgramsNoFree[listProgramsNoFreeIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'ProgramMarketDetail',
-                                      queryParameters: {
-                                        'idProgram': serializeParam(
-                                          listProgramsNoFreeItem.id,
-                                          ParamType.String,
-                                        ),
-                                        'price': serializeParam(
-                                          listProgramsNoFreeItem.price,
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    width: 150.0,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4.0),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                height: 90.0,
-                                                decoration: const BoxDecoration(),
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 4.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${listProgramsNoFreeItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                                      width: double.infinity,
-                                                      height: double.infinity,
-                                                      fit: BoxFit.cover,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Builder(
+                                builder: (context) {
+                                  final listProgramsNoFree =
+                                      _model.listDataProgramsNoFree.toList();
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children:
+                                        List.generate(listProgramsNoFree.length,
+                                            (listProgramsNoFreeIndex) {
+                                      final listProgramsNoFreeItem =
+                                          listProgramsNoFree[
+                                              listProgramsNoFreeIndex];
+                                      return Visibility(
+                                        visible: listProgramsNoFreeIndex != 10,
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'ProgramMarketDetail',
+                                              queryParameters: {
+                                                'idProgram': serializeParam(
+                                                  listProgramsNoFreeItem.id,
+                                                  ParamType.String,
+                                                ),
+                                                'price': serializeParam(
+                                                  listProgramsNoFreeItem.price,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 150.0,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Stack(
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        height: 90.0,
+                                                        decoration:
+                                                            const BoxDecoration(),
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      4.0),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${listProgramsNoFreeItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  4.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.asset(
+                                                          'assets/images/ti_xung.png',
+                                                          width: 35.0,
+                                                          height: 30.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(4.0, 4.0, 0.0, 0.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/ti_xung.png',
-                                                  width: 35.0,
-                                                  height: 30.0,
-                                                  fit: BoxFit.cover,
+                                                Text(
+                                                  listProgramsNoFreeItem.name,
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                 ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          listProgramsNoFreeItem.name,
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                        ),
-                                        Text(
-                                          listProgramsNoFreeItem.authorId.alias,
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                fontSize: 13.0,
-                                                letterSpacing: 0.0,
-                                                fontStyle: FontStyle.italic,
-                                              ),
-                                        ),
-                                        RichText(
-                                          textScaler:
-                                              MediaQuery.of(context).textScaler,
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: formatNumber(
-                                                  functions.stringToInt(
-                                                      listProgramsNoFreeItem
-                                                          .price),
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.commaDecimal,
+                                                Text(
+                                                  listProgramsNoFreeItem
+                                                      .authorId.alias,
+                                                  maxLines: 2,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                      ),
                                                 ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: formatNumber(
+                                                          functions.stringToInt(
+                                                              listProgramsNoFreeItem
+                                                                  .price),
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  FontStyle
+                                                                      .italic,
+                                                            ),
+                                                      ),
+                                                      const TextSpan(
+                                                        text: 'đ',
+                                                        style: TextStyle(
+                                                          fontSize: 12.0,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                      ),
+                                                      const TextSpan(
+                                                        text: ' ',
+                                                        style: TextStyle(
+                                                          fontSize: 12.0,
+                                                        ),
+                                                      ),
+                                                      TextSpan(
+                                                        text: formatNumber(
+                                                          double.tryParse((double.parse(
+                                                                      listProgramsNoFreeItem
+                                                                          .price) /
+                                                                  0.7)
+                                                              .toStringAsFixed(
+                                                                  0)),
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                        ),
+                                                        style: const TextStyle(
+                                                          color:
+                                                              Color(0xFFFF0000),
+                                                          fontSize: 11.0,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                      ),
+                                                      const TextSpan(
+                                                        text: 'đ',
+                                                        style: TextStyle(
+                                                          color:
+                                                              Color(0xFFFF0000),
+                                                          fontSize: 11.0,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                        ),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 12.0,
+                                                          fontSize: 13.0,
                                                           letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FontStyle.italic,
                                                         ),
-                                              ),
-                                              const TextSpan(
-                                                text: 'đ',
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  fontStyle: FontStyle.italic,
+                                                  ),
                                                 ),
-                                              ),
-                                              const TextSpan(
-                                                text: ' ',
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
+                                                Expanded(
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 20.0,
+                                                    decoration: const BoxDecoration(),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          if (listProgramsNoFreeItem
+                                                                  .reacts.isNotEmpty)
+                                                            Expanded(
+                                                              flex: 5,
+                                                              child:
+                                                                  RatingStafWidget(
+                                                                key: Key(
+                                                                    'Keyi65_${listProgramsNoFreeIndex}_of_${listProgramsNoFree.length}'),
+                                                                list:
+                                                                    listProgramsNoFreeItem
+                                                                        .reacts,
+                                                              ),
+                                                            ),
+                                                          if (listProgramsNoFreeItem
+                                                                  .reacts.isEmpty)
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Text(
+                                                                '',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          Expanded(
+                                                            flex: 5,
+                                                            child: Text(
+                                                              '(${listProgramsNoFreeItem.orderCount.toString()})',
+                                                              textAlign:
+                                                                  TextAlign.end,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                              TextSpan(
-                                                text: formatNumber(
-                                                  double.tryParse((double.parse(
-                                                              listProgramsNoFreeItem
-                                                                  .price) /
-                                                          0.7)
-                                                      .toStringAsFixed(0)),
-                                                  formatType:
-                                                      FormatType.decimal,
-                                                  decimalType:
-                                                      DecimalType.commaDecimal,
-                                                ),
-                                                style: const TextStyle(
-                                                  color: Color(0xFFFF0000),
-                                                  fontSize: 11.0,
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                              ),
-                                              const TextSpan(
-                                                text: 'đ',
-                                                style: TextStyle(
-                                                  color: Color(0xFFFF0000),
-                                                  fontSize: 11.0,
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                              )
-                                            ],
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).divide(
+                                      const SizedBox(width: 24.0),
+                                      filterFn: (listProgramsNoFreeIndex) {
+                                        final listProgramsNoFreeItem =
+                                            listProgramsNoFree[
+                                                listProgramsNoFreeIndex];
+                                        return listProgramsNoFreeIndex != 10;
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                              if (_model.listDataProgramsNoFree.length == 11)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'ProgramListMarket',
+                                        queryParameters: {
+                                          'price': serializeParam(
+                                            'NoFree',
+                                            ParamType.String,
+                                          ),
+                                          'idAuthor': serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                          'idDomain': serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                          'domainToProgramListMarket':
+                                              serializeParam(
+                                            '',
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 150.0,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Xem tất cả',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 13.0,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 20.0,
-                                            decoration: const BoxDecoration(),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 2.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  if (listProgramsNoFreeItem
-                                                          .reacts.isNotEmpty)
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: RatingStafWidget(
-                                                        key: Key(
-                                                            'Keyi65_${listProgramsNoFreeIndex}_of_${listProgramsNoFree.length}'),
-                                                        list:
-                                                            listProgramsNoFreeItem
-                                                                .reacts,
-                                                      ),
-                                                    ),
-                                                  if (listProgramsNoFreeItem
-                                                          .reacts.isEmpty)
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Text(
-                                                        '',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  Expanded(
-                                                    flex: 5,
-                                                    child: Text(
-                                                      '(${listProgramsNoFreeItem.orderCount.toString()})',
-                                                      textAlign: TextAlign.end,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 12.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                          Icon(
+                                            Icons.arrow_right,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                );
-                              },
-                            );
-                          },
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -1189,7 +1439,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                   if (_model.listDataAuthors.isNotEmpty)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Container(
                         width: 100.0,
                         height: 135.0,
@@ -1197,118 +1447,212 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
-                        child: Builder(
-                          builder: (context) {
-                            final listAuthors = _model.listDataAuthors.toList();
-                            return ListView.separated(
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.horizontal,
-                              itemCount: listAuthors.length,
-                              separatorBuilder: (_, __) =>
-                                  const SizedBox(width: 24.0),
-                              itemBuilder: (context, listAuthorsIndex) {
-                                final listAuthorsItem =
-                                    listAuthors[listAuthorsIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'AuthorMarketProfile',
-                                      queryParameters: {
-                                        'itemAuthors': serializeParam(
-                                          listAuthorsItem,
-                                          ParamType.DataStruct,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Stack(
-                                    alignment: const AlignmentDirectional(0.0, 1.0),
-                                    children: [
-                                      Opacity(
-                                        opacity: 0.5,
-                                        child: Container(
-                                          width: 130.0,
-                                          height: 70.0,
-                                          decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight: Radius.circular(0.0),
-                                              topLeft: Radius.circular(8.0),
-                                              topRight: Radius.circular(8.0),
-                                            ),
-                                            border: Border.all(
-                                              color: const Color(0x7D57636C),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 4.0),
-                                              child: Container(
-                                                width: 80.0,
-                                                height: 80.0,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Builder(
+                                builder: (context) {
+                                  final listAuthors =
+                                      _model.listDataAuthors.toList();
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: List.generate(listAuthors.length,
+                                        (listAuthorsIndex) {
+                                      final listAuthorsItem =
+                                          listAuthors[listAuthorsIndex];
+                                      return Visibility(
+                                        visible: listAuthorsIndex != 10,
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'AuthorMarketProfile',
+                                              queryParameters: {
+                                                'itemAuthors': serializeParam(
+                                                  listAuthorsItem,
+                                                  ParamType.DataStruct,
                                                 ),
-                                                child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${listAuthorsItem.avatar}?access_token=${FFAppState().accessToken}',
-                                                  fit: BoxFit.cover,
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          child: Stack(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 1.0),
+                                            children: [
+                                              Opacity(
+                                                opacity: 0.5,
+                                                child: Container(
+                                                  width: 130.0,
+                                                  height: 70.0,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(0.0),
+                                                      bottomRight:
+                                                          Radius.circular(0.0),
+                                                      topLeft:
+                                                          Radius.circular(8.0),
+                                                      topRight:
+                                                          Radius.circular(8.0),
+                                                    ),
+                                                    border: Border.all(
+                                                      color: const Color(0x7D57636C),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              listAuthorsItem.alias,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                            ),
-                                            Text(
-                                              listAuthorsItem
-                                                  .domains.first.domainsId.name,
-                                              maxLines: 2,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
+                                              Padding(
+                                                padding: const EdgeInsets.all(6.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Container(
+                                                        width: 80.0,
+                                                        height: 80.0,
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Image.network(
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listAuthorsItem.avatar}?access_token=${FFAppState().accessToken}',
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
-                                            ),
-                                          ],
+                                                    ),
+                                                    Text(
+                                                      listAuthorsItem.alias,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      listAuthorsItem.domains
+                                                          .first.domainsId.name,
+                                                      maxLines: 2,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      );
+                                    }).divide(
+                                      const SizedBox(width: 24.0),
+                                      filterFn: (listAuthorsIndex) {
+                                        final listAuthorsItem =
+                                            listAuthors[listAuthorsIndex];
+                                        return listAuthorsIndex != 10;
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                              if (_model.listDataAuthors.length == 11)
+                                Container(
+                                  width: 110.0,
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
                                   ),
-                                );
-                              },
-                            );
-                          },
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'AuthorList',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Xem thêm',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_right,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 20.0,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

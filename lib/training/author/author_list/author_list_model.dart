@@ -101,6 +101,8 @@ class AuthorListModel extends FlutterFlowModel<AuthorListWidget> {
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[${searchAuthorsTextController.text != '' ? '{\"alias\":{\"_icontains\":\"' : ' '}${searchAuthorsTextController.text != '' ? searchAuthorsTextController.text : ' '}${searchAuthorsTextController.text != '' ? '\"}}' : ' '}]}',
+      limit: 10,
+      offset: 0,
     );
     if ((apiResultListSort.succeeded ?? true)) {
       listDataAuthorsSort = AuthorsListDataStruct.maybeFromMap(

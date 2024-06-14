@@ -316,6 +316,28 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                     ],
                   ),
                 ),
+                if ((widget.price == 'free') || (widget.price == 'NoFree'))
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 4.0),
+                    child: Text(
+                      () {
+                        if (widget.price == 'free') {
+                          return 'Khoá học miễn phí';
+                        } else if (widget.price == 'NoFree') {
+                          return 'Khoá học bán chạy';
+                        } else {
+                          return '';
+                        }
+                      }(),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontSize: 14.0,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
                 if ((_model.searchMarketTextController.text != '') ||
                     ((_model.domain != '') &&
                         (_model.domain != 'noData')) ||

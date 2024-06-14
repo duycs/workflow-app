@@ -171,6 +171,12 @@ class FFAppState extends ChangeNotifier {
     _marketOn = value;
     prefs.setBool('ff_marketOn', value);
   }
+
+  dynamic _OrganizationId;
+  dynamic get OrganizationId => _OrganizationId;
+  set OrganizationId(dynamic value) {
+    _OrganizationId = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

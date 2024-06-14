@@ -952,7 +952,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                                   (getJsonField(
                                                         FFAppState()
-                                                            .staffOrganization,
+                                                            .OrganizationId,
                                                         r'''$.authors[0]''',
                                                       ) ==
                                                       null))
@@ -1025,7 +1025,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                                   (getJsonField(
                                                         FFAppState()
-                                                            .staffOrganization,
+                                                            .OrganizationId,
                                                         r'''$.authors[0]''',
                                                       ) !=
                                                       null))

@@ -27,12 +27,6 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Action Block - tokenReload] action in AuthorProfile widget.
-  bool? checkIsTokenReload;
-  // Stores action output result for [Backend Call - API (GetOneAuthors)] action in AuthorProfile widget.
-  ApiCallResponse? apiResultGetOneAuthors1;
-  // Stores action output result for [Backend Call - API (GetListMarketLesson)] action in AuthorProfile widget.
-  ApiCallResponse? apiResultGetListProgram1;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -63,7 +57,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
       apiResultGetOneAuthors = await GroupAuthorsGroup.getOneAuthorsCall.call(
         accessToken: FFAppState().accessToken,
         id: getJsonField(
-          FFAppState().staffOrganization,
+          FFAppState().OrganizationId,
           r'''$.authors[0]''',
         ).toString().toString(),
       );
@@ -87,7 +81,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
         accessToken: FFAppState().accessToken,
         filter:
             '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().staffOrganization,
+          FFAppState().OrganizationId,
           r'''$.authors[0]''',
         ).toString().toString()}\"}}]}',
       );

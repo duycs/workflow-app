@@ -20,6 +20,7 @@ class StaffListStruct extends BaseStruct {
     bool? check,
     List<StaffLessionStruct>? staffLessions,
     List<TestListStruct>? staffTests,
+    List<StaffsProgramsListStruct>? staffPrograms,
   })  : _id = id,
         _status = status,
         _cccd = cccd,
@@ -33,7 +34,8 @@ class StaffListStruct extends BaseStruct {
         _tasks = tasks,
         _check = check,
         _staffLessions = staffLessions,
-        _staffTests = staffTests;
+        _staffTests = staffTests,
+        _staffPrograms = staffPrograms;
 
   // "id" field.
   String? _id;
@@ -158,6 +160,19 @@ class StaffListStruct extends BaseStruct {
 
   bool hasStaffTests() => _staffTests != null;
 
+  // "staff_programs" field.
+  List<StaffsProgramsListStruct>? _staffPrograms;
+  List<StaffsProgramsListStruct> get staffPrograms =>
+      _staffPrograms ?? const [];
+  set staffPrograms(List<StaffsProgramsListStruct>? val) =>
+      _staffPrograms = val;
+
+  void updateStaffPrograms(Function(List<StaffsProgramsListStruct>) updateFn) {
+    updateFn(staffPrograms ??= []);
+  }
+
+  bool hasStaffPrograms() => _staffPrograms != null;
+
   static StaffListStruct fromMap(Map<String, dynamic> data) => StaffListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -182,6 +197,10 @@ class StaffListStruct extends BaseStruct {
           data['staff_tests'],
           TestListStruct.fromMap,
         ),
+        staffPrograms: getStructList(
+          data['staff_programs'],
+          StaffsProgramsListStruct.fromMap,
+        ),
       );
 
   static StaffListStruct? maybeFromMap(dynamic data) => data is Map
@@ -203,6 +222,7 @@ class StaffListStruct extends BaseStruct {
         'check': _check,
         'staff_lessions': _staffLessions?.map((e) => e.toMap()).toList(),
         'staff_tests': _staffTests?.map((e) => e.toMap()).toList(),
+        'staff_programs': _staffPrograms?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -263,6 +283,11 @@ class StaffListStruct extends BaseStruct {
         ),
         'staff_tests': serializeParam(
           _staffTests,
+          ParamType.DataStruct,
+          isList: true,
+        ),
+        'staff_programs': serializeParam(
+          _staffPrograms,
           ParamType.DataStruct,
           isList: true,
         ),
@@ -346,6 +371,12 @@ class StaffListStruct extends BaseStruct {
           true,
           structBuilder: TestListStruct.fromSerializableMap,
         ),
+        staffPrograms: deserializeStructParam<StaffsProgramsListStruct>(
+          data['staff_programs'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: StaffsProgramsListStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -368,7 +399,8 @@ class StaffListStruct extends BaseStruct {
         listEquality.equals(tasks, other.tasks) &&
         check == other.check &&
         listEquality.equals(staffLessions, other.staffLessions) &&
-        listEquality.equals(staffTests, other.staffTests);
+        listEquality.equals(staffTests, other.staffTests) &&
+        listEquality.equals(staffPrograms, other.staffPrograms);
   }
 
   @override
@@ -386,7 +418,8 @@ class StaffListStruct extends BaseStruct {
         tasks,
         check,
         staffLessions,
-        staffTests
+        staffTests,
+        staffPrograms
       ]);
 }
 

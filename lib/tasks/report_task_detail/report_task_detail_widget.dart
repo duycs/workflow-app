@@ -10,6 +10,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'report_task_detail_model.dart';
@@ -19,9 +20,15 @@ class ReportTaskDetailWidget extends StatefulWidget {
   const ReportTaskDetailWidget({
     super.key,
     required this.staffId,
+    this.title,
+    this.department,
+    this.branch,
   });
 
   final String? staffId;
+  final String? title;
+  final String? department;
+  final String? branch;
 
   @override
   State<ReportTaskDetailWidget> createState() => _ReportTaskDetailWidgetState();
@@ -37,6 +44,12 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => ReportTaskDetailModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.getOneUser(context);
+      setState(() {});
+    });
 
     _model.tabBarController = TabController(
       vsync: this,
@@ -71,9 +84,9 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
       FlutterFlowTheme.of(context).tertiary
     ];
     final chartPieChartColorsList3 = [
-      FlutterFlowTheme.of(context).primary,
-      const Color(0xFF33BA45),
-      FlutterFlowTheme.of(context).tertiary
+      FlutterFlowTheme.of(context).accent1,
+      FlutterFlowTheme.of(context).accent2,
+      FlutterFlowTheme.of(context).accent3
     ];
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -168,9 +181,9 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  const TextSpan(
-                                    text: 'Nhân viên',
-                                    style: TextStyle(
+                                  TextSpan(
+                                    text: widget.title!,
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.normal,
                                     ),
                                   )
@@ -189,24 +202,42 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Expanded(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.groups_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 20.0,
-                                  ),
-                                  RichText(
-                                    textScaler:
-                                        MediaQuery.of(context).textScaler,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'Bộ phận: ',
+                            if (widget.department != ' ')
+                              Expanded(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.groups_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                    Expanded(
+                                      child: RichText(
+                                        textScaler:
+                                            MediaQuery.of(context).textScaler,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: 'Bộ phận: ',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                            TextSpan(
+                                              text: widget.department!,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            )
+                                          ],
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -214,43 +245,48 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        const TextSpan(
-                                          text: 'Kinh doanh',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      ],
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
+                                        maxLines: 2,
+                                      ),
                                     ),
-                                    maxLines: 2,
-                                  ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.home_work_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 20.0,
-                                  ),
-                                  RichText(
-                                    textScaler:
-                                        MediaQuery.of(context).textScaler,
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: 'Chi nhánh: ',
+                            if (widget.branch != ' ')
+                              Expanded(
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.home_work_outlined,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 20.0,
+                                    ),
+                                    Expanded(
+                                      child: RichText(
+                                        textScaler:
+                                            MediaQuery.of(context).textScaler,
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: 'Chi nhánh: ',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ),
+                                            TextSpan(
+                                              text: widget.branch!,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            )
+                                          ],
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -258,25 +294,12 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
-                                        const TextSpan(
-                                          text: 'Hà Nội',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        )
-                                      ],
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                          ),
+                                        maxLines: 2,
+                                      ),
                                     ),
-                                    maxLines: 2,
-                                  ),
-                                ].divide(const SizedBox(width: 8.0)),
+                                  ].divide(const SizedBox(width: 8.0)),
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ],
@@ -1963,10 +1986,11 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                             controller: _model
                                                     .dropDownValueController2 ??=
                                                 FormFieldController<String>(
-                                              _model.dropDownValue2 ??=
-                                                  'Tháng này',
+                                              _model.dropDownValue2 ??= '3',
                                             ),
-                                            options: const [
+                                            options: List<String>.from(
+                                                ['0', '1', '2', '3']),
+                                            optionLabels: const [
                                               'Tuần này',
                                               'Tháng này',
                                               'Năm nay',
@@ -2061,7 +2085,7 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                                   0.0,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w300,
+                                                                      .normal,
                                                             ),
                                                   ),
                                                 ),
@@ -2117,107 +2141,138 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                           ),
                                                     ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 20.0,
-                                                        height: 20.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      2.0),
-                                                        ),
-                                                      ),
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  'Chưa học (',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: '20',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: ')',
-                                                              style:
-                                                                  TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: 75.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'StudyProgramListUser',
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Container(
+                                                          width: 20.0,
+                                                          height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(),
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Text(
-                                                            'Xem',
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .tertiary,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        2.0),
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    'Chưa học (',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: '20',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: ')',
+                                                                style:
+                                                                    TextStyle(),
+                                                              )
+                                                            ],
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .italic,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
                                                                 ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        Expanded(
+                                                          child: Container(
+                                                            width: 75.0,
+                                                            decoration:
+                                                                const BoxDecoration(),
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Text(
+                                                              'Xem',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 4.0)),
+                                                    ),
                                                   ),
                                                   Row(
                                                     mainAxisSize:
@@ -2476,13 +2531,13 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                                   'Nunito Sans',
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryBackground,
+                                                                  .secondaryText,
                                                               fontSize: 12.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w300,
+                                                                      .normal,
                                                             ),
                                                   ),
                                                 ),
@@ -2538,310 +2593,485 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                                           ),
                                                     ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 20.0,
-                                                        height: 20.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      2.0),
-                                                        ),
-                                                      ),
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  'Chưa học (',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: '20',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: ')',
-                                                              style:
-                                                                  TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: 75.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'LessonList_Homepage',
+                                                        queryParameters: {
+                                                          'statusLesson':
+                                                              serializeParam(
+                                                            'draft',
+                                                            ParamType.String,
+                                                          ),
+                                                          'statusLove':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lessonNewCreate':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lesonHistory':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'checkLesson':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Container(
+                                                          width: 20.0,
+                                                          height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(),
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Text(
-                                                            'Xem',
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        2.0),
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    'Chưa học (',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: '20',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: ')',
+                                                                style:
+                                                                    TextStyle(),
+                                                              )
+                                                            ],
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .italic,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
                                                                 ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        Expanded(
+                                                          child: Container(
+                                                            width: 75.0,
+                                                            decoration:
+                                                                const BoxDecoration(),
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Text(
+                                                              'Xem',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 4.0)),
+                                                    ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 20.0,
-                                                        height: 20.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      2.0),
-                                                        ),
-                                                      ),
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  'Đang học (',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: '39',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: ')',
-                                                              style:
-                                                                  TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: 75.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'LessonList_Homepage',
+                                                        queryParameters: {
+                                                          'statusLesson':
+                                                              serializeParam(
+                                                            'inpogress',
+                                                            ParamType.String,
+                                                          ),
+                                                          'statusLove':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lessonNewCreate':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lesonHistory':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'checkLesson':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Container(
+                                                          width: 20.0,
+                                                          height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(),
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Text(
-                                                            'Xem',
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent1,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        2.0),
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    'Đang học (',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: '39',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: ')',
+                                                                style:
+                                                                    TextStyle(),
+                                                              )
+                                                            ],
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .italic,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
                                                                 ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        Expanded(
+                                                          child: Container(
+                                                            width: 75.0,
+                                                            decoration:
+                                                                const BoxDecoration(),
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Text(
+                                                              'Xem',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 4.0)),
+                                                    ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Container(
-                                                        width: 20.0,
-                                                        height: 20.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color:
-                                                              const Color(0xFF33BA45),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      2.0),
-                                                        ),
-                                                      ),
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  'Hoàn thành (',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: '41',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            const TextSpan(
-                                                              text: ')',
-                                                              style:
-                                                                  TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Container(
-                                                          width: 75.0,
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'LessonList_Homepage',
+                                                        queryParameters: {
+                                                          'statusLesson':
+                                                              serializeParam(
+                                                            'done',
+                                                            ParamType.String,
+                                                          ),
+                                                          'statusLove':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lessonNewCreate':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'lesonHistory':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                          'checkLesson':
+                                                              serializeParam(
+                                                            '',
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        Container(
+                                                          width: 20.0,
+                                                          height: 20.0,
                                                           decoration:
-                                                              const BoxDecoration(),
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Text(
-                                                            'Xem',
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        2.0),
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    'Hoàn thành (',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: '41',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                              const TextSpan(
+                                                                text: ')',
+                                                                style:
+                                                                    TextStyle(),
+                                                              )
+                                                            ],
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .italic,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
                                                                 ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        const SizedBox(width: 4.0)),
+                                                        Expanded(
+                                                          child: Container(
+                                                            width: 75.0,
+                                                            decoration:
+                                                                const BoxDecoration(),
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Text(
+                                                              'Xem',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          const SizedBox(width: 4.0)),
+                                                    ),
                                                   ),
                                                 ].divide(const SizedBox(height: 4.0)),
                                               ),
@@ -3364,18 +3594,6 @@ class _ReportTaskDetailWidgetState extends State<ReportTaskDetailWidget>
                                               ],
                                               borderRadius:
                                                   BorderRadius.circular(18.0),
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      8.0, 16.0, 8.0, 16.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: <Widget>[].divide(
-                                                    const SizedBox(height: 4.0)),
-                                              ),
                                             ),
                                           );
                                         },

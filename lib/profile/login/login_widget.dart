@@ -103,6 +103,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             await actions.checkNofiLoad(
               context,
             );
+
+            context.pushNamed('TaskList');
           } else {
             return;
           }

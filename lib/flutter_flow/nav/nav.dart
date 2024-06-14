@@ -990,6 +990,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'staffId',
               ParamType.String,
             ),
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            department: params.getParam(
+              'department',
+              ParamType.String,
+            ),
+            branch: params.getParam(
+              'branch',
+              ParamType.String,
+            ),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
