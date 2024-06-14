@@ -136,6 +136,7 @@ export 'update_organization_struct.dart';
 export 'update_task_data_type_struct.dart';
 export 'upload_list_file_struct.dart';
 export 'user_struct.dart';
+export 'user_created_struct.dart';
 export 'user_id_struct.dart';
 export 'user_resource_data_struct.dart';
 export 'workflows_struct.dart';

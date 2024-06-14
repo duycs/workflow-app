@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/tasks/filter_report_task/filter_report_task_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -485,6 +486,26 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                     dataListItem.id,
                                     ParamType.String,
                                   ),
+                                  'title': serializeParam(
+                                    dataListItem.title,
+                                    ParamType.String,
+                                  ),
+                                  'department': serializeParam(
+                                    (dataListItem.userId.role ==
+                                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                            (dataListItem.userId.role ==
+                                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4')
+                                        ? dataListItem.departmentId.name
+                                        : ' ',
+                                    ParamType.String,
+                                  ),
+                                  'branch': serializeParam(
+                                    dataListItem.userId.role !=
+                                            '82073000-1ba2-43a4-a55c-459d17c23b68'
+                                        ? dataListItem.branchId.name
+                                        : ' ',
+                                    ParamType.String,
+                                  ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(
@@ -783,7 +804,7 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 8.0, 16.0, 16.0),
+                                        16.0, 4.0, 16.0, 4.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -940,7 +961,7 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 8.0),
+                                        16.0, 4.0, 16.0, 8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -1046,6 +1067,211 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                       ],
                                     ),
                                   ),
+                                  if (dataListItem.userId.role !=
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68')
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 4.0, 16.0, 4.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 50.0,
+                                                  decoration: const BoxDecoration(),
+                                                ),
+                                                Text(
+                                                  '${dataListItem.staffLessions.where((e) => e.status == 'done').toList().length.toString()}/${dataListItem.staffLessions.length.toString()}',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Đã học',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width: 50.0,
+                                                  decoration: const BoxDecoration(),
+                                                ),
+                                                Text(
+                                                  '${dataListItem.staffTests.where((e) => e.status == 'published').toList().length.toString()}/${dataListItem.staffTests.length.toString()}',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                Text(
+                                                  'Đã test',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: 50.0,
+                                                  decoration: const BoxDecoration(),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Flexible(
+                                                        child: Text(
+                                                          (dataListItem.staffTests
+                                                                          .length !=
+                                                                      null) &&
+                                                                  (dataListItem
+                                                                          .staffTests
+                                                                          .length >
+                                                                      0)
+                                                              ? functions
+                                                                  .newCaculator(dataListItem
+                                                                      .staffTests
+                                                                      .map((e) =>
+                                                                          e.toMap())
+                                                                      .toList())
+                                                                  .toString()
+                                                              : '0',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '/',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      Text(
+                                                        '100',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Điểm TB',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 12.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ].divide(const SizedBox(width: 16.0)),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),

@@ -100,7 +100,9 @@ class _LoginWidgetState extends State<LoginWidget> {
               r'''$.organization''',
             );
             setState(() {});
-            await actions.checkNofiLoad();
+            await actions.checkNofiLoad(
+              context,
+            );
 
             context.pushNamed('TaskList');
           } else {

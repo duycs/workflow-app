@@ -741,7 +741,7 @@ class GetLessonListCall {
         },
         params: {
           'fields[]':
-              "user_created, file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name,estimate_in_day,programs.programs_id.departments.departments_id.id,programs.programs_id.departments.departments_id.name",
+              "user_created, file,file.id,file.type,duration_hours,comments.id, comments.comments_id.id, comments.comments_id.content,id, status, name, description, content, image_cover, video, date_created, date_updated,test_id,comments.comments_id.staff_id.id,comments.comments_id.staff_id,comments.comments_id.staff_id.user_id,comments.comments_id.staff_id.user_id.email,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.avatar,comments.comments_id.date_created,reacts.id, reacts.reacts_id.status,reacts.reacts_id.staff_id,file.filename_download,organization_id,programs.programs_id.id,programs.programs_id.name,estimate_in_day,programs.programs_id.departments.departments_id.id,programs.programs_id.departments.departments_id.name,user_created.first_name,user_created.id",
           'filter': filter,
           'limit': limit,
           'offset': offset,
@@ -4049,7 +4049,7 @@ class GetOneAuthorsCall {
 class ListAthorsSortCall {
   Future<ApiCallResponse> call({
     String? filter = '',
-    int? limit = 10,
+    int? limit = 5000,
     int? offset = 0,
     String? accessToken = '',
   }) async {
@@ -4070,7 +4070,7 @@ class ListAthorsSortCall {
         'fields[]':
             "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
         'offset': offset,
-        'limit': "10",
+        'limit': limit,
         'sort': "-order_count",
       },
       returnBody: true,

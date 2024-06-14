@@ -115,6 +115,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+      offset: 0,
+      limit: 11,
     );
     if ((apiResultGetList.succeeded ?? true)) {
       listDataProgramsFree = MarketLessonListDataStruct.maybeFromMap(
@@ -155,6 +157,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       accessToken: FFAppState().accessToken,
       filter:
           '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+      offset: 0,
+      limit: 11,
     );
     if ((apiResultGetListNoFree.succeeded ?? true)) {
       listDataProgramsNoFree = MarketLessonListDataStruct.maybeFromMap(
@@ -232,6 +236,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
     apiResultGetListAuthors = await GroupAuthorsGroup.listAthorsSortCall.call(
       accessToken: FFAppState().accessToken,
+      limit: 11,
+      offset: 0,
     );
     if ((apiResultGetListAuthors.succeeded ?? true)) {
       listDataAuthors = AuthorsListDataStruct.maybeFromMap(

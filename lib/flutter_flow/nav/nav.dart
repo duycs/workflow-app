@@ -85,6 +85,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'lesonHistory',
               ParamType.String,
             ),
+            checkLesson: params.getParam(
+              'checkLesson',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -984,6 +988,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ReportTaskDetailWidget(
             staffId: params.getParam(
               'staffId',
+              ParamType.String,
+            ),
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            department: params.getParam(
+              'department',
+              ParamType.String,
+            ),
+            branch: params.getParam(
+              'branch',
               ParamType.String,
             ),
           ),

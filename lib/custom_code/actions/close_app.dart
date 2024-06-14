@@ -11,50 +11,90 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-Future<void> closeApp(BuildContext context) async {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    barrierColor: Colors.black.withOpacity(0.4),
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Đóng ứng dụng"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              icon: Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Close the dialog
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("Thoát"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Exit the app
-                    Navigator.of(context).pop();
-                    Future.delayed(Duration(milliseconds: 500), () {
-                      SystemNavigator.pop();
-                    });
-                  },
-                  child: Text("Đóng"),
-                ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  );
+import 'package:flutter/services.dart';
+
+Future<void> closeApp() async {
+  // runApp(MaterialApp(
+  //   home: YourPage(),
+  // ));
 }
+
+// class YourPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//      Future.delayed(Duration(seconds: 1), () {
+//       closeApp();
+//     });
+//     return WillPopScope(
+//       onWillPop: () => handleBackNavigation(context),
+//       child: Center(
+//           child: YourContentWidget(),
+//         ),
+//     );
+//   }
+// }
+
+// Future<bool> handleBackNavigation(BuildContext context) async {
+//   bool exitApp = false;
+//   exitApp = await showExitDialog(context);
+//   return exitApp;
+// }
+
+// Future<bool> showExitDialog(BuildContext context) async {
+//   bool exitApp = false;
+//   await showDialog(
+//     context: context,
+//     barrierDismissible: false,
+//     barrierColor: Colors.black.withOpacity(0.4),
+//     builder: (BuildContext context) {
+//       return Dialog(
+//         shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(12.0),
+//         ),
+//         child: Padding(
+//           padding: EdgeInsets.all(20.0),
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               Align(
+//                 alignment: Alignment.topRight,
+//                 child: IconButton(
+//                   icon: Icon(Icons.close),
+//                   onPressed: () {
+//                     Navigator.of(context).pop(false);
+//                   },
+//                 ),
+//               ),
+//               Text(
+//                 'Do you really want to exit?',
+//                 style: TextStyle(fontSize: 18.0),
+//               ),
+//               SizedBox(height: 20.0),
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                 children: [
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       Navigator.of(context).pop(false);
+//                     },
+//                     child: Text('Stay'),
+//                   ),
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       exitApp = true;
+//                       Navigator.of(context).pop(true);
+//                     },
+//                     child: Text('Exit'),
+//                   ),
+//                 ],
+//               ),
+//             ],
+//           ),
+//         ),
+//       );
+//     },
+//   );
+//   return exitApp;
+// }
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!
