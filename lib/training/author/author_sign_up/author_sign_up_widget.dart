@@ -775,7 +775,24 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                         );
                                         setState(() {});
                                       }
-                                      Navigator.pop(context);
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            content: Text((_model.apiResultu1j
+                                                        ?.jsonBody ??
+                                                    '')
+                                                .toString()),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: const Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
@@ -790,6 +807,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                           ),
                                         },
                                       );
+
+                                      Navigator.pop(context);
                                     }
                                   }
                                 }

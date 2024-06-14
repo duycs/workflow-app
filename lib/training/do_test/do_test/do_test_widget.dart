@@ -1441,7 +1441,11 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           );
                                           if (widget.lessionId != null &&
                                               widget.lessionId != '') {
-                                            context.goNamed(
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed(
                                               'DoTestDetail',
                                               queryParameters: {
                                                 'testId': serializeParam(

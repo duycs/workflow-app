@@ -22,6 +22,7 @@ class LessonsStruct extends BaseStruct {
     List<ProgramsIdddStruct>? programs,
     int? estimateInDay,
     bool? checkLession,
+    UserCreatedStruct? userCreated,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -37,7 +38,8 @@ class LessonsStruct extends BaseStruct {
         _organizationId = organizationId,
         _programs = programs,
         _estimateInDay = estimateInDay,
-        _checkLession = checkLession;
+        _checkLession = checkLession,
+        _userCreated = userCreated;
 
   // "id" field.
   String? _id;
@@ -169,6 +171,17 @@ class LessonsStruct extends BaseStruct {
 
   bool hasCheckLession() => _checkLession != null;
 
+  // "user_created" field.
+  UserCreatedStruct? _userCreated;
+  UserCreatedStruct get userCreated => _userCreated ?? UserCreatedStruct();
+  set userCreated(UserCreatedStruct? val) => _userCreated = val;
+
+  void updateUserCreated(Function(UserCreatedStruct) updateFn) {
+    updateFn(userCreated ??= UserCreatedStruct());
+  }
+
+  bool hasUserCreated() => _userCreated != null;
+
   static LessonsStruct fromMap(Map<String, dynamic> data) => LessonsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -192,6 +205,7 @@ class LessonsStruct extends BaseStruct {
         ),
         estimateInDay: castToType<int>(data['estimate_in_day']),
         checkLession: data['checkLession'] as bool?,
+        userCreated: UserCreatedStruct.maybeFromMap(data['user_created']),
       );
 
   static LessonsStruct? maybeFromMap(dynamic data) =>
@@ -214,6 +228,7 @@ class LessonsStruct extends BaseStruct {
         'programs': _programs?.map((e) => e.toMap()).toList(),
         'estimate_in_day': _estimateInDay,
         'checkLession': _checkLession,
+        'user_created': _userCreated?.toMap(),
       }.withoutNulls;
 
   @override
@@ -283,6 +298,10 @@ class LessonsStruct extends BaseStruct {
         'checkLession': serializeParam(
           _checkLession,
           ParamType.bool,
+        ),
+        'user_created': serializeParam(
+          _userCreated,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -371,6 +390,12 @@ class LessonsStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        userCreated: deserializeStructParam(
+          data['user_created'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: UserCreatedStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -395,7 +420,8 @@ class LessonsStruct extends BaseStruct {
         organizationId == other.organizationId &&
         listEquality.equals(programs, other.programs) &&
         estimateInDay == other.estimateInDay &&
-        checkLession == other.checkLession;
+        checkLession == other.checkLession &&
+        userCreated == other.userCreated;
   }
 
   @override
@@ -415,7 +441,8 @@ class LessonsStruct extends BaseStruct {
         organizationId,
         programs,
         estimateInDay,
-        checkLession
+        checkLession,
+        userCreated
       ]);
 }
 
@@ -434,6 +461,7 @@ LessonsStruct createLessonsStruct({
   String? organizationId,
   int? estimateInDay,
   bool? checkLession,
+  UserCreatedStruct? userCreated,
 }) =>
     LessonsStruct(
       id: id,
@@ -450,4 +478,5 @@ LessonsStruct createLessonsStruct({
       organizationId: organizationId,
       estimateInDay: estimateInDay,
       checkLession: checkLession,
+      userCreated: userCreated ?? UserCreatedStruct(),
     );

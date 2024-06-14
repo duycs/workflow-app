@@ -21,12 +21,14 @@ class LessonListHomepageWidget extends StatefulWidget {
     required this.statusLove,
     required this.lessonNewCreate,
     required this.lesonHistory,
+    this.checkLesson,
   });
 
   final String? statusLesson;
   final String? statusLove;
   final String? lessonNewCreate;
   final String? lesonHistory;
+  final String? checkLesson;
 
   @override
   State<LessonListHomepageWidget> createState() =>
@@ -120,7 +122,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -323,6 +326,31 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    () {
+                      if (widget.statusLesson == 'draft') {
+                        return 'Bài học chưa học';
+                      } else if (widget.lessonNewCreate == 'dateToday') {
+                        return 'Bài học mới đăng';
+                      } else if (widget.lesonHistory == 'lessonHistory') {
+                        return 'Bài học gần đây';
+                      } else if (widget.statusLesson == 'inprogress') {
+                        return 'Bài học đang học';
+                      } else if (widget.statusLesson == 'done') {
+                        return 'Bài học hoàn thành';
+                      } else if (widget.statusLove == 'love') {
+                        return 'Bài học yêu thích';
+                      } else {
+                        return 'Bài học bắt buộc';
+                      }
+                    }(),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 14.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   if ((_model.nameSearchTextController.text != '') ||
                       (_model.status != '') ||
                       ((_model.dateEndList != null &&
@@ -332,39 +360,24 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                               _model.dateStartList != '') &&
                           (_model.dateStartList != '0')) ||
                       (_model.statusLesson != ''))
-                    Text(
-                      '#Kết quả tìm kiếm theo bộ lọc',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 12.0,
-                            letterSpacing: 0.0,
-                            fontStyle: FontStyle.italic,
-                          ),
-                    ),
-                  if ((_model.nameSearchTextController.text != '') ||
-                      (_model.status != '') ||
-                      ((_model.dateEndList != null &&
-                              _model.dateEndList != '') &&
-                          (_model.dateEndList != '0')) ||
-                      ((_model.dateStartList != null &&
-                              _model.dateStartList != '') &&
-                          (_model.dateStartList != '0')) ||
-                      (_model.statusLesson != ''))
-                    Text(
-                      '#Kết quả tìm kiếm theo bộ lọc',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 12.0,
-                            letterSpacing: 0.0,
-                            fontStyle: FontStyle.italic,
-                          ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                      child: Text(
+                        '#Kết quả tìm kiếm theo bộ lọc',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                              fontStyle: FontStyle.italic,
+                            ),
+                      ),
                     ),
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                       child: PagedListView<ApiPagingParams, dynamic>.separated(
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
@@ -476,7 +489,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 );
                               },
                               child: Container(
-                                height: 120.0,
+                                height: 140.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -499,7 +512,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                         child: Image.network(
                                           '${FFAppConstants.ApiBaseUrl}/assets/${listItem.lessionId.imageCover}?access_token=${FFAppState().accessToken}',
                                           width: 100.0,
-                                          height: 100.0,
+                                          height: double.infinity,
                                           fit: BoxFit.cover,
                                           alignment: const Alignment(0.0, 0.0),
                                         ),
@@ -558,6 +571,49 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                           ),
                                                     ),
                                                   ),
+                                                  if (widget.checkLesson ==
+                                                      'obligatory')
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        () {
+                                                          if (listItem.status ==
+                                                              'draft') {
+                                                            return 'Trạng thái bài học: Chưa học';
+                                                          } else if (listItem
+                                                                  .status ==
+                                                              'done') {
+                                                            return 'Trạng thái bài học: Hoàn thành';
+                                                          } else if (listItem
+                                                                  .status ==
+                                                              'inprogress') {
+                                                            return 'Trạng thái bài học: Đang học';
+                                                          } else {
+                                                            return '';
+                                                          }
+                                                        }(),
+                                                        maxLines: 2,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Nunito Sans',
+                                                              fontSize: 13.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                      ),
+                                                    ),
                                                 ],
                                               ),
                                             ),
@@ -599,7 +655,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       ),
                     ),
                   ),
-                ].divide(const SizedBox(height: 8.0)),
+                ],
               ),
             ),
           ),

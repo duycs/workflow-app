@@ -85,6 +85,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'lesonHistory',
               ParamType.String,
             ),
+            checkLesson: params.getParam(
+              'checkLesson',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

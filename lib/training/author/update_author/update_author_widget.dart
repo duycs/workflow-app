@@ -24,6 +24,7 @@ class UpdateAuthorWidget extends StatefulWidget {
     this.domains,
     required this.id,
     this.domainIds,
+    required this.callBack,
   });
 
   final String? name;
@@ -32,6 +33,7 @@ class UpdateAuthorWidget extends StatefulWidget {
   final List<String>? domains;
   final String? id;
   final List<int>? domainIds;
+  final Future Function()? callBack;
 
   @override
   State<UpdateAuthorWidget> createState() => _UpdateAuthorWidgetState();
@@ -772,21 +774,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                                 .secondary,
                                       ),
                                     );
-                                    if (Navigator.of(context).canPop()) {
-                                      context.pop();
-                                    }
-                                    context.pushNamed(
-                                      'AuthorProfile',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-
+                                    await widget.callBack?.call();
                                     Navigator.pop(context);
                                   }
                                 }

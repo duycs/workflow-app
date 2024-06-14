@@ -2177,6 +2177,10 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                   '',
                                                   ParamType.String,
                                                 ),
+                                                'checkLesson': serializeParam(
+                                                  'obligatory',
+                                                  ParamType.String,
+                                                ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
@@ -3416,7 +3420,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                             },
                                             child: Container(
                                               width: double.infinity,
-                                              height: 120.0,
+                                              height: 140.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -3445,7 +3449,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                       child: Image.network(
                                                         '${FFAppConstants.ApiBaseUrl}/assets/${listItem.imageCover}?access_token=${FFAppState().accessToken}',
                                                         width: 100.0,
-                                                        height: 100.0,
+                                                        height: double.infinity,
                                                         fit: BoxFit.cover,
                                                         alignment:
                                                             const Alignment(0.0, 0.0),
@@ -3515,19 +3519,21 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                                if ('1' == '2')
-                                                                  Text(
-                                                                    'Bộ phận: ${listItem.programs.first.programsId.departments.first.departmentsId.name}',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
+                                                                Text(
+                                                                  'Người tạo: ${listItem.userCreated.firstName}',
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
                                                               ],
                                                             ),
                                                           ),

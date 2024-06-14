@@ -14,7 +14,7 @@ import 'package:flutter/services.dart';
 Future<void> closeApp(BuildContext context) async {
   showDialog(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: true,
     barrierColor: Colors.black.withOpacity(0.4),
     builder: (BuildContext context) {
       return AlertDialog(

@@ -36,8 +36,8 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.getOneAuthor = await action_blocks.tokenReload(context);
-      if (getOneAuthor!) {
+      _model.getOneAuthor1 = await action_blocks.tokenReload(context);
+      if (_model.getOneAuthor1!) {
         _model.apiResultGetOneAuthors1 =
             await GroupAuthorsGroup.getOneAuthorsCall.call(
           accessToken: FFAppState().accessToken,
@@ -1316,6 +1316,15 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                                       .map((e) =>
                                                                           e.id)
                                                                       .toList(),
+                                                                  callBack:
+                                                                      () async {
+                                                                    await _model
+                                                                        .getListProgramAuthors(
+                                                                            context);
+                                                                    await _model
+                                                                        .getOneAuthor(
+                                                                            context);
+                                                                  },
                                                                 ),
                                                               ),
                                                             );
@@ -1323,8 +1332,6 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                         ).then((value) =>
                                                             safeSetState(
                                                                 () {}));
-
-                                                        Navigator.pop(context);
                                                       },
                                                       text: 'Chỉnh sửa',
                                                       icon: const Icon(

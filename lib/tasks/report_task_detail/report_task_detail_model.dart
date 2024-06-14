@@ -35,17 +35,34 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  String? dropDownValue1;
+  FormFieldController<String>? dropDownValueController1;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  FocusNode? textFieldFocusNode1;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for ListView widget.
 
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
+
+  // State field(s) for DropDown widget.
+  String? dropDownValue2;
+  FormFieldController<String>? dropDownValueController2;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode2;
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController2;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall2;
 
   @override
   void initState(BuildContext context) {}
@@ -53,21 +70,26 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    tabBarController?.dispose();
+    textFieldFocusNode1?.dispose();
+    textController1?.dispose();
 
-    listViewPagingController?.dispose();
+    listViewPagingController1?.dispose();
+    textFieldFocusNode2?.dispose();
+    textController2?.dispose();
+
+    listViewPagingController2?.dispose();
   }
 
   /// Additional helper methods.
-  PagingController<ApiPagingParams, dynamic> setListViewController(
+  PagingController<ApiPagingParams, dynamic> setListViewController1(
     Function(ApiPagingParams) apiCall,
   ) {
-    listViewApiCall = apiCall;
-    return listViewPagingController ??= _createListViewController(apiCall);
+    listViewApiCall1 = apiCall;
+    return listViewPagingController1 ??= _createListViewController1(apiCall);
   }
 
-  PagingController<ApiPagingParams, dynamic> _createListViewController(
+  PagingController<ApiPagingParams, dynamic> _createListViewController1(
     Function(ApiPagingParams) query,
   ) {
     final controller = PagingController<ApiPagingParams, dynamic>(
@@ -77,18 +99,58 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewGetListTaskPage);
+    return controller..addPageRequestListener(listViewGetListTaskPage1);
   }
 
-  void listViewGetListTaskPage(ApiPagingParams nextPageMarker) =>
-      listViewApiCall!(nextPageMarker).then((listViewGetListTaskResponse) {
+  void listViewGetListTaskPage1(ApiPagingParams nextPageMarker) =>
+      listViewApiCall1!(nextPageMarker).then((listViewGetListTaskResponse) {
         final pageItems = (TaskListDataStruct.maybeFromMap(
                         listViewGetListTaskResponse.jsonBody)!
                     .data ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController?.appendPage(
+        listViewPagingController1?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetListTaskResponse,
+                )
+              : null,
+        );
+      });
+
+  PagingController<ApiPagingParams, dynamic> setListViewController2(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall2 = apiCall;
+    return listViewPagingController2 ??= _createListViewController2(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController2(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetListTaskPage2);
+  }
+
+  void listViewGetListTaskPage2(ApiPagingParams nextPageMarker) =>
+      listViewApiCall2!(nextPageMarker).then((listViewGetListTaskResponse) {
+        final pageItems = (TaskListDataStruct.maybeFromMap(
+                        listViewGetListTaskResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController2?.appendPage(
           pageItems,
           (pageItems.isNotEmpty)
               ? ApiPagingParams(
