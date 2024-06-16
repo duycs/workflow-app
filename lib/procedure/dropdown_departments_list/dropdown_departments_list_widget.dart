@@ -720,27 +720,23 @@ class _DropdownDepartmentsListWidgetState
                                   ),
                                 ));
                                 setState(() {});
+                                _model.checkDepar = [];
+                                setState(() {});
                                 while (_model.loop2 <
                                     _model.data[_model.loop].staffs.length) {
-                                  _model.updateCallBackDataAtIndex(
-                                    _model.callBackData.length - 1,
-                                    (e) => e
-                                      ..updateCheckStaff(
-                                        (e) => e.add(StaffsStepStruct(
-                                          staffsId: StaffIdStruct(
-                                            id: _model.data[_model.loop]
-                                                .staffs[_model.loop2].id,
-                                            userId: UserIdStruct(
-                                              firstName: _model
-                                                  .data[_model.loop]
-                                                  .staffs[_model.loop2]
-                                                  .userId
-                                                  .firstName,
-                                            ),
-                                          ),
-                                        )),
+                                  _model.addToCheckDepar(StaffsStepStruct(
+                                    staffsId: StaffIdStruct(
+                                      id: _model.data[_model.loop]
+                                          .staffs[_model.loop2].id,
+                                      userId: UserIdStruct(
+                                        firstName: _model
+                                            .data[_model.loop]
+                                            .staffs[_model.loop2]
+                                            .userId
+                                            .firstName,
                                       ),
-                                  );
+                                    ),
+                                  ));
                                   setState(() {});
                                   _model.loop2 = _model.loop2 + 1;
                                   setState(() {});
@@ -756,6 +752,11 @@ class _DropdownDepartmentsListWidgetState
                             }
                             _model.loop = 0;
                             _model.loop2 = 0;
+                            setState(() {});
+                            _model.updateCallBackDataAtIndex(
+                              _model.callBackData.length - 1,
+                              (e) => e..checkStaff = _model.checkDepar.toList(),
+                            );
                             setState(() {});
                             Navigator.pop(context);
                             await widget.callback?.call(

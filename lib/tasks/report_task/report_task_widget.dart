@@ -506,6 +506,10 @@ class _ReportTaskWidgetState extends State<ReportTaskWidget> {
                                         : ' ',
                                     ParamType.String,
                                   ),
+                                  'name': serializeParam(
+                                    dataListItem.userId.firstName,
+                                    ParamType.String,
+                                  ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: const TransitionInfo(

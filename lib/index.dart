@@ -170,3 +170,5 @@ export '/training/study_program/study_program_list_market/study_program_list_mar
 export '/tasks/report_task/report_task_widget.dart' show ReportTaskWidget;
 export '/tasks/report_task_detail/report_task_detail_widget.dart'
     show ReportTaskDetailWidget;
+export '/tasks/report_task_detail_copy/report_task_detail_copy_widget.dart'
+    show ReportTaskDetailCopyWidget;

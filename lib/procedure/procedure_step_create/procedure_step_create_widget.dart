@@ -50,6 +50,8 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
           ..executeType = 'manual'
           ..operations = [],
       );
+      _model.staffsStepNv = [];
+      _model.stafStepDepartments = [];
       setState(() {});
     });
 

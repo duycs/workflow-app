@@ -752,31 +752,13 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                                   .secondary,
                                         ),
                                       );
-                                      _model.apiResultGetStaffId =
-                                          await UserGroup.getStaffIdCall.call(
-                                        accessToken: FFAppState().accessToken,
-                                        userId: FFAppState().user.id,
+                                      FFAppState().Author = getJsonField(
+                                        (_model.apiResultAuthorSignUp
+                                                ?.jsonBody ??
+                                            ''),
+                                        r'''$.data.id''',
                                       );
-                                      shouldSetState = true;
-                                      if ((_model
-                                              .apiResultGetStaffId?.succeeded ??
-                                          true)) {
-                                        FFAppState().OrganizationId =
-                                            getJsonField(
-                                          (_model.apiResultGetStaffId
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.organization''',
-                                        );
-                                        FFAppState().update(() {});
-                                        FFAppState().staffLogin = getJsonField(
-                                          (_model.apiResultGetStaffId
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.staff''',
-                                        );
-                                        _model.updatePage(() {});
-                                      }
+                                      _model.updatePage(() {});
                                       Navigator.pop(context);
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();

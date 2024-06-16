@@ -190,6 +190,11 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
             (apiResultGetStaffId.jsonBody ?? ''),
             r'''$.organization''',
           );
+          FFAppState().Author = getJsonField(
+            (apiResultGetStaffId.jsonBody ?? ''),
+            r'''$.organization.authors[0]''',
+          );
+          FFAppState().update(() {});
 
           context.goNamed(
             'TaskList',

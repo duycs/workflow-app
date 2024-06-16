@@ -36,6 +36,16 @@ class DropdownDepartmentsListModel
 
   bool isLoad = false;
 
+  List<StaffsStepStruct> checkDepar = [];
+  void addToCheckDepar(StaffsStepStruct item) => checkDepar.add(item);
+  void removeFromCheckDepar(StaffsStepStruct item) => checkDepar.remove(item);
+  void removeAtIndexFromCheckDepar(int index) => checkDepar.removeAt(index);
+  void insertAtIndexInCheckDepar(int index, StaffsStepStruct item) =>
+      checkDepar.insert(index, item);
+  void updateCheckDeparAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      checkDepar[index] = updateFn(checkDepar[index]);
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in DropdownDepartmentsList widget.

@@ -70,16 +70,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'MarketPlace',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.safePop();
             },
           ),
           title: Text(
@@ -259,6 +250,10 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                       itemAuthorsSortItem,
                                       ParamType.DataStruct,
                                     ),
+                                    'checkBackPage': serializeParam(
+                                      'listAuthor',
+                                      ParamType.String,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
@@ -379,6 +374,10 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                                       'itemAuthors': serializeParam(
                                         itemListAuthorsItem,
                                         ParamType.DataStruct,
+                                      ),
+                                      'checkBackPage': serializeParam(
+                                        'listAuthor',
+                                        ParamType.String,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{

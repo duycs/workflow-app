@@ -1799,9 +1799,9 @@ class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              await _model.postHeart(context);
-                                              setState(() {});
                                               _model.checkLove = '1';
+                                              setState(() {});
+                                              await _model.postHeart(context);
                                               setState(() {});
                                             },
                                             child: Icon(

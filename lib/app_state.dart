@@ -172,10 +172,10 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_marketOn', value);
   }
 
-  dynamic _OrganizationId;
-  dynamic get OrganizationId => _OrganizationId;
-  set OrganizationId(dynamic value) {
-    _OrganizationId = value;
+  dynamic _Author;
+  dynamic get Author => _Author;
+  set Author(dynamic value) {
+    _Author = value;
   }
 }
 

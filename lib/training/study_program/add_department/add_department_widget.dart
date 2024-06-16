@@ -301,10 +301,23 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                                       ),
                                             ),
                                           ),
-                                          if ((FFAppState().user.role ==
-                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                          if (((FFAppState().user.role ==
+                                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') &&
+                                                  (getJsonField(
+                                                        FFAppState().staffLogin,
+                                                        r'''$.department_id''',
+                                                      ).toString() ==
+                                                      listShowItem.id)) ||
+                                              ((FFAppState().user.role ==
+                                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
+                                                  (getJsonField(
+                                                        FFAppState().staffLogin,
+                                                        r'''$.branch_id''',
+                                                      ).toString() ==
+                                                      listShowItem
+                                                          .branchId.id)) ||
                                               (FFAppState().user.role ==
-                                                  'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                                                  '82073000-1ba2-43a4-a55c-459d17c23b68'))
                                             FlutterFlowIconButton(
                                               borderRadius: 20.0,
                                               borderWidth: 1.0,
@@ -381,88 +394,132 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                         ),
                       ),
                       Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            var shouldSetState = false;
-                            _model.loop = 0;
-                            setState(() {});
-                            while (_model.loop < _model.listAdd.length) {
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onDoubleTap: () async {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Double Tap',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                          },
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              var shouldSetState = false;
+                              _model.loop = 0;
+                              setState(() {});
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Trước vào loop',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
                               _model.updateRequestStruct(
                                 (e) => e
-                                  ..updateDepartments(
-                                    (e) => e.add(DepartmentListStruct(
-                                      departmentsId: DepartmentsStruct(
-                                        id: _model.listAdd[_model.loop].id,
-                                      ),
-                                    )),
-                                  ),
+                                  ..departments =
+                                      _model.requestDepartmentList.toList(),
                               );
                               setState(() {});
-                              _model.loop = _model.loop + 1;
+                              while (_model.loop < _model.listAdd.length) {
+                                _model.addToCheckDepartmentList(
+                                    DepartmentListStruct(
+                                  departmentsId: DepartmentsStruct(
+                                    id: _model.listAdd[_model.loop].id,
+                                  ),
+                                ));
+                                setState(() {});
+                                _model.loop = _model.loop + 1;
+                                setState(() {});
+                              }
+                              _model.loop = 0;
+                              _model.updateRequestStruct(
+                                (e) => e
+                                  ..departments =
+                                      _model.checkDepartmentList.toList(),
+                              );
                               setState(() {});
-                            }
-                            _model.loop = 0;
-                            setState(() {});
-                            _model.tokenReloadAddDepartmentListListCallApi =
-                                await action_blocks.tokenReload(context);
-                            shouldSetState = true;
-                            if (_model
-                                .tokenReloadAddDepartmentListListCallApi!) {
-                              setState(() {});
-                            } else {
-                              setState(() {});
-                              if (shouldSetState) setState(() {});
-                              return;
-                            }
+                              _model.tokenReloadAddDepartmentListListCallApi =
+                                  await action_blocks.tokenReload(context);
+                              shouldSetState = true;
+                              if (_model
+                                  .tokenReloadAddDepartmentListListCallApi!) {
+                                setState(() {});
+                              } else {
+                                setState(() {});
+                                if (shouldSetState) setState(() {});
+                                return;
+                              }
 
-                            _model.studyProgramAddDepartment =
-                                await StudyProgramGroup
-                                    .updateDepartmentSynchronizedCall
-                                    .call(
-                              accessToken: FFAppState().accessToken,
-                              requestDataJson: <String, dynamic>{
-                                'id': widget.detail?.id,
-                                'departments': getJsonField(
-                                  <String, List<dynamic>?>{
-                                    'map': getJsonField(
-                                      _model.request?.toMap(),
-                                      r'''$.departments''',
-                                      true,
-                                    ),
-                                  },
-                                  r'''$.map''',
-                                ),
-                              },
-                            );
-                            shouldSetState = true;
-                            if ((_model.studyProgramAddDepartment?.succeeded ??
-                                true)) {
-                              await widget.callBack?.call();
-                            }
-                            Navigator.pop(context);
-                            if (shouldSetState) setState(() {});
-                          },
-                          text: 'Xác nhận',
-                          options: FFButtonOptions(
-                            height: 44.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 20.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              _model.studyProgramAddDepartment =
+                                  await StudyProgramGroup
+                                      .updateDepartmentSynchronizedCall
+                                      .call(
+                                accessToken: FFAppState().accessToken,
+                                requestDataJson: <String, dynamic>{
+                                  'id': widget.detail?.id,
+                                  'departments': getJsonField(
+                                    <String, List<dynamic>?>{
+                                      'map': getJsonField(
+                                        _model.request?.toMap(),
+                                        r'''$.departments''',
+                                        true,
+                                      ),
+                                    },
+                                    r'''$.map''',
+                                  ),
+                                },
+                              );
+                              shouldSetState = true;
+                              if ((_model
+                                      .studyProgramAddDepartment?.succeeded ??
+                                  true)) {
+                                await widget.callBack?.call();
+                              }
+                              Navigator.pop(context);
+                              if (shouldSetState) setState(() {});
+                            },
+                            text: 'Xác nhận',
+                            options: FFButtonOptions(
+                              height: 44.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(40.0),
                             ),
-                            borderRadius: BorderRadius.circular(40.0),
                           ),
                         ),
                       ),

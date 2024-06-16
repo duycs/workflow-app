@@ -917,6 +917,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               structBuilder: AuthorsListStruct.fromSerializableMap,
             ),
+            checkBackPage: params.getParam(
+              'checkBackPage',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -1000,6 +1004,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             branch: params.getParam(
               'branch',
+              ParamType.String,
+            ),
+            name: params.getParam(
+              'name',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'ReportTaskDetailCopy',
+          path: '/reportTaskDetailCopy',
+          builder: (context, params) => ReportTaskDetailCopyWidget(
+            staffId: params.getParam(
+              'staffId',
+              ParamType.String,
+            ),
+            title: params.getParam(
+              'title',
+              ParamType.String,
+            ),
+            department: params.getParam(
+              'department',
+              ParamType.String,
+            ),
+            branch: params.getParam(
+              'branch',
+              ParamType.String,
+            ),
+            name: params.getParam(
+              'name',
               ParamType.String,
             ),
           ),

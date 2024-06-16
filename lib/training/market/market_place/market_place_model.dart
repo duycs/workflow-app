@@ -275,6 +275,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
+      offset: 0,
+      limit: 8,
     );
     if ((apiResultList.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(

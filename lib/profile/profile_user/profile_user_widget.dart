@@ -780,6 +780,9 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      if (Navigator.of(context).canPop()) {
+                        context.pop();
+                      }
                       context.pushNamed(
                         'UpdateProfileUser',
                         queryParameters: {

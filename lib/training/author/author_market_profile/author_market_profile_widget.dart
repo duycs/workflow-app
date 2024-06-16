@@ -14,9 +14,11 @@ class AuthorMarketProfileWidget extends StatefulWidget {
   const AuthorMarketProfileWidget({
     super.key,
     required this.itemAuthors,
+    required this.checkBackPage,
   });
 
   final AuthorsListStruct? itemAuthors;
+  final String? checkBackPage;
 
   @override
   State<AuthorMarketProfileWidget> createState() =>
@@ -69,7 +71,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
           width: double.infinity,
           height: double.infinity,
           child: Stack(
-            alignment: const AlignmentDirectional(-1.0, -1.0),
+            alignment: const AlignmentDirectional(-0.94, -0.94),
             children: [
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
@@ -109,11 +111,39 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                         ),
                       },
                     );
+
+                    if (widget.checkBackPage == 'HomeListMarket') {
+                      context.pushNamed(
+                        'MarketPlace',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
+                    } else {
+                      if (widget.checkBackPage == 'listAuthor') {
+                        context.pushNamed(
+                          'AuthorList',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.fade,
+                              duration: Duration(milliseconds: 0),
+                            ),
+                          },
+                        );
+                      } else {
+                        context.safePop();
+                      }
+                    }
                   },
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                 child: SingleChildScrollView(
                   primary: false,
                   child: Column(
@@ -125,10 +155,10 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                         alignment: const AlignmentDirectional(0.0, 1.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 200.0, 0.0, 0.0),
+                              0.0, 300.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
-                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 8.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,

@@ -56,10 +56,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
     if (getOneAuthor!) {
       apiResultGetOneAuthors = await GroupAuthorsGroup.getOneAuthorsCall.call(
         accessToken: FFAppState().accessToken,
-        id: getJsonField(
-          FFAppState().OrganizationId,
-          r'''$.authors[0]''',
-        ).toString().toString(),
+        id: FFAppState().Author.toString(),
       );
       if ((apiResultGetOneAuthors.succeeded ?? true)) {
         author = AuthorsListStruct.maybeFromMap(getJsonField(
@@ -80,10 +77,7 @@ class AuthorProfileModel extends FlutterFlowModel<AuthorProfileWidget> {
           await GroupMarketLessonGroup.getListMarketLessonCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"_eq\":\"${getJsonField(
-          FFAppState().OrganizationId,
-          r'''$.authors[0]''',
-        ).toString().toString()}\"}}]}',
+            '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"_eq\":\"${FFAppState().Author.toString()}\"}}]}',
       );
       if ((apiResultGetListProgram.succeeded ?? true)) {
         programs = MarketLessonListDataStruct.maybeFromMap(

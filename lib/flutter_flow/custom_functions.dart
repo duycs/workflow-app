@@ -612,3 +612,25 @@ String? random(String? item1) {
     return item1[random.nextInt(item1.length)];
   }).join();
 }
+
+String? compareDatetime(
+  String? date1,
+  String? date2,
+) {
+  if (date1 == null || date2 == null) {
+    return null; // Handle null inputs if necessary
+  }
+
+  // Convert date1 and date2 from String to DateTime
+  DateTime? parsedDate1 = DateTime.parse(date1);
+  DateTime? parsedDate2 = DateTime.parse(date2);
+
+  // Compare the two dates
+  if (parsedDate1.isBefore(parsedDate2)) {
+    return 'before';
+  } else if (parsedDate1.isAfter(parsedDate2)) {
+    return 'after';
+  } else {
+    return 'equal';
+  }
+}

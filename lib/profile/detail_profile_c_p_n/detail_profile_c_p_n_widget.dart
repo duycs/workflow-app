@@ -1345,6 +1345,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  if (Navigator.of(context).canPop()) {
+                    context.pop();
+                  }
                   context.pushNamed(
                     'UpdateProfileCPN',
                     queryParameters: {

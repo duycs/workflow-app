@@ -99,12 +99,17 @@ class _LoginWidgetState extends State<LoginWidget> {
               (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
               r'''$.organization''',
             );
+            FFAppState().Author = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.organization.authors[0]''',
+            );
             setState(() {});
+
+            context.pushNamed('TaskList');
+
             await actions.checkNofiLoad(
               context,
             );
-
-            context.pushNamed('TaskList');
           } else {
             return;
           }

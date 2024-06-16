@@ -92,8 +92,6 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   bool? authorsSignUp;
   // Stores action output result for [Backend Call - API (AuthorsSignUp)] action in Button widget.
   ApiCallResponse? apiResultAuthorSignUp;
-  // Stores action output result for [Backend Call - API (GetStaffId)] action in Button widget.
-  ApiCallResponse? apiResultGetStaffId;
 
   @override
   void initState(BuildContext context) {

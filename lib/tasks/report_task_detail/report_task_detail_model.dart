@@ -10,21 +10,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
   ///  Local state fields for this page.
 
-  List<String> listLabel = [
-    'Đang làm',
-    'Hoàn thành',
-    'Đang chờ',
-    'Trễ deadline'
-  ];
-  void addToListLabel(String item) => listLabel.add(item);
-  void removeFromListLabel(String item) => listLabel.remove(item);
-  void removeAtIndexFromListLabel(int index) => listLabel.removeAt(index);
-  void insertAtIndexInListLabel(int index, String item) =>
-      listLabel.insert(index, item);
-  void updateListLabelAtIndex(int index, Function(String) updateFn) =>
-      listLabel[index] = updateFn(listLabel[index]);
-
-  List<double> listPercent = [1.0, 3.2, 2.8, 4.0];
+  List<double> listPercent = [1.0, 3.2, 2.8];
   void addToListPercent(double item) => listPercent.add(item);
   void removeFromListPercent(double item) => listPercent.remove(item);
   void removeAtIndexFromListPercent(int index) => listPercent.removeAt(index);
@@ -38,6 +24,39 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
     updateFn(staff ??= StaffListStruct());
   }
 
+  List<double> listPercentProgram = [30.0, 40.0, 30.0];
+  void addToListPercentProgram(double item) => listPercentProgram.add(item);
+  void removeFromListPercentProgram(double item) =>
+      listPercentProgram.remove(item);
+  void removeAtIndexFromListPercentProgram(int index) =>
+      listPercentProgram.removeAt(index);
+  void insertAtIndexInListPercentProgram(int index, double item) =>
+      listPercentProgram.insert(index, item);
+  void updateListPercentProgramAtIndex(int index, Function(double) updateFn) =>
+      listPercentProgram[index] = updateFn(listPercentProgram[index]);
+
+  int? loop = 0;
+
+  List<double> listPercentLesson = [30.0, 40.0, 50.0];
+  void addToListPercentLesson(double item) => listPercentLesson.add(item);
+  void removeFromListPercentLesson(double item) =>
+      listPercentLesson.remove(item);
+  void removeAtIndexFromListPercentLesson(int index) =>
+      listPercentLesson.removeAt(index);
+  void insertAtIndexInListPercentLesson(int index, double item) =>
+      listPercentLesson.insert(index, item);
+  void updateListPercentLessonAtIndex(int index, Function(double) updateFn) =>
+      listPercentLesson[index] = updateFn(listPercentLesson[index]);
+
+  List<String> labelList = ['Chưa học', 'Đang học', 'Hoàn thành'];
+  void addToLabelList(String item) => labelList.add(item);
+  void removeFromLabelList(String item) => labelList.remove(item);
+  void removeAtIndexFromLabelList(int index) => labelList.removeAt(index);
+  void insertAtIndexInLabelList(int index, String item) =>
+      labelList.insert(index, item);
+  void updateLabelListAtIndex(int index, Function(String) updateFn) =>
+      labelList[index] = updateFn(labelList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -47,28 +66,16 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for DropDown widget.
-  String? dropDownValue1;
-  FormFieldController<String>? dropDownValueController1;
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
 
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
-
-  // State field(s) for DropDown widget.
-  String? dropDownValue2;
-  FormFieldController<String>? dropDownValueController2;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for ListView widget.
-
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController2;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall2;
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -77,14 +84,10 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
 
-    listViewPagingController1?.dispose();
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
-
-    listViewPagingController2?.dispose();
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -94,12 +97,88 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
 
     getOneStaff = await action_blocks.tokenReload(context);
     if (getOneStaff!) {
-      apiResultGetOneStaff = await StaffGroup.getStaffGetOneCall.call();
+      apiResultGetOneStaff = await StaffGroup.getStaffGetOneCall.call(
+        accessToken: FFAppState().accessToken,
+        staffId: widget.staffId,
+      );
       if ((apiResultGetOneStaff.succeeded ?? true)) {
         staff = StaffListStruct.maybeFromMap(getJsonField(
           (apiResultGetOneStaff.jsonBody ?? ''),
           r'''$.data''',
         ));
+        while (loop! < 3) {
+          updateListPercentProgramAtIndex(
+            loop!,
+            (_) => () {
+              if (loop == 0) {
+                return (staff?.staffPrograms.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffPrograms
+                                .where((e) => e.status == 'draft')
+                                .toList()
+                                .length /
+                            staff!.staffPrograms.length)
+                        .toStringAsFixed(2))));
+              } else if (loop == 1) {
+                return (staff?.staffPrograms.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffPrograms
+                                .where((e) => e.status == 'inprogress')
+                                .toList()
+                                .length /
+                            staff!.staffPrograms.length)
+                        .toStringAsFixed(2))));
+              } else {
+                return (staff?.staffPrograms.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffPrograms
+                                .where((e) => e.status == 'done')
+                                .toList()
+                                .length /
+                            staff!.staffPrograms.length)
+                        .toStringAsFixed(2))));
+              }
+            }(),
+          );
+          loop = loop! + 1;
+        }
+        loop = 0;
+        while (loop! < 3) {
+          updateListPercentLessonAtIndex(
+            loop!,
+            (_) => () {
+              if (loop == 0) {
+                return (staff?.staffLessions.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffLessions
+                                .where((e) => e.status == 'draft')
+                                .toList()
+                                .length /
+                            staff!.staffLessions.length)
+                        .toStringAsFixed(2))));
+              } else if (loop == 1) {
+                return (staff?.staffLessions.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffLessions
+                                .where((e) => e.status == 'inprogress')
+                                .toList()
+                                .length /
+                            staff!.staffLessions.length)
+                        .toStringAsFixed(2))));
+              } else {
+                return (staff?.staffLessions.isEmpty
+                    ? 0.0
+                    : (double.parse((staff!.staffLessions
+                                .where((e) => e.status == 'done')
+                                .toList()
+                                .length /
+                            staff!.staffLessions.length)
+                        .toStringAsFixed(2))));
+              }
+            }(),
+          );
+        }
+        loop = 0;
       }
     } else {
       return;
@@ -107,14 +186,14 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
   }
 
   /// Additional helper methods.
-  PagingController<ApiPagingParams, dynamic> setListViewController1(
+  PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
-    listViewApiCall1 = apiCall;
-    return listViewPagingController1 ??= _createListViewController1(apiCall);
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
   }
 
-  PagingController<ApiPagingParams, dynamic> _createListViewController1(
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
     Function(ApiPagingParams) query,
   ) {
     final controller = PagingController<ApiPagingParams, dynamic>(
@@ -124,58 +203,18 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewGetListTaskPage1);
+    return controller..addPageRequestListener(listViewGetListTaskPage);
   }
 
-  void listViewGetListTaskPage1(ApiPagingParams nextPageMarker) =>
-      listViewApiCall1!(nextPageMarker).then((listViewGetListTaskResponse) {
+  void listViewGetListTaskPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewGetListTaskResponse) {
         final pageItems = (TaskListDataStruct.maybeFromMap(
                         listViewGetListTaskResponse.jsonBody)!
                     .data ??
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController1?.appendPage(
-          pageItems,
-          (pageItems.isNotEmpty)
-              ? ApiPagingParams(
-                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
-                  numItems: newNumItems,
-                  lastResponse: listViewGetListTaskResponse,
-                )
-              : null,
-        );
-      });
-
-  PagingController<ApiPagingParams, dynamic> setListViewController2(
-    Function(ApiPagingParams) apiCall,
-  ) {
-    listViewApiCall2 = apiCall;
-    return listViewPagingController2 ??= _createListViewController2(apiCall);
-  }
-
-  PagingController<ApiPagingParams, dynamic> _createListViewController2(
-    Function(ApiPagingParams) query,
-  ) {
-    final controller = PagingController<ApiPagingParams, dynamic>(
-      firstPageKey: ApiPagingParams(
-        nextPageNumber: 0,
-        numItems: 0,
-        lastResponse: null,
-      ),
-    );
-    return controller..addPageRequestListener(listViewGetListTaskPage2);
-  }
-
-  void listViewGetListTaskPage2(ApiPagingParams nextPageMarker) =>
-      listViewApiCall2!(nextPageMarker).then((listViewGetListTaskResponse) {
-        final pageItems = (TaskListDataStruct.maybeFromMap(
-                        listViewGetListTaskResponse.jsonBody)!
-                    .data ??
-                [])
-            .toList() as List;
-        final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController2?.appendPage(
+        listViewPagingController?.appendPage(
           pageItems,
           (pageItems.isNotEmpty)
               ? ApiPagingParams(

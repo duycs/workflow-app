@@ -538,8 +538,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
                                                     child: Text(
                                                       listItem.lessionId.name,
                                                       maxLines: 2,
@@ -581,7 +581,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                                   0.0,
                                                                   4.0,
                                                                   0.0,
-                                                                  4.0),
+                                                                  0.0),
                                                       child: Text(
                                                         () {
                                                           if (listItem.status ==

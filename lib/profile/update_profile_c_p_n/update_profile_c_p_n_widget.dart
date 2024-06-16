@@ -2182,7 +2182,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                               FlutterFlowTheme.of(context).secondary,
                         ),
                       );
-
+                      if (Navigator.of(context).canPop()) {
+                        context.pop();
+                      }
                       context.pushNamed(
                         'DetailProfileCPN',
                         extra: <String, dynamic>{

@@ -950,12 +950,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               ),
                                               if ((FFAppState().user.role !=
                                                       '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
-                                                  (getJsonField(
-                                                        FFAppState()
-                                                            .OrganizationId,
-                                                        r'''$.authors[0]''',
-                                                      ) ==
-                                                      null))
+                                                  (FFAppState().Author == null))
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -1023,12 +1018,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 ),
                                               if ((FFAppState().user.role !=
                                                       '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
-                                                  (getJsonField(
-                                                        FFAppState()
-                                                            .OrganizationId,
-                                                        r'''$.authors[0]''',
-                                                      ) !=
-                                                      null))
+                                                  (FFAppState().Author != null))
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
