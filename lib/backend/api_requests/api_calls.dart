@@ -1223,7 +1223,7 @@ class StudyProgramListCall {
         params: {
           'filter': filter,
           'fields':
-              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id",
+              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id",
           'offset': offset,
           'limit': limit,
           'meta': "total_count,filter_count",
@@ -3100,7 +3100,6 @@ class GetListStaffReportCall {
 
 class GetStaffGetOneCall {
   Future<ApiCallResponse> call({
-    String? filter = '',
     String? staffId = '',
     String? accessToken = '',
   }) async {
@@ -3119,8 +3118,6 @@ class GetStaffGetOneCall {
       params: {
         'fields':
             "staff_programs.program_id, staff_programs.status, id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
-        'filter': filter,
-        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3986,34 +3983,42 @@ class ListAuthorsCall {
     String? filter = '',
     int? limit = 5000,
     int? offset = 0,
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
     final baseUrl = GroupAuthorsGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'ListAuthors',
-      apiUrl: '$baseUrl/items/authors',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'fields[]':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
-        'offset': offset,
-        'limit': limit,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'ListAuthors',
+        apiUrl: '$baseUrl/items/authors',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'fields[]':
+              "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
+          'offset': offset,
+          'limit': limit,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class GetOneAuthorsCall {

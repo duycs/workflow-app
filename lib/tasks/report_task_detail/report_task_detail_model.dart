@@ -66,8 +66,8 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  String? dropDownValue1;
+  FormFieldController<String>? dropDownValueController1;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -76,6 +76,10 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
+
+  // State field(s) for DropDown widget.
+  String? dropDownValue2;
+  FormFieldController<String>? dropDownValueController2;
 
   @override
   void initState(BuildContext context) {}
@@ -106,6 +110,41 @@ class ReportTaskDetailModel extends FlutterFlowModel<ReportTaskDetailWidget> {
           (apiResultGetOneStaff.jsonBody ?? ''),
           r'''$.data''',
         ));
+        while (loop! < 3) {
+          updateListPercentAtIndex(
+            loop!,
+            (_) => () {
+              if (loop == 0) {
+                return (double.parse((staff!.tasks
+                            .where((e) =>
+                                (e.tasksId.status == 'todo') &&
+                                (e.tasksId.current == 1))
+                            .toList()
+                            .length /
+                        staff!.tasks.length)
+                    .toStringAsFixed(2)));
+              } else if (loop == 1) {
+                return (double.parse((staff!.tasks
+                            .where((e) => e.tasksId.status == 'done')
+                            .toList()
+                            .length /
+                        staff!.tasks.length)
+                    .toStringAsFixed(2)));
+              } else {
+                return (double.parse((staff!.tasks
+                            .where((e) =>
+                                (e.tasksId.status == 'todo') &&
+                                (e.tasksId.current == 0))
+                            .toList()
+                            .length /
+                        staff!.tasks.length)
+                    .toStringAsFixed(2)));
+              }
+            }(),
+          );
+          loop = loop! + 1;
+        }
+        loop = 0;
         while (loop! < 3) {
           updateListPercentProgramAtIndex(
             loop!,

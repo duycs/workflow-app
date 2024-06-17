@@ -1,9 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'author_list_model.dart';
 export 'author_list_model.dart';
@@ -28,6 +32,15 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.checkTokentAuthor = await action_blocks.tokenReload(context);
+      if (_model.checkTokentAuthor!) {
+        _model.isShow = true;
+        setState(() {});
+      } else {
+        setState(() {});
+        return;
+      }
+
       await _model.getListAuthorsSort(context);
       setState(() {});
       await _model.getListAuthors(context);
@@ -345,20 +358,57 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                         ),
                   ),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
-                    child: Builder(
-                      builder: (context) {
-                        final itemListAuthors = _model.listDataAuthors.toList();
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: itemListAuthors.length,
-                          itemBuilder: (context, itemListAuthorsIndex) {
-                            final itemListAuthorsItem =
-                                itemListAuthors[itemListAuthorsIndex];
+                if (_model.isShow == true)
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+                      child: PagedListView<ApiPagingParams, dynamic>(
+                        pagingController: _model.setListViewController(
+                          (nextPageMarker) =>
+                              GroupAuthorsGroup.listAuthorsCall.call(
+                            accessToken: FFAppState().accessToken,
+                            limit: 20,
+                            offset: nextPageMarker.nextPageNumber * 20,
+                            filter:
+                                '{\"_and\":[${_model.searchAuthorsTextController.text != '' ? '{\"alias\":{\"_icontains\":\"' : ' '}${_model.searchAuthorsTextController.text != '' ? _model.searchAuthorsTextController.text : ' '}${_model.searchAuthorsTextController.text != '' ? '\"}}' : ' '}]}',
+                          ),
+                        ),
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        reverse: false,
+                        scrollDirection: Axis.vertical,
+                        builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                          // Customize what your widget looks like when it's loading the first page.
+                          firstPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          // Customize what your widget looks like when it's loading another page.
+                          newPageProgressIndicatorBuilder: (_) => Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          noItemsFoundIndicatorBuilder: (_) =>
+                              const DataNotFoundWidget(),
+                          itemBuilder: (context, _, itemListAuthorsIndex) {
+                            final itemListAuthorsItem = _model
+                                .listViewPagingController!
+                                .itemList![itemListAuthorsIndex];
                             return Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 1.0),
@@ -489,11 +539,10 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                               ),
                             );
                           },
-                        );
-                      },
+                        ),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),

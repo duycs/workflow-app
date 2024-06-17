@@ -52,6 +52,12 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
             id: (widget.detail?.departments[_model.loop])?.departmentsId.id,
             name:
                 (widget.detail?.departments[_model.loop])?.departmentsId.name,
+            branchId: BranchIdStruct(
+              id: (widget.detail?.departments[_model.loop])
+                  ?.departmentsId
+                  .branchId
+                  .id,
+            ),
           ));
           setState(() {});
           _model.loop = _model.loop + 1;
@@ -283,22 +289,26 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 8.0, 0.0, 8.0),
+                                          16.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              '${(listShowIndex + 1).toString()}. ${listShowItem.name}',
-                                              maxLines: 3,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 8.0),
+                                              child: Text(
+                                                '${(listShowIndex + 1).toString()}. ${listShowItem.name}',
+                                                maxLines: 3,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                           if (((FFAppState().user.role ==
