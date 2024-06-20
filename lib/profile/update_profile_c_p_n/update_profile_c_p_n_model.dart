@@ -63,6 +63,28 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
 
   String output = '';
 
+  List<int> listImageDelete = [];
+  void addToListImageDelete(int item) => listImageDelete.add(item);
+  void removeFromListImageDelete(int item) => listImageDelete.remove(item);
+  void removeAtIndexFromListImageDelete(int index) =>
+      listImageDelete.removeAt(index);
+  void insertAtIndexInListImageDelete(int index, int item) =>
+      listImageDelete.insert(index, item);
+  void updateListImageDeleteAtIndex(int index, Function(int) updateFn) =>
+      listImageDelete[index] = updateFn(listImageDelete[index]);
+
+  List<FileDataStruct> listImageCreate = [];
+  void addToListImageCreate(FileDataStruct item) => listImageCreate.add(item);
+  void removeFromListImageCreate(FileDataStruct item) =>
+      listImageCreate.remove(item);
+  void removeAtIndexFromListImageCreate(int index) =>
+      listImageCreate.removeAt(index);
+  void insertAtIndexInListImageCreate(int index, FileDataStruct item) =>
+      listImageCreate.insert(index, item);
+  void updateListImageCreateAtIndex(
+          int index, Function(FileDataStruct) updateFn) =>
+      listImageCreate[index] = updateFn(listImageCreate[index]);
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for name widget.
@@ -144,6 +166,7 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
           accessToken: FFAppState().accessToken,
           fileList: images,
         );
+
         if ((apiResultUploadImage2.succeeded ?? true)) {
           if (FileUploadStruct.maybeFromMap(
                       (apiResultUploadImage2.jsonBody ?? ''))!
@@ -163,68 +186,37 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
             }
             loop = 0;
             while (loop! < imagesUpload.length) {
-              updateFilesStruct(
-                (e) => e
-                  ..updateCreate(
-                    (e) => e.add(FileDataStruct(
-                      organizationsId: getJsonField(
-                        FFAppState().staffLogin,
-                        r'''$.organization_id''',
-                      ).toString().toString(),
-                      directusFilesId: FileIDDataTypeStruct(
-                        id: imagesUpload[loop!],
-                      ),
-                    )),
-                  ),
-              );
-              loop = loop! + 1;
-            }
-            loop = 0;
-          } else {
-            updateFilesStruct(
-              (e) => e
-                ..updateCreate(
-                  (e) => e.add(FileDataStruct(
-                    organizationsId: getJsonField(
-                      FFAppState().staffLogin,
-                      r'''$.organization_id''',
-                    ).toString().toString(),
-                    directusFilesId: FileIDDataTypeStruct(
-                      id: getJsonField(
-                        (apiResultUploadImage2?.jsonBody ?? ''),
-                        r'''$.data.id''',
-                      ).toString().toString(),
-                    ),
-                  )),
+              addToListImageCreate(FileDataStruct(
+                organizationsId: getJsonField(
+                  FFAppState().staffLogin,
+                  r'''$.organization_id''',
+                ).toString().toString(),
+                directusFilesId: FileIDDataTypeStruct(
+                  id: imagesUpload[loop!],
                 ),
-            );
-            while (loop! < imageId.length) {
-              updateFilesStruct(
-                (e) => e
-                  ..updateCreate(
-                    (e) => e.add(FileDataStruct(
-                      organizationsId: getJsonField(
-                        FFAppState().staffLogin,
-                        r'''$.organization_id''',
-                      ).toString().toString(),
-                      directusFilesId: FileIDDataTypeStruct(
-                        id: imageId[loop!],
-                      ),
-                    )),
-                  ),
-              );
+              ));
               loop = loop! + 1;
             }
             loop = 0;
-          }
-        }
-      }
-    } else {
-      while (loop! < imageId.length) {
-        updateFilesStruct(
-          (e) => e
-            ..updateCreate(
-              (e) => e.add(FileDataStruct(
+            updateFilesStruct(
+              (e) => e..create = listImageCreate.toList(),
+            );
+            listImageCreate = [];
+          } else {
+            addToListImageCreate(FileDataStruct(
+              organizationsId: getJsonField(
+                FFAppState().staffLogin,
+                r'''$.organization_id''',
+              ).toString().toString(),
+              directusFilesId: FileIDDataTypeStruct(
+                id: getJsonField(
+                  (apiResultUploadImage2.jsonBody ?? ''),
+                  r'''$.data.id''',
+                ).toString().toString(),
+              ),
+            ));
+            while (loop! < imageId.length) {
+              addToListImageCreate(FileDataStruct(
                 organizationsId: getJsonField(
                   FFAppState().staffLogin,
                   r'''$.organization_id''',
@@ -232,12 +224,37 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
                 directusFilesId: FileIDDataTypeStruct(
                   id: imageId[loop!],
                 ),
-              )),
-            ),
-        );
+              ));
+              loop = loop! + 1;
+            }
+            loop = 0;
+            updateFilesStruct(
+              (e) => e..create = listImageCreate.toList(),
+            );
+            listImageCreate = [];
+          }
+        }
+      } else {
+        FFAppState().update(() {});
+      }
+    } else {
+      while (loop! < imageId.length) {
+        addToListImageCreate(FileDataStruct(
+          organizationsId: getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString(),
+          directusFilesId: FileIDDataTypeStruct(
+            id: imageId[loop!],
+          ),
+        ));
         loop = loop! + 1;
       }
       loop = 0;
+      updateFilesStruct(
+        (e) => e..create = listImageCreate.toList(),
+      );
+      listImageCreate = [];
     }
 
     imageId = [];

@@ -50,6 +50,7 @@ class _StaffsListDropdownWidgetState extends State<StaffsListDropdownWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}]}',
       );
+
       if ((_model.apiResultList?.succeeded ?? true)) {
         _model.staffList = StaffListDataStruct.maybeFromMap(
                 (_model.apiResultList?.jsonBody ?? ''))!

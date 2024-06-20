@@ -126,7 +126,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            context.pop();
+            context.safePop();
           },
         ),
         title: Text(
@@ -1196,6 +1196,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                         accessToken: FFAppState().accessToken,
                         file: _model.uploadedLocalFile,
                       );
+
                       shouldSetState = true;
                       if ((_model.apiResultUploadImage?.succeeded ?? true)) {
                         _model.image = getJsonField(
@@ -1219,6 +1220,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                   ),
                           },
                         );
+
                         shouldSetState = true;
                         if ((_model.apiResultUpdateStaff?.succeeded ?? true)) {
                           _model.apiResultUpdateUserStaff =
@@ -1253,6 +1255,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                     ),
                             },
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultUpdateUserStaff?.succeeded ??
                               true)) {
@@ -1270,7 +1273,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
-
+                            if (Navigator.of(context).canPop()) {
+                              context.pop();
+                            }
                             context.pushNamed(
                               'Profile',
                               extra: <String, dynamic>{
@@ -1302,6 +1307,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                           'first_name': _model.nameTextController.text,
                         },
                       );
+
                       shouldSetState = true;
                       if ((_model.apiResultUpdateStaff1?.succeeded ?? true)) {
                         _model.apiResultUpdateUserStaff1 =
@@ -1336,6 +1342,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                   ),
                           },
                         );
+
                         shouldSetState = true;
                         if ((_model.apiResultUpdateUserStaff1?.succeeded ??
                             true)) {
@@ -1353,7 +1360,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                   FlutterFlowTheme.of(context).secondary,
                             ),
                           );
-
+                          if (Navigator.of(context).canPop()) {
+                            context.pop();
+                          }
                           context.pushNamed(
                             'Profile',
                             extra: <String, dynamic>{

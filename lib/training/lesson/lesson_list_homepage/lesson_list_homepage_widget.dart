@@ -337,7 +337,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       } else if (widget.statusLesson == 'inprogress') {
                         return 'Bài học đang học';
                       } else if (widget.statusLesson == 'done') {
-                        return 'Bài học hoàn thành';
+                        return 'Bài học đã hoàn thành';
                       } else if (widget.statusLove == 'love') {
                         return 'Bài học yêu thích';
                       } else if (widget.checkLesson == 'obligatory') {
@@ -480,6 +480,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                       listItem.programId.id,
                                       ParamType.String,
                                     ),
+                                    'checkReload': serializeParam(
+                                      'noHome',
+                                      ParamType.String,
+                                    ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
@@ -538,8 +542,8 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 0.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
                                                     child: Text(
                                                       listItem.lessionId.name,
                                                       maxLines: 2,
@@ -581,7 +585,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                                                   0.0,
                                                                   4.0,
                                                                   0.0,
-                                                                  4.0),
+                                                                  0.0),
                                                       child: Text(
                                                         () {
                                                           if (listItem.status ==

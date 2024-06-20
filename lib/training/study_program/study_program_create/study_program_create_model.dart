@@ -21,9 +21,37 @@ class StudyProgramCreateModel
 
   int? check;
 
+  List<StudyProgramListLessionsIdStruct> listLessions = [];
+  void addToListLessions(StudyProgramListLessionsIdStruct item) =>
+      listLessions.add(item);
+  void removeFromListLessions(StudyProgramListLessionsIdStruct item) =>
+      listLessions.remove(item);
+  void removeAtIndexFromListLessions(int index) => listLessions.removeAt(index);
+  void insertAtIndexInListLessions(
+          int index, StudyProgramListLessionsIdStruct item) =>
+      listLessions.insert(index, item);
+  void updateListLessionsAtIndex(
+          int index, Function(StudyProgramListLessionsIdStruct) updateFn) =>
+      listLessions[index] = updateFn(listLessions[index]);
+
+  String checkPage = 'studyProgram1';
+
+  dynamic programStudy;
+
+  bool isLoad = false;
+
+  StudyProgramListStruct? listItemLession;
+  void updateListItemLessionStruct(Function(StudyProgramListStruct) updateFn) {
+    updateFn(listItemLession ??= StudyProgramListStruct());
+  }
+
+  FFUploadedFile? imageProgram;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - LessionAddList] action in StudyProgramCreate widget.
+  bool? itemLesstion123;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -106,16 +134,18 @@ class StudyProgramCreateModel
         .toList()
         .toList()
         .contains(lessionsItem!.id)) {
+      listLessions = [];
+      listLessions = requestData!.lessions
+          .toList()
+          .cast<StudyProgramListLessionsIdStruct>();
+      addToListLessions(StudyProgramListLessionsIdStruct(
+        lessionsId: LessonsStruct(
+          id: lessionsItem.id,
+          name: lessionsItem.name,
+        ),
+      ));
       updateRequestDataStruct(
-        (e) => e
-          ..updateLessions(
-            (e) => e.add(StudyProgramListLessionsIdStruct(
-              lessionsId: LessonsStruct(
-                id: lessionsItem.id,
-                name: lessionsItem.name,
-              ),
-            )),
-          ),
+        (e) => e..lessions = listLessions.toList(),
       );
       return true;
     } else {
@@ -131,6 +161,7 @@ class StudyProgramCreateModel
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile,
     );
+
     if ((apiResultUploadFilePrograms.succeeded ?? true)) {
       uploadImage = getJsonField(
         (apiResultUploadFilePrograms.jsonBody ?? ''),
@@ -166,6 +197,34 @@ class StudyProgramCreateModel
       }
 
       return;
+    }
+  }
+
+  Future<bool?> lessionAddList(
+    BuildContext context, {
+    LessonsStruct? itemLesstion,
+  }) async {
+    if (!requestData!.lessions
+        .map((e) => e.lessionsId.id)
+        .toList()
+        .toList()
+        .contains(widget.itemLesstion!.id)) {
+      listLessions = [];
+      listLessions = requestData!.lessions
+          .toList()
+          .cast<StudyProgramListLessionsIdStruct>();
+      addToListLessions(StudyProgramListLessionsIdStruct(
+        lessionsId: LessonsStruct(
+          id: widget.itemLesstion?.id,
+          name: widget.itemLesstion?.name,
+        ),
+      ));
+      updateRequestDataStruct(
+        (e) => e..lessions = listLessions.toList(),
+      );
+      return true;
+    } else {
+      return false;
     }
   }
 }

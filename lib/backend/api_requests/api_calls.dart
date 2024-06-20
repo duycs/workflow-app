@@ -78,6 +78,7 @@ class ProcedurePublishedListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -118,6 +119,7 @@ class ProcedureTemplateUpdateLimitPublishedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -151,6 +153,7 @@ class ProcedurePublishedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -209,6 +212,7 @@ class GetDepartmentListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -258,6 +262,7 @@ class PostdepartmentCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -303,6 +308,7 @@ class PathDepartmentCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -334,6 +340,7 @@ class UpdateProgramsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -360,6 +367,7 @@ class ProgramSynchronizedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -407,6 +415,7 @@ class UploadFileCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -438,6 +447,7 @@ class UploadListFileCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -483,6 +493,7 @@ class UserMeCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -516,6 +527,7 @@ class GetStaffIdCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -546,6 +558,7 @@ class GetListUserCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -579,6 +592,7 @@ class DeleteAccountCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -625,6 +639,7 @@ class LoginCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -655,6 +670,7 @@ class RefreshTokenCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -682,6 +698,7 @@ class CreateOrganizationUserCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -751,6 +768,7 @@ class GetLessonListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -787,6 +805,7 @@ class GetLessionsOneCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -825,6 +844,7 @@ class EmployeeLessonListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -869,6 +889,7 @@ class PostCommentCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -900,6 +921,7 @@ class PostLessonCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -932,6 +954,7 @@ class PathLessonCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -959,6 +982,7 @@ class DeleteCommentCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -990,6 +1014,7 @@ class ProgramsLessionsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1027,6 +1052,7 @@ class PostHeartCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1054,6 +1080,7 @@ class DeleteHeartCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1089,6 +1116,7 @@ class UpdateStaffLessonStatusCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1123,6 +1151,7 @@ class UpdateLessonStatusMarketCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1158,6 +1187,7 @@ class UpdateStaffProgramStatusCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1223,7 +1253,7 @@ class StudyProgramListCall {
         params: {
           'filter': filter,
           'fields':
-              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id",
+              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id",
           'offset': offset,
           'limit': limit,
           'meta': "total_count,filter_count",
@@ -1233,6 +1263,7 @@ class StudyProgramListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -1276,6 +1307,7 @@ class StudyProgramOneCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1306,6 +1338,7 @@ class StudyProgramGetOneCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1337,6 +1370,7 @@ class StudyProgramCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1369,6 +1403,7 @@ class StudyProgramLessionsUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1402,6 +1437,7 @@ class SynchronizedStaffLessonCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1439,6 +1475,7 @@ class StaffsProgramsCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -1487,6 +1524,7 @@ class UpdateStudyProgramPriceCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1525,6 +1563,7 @@ class AddProgramMarketCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1552,6 +1591,7 @@ class DeleteProgramCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1583,6 +1623,7 @@ class StaffsProgramsPostCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1622,6 +1663,7 @@ class CoppyStaffProgramsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1653,6 +1695,7 @@ class UpdateDepartmentSynchronizedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1684,6 +1727,7 @@ class ReviewProgramCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1743,6 +1787,7 @@ class StaffsTestsListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -1780,6 +1825,7 @@ class StaffAnswerListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1811,6 +1857,7 @@ class CreateStaffTestCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1842,6 +1889,7 @@ class CreateStaffAnswerCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1875,6 +1923,7 @@ class CalculateTestScoresCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1908,6 +1957,7 @@ class CreateStaffTestsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1959,6 +2009,7 @@ class CreateTestCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -1990,6 +2041,7 @@ class QuestionTestAddCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2027,6 +2079,7 @@ class TestListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -2068,6 +2121,7 @@ class TestOneCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2100,6 +2154,7 @@ class TestUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2156,6 +2211,7 @@ class QuestionListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -2192,6 +2248,7 @@ class QuestionListOneCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2223,6 +2280,7 @@ class QuestionCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2254,6 +2312,7 @@ class QuestionUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2328,6 +2387,7 @@ class WorkflowsListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -2370,6 +2430,7 @@ class OperationsListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2401,6 +2462,7 @@ class OperationsCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2432,6 +2494,7 @@ class WorkflowsCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2463,6 +2526,7 @@ class TasksCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2500,6 +2564,7 @@ class TasksListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2531,6 +2596,7 @@ class StepsCreateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2568,6 +2634,7 @@ class StepsListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2599,6 +2666,7 @@ class StepCreateWorkflowsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2623,12 +2691,13 @@ class WorkflowsOneCall {
       },
       params: {
         'fields':
-            "staffs.staffs_id.name,staffs.staffs_id.id,departments.departments_id.id,departments.departments_id.name,staffs.staffs_id.id,staffs.staffs_id.user_id.first_name,steps.staffs_alias,steps.id,id,description,name,cron,limit_published,remind,remind_in_second,estimate_in_second, deadline, cron,steps.name, steps.description, steps.date_start, steps.date_end, steps.execute_type, stepscron, steps.number, steps.status, steps.deadline, steps.estimate_in_second,steps.staffs.staffs_id.id,steps.tasks.id, steps.tasks.tasks_id.id, steps.tasks.tasks_id.name,steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name, steps.operations.operations_id.description, steps.operations.operations_id.action_type, steps.operations.operations_id.content, steps.operations.operations_id.date_start, steps.operations.operations_id.date_end,steps.operations.operations_id.staffs,steps.action_type,steps.staffs.staffs_id.user_id.first_name,remind_in_second,remind,published_count,limit_published,cron,estimate_in_second,steps.estimate_in_second,steps.time_operate,remind_2",
+            "steps.departments.departments_id.name,steps.departments.departments_id.id,staffs.staffs_id.name,staffs.staffs_id.id,departments.departments_id.id,departments.departments_id.name,staffs.staffs_id.id,staffs.staffs_id.user_id.first_name,steps.staffs_alias,steps.id,id,description,name,cron,limit_published,remind,remind_in_second,estimate_in_second, deadline, cron,steps.name, steps.description, steps.date_start, steps.date_end, steps.execute_type, stepscron, steps.number, steps.status, steps.deadline, steps.estimate_in_second,steps.staffs.staffs_id.id,steps.tasks.id, steps.tasks.tasks_id.id, steps.tasks.tasks_id.name,steps.operations, steps.operations.operations_id.id, steps.operations.operations_id.name, steps.operations.operations_id.description, steps.operations.operations_id.action_type, steps.operations.operations_id.content, steps.operations.operations_id.date_start, steps.operations.operations_id.date_end,steps.operations.operations_id.staffs,steps.action_type,steps.staffs.staffs_id.user_id.first_name,remind_in_second,remind,published_count,limit_published,cron,estimate_in_second,steps.estimate_in_second,steps.time_operate,remind_2",
       },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2660,6 +2729,7 @@ class WorkflowUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2691,6 +2761,7 @@ class StepUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2724,6 +2795,7 @@ class DeleteWorkflowsStepCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2757,6 +2829,7 @@ class WorkflowCopyCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2794,6 +2867,7 @@ class WorkflowMarketCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2825,6 +2899,7 @@ class CreateWorkflowsAllCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2856,6 +2931,7 @@ class UpdateWorkflowsAllCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2911,6 +2987,7 @@ class BranchListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -2948,6 +3025,7 @@ class BranchAddCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -2980,6 +3058,7 @@ class BranchUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3001,7 +3080,7 @@ class StaffGroup {
   static GetStaffListCall getStaffListCall = GetStaffListCall();
   static GetListStaffReportCall getListStaffReportCall =
       GetListStaffReportCall();
-  static GetStaffGetOneCall getStaffGetOneCall = GetStaffGetOneCall();
+  static StaffGetOneCall staffGetOneCall = StaffGetOneCall();
   static CreateStaffCall createStaffCall = CreateStaffCall();
   static UpdateStaffCall updateStaffCall = UpdateStaffCall();
   static UpdateUserStaffCall updateUserStaffCall = UpdateUserStaffCall();
@@ -3043,6 +3122,7 @@ class GetStaffListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -3087,6 +3167,7 @@ class GetListStaffReportCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -3098,10 +3179,10 @@ class GetListStaffReportCall {
   ];
 }
 
-class GetStaffGetOneCall {
+class StaffGetOneCall {
   Future<ApiCallResponse> call({
-    String? filter = '',
     String? staffId = '',
+    String? filter = '',
     String? accessToken = '',
   }) async {
     final baseUrl = StaffGroup.getBaseUrl(
@@ -3109,7 +3190,7 @@ class GetStaffGetOneCall {
     );
 
     return ApiManager.instance.makeApiCall(
-      callName: 'GetStaffGetOne',
+      callName: 'StaffGetOne',
       apiUrl: '$baseUrl/items/staffs/$staffId',
       callType: ApiCallType.GET,
       headers: {
@@ -3118,14 +3199,14 @@ class GetStaffGetOneCall {
       },
       params: {
         'fields':
-            "id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
+            "staff_programs.program_id, staff_programs.status, id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
         'filter': filter,
-        'sort': "-date_created",
       },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3157,6 +3238,7 @@ class CreateStaffCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3189,6 +3271,7 @@ class UpdateStaffCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3221,6 +3304,7 @@ class UpdateUserStaffCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3252,6 +3336,7 @@ class UpdatePasswordCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3287,6 +3372,7 @@ class CreateProgramStaffCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3342,6 +3428,7 @@ class GetOneOrganizationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3374,6 +3461,7 @@ class UpdateOrganizationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3409,6 +3497,7 @@ class GetOrganizationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3469,6 +3558,7 @@ class GetListTaskCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -3509,6 +3599,7 @@ class GetNumberTaskCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -3547,6 +3638,7 @@ class UpdateOperationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3584,6 +3676,7 @@ class ConfirmOperationCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3621,6 +3714,7 @@ class ReceiveTaskCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3677,6 +3771,7 @@ class OperationListCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -3714,6 +3809,7 @@ class OperationAddCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3746,6 +3842,7 @@ class OperationsUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3788,6 +3885,7 @@ class GetCategoriesListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3830,6 +3928,7 @@ class GetDomainsListCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3865,29 +3964,37 @@ class GetListMarketLessonCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetListMarketLesson',
-      apiUrl: '$baseUrl/items/programs',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'fields[]':
-            "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar,lessions.lessions_id.status",
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-        'sort': "-date_created",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetListMarketLesson',
+        apiUrl: '$baseUrl/items/programs',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'fields[]':
+              "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar,lessions.lessions_id.status",
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class GetOneProgramsCall {
@@ -3912,7 +4019,7 @@ class GetOneProgramsCall {
       },
       params: {
         'fields[]':
-            "private, date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar, limit_invite, invite_count,lessions.lessions_id.status",
+            "private, date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar, limit_invite, invite_count,lessions.lessions_id.status, author_id.organization_id",
         'offset': offset,
         'limit': limit,
         'filter': filter,
@@ -3921,6 +4028,7 @@ class GetOneProgramsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3956,6 +4064,7 @@ class InviteStaffCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -3986,34 +4095,43 @@ class ListAuthorsCall {
     String? filter = '',
     int? limit = 5000,
     int? offset = 0,
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
     final baseUrl = GroupAuthorsGroup.getBaseUrl(
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'ListAuthors',
-      apiUrl: '$baseUrl/items/authors',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'fields[]':
-            "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
-        'offset': offset,
-        'limit': limit,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'ListAuthors',
+        apiUrl: '$baseUrl/items/authors',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'fields[]':
+              "id,status,sort,user_created,date_created,user_updated,date_updated,staff_id,alias,description,organization_id,domains.domains_id.name,domains.domains_id.id,avatar, order_count,domains.domains_id.image_cover",
+          'offset': offset,
+          'limit': limit,
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class GetOneAuthorsCall {
@@ -4041,6 +4159,7 @@ class GetOneAuthorsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4077,6 +4196,7 @@ class ListAthorsSortCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4108,6 +4228,7 @@ class AuthorsSignUpCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4140,6 +4261,7 @@ class AuthorsUpdateCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4172,28 +4294,36 @@ class GetDomainsCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'GetDomains',
-      apiUrl: '$baseUrl/items/domains',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-        'fields[]':
-            "image_cover,id,status,user_created,date_created,user_updated,date_updated,name,description,sort",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'GetDomains',
+        apiUrl: '$baseUrl/items/domains',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'fields[]':
+              "image_cover,id,status,user_created,date_created,user_updated,date_updated,name,description,sort",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 /// End GetDomains Group Code
@@ -4250,6 +4380,7 @@ class GetListOrderCall {
         encodeBodyUtf8: false,
         decodeUtf8: false,
         cache: false,
+        isStreamingApi: false,
         alwaysAllowBody: false,
       ),
       interceptors,
@@ -4286,6 +4417,7 @@ class GetOneOrderCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4317,6 +4449,7 @@ class CreateOrderCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4348,6 +4481,7 @@ class UpdateOrderCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4381,6 +4515,7 @@ class QrCodeCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4409,6 +4544,7 @@ class OrderCompletedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -4443,12 +4579,168 @@ class CheckTransferCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
 }
 
 /// End Order Group Code
+
+/// Start STHLoginAcounts Group Code
+
+class STHLoginAcountsGroup {
+  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+  };
+  static UpdateBiometricVerificationCall updateBiometricVerificationCall =
+      UpdateBiometricVerificationCall();
+  static LoginBiometricVerificationCall loginBiometricVerificationCall =
+      LoginBiometricVerificationCall();
+}
+
+class UpdateBiometricVerificationCall {
+  Future<ApiCallResponse> call({
+    dynamic dataJson,
+  }) async {
+    final baseUrl = STHLoginAcountsGroup.getBaseUrl();
+
+    final data = _serializeJson(dataJson);
+    final ffApiRequestBody = data;
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateBiometricVerification',
+      apiUrl: '$baseUrl/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class LoginBiometricVerificationCall {
+  Future<ApiCallResponse> call({
+    dynamic dataJson,
+  }) async {
+    final baseUrl = STHLoginAcountsGroup.getBaseUrl();
+
+    final data = _serializeJson(dataJson);
+    final ffApiRequestBody = data;
+    return ApiManager.instance.makeApiCall(
+      callName: 'LoginBiometricVerification',
+      apiUrl: '$baseUrl/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End STHLoginAcounts Group Code
+
+/// Start SettingAcount Group Code
+
+class SettingAcountGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static UpdateBiometricVerificationCopyCall
+      updateBiometricVerificationCopyCall =
+      UpdateBiometricVerificationCopyCall();
+  static LoginBiometricVerificationCopyCall loginBiometricVerificationCopyCall =
+      LoginBiometricVerificationCopyCall();
+}
+
+class UpdateBiometricVerificationCopyCall {
+  Future<ApiCallResponse> call({
+    dynamic dataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = SettingAcountGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final data = _serializeJson(dataJson);
+    final ffApiRequestBody = data;
+    return ApiManager.instance.makeApiCall(
+      callName: 'UpdateBiometricVerification Copy',
+      apiUrl: '$baseUrl/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class LoginBiometricVerificationCopyCall {
+  Future<ApiCallResponse> call({
+    dynamic dataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = SettingAcountGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final data = _serializeJson(dataJson);
+    final ffApiRequestBody = data;
+    return ApiManager.instance.makeApiCall(
+      callName: 'LoginBiometricVerification Copy',
+      apiUrl: '$baseUrl/flows/trigger/54e3a167-dcee-4d34-8de5-96afa42c11fe',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End SettingAcount Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

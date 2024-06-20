@@ -560,6 +560,7 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                             },
                                           },
                                         );
+
                                         shouldSetState = true;
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??

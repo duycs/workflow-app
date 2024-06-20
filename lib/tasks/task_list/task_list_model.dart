@@ -73,6 +73,19 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
 
   bool isLoad = false;
 
+  List<FileDataTypeStruct> listFileDataType = [];
+  void addToListFileDataType(FileDataTypeStruct item) =>
+      listFileDataType.add(item);
+  void removeFromListFileDataType(FileDataTypeStruct item) =>
+      listFileDataType.remove(item);
+  void removeAtIndexFromListFileDataType(int index) =>
+      listFileDataType.removeAt(index);
+  void insertAtIndexInListFileDataType(int index, FileDataTypeStruct item) =>
+      listFileDataType.insert(index, item);
+  void updateListFileDataTypeAtIndex(
+          int index, Function(FileDataTypeStruct) updateFn) =>
+      listFileDataType[index] = updateFn(listFileDataType[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -154,6 +167,7 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
+
       if ((apiResultGetTaskList.succeeded ?? true)) {
         list = TaskListDataStruct.maybeFromMap(
                 (apiResultGetTaskList.jsonBody ?? ''))!
@@ -173,15 +187,16 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
 
     apiResultGetTaskDone = await TaskGroup.getNumberTaskCall.call(
       filter:
-          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          '{\"_and\":[{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+      ).toString().toString()}\"}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskDone.succeeded ?? true)) {
       totalDone = getJsonField(
         (apiResultGetTaskDone.jsonBody ?? ''),
@@ -199,6 +214,7 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskToDo.succeeded ?? true)) {
       totalTodo = getJsonField(
         (apiResultGetTaskToDo.jsonBody ?? ''),
@@ -216,6 +232,7 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskWait.succeeded ?? true)) {
       totalWait = getJsonField(
         (apiResultGetTaskWait.jsonBody ?? ''),

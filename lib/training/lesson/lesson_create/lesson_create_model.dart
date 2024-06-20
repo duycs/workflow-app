@@ -33,6 +33,13 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
   String output = '';
 
+  String testId = '';
+
+  LessonsStruct? listLession;
+  void updateListLessionStruct(Function(LessonsStruct) updateFn) {
+    updateFn(listLession ??= LessonsStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -98,6 +105,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultListIdStaff.succeeded ?? true)) {
       list = TestListDataStruct.maybeFromMap(
               (apiResultListIdStaff.jsonBody ?? ''))!
@@ -151,6 +159,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       },
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultCreateLesson.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -164,20 +173,55 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
           backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
       );
+      listLession = LessonsStruct.maybeFromMap(getJsonField(
+        (apiResultCreateLesson.jsonBody ?? ''),
+        r'''$.data''',
+      ));
       await Future.delayed(const Duration(milliseconds: 500));
-      if (Navigator.of(context).canPop()) {
-        context.pop();
+      if (widget.checkPage == 'studyProgram1') {
+        context.pushNamed(
+          'StudyProgramList',
+          queryParameters: {
+            'showModal': serializeParam(
+              'LessonCreate',
+              ParamType.String,
+            ),
+            'itemLesstion': serializeParam(
+              listLession,
+              ParamType.DataStruct,
+            ),
+            'programsItem': serializeParam(
+              widget.programsItem,
+              ParamType.JSON,
+            ),
+            'itemListLession': serializeParam(
+              widget.listItemLession,
+              ParamType.DataStruct,
+            ),
+          }.withoutNulls,
+          extra: <String, dynamic>{
+            kTransitionInfoKey: const TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
+      } else {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
+        context.pushNamed(
+          'LessonsList',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: const TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
       }
-      context.pushNamed(
-        'LessonsList',
-        extra: <String, dynamic>{
-          kTransitionInfoKey: const TransitionInfo(
-            hasTransition: true,
-            transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 0),
-          ),
-        },
-      );
     } else {
       checkRefreshTokenBlock11 = await action_blocks.checkRefreshToken(
         context,
@@ -210,6 +254,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile2,
     );
+
     if ((apiResultUploadVideo.succeeded ?? true)) {
       uploadVideo = getJsonField(
         (apiResultUploadVideo.jsonBody ?? ''),
@@ -247,6 +292,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile1,
     );
+
     if ((apiResultUploadImage.succeeded ?? true)) {
       uploadImage = getJsonField(
         (apiResultUploadImage.jsonBody ?? ''),
@@ -284,6 +330,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile3,
     );
+
     if ((apiResultUploadFileFile.succeeded ?? true)) {
       uploadFile = getJsonField(
         (apiResultUploadFileFile.jsonBody ?? ''),

@@ -45,6 +45,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
             r'''$.organization_id''',
           ).toString().toString(),
         );
+
         if ((_model.apiResultGetOrganization?.succeeded ?? true)) {
           _model.data = OrganizationListDataStruct.maybeFromMap(
                   (_model.apiResultGetOrganization?.jsonBody ?? ''))
@@ -1094,7 +1095,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                       .max,
                                                               children: [
                                                                 Text(
-                                                                  'Chưa có anh mô tả',
+                                                                  'Chưa có nội dung ảnh ',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -1345,6 +1346,9 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  if (Navigator.of(context).canPop()) {
+                    context.pop();
+                  }
                   context.pushNamed(
                     'UpdateProfileCPN',
                     queryParameters: {

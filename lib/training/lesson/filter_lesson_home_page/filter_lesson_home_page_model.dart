@@ -72,6 +72,7 @@ class FilterLessonHomePageModel
           r'''$.id''',
         ).toString().toString() : ' '}${widget.checkPrograms == 'programs' ? '\"}}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       programList = StudyProgramListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!

@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -10,7 +9,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_model.dart';
 export 'lesson_detail_model.dart';
@@ -31,13 +29,10 @@ class LessonDetailWidget extends StatefulWidget {
   State<LessonDetailWidget> createState() => _LessonDetailWidgetState();
 }
 
-class _LessonDetailWidgetState extends State<LessonDetailWidget>
-    with TickerProviderStateMixin {
+class _LessonDetailWidgetState extends State<LessonDetailWidget> {
   late LessonDetailModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -52,22 +47,6 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
       setState(() {});
       await _model.getComments(context);
       setState(() {});
-    });
-
-    animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          TiltEffect(
-            curve: Curves.easeInOut,
-            delay: 550.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0, 0),
-            end: const Offset(0, 0.349),
-          ),
-        ],
-      ),
     });
   }
 
@@ -103,7 +82,7 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
               _model.checkFile = '1';
               setState(() {});
             },
@@ -1957,12 +1936,9 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
               ),
             if ((getJsonField(
                       _model.listDetail,
-                      r'''$.user_created''',
-                    ) ==
-                    getJsonField(
-                      FFAppState().user.toMap(),
-                      r'''$.id''',
-                    )) &&
+                      r'''$.user_created.id''',
+                    ).toString() ==
+                    FFAppState().user.id) &&
                 (_model.listDetail != null))
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -2027,18 +2003,16 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget>
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Text(
-                  'Đang tải dữ liệu...',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic,
-                      ),
-                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: custom_widgets.LoadingPageWidget(
+                    width: double.infinity,
+                    height: double.infinity,
+                    size: 50.0,
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
               ),
           ],
         ),

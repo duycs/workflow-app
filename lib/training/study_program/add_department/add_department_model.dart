@@ -37,6 +37,34 @@ class AddDepartmentModel extends FlutterFlowModel<AddDepartmentWidget> {
 
   int loop = 0;
 
+  List<DepartmentListStruct> requestDepartmentList = [];
+  void addToRequestDepartmentList(DepartmentListStruct item) =>
+      requestDepartmentList.add(item);
+  void removeFromRequestDepartmentList(DepartmentListStruct item) =>
+      requestDepartmentList.remove(item);
+  void removeAtIndexFromRequestDepartmentList(int index) =>
+      requestDepartmentList.removeAt(index);
+  void insertAtIndexInRequestDepartmentList(
+          int index, DepartmentListStruct item) =>
+      requestDepartmentList.insert(index, item);
+  void updateRequestDepartmentListAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      requestDepartmentList[index] = updateFn(requestDepartmentList[index]);
+
+  List<DepartmentListStruct> checkDepartmentList = [];
+  void addToCheckDepartmentList(DepartmentListStruct item) =>
+      checkDepartmentList.add(item);
+  void removeFromCheckDepartmentList(DepartmentListStruct item) =>
+      checkDepartmentList.remove(item);
+  void removeAtIndexFromCheckDepartmentList(int index) =>
+      checkDepartmentList.removeAt(index);
+  void insertAtIndexInCheckDepartmentList(
+          int index, DepartmentListStruct item) =>
+      checkDepartmentList.insert(index, item);
+  void updateCheckDepartmentListAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      checkDepartmentList[index] = updateFn(checkDepartmentList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in AddDepartment widget.

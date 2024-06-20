@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'market_place_widget.dart' show MarketPlaceWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
   ///  Local state fields for this page.
@@ -87,13 +88,21 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
   String priceMax = '';
 
+  bool checkLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in MarketPlace widget.
+  bool? reloadTokenProgramLession;
   // State field(s) for searchMarket widget.
   FocusNode? searchMarketFocusNode;
   TextEditingController? searchMarketTextController;
   String? Function(BuildContext, String?)? searchMarketTextControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -103,6 +112,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
     unfocusNode.dispose();
     searchMarketFocusNode?.dispose();
     searchMarketTextController?.dispose();
+
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -118,6 +129,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       offset: 0,
       limit: 11,
     );
+
     if ((apiResultGetList.succeeded ?? true)) {
       listDataProgramsFree = MarketLessonListDataStruct.maybeFromMap(
               (apiResultGetList.jsonBody ?? ''))!
@@ -160,6 +172,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       offset: 0,
       limit: 11,
     );
+
     if ((apiResultGetListNoFree.succeeded ?? true)) {
       listDataProgramsNoFree = MarketLessonListDataStruct.maybeFromMap(
               (apiResultGetListNoFree.jsonBody ?? ''))!
@@ -200,6 +213,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       filter:
           '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${(domain != '') && (domain != 'noData') ? domain : ' '}${(domain != '') && (domain != 'noData') ? '\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"' : ' '}${(author != '') && (author != 'noData') ? author : ' '}${(author != '') && (author != 'noData') ? '\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"' : ' '}${(category != '') && (category != 'noData') ? category : ' '}${(category != '') && (category != 'noData') ? '\"}}}' : ' '}${(priceMin != '') && (priceMin != 'noData') ? ',{\"price\":{\"_gte\":\"' : ' '}${(priceMin != '') && (priceMin != 'noData') ? priceMin : ' '}${(priceMin != '') && (priceMin != 'noData') ? '\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') ? ',{\"price\":{\"_lte\":\"' : ' '}${(priceMax != '') && (priceMax != 'noData') ? priceMax : ' '}${(priceMax != '') && (priceMax != 'noData') ? '\"}}' : ' '}]}',
     );
+
     if ((apiResultGetListAll.succeeded ?? true)) {
       listDataProgramsAll = MarketLessonListDataStruct.maybeFromMap(
               (apiResultGetListAll.jsonBody ?? ''))!
@@ -239,6 +253,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       limit: 11,
       offset: 0,
     );
+
     if ((apiResultGetListAuthors.succeeded ?? true)) {
       listDataAuthors = AuthorsListDataStruct.maybeFromMap(
               (apiResultGetListAuthors.jsonBody ?? ''))!
@@ -275,7 +290,10 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
+      offset: 0,
+      limit: 8,
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listDataDomains = DomainsListDataDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -305,4 +323,46 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  PagingController<ApiPagingParams, dynamic> setListViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetListMarketLessonPage);
+  }
+
+  void listViewGetListMarketLessonPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker)
+          .then((listViewGetListMarketLessonResponse) {
+        final pageItems = (MarketLessonListDataStruct.maybeFromMap(
+                        listViewGetListMarketLessonResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetListMarketLessonResponse,
+                )
+              : null,
+        );
+      });
 }

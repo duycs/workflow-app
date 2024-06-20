@@ -427,6 +427,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                 _model.confirmPassTextController.text,
                           },
                         );
+
                         shouldSetState = true;
                         if ((_model.apiResultUpdate?.succeeded ?? true)) {
                           if (getJsonField(

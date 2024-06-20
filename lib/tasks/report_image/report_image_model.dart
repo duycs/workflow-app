@@ -93,6 +93,7 @@ class ReportImageModel extends FlutterFlowModel<ReportImageWidget> {
           }
         }()}]}',
       );
+
       if ((apiResultGetReportImage.succeeded ?? true)) {
         reportImage = TaskListDataStruct.maybeFromMap(
                 (apiResultGetReportImage.jsonBody ?? ''))!

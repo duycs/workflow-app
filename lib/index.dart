@@ -8,8 +8,6 @@ export '/training/test/test_detail/test_detail_widget.dart'
     show TestDetailWidget;
 export '/profile/training_progress_user/training_progress_user_widget.dart'
     show TrainingProgressUserWidget;
-export '/quan_ly_quy_trinh_2/quan_ly_quy_trinh2_widget.dart'
-    show QuanLyQuyTrinh2Widget;
 export '/tao_moi_quy_trinh_1/tao_moi_quy_trinh1_widget.dart'
     show TaoMoiQuyTrinh1Widget;
 export '/tao_moi_quy_trinh_2/tao_moi_quy_trinh2_widget.dart'
@@ -21,8 +19,6 @@ export '/chi_tiet_tien_do_cong_viec/chi_tiet_tien_do_cong_viec_widget.dart'
     show ChiTietTienDoCongViecWidget;
 export '/training/study_program/study_program_list/study_program_list_widget.dart'
     show StudyProgramListWidget;
-export '/tao_cong_viec_moi_nhap/tao_cong_viec_moi_nhap_widget.dart'
-    show TaoCongViecMoiNhapWidget;
 export '/produre_draft/training_manage/training_manage_widget.dart'
     show TrainingManageWidget;
 export '/produre_draft/personnal_draft/personnal_draft_widget.dart'
@@ -163,10 +159,27 @@ export '/training/study_program/study_program_list_user/study_program_list_user_
     show StudyProgramListUserWidget;
 export '/training/lesson/staffs_programs_lesson/staffs_programs_lesson_widget.dart'
     show StaffsProgramsLessonWidget;
-export '/details43_receipt/details43_receipt_widget.dart'
-    show Details43ReceiptWidget;
 export '/training/study_program/study_program_list_market/study_program_list_market_widget.dart'
     show StudyProgramListMarketWidget;
-export '/tasks/report_task/report_task_widget.dart' show ReportTaskWidget;
-export '/tasks/report_task_detail/report_task_detail_widget.dart'
-    show ReportTaskDetailWidget;
+export '/tasks/report_staff/report_staff_widget.dart' show ReportStaffWidget;
+export '/tasks/report_staff_detail/report_staff_detail_widget.dart'
+    show ReportStaffDetailWidget;
+export '/news_feed/profile_user_new/profile_user_new_widget.dart'
+    show ProfileUserNewWidget;
+export '/profile/profile_user_setting/profile_user_setting_widget.dart'
+    show ProfileUserSettingWidget;
+export '/profile17_other_user/profile17_other_user_widget.dart'
+    show Profile17OtherUserWidget;
+export '/news_feed/newsfeed/newsfeed_widget.dart' show NewsfeedWidget;
+export '/news_feed/newsfeed_detail_draft/newsfeed_detail_draft_widget.dart'
+    show NewsfeedDetailDraftWidget;
+export '/news_feed/infor_list/infor_list_widget.dart' show InforListWidget;
+export '/news_feed/newsfeed_detail/newsfeed_detail_widget.dart'
+    show NewsfeedDetailWidget;
+export '/training/study_program/lesson_create_copy/lesson_create_copy_widget.dart'
+    show LessonCreateCopyWidget;
+export '/news_feed/newsfeed2/newsfeed2_widget.dart' show Newsfeed2Widget;
+export '/news_feed/profile_publish/profile_publish_widget.dart'
+    show ProfilePublishWidget;
+export '/news_feed/profile_publish2/profile_publish2_widget.dart'
+    show ProfilePublish2Widget;

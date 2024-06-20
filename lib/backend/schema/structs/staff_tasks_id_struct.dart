@@ -11,10 +11,14 @@ class StaffTasksIdStruct extends BaseStruct {
     String? name,
     String? status,
     int? current,
+    String? deadline,
+    String? dateEnd,
   })  : _id = id,
         _name = name,
         _status = status,
-        _current = current;
+        _current = current,
+        _deadline = deadline,
+        _dateEnd = dateEnd;
 
   // "id" field.
   String? _id;
@@ -46,12 +50,28 @@ class StaffTasksIdStruct extends BaseStruct {
 
   bool hasCurrent() => _current != null;
 
+  // "deadline" field.
+  String? _deadline;
+  String get deadline => _deadline ?? '';
+  set deadline(String? val) => _deadline = val;
+
+  bool hasDeadline() => _deadline != null;
+
+  // "date_end" field.
+  String? _dateEnd;
+  String get dateEnd => _dateEnd ?? '';
+  set dateEnd(String? val) => _dateEnd = val;
+
+  bool hasDateEnd() => _dateEnd != null;
+
   static StaffTasksIdStruct fromMap(Map<String, dynamic> data) =>
       StaffTasksIdStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
         status: data['status'] as String?,
         current: castToType<int>(data['current']),
+        deadline: data['deadline'] as String?,
+        dateEnd: data['date_end'] as String?,
       );
 
   static StaffTasksIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -63,6 +83,8 @@ class StaffTasksIdStruct extends BaseStruct {
         'name': _name,
         'status': _status,
         'current': _current,
+        'deadline': _deadline,
+        'date_end': _dateEnd,
       }.withoutNulls;
 
   @override
@@ -82,6 +104,14 @@ class StaffTasksIdStruct extends BaseStruct {
         'current': serializeParam(
           _current,
           ParamType.int,
+        ),
+        'deadline': serializeParam(
+          _deadline,
+          ParamType.String,
+        ),
+        'date_end': serializeParam(
+          _dateEnd,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -107,6 +137,16 @@ class StaffTasksIdStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        deadline: deserializeParam(
+          data['deadline'],
+          ParamType.String,
+          false,
+        ),
+        dateEnd: deserializeParam(
+          data['date_end'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -118,11 +158,14 @@ class StaffTasksIdStruct extends BaseStruct {
         id == other.id &&
         name == other.name &&
         status == other.status &&
-        current == other.current;
+        current == other.current &&
+        deadline == other.deadline &&
+        dateEnd == other.dateEnd;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name, status, current]);
+  int get hashCode =>
+      const ListEquality().hash([id, name, status, current, deadline, dateEnd]);
 }
 
 StaffTasksIdStruct createStaffTasksIdStruct({
@@ -130,10 +173,14 @@ StaffTasksIdStruct createStaffTasksIdStruct({
   String? name,
   String? status,
   int? current,
+  String? deadline,
+  String? dateEnd,
 }) =>
     StaffTasksIdStruct(
       id: id,
       name: name,
       status: status,
       current: current,
+      deadline: deadline,
+      dateEnd: dateEnd,
     );

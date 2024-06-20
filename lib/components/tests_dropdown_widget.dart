@@ -51,6 +51,7 @@ class _TestsDropdownWidgetState extends State<TestsDropdownWidget> {
           ).toString().toString()}\"}}]}',
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultTestList?.succeeded ?? true)) {
           _model.dataListTest = TestListDataStruct.maybeFromMap(
                   (_model.apiResultTestList?.jsonBody ?? ''))!

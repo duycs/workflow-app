@@ -16,6 +16,7 @@ import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'staffs_programs_lesson_model.dart';
 export 'staffs_programs_lesson_model.dart';
@@ -64,16 +65,16 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
     _model.commentsFocusNode ??= FocusNode();
 
     animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
+      'iconOnPageLoadAnimation': AnimationInfo(
         loop: true,
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          TiltEffect(
+          RotateEffect(
             curve: Curves.easeInOut,
-            delay: 550.0.ms,
+            delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0, 0),
-            end: const Offset(0, 0.349),
+            begin: 0.0,
+            end: 1.0,
           ),
         ],
       ),
@@ -162,6 +163,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         id: _model.staffsLessionsListOne.first.id,
                         dateStart: getCurrentTimestamp.toString(),
                       );
+
                       if ((_model.apiResultUpdateStatus?.succeeded ?? true)) {
                         _model.status = 'inprogress';
                         setState(() {});
@@ -212,6 +214,7 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                         staffId: FFAppState().staffid,
                         programId: widget.programsId,
                       );
+
                       if (!(_model
                               .apiResultUpdateStaffProgramStatus?.succeeded ??
                           true)) {
@@ -2623,18 +2626,11 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Text(
-                  'Đang tải dữ liệu...',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.w500,
-                        fontStyle: FontStyle.italic,
-                      ),
-                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+                child: const FaIcon(
+                  FontAwesomeIcons.circleNotch,
+                  color: Color(0xFF4A39E9),
+                  size: 50.0,
+                ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
               ),
           ],
         ),

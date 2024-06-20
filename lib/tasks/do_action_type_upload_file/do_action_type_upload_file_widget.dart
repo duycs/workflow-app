@@ -551,6 +551,7 @@ class _DoActionTypeUploadFileWidgetState
                         accessToken: FFAppState().accessToken,
                         fileList: _model.listFileUpload,
                       );
+
                       if ((_model.apiResultUploadFile?.succeeded ?? true)) {
                         if (_model.listFileUpload.length == 1) {
                           _model.addToListFileId(FileIDDataTypeStruct(

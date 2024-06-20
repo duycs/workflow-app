@@ -92,6 +92,7 @@ class _DropdownDepartmentsListWidgetState
               }
             }()},{\"status\":{\"_eq\":\"published\"}}]}',
           );
+
           if ((_model.apiResultDatade?.succeeded ?? true)) {
             _model.data = DepartmentListDataStruct.maybeFromMap(
                     (_model.apiResultDatade?.jsonBody ?? ''))!
@@ -174,6 +175,7 @@ class _DropdownDepartmentsListWidgetState
               }
             }()},{\"status\":{\"_eq\":\"published\"}}]}',
           );
+
           if ((_model.apiResulfilter?.succeeded ?? true)) {
             _model.data = DepartmentListDataStruct.maybeFromMap(
                     (_model.apiResulfilter?.jsonBody ?? ''))!
@@ -720,27 +722,23 @@ class _DropdownDepartmentsListWidgetState
                                   ),
                                 ));
                                 setState(() {});
+                                _model.checkDepar = [];
+                                setState(() {});
                                 while (_model.loop2 <
                                     _model.data[_model.loop].staffs.length) {
-                                  _model.updateCallBackDataAtIndex(
-                                    _model.callBackData.length - 1,
-                                    (e) => e
-                                      ..updateCheckStaff(
-                                        (e) => e.add(StaffsStepStruct(
-                                          staffsId: StaffIdStruct(
-                                            id: _model.data[_model.loop]
-                                                .staffs[_model.loop2].id,
-                                            userId: UserIdStruct(
-                                              firstName: _model
-                                                  .data[_model.loop]
-                                                  .staffs[_model.loop2]
-                                                  .userId
-                                                  .firstName,
-                                            ),
-                                          ),
-                                        )),
+                                  _model.addToCheckDepar(StaffsStepStruct(
+                                    staffsId: StaffIdStruct(
+                                      id: _model.data[_model.loop]
+                                          .staffs[_model.loop2].id,
+                                      userId: UserIdStruct(
+                                        firstName: _model
+                                            .data[_model.loop]
+                                            .staffs[_model.loop2]
+                                            .userId
+                                            .firstName,
                                       ),
-                                  );
+                                    ),
+                                  ));
                                   setState(() {});
                                   _model.loop2 = _model.loop2 + 1;
                                   setState(() {});
@@ -757,6 +755,18 @@ class _DropdownDepartmentsListWidgetState
                             _model.loop = 0;
                             _model.loop2 = 0;
                             setState(() {});
+                            if (_model.callBackData.isNotEmpty) {
+                              _model.updateCallBackDataAtIndex(
+                                _model.callBackData.length - 1,
+                                (e) =>
+                                    e..checkStaff = _model.checkDepar.toList(),
+                              );
+                              setState(() {});
+                            } else {
+                              _model.callBackData = [];
+                              setState(() {});
+                            }
+
                             Navigator.pop(context);
                             await widget.callback?.call(
                               _model.callBackData,

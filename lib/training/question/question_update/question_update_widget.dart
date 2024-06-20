@@ -51,23 +51,19 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
       );
       setState(() {});
       while (_model.loop! < widget.item!.answers.length) {
-        _model.updateDataListStruct(
-          (e) => e
-            ..updateAnswers(
-              (e) => e.add(QuestionAnswersIdStruct(
-                content:
-                    (widget.item?.answers[_model.loop!])?.answersId.content,
-                correct:
-                    (widget.item?.answers[_model.loop!])?.answersId.correct,
-                status:
-                    (widget.item?.answers[_model.loop!])?.answersId.status,
-              )),
-            ),
-        );
+        _model.addToAnswerAdd(QuestionAnswersIdStruct(
+          content: (widget.item?.answers[_model.loop!])?.answersId.content,
+          correct: (widget.item?.answers[_model.loop!])?.answersId.correct,
+          status: (widget.item?.answers[_model.loop!])?.answersId.status,
+        ));
         setState(() {});
         _model.loop = _model.loop! + 1;
         setState(() {});
       }
+      _model.updateDataListStruct(
+        (e) => e..answers = _model.answerAdd.toList(),
+      );
+      setState(() {});
       _model.isLoad = true;
       setState(() {});
     });
@@ -1065,6 +1061,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                       accessToken: FFAppState().accessToken,
                                       requestDataJson: _model.dataList?.toMap(),
                                     );
+
                                     shouldSetState = true;
                                     if ((_model.apiResultUpdate?.succeeded ??
                                         true)) {

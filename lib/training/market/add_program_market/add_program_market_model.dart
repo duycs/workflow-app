@@ -141,6 +141,7 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
           filter:
               '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"version\":{\"_eq\":\"${widget.version?.toString()}\"}},{\"copyright_program_id\":{\"_eq\":\"${widget.id}\"}}]}',
         );
+
         if ((apiResultGetPreProgram.succeeded ?? true)) {
           deleteProgram = await action_blocks.tokenReload(context);
           if (!deleteProgram!) {
@@ -157,6 +158,7 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
             r'''$.data[0].id''',
           ).toString().toString(),
         );
+
         if ((apiResultDeleteProgram.succeeded ?? true)) {
         } else {
           return;

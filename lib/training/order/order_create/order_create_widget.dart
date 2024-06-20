@@ -978,6 +978,7 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                     accessToken: FFAppState().accessToken,
                                     orderId: _model.orderCreateDraft2,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model
                                           .apiResultQrCodeCreate?.succeeded ??

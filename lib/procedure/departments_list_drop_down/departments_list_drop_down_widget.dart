@@ -87,6 +87,7 @@ class _DepartmentsListDropDownWidgetState
             }
           }()},{\"status\":{\"_eq\":\"published\"}}]}',
         );
+
         if ((_model.apiResultList?.succeeded ?? true)) {
           _model.data = DepartmentListDataStruct.maybeFromMap(
                   (_model.apiResultList?.jsonBody ?? ''))!

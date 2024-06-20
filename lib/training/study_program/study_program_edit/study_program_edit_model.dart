@@ -22,6 +22,19 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
 
   int? es;
 
+  List<StudyProgramListLessionsIdStruct> listLessions = [];
+  void addToListLessions(StudyProgramListLessionsIdStruct item) =>
+      listLessions.add(item);
+  void removeFromListLessions(StudyProgramListLessionsIdStruct item) =>
+      listLessions.remove(item);
+  void removeAtIndexFromListLessions(int index) => listLessions.removeAt(index);
+  void insertAtIndexInListLessions(
+          int index, StudyProgramListLessionsIdStruct item) =>
+      listLessions.insert(index, item);
+  void updateListLessionsAtIndex(
+          int index, Function(StudyProgramListLessionsIdStruct) updateFn) =>
+      listLessions[index] = updateFn(listLessions[index]);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -113,16 +126,18 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
         .toList()
         .toList()
         .contains(lessionsItem!.id)) {
+      listLessions = [];
+      listLessions = requestData!.lessions
+          .toList()
+          .cast<StudyProgramListLessionsIdStruct>();
+      addToListLessions(StudyProgramListLessionsIdStruct(
+        lessionsId: LessonsStruct(
+          id: lessionsItem.id,
+          name: lessionsItem.name,
+        ),
+      ));
       updateRequestDataStruct(
-        (e) => e
-          ..updateLessions(
-            (e) => e.add(StudyProgramListLessionsIdStruct(
-              lessionsId: LessonsStruct(
-                id: lessionsItem.id,
-                name: lessionsItem.name,
-              ),
-            )),
-          ),
+        (e) => e..lessions = listLessions.toList(),
       );
       return true;
     } else {
@@ -138,6 +153,7 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
       file: uploadedLocalFile,
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultUploadFileimg.succeeded ?? true)) {
       uploadImageEdit = getJsonField(
         (apiResultUploadFileimg.jsonBody ?? ''),

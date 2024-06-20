@@ -159,6 +159,7 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
                                 accessToken: FFAppState().accessToken,
                                 userId: FFAppState().user.id,
                               );
+
                               shouldSetState = true;
                               if ((_model.apiResultDeleteAccount?.succeeded ??
                                   true)) {

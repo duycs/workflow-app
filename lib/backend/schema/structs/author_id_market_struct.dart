@@ -12,12 +12,14 @@ class AuthorIdMarketStruct extends BaseStruct {
     String? description,
     List<DomainsMarketStruct>? domains,
     String? avatar,
+    String? organizationId,
   })  : _id = id,
         _status = status,
         _alias = alias,
         _description = description,
         _domains = domains,
-        _avatar = avatar;
+        _avatar = avatar,
+        _organizationId = organizationId;
 
   // "id" field.
   String? _id;
@@ -65,6 +67,13 @@ class AuthorIdMarketStruct extends BaseStruct {
 
   bool hasAvatar() => _avatar != null;
 
+  // "organization_id" field.
+  String? _organizationId;
+  String get organizationId => _organizationId ?? '';
+  set organizationId(String? val) => _organizationId = val;
+
+  bool hasOrganizationId() => _organizationId != null;
+
   static AuthorIdMarketStruct fromMap(Map<String, dynamic> data) =>
       AuthorIdMarketStruct(
         id: data['id'] as String?,
@@ -76,6 +85,7 @@ class AuthorIdMarketStruct extends BaseStruct {
           DomainsMarketStruct.fromMap,
         ),
         avatar: data['avatar'] as String?,
+        organizationId: data['organization_id'] as String?,
       );
 
   static AuthorIdMarketStruct? maybeFromMap(dynamic data) => data is Map
@@ -89,6 +99,7 @@ class AuthorIdMarketStruct extends BaseStruct {
         'description': _description,
         'domains': _domains?.map((e) => e.toMap()).toList(),
         'avatar': _avatar,
+        'organization_id': _organizationId,
       }.withoutNulls;
 
   @override
@@ -116,6 +127,10 @@ class AuthorIdMarketStruct extends BaseStruct {
         ),
         'avatar': serializeParam(
           _avatar,
+          ParamType.String,
+        ),
+        'organization_id': serializeParam(
+          _organizationId,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -153,6 +168,11 @@ class AuthorIdMarketStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        organizationId: deserializeParam(
+          data['organization_id'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -167,12 +187,13 @@ class AuthorIdMarketStruct extends BaseStruct {
         alias == other.alias &&
         description == other.description &&
         listEquality.equals(domains, other.domains) &&
-        avatar == other.avatar;
+        avatar == other.avatar &&
+        organizationId == other.organizationId;
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, status, alias, description, domains, avatar]);
+      .hash([id, status, alias, description, domains, avatar, organizationId]);
 }
 
 AuthorIdMarketStruct createAuthorIdMarketStruct({
@@ -181,6 +202,7 @@ AuthorIdMarketStruct createAuthorIdMarketStruct({
   String? alias,
   String? description,
   String? avatar,
+  String? organizationId,
 }) =>
     AuthorIdMarketStruct(
       id: id,
@@ -188,4 +210,5 @@ AuthorIdMarketStruct createAuthorIdMarketStruct({
       alias: alias,
       description: description,
       avatar: avatar,
+      organizationId: organizationId,
     );

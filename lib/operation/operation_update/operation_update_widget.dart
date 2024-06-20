@@ -530,6 +530,7 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                     accessToken: FFAppState().accessToken,
                                     operationId: widget.operationUpdate?.id,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model.apiResultOperationUpdate
                                           ?.succeeded ??

@@ -79,35 +79,35 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                 (widget.data?.departments[_model.loop!])?.departmentsId.name,
           ),
         ));
+        _model.checkStaffList = [];
         setState(() {});
         while (_model.loop2 <
             widget.data!.departments[_model.loop!].checkStaff.length) {
-          _model.updateStafStepDepartmentsAtIndex(
-            _model.loop!,
-            (e) => e
-              ..updateCheckStaff(
-                (e) => e.add(StaffsStepStruct(
-                  staffsId: StaffIdStruct(
-                    id: ((widget.data?.departments[_model.loop!])
-                            ?.checkStaff[_model.loop2])
-                        ?.staffsId
-                        .id,
-                    userId: UserIdStruct(
-                      firstName: ((widget.data?.departments[_model.loop!])
-                              ?.checkStaff[_model.loop2])
-                          ?.staffsId
-                          .userId
-                          .firstName,
-                    ),
-                  ),
-                )),
+          _model.addToCheckStaffList(StaffsStepStruct(
+            staffsId: StaffIdStruct(
+              id: ((widget.data?.departments[_model.loop!])
+                      ?.checkStaff[_model.loop2])
+                  ?.staffsId
+                  .id,
+              userId: UserIdStruct(
+                firstName: ((widget.data?.departments[_model.loop!])
+                        ?.checkStaff[_model.loop2])
+                    ?.staffsId
+                    .userId
+                    .firstName,
               ),
-          );
+            ),
+          ));
           setState(() {});
           _model.loop2 = _model.loop2 + 1;
           setState(() {});
         }
         _model.loop2 = 0;
+        setState(() {});
+        _model.updateStafStepDepartmentsAtIndex(
+          _model.loop!,
+          (e) => e..checkStaff = _model.checkStaffList.toList(),
+        );
         setState(() {});
         _model.loop = _model.loop! + 1;
         setState(() {});
@@ -1916,6 +1916,11 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 return;
                               }
                               _model.staffAlias = null;
+                              _model.staffListId = [];
+                              _model.heckStaffList = [];
+                              _model.staffsStep = [];
+                              _model.departmentsStepList = [];
+                              _model.departmentsList = [];
                               setState(() {});
                               if (_model.stepsEdit!.operations.isNotEmpty) {
                                 if ((_model.staffsStepNv.isNotEmpty) ||
@@ -1956,104 +1961,82 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
 
                                 while (_model.loop! <
                                     _model.stafStepDepartments.length) {
-                                  _model.updateStaffAliasStruct(
-                                    (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentsStruct(
-                                          id: _model
-                                              .stafStepDepartments[_model.loop!]
-                                              .departmentsId
-                                              .id,
-                                          name: _model
-                                              .stafStepDepartments[_model.loop!]
-                                              .departmentsId
-                                              .name,
-                                        )),
-                                      ),
-                                  );
+                                  _model.addToDepartmentsList(DepartmentsStruct(
+                                    id: _model.stafStepDepartments[_model.loop!]
+                                        .departmentsId.id,
+                                    name: _model
+                                        .stafStepDepartments[_model.loop!]
+                                        .departmentsId
+                                        .name,
+                                  ));
                                   setState(() {});
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..updateDepartments(
-                                        (e) => e.add(DepartmentListStruct(
-                                          departmentsId: DepartmentsStruct(
-                                            id: _model
-                                                .stafStepDepartments[
-                                                    _model.loop!]
-                                                .departmentsId
-                                                .id,
-                                            name: _model
-                                                .stafStepDepartments[
-                                                    _model.loop!]
-                                                .departmentsId
-                                                .name,
-                                          ),
-                                        )),
-                                      ),
-                                  );
+                                  _model.addToDepartmentsStepList(
+                                      DepartmentListStruct(
+                                    departmentsId: DepartmentsStruct(
+                                      id: _model
+                                          .stafStepDepartments[_model.loop!]
+                                          .departmentsId
+                                          .id,
+                                      name: _model
+                                          .stafStepDepartments[_model.loop!]
+                                          .departmentsId
+                                          .name,
+                                    ),
+                                  ));
                                   setState(() {});
                                   while (_model.loop2 <
                                       _model.stafStepDepartments[_model.loop!]
                                           .checkStaff.length) {
-                                    _model.updateStepsEditStruct(
-                                      (e) => e
-                                        ..updateStaffs(
-                                          (e) => e.add(StaffsStepStruct(
-                                            staffsId: StaffIdStruct(
-                                              id: _model
-                                                  .stafStepDepartments[
-                                                      _model.loop!]
-                                                  .checkStaff[_model.loop2]
-                                                  .staffsId
-                                                  .id,
-                                              staffName: _model
-                                                  .stafStepDepartments[
-                                                      _model.loop!]
-                                                  .departmentsId
-                                                  .name,
-                                              userId: UserIdStruct(
-                                                firstName: _model
-                                                    .stafStepDepartments[
-                                                        _model.loop!]
-                                                    .checkStaff[_model.loop2]
-                                                    .staffsId
-                                                    .userId
-                                                    .firstName,
-                                              ),
-                                            ),
-                                          )),
-                                        )
-                                        ..updateDepartments(
-                                          (e) => e[_model.loop!]
-                                            ..updateCheckStaff(
-                                              (e) => e.add(StaffsStepStruct(
-                                                staffsId: StaffIdStruct(
-                                                  id: _model
-                                                      .stafStepDepartments[
-                                                          _model.loop!]
-                                                      .checkStaff[_model.loop2]
-                                                      .staffsId
-                                                      .id,
-                                                  userId: UserIdStruct(
-                                                    firstName: _model
-                                                        .stafStepDepartments[
-                                                            _model.loop!]
-                                                        .checkStaff[
-                                                            _model.loop2]
-                                                        .staffsId
-                                                        .userId
-                                                        .firstName,
-                                                  ),
-                                                ),
-                                              )),
-                                            ),
+                                    _model.addToStaffsStep(StaffsStepStruct(
+                                      staffsId: StaffIdStruct(
+                                        id: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .checkStaff[_model.loop2]
+                                            .staffsId
+                                            .id,
+                                        staffName: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .departmentsId
+                                            .name,
+                                        userId: UserIdStruct(
+                                          firstName: _model
+                                              .stafStepDepartments[_model.loop!]
+                                              .checkStaff[_model.loop2]
+                                              .staffsId
+                                              .userId
+                                              .firstName,
                                         ),
-                                    );
+                                      ),
+                                    ));
+                                    _model.addToHeckStaffList(StaffsStepStruct(
+                                      staffsId: StaffIdStruct(
+                                        id: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .checkStaff[_model.loop2]
+                                            .staffsId
+                                            .id,
+                                        userId: UserIdStruct(
+                                          firstName: _model
+                                              .stafStepDepartments[_model.loop!]
+                                              .checkStaff[_model.loop2]
+                                              .staffsId
+                                              .userId
+                                              .firstName,
+                                        ),
+                                      ),
+                                    ));
                                     setState(() {});
                                     _model.loop2 = _model.loop2 + 1;
                                     setState(() {});
                                   }
                                   _model.loop2 = 0;
+                                  setState(() {});
+                                  _model.updateDepartmentsStepListAtIndex(
+                                    _model.loop!,
+                                    (e) => e
+                                      ..checkStaff =
+                                          _model.heckStaffList.toList(),
+                                  );
                                   setState(() {});
                                   _model.loop = _model.loop! + 1;
                                   setState(() {});
@@ -2063,45 +2046,43 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                 setState(() {});
                                 while (
                                     _model.loop! < _model.staffsStepNv.length) {
-                                  _model.updateStepsEditStruct(
-                                    (e) => e
-                                      ..updateStaffs(
-                                        (e) => e.add(StaffsStepStruct(
-                                          staffsId: StaffIdStruct(
-                                            id: _model
-                                                .staffsStepNv[_model.loop!]
-                                                .staffsId
-                                                .id,
-                                            userId: UserIdStruct(
-                                              firstName: _model
-                                                  .staffsStepNv[_model.loop!]
-                                                  .staffsId
-                                                  .userId
-                                                  .firstName,
-                                            ),
-                                          ),
-                                        )),
+                                  _model.addToHeckStaffList(StaffsStepStruct(
+                                    staffsId: StaffIdStruct(
+                                      id: _model.staffsStepNv[_model.loop!]
+                                          .staffsId.id,
+                                      userId: UserIdStruct(
+                                        firstName: _model
+                                            .staffsStepNv[_model.loop!]
+                                            .staffsId
+                                            .userId
+                                            .firstName,
                                       ),
-                                  );
-                                  _model.updateStaffAliasStruct(
-                                    (e) => e
-                                      ..updateStaffs(
-                                        (e) => e.add(StaffIdStruct(
-                                          id: _model.staffsStepNv[_model.loop!]
-                                              .staffsId.id,
-                                          staffName: _model
-                                              .staffsStepNv[_model.loop!]
-                                              .staffsId
-                                              .userId
-                                              .firstName,
-                                        )),
-                                      ),
-                                  );
+                                    ),
+                                  ));
+                                  _model.addToStaffListId(StaffIdStruct(
+                                    id: _model
+                                        .staffsStepNv[_model.loop!].staffsId.id,
+                                    staffName: _model.staffsStepNv[_model.loop!]
+                                        .staffsId.userId.firstName,
+                                  ));
                                   setState(() {});
                                   _model.loop = _model.loop! + 1;
                                   setState(() {});
                                 }
                                 _model.loop = 0;
+                                setState(() {});
+                                _model.updateStaffAliasStruct(
+                                  (e) => e
+                                    ..departments =
+                                        _model.departmentsList.toList()
+                                    ..staffs = _model.staffListId.toList(),
+                                );
+                                _model.updateStepsEditStruct(
+                                  (e) => e
+                                    ..departments =
+                                        _model.departmentsStepList.toList()
+                                    ..staffs = _model.heckStaffList.toList(),
+                                );
                                 setState(() {});
                                 while (_model.loop! <
                                     _model.stepsEdit!.staffs.length) {
@@ -2172,64 +2153,61 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   _model.updateStepsEditStruct(
                                     (e) => e..staffs = [],
                                   );
+                                  _model.heckStaffList = [];
                                   setState(() {});
                                   while (_model.loop! <
                                       _model.staffsStepNv.length) {
-                                    _model.updateStepsEditStruct(
-                                      (e) => e
-                                        ..updateStaffs(
-                                          (e) => e.add(StaffsStepStruct(
-                                            staffsId: StaffIdStruct(
-                                              id: _model
-                                                  .staffsStepNv[_model.loop!]
-                                                  .staffsId
-                                                  .id,
-                                              userId: UserIdStruct(
-                                                firstName: _model
-                                                    .staffsStepNv[_model.loop!]
-                                                    .staffsId
-                                                    .userId
-                                                    .firstName,
-                                              ),
-                                            ),
-                                          )),
+                                    _model.addToHeckStaffList(StaffsStepStruct(
+                                      staffsId: StaffIdStruct(
+                                        id: _model.staffsStepNv[_model.loop!]
+                                            .staffsId.id,
+                                        userId: UserIdStruct(
+                                          firstName: _model
+                                              .staffsStepNv[_model.loop!]
+                                              .staffsId
+                                              .userId
+                                              .firstName,
                                         ),
-                                    );
+                                      ),
+                                    ));
                                     setState(() {});
                                     _model.loop = _model.loop! + 1;
                                     setState(() {});
                                   }
                                   _model.updateStepsEditStruct(
-                                    (e) => e..departments = [],
+                                    (e) => e
+                                      ..departments = []
+                                      ..staffs = _model.heckStaffList.toList(),
                                   );
                                   _model.loop = 0;
+                                  _model.departmentsStepList = [];
                                   setState(() {});
                                   while (_model.loop! <
                                       _model.stafStepDepartments.length) {
-                                    _model.updateStepsEditStruct(
-                                      (e) => e
-                                        ..updateDepartments(
-                                          (e) => e.add(DepartmentListStruct(
-                                            departmentsId: DepartmentsStruct(
-                                              id: _model
-                                                  .stafStepDepartments[
-                                                      _model.loop!]
-                                                  .departmentsId
-                                                  .id,
-                                              name: _model
-                                                  .stafStepDepartments[
-                                                      _model.loop!]
-                                                  .departmentsId
-                                                  .name,
-                                            ),
-                                          )),
-                                        ),
-                                    );
+                                    _model.addToDepartmentsStepList(
+                                        DepartmentListStruct(
+                                      departmentsId: DepartmentsStruct(
+                                        id: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .departmentsId
+                                            .id,
+                                        name: _model
+                                            .stafStepDepartments[_model.loop!]
+                                            .departmentsId
+                                            .name,
+                                      ),
+                                    ));
                                     setState(() {});
                                     _model.loop = _model.loop! + 1;
                                     setState(() {});
                                   }
                                   _model.loop = 0;
+                                  setState(() {});
+                                  _model.updateStepsEditStruct(
+                                    (e) => e
+                                      ..departments =
+                                          _model.departmentsStepList.toList(),
+                                  );
                                   setState(() {});
                                   _model.updateStepsEditStruct(
                                     (e) => e

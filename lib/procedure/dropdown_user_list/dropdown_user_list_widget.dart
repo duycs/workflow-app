@@ -75,6 +75,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
               }
             }(),
           );
+
           if ((_model.apiResultList?.succeeded ?? true)) {
             _model.staffList = StaffListDataStruct.maybeFromMap(
                     (_model.apiResultList?.jsonBody ?? ''))!
@@ -142,6 +143,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
               }
             }(),
           );
+
           if ((_model.apiResultListData?.succeeded ?? true)) {
             _model.staffList = StaffListDataStruct.maybeFromMap(
                     (_model.apiResultListData?.jsonBody ?? ''))!

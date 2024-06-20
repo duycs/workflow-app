@@ -108,6 +108,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
+
     if ((apiResultist.succeeded ?? true)) {
       branchList =
           BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!
@@ -149,6 +150,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       programsList = StudyProgramListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -196,6 +198,7 @@ class DepartmentCreateModel extends FlutterFlowModel<DepartmentCreateWidget> {
             ).toString().toString(),
       programsIdJson: programIds.map((e) => e.toMap()).toList(),
     );
+
     if ((apiResultPostDepartment.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

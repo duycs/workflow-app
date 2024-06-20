@@ -48,6 +48,7 @@ class _ProcessTemplateDetailWidgetState
           accessToken: FFAppState().accessToken,
           id: widget.id,
         );
+
         if ((_model.apiResultm7u?.succeeded ?? true)) {
           _model.data = WorkflowsStepCreateStruct(
             name: getJsonField(
@@ -166,6 +167,7 @@ class _ProcessTemplateDetailWidgetState
                           accessToken: FFAppState().accessToken,
                           workflowId: widget.id,
                         );
+
                         if ((_model.apiResulthxs?.succeeded ?? true)) {
                           context.pushNamed(
                             'ProcessTemplateList',

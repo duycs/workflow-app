@@ -73,6 +73,7 @@ class ProcedureListModel extends FlutterFlowModel<ProcedureListWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}]}',
       );
+
       if ((apiResultListSearchData.succeeded ?? true)) {
         dataList = WorkflowsListDataStruct.maybeFromMap(
                 (apiResultListSearchData.jsonBody ?? ''))!

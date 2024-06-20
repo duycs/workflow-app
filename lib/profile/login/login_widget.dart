@@ -1,11 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -44,6 +46,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             await AuthenGroup.refreshTokenCall.call(
           refreshToken: _model.checkWfToken,
         );
+
         if ((_model.apiResultRefreshTokenLogin?.succeeded ?? true)) {
           FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
                   (_model.apiResultRefreshTokenLogin?.jsonBody ?? ''))!
@@ -78,6 +81,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             accessToken: FFAppState().accessToken,
             userId: FFAppState().user.id,
           );
+
           if ((_model.apiResultGetStaffIdReWfLogin?.succeeded ?? true)) {
             FFAppState().staffid = getJsonField(
               (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
@@ -99,12 +103,17 @@ class _LoginWidgetState extends State<LoginWidget> {
               (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
               r'''$.organization''',
             );
+            FFAppState().Author = getJsonField(
+              (_model.apiResultGetStaffIdReWfLogin?.jsonBody ?? ''),
+              r'''$.organization.authors[0]''',
+            );
             setState(() {});
+
+            context.pushNamed('TaskList');
+
             await actions.checkNofiLoad(
               context,
             );
-
-            context.pushNamed('TaskList');
           } else {
             return;
           }
@@ -116,6 +125,13 @@ class _LoginWidgetState extends State<LoginWidget> {
 
         return;
       } else {
+        _model.checkWfEmail = await actions.getReTokenUser(
+          'wf_email',
+        );
+        if (_model.checkWfEmail != null && _model.checkWfEmail != '') {
+          _model.showSTH = true;
+          setState(() {});
+        }
         _model.isLoad = true;
         setState(() {});
         return;
@@ -645,61 +661,419 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                 ],
                                               ),
                                             ),
-                                            Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 16.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (_model.formKey
-                                                                .currentState ==
-                                                            null ||
-                                                        !_model.formKey
-                                                            .currentState!
-                                                            .validate()) {
-                                                      return;
-                                                    }
-                                                    await _model.login(context);
-                                                    setState(() {});
-                                                  },
-                                                  text: 'Đăng nhập',
-                                                  options: FFButtonOptions(
-                                                    width: 230.0,
-                                                    height: 52.0,
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          color: Colors.white,
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 16.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    5.0,
+                                                                    0.0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            if (_model.formKey
+                                                                        .currentState ==
+                                                                    null ||
+                                                                !_model.formKey
+                                                                    .currentState!
+                                                                    .validate()) {
+                                                              return;
+                                                            }
+                                                            await _model
+                                                                .login(context);
+                                                            setState(() {});
+                                                          },
+                                                          text: 'Đăng nhập',
+                                                          options:
+                                                              FFButtonOptions(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 52.0,
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
+                                                          ),
                                                         ),
-                                                    elevation: 3.0,
-                                                    borderSide: const BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1.0,
+                                                      ),
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            40.0),
                                                   ),
-                                                ),
+                                                  if ((_model.showSTH ==
+                                                          true) &&
+                                                      (FFAppState()
+                                                              .biometricLogin ==
+                                                          true))
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child:
+                                                            FlutterFlowIconButton(
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .noColor,
+                                                          borderRadius: 50.0,
+                                                          borderWidth: 1.0,
+                                                          buttonSize: 52.0,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          icon: Icon(
+                                                            Icons.fingerprint,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          onPressed: () async {
+                                                            var shouldSetState =
+                                                                false;
+                                                            final localAuth =
+                                                                LocalAuthentication();
+                                                            bool
+                                                                isBiometricSupported =
+                                                                await localAuth
+                                                                    .isDeviceSupported();
+                                                            bool
+                                                                canCheckBiometrics =
+                                                                await localAuth
+                                                                    .canCheckBiometrics;
+                                                            if (isBiometricSupported &&
+                                                                canCheckBiometrics) {
+                                                              _model.biometricVerificationLogin = await localAuth.authenticate(
+                                                                  localizedReason:
+                                                                      ' ',
+                                                                  options: const AuthenticationOptions(
+                                                                      biometricOnly:
+                                                                          true));
+                                                              setState(() {});
+                                                            }
+
+                                                            shouldSetState =
+                                                                true;
+                                                            if (_model
+                                                                .biometricVerificationLogin) {
+                                                              FFAppState()
+                                                                  .idCheck = '';
+                                                              FFAppState()
+                                                                  .alertCheck = '';
+                                                              setState(() {});
+                                                              _model.checkWfEmailBV =
+                                                                  await actions
+                                                                      .getReTokenUser(
+                                                                'wf_email',
+                                                              );
+                                                              shouldSetState =
+                                                                  true;
+                                                              if (_model.checkWfEmailBV !=
+                                                                      null &&
+                                                                  _model.checkWfEmailBV !=
+                                                                      '') {
+                                                                _model.sshkeyPublicKeyLogin =
+                                                                    actions
+                                                                        .sshkey(
+                                                                  getJsonField(
+                                                                    FFAppState()
+                                                                        .staffLogin,
+                                                                    r'''$.email''',
+                                                                  ).toString(),
+                                                                  '',
+                                                                  true,
+                                                                );
+                                                                shouldSetState =
+                                                                    true;
+                                                                _model.apiResultvlloginSTH1 =
+                                                                    await STHLoginAcountsGroup
+                                                                        .loginBiometricVerificationCall
+                                                                        .call(
+                                                                  dataJson: <String,
+                                                                      String>{
+                                                                    'email':
+                                                                        '${_model.checkWfEmailBV}',
+                                                                    'signature':
+                                                                        '${_model.sshkeyPublicKeyLogin}',
+                                                                  },
+                                                                );
+
+                                                                shouldSetState =
+                                                                    true;
+                                                                if ((_model
+                                                                        .apiResultvlloginSTH1
+                                                                        ?.succeeded ??
+                                                                    true)) {
+                                                                  if (getJsonField(
+                                                                        (_model.apiResultvlloginSTH1?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.errors''',
+                                                                      ) !=
+                                                                      null) {
+                                                                    ScaffoldMessenger.of(
+                                                                            context)
+                                                                        .showSnackBar(
+                                                                      SnackBar(
+                                                                        content:
+                                                                            Text(
+                                                                          'Đăng nhập bằng vân tay thất bại!',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                          ),
+                                                                        ),
+                                                                        duration:
+                                                                            const Duration(milliseconds: 4000),
+                                                                        backgroundColor:
+                                                                            FlutterFlowTheme.of(context).error,
+                                                                      ),
+                                                                    );
+                                                                    if (shouldSetState) {
+                                                                      setState(
+                                                                          () {});
+                                                                    }
+                                                                    return;
+                                                                  } else {
+                                                                    await actions
+                                                                        .saveInfoUser(
+                                                                      'wf_token',
+                                                                      getJsonField(
+                                                                        (_model.apiResultvlloginSTH1?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.data.refresh_token''',
+                                                                      ).toString(),
+                                                                    );
+                                                                    _model
+                                                                        .loginData = LoginResourceDataStruct.maybeFromMap((_model
+                                                                            .apiResultvlloginSTH1
+                                                                            ?.jsonBody ??
+                                                                        ''));
+                                                                    setState(
+                                                                        () {});
+                                                                    FFAppState()
+                                                                            .accessToken =
+                                                                        _model
+                                                                            .loginData!
+                                                                            .data
+                                                                            .accessToken;
+                                                                    FFAppState()
+                                                                            .refreshToken =
+                                                                        _model
+                                                                            .loginData!
+                                                                            .data
+                                                                            .refreshToken;
+                                                                    FFAppState()
+                                                                            .expires =
+                                                                        _model
+                                                                            .loginData!
+                                                                            .data
+                                                                            .expires;
+                                                                    FFAppState()
+                                                                        .dataTimeStartToken = (DateTime.now().microsecondsSinceEpoch /
+                                                                                1000)
+                                                                            .round() +
+                                                                        _model
+                                                                            .loginData!
+                                                                            .data
+                                                                            .expires;
+                                                                    setState(
+                                                                        () {});
+                                                                    await _model
+                                                                        .getUserMe(
+                                                                            context);
+                                                                    setState(
+                                                                        () {});
+                                                                    _model.apiResultGetStaffIdSTH =
+                                                                        await UserGroup
+                                                                            .getStaffIdCall
+                                                                            .call(
+                                                                      accessToken:
+                                                                          FFAppState()
+                                                                              .accessToken,
+                                                                      userId: FFAppState()
+                                                                          .user
+                                                                          .id,
+                                                                    );
+
+                                                                    shouldSetState =
+                                                                        true;
+                                                                    if ((_model
+                                                                            .apiResultGetStaffIdSTH
+                                                                            ?.succeeded ??
+                                                                        true)) {
+                                                                      FFAppState()
+                                                                              .staffid =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.staff.id''',
+                                                                      ).toString();
+                                                                      FFAppState()
+                                                                              .staffLogin =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.staff''',
+                                                                      );
+                                                                      FFAppState()
+                                                                              .staffDepartment =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.department''',
+                                                                      );
+                                                                      FFAppState()
+                                                                              .staffBranch =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.branch''',
+                                                                      );
+                                                                      FFAppState()
+                                                                              .staffOrganization =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.organization''',
+                                                                      );
+                                                                      FFAppState()
+                                                                              .Author =
+                                                                          getJsonField(
+                                                                        (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                            ''),
+                                                                        r'''$.organization.authors[0]''',
+                                                                      );
+                                                                      setState(
+                                                                          () {});
+
+                                                                      context.pushNamed(
+                                                                          'TaskList');
+
+                                                                      await actions
+                                                                          .notifiAddServer(
+                                                                        getJsonField(
+                                                                          (_model.apiResultGetStaffIdSTH?.jsonBody ??
+                                                                              ''),
+                                                                          r'''$.staff.id''',
+                                                                        ).toString(),
+                                                                      );
+                                                                    } else {
+                                                                      if (shouldSetState) {
+                                                                        setState(
+                                                                            () {});
+                                                                      }
+                                                                      return;
+                                                                    }
+                                                                  }
+                                                                } else {
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                    SnackBar(
+                                                                      content:
+                                                                          Text(
+                                                                        'Đăng nhập bằng vân tay thất bại!',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                        ),
+                                                                      ),
+                                                                      duration: const Duration(
+                                                                          milliseconds:
+                                                                              4000),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .error,
+                                                                    ),
+                                                                  );
+                                                                  if (shouldSetState) {
+                                                                    setState(
+                                                                        () {});
+                                                                  }
+                                                                  return;
+                                                                }
+                                                              } else {
+                                                                if (shouldSetState) {
+                                                                  setState(
+                                                                      () {});
+                                                                }
+                                                                return;
+                                                              }
+                                                            } else {
+                                                              if (shouldSetState) {
+                                                                setState(() {});
+                                                              }
+                                                              return;
+                                                            }
+
+                                                            if (shouldSetState) {
+                                                              setState(() {});
+                                                            }
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                ].divide(const SizedBox(width: 8.0)),
                                               ),
                                             ),
                                           ],

@@ -50,6 +50,7 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
         ).toString().toString()}\"}}}]}',
         sort: '-number',
       );
+
       if ((apiResultGetTaskList.succeeded ?? true)) {
         list = TaskListDataStruct.maybeFromMap(
                 (apiResultGetTaskList.jsonBody ?? ''))!

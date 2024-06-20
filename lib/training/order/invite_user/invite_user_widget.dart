@@ -650,7 +650,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                             child: FlutterFlowDropDown<String>(
                               multiSelectController:
                                   _model.dropDownValueController2 ??=
-                                      FormFieldController<List<String>>(null),
+                                      FormListFieldController<String>(null),
                               options: List<String>.from(_model.getStaffList
                                   .map((e) => e.id)
                                   .toList()),
@@ -938,6 +938,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         staffId: _model
                                             .selectedStaffList[_model.loop!].id,
                                       );
+
                                       shouldSetState = true;
                                       if ((_model.apiResultInvite1?.succeeded ??
                                           true)) {
@@ -1056,6 +1057,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                         staffId: _model
                                             .selectedStaffList[_model.loop!].id,
                                       );
+
                                       shouldSetState = true;
                                       if ((_model.apiResultInvite0?.succeeded ??
                                           true)) {

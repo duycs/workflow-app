@@ -530,6 +530,7 @@ class _DetailActionTypeUploadFileWidgetState
                                 accessToken: FFAppState().accessToken,
                                 fileList: _model.listFileUpload,
                               );
+
                               if ((_model.apiResultUploadFile?.succeeded ??
                                   true)) {
                                 if (_model.listFileUpload.length == 1) {

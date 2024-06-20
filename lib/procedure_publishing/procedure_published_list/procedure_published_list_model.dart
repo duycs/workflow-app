@@ -106,6 +106,7 @@ class ProcedurePublishedListModel
             return DateTime.parse(var1).add(const Duration(days: 1)).toString();
           }(dateEnd)}\"}}}}' : ' '}${(searchUserCreated != '') && (searchUserCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$searchUserCreated\"}}}}}' : ' '}]}',
       );
+
       if ((apiResultProcedurePublishedList2.succeeded ?? true)) {
         dataList = ProcedurePublishedListDataStruct.maybeFromMap(
                 (apiResultProcedurePublishedList2.jsonBody ?? ''))!

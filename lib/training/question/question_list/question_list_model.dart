@@ -68,6 +68,7 @@ class QuestionListModel extends FlutterFlowModel<QuestionListWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}'}]}',
       );
+
       if ((apiResultQuestionListSearch.succeeded ?? true)) {
         dataList = (getJsonField(
           (apiResultQuestionListSearch.jsonBody ?? ''),

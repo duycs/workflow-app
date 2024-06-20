@@ -52,6 +52,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
       accessToken: FFAppState().accessToken,
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget.idLesson}\"}}]}',
     );
+
     if ((apiResultGetCommment.succeeded ?? true)) {
       list = getJsonField(
         (apiResultGetCommment.jsonBody ?? ''),
@@ -92,6 +93,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
       accessToken: FFAppState().accessToken,
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget.idLesson}\"}}]}',
     );
+
     if ((apiResultGetDetail.succeeded ?? true)) {
       listDetail = getJsonField(
         (apiResultGetDetail.jsonBody ?? ''),
@@ -132,6 +134,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
         r'''$.id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultHeart.succeeded ?? true)) {
       listStaffIdHeart = getJsonField(
         (apiResultHeart.jsonBody ?? ''),

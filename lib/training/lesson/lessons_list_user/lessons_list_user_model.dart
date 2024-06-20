@@ -73,6 +73,7 @@ class LessonsListUserModel extends FlutterFlowModel<LessonsListUserWidget> {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
         }(dateEndStartSearch)}\"}}}' : ' '}]}',
     );
+
     if ((apiResultLinkLessonStaff.succeeded ?? true)) {
       listLessonStaff = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultLinkLessonStaff.jsonBody ?? ''))!

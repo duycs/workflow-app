@@ -19,10 +19,18 @@ export 'study_program_create_model.dart';
 class StudyProgramCreateWidget extends StatefulWidget {
   const StudyProgramCreateWidget({
     super.key,
-    required this.callBackList,
+    this.callBackList,
+    this.addcreate,
+    this.itemLesstion,
+    this.programsItem,
+    this.itemListLesstion,
   });
 
   final Future Function()? callBackList;
+  final List<StudyProgramListLessionsIdStruct>? addcreate;
+  final LessonsStruct? itemLesstion;
+  final dynamic programsItem;
+  final StudyProgramListStruct? itemListLesstion;
 
   @override
   State<StudyProgramCreateWidget> createState() =>
@@ -47,15 +55,61 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.requestData = StudyProgramListStruct();
       setState(() {});
+      if (widget.itemListLesstion != null) {
+        _model.requestData = widget.itemListLesstion;
+        setState(() {});
+      }
+      if (widget.itemLesstion != null) {
+        _model.itemLesstion123 = await _model.lessionAddList(
+          context,
+          itemLesstion: widget.itemLesstion,
+        );
+        if (_model.itemLesstion123 == true) {
+          setState(() {});
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Bài học đã được chọn',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).error,
+            ),
+          );
+        }
+      }
     });
 
-    _model.programNameTextController ??= TextEditingController();
+    _model.programNameTextController ??= TextEditingController(
+        text: widget.programsItem != null
+            ? getJsonField(
+                widget.programsItem,
+                r'''$.name''',
+              ).toString().toString()
+            : '');
     _model.programNameFocusNode ??= FocusNode();
 
-    _model.programDescriptionTextController ??= TextEditingController();
+    _model.programDescriptionTextController ??= TextEditingController(
+        text: widget.programsItem != null
+            ? getJsonField(
+                widget.programsItem,
+                r'''$.descriptions''',
+              ).toString().toString()
+            : '');
     _model.programDescriptionFocusNode ??= FocusNode();
 
-    _model.estimateInDayTextController ??= TextEditingController();
+    _model.estimateInDayTextController ??= TextEditingController(
+        text: widget.programsItem != null
+            ? (widget.programsItem != null
+                ? getJsonField(
+                    widget.programsItem,
+                    r'''$.day''',
+                  ).toString().toString()
+                : '')
+            : '');
     _model.estimateInDayFocusNode ??= FocusNode();
   }
 
@@ -635,42 +689,134 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 14.0, 0.0, 0.0),
-                                child: wrapWithModel(
-                                  model: _model.lessionsDropdownModel,
-                                  updateCallback: () => setState(() {}),
-                                  updateOnChange: true,
-                                  child: LessionsDropdownWidget(
-                                    lessionsCallBack: (lessionsId) async {
-                                      _model.lessionsAddListCheck =
-                                          await _model.lessionsAddList(
-                                        context,
-                                        lessionsItem: lessionsId,
-                                      );
-                                      if (_model.lessionsAddListCheck == true) {
-                                        setState(() {});
-                                      } else {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Bài học đã có!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
+                                    0.0, 6.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: wrapWithModel(
+                                        model: _model.lessionsDropdownModel,
+                                        updateCallback: () => setState(() {}),
+                                        updateOnChange: true,
+                                        child: LessionsDropdownWidget(
+                                          lessionsCallBack: (lessionsId) async {
+                                            _model.lessionsAddListCheck =
+                                                await _model.lessionsAddList(
+                                              context,
+                                              lessionsItem: lessionsId,
                                             );
+                                            if (_model.lessionsAddListCheck ==
+                                                true) {
+                                              setState(() {});
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title:
+                                                        const Text('Bài học đã có!'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: const Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        _model.listItemLession =
+                                            _model.requestData;
+                                        setState(() {});
+
+                                        context.pushNamed(
+                                          'LessonCreate',
+                                          queryParameters: {
+                                            'checkScroll': serializeParam(
+                                              '1',
+                                              ParamType.String,
+                                            ),
+                                            'checkPage': serializeParam(
+                                              _model.checkPage,
+                                              ParamType.String,
+                                            ),
+                                            'programsItem': serializeParam(
+                                              <String, dynamic>{
+                                                'name': _model
+                                                    .programNameTextController
+                                                    .text,
+                                                'descriptions': _model
+                                                    .programDescriptionTextController
+                                                    .text,
+                                                'day': _model
+                                                    .estimateInDayTextController
+                                                    .text,
+                                              },
+                                              ParamType.JSON,
+                                            ),
+                                            'listItemLession': serializeParam(
+                                              _model.requestData,
+                                              ParamType.DataStruct,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
                                           },
                                         );
-                                      }
-
-                                      setState(() {});
-                                    },
-                                  ),
+                                      },
+                                      text: 'Bài học',
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        size: 15.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
                               ),
                               Builder(
@@ -781,7 +927,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 24.0),
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       var shouldSetState = false;
@@ -812,6 +958,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               requestDataJson: _model.requestData?.toMap(),
                               accessToken: FFAppState().accessToken,
                             );
+
                             shouldSetState = true;
                             if ((_model.apiResulti4j?.succeeded ?? true)) {
                               Navigator.pop(context);
@@ -898,6 +1045,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                               'status': 'published',
                             },
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultbang?.succeeded ?? true)) {
                             Navigator.pop(context);
@@ -943,7 +1091,7 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
 
                       if (shouldSetState) setState(() {});
                     },
-                    text: 'Lưu',
+                    text: 'Lưu ',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 40.0,

@@ -580,6 +580,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                     r'''$.pay_code''',
                                   ).toString(),
                                 );
+
                                 shouldSetState = true;
                                 if ((_model.apiResultCheckTransfer?.succeeded ??
                                     true)) {

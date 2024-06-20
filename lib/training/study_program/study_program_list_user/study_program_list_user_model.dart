@@ -73,13 +73,14 @@ class StudyProgramListUserModel
       filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
-        FFAppState().staffLogin,
-        r'''$.id''',
-      ).toString().toString()}\"}}}${(dateStart != '') && (dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noData') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noData') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
+      ).toString().toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${widget.checkStatusPrograms != null && widget.checkStatusPrograms != '' ? widget.staffId : getJsonField(
+          FFAppState().staffLogin,
+          r'''$.id''',
+        ).toString().toString()}\"}}}${(dateStart != '') && (dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noData') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noData') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${textFieldNameSearchTextController.text != '' ? textFieldNameSearchTextController.text : ' '}${textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(lessonName != '') && (lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(lessonName != '') && (lessonName != 'noData') ? lessonName : ' '}${(lessonName != '') && (lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${textFieldNameSearchTextController.text != '' ? textFieldNameSearchTextController.text : ' '}${textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(lessonName != '') && (lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(lessonName != '') && (lessonName != 'noData') ? lessonName : ' '}${(lessonName != '') && (lessonName != 'noData') ? '\"}}}}}' : ' '}${widget.checkStatusPrograms != null && widget.checkStatusPrograms != '' ? ',{\"status\":{\"_eq\":\"${widget.checkStatusPrograms}\"}}' : ''}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       staffsProgramsList = StaffsProgramsListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!

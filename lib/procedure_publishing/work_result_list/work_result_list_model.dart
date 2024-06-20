@@ -121,6 +121,7 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
             return DateTime.parse(var1).add(const Duration(days: 1)).toString();
           }(dateEnd)}\"}}}}' : ' '}${(userCreated != '') && (userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"user_created\":{\"first_name\":{\"_icontains\":\"$userCreated\"}}}}}' : ' '}]}',
       );
+
       if ((apiResultProcedurePublishedList2.succeeded ?? true)) {
         dataList = ProcedurePublishedListDataStruct.maybeFromMap(
                 (apiResultProcedurePublishedList2.jsonBody ?? ''))!

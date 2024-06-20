@@ -57,6 +57,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
             r'''$.branch_id''',
           ).toString().toString()}\"}}}]}',
         );
+
         if ((_model.apiResultListDeparment?.succeeded ?? true)) {
           _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
                   (_model.apiResultListDeparment?.jsonBody ?? ''))!
@@ -75,6 +76,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
               r'''$.organization_id''',
             ).toString().toString()}\"}}}]}',
           );
+
           if ((_model.apiResultGetListBranch?.succeeded ?? true)) {
             _model.branchList = BranchListDataStruct.maybeFromMap(
                     (_model.apiResultGetListBranch?.jsonBody ?? ''))!
@@ -88,6 +90,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
             _model.apiResultgetListUser = await UserGroup.getListUserCall.call(
               accessToken: FFAppState().accessToken,
             );
+
             if ((_model.apiResultgetListUser?.succeeded ?? true)) {
               _model.listEmail = ListUserStruct.maybeFromMap(
                       (_model.apiResultgetListUser?.jsonBody ?? ''))!
@@ -1435,6 +1438,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                             filter:
                                                 '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
                                           );
+
                                           if ((_model.apiResultListDeparment2
                                                   ?.succeeded ??
                                               true)) {
@@ -1879,6 +1883,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                               }(),
                             },
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultCreateAdminBranch?.succeeded ??
                               true)) {
@@ -1972,6 +1977,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                             }(),
                           },
                         );
+
                         shouldSetState = true;
                         if ((_model.apiResultCreate?.succeeded ?? true)) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -2033,6 +2039,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                               accessToken: FFAppState().accessToken,
                               file: _model.uploadedLocalFile,
                             );
+
                             shouldSetState = true;
                             if ((_model.apiResultuploadImage?.succeeded ??
                                 true)) {
@@ -2165,6 +2172,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                           }(),
                                         },
                                       );
+
                                       shouldSetState = true;
                                       if ((_model.apiResultCreateB?.succeeded ??
                                           true)) {
@@ -2304,6 +2312,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                         }(),
                                       },
                                     );
+
                                     shouldSetState = true;
                                     if ((_model.apiResultCreateO?.succeeded ??
                                         true)) {

@@ -101,6 +101,7 @@ class OperationListModel extends FlutterFlowModel<OperationListWidget> {
                 return DateTime.parse(var1).add(const Duration(days: 1)).toString();
               }(searchDateEnd)}\"}}' : ' '}]}',
       );
+
       if ((apiResultOperations.succeeded ?? true)) {
         operationList = OperationsListDataStruct.maybeFromMap(
                 (apiResultOperations.jsonBody ?? ''))!

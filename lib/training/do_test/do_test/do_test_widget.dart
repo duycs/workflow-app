@@ -63,6 +63,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
           testsId: widget.testId,
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultGetLessionTest?.succeeded ?? true)) {
           _model.list = TestListStruct.maybeFromMap(getJsonField(
             (_model.apiResultGetLessionTest?.jsonBody ?? ''),
@@ -348,6 +349,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                       accessToken: FFAppState()
                                                           .accessToken,
                                                     );
+
                                                     shouldSetState = true;
                                                     if ((_model
                                                             .apiResultCreateStaffTest1
@@ -424,6 +426,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   e.toMap())
                                                               .toList(),
                                                         );
+
                                                         shouldSetState = true;
                                                         if ((_model
                                                                 .apiResultCreateStaffAnswer1
@@ -447,6 +450,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               staffTestId:
                                                                   _model.testId,
                                                             );
+
                                                             shouldSetState =
                                                                 true;
                                                             if ((_model
@@ -938,19 +942,19 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                             _model.checkTrue =
                                                                                 dataQuestionItem.answersId.correct;
                                                                             setState(() {});
+                                                                            _model.addToAnswerToList(AnswersListStruct(
+                                                                              answersId: TestAnswersIdStruct(
+                                                                                id: _model.checkboxAnswer,
+                                                                              ),
+                                                                            ));
+                                                                            setState(() {});
                                                                             _model.updateRequestDataAtIndex(
                                                                               listQuestionIndex,
                                                                               (e) => e
                                                                                 ..correct = _model.checkTrue
                                                                                 ..answerType = listQuestionItem.questionsId.answerType
                                                                                 ..questionId = listQuestionItem.questionsId.id
-                                                                                ..updateAnswers(
-                                                                                  (e) => e.add(AnswersListStruct(
-                                                                                    answersId: TestAnswersIdStruct(
-                                                                                      id: _model.checkboxAnswer,
-                                                                                    ),
-                                                                                  )),
-                                                                                ),
+                                                                                ..answers = _model.answerToList.toList(),
                                                                             );
                                                                             setState(() {});
                                                                             _model.checkboxAnswer =
@@ -1342,6 +1346,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   },
                                   accessToken: FFAppState().accessToken,
                                 );
+
                                 shouldSetState = true;
                                 if ((_model
                                         .apiResultCreateStaffTest?.succeeded ??
@@ -1401,6 +1406,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           .map((e) => e.toMap())
                                           .toList(),
                                     );
+
                                     shouldSetState = true;
                                     if ((_model.apiResultCreateStaffAnswer
                                             ?.succeeded ??
@@ -1417,6 +1423,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           accessToken: FFAppState().accessToken,
                                           staffTestId: _model.testId,
                                         );
+
                                         shouldSetState = true;
                                         if ((_model.apiResultCaculatorScores
                                                 ?.succeeded ??

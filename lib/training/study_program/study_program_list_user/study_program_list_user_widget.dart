@@ -18,7 +18,14 @@ import 'study_program_list_user_model.dart';
 export 'study_program_list_user_model.dart';
 
 class StudyProgramListUserWidget extends StatefulWidget {
-  const StudyProgramListUserWidget({super.key});
+  const StudyProgramListUserWidget({
+    super.key,
+    this.checkStatusPrograms,
+    this.staffId,
+  });
+
+  final String? checkStatusPrograms;
+  final String? staffId;
 
   @override
   State<StudyProgramListUserWidget> createState() =>
@@ -282,6 +289,37 @@ class _StudyProgramListUserWidgetState
                     ],
                   ),
                 ),
+                if (widget.checkStatusPrograms != null &&
+                    widget.checkStatusPrograms != '')
+                  Align(
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                      child: Text(
+                        () {
+                          if (widget.checkStatusPrograms == 'draft') {
+                            return 'Danh sách chương trình chưa học';
+                          } else if (widget.checkStatusPrograms ==
+                              'inprogress') {
+                            return 'Danh sách chương trình đang học';
+                          } else if (widget.checkStatusPrograms == 'done') {
+                            return 'Danh sách chương trình đã  hoàn thành';
+                          } else {
+                            return '';
+                          }
+                        }(),
+                        style: FlutterFlowTheme.of(context)
+                            .labelMedium
+                            .override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontSize: 14.0,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
+                  ),
                 if ((_model.textFieldNameSearchTextController.text != '') ||
                     ((_model.dateStart != '') &&
                         (_model.dateStart != 'noData')) ||
@@ -316,14 +354,14 @@ class _StudyProgramListUserWidgetState
                         filter: '{\"_and\":[ {\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                           FFAppState().staffLogin,
                           r'''$.organization_id''',
-                        ).toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffLogin,
-                          r'''$.id''',
-                        ).toString()}\"}}}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
+                        ).toString()}\"}}},{\"staff_id\":{\"id\":{\"_eq\":\"${widget.checkStatusPrograms != null && widget.checkStatusPrograms != '' ? widget.staffId : getJsonField(
+                            FFAppState().staffLogin,
+                            r'''$.id''',
+                          ).toString()}\"}}}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noData') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
                             return DateTime.parse(var1)
                                 .add(const Duration(days: 1))
                                 .toString();
-                          }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.textFieldNameSearchTextController.text != '' ? _model.textFieldNameSearchTextController.text : ' '}${_model.textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? _model.lessonName : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? '\"}}}}}' : ' '},{\"program_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+                          }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.textFieldNameSearchTextController.text != '' ? ',{\"program_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.textFieldNameSearchTextController.text != '' ? _model.textFieldNameSearchTextController.text : ' '}${_model.textFieldNameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? ',{\"program_id\":{\"lessions\":{\"lessions_id\":{\"name\":{\"_icontains\":\"' : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? _model.lessonName : ' '}${(_model.lessonName != '') && (_model.lessonName != 'noData') ? '\"}}}}}' : ' '}${widget.checkStatusPrograms != null && widget.checkStatusPrograms != '' ? ',{\"status\":{\"_eq\":\"${widget.checkStatusPrograms}\"}}' : ''}]}',
                       ),
                     ),
                     padding: EdgeInsets.zero,
@@ -615,37 +653,106 @@ class _StudyProgramListUserWidgetState
                                                                   .status !=
                                                               'done')
                                                             Container(
+                                                              height: 30.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                color:
+                                                                    valueOrDefault<
+                                                                        Color>(
+                                                                  () {
+                                                                    if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'draft') {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent3;
+                                                                    } else if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'inprogress') {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent1;
+                                                                    } else if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'done') {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .accent2;
+                                                                    } else {
+                                                                      return FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .noColor;
+                                                                    }
+                                                                  }(),
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .noColor,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0),
                                                               ),
-                                                              child: Text(
-                                                                () {
-                                                                  if (itemProgramIdTilteItem
-                                                                          .status ==
-                                                                      'draft') {
-                                                                    return 'Chưa học';
-                                                                  } else if (itemProgramIdTilteItem
-                                                                          .status ==
-                                                                      'inprogress') {
-                                                                    return 'Đang học';
-                                                                  } else {
-                                                                    return '';
-                                                                  }
-                                                                }(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      0.0, 0.0),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            0.0,
+                                                                            8.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  () {
+                                                                    if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'draft') {
+                                                                      return 'Chưa học';
+                                                                    } else if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'inprogress') {
+                                                                      return 'Đang học';
+                                                                    } else if (itemProgramIdTilteItem
+                                                                            .status ==
+                                                                        'done') {
+                                                                      return 'Hoàn thành';
+                                                                    } else {
+                                                                      return '';
+                                                                    }
+                                                                  }(),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: valueOrDefault<
+                                                                            Color>(
+                                                                          () {
+                                                                            if (itemProgramIdTilteItem.status ==
+                                                                                'draft') {
+                                                                              return FlutterFlowTheme.of(context).tertiary;
+                                                                            } else if (itemProgramIdTilteItem.status ==
+                                                                                'inprogress') {
+                                                                              return FlutterFlowTheme.of(context).primary;
+                                                                            } else if (itemProgramIdTilteItem.status ==
+                                                                                'done') {
+                                                                              return FlutterFlowTheme.of(context).success;
+                                                                            } else {
+                                                                              return FlutterFlowTheme.of(context).noColor;
+                                                                            }
+                                                                          }(),
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .primaryText,
+                                                                        ),
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           if ('1' == '2')

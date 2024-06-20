@@ -753,6 +753,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             accessToken:
                                                 FFAppState().accessToken,
                                           );
+
                                           if ((_model.apiResultAddQuestion
                                                   ?.succeeded ??
                                               true)) {
@@ -873,6 +874,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                     'good_score': _model.textController2.text,
                                   },
                                 );
+
                                 shouldSetState = true;
                                 if ((_model.apiResultCreateTest?.succeeded ??
                                     true)) {

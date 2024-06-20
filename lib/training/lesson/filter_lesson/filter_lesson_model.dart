@@ -60,6 +60,7 @@ class FilterLessonModel extends FlutterFlowModel<FilterLessonWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       programList = StudyProgramListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!

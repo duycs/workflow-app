@@ -51,6 +51,7 @@ class FilterStatusDepartmentModel
         r'''$.organization_id''',
       ).toString().toString()}\"}}}]}',
     );
+
     if ((apiResultist.succeeded ?? true)) {
       branchList =
           BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!

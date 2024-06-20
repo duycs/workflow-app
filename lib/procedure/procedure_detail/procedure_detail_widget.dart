@@ -51,6 +51,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
           accessToken: FFAppState().accessToken,
           id: widget.workflowsId,
         );
+
         if ((_model.apiResultStepData?.succeeded ?? true)) {
           _model.stepsList = functions
               .sortArrayStepList((getJsonField(

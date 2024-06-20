@@ -1,4 +1,3 @@
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -13,7 +12,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'lesson_detail_home_page_model.dart';
 export 'lesson_detail_home_page_model.dart';
@@ -45,13 +43,11 @@ class LessonDetailHomePageWidget extends StatefulWidget {
       _LessonDetailHomePageWidgetState();
 }
 
-class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
-    with TickerProviderStateMixin {
+class _LessonDetailHomePageWidgetState
+    extends State<LessonDetailHomePageWidget> {
   late LessonDetailHomePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -71,22 +67,6 @@ class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
 
     _model.commentsTextController ??= TextEditingController();
     _model.commentsFocusNode ??= FocusNode();
-
-    animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
-        loop: true,
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          TiltEffect(
-            curve: Curves.easeInOut,
-            delay: 550.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0, 0),
-            end: const Offset(0, 0.349),
-          ),
-        ],
-      ),
-    });
   }
 
   @override
@@ -121,9 +101,6 @@ class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
-
-              setState(() {});
               if (widget.checkReload == 'Home') {
                 context.pushNamed(
                   'LessonLists_Homepage',
@@ -1799,9 +1776,9 @@ class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              await _model.postHeart(context);
-                                              setState(() {});
                                               _model.checkLove = '1';
+                                              setState(() {});
+                                              await _model.postHeart(context);
                                               setState(() {});
                                             },
                                             child: Icon(
@@ -2700,19 +2677,16 @@ class _LessonDetailHomePageWidgetState extends State<LessonDetailHomePageWidget>
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                   alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Text(
-                    'Đang tải dữ liệu...',
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 18.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          fontStyle: FontStyle.italic,
-                        ),
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation']!),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: custom_widgets.LoadingPageWidget(
+                      width: double.infinity,
+                      height: double.infinity,
+                      size: 50.0,
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+                  ),
                 ),
               ),
           ],

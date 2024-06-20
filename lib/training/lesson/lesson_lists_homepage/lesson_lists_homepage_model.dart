@@ -109,6 +109,8 @@ class LessonListsHomepageModel
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in LessonLists_Homepage widget.
   bool? tokenReloadLessonListsHomepageList;
+  // Model for navBar component.
+  late NavBarModel navBarModel;
   // State field(s) for nameSearch widget.
   FocusNode? nameSearchFocusNode;
   TextEditingController? nameSearchTextController;
@@ -118,9 +120,6 @@ class LessonListsHomepageModel
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
-  // Model for navBar component.
-  late NavBarModel navBarModel;
-
   @override
   void initState(BuildContext context) {
     navBarModel = createModel(context, () => NavBarModel());
@@ -129,11 +128,11 @@ class LessonListsHomepageModel
   @override
   void dispose() {
     unfocusNode.dispose();
+    navBarModel.dispose();
     nameSearchFocusNode?.dispose();
     nameSearchTextController?.dispose();
 
     listViewPagingController?.dispose();
-    navBarModel.dispose();
   }
 
   /// Action blocks.
@@ -153,6 +152,7 @@ class LessonListsHomepageModel
         r'''$.id''',
       ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listLesson =
           LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
@@ -194,6 +194,7 @@ class LessonListsHomepageModel
       offset: 0,
       limit: 11,
     );
+
     if ((apiResultListRow.succeeded ?? true)) {
       listLessonRow = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultListRow.jsonBody ?? ''))!
@@ -244,6 +245,7 @@ class LessonListsHomepageModel
       offset: 0,
       limit: 11,
     );
+
     if ((apiResultListRow2.succeeded ?? true)) {
       listLessonRow2 = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultListRow2.jsonBody ?? ''))!
@@ -294,6 +296,7 @@ class LessonListsHomepageModel
       limit: 11,
       offset: 0,
     );
+
     if ((apiResultListRow3.succeeded ?? true)) {
       listLessonRow3 = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultListRow3.jsonBody ?? ''))!

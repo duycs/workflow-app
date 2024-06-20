@@ -181,7 +181,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                   if (_model.isLoad)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,7 +390,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             'B${dataListItem.number.toString()}:',
@@ -567,6 +567,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           ? 'approve'
                                                           : 'submit',
                                                     );
+
                                                     shouldSetState = true;
                                                     if ((_model
                                                             .apiResultConfirmOperationDetail2
@@ -634,6 +635,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                         id: dataListItem
                                                             .workflowId.id,
                                                       );
+
                                                       shouldSetState = true;
                                                       if ((_model
                                                               .apiResultGetWorkflowDetail
@@ -697,6 +699,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   dataListItem
                                                                       .publishedCount,
                                                             );
+
                                                             shouldSetState =
                                                                 true;
                                                             if (!(_model
@@ -759,6 +762,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                               '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
                                                           sort: 'number',
                                                         );
+
                                                         shouldSetState = true;
                                                         if ((_model
                                                                 .apiResultGetTaskListDetail2
@@ -805,7 +809,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                 height: 30.0,
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        6.0, 0.0, 6.0, 0.0),
+                                                        10.0, 0.0, 10.0, 0.0),
                                                 iconPadding:
                                                     const EdgeInsetsDirectional
                                                         .fromSTEB(
@@ -840,28 +844,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             const AlignmentDirectional(-1.0, 0.0),
                                         child: Container(
                                           width: 120.0,
-                                          height: 30.0,
+                                          height: 27.0,
                                           decoration: BoxDecoration(
                                             color: () {
                                               if (dataListItem.status ==
                                                   'done') {
                                                 return FlutterFlowTheme.of(
                                                         context)
-                                                    .secondary;
+                                                    .accent2;
                                               } else if ((dataListItem.status ==
                                                       'todo') &&
                                                   (dataListItem.current == 1)) {
                                                 return FlutterFlowTheme.of(
                                                         context)
-                                                    .primary;
+                                                    .accent1;
                                               } else {
                                                 return FlutterFlowTheme.of(
                                                         context)
-                                                    .alternate;
+                                                    .accent4;
                                               }
                                             }(),
                                             borderRadius:
-                                                BorderRadius.circular(12.0),
+                                                BorderRadius.circular(20.0),
                                           ),
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
@@ -897,7 +901,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           'done') {
                                                         return FlutterFlowTheme
                                                                 .of(context)
-                                                            .secondaryBackground;
+                                                            .secondary;
                                                       } else if ((dataListItem
                                                                   .status ==
                                                               'todo') &&
@@ -906,14 +910,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                               1)) {
                                                         return FlutterFlowTheme
                                                                 .of(context)
-                                                            .secondaryBackground;
+                                                            .primary;
                                                       } else {
                                                         return FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryText;
                                                       }
                                                     }(),
-                                                    fontSize: 12.0,
+                                                    fontSize: 13.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
@@ -1399,6 +1403,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                   ).toString(),
                                                   taskId: dataListItem.id,
                                                 );
+
                                                 if ((_model.apiResultConfirm
                                                         ?.succeeded ??
                                                     true)) {
@@ -1499,6 +1504,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                             'status': status,
                                                           },
                                                         );
+
                                                         if ((_model
                                                                 .apiResultCheckList
                                                                 ?.succeeded ??
@@ -1754,6 +1760,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                                 ckString,
                                                                           },
                                                                         );
+
                                                                         if (!(_model.apiResultx5lCopy?.succeeded ??
                                                                             true)) {
                                                                           ScaffoldMessenger.of(context)
@@ -1883,26 +1890,30 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                     while (_model.loop <
                                                         file.length) {
                                                       _model
-                                                          .updateResponseDataStruct(
-                                                        (e) => e
-                                                          ..status = 'done'
-                                                          ..updateFiles(
-                                                            (e) => e.add(
-                                                                FileDataTypeStruct(
-                                                              directusFilesId:
-                                                                  FileIDDataTypeStruct(
-                                                                id: file[_model
-                                                                    .loop],
-                                                              ),
-                                                            )),
-                                                          ),
-                                                      );
+                                                          .addToListFileDataType(
+                                                              FileDataTypeStruct(
+                                                        directusFilesId:
+                                                            FileIDDataTypeStruct(
+                                                          id: file[_model.loop],
+                                                        ),
+                                                      ));
                                                       setState(() {});
                                                       _model.loop =
                                                           _model.loop + 1;
                                                       setState(() {});
                                                     }
                                                     _model.loop = 0;
+                                                    _model
+                                                        .updateResponseDataStruct(
+                                                      (e) => e
+                                                        ..status = 'done'
+                                                        ..files = _model
+                                                            .listFileDataType
+                                                            .toList(),
+                                                    );
+                                                    setState(() {});
+                                                    _model.listFileDataType =
+                                                        [];
                                                     setState(() {});
                                                   }
 
@@ -1926,6 +1937,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           .responseData
                                                           ?.toMap(),
                                                     );
+
                                                     if ((_model
                                                             .apiResultUpdateoperation
                                                             ?.succeeded ??
@@ -2015,27 +2027,28 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                     while (_model.loop <
                                                         imageid.length) {
                                                       _model
-                                                          .updateResponseDataStruct(
-                                                        (e) => e
-                                                          ..status = 'done'
-                                                          ..updateFiles(
-                                                            (e) => e.add(
-                                                                FileDataTypeStruct(
-                                                              directusFilesId:
-                                                                  FileIDDataTypeStruct(
-                                                                id: imageid[
-                                                                    _model
-                                                                        .loop],
-                                                              ),
-                                                            )),
-                                                          ),
-                                                      );
+                                                          .addToListFileDataType(
+                                                              FileDataTypeStruct(
+                                                        directusFilesId:
+                                                            FileIDDataTypeStruct(
+                                                          id: imageid[
+                                                              _model.loop],
+                                                        ),
+                                                      ));
                                                       setState(() {});
                                                       _model.loop =
                                                           _model.loop + 1;
                                                       setState(() {});
                                                     }
                                                     _model.loop = 0;
+                                                    _model
+                                                        .updateResponseDataStruct(
+                                                      (e) => e
+                                                        ..status = 'done'
+                                                        ..files = _model
+                                                            .listFileDataType
+                                                            .toList(),
+                                                    );
                                                     setState(() {});
                                                   }
 
@@ -2059,6 +2072,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           .responseData
                                                           ?.toMap(),
                                                     );
+
                                                     if ((_model
                                                             .apiResultUpdateImage
                                                             ?.succeeded ??

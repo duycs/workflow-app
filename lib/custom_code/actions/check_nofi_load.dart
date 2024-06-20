@@ -56,6 +56,11 @@ Future checkNofiLoad(BuildContext context) async {
             );
             return;
           }
+        case "8":
+          {
+            context.pushNamed('OrderList');
+            return;
+          }
         default:
           {
             context.pushNamed(

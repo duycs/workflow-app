@@ -10,10 +10,12 @@ class DepartmentsStruct extends BaseStruct {
     String? name,
     List<StaffsStruct>? staffs,
     String? status,
+    IdStruct? branchId,
   })  : _id = id,
         _name = name,
         _staffs = staffs,
-        _status = status;
+        _status = status,
+        _branchId = branchId;
 
   // "id" field.
   String? _id;
@@ -47,6 +49,17 @@ class DepartmentsStruct extends BaseStruct {
 
   bool hasStatus() => _status != null;
 
+  // "branch_id" field.
+  IdStruct? _branchId;
+  IdStruct get branchId => _branchId ?? IdStruct();
+  set branchId(IdStruct? val) => _branchId = val;
+
+  void updateBranchId(Function(IdStruct) updateFn) {
+    updateFn(branchId ??= IdStruct());
+  }
+
+  bool hasBranchId() => _branchId != null;
+
   static DepartmentsStruct fromMap(Map<String, dynamic> data) =>
       DepartmentsStruct(
         id: data['id'] as String?,
@@ -56,6 +69,7 @@ class DepartmentsStruct extends BaseStruct {
           StaffsStruct.fromMap,
         ),
         status: data['status'] as String?,
+        branchId: IdStruct.maybeFromMap(data['branch_id']),
       );
 
   static DepartmentsStruct? maybeFromMap(dynamic data) => data is Map
@@ -67,6 +81,7 @@ class DepartmentsStruct extends BaseStruct {
         'name': _name,
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
         'status': _status,
+        'branch_id': _branchId?.toMap(),
       }.withoutNulls;
 
   @override
@@ -87,6 +102,10 @@ class DepartmentsStruct extends BaseStruct {
         'status': serializeParam(
           _status,
           ParamType.String,
+        ),
+        'branch_id': serializeParam(
+          _branchId,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -113,6 +132,12 @@ class DepartmentsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        branchId: deserializeStructParam(
+          data['branch_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: IdStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -125,20 +150,24 @@ class DepartmentsStruct extends BaseStruct {
         id == other.id &&
         name == other.name &&
         listEquality.equals(staffs, other.staffs) &&
-        status == other.status;
+        status == other.status &&
+        branchId == other.branchId;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, name, staffs, status]);
+  int get hashCode =>
+      const ListEquality().hash([id, name, staffs, status, branchId]);
 }
 
 DepartmentsStruct createDepartmentsStruct({
   String? id,
   String? name,
   String? status,
+  IdStruct? branchId,
 }) =>
     DepartmentsStruct(
       id: id,
       name: name,
       status: status,
+      branchId: branchId ?? IdStruct(),
     );

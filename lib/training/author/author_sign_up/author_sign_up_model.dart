@@ -92,8 +92,6 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
   bool? authorsSignUp;
   // Stores action output result for [Backend Call - API (AuthorsSignUp)] action in Button widget.
   ApiCallResponse? apiResultAuthorSignUp;
-  // Stores action output result for [Backend Call - API (GetStaffId)] action in Button widget.
-  ApiCallResponse? apiResultGetStaffId;
 
   @override
   void initState(BuildContext context) {
@@ -120,6 +118,7 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
       apiResultGetLinkDomain = await DomainGroup.getDomainsListCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetLinkDomain.succeeded ?? true)) {
         listDomain = DomainsListDataStruct.maybeFromMap(
                 (apiResultGetLinkDomain.jsonBody ?? ''))!
@@ -141,6 +140,7 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
       apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetListAuthors.succeeded ?? true)) {
         listAuthorName = (getJsonField(
           (apiResultGetListAuthors.jsonBody ?? ''),

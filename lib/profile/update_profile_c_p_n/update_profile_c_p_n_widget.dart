@@ -48,17 +48,16 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
       while (_model.loop! < widget.data!.files.length) {
         _model
             .addToImageId(widget.data!.files[_model.loop!].directusFilesId.id);
-        _model.updateFilesStruct(
-          (e) => e
-            ..updateDelete(
-              (e) => e.add(widget.data!.files[_model.loop!].id),
-            ),
-        );
+        _model.addToListImageDelete(widget.data!.files[_model.loop!].id);
         setState(() {});
         _model.loop = _model.loop! + 1;
         setState(() {});
       }
       _model.loop = 0;
+      setState(() {});
+      _model.updateFilesStruct(
+        (e) => e..delete = _model.listImageDelete.toList(),
+      );
       setState(() {});
     });
 
@@ -2081,6 +2080,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         accessToken: FFAppState().accessToken,
                         file: _model.uploadedLocalFile1,
                       );
+
                       if ((_model.apiResultUploadVideo?.succeeded ?? true)) {
                         _model.videoId = getJsonField(
                           (_model.apiResultUploadVideo?.jsonBody ?? ''),
@@ -2101,6 +2101,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         accessToken: FFAppState().accessToken,
                         file: _model.uploadedLocalFile3,
                       );
+
                       if ((_model.apiResultUploadLogo?.succeeded ?? true)) {
                         _model.logoId = getJsonField(
                           (_model.apiResultUploadLogo?.jsonBody ?? ''),
@@ -2121,6 +2122,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                         accessToken: FFAppState().accessToken,
                         file: _model.uploadedLocalFile4,
                       );
+
                       if ((_model.apiResultUploadAvatar?.succeeded ?? true)) {
                         _model.avatarId = getJsonField(
                           (_model.apiResultUploadAvatar?.jsonBody ?? ''),
@@ -2167,6 +2169,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                       ).toString(),
                       requestDataJson: _model.request?.toMap(),
                     );
+
                     if ((_model.apiResultUpdateOrganization?.succeeded ??
                         true)) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -2182,7 +2185,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                               FlutterFlowTheme.of(context).secondary,
                         ),
                       );
-
+                      if (Navigator.of(context).canPop()) {
+                        context.pop();
+                      }
                       context.pushNamed(
                         'DetailProfileCPN',
                         extra: <String, dynamic>{

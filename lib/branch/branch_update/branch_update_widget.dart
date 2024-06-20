@@ -612,6 +612,7 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
                                                 .branchCodeTextController.text,
                                           },
                                         );
+
                                         shouldSetState = true;
                                         if ((_model.apiResultCreateBranch
                                                 ?.succeeded ??

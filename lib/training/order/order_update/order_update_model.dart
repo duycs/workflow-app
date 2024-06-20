@@ -82,6 +82,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
           ),
         },
       );
+
       if (!(apiResultOrderUpdate.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

@@ -1638,6 +1638,17 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                   ),
                 ),
               ),
+            if (_model.isLoad == false)
+              SizedBox(
+                width: double.infinity,
+                height: double.infinity,
+                child: custom_widgets.LoadingPageWidget(
+                  width: double.infinity,
+                  height: double.infinity,
+                  size: 50.0,
+                  color: FlutterFlowTheme.of(context).primary,
+                ),
+              ),
           ],
         ),
       ),

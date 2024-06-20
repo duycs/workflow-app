@@ -58,6 +58,63 @@ class ProcedureStepCreateModel
     updateFn(staffAlias ??= StaffsAliasStruct());
   }
 
+  List<DepartmentsStruct> departmentList = [];
+  void addToDepartmentList(DepartmentsStruct item) => departmentList.add(item);
+  void removeFromDepartmentList(DepartmentsStruct item) =>
+      departmentList.remove(item);
+  void removeAtIndexFromDepartmentList(int index) =>
+      departmentList.removeAt(index);
+  void insertAtIndexInDepartmentList(int index, DepartmentsStruct item) =>
+      departmentList.insert(index, item);
+  void updateDepartmentListAtIndex(
+          int index, Function(DepartmentsStruct) updateFn) =>
+      departmentList[index] = updateFn(departmentList[index]);
+
+  List<StaffsStepStruct> staffsList = [];
+  void addToStaffsList(StaffsStepStruct item) => staffsList.add(item);
+  void removeFromStaffsList(StaffsStepStruct item) => staffsList.remove(item);
+  void removeAtIndexFromStaffsList(int index) => staffsList.removeAt(index);
+  void insertAtIndexInStaffsList(int index, StaffsStepStruct item) =>
+      staffsList.insert(index, item);
+  void updateStaffsListAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      staffsList[index] = updateFn(staffsList[index]);
+
+  List<StaffsStepStruct> checkStaffList = [];
+  void addToCheckStaffList(StaffsStepStruct item) => checkStaffList.add(item);
+  void removeFromCheckStaffList(StaffsStepStruct item) =>
+      checkStaffList.remove(item);
+  void removeAtIndexFromCheckStaffList(int index) =>
+      checkStaffList.removeAt(index);
+  void insertAtIndexInCheckStaffList(int index, StaffsStepStruct item) =>
+      checkStaffList.insert(index, item);
+  void updateCheckStaffListAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      checkStaffList[index] = updateFn(checkStaffList[index]);
+
+  List<DepartmentListStruct> departmentListStep = [];
+  void addToDepartmentListStep(DepartmentListStruct item) =>
+      departmentListStep.add(item);
+  void removeFromDepartmentListStep(DepartmentListStruct item) =>
+      departmentListStep.remove(item);
+  void removeAtIndexFromDepartmentListStep(int index) =>
+      departmentListStep.removeAt(index);
+  void insertAtIndexInDepartmentListStep(
+          int index, DepartmentListStruct item) =>
+      departmentListStep.insert(index, item);
+  void updateDepartmentListStepAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      departmentListStep[index] = updateFn(departmentListStep[index]);
+
+  List<StaffIdStruct> staffListId = [];
+  void addToStaffListId(StaffIdStruct item) => staffListId.add(item);
+  void removeFromStaffListId(StaffIdStruct item) => staffListId.remove(item);
+  void removeAtIndexFromStaffListId(int index) => staffListId.removeAt(index);
+  void insertAtIndexInStaffListId(int index, StaffIdStruct item) =>
+      staffListId.insert(index, item);
+  void updateStaffListIdAtIndex(int index, Function(StaffIdStruct) updateFn) =>
+      staffListId[index] = updateFn(staffListId[index]);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

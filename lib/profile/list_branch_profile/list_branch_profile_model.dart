@@ -61,6 +61,7 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
           await DepartmentGroup.getDepartmentListCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultDepartmentList.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
@@ -82,6 +83,7 @@ class ListBranchProfileModel extends FlutterFlowModel<ListBranchProfileWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}]}',
       );
+
       if ((apiResultldh.succeeded ?? true)) {
         listBranch =
             BranchListDataStruct.maybeFromMap((apiResultldh.jsonBody ?? ''))!

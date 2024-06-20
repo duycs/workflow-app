@@ -1,9 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'category_market_model.dart';
 export 'category_market_model.dart';
@@ -27,8 +31,14 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await _model.getDomains(context);
-      setState(() {});
+      _model.reloadListDomains = await action_blocks.tokenReload(context);
+      if (_model.reloadListDomains!) {
+        _model.isCheckLoad = true;
+        setState(() {});
+      } else {
+        setState(() {});
+        return;
+      }
     });
 
     _model.searchDomainsTextController ??= TextEditingController();
@@ -102,8 +112,9 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                         '_model.searchDomainsTextController',
                         const Duration(milliseconds: 500),
                         () async {
-                          await _model.getDomains(context);
                           setState(() {});
+                          setState(
+                              () => _model.gridViewPagingController?.refresh());
                         },
                       ),
                       autofocus: false,
@@ -166,8 +177,9 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             ? InkWell(
                                 onTap: () async {
                                   _model.searchDomainsTextController?.clear();
-                                  await _model.getDomains(context);
                                   setState(() {});
+                                  setState(() => _model.gridViewPagingController
+                                      ?.refresh());
                                   setState(() {});
                                 },
                                 child: const Icon(
@@ -390,123 +402,153 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                   ),
                 ),
                 Expanded(
-                  child: Builder(
-                    builder: (context) {
-                      final itemList = _model.listDataDomains.toList();
-                      return GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 20.0,
-                          childAspectRatio: 1.0,
+                  child: PagedGridView<ApiPagingParams, dynamic>(
+                    pagingController: _model.setGridViewController(
+                      (nextPageMarker) => GetDomainsGroup.getDomainsCall.call(
+                        accessToken: FFAppState().accessToken,
+                        limit: 20,
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        filter:
+                            '{\"_and\":[${_model.searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${_model.searchDomainsTextController.text != '' ? _model.searchDomainsTextController.text : ' '}${_model.searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
+                      ),
+                    ),
+                    padding: EdgeInsets.zero,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20.0,
+                      childAspectRatio: 1.0,
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
                         ),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        itemCount: itemList.length,
-                        itemBuilder: (context, itemListIndex) {
-                          final itemListItem = itemList[itemListIndex];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 20.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  'ProgramListMarket',
-                                  queryParameters: {
-                                    'price': serializeParam(
-                                      'free1',
-                                      ParamType.String,
-                                    ),
-                                    'idAuthor': serializeParam(
-                                      '',
-                                      ParamType.String,
-                                    ),
-                                    'idDomain': serializeParam(
-                                      '',
-                                      ParamType.String,
-                                    ),
-                                    'domainToProgramListMarket': serializeParam(
-                                      itemListItem.name,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${itemListItem.imageCover}?access_token=${FFAppState().accessToken}',
-                                    ).image,
+                      ),
+                      // Customize what your widget looks like when it's loading another page.
+                      newPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      ),
+                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                      itemBuilder: (context, _, itemListIndex) {
+                        final itemListItem = _model
+                            .gridViewPagingController!.itemList![itemListIndex];
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 20.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'ProgramListMarket',
+                                queryParameters: {
+                                  'price': serializeParam(
+                                    'free1',
+                                    ParamType.String,
                                   ),
-                                  borderRadius: BorderRadius.circular(4.0),
+                                  'idAuthor': serializeParam(
+                                    '',
+                                    ParamType.String,
+                                  ),
+                                  'idDomain': serializeParam(
+                                    '',
+                                    ParamType.String,
+                                  ),
+                                  'domainToProgramListMarket': serializeParam(
+                                    itemListItem.name,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: const TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.network(
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${itemListItem.imageCover}?access_token=${FFAppState().accessToken}',
+                                  ).image,
                                 ),
-                                child: Stack(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
-                                  children: [
-                                    Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              FlutterFlowTheme.of(context)
-                                                  .noColor,
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText
-                                            ],
-                                            stops: const [0.0, 1.0],
-                                            begin:
-                                                const AlignmentDirectional(0.0, -1.0),
-                                            end: const AlignmentDirectional(0, 1.0),
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(4.0),
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              child: Stack(
+                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                children: [
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            FlutterFlowTheme.of(context)
+                                                .noColor,
+                                            FlutterFlowTheme.of(context)
+                                                .primaryText
+                                          ],
+                                          stops: const [0.0, 1.0],
+                                          begin:
+                                              const AlignmentDirectional(0.0, -1.0),
+                                          end: const AlignmentDirectional(0, 1.0),
                                         ),
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 10.0, 16.0),
-                                      child: Text(
-                                        itemListItem.name,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 16.0),
+                                    child: Text(
+                                      itemListItem.name,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          );
-                        },
-                      );
-                    },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ],

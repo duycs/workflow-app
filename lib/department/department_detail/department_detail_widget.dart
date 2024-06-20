@@ -678,6 +678,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                                                             .id,
                                                                       },
                                                                     );
+
                                                                     shouldSetState =
                                                                         true;
                                                                     if ((_model
