@@ -510,7 +510,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                 FlutterFlowDropDown<String>(
                                   multiSelectController:
                                       _model.dropDownValueController ??=
-                                          FormFieldController<List<String>>(
+                                          FormListFieldController<String>(
                                               _model.dropDownValue ??=
                                                   List<String>.from(
                                     _model.domainList ?? [],
@@ -709,6 +709,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                       accessToken: FFAppState().accessToken,
                                       file: _model.uploadedLocalFile,
                                     );
+
                                     shouldSetState = true;
                                     if ((_model.apiResultUploadAvatarUp
                                             ?.succeeded ??
@@ -755,6 +756,7 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
                                     accessToken: FFAppState().accessToken,
                                     id: widget.id,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model
                                           .apiResultAuthorsUpdate?.succeeded ??

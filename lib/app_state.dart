@@ -45,6 +45,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _marketOn = prefs.getBool('ff_marketOn') ?? _marketOn;
     });
+    _safeInit(() {
+      _biometricLogin = prefs.getBool('ff_biometricLogin') ?? _biometricLogin;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -76,7 +79,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   void updateUserStruct(Function(UserStruct) updateFn) {
-    updateFn(user);
+    updateFn(_user);
     prefs.setString('ff_user', _user.serialize());
   }
 
@@ -176,6 +179,13 @@ class FFAppState extends ChangeNotifier {
   dynamic get Author => _Author;
   set Author(dynamic value) {
     _Author = value;
+  }
+
+  bool _biometricLogin = false;
+  bool get biometricLogin => _biometricLogin;
+  set biometricLogin(bool value) {
+    _biometricLogin = value;
+    prefs.setBool('ff_biometricLogin', value);
   }
 }
 

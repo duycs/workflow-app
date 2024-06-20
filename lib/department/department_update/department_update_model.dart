@@ -110,6 +110,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
+
     if ((apiResultist.succeeded ?? true)) {
       branchList =
           BranchListDataStruct.maybeFromMap((apiResultist.jsonBody ?? ''))!
@@ -151,6 +152,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}},{\"status\":{\"_eq\":\"published\"}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       programsList = StudyProgramListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -205,6 +207,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
       programsIdJson: programIds.map((e) => e.toMap()).toList(),
       status: radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
     );
+
     if ((apiResultPathDepartment.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -226,6 +229,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
             accessToken: FFAppState().accessToken,
             programId: programIds[loop].programsId.id,
           );
+
           if (!(apiResultSynchronized.succeeded ?? true)) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

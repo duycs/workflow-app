@@ -87,6 +87,7 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}'}]}',
       );
+
       if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
         dataList = StudyProgramListDataStruct.maybeFromMap(
                 (apiResultStudyProgramListSearch.jsonBody ?? ''))!

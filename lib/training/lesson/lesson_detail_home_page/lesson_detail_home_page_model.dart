@@ -80,6 +80,7 @@ class LessonDetailHomePageModel
       ).toString().toString(),
       staffId: FFAppState().staffid,
     );
+
     if (!(apiResultPostComment.succeeded ?? true)) {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
@@ -115,6 +116,7 @@ class LessonDetailHomePageModel
         r'''$.id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultGetCommment.succeeded ?? true)) {
       list = getJsonField(
         (apiResultGetCommment.jsonBody ?? ''),
@@ -162,6 +164,7 @@ class LessonDetailHomePageModel
         r'''$.id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultHeart.succeeded ?? true)) {
       heart = getJsonField(
         (apiResultHeart.jsonBody ?? ''),
@@ -237,6 +240,7 @@ class LessonDetailHomePageModel
         r'''$.id''',
       ).toString().toString()),
     );
+
     if (!(apiResultDeleteHeart.succeeded ?? true)) {
       checkRefreshTokenBlock55 = await action_blocks.checkRefreshToken(
         context,
@@ -277,6 +281,7 @@ class LessonDetailHomePageModel
         r'''$.id''',
       ).toString().toString(),
     );
+
     if (!(apiResultPostHeart.succeeded ?? true)) {
       checkRefreshTokenBlock66 = await action_blocks.checkRefreshToken(
         context,
@@ -313,6 +318,7 @@ class LessonDetailHomePageModel
       id: widget.id,
       dateStart: getCurrentTimestamp.toString(),
     );
+
     if ((apiResultStartLesson.succeeded ?? true)) {
       status = 'inprogress';
       ScaffoldMessenger.of(context).showSnackBar(

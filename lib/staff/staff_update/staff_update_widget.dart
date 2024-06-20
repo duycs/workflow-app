@@ -56,6 +56,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
             r'''$.branch_id.id''',
           ).toString().toString()}\"}}}]}',
         );
+
         if ((_model.apiResultListDeparment?.succeeded ?? true)) {
           _model.listDepartment = DepartmentListDataStruct.maybeFromMap(
                   (_model.apiResultListDeparment?.jsonBody ?? ''))!
@@ -85,6 +86,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
               r'''$.organization_id''',
             ).toString().toString()}\"}}}]}',
           );
+
           if ((_model.apiResultGetListBranch?.succeeded ?? true)) {
             _model.branchList = BranchListDataStruct.maybeFromMap(
                     (_model.apiResultGetListBranch?.jsonBody ?? ''))!
@@ -1380,6 +1382,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                       filter:
                                           '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
                                     );
+
                                     if ((_model.apiResultListDeparment2
                                             ?.succeeded ??
                                         true)) {
@@ -1692,6 +1695,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                 file: _model.uploadedLocalFile,
                                 accessToken: FFAppState().accessToken,
                               );
+
                               if ((_model.apiResultUploadImage?.succeeded ??
                                   true)) {
                                 _model.avatarid = getJsonField(
@@ -1760,6 +1764,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                               file: _model.uploadedLocalFile,
                               accessToken: FFAppState().accessToken,
                             );
+
                             if ((_model.apiResultUploadImage2?.succeeded ??
                                 true)) {
                               _model.avatarid = getJsonField(

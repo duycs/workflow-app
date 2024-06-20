@@ -142,6 +142,65 @@ class ProcedureCreateModel extends FlutterFlowModel<ProcedureCreateWidget> {
 
   String checkUpdate = ' ';
 
+  List<StaffsStepStruct> staffsList = [];
+  void addToStaffsList(StaffsStepStruct item) => staffsList.add(item);
+  void removeFromStaffsList(StaffsStepStruct item) => staffsList.remove(item);
+  void removeAtIndexFromStaffsList(int index) => staffsList.removeAt(index);
+  void insertAtIndexInStaffsList(int index, StaffsStepStruct item) =>
+      staffsList.insert(index, item);
+  void updateStaffsListAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      staffsList[index] = updateFn(staffsList[index]);
+
+  List<OperationsStruct> operationsList = [];
+  void addToOperationsList(OperationsStruct item) => operationsList.add(item);
+  void removeFromOperationsList(OperationsStruct item) =>
+      operationsList.remove(item);
+  void removeAtIndexFromOperationsList(int index) =>
+      operationsList.removeAt(index);
+  void insertAtIndexInOperationsList(int index, OperationsStruct item) =>
+      operationsList.insert(index, item);
+  void updateOperationsListAtIndex(
+          int index, Function(OperationsStruct) updateFn) =>
+      operationsList[index] = updateFn(operationsList[index]);
+
+  List<DepartmentListStruct> departmentListStep = [];
+  void addToDepartmentListStep(DepartmentListStruct item) =>
+      departmentListStep.add(item);
+  void removeFromDepartmentListStep(DepartmentListStruct item) =>
+      departmentListStep.remove(item);
+  void removeAtIndexFromDepartmentListStep(int index) =>
+      departmentListStep.removeAt(index);
+  void insertAtIndexInDepartmentListStep(
+          int index, DepartmentListStruct item) =>
+      departmentListStep.insert(index, item);
+  void updateDepartmentListStepAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      departmentListStep[index] = updateFn(departmentListStep[index]);
+
+  List<WorkflowsStepCreateStruct> stepList = [];
+  void addToStepList(WorkflowsStepCreateStruct item) => stepList.add(item);
+  void removeFromStepList(WorkflowsStepCreateStruct item) =>
+      stepList.remove(item);
+  void removeAtIndexFromStepList(int index) => stepList.removeAt(index);
+  void insertAtIndexInStepList(int index, WorkflowsStepCreateStruct item) =>
+      stepList.insert(index, item);
+  void updateStepListAtIndex(
+          int index, Function(WorkflowsStepCreateStruct) updateFn) =>
+      stepList[index] = updateFn(stepList[index]);
+
+  List<WorkflowsStepCreateStruct> listAddStep = [];
+  void addToListAddStep(WorkflowsStepCreateStruct item) =>
+      listAddStep.add(item);
+  void removeFromListAddStep(WorkflowsStepCreateStruct item) =>
+      listAddStep.remove(item);
+  void removeAtIndexFromListAddStep(int index) => listAddStep.removeAt(index);
+  void insertAtIndexInListAddStep(int index, WorkflowsStepCreateStruct item) =>
+      listAddStep.insert(index, item);
+  void updateListAddStepAtIndex(
+          int index, Function(WorkflowsStepCreateStruct) updateFn) =>
+      listAddStep[index] = updateFn(listAddStep[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

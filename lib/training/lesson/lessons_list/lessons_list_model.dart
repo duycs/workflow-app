@@ -72,6 +72,7 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
         }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != '' ? programId : ' '}${programId != '' ? '\"}}}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       list =
           LessonsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!

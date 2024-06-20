@@ -558,6 +558,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
                                         'action_type': _model.dropDownValue,
                                       },
                                     );
+
                                     shouldSetState = true;
                                     if ((_model
                                             .apiResultOperationAdd?.succeeded ??

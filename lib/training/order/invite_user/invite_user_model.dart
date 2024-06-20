@@ -79,6 +79,7 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
                 r'''$.id''',
               ).toString().toString()}\"}},{\"status\":{\"_eq\":\"active\"}}]}',
       );
+
       if ((apiResultGetStaff1.succeeded ?? true)) {
         getStaffList = StaffListDataStruct.maybeFromMap(
                 (apiResultGetStaff1.jsonBody ?? ''))!
@@ -116,6 +117,7 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
         accessToken: FFAppState().accessToken,
         idPrograms: widget.programId,
       );
+
       if ((apiResultGetOneProgram.succeeded ?? true)) {
         program = MarketLessonListStruct.maybeFromMap(getJsonField(
           (apiResultGetOneProgram.jsonBody ?? ''),

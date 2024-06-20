@@ -36,6 +36,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
   String output = '';
 
+  String testId = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -106,6 +108,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         r'''$.organization_id''',
       ).toString().toString()}\"}}]}',
     );
+
     if ((apiResultListIdStaff.succeeded ?? true)) {
       list = TestListDataStruct.maybeFromMap(
               (apiResultListIdStaff.jsonBody ?? ''))!
@@ -212,6 +215,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
             : null,
       },
     );
+
     if ((apiResultUpdateLesson1.succeeded ?? true)) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -276,6 +280,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile2,
     );
+
     if ((apiResultUploadVideo.succeeded ?? true)) {
       uploadVideo = getJsonField(
         (apiResultUploadVideo.jsonBody ?? ''),
@@ -313,6 +318,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile1,
     );
+
     if ((apiResultUploadImage.succeeded ?? true)) {
       uploadImage = getJsonField(
         (apiResultUploadImage.jsonBody ?? ''),
@@ -350,6 +356,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
       accessToken: FFAppState().accessToken,
       file: uploadedLocalFile3,
     );
+
     if ((apiResultUploadFileFile.succeeded ?? true)) {
       uploadFile = getJsonField(
         (apiResultUploadFileFile.jsonBody ?? ''),

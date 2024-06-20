@@ -45,6 +45,7 @@ class _StaffDetailWidgetState extends State<StaffDetailWidget> {
             userId:
                 StaffListStruct.maybeFromMap(widget.staffDetail)?.userId.id,
           );
+
           if ((_model.apiResultGetStaffInfo?.succeeded ?? true)) {
             _model.staffData = functions.stringToJson(getJsonField(
               (_model.apiResultGetStaffInfo?.jsonBody ?? ''),

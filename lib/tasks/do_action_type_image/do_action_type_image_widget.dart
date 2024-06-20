@@ -437,6 +437,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                       accessToken: FFAppState().accessToken,
                       fileList: _model.imageUpload,
                     );
+
                     if ((_model.apiResultImage?.succeeded ?? true)) {
                       if (FileUploadStruct.maybeFromMap(
                                   (_model.apiResultImage?.jsonBody ?? ''))!

@@ -665,6 +665,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                           questionId: idQuestion,
                                           accessToken: FFAppState().accessToken,
                                         );
+
                                         if ((_model.apiResultAddQuestion
                                                 ?.succeeded ??
                                             true)) {
@@ -782,6 +783,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                     'good_score': _model.textController2.text,
                                   },
                                 );
+
                                 shouldSetState = true;
                                 if ((_model.apiResultCreateTest?.succeeded ??
                                     true)) {

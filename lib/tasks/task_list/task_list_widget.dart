@@ -674,7 +674,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                             _model.dateStartFilter),
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
-                                      )}\"}}' : ' '}${(_model.dateEndFilter != null && _model.dateEndFilter != '') && (_model.dateEndFilter == ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+                                      )}\"}}' : ' '}${(_model.dateEndFilter != null && _model.dateEndFilter != '') && (_model.dateEndFilter != ' ') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                                         return DateTime.parse(var1)
                                             .add(const Duration(days: 1))
                                             .toString();
@@ -1090,6 +1090,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                     ? 'approve'
                                                                     : 'submit',
                                                               );
+
                                                               shouldSetState =
                                                                   true;
                                                               if ((_model
@@ -1160,6 +1161,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                       .workflowId
                                                                       .id,
                                                                 );
+
                                                                 shouldSetState =
                                                                     true;
                                                                 if ((_model
@@ -1212,6 +1214,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                         publishedCount:
                                                                             dataListItem.publishedCount,
                                                                       );
+
                                                                       shouldSetState =
                                                                           true;
                                                                       if (!(_model
@@ -2135,27 +2138,31 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       } else {
                                                         while (_model.loop <
                                                             file.length) {
-                                                          _model
-                                                              .updateResponseDataStruct(
-                                                            (e) => e
-                                                              ..status = 'done'
-                                                              ..updateFiles(
-                                                                (e) => e.add(
-                                                                    FileDataTypeStruct(
-                                                                  directusFilesId:
-                                                                      FileIDDataTypeStruct(
-                                                                    id: file[_model
-                                                                        .loop],
-                                                                  ),
-                                                                )),
-                                                              ),
-                                                          );
+                                                          _model.addToListFileDataType(
+                                                              FileDataTypeStruct(
+                                                            directusFilesId:
+                                                                FileIDDataTypeStruct(
+                                                              id: file[
+                                                                  _model.loop],
+                                                            ),
+                                                          ));
                                                           setState(() {});
                                                           _model.loop =
                                                               _model.loop + 1;
                                                           setState(() {});
                                                         }
                                                         _model.loop = 0;
+                                                        _model
+                                                            .updateResponseDataStruct(
+                                                          (e) => e
+                                                            ..status = 'done'
+                                                            ..files = _model
+                                                                .listFileDataType
+                                                                .toList(),
+                                                        );
+                                                        setState(() {});
+                                                        _model.listFileDataType =
+                                                            [];
                                                         setState(() {});
                                                       }
 
@@ -2183,6 +2190,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                   .operationsId
                                                                   .id,
                                                         );
+
                                                         if ((_model
                                                                 .apiResultUpdateoperation
                                                                 ?.succeeded ??
@@ -2269,28 +2277,31 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                     } else {
                                                       while (_model.loop <
                                                           images.length) {
-                                                        _model
-                                                            .updateResponseDataStruct(
-                                                          (e) => e
-                                                            ..status = 'done'
-                                                            ..updateFiles(
-                                                              (e) => e.add(
-                                                                  FileDataTypeStruct(
-                                                                directusFilesId:
-                                                                    FileIDDataTypeStruct(
-                                                                  id: images[
-                                                                      _model
-                                                                          .loop],
-                                                                ),
-                                                              )),
-                                                            ),
-                                                        );
+                                                        _model.addToListFileDataType(
+                                                            FileDataTypeStruct(
+                                                          directusFilesId:
+                                                              FileIDDataTypeStruct(
+                                                            id: images[
+                                                                _model.loop],
+                                                          ),
+                                                        ));
                                                         setState(() {});
                                                         _model.loop =
                                                             _model.loop + 1;
                                                         setState(() {});
                                                       }
                                                       _model.loop = 0;
+                                                      _model
+                                                          .updateResponseDataStruct(
+                                                        (e) => e
+                                                          ..status = 'done'
+                                                          ..files = _model
+                                                              .listFileDataType
+                                                              .toList(),
+                                                      );
+                                                      setState(() {});
+                                                      _model.listFileDataType =
+                                                          [];
                                                       setState(() {});
                                                     }
 
@@ -2317,6 +2328,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 .operationsId
                                                                 .id,
                                                       );
+
                                                       if ((_model
                                                               .apiResultUpdateoperation2
                                                               ?.succeeded ??
@@ -2406,6 +2418,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                         taskId: dataListItem.id,
                                                         submitType: 'reject',
                                                       );
+
                                                       if ((_model
                                                               .apiResultConfirmOperationCopy
                                                               ?.succeeded ??
@@ -2523,6 +2536,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 operationId:
                                                                     operationId,
                                                               );
+
                                                               if ((_model
                                                                       .apiResultUpdateoperation
                                                                       ?.succeeded ??
@@ -2730,6 +2744,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                               .operationsId
                                                                               .id,
                                                                         );
+
                                                                         if (!(_model.apiResultUpdateoperation22?.succeeded ??
                                                                             true)) {
                                                                           ScaffoldMessenger.of(context)

@@ -206,6 +206,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
         ).toString().toString(),
         requestDataJson: requestStaff,
       );
+
       if ((apiResultUpdateStaffTotal.succeeded ?? true)) {
         updateUserStaffTotal = await action_blocks.tokenReload(context);
         if (updateUserStaffTotal!) {
@@ -218,6 +219,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
             ).toString().toString(),
             requestDataJson: requestUserStaff,
           );
+
           if ((apiResultUpdateUserStaffTotal.succeeded ?? true)) {
             apiCreateProgramStaffTotal =
                 await StaffGroup.createProgramStaffCall.call(
@@ -227,6 +229,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
                 r'''$.id''',
               ).toString().toString(),
             );
+
             if ((apiCreateProgramStaffTotal.succeeded ?? true)) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

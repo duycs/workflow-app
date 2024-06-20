@@ -49,6 +49,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
         _model.apiResultwkg = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultwkg?.succeeded ?? true)) {
           _model.categoryList = CategoriesListDataStruct.maybeFromMap(
                   (_model.apiResultwkg?.jsonBody ?? ''))!
@@ -59,6 +60,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
           _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
             accessToken: FFAppState().accessToken,
           );
+
           if ((_model.apiResultDomain?.succeeded ?? true)) {
             _model.domainList = DomainsListDataStruct.maybeFromMap(
                     (_model.apiResultDomain?.jsonBody ?? ''))!
@@ -383,6 +385,7 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
                                 categoryId: _model.dropDownCategoryValue,
                                 domainId: _model.dropDownDomainValue,
                               );
+
                               shouldSetState = true;
                               if ((_model.apiResult16g?.succeeded ?? true)) {
                                 context.pushNamed(

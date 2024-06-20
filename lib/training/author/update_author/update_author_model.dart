@@ -126,6 +126,7 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
       apiResultGetDomainList = await DomainGroup.getDomainsListCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetDomainList.succeeded ?? true)) {
         domains = DomainsListDataStruct.maybeFromMap(
                 (apiResultGetDomainList.jsonBody ?? ''))!
@@ -147,6 +148,7 @@ class UpdateAuthorModel extends FlutterFlowModel<UpdateAuthorWidget> {
       apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetListAuthors.succeeded ?? true)) {
         listAuthorName = (getJsonField(
           (apiResultGetListAuthors.jsonBody ?? ''),

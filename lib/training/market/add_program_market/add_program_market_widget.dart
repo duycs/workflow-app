@@ -66,6 +66,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
         _model.apiResultwkg = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultwkg?.succeeded ?? true)) {
           _model.categoryList = CategoriesListDataStruct.maybeFromMap(
                   (_model.apiResultwkg?.jsonBody ?? ''))!
@@ -76,6 +77,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
           _model.apiResultDomain = await DomainGroup.getDomainsListCall.call(
             accessToken: FFAppState().accessToken,
           );
+
           if ((_model.apiResultDomain?.succeeded ?? true)) {
             _model.domainList = DomainsListDataStruct.maybeFromMap(
                     (_model.apiResultDomain?.jsonBody ?? ''))!
@@ -741,6 +743,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                     category: _model.dropDownCategoryValue,
                                     domain: _model.dropDownDomainValue,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model.apiResultUpdatePrice?.succeeded ??
                                       true)) {
@@ -758,6 +761,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                         categoryId:
                                             _model.dropDownCategoryValue,
                                       );
+
                                       shouldSetState = true;
                                       if ((_model.apiResultk6q?.succeeded ??
                                           true)) {
@@ -779,6 +783,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                               r'''$.id''',
                                             ).toString(),
                                           );
+
                                           shouldSetState = true;
                                           if ((_model.apiResultProgramsOne
                                                   ?.succeeded ??
@@ -809,6 +814,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                                       .id,
                                                   status: 'trial',
                                                 );
+
                                                 shouldSetState = true;
                                                 if ((_model.apiResulti06
                                                         ?.succeeded ??

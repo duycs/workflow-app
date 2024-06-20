@@ -74,6 +74,7 @@ class AuthorListModel extends FlutterFlowModel<AuthorListWidget> {
       filter:
           '{\"_and\":[${searchAuthorsTextController.text != '' ? '{\"alias\":{\"_icontains\":\"' : ' '}${searchAuthorsTextController.text != '' ? searchAuthorsTextController.text : ' '}${searchAuthorsTextController.text != '' ? '\"}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listDataAuthors =
           AuthorsListDataStruct.maybeFromMap((apiResultList.jsonBody ?? ''))!
@@ -115,6 +116,7 @@ class AuthorListModel extends FlutterFlowModel<AuthorListWidget> {
       limit: 10,
       offset: 0,
     );
+
     if ((apiResultListSort.succeeded ?? true)) {
       listDataAuthorsSort = AuthorsListDataStruct.maybeFromMap(
               (apiResultListSort.jsonBody ?? ''))!

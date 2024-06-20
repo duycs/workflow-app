@@ -70,6 +70,7 @@ class ListStaffProfileCompanyModel
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
+
       if ((apiResultGetListStaff.succeeded ?? true)) {
         listStaff = StaffListDataStruct.maybeFromMap(
                 (apiResultGetListStaff.jsonBody ?? ''))!

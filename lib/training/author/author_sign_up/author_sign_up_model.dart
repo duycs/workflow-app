@@ -118,6 +118,7 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
       apiResultGetLinkDomain = await DomainGroup.getDomainsListCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetLinkDomain.succeeded ?? true)) {
         listDomain = DomainsListDataStruct.maybeFromMap(
                 (apiResultGetLinkDomain.jsonBody ?? ''))!
@@ -139,6 +140,7 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
       apiResultGetListAuthors = await GroupAuthorsGroup.listAuthorsCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetListAuthors.succeeded ?? true)) {
         listAuthorName = (getJsonField(
           (apiResultGetListAuthors.jsonBody ?? ''),

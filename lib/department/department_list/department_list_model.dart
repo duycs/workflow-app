@@ -105,6 +105,7 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
         }
       }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(branchId != '') && (branchId != 'noData') ? branchId : ' '}${(branchId != '') && (branchId != 'noData') ? '\"}}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       list = DepartmentListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!

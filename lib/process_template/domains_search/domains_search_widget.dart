@@ -50,6 +50,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
         _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultlld?.succeeded ?? true)) {
           _model.domainList = DomainsListDataStruct.maybeFromMap(
                   (_model.apiResultlld?.jsonBody ?? ''))!

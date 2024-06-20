@@ -146,6 +146,147 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
 
   int loop3 = 0;
 
+  List<DepartmentsIdStruct> pageDepartments = [];
+  void addToPageDepartments(DepartmentsIdStruct item) =>
+      pageDepartments.add(item);
+  void removeFromPageDepartments(DepartmentsIdStruct item) =>
+      pageDepartments.remove(item);
+  void removeAtIndexFromPageDepartments(int index) =>
+      pageDepartments.removeAt(index);
+  void insertAtIndexInPageDepartments(int index, DepartmentsIdStruct item) =>
+      pageDepartments.insert(index, item);
+  void updatePageDepartmentsAtIndex(
+          int index, Function(DepartmentsIdStruct) updateFn) =>
+      pageDepartments[index] = updateFn(pageDepartments[index]);
+
+  List<StaffsStepStruct> pageStaffs = [];
+  void addToPageStaffs(StaffsStepStruct item) => pageStaffs.add(item);
+  void removeFromPageStaffs(StaffsStepStruct item) => pageStaffs.remove(item);
+  void removeAtIndexFromPageStaffs(int index) => pageStaffs.removeAt(index);
+  void insertAtIndexInPageStaffs(int index, StaffsStepStruct item) =>
+      pageStaffs.insert(index, item);
+  void updatePageStaffsAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      pageStaffs[index] = updateFn(pageStaffs[index]);
+
+  List<OperationsStruct> pageOperations = [];
+  void addToPageOperations(OperationsStruct item) => pageOperations.add(item);
+  void removeFromPageOperations(OperationsStruct item) =>
+      pageOperations.remove(item);
+  void removeAtIndexFromPageOperations(int index) =>
+      pageOperations.removeAt(index);
+  void insertAtIndexInPageOperations(int index, OperationsStruct item) =>
+      pageOperations.insert(index, item);
+  void updatePageOperationsAtIndex(
+          int index, Function(OperationsStruct) updateFn) =>
+      pageOperations[index] = updateFn(pageOperations[index]);
+
+  List<DepartmentListStruct> pageDepartmentsStep = [];
+  void addToPageDepartmentsStep(DepartmentListStruct item) =>
+      pageDepartmentsStep.add(item);
+  void removeFromPageDepartmentsStep(DepartmentListStruct item) =>
+      pageDepartmentsStep.remove(item);
+  void removeAtIndexFromPageDepartmentsStep(int index) =>
+      pageDepartmentsStep.removeAt(index);
+  void insertAtIndexInPageDepartmentsStep(
+          int index, DepartmentListStruct item) =>
+      pageDepartmentsStep.insert(index, item);
+  void updatePageDepartmentsStepAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      pageDepartmentsStep[index] = updateFn(pageDepartmentsStep[index]);
+
+  List<DepartmentsIdStruct> dataUpdateDepartment = [];
+  void addToDataUpdateDepartment(DepartmentsIdStruct item) =>
+      dataUpdateDepartment.add(item);
+  void removeFromDataUpdateDepartment(DepartmentsIdStruct item) =>
+      dataUpdateDepartment.remove(item);
+  void removeAtIndexFromDataUpdateDepartment(int index) =>
+      dataUpdateDepartment.removeAt(index);
+  void insertAtIndexInDataUpdateDepartment(
+          int index, DepartmentsIdStruct item) =>
+      dataUpdateDepartment.insert(index, item);
+  void updateDataUpdateDepartmentAtIndex(
+          int index, Function(DepartmentsIdStruct) updateFn) =>
+      dataUpdateDepartment[index] = updateFn(dataUpdateDepartment[index]);
+
+  List<StaffsStepStruct> dataUpdateStaffs = [];
+  void addToDataUpdateStaffs(StaffsStepStruct item) =>
+      dataUpdateStaffs.add(item);
+  void removeFromDataUpdateStaffs(StaffsStepStruct item) =>
+      dataUpdateStaffs.remove(item);
+  void removeAtIndexFromDataUpdateStaffs(int index) =>
+      dataUpdateStaffs.removeAt(index);
+  void insertAtIndexInDataUpdateStaffs(int index, StaffsStepStruct item) =>
+      dataUpdateStaffs.insert(index, item);
+  void updateDataUpdateStaffsAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      dataUpdateStaffs[index] = updateFn(dataUpdateStaffs[index]);
+
+  List<DepartmentsIdStruct> updateDepartments = [];
+  void addToUpdateDepartments(DepartmentsIdStruct item) =>
+      updateDepartments.add(item);
+  void removeFromUpdateDepartments(DepartmentsIdStruct item) =>
+      updateDepartments.remove(item);
+  void removeAtIndexFromUpdateDepartments(int index) =>
+      updateDepartments.removeAt(index);
+  void insertAtIndexInUpdateDepartments(int index, DepartmentsIdStruct item) =>
+      updateDepartments.insert(index, item);
+  void updateUpdateDepartmentsAtIndex(
+          int index, Function(DepartmentsIdStruct) updateFn) =>
+      updateDepartments[index] = updateFn(updateDepartments[index]);
+
+  List<WorkflowsStepCreateStruct> stepsUpdate = [];
+  void addToStepsUpdate(WorkflowsStepCreateStruct item) =>
+      stepsUpdate.add(item);
+  void removeFromStepsUpdate(WorkflowsStepCreateStruct item) =>
+      stepsUpdate.remove(item);
+  void removeAtIndexFromStepsUpdate(int index) => stepsUpdate.removeAt(index);
+  void insertAtIndexInStepsUpdate(int index, WorkflowsStepCreateStruct item) =>
+      stepsUpdate.insert(index, item);
+  void updateStepsUpdateAtIndex(
+          int index, Function(WorkflowsStepCreateStruct) updateFn) =>
+      stepsUpdate[index] = updateFn(stepsUpdate[index]);
+
+  List<DepartmentListStruct> updateStepDeparments = [];
+  void addToUpdateStepDeparments(DepartmentListStruct item) =>
+      updateStepDeparments.add(item);
+  void removeFromUpdateStepDeparments(DepartmentListStruct item) =>
+      updateStepDeparments.remove(item);
+  void removeAtIndexFromUpdateStepDeparments(int index) =>
+      updateStepDeparments.removeAt(index);
+  void insertAtIndexInUpdateStepDeparments(
+          int index, DepartmentListStruct item) =>
+      updateStepDeparments.insert(index, item);
+  void updateUpdateStepDeparmentsAtIndex(
+          int index, Function(DepartmentListStruct) updateFn) =>
+      updateStepDeparments[index] = updateFn(updateStepDeparments[index]);
+
+  List<StaffsStepStruct> stepUpdateStaffs = [];
+  void addToStepUpdateStaffs(StaffsStepStruct item) =>
+      stepUpdateStaffs.add(item);
+  void removeFromStepUpdateStaffs(StaffsStepStruct item) =>
+      stepUpdateStaffs.remove(item);
+  void removeAtIndexFromStepUpdateStaffs(int index) =>
+      stepUpdateStaffs.removeAt(index);
+  void insertAtIndexInStepUpdateStaffs(int index, StaffsStepStruct item) =>
+      stepUpdateStaffs.insert(index, item);
+  void updateStepUpdateStaffsAtIndex(
+          int index, Function(StaffsStepStruct) updateFn) =>
+      stepUpdateStaffs[index] = updateFn(stepUpdateStaffs[index]);
+
+  List<OperationsStruct> stepOperationsUpdate = [];
+  void addToStepOperationsUpdate(OperationsStruct item) =>
+      stepOperationsUpdate.add(item);
+  void removeFromStepOperationsUpdate(OperationsStruct item) =>
+      stepOperationsUpdate.remove(item);
+  void removeAtIndexFromStepOperationsUpdate(int index) =>
+      stepOperationsUpdate.removeAt(index);
+  void insertAtIndexInStepOperationsUpdate(int index, OperationsStruct item) =>
+      stepOperationsUpdate.insert(index, item);
+  void updateStepOperationsUpdateAtIndex(
+          int index, Function(OperationsStruct) updateFn) =>
+      stepOperationsUpdate[index] = updateFn(stepOperationsUpdate[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

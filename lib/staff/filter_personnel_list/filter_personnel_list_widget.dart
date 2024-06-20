@@ -62,6 +62,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
             r'''$.organization_id''',
           ).toString().toString()}\"}}}]}',
         );
+
         if ((_model.apiResultGetListBranch2?.succeeded ?? true)) {
           _model.branchList = BranchListDataStruct.maybeFromMap(
                   (_model.apiResultGetListBranch2?.jsonBody ?? ''))!
@@ -105,6 +106,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
               }
             }(),
           );
+
           if ((_model.apiResultListDeparment4?.succeeded ?? true)) {
             _model.departmentList = DepartmentListDataStruct.maybeFromMap(
                     (_model.apiResultListDeparment4?.jsonBody ?? ''))!
@@ -299,6 +301,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   filter:
                                       '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
                                 );
+
                                 if ((_model
                                         .apiResultListDeparment3?.succeeded ??
                                     true)) {
@@ -481,6 +484,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                   }
                                 }()}${widget.filterSearch != null && widget.filterSearch != '' ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${widget.filterSearch}\"}}}' : ' '}]}',
                               );
+
                               if ((_model.apiResultClearFilter?.succeeded ??
                                   true)) {
                                 _model.list = StaffListDataStruct.maybeFromMap(

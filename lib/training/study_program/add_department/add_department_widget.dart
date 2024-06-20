@@ -108,12 +108,13 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
           } else {
             return ' ';
           }
-        }()}${FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725' ? ',{\"id\":{\"_eq\":\"${getJsonField(
+        }()}${FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725' ? '{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.department_id''',
           ).toString().toString()}\"}}' : ' '}]}',
         accessToken: FFAppState().accessToken,
       );
+
       if ((_model.addDepartmentListcall?.succeeded ?? true)) {
         _model.dataList = DepartmentListDataStruct.maybeFromMap(
                 (_model.addDepartmentListcall?.jsonBody ?? ''))!
@@ -499,6 +500,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                   ),
                                 },
                               );
+
                               shouldSetState = true;
                               if ((_model
                                       .studyProgramAddDepartment?.succeeded ??

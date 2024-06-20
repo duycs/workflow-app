@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'author_market_profile_widget.dart' show AuthorMarketProfileWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AuthorMarketProfileModel
     extends FlutterFlowModel<AuthorMarketProfileWidget> {
@@ -24,13 +25,29 @@ class AuthorMarketProfileModel
           int index, Function(MarketLessonListStruct) updateFn) =>
       listDataProgramsMarket[index] = updateFn(listDataProgramsMarket[index]);
 
+  bool checkLoad = false;
+
+  String checkClick = '1';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in AuthorMarketProfile widget.
+  bool? tokenReloadProgramsMarket;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
+
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController2;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall2;
 
   @override
   void initState(BuildContext context) {}
@@ -39,6 +56,8 @@ class AuthorMarketProfileModel
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    listViewPagingController1?.dispose();
+    listViewPagingController2?.dispose();
   }
 
   /// Action blocks.
@@ -51,6 +70,7 @@ class AuthorMarketProfileModel
       filter:
           '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"id\":{\"_eq\":\"${widget.itemAuthors?.id}\"}}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listDataProgramsMarket = MarketLessonListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -80,4 +100,87 @@ class AuthorMarketProfileModel
       }
     }
   }
+
+  /// Additional helper methods.
+  PagingController<ApiPagingParams, dynamic> setListViewController1(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall1 = apiCall;
+    return listViewPagingController1 ??= _createListViewController1(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController1(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetListMarketLessonPage1);
+  }
+
+  void listViewGetListMarketLessonPage1(ApiPagingParams nextPageMarker) =>
+      listViewApiCall1!(nextPageMarker)
+          .then((listViewGetListMarketLessonResponse) {
+        final pageItems = (MarketLessonListDataStruct.maybeFromMap(
+                        listViewGetListMarketLessonResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController1?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetListMarketLessonResponse,
+                )
+              : null,
+        );
+      });
+
+  PagingController<ApiPagingParams, dynamic> setListViewController2(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall2 = apiCall;
+    return listViewPagingController2 ??= _createListViewController2(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController2(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetListMarketLessonPage2);
+  }
+
+  void listViewGetListMarketLessonPage2(ApiPagingParams nextPageMarker) =>
+      listViewApiCall2!(nextPageMarker)
+          .then((listViewGetListMarketLessonResponse) {
+        final pageItems = (MarketLessonListDataStruct.maybeFromMap(
+                        listViewGetListMarketLessonResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController2?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetListMarketLessonResponse,
+                )
+              : null,
+        );
+      });
 }

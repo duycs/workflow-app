@@ -115,6 +115,7 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                           accessToken: FFAppState().accessToken,
                           id: widget.id,
                         );
+
                         await widget.afterDeleteAction?.call();
                         Navigator.pop(context);
                       }

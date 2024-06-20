@@ -72,6 +72,7 @@ class OrderListModel extends FlutterFlowModel<OrderListWidget> {
       apiResultGetListOrder = await OrderGroup.getListOrderCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetListOrder.succeeded ?? true)) {
         listData = ProgramOrderDataStruct.maybeFromMap(
                 (apiResultGetListOrder.jsonBody ?? ''))!

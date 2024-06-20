@@ -14,13 +14,15 @@ class UserStruct extends BaseStruct {
     String? avatar,
     String? status,
     String? role,
+    int? enableBiometric,
   })  : _id = id,
         _firstName = firstName,
         _lastName = lastName,
         _email = email,
         _avatar = avatar,
         _status = status,
-        _role = role;
+        _role = role,
+        _enableBiometric = enableBiometric;
 
   // "id" field.
   String? _id;
@@ -71,6 +73,16 @@ class UserStruct extends BaseStruct {
 
   bool hasRole() => _role != null;
 
+  // "enable_biometric" field.
+  int? _enableBiometric;
+  int get enableBiometric => _enableBiometric ?? 0;
+  set enableBiometric(int? val) => _enableBiometric = val;
+
+  void incrementEnableBiometric(int amount) =>
+      enableBiometric = enableBiometric + amount;
+
+  bool hasEnableBiometric() => _enableBiometric != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: data['id'] as String?,
         firstName: data['first_name'] as String?,
@@ -79,6 +91,7 @@ class UserStruct extends BaseStruct {
         avatar: data['avatar'] as String?,
         status: data['status'] as String?,
         role: data['role'] as String?,
+        enableBiometric: castToType<int>(data['enable_biometric']),
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -92,6 +105,7 @@ class UserStruct extends BaseStruct {
         'avatar': _avatar,
         'status': _status,
         'role': _role,
+        'enable_biometric': _enableBiometric,
       }.withoutNulls;
 
   @override
@@ -123,6 +137,10 @@ class UserStruct extends BaseStruct {
         'role': serializeParam(
           _role,
           ParamType.String,
+        ),
+        'enable_biometric': serializeParam(
+          _enableBiometric,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -163,6 +181,11 @@ class UserStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        enableBiometric: deserializeParam(
+          data['enable_biometric'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -177,12 +200,13 @@ class UserStruct extends BaseStruct {
         email == other.email &&
         avatar == other.avatar &&
         status == other.status &&
-        role == other.role;
+        role == other.role &&
+        enableBiometric == other.enableBiometric;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, firstName, lastName, email, avatar, status, role]);
+  int get hashCode => const ListEquality().hash(
+      [id, firstName, lastName, email, avatar, status, role, enableBiometric]);
 }
 
 UserStruct createUserStruct({
@@ -193,6 +217,7 @@ UserStruct createUserStruct({
   String? avatar,
   String? status,
   String? role,
+  int? enableBiometric,
 }) =>
     UserStruct(
       id: id,
@@ -202,4 +227,5 @@ UserStruct createUserStruct({
       avatar: avatar,
       status: status,
       role: role,
+      enableBiometric: enableBiometric,
     );

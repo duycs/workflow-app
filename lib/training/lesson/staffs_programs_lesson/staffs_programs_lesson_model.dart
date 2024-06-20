@@ -100,6 +100,7 @@ class StaffsProgramsLessonModel
       lessionId: staffsLessionsListOne.first.lessionId.id,
       staffId: FFAppState().staffid,
     );
+
     if (!(apiResultPostComment.succeeded ?? true)) {
       checkRefreshTokenBlock3 = await action_blocks.checkRefreshToken(
         context,
@@ -133,6 +134,7 @@ class StaffsProgramsLessonModel
       filter:
           '{\"_and\":[{\"id\":{\"_eq\":\"${staffsLessionsListOne.first.lessionId.id}\"}}]}',
     );
+
     if ((apiResultGetCommment.succeeded ?? true)) {
       list = getJsonField(
         (apiResultGetCommment.jsonBody ?? ''),
@@ -178,6 +180,7 @@ class StaffsProgramsLessonModel
       filter:
           '{\"_and\":[{\"id\":{\"_eq\":\"${staffsLessionsListOne.first.lessionId.id}\"}}]}',
     );
+
     if ((apiResultHeart.succeeded ?? true)) {
       heart = getJsonField(
         (apiResultHeart.jsonBody ?? ''),
@@ -245,6 +248,7 @@ class StaffsProgramsLessonModel
         r'''$.id''',
       ).toString().toString()}\"}}},{\"lession_id\":{\"id\":{\"_eq\":\"${widget.lessionId}\"}}},{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${widget.programsId}\"}}}}}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       staffsLessionsListOne = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -295,6 +299,7 @@ class StaffsProgramsLessonModel
         r'''$.id''',
       ).toString().toString()),
     );
+
     if (!(apiResultDeleteHeart.succeeded ?? true)) {
       checkRefreshTokenBlock4 = await action_blocks.checkRefreshToken(
         context,
@@ -332,6 +337,7 @@ class StaffsProgramsLessonModel
       status: 'love',
       lessionId: staffsLessionsListOne.first.lessionId.id,
     );
+
     if (!(apiResultPostHeart.succeeded ?? true)) {
       checkRefreshTokenBlock5 = await action_blocks.checkRefreshToken(
         context,

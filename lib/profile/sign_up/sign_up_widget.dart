@@ -984,6 +984,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     'sort': '0',
                                   },
                                 );
+
                                 shouldSetState = true;
                                 if ((_model.apiResultCreateUser?.succeeded ??
                                     true)) {

@@ -90,6 +90,7 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskDone1.succeeded ?? true)) {
       taskDone = getJsonField(
         (apiResultGetTaskDone1.jsonBody ?? ''),
@@ -107,6 +108,7 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskToDo1.succeeded ?? true)) {
       taskToDo = getJsonField(
         (apiResultGetTaskToDo1.jsonBody ?? ''),
@@ -124,6 +126,7 @@ class TaskListWaitModel extends FlutterFlowModel<TaskListWaitWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskWait1.succeeded ?? true)) {
       totalWait = getJsonField(
         (apiResultGetTaskWait1.jsonBody ?? ''),

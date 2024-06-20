@@ -16,6 +16,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   bool isLoad = false;
 
+  bool showSTH = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -28,6 +30,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   ApiCallResponse? apiResultRefreshTokenLogin;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in Login widget.
   ApiCallResponse? apiResultGetStaffIdReWfLogin;
+  // Stores action output result for [Custom Action - getReTokenUser] action in Login widget.
+  String? checkWfEmail;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -54,6 +58,16 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     return null;
   }
 
+  bool biometricVerificationLogin = false;
+  // Stores action output result for [Custom Action - getReTokenUser] action in IconButton widget.
+  String? checkWfEmailBV;
+  // Stores action output result for [Custom Action - sshkey] action in IconButton widget.
+  String? sshkeyPublicKeyLogin;
+  // Stores action output result for [Backend Call - API (LoginBiometricVerification)] action in IconButton widget.
+  ApiCallResponse? apiResultvlloginSTH1;
+  // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.
+  ApiCallResponse? apiResultGetStaffIdSTH;
+
   @override
   void initState(BuildContext context) {
     emailAddressTextControllerValidator = _emailAddressTextControllerValidator;
@@ -78,6 +92,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     apiResultUserMe = await UserGroup.userMeCall.call(
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultUserMe.succeeded ?? true)) {
       FFAppState().user = UserResourceDataStruct.maybeFromMap(
               (apiResultUserMe.jsonBody ?? ''))!
@@ -125,6 +140,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
         email: emailAddressTextController.text,
         password: passwordTextController.text,
       );
+
       if ((apiResultLogin.succeeded ?? true)) {
         if (getJsonField(
               (apiResultLogin.jsonBody ?? ''),
@@ -169,6 +185,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
           accessToken: FFAppState().accessToken,
           userId: FFAppState().user.id,
         );
+
         if ((apiResultGetStaffId.succeeded ?? true)) {
           FFAppState().staffid = getJsonField(
             (apiResultGetStaffId.jsonBody ?? ''),

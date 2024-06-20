@@ -91,6 +91,7 @@ class LessonListHomepageModel
           locale: FFLocalizations.of(context).languageCode,
         ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsId != '' ? programsId : ' '}${programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"status\":{\"_eq\":\"draft\"}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listLesson = EmployeeLessonListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!

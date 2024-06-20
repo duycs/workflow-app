@@ -56,6 +56,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
             r'''$.organization_id''',
           ).toString().toString()}\"}}]}',
         );
+
         if ((_model.apiResult9q7?.succeeded ?? true)) {
           _model.operationList = OperationsListDataStruct.maybeFromMap(
                   (_model.apiResult9q7?.jsonBody ?? ''))!

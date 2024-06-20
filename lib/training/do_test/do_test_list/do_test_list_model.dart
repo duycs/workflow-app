@@ -62,6 +62,7 @@ class DoTestListModel extends FlutterFlowModel<DoTestListWidget> {
         accessToken: FFAppState().accessToken,
         filter: filter,
       );
+
       if ((apiResultGetListStaffTest.succeeded ?? true)) {
         list = StaffsTestsListDataStruct.maybeFromMap(
                 (apiResultGetListStaffTest.jsonBody ?? ''))!

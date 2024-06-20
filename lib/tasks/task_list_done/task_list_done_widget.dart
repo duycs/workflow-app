@@ -513,10 +513,10 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                     accessToken: FFAppState().accessToken,
                                     limit: 20,
                                     offset: nextPageMarker.nextPageNumber * 20,
-                                    filter: '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                    filter: '{\"_and\":[{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                       FFAppState().staffLogin,
                                       r'''$.id''',
-                                    ).toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+                                    ).toString()}\"}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
                                       FFAppState().staffLogin,
                                       r'''$.organization_id''',
                                     ).toString()}\"}}},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"approved\"}}]},{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(

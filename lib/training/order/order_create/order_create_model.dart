@@ -99,6 +99,7 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
           ),
         },
       );
+
       if ((apiResultOrderCreate.succeeded ?? true)) {
         return getJsonField(
           (apiResultOrderCreate.jsonBody ?? ''),

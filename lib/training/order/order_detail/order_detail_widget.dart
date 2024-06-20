@@ -876,6 +876,7 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                                     accessToken: FFAppState().accessToken,
                                     orderId: widget.orderId,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model
                                           .apiResultQrCodeCreate?.succeeded ??

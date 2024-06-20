@@ -888,6 +888,7 @@ class _QuestionCreateTestWidgetState extends State<QuestionCreateTestWidget> {
                                         _model.requestData?.toMap(),
                                     accessToken: FFAppState().accessToken,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model.apiResultCreate?.succeeded ??
                                       true)) {

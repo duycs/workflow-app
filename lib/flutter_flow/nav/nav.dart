@@ -191,11 +191,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TrainingProgressUserWidget(),
         ),
         FFRoute(
-          name: 'QuanLyQuyTrinh_2',
-          path: '/quanLyQuyTrinh2',
-          builder: (context, params) => const QuanLyQuyTrinh2Widget(),
-        ),
-        FFRoute(
           name: 'TaoMoiQuyTrinh_1',
           path: '/taoMoiQuyTrinh1',
           builder: (context, params) => const TaoMoiQuyTrinh1Widget(),
@@ -228,12 +223,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'checkpage',
               ParamType.String,
             ),
+            showModal: params.getParam(
+              'showModal',
+              ParamType.String,
+            ),
+            itemLesstion: params.getParam(
+              'itemLesstion',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: LessonsStruct.fromSerializableMap,
+            ),
+            programsItem: params.getParam(
+              'programsItem',
+              ParamType.JSON,
+            ),
+            itemListLession: params.getParam(
+              'itemListLession',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
+            ),
           ),
-        ),
-        FFRoute(
-          name: 'TaoCongViecMoi_Nhap',
-          path: '/taoCongViecMoiNhap',
-          builder: (context, params) => const TaoCongViecMoiNhapWidget(),
         ),
         FFRoute(
           name: 'TrainingManage',
@@ -369,6 +379,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             checkPage: params.getParam(
               'checkPage',
               ParamType.String,
+            ),
+            programsItem: params.getParam(
+              'programsItem',
+              ParamType.JSON,
+            ),
+            listItemLession: params.getParam(
+              'listItemLession',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
             ),
           ),
         ),
@@ -950,7 +970,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'StudyProgramListUser',
           path: '/studyProgramListUser',
-          builder: (context, params) => const StudyProgramListUserWidget(),
+          builder: (context, params) => StudyProgramListUserWidget(
+            checkStatusPrograms: params.getParam(
+              'checkStatusPrograms',
+              ParamType.String,
+            ),
+            staffId: params.getParam(
+              'staffId',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'Staffs_programs_lesson',
@@ -967,11 +996,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Details43Receipt',
-          path: '/details43Receipt',
-          builder: (context, params) => const Details43ReceiptWidget(),
-        ),
-        FFRoute(
           name: 'StudyProgramListMarket',
           path: '/studyProgramListMarket',
           builder: (context, params) => StudyProgramListMarketWidget(
@@ -982,14 +1006,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ReportTask',
-          path: '/reportTask',
-          builder: (context, params) => const ReportTaskWidget(),
+          name: 'ReportStaff',
+          path: '/reportStaff',
+          builder: (context, params) => const ReportStaffWidget(),
         ),
         FFRoute(
-          name: 'ReportTaskDetail',
+          name: 'ReportStaffDetail',
           path: '/reportTaskDetail',
-          builder: (context, params) => ReportTaskDetailWidget(
+          builder: (context, params) => ReportStaffDetailWidget(
             staffId: params.getParam(
               'staffId',
               ParamType.String,
@@ -1013,30 +1037,68 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ReportTaskDetailCopy',
-          path: '/reportTaskDetailCopy',
-          builder: (context, params) => ReportTaskDetailCopyWidget(
-            staffId: params.getParam(
-              'staffId',
+          name: 'ProfileUserNew',
+          path: '/profileUserNew',
+          builder: (context, params) => const ProfileUserNewWidget(),
+        ),
+        FFRoute(
+          name: 'ProfileUserSetting',
+          path: '/profileUserSetting',
+          builder: (context, params) => const ProfileUserSettingWidget(),
+        ),
+        FFRoute(
+          name: 'Profile17OtherUser',
+          path: '/profile17OtherUser',
+          builder: (context, params) => const Profile17OtherUserWidget(),
+        ),
+        FFRoute(
+          name: 'Newsfeed',
+          path: '/newsfeed',
+          builder: (context, params) => const NewsfeedWidget(),
+        ),
+        FFRoute(
+          name: 'NewsfeedDetailDraft',
+          path: '/newsfeedDetailDraft',
+          builder: (context, params) => const NewsfeedDetailDraftWidget(),
+        ),
+        FFRoute(
+          name: 'InforList',
+          path: '/inforList',
+          builder: (context, params) => const InforListWidget(),
+        ),
+        FFRoute(
+          name: 'NewsfeedDetail',
+          path: '/newsfeedDetail',
+          builder: (context, params) => const NewsfeedDetailWidget(),
+        ),
+        FFRoute(
+          name: 'LessonCreateCopy',
+          path: '/lessonCreateCopy',
+          builder: (context, params) => LessonCreateCopyWidget(
+            checkScroll: params.getParam(
+              'checkScroll',
               ParamType.String,
             ),
-            title: params.getParam(
-              'title',
-              ParamType.String,
-            ),
-            department: params.getParam(
-              'department',
-              ParamType.String,
-            ),
-            branch: params.getParam(
-              'branch',
-              ParamType.String,
-            ),
-            name: params.getParam(
-              'name',
+            checkPage: params.getParam(
+              'checkPage',
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'Newsfeed2',
+          path: '/newsfeed2',
+          builder: (context, params) => const Newsfeed2Widget(),
+        ),
+        FFRoute(
+          name: 'profilePublish',
+          path: '/profilePublish',
+          builder: (context, params) => const ProfilePublishWidget(),
+        ),
+        FFRoute(
+          name: 'profilePublish2',
+          path: '/profilePublish2',
+          builder: (context, params) => const ProfilePublish2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

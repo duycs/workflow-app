@@ -540,6 +540,7 @@ class _DetailActionTypeImageWidgetState
                               accessToken: FFAppState().accessToken,
                               fileList: _model.images,
                             );
+
                             if ((_model.apiResultUploadListImage?.succeeded ??
                                 true)) {
                               if (FileUploadStruct.maybeFromMap((_model

@@ -49,6 +49,7 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
           testsId: widget.testId,
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultGetTest?.succeeded ?? true)) {
           _model.list = TestListStruct.maybeFromMap(getJsonField(
             (_model.apiResultGetTest?.jsonBody ?? ''),

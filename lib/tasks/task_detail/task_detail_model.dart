@@ -45,6 +45,19 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
           int index, Function(FileUploadStruct) updateFn) =>
       listFileId[index] = updateFn(listFileId[index]);
 
+  List<FileDataTypeStruct> listFileDataType = [];
+  void addToListFileDataType(FileDataTypeStruct item) =>
+      listFileDataType.add(item);
+  void removeFromListFileDataType(FileDataTypeStruct item) =>
+      listFileDataType.remove(item);
+  void removeAtIndexFromListFileDataType(int index) =>
+      listFileDataType.removeAt(index);
+  void insertAtIndexInListFileDataType(int index, FileDataTypeStruct item) =>
+      listFileDataType.insert(index, item);
+  void updateListFileDataTypeAtIndex(
+          int index, Function(FileDataTypeStruct) updateFn) =>
+      listFileDataType[index] = updateFn(listFileDataType[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -106,6 +119,7 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
             '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
         sort: 'number',
       );
+
       if ((apiResultGetTaskList.succeeded ?? true)) {
         list = TaskListDataStruct.maybeFromMap(
                 (apiResultGetTaskList.jsonBody ?? ''))!

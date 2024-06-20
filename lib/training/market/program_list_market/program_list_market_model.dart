@@ -3,8 +3,10 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'program_list_market_widget.dart' show ProgramListMarketWidget;
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
   ///  Local state fields for this page.
@@ -47,13 +49,21 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
 
   String priceMaxDomain = '';
 
+  bool checkLoad = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in ProgramListMarket widget.
+  bool? reloadTokenProgramsList;
   // State field(s) for searchMarket widget.
   FocusNode? searchMarketFocusNode;
   TextEditingController? searchMarketTextController;
   String? Function(BuildContext, String?)? searchMarketTextControllerValidator;
+  // State field(s) for ListView widget.
+
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -63,6 +73,8 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
     unfocusNode.dispose();
     searchMarketFocusNode?.dispose();
     searchMarketTextController?.dispose();
+
+    listViewPagingController?.dispose();
   }
 
   /// Action blocks.
@@ -84,6 +96,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
         }
       }()}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}${widget.domainToProgramListMarket != '' ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${widget.domainToProgramListMarket != '' ? widget.domainToProgramListMarket : ' '}${widget.domainToProgramListMarket != '' ? '\"}}}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${(domain != '') && (domain != 'noData') ? domain : ' '}${(domain != '') && (domain != 'noData') ? '\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"' : ' '}${(author != '') && (author != 'noData') ? author : ' '}${(author != '') && (author != 'noData') ? '\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"' : ' '}${(category != '') && (category != 'noData') ? category : ' '}${(category != '') && (category != 'noData') ? '\"}}}' : ' '}${(priceMinDomain != '') && (priceMinDomain != 'noData') && (widget.price == 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(priceMinDomain != '') && (priceMinDomain != 'noData') && (widget.price == 'free1') ? priceMinDomain : ' '}${(priceMinDomain != '') && (priceMinDomain != 'noData') && (widget.price == 'free1') ? '\"}}' : ' '}${(priceMaxDomain != '') && (priceMaxDomain != 'noData') && (widget.price == 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(priceMaxDomain != '') && (priceMaxDomain != 'noData') && (widget.price == 'free1') ? priceMaxDomain : ' '}${(priceMaxDomain != '') && (priceMaxDomain != 'noData') && (widget.price == 'free1') ? '\"}}' : ' '}${(priceMin != '') && (priceMin != 'noData') && (widget.price != 'free1') ? ',{\"price\":{\"_gte\":\"' : ' '}${(priceMin != '') && (priceMin != 'noData') && (widget.price != 'free1') ? priceMin : ' '}${(priceMin != '') && (priceMin != 'noData') && (widget.price != 'free1') ? '\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') && (widget.price != 'free1') ? ',{\"price\":{\"_lte\":\"' : ' '}${(priceMax != '') && (priceMax != 'noData') && (widget.price != 'free1') ? priceMax : ' '}${(priceMax != '') && (priceMax != 'noData') && (widget.price != 'free1') ? '\"}}' : ' '}${(widget.idAuthor != '') && (widget.idDomain != '') ? ',{\"author_id\":{\"id\":{\"_eq\":\"${widget.idAuthor}\"}}},{\"domain_id\":{\"id\":{\"_eq\":\"${widget.idDomain}\"}}}' : ' '}]}',
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listPrograms = MarketLessonListDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -121,6 +134,7 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultList.succeeded ?? true)) {
       listDataDomain = DomainsListDataDataStruct.maybeFromMap(
               (apiResultList.jsonBody ?? ''))!
@@ -150,4 +164,62 @@ class ProgramListMarketModel extends FlutterFlowModel<ProgramListMarketWidget> {
       }
     }
   }
+
+  /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  PagingController<ApiPagingParams, dynamic> setListViewController(
+    Function(ApiPagingParams) apiCall,
+  ) {
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
+  }
+
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
+    Function(ApiPagingParams) query,
+  ) {
+    final controller = PagingController<ApiPagingParams, dynamic>(
+      firstPageKey: ApiPagingParams(
+        nextPageNumber: 0,
+        numItems: 0,
+        lastResponse: null,
+      ),
+    );
+    return controller..addPageRequestListener(listViewGetListMarketLessonPage);
+  }
+
+  void listViewGetListMarketLessonPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker)
+          .then((listViewGetListMarketLessonResponse) {
+        final pageItems = (MarketLessonListDataStruct.maybeFromMap(
+                        listViewGetListMarketLessonResponse.jsonBody)!
+                    .data ??
+                [])
+            .toList() as List;
+        final newNumItems = nextPageMarker.numItems + pageItems.length;
+        listViewPagingController?.appendPage(
+          pageItems,
+          (pageItems.isNotEmpty)
+              ? ApiPagingParams(
+                  nextPageNumber: nextPageMarker.nextPageNumber + 1,
+                  numItems: newNumItems,
+                  lastResponse: listViewGetListMarketLessonResponse,
+                )
+              : null,
+        );
+      });
 }

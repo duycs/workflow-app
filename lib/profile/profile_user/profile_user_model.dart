@@ -19,7 +19,7 @@ class ProfileUserModel extends FlutterFlowModel<ProfileUserWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in ProfileUser widget.
   bool? reloadTokenStaffOne;
-  // Stores action output result for [Backend Call - API (GetStaffGetOne)] action in ProfileUser widget.
+  // Stores action output result for [Backend Call - API (StaffGetOne)] action in ProfileUser widget.
   ApiCallResponse? apiResultUser;
 
   @override

@@ -81,6 +81,7 @@ class StudyProgramListMarketModel
           await StudyProgramGroup.studyProgramListCall.call(
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultStudyProgramListSearch.succeeded ?? true)) {
         dataList = StudyProgramListDataStruct.maybeFromMap(
                 (apiResultStudyProgramListSearch.jsonBody ?? ''))!

@@ -70,6 +70,17 @@ class DoTestModel extends FlutterFlowModel<DoTestWidget> {
   void updateListIdCheckAtIndex(int index, Function(String) updateFn) =>
       listIdCheck[index] = updateFn(listIdCheck[index]);
 
+  List<AnswersListStruct> answerToList = [];
+  void addToAnswerToList(AnswersListStruct item) => answerToList.add(item);
+  void removeFromAnswerToList(AnswersListStruct item) =>
+      answerToList.remove(item);
+  void removeAtIndexFromAnswerToList(int index) => answerToList.removeAt(index);
+  void insertAtIndexInAnswerToList(int index, AnswersListStruct item) =>
+      answerToList.insert(index, item);
+  void updateAnswerToListAtIndex(
+          int index, Function(AnswersListStruct) updateFn) =>
+      answerToList[index] = updateFn(answerToList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -85,6 +85,7 @@ class BranchListModel extends FlutterFlowModel<BranchListWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}${(searchStatus != '') && (searchStatus != ' ') ? ',{\"status\":{\"_icontains\":\"$searchStatus\"}}' : ' '}]}',
       );
+
       if ((apiResultListBranch.succeeded ?? true)) {
         listBranch = BranchListDataStruct.maybeFromMap(
                 (apiResultListBranch.jsonBody ?? ''))!

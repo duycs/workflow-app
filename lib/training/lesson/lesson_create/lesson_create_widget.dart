@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/training/lesson/ckeditor_create_lesson/ckeditor_create_lesson_widget.dart';
+import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -20,11 +22,15 @@ class LessonCreateWidget extends StatefulWidget {
   const LessonCreateWidget({
     super.key,
     String? checkScroll,
-    required this.checkPage,
+    this.checkPage,
+    this.programsItem,
+    this.listItemLession,
   }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
   final String? checkPage;
+  final dynamic programsItem;
+  final StudyProgramListStruct? listItemLession;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -92,14 +98,36 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
               context.pop();
             },
           ),
-          title: Text(
-            'Tạo bài học',
-            style: FlutterFlowTheme.of(context).headlineSmall.override(
-                  fontFamily: 'Nunito Sans',
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.normal,
-                ),
+          title: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              await showDialog(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: Text(_model.testId),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: const Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            child: Text(
+              'Tạo bài học',
+              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                    fontFamily: 'Nunito Sans',
+                    fontSize: 18.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
           ),
           actions: const [],
           centerTitle: false,
@@ -263,46 +291,143 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 3.0, 0.0, 0.0),
-                          child: FlutterFlowDropDown<String>(
-                            controller: _model.testIdValueController ??=
-                                FormFieldController<String>(null),
-                            options: List<String>.from(
-                                _model.list.map((e) => e.id).toList()),
-                            optionLabels:
-                                _model.list.map((e) => e.name).toList(),
-                            onChanged: (val) =>
-                                setState(() => _model.testIdValue = val),
-                            width: 300.0,
-                            height: 50.0,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 3.0, 0.0, 0.0),
+                                child: FlutterFlowDropDown<String>(
+                                  controller: _model.testIdValueController ??=
+                                      FormFieldController<String>(
+                                    _model.testIdValue ??= _model.testId,
+                                  ),
+                                  options: List<String>.from(
+                                      _model.list.map((e) => e.id).toList()),
+                                  optionLabels:
+                                      _model.list.map((e) => e.name).toList(),
+                                  onChanged: (val) =>
+                                      setState(() => _model.testIdValue = val),
+                                  width: 300.0,
+                                  height: 50.0,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  hintText: 'Danh sách bài thi',
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  fillColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 0.0,
+                                  borderColor:
+                                      FlutterFlowTheme.of(context).alternate,
+                                  borderWidth: 0.5,
+                                  borderRadius: 8.0,
+                                  margin: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 4.0, 16.0, 4.0),
+                                  hidesUnderline: true,
+                                  isOverButton: true,
+                                  isSearchable: false,
+                                  isMultiSelect: false,
                                 ),
-                            hintText: 'Danh sách bài thi',
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                              ),
                             ),
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            elevation: 0.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 0.5,
-                            borderRadius: 8.0,
-                            margin: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 4.0, 16.0, 4.0),
-                            hidesUnderline: true,
-                            isOverButton: true,
-                            isSearchable: false,
-                            isMultiSelect: false,
-                          ),
+                            Builder(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                0.9,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.9,
+                                            child: QuizCreationLessonWidget(
+                                              callBack: (testId) async {
+                                                await _model.testList(context);
+                                                await _model.testList(context);
+                                                if (_model.list.isNotEmpty) {
+                                                  setState(() {
+                                                    _model.testIdValueController
+                                                        ?.reset();
+                                                  });
+                                                  setState(() {
+                                                    _model.testIdValueController
+                                                        ?.value = testId;
+                                                  });
+                                                  _model.testId = testId;
+                                                  setState(() {});
+                                                } else {
+                                                  return;
+                                                }
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                },
+                                text: 'Bài thi',
+                                icon: const Icon(
+                                  Icons.add,
+                                  size: 15.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 0.0, 10.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ),
+                          ].divide(const SizedBox(width: 5.0)),
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1000,6 +1125,11 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           <FFUploadedFile>[];
 
                                       try {
+                                        showUploadMessage(
+                                          context,
+                                          'Uploading file...',
+                                          showLoading: true,
+                                        );
                                         selectedUploadedFiles = selectedFiles
                                             .map((m) => FFUploadedFile(
                                                   name: m.storagePath
@@ -1009,6 +1139,8 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                 ))
                                             .toList();
                                       } finally {
+                                        ScaffoldMessenger.of(context)
+                                            .hideCurrentSnackBar();
                                         _model.isDataUploading3 = false;
                                       }
                                       if (selectedUploadedFiles.length ==
@@ -1017,8 +1149,16 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           _model.uploadedLocalFile3 =
                                               selectedUploadedFiles.first;
                                         });
+                                        showUploadMessage(
+                                          context,
+                                          'Success!',
+                                        );
                                       } else {
                                         setState(() {});
+                                        showUploadMessage(
+                                          context,
+                                          'Failed to upload file',
+                                        );
                                         return;
                                       }
                                     }
@@ -1144,24 +1284,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      FlutterFlowIconButton(
-                                        borderColor:
-                                            FlutterFlowTheme.of(context)
-                                                .noColor,
-                                        borderRadius: 20.0,
-                                        borderWidth: 1.0,
-                                        buttonSize: 40.0,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .noColor,
-                                        icon: Icon(
-                                          Icons.edit_note_sharp,
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 5.0, 0.0),
+                                        child: Icon(
+                                          Icons.edit_note,
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
                                           size: 24.0,
                                         ),
-                                        onPressed: () {
-                                          print('IconButton pressed ...');
-                                        },
                                       ),
                                       if (_model.checkContent == '')
                                         Text(
@@ -1228,6 +1359,18 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                       await _model.uploadFIleImage(context);
                       setState(() {});
                     } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Chưa có ảnh tải lên!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).info,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: FlutterFlowTheme.of(context).error,
+                        ),
+                      );
                       return;
                     }
 

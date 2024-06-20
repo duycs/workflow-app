@@ -111,6 +111,7 @@ class ProcessTemplateListModel
             return strings.map((str) => '"$str"').join(',');
           }(domainSearch.toList())}]}}' : ' '}${(categoryId != '') && (categoryId != '1') && (categoryId != ' ') ? ',{\"category_id\":{\"_eq\":\"$categoryId\"}}' : ' '}${textNameTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${textNameTextController.text}\"}}' : ' '}]}',
       );
+
       if ((apiResultListDataSearch.succeeded ?? true)) {
         dataList = WorkflowsListDataStruct.maybeFromMap(
                 (apiResultListDataSearch.jsonBody ?? ''))!

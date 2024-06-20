@@ -45,6 +45,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
         _model.apiResultx0q = await CategoriesGroup.getCategoriesListCall.call(
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultx0q?.succeeded ?? true)) {
           _model.addToCategoriesList(CategoriesListStruct(
             id: '1',
@@ -69,6 +70,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
         _model.apiResultlld = await DomainGroup.getDomainsListCall.call(
           accessToken: FFAppState().accessToken,
         );
+
         if ((_model.apiResultlld?.succeeded ?? true)) {
           _model.addToDomainList(DomainsListStruct(
             id: '1',

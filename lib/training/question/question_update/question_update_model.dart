@@ -17,6 +17,17 @@ class QuestionUpdateModel extends FlutterFlowModel<QuestionUpdateWidget> {
 
   bool isLoad = false;
 
+  List<QuestionAnswersIdStruct> answerAdd = [];
+  void addToAnswerAdd(QuestionAnswersIdStruct item) => answerAdd.add(item);
+  void removeFromAnswerAdd(QuestionAnswersIdStruct item) =>
+      answerAdd.remove(item);
+  void removeAtIndexFromAnswerAdd(int index) => answerAdd.removeAt(index);
+  void insertAtIndexInAnswerAdd(int index, QuestionAnswersIdStruct item) =>
+      answerAdd.insert(index, item);
+  void updateAnswerAddAtIndex(
+          int index, Function(QuestionAnswersIdStruct) updateFn) =>
+      answerAdd[index] = updateFn(answerAdd[index]);
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

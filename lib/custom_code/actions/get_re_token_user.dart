@@ -14,6 +14,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 Future<String> getReTokenUser(String key) async {
   // Add your function code here!
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  String value1 = prefs.getString(key)!;
-  return value1;
+  String? value1 = prefs.getString(key);
+  return value1 ?? "";
 }

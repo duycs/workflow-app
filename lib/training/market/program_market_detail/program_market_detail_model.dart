@@ -18,6 +18,8 @@ class ProgramMarketDetailModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
+  dynamic paymentResponse;
 
   @override
   void initState(BuildContext context) {}
@@ -36,6 +38,7 @@ class ProgramMarketDetailModel
       accessToken: FFAppState().accessToken,
       idPrograms: widget.idProgram,
     );
+
     if ((apiResultListGetOne.succeeded ?? true)) {
       dataGetOne = MarketLessonListStruct.maybeFromMap(getJsonField(
         (apiResultListGetOne.jsonBody ?? ''),
@@ -79,6 +82,7 @@ class ProgramMarketDetailModel
         'program_id': widget.idProgram,
       },
     );
+
     if ((apiResultPost.succeeded ?? true)) {
       var confirmDialogResponse = await showDialog<bool>(
             context: context,
@@ -153,6 +157,7 @@ class ProgramMarketDetailModel
       accessToken: FFAppState().accessToken,
       programId: widget.idProgram,
     );
+
     if ((apiResultPostCopy.succeeded ?? true)) {
       var confirmDialogResponse = await showDialog<bool>(
             context: context,

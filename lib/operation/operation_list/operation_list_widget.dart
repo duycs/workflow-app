@@ -505,6 +505,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
                                         ),
                                       ),
                                       padding: EdgeInsets.zero,
+                                      primary: false,
                                       reverse: false,
                                       scrollDirection: Axis.vertical,
                                       separatorBuilder: (_, __) =>

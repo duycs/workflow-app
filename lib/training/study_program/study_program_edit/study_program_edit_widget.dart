@@ -720,40 +720,86 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   ),
                                 ],
                               ),
-                              wrapWithModel(
-                                model: _model.lessionsDropdownModel,
-                                updateCallback: () => setState(() {}),
-                                updateOnChange: true,
-                                child: LessionsDropdownWidget(
-                                  lessionsCallBack: (lessionsId) async {
-                                    _model.updateLessionItem =
-                                        await _model.addList(
-                                      context,
-                                      lessionsItem: lessionsId,
-                                    );
-                                    if (_model.updateLessionItem == true) {
-                                      setState(() {});
-                                    } else {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: const Text('Bài học đã có!'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: wrapWithModel(
+                                      model: _model.lessionsDropdownModel,
+                                      updateCallback: () => setState(() {}),
+                                      updateOnChange: true,
+                                      child: LessionsDropdownWidget(
+                                        lessionsCallBack: (lessionsId) async {
+                                          _model.updateLessionItem =
+                                              await _model.addList(
+                                            context,
+                                            lessionsItem: lessionsId,
                                           );
-                                        },
-                                      );
-                                    }
+                                          if (_model.updateLessionItem ==
+                                              true) {
+                                            setState(() {});
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('Bài học đã có!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: const Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
 
-                                    setState(() {});
-                                  },
-                                ),
+                                          setState(() {});
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: 'Bài học',
+                                    icon: const Icon(
+                                      Icons.add,
+                                      size: 15.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ].divide(const SizedBox(width: 8.0)),
                               ),
                               Text(
                                 'Danh sách bài học :',
@@ -1000,6 +1046,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               id: widget.dataDetail?.id,
                               requestDataJson: _model.requestData?.toMap(),
                             );
+
                             shouldSetState = true;
                             if ((_model.apiResultuus?.succeeded ?? true)) {
                               Navigator.pop(context);
@@ -1042,6 +1089,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                               accessToken: FFAppState().accessToken,
                               programId: widget.dataDetail?.id,
                             );
+
                             shouldSetState = true;
                             if ((_model.apiResultSynchronizedStaffLesson
                                     ?.succeeded ??
@@ -1111,6 +1159,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                   : 'draft',
                             },
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultuus111?.succeeded ?? true)) {
                             Navigator.pop(context);
@@ -1153,6 +1202,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                             accessToken: FFAppState().accessToken,
                             programId: widget.dataDetail?.id,
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultSynchronizedStaffLesson1
                                   ?.succeeded ??

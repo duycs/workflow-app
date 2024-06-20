@@ -49,6 +49,7 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
             r'''$.organization_id''',
           ).toString().toString()}\"}}]}',
         );
+
         if ((_model.apiResultLessonList?.succeeded ?? true)) {
           _model.dataList = LessonsListDataStruct.maybeFromMap(
                   (_model.apiResultLessonList?.jsonBody ?? ''))!
@@ -99,7 +100,8 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
               _model.dropDownValueController?.reset();
             });
           },
-          width: 300.0,
+          width: 200.0,
+          height: 40.0,
           searchHintTextStyle:
               FlutterFlowTheme.of(context).labelMedium.override(
                     fontFamily: 'Nunito Sans',

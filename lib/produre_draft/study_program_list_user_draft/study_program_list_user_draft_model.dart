@@ -78,6 +78,7 @@ class StudyProgramListUserDraftModel
         r'''$.department_id''',
       ).toString().toString()}\"}}}}'}]}',
     );
+
     if ((apiResultStudyProgramList.succeeded ?? true)) {
       dataList = StudyProgramListDataStruct.maybeFromMap(
               (apiResultStudyProgramList.jsonBody ?? ''))!
@@ -96,6 +97,7 @@ class StudyProgramListUserDraftModel
               r'''$.id''',
             ).toString().toString()}\"}},{\"test_id\":{\"_eq\":\"${dataList[loop].tests.first.testsId.id}\"}}]}',
           );
+
           if ((apiResultGetDoTest2.succeeded ?? true)) {
             updateDataListAtIndex(
               loop,

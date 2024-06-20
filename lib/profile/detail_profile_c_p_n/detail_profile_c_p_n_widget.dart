@@ -45,6 +45,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
             r'''$.organization_id''',
           ).toString().toString(),
         );
+
         if ((_model.apiResultGetOrganization?.succeeded ?? true)) {
           _model.data = OrganizationListDataStruct.maybeFromMap(
                   (_model.apiResultGetOrganization?.jsonBody ?? ''))
@@ -1094,7 +1095,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                                       .max,
                                                               children: [
                                                                 Text(
-                                                                  'Chưa có anh mô tả',
+                                                                  'Chưa có nội dung ảnh ',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium

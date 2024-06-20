@@ -34,13 +34,14 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.reloadTokenStaffOne = await action_blocks.tokenReload(context);
       if (_model.reloadTokenStaffOne!) {
-        _model.apiResultUser = await StaffGroup.getStaffGetOneCall.call(
+        _model.apiResultUser = await StaffGroup.staffGetOneCall.call(
           accessToken: FFAppState().accessToken,
           staffId: getJsonField(
             FFAppState().staffLogin,
             r'''$.id''',
           ).toString().toString(),
         );
+
         if ((_model.apiResultUser?.succeeded ?? true)) {
           _model.user = getJsonField(
             (_model.apiResultUser?.jsonBody ?? ''),
@@ -87,7 +88,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(
@@ -780,9 +781,6 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      if (Navigator.of(context).canPop()) {
-                        context.pop();
-                      }
                       context.pushNamed(
                         'UpdateProfileUser',
                         queryParameters: {

@@ -64,6 +64,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
           filter:
               '{\"_and\":[{\"staff_test_id\":{\"_eq\":\"${widget.testId}\"}}]}',
         );
+
         if ((_model.apiResultGetStaffAnswerList?.succeeded ?? true)) {
           _model.list = StaffAnswerListDataStruct.maybeFromMap(
                   (_model.apiResultGetStaffAnswerList?.jsonBody ?? ''))!

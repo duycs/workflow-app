@@ -87,15 +87,16 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
 
     apiResultGetTaskDone = await TaskGroup.getNumberTaskCall.call(
       filter:
-          '{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+          '{\"_and\":[{\"submit_staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+      ).toString().toString()}\"}}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"done\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskDone.succeeded ?? true)) {
       totalDone = getJsonField(
         (apiResultGetTaskDone.jsonBody ?? ''),
@@ -113,6 +114,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"1\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskToDo.succeeded ?? true)) {
       taskToDo = getJsonField(
         (apiResultGetTaskToDo.jsonBody ?? ''),
@@ -130,6 +132,7 @@ class TaskListDoneModel extends FlutterFlowModel<TaskListDoneWidget> {
       ).toString().toString()}\"}}},{\"status\":{\"_eq\":\"todo\"}},{\"current\":{\"_eq\":\"0\"}}]}',
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultGetTaskWait.succeeded ?? true)) {
       taskWait = getJsonField(
         (apiResultGetTaskWait.jsonBody ?? ''),

@@ -64,26 +64,23 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
       );
       setState(() {});
       while (widget.itemData!.departments.length > _model.loop) {
-        _model.updateDataUpdateStruct(
-          (e) => e
-            ..updateDepartments(
-              (e) => e.add(DepartmentsIdStruct(
-                departmentsId: DepartmentsStruct(
-                  id: (widget.itemData?.departments[_model.loop])
-                      ?.departmentsId
-                      .id,
-                  name: (widget.itemData?.departments[_model.loop])
-                      ?.departmentsId
-                      .name,
-                ),
-              )),
-            ),
-        );
+        _model.addToPageDepartments(DepartmentsIdStruct(
+          departmentsId: DepartmentsStruct(
+            id: (widget.itemData?.departments[_model.loop])?.departmentsId.id,
+            name: (widget.itemData?.departments[_model.loop])
+                ?.departmentsId
+                .name,
+          ),
+        ));
         setState(() {});
         _model.loop = _model.loop + 1;
         setState(() {});
       }
       _model.loop = 0;
+      setState(() {});
+      _model.updateDataUpdateStruct(
+        (e) => e..departments = _model.pageDepartments.toList(),
+      );
       setState(() {});
       if (_model.dataUpdate!.departments.isNotEmpty) {
         setState(() {});
@@ -115,63 +112,89 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                 (widget.stepListPar?[_model.loop])?.estimateInSecond,
             staffsAlias: (widget.stepListPar?[_model.loop])?.staffsAlias,
           ));
+          _model.pageStaffs = [];
+          _model.pageOperations = [];
           setState(() {});
           while (
               _model.loop2 < (widget.stepListPar![_model.loop]).staffs.length) {
-            _model.updateStepListAtIndex(
-              _model.loop,
-              (e) => e
-                ..updateStaffs(
-                  (e) => e.add(StaffsStepStruct(
-                    staffsId: StaffIdStruct(
-                      id: ((widget.stepListPar?[_model.loop])
-                              ?.staffs[_model.loop2])
-                          ?.staffsId
-                          .id,
-                      userId: UserIdStruct(
-                        firstName: ((widget.stepListPar?[_model.loop])
-                                ?.staffs[_model.loop2])
-                            ?.staffsId
-                            .userId
-                            .firstName,
-                      ),
-                    ),
-                  )),
+            _model.addToPageStaffs(StaffsStepStruct(
+              staffsId: StaffIdStruct(
+                id: ((widget.stepListPar?[_model.loop])?.staffs[_model.loop2])
+                    ?.staffsId
+                    .id,
+                userId: UserIdStruct(
+                  firstName: ((widget.stepListPar?[_model.loop])
+                          ?.staffs[_model.loop2])
+                      ?.staffsId
+                      .userId
+                      .firstName,
                 ),
-            );
+              ),
+            ));
             setState(() {});
             _model.loop2 = _model.loop2 + 1;
             setState(() {});
           }
           _model.loop2 = 0;
           setState(() {});
+          _model.updateStepListAtIndex(
+            _model.loop,
+            (e) => e..staffs = _model.pageStaffs.toList(),
+          );
+          setState(() {});
           while (_model.loop2 <
-              (widget.stepListPar![_model.loop]).operations.length) {
-            _model.updateStepListAtIndex(
-              _model.loop,
-              (e) => e
-                ..updateOperations(
-                  (e) => e.add(OperationsStruct(
-                    content: ((widget.stepListPar?[_model.loop])
-                            ?.operations[_model.loop2])
-                        ?.operationsId
-                        .content,
-                    actionType: ((widget.stepListPar?[_model.loop])
-                            ?.operations[_model.loop2])
-                        ?.operationsId
-                        .actionType,
-                    id: ((widget.stepListPar?[_model.loop])
-                            ?.operations[_model.loop2])
-                        ?.operationsId
-                        .id,
-                  )),
-                ),
-            );
+              (widget.stepListPar![_model.loop]).departments.length) {
+            _model.addToPageDepartmentsStep(DepartmentListStruct(
+              departmentsId: DepartmentsStruct(
+                id: ((widget.stepListPar?[_model.loop])
+                        ?.departments[_model.loop2])
+                    ?.departmentsId
+                    .id,
+                name: ((widget.stepListPar?[_model.loop])
+                        ?.departments[_model.loop2])
+                    ?.departmentsId
+                    .name,
+              ),
+            ));
             setState(() {});
             _model.loop2 = _model.loop2 + 1;
             setState(() {});
           }
           _model.loop2 = 0;
+          setState(() {});
+          _model.updateStepListAtIndex(
+            _model.loop,
+            (e) => e
+              ..staffs = _model.pageStaffs.toList()
+              ..departments = _model.pageDepartmentsStep.toList(),
+          );
+          setState(() {});
+          while (_model.loop2 <
+              (widget.stepListPar![_model.loop]).operations.length) {
+            _model.addToPageOperations(OperationsStruct(
+              content: ((widget.stepListPar?[_model.loop])
+                      ?.operations[_model.loop2])
+                  ?.operationsId
+                  .content,
+              actionType: ((widget.stepListPar?[_model.loop])
+                      ?.operations[_model.loop2])
+                  ?.operationsId
+                  .actionType,
+              id: ((widget.stepListPar?[_model.loop])
+                      ?.operations[_model.loop2])
+                  ?.operationsId
+                  .id,
+            ));
+            setState(() {});
+            _model.loop2 = _model.loop2 + 1;
+            setState(() {});
+          }
+          _model.loop2 = 0;
+          setState(() {});
+          _model.updateStepListAtIndex(
+            _model.loop,
+            (e) => e..operations = _model.pageOperations.toList(),
+          );
           setState(() {});
           _model.loop = _model.loop + 1;
           setState(() {});
@@ -441,7 +464,13 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
               FFButtonWidget(
                 onPressed: () async {
                   var shouldSetState = false;
-
+                  _model.dataUpdateDepartment = [];
+                  _model.dataUpdateStaffs = [];
+                  _model.updateDepartments = [];
+                  _model.stepsUpdate = [];
+                  _model.updateStepDeparments = [];
+                  _model.stepUpdateStaffs = [];
+                  _model.stepOperationsUpdate = [];
                   setState(() {});
                   _model.tokenReloadProcedurUpdate =
                       await action_blocks.tokenReload(context);
@@ -500,6 +529,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             }
                           }()},{\"status\":{\"_eq\":\"published\"}}]}',
                         );
+
                         shouldSetState = true;
                         if ((_model.apiResult4dr?.succeeded ?? true)) {
                           while (_model.loop <
@@ -507,27 +537,27 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                       (_model.apiResult4dr?.jsonBody ?? ''))!
                                   .data
                                   .length) {
-                            _model.updateDataUpdateStruct(
-                              (e) => e
-                                ..updateDepartments(
-                                  (e) => e.add(DepartmentsIdStruct(
-                                    departmentsId: DepartmentsStruct(
-                                      id: (DepartmentListDataStruct
-                                                  .maybeFromMap((_model
-                                                          .apiResult4dr
-                                                          ?.jsonBody ??
-                                                      ''))
-                                              ?.data[_model.loop])
-                                          ?.id,
-                                    ),
-                                  )),
-                                ),
-                            );
+                            _model
+                                .addToDataUpdateDepartment(DepartmentsIdStruct(
+                              departmentsId: DepartmentsStruct(
+                                id: (DepartmentListDataStruct.maybeFromMap(
+                                            (_model.apiResult4dr?.jsonBody ??
+                                                ''))
+                                        ?.data[_model.loop])
+                                    ?.id,
+                              ),
+                            ));
                             setState(() {});
                             _model.loop = _model.loop + 1;
                             setState(() {});
                           }
                           _model.loop = 0;
+                          setState(() {});
+                          _model.updateDataUpdateStruct(
+                            (e) => e
+                              ..departments =
+                                  _model.dataUpdateDepartment.toList(),
+                          );
                           setState(() {});
                         }
                       }
@@ -633,49 +663,49 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                         id: _model.dataUpdate?.id,
                         cron: functions.limitPublished(
                             _model.checkType!, _model.checkCron.toList()),
+                        departments: _model.dataUpdate?.departments,
                       );
                       setState(() {});
                       while (_model.loop < _model.dataUpdate!.staffs.length) {
-                        _model.updateRequestUpdateStruct(
-                          (e) => e
-                            ..updateStaffs(
-                              (e) => e.add(StaffsStepStruct(
-                                staffsId: StaffIdStruct(
-                                  id: (_model.dataUpdate?.staffs[_model.loop])
-                                      ?.staffsId
-                                      .id,
-                                ),
-                              )),
-                            )
-                            ..departments = [],
-                        );
+                        _model.addToDataUpdateStaffs(StaffsStepStruct(
+                          staffsId: StaffIdStruct(
+                            id: (_model.dataUpdate?.staffs[_model.loop])
+                                ?.staffsId
+                                .id,
+                          ),
+                        ));
                         setState(() {});
                         _model.loop = _model.loop + 1;
                         setState(() {});
                       }
                       _model.loop = 0;
                       setState(() {});
+                      _model.updateRequestUpdateStruct(
+                        (e) => e
+                          ..staffs = _model.dataUpdateStaffs.toList()
+                          ..departments = [],
+                      );
+                      setState(() {});
                       while (
                           _model.loop < _model.dataUpdate!.departments.length) {
-                        _model.updateRequestUpdateStruct(
-                          (e) => e
-                            ..updateDepartments(
-                              (e) => e.add(DepartmentsIdStruct(
-                                departmentsId: DepartmentsStruct(
-                                  id: (_model.dataUpdate
-                                          ?.departments[_model.loop])
-                                      ?.departmentsId
-                                      .id,
-                                ),
-                              )),
-                            )
-                            ..staffs = [],
-                        );
+                        _model.addToUpdateDepartments(DepartmentsIdStruct(
+                          departmentsId: DepartmentsStruct(
+                            id: (_model.dataUpdate?.departments[_model.loop])
+                                ?.departmentsId
+                                .id,
+                          ),
+                        ));
                         setState(() {});
                         _model.loop = _model.loop + 1;
                         setState(() {});
                       }
                       _model.loop = 0;
+                      setState(() {});
+                      _model.updateRequestUpdateStruct(
+                        (e) => e
+                          ..departments = _model.updateDepartments.toList()
+                          ..staffs = [],
+                      );
                       setState(() {});
                       while (_model.loop < _model.stepList.length) {
                         _model.updateStepListAtIndex(
@@ -693,49 +723,31 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       );
                       setState(() {});
                       while (_model.loop < _model.stepList.length) {
-                        _model.updateRequestUpdateStruct(
-                          (e) => e
-                            ..updateSteps(
-                              (e) => e.add(WorkflowsStepCreateStruct(
-                                status: _model.stepList[_model.loop].status !=
-                                            ''
-                                    ? _model.stepList[_model.loop].status
-                                    : '',
-                                description: _model.stepList[_model.loop]
-                                                .description !=
-                                            ''
-                                    ? _model.stepList[_model.loop].description
-                                    : '',
-                                name: _model.stepList[_model.loop].name,
-                                actionType: _model.stepList[_model.loop]
-                                                .actionType !=
-                                            ''
-                                    ? _model.stepList[_model.loop].actionType
-                                    : '',
-                                staffsAlias: _model.stepList[_model.loop]
-                                                .staffsAlias !=
-                                            ''
-                                    ? _model.stepList[_model.loop].staffsAlias
-                                    : '',
-                                timeOperate: _model.stepList[_model.loop]
-                                                .timeOperate !=
-                                            ''
-                                    ? _model.stepList[_model.loop].timeOperate
-                                    : '',
-                                estimateInSecond: _model
-                                        .stepList[_model.loop].estimateInSecond ?? 0,
-                                number: _model.stepList[_model.loop].number,
-                              )),
-                            ),
-                        );
+                        _model.addToStepsUpdate(WorkflowsStepCreateStruct(
+                          status: _model.stepList[_model.loop].status != ''
+                              ? _model.stepList[_model.loop].status
+                              : '',
+                          description: _model.stepList[_model.loop].description != ''
+                              ? _model.stepList[_model.loop].description
+                              : '',
+                          name: _model.stepList[_model.loop].name,
+                          actionType: _model.stepList[_model.loop].actionType != ''
+                              ? _model.stepList[_model.loop].actionType
+                              : '',
+                          staffsAlias: _model.stepList[_model.loop].staffsAlias != ''
+                              ? _model.stepList[_model.loop].staffsAlias
+                              : '',
+                          timeOperate: _model.stepList[_model.loop].timeOperate != ''
+                              ? _model.stepList[_model.loop].timeOperate
+                              : '',
+                          estimateInSecond: _model.stepList[_model.loop].estimateInSecond ?? 0,
+                          number: _model.stepList[_model.loop].number,
+                        ));
                         setState(() {});
                         if (_model.stepList[_model.loop].id != '') {
-                          _model.updateRequestUpdateStruct(
-                            (e) => e
-                              ..updateSteps(
-                                (e) => e[_model.loop]
-                                  ..id = _model.stepList[_model.loop].id,
-                              ),
+                          _model.updateStepsUpdateAtIndex(
+                            _model.loop,
+                            (e) => e..id = _model.stepList[_model.loop].id,
                           );
                           setState(() {});
                         }
@@ -745,28 +757,25 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             (_model.stepList[_model.loop].departments.isNotEmpty)) {
                           while (_model.loop2 <
                               _model.stepList[_model.loop].departments.length) {
-                            _model.updateRequestUpdateStruct(
-                              (e) => e
-                                ..updateSteps(
-                                  (e) => e[_model.loop]
-                                    ..updateDepartments(
-                                      (e) => e.add(DepartmentListStruct(
-                                        departmentsId: DepartmentsStruct(
-                                          id: _model
-                                              .stepList[_model.loop]
-                                              .departments[_model.loop2]
-                                              .departmentsId
-                                              .id,
-                                        ),
-                                      )),
-                                    ),
-                                ),
-                            );
+                            _model
+                                .addToUpdateStepDeparments(DepartmentListStruct(
+                              departmentsId: DepartmentsStruct(
+                                id: _model.stepList[_model.loop]
+                                    .departments[_model.loop2].departmentsId.id,
+                              ),
+                            ));
                             setState(() {});
                             _model.loop2 = _model.loop2 + 1;
                             setState(() {});
                           }
                           _model.loop2 = 0;
+                          setState(() {});
+                          _model.updateStepsUpdateAtIndex(
+                            _model.loop,
+                            (e) => e
+                              ..departments =
+                                  _model.updateStepDeparments.toList(),
+                          );
                           setState(() {});
                         }
                         if (((_model.stepList[_model.loop].staffs.isNotEmpty) !=
@@ -774,46 +783,43 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                             (_model.stepList[_model.loop].staffs.isNotEmpty)) {
                           while (_model.loop2 <
                               _model.stepList[_model.loop].staffs.length) {
-                            _model.updateRequestUpdateStruct(
-                              (e) => e
-                                ..updateSteps(
-                                  (e) => e[_model.loop]
-                                    ..updateStaffs(
-                                      (e) => e.add(StaffsStepStruct(
-                                        staffsId: StaffIdStruct(
-                                          id: _model.stepList[_model.loop]
-                                              .staffs[_model.loop2].staffsId.id,
-                                        ),
-                                      )),
-                                    ),
-                                ),
-                            );
+                            _model.addToStepUpdateStaffs(StaffsStepStruct(
+                              staffsId: StaffIdStruct(
+                                id: _model.stepList[_model.loop]
+                                    .staffs[_model.loop2].staffsId.id,
+                              ),
+                            ));
                             setState(() {});
                             _model.loop2 = _model.loop2 + 1;
                             setState(() {});
                           }
                           _model.loop2 = 0;
                           setState(() {});
+                          _model.updateStepsUpdateAtIndex(
+                            _model.loop,
+                            (e) => e..staffs = _model.stepUpdateStaffs.toList(),
+                          );
+                          setState(() {});
                         }
                         if (_model.stepList[_model.loop].operations.isNotEmpty) {
                           while (
                               _model.stepList[_model.loop].operations.length >
                                   _model.loop2) {
-                            _model.updateRequestUpdateStruct(
-                              (e) => e
-                                ..updateSteps(
-                                  (e) => e[_model.loop]
-                                    ..updateOperations(
-                                      (e) => e.add(_model.stepList[_model.loop]
-                                          .operations[_model.loop2]),
-                                    ),
-                                ),
-                            );
+                            _model.addToStepOperationsUpdate(_model
+                                .stepList[_model.loop]
+                                .operations[_model.loop2]);
                             setState(() {});
                             _model.loop2 = _model.loop2 + 1;
                             setState(() {});
                           }
                           _model.loop2 = 0;
+                          setState(() {});
+                          _model.updateStepsUpdateAtIndex(
+                            _model.loop,
+                            (e) => e
+                              ..operations =
+                                  _model.stepOperationsUpdate.toList(),
+                          );
                           setState(() {});
                         }
                         _model.loop = _model.loop + 1;
@@ -822,12 +828,17 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                       _model.loop = 0;
                       _model.loop2 = 0;
                       setState(() {});
+                      _model.updateRequestUpdateStruct(
+                        (e) => e..steps = _model.stepsUpdate.toList(),
+                      );
+                      setState(() {});
                       _model.postProcedureUpdateAll =
                           await ProcedureTemplateGroup.updateWorkflowsAllCall
                               .call(
                         requestDataJson: _model.requestUpdate?.toMap(),
                         accessToken: FFAppState().accessToken,
                       );
+
                       shouldSetState = true;
                       if ((_model.postProcedureUpdateAll?.succeeded ?? true)) {
                         if (Navigator.of(context).canPop()) {

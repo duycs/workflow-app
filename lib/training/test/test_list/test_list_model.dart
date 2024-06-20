@@ -66,6 +66,7 @@ class TestListModel extends FlutterFlowModel<TestListWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}}'}]}',
       );
+
       if ((apiResultTestList.succeeded ?? true)) {
         listTest = TestListDataStruct.maybeFromMap(
                 (apiResultTestList.jsonBody ?? ''))!

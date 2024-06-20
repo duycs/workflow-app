@@ -26,6 +26,7 @@ Future<bool?> checkRefreshToken(
     apiResultRefreshToken = await AuthenGroup.refreshTokenCall.call(
       refreshToken: FFAppState().refreshToken,
     );
+
     if ((apiResultRefreshToken.succeeded ?? true)) {
       FFAppState().accessToken = LoginResponseDataStruct.maybeFromMap(
               (apiResultRefreshToken.jsonBody ?? ''))!
@@ -77,6 +78,7 @@ Future<bool?> tokenReload(BuildContext context) async {
   apiResultRefreshTokenCheck = await AuthenGroup.refreshTokenCall.call(
     refreshToken: FFAppState().refreshToken,
   );
+
   if ((apiResultRefreshTokenCheck.succeeded ?? true)) {
     FFAppState().accessToken = LoginResourceDataStruct.maybeFromMap(
             (apiResultRefreshTokenCheck.jsonBody ?? ''))!

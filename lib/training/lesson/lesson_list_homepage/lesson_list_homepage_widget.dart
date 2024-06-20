@@ -337,7 +337,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                       } else if (widget.statusLesson == 'inprogress') {
                         return 'Bài học đang học';
                       } else if (widget.statusLesson == 'done') {
-                        return 'Bài học hoàn thành';
+                        return 'Bài học đã hoàn thành';
                       } else if (widget.statusLove == 'love') {
                         return 'Bài học yêu thích';
                       } else if (widget.checkLesson == 'obligatory') {
@@ -478,6 +478,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                     ),
                                     'programId': serializeParam(
                                       listItem.programId.id,
+                                      ParamType.String,
+                                    ),
+                                    'checkReload': serializeParam(
+                                      'noHome',
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,

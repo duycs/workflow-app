@@ -61,6 +61,7 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
         ).toString().toString(),
         accessToken: FFAppState().accessToken,
       );
+
       if ((apiResultGetOrganization.succeeded ?? true)) {
         organizationDetail = OrganizationListDataStruct.maybeFromMap(
                 (apiResultGetOrganization.jsonBody ?? ''))

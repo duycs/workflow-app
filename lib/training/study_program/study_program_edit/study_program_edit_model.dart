@@ -153,6 +153,7 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
       file: uploadedLocalFile,
       accessToken: FFAppState().accessToken,
     );
+
     if ((apiResultUploadFileimg.succeeded ?? true)) {
       uploadImageEdit = getJsonField(
         (apiResultUploadFileimg.jsonBody ?? ''),

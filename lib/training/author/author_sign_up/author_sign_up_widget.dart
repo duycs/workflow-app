@@ -481,7 +481,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           FlutterFlowDropDown<String>(
                             multiSelectController:
                                 _model.dropDownValueController ??=
-                                    FormFieldController<List<String>>(null),
+                                    FormListFieldController<String>(null),
                             options: List<String>.from(
                                 _model.listDomain.map((e) => e.id).toList()),
                             optionLabels:
@@ -696,6 +696,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                     accessToken: FFAppState().accessToken,
                                     file: _model.uploadedLocalFile,
                                   );
+
                                   shouldSetState = true;
                                   if ((_model
                                           .apiResultUploadAvatar?.succeeded ??
@@ -730,6 +731,7 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                         'staff_id': FFAppState().staffid,
                                       },
                                     );
+
                                     shouldSetState = true;
                                     if ((_model
                                             .apiResultAuthorSignUp?.succeeded ??

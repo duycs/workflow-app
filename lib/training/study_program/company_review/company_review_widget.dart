@@ -159,21 +159,6 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                             await action_blocks.tokenReload(context);
                         shouldSetState = true;
                         if (_model.reloadTokenReviewProgram!) {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: Text(_model.ratingBarValue!.toString()),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
                           _model.apiResultReviewProgram =
                               await StudyProgramGroup.reviewProgramCall.call(
                             accessToken: FFAppState().accessToken,
@@ -186,6 +171,7 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                               'status': _model.ratingBarValue,
                             },
                           );
+
                           shouldSetState = true;
                           if ((_model.apiResultReviewProgram?.succeeded ??
                               true)) {

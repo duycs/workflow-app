@@ -18,8 +18,10 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Action Block - tokenReload] action in Profile widget.
   bool? reloadTokenStaffGetOne;
-  // Stores action output result for [Backend Call - API (GetStaffGetOne)] action in Profile widget.
+  // Stores action output result for [Backend Call - API (StaffGetOne)] action in Profile widget.
   ApiCallResponse? apiResultGetDetail;
+  // Stores action output result for [Custom Action - getReTokenUser] action in Button widget.
+  String? checkWfBV;
   // Model for navBar component.
   late NavBarModel navBarModel;
 
