@@ -16,9 +16,13 @@ class DoTestListWidget extends StatefulWidget {
   const DoTestListWidget({
     super.key,
     this.lessionId,
+    this.status,
+    this.staffId,
   });
 
   final String? lessionId;
+  final int? status;
+  final String? staffId;
 
   @override
   State<DoTestListWidget> createState() => _DoTestListWidgetState();
@@ -70,29 +74,7 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              if (widget.lessionId != null && widget.lessionId != '') {
-                context.pushNamed(
-                  'LessonLists_Homepage',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
-              } else {
-                context.pushNamed(
-                  'Profile',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
-              }
+              context.pop();
             },
           ),
           title: Text(
@@ -338,11 +320,21 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
                               DoTestGroup.staffsTestsListCall.call(
                             accessToken: FFAppState().accessToken,
                             filter:
-                                '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${_model.textController.text != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${(_model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_start\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != '') && (_model.dateEndFilter != ' ') ? ',{\"date_start\":{\"_lte\":\"${(String var1) {
+                                '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget.staffId != null && widget.staffId != '' ? widget.staffId : FFAppState().staffid}\"}}}${_model.textController.text != '' ? ',{\"test_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}' : ' '}${(_model.dateStartFilter != '') && (_model.dateStartFilter != ' ') ? ',{\"date_start\":{\"_gte\":\"${_model.dateStartFilter}\"}}' : ' '}${(_model.dateEndFilter != '') && (_model.dateEndFilter != ' ') ? ',{\"date_start\":{\"_lte\":\"${(String var1) {
                                     return DateTime.parse(var1)
                                         .add(const Duration(days: 1))
                                         .toString();
-                                  }(_model.dateEndFilter)}\"}}' : ' '}]}',
+                                  }(_model.dateEndFilter)}\"}}' : ' '}${() {
+                              if ((widget.status != null) &&
+                                  (widget.status == 0)) {
+                                return ',{\"pass\":{\"_eq\":\"0\"}}';
+                              } else if ((widget.status != null) &&
+                                  (widget.status == 1)) {
+                                return ',{\"pass\":{\"_eq\":\"1\"}}';
+                              } else {
+                                return ' ';
+                              }
+                            }()}]}',
                             limit: 20,
                             offset: nextPageMarker.nextPageNumber * 20,
                           ),

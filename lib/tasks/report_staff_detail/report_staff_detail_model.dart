@@ -80,6 +80,12 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
 
   bool checkStatus3 = false;
 
+  bool checkStatus4 = false;
+
+  bool checkStatus5 = false;
+
+  bool checkStatus6 = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

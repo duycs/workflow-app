@@ -24,6 +24,7 @@ class StudyProgramCreateWidget extends StatefulWidget {
     this.itemLesstion,
     this.programsItem,
     this.itemListLesstion,
+    this.imageProgram,
   });
 
   final Future Function()? callBackList;
@@ -31,6 +32,7 @@ class StudyProgramCreateWidget extends StatefulWidget {
   final LessonsStruct? itemLesstion;
   final dynamic programsItem;
   final StudyProgramListStruct? itemListLesstion;
+  final FFUploadedFile? imageProgram;
 
   @override
   State<StudyProgramCreateWidget> createState() =>
@@ -768,6 +770,10 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                             'listItemLession': serializeParam(
                                               _model.requestData,
                                               ParamType.DataStruct,
+                                            ),
+                                            'imageProgram': serializeParam(
+                                              _model.uploadedLocalFile,
+                                              ParamType.FFUploadedFile,
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{

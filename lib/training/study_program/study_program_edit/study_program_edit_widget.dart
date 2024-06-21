@@ -21,12 +21,18 @@ export 'study_program_edit_model.dart';
 class StudyProgramEditWidget extends StatefulWidget {
   const StudyProgramEditWidget({
     super.key,
-    required this.dataDetail,
-    required this.callBackList1,
+    this.dataDetail,
+    this.callBackList1,
+    this.itemLessions,
+    this.itemPrograms,
+    this.itemLession,
   });
 
   final StudyProgramListStruct? dataDetail;
   final Future Function()? callBackList1;
+  final StudyProgramListStruct? itemLessions;
+  final dynamic itemPrograms;
+  final LessonsStruct? itemLession;
 
   @override
   State<StudyProgramEditWidget> createState() => _StudyProgramEditWidgetState();
@@ -63,19 +69,30 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
           ..imageCover = widget.dataDetail?.imageCover,
       );
       setState(() {});
+      if (widget.itemLession != null) {
+        await _model.addLession(
+          context,
+          itemLession: widget.itemLession,
+        );
+      }
     });
 
     _model.programNameTextController ??= TextEditingController(
-        text: widget.dataDetail?.name != null && widget.dataDetail?.name != ''
+        text: (widget.dataDetail?.name != null &&
+                    widget.dataDetail?.name != '') &&
+                (widget.itemPrograms == null)
             ? widget.dataDetail?.name
-            : ' ');
+            : getJsonField(
+                widget.itemPrograms,
+                r'''$.name''',
+              ).toString().toString());
     _model.programNameFocusNode ??= FocusNode();
 
     _model.programDescriptionTextController ??= TextEditingController(
         text: widget.dataDetail?.description != null &&
                 widget.dataDetail?.description != ''
             ? widget.dataDetail?.description
-            : ' ');
+            : '');
     _model.programDescriptionFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(
@@ -765,8 +782,46 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                     ),
                                   ),
                                   FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        'LessonCreate',
+                                        queryParameters: {
+                                          'checkPage': serializeParam(
+                                            'StudyProgramEdit',
+                                            ParamType.String,
+                                          ),
+                                          'programsItem': serializeParam(
+                                            <String, dynamic>{
+                                              'name': _model
+                                                  .programNameTextController
+                                                  .text,
+                                              'description': _model
+                                                  .programDescriptionTextController
+                                                  .text,
+                                              'day': _model
+                                                  .estimateInDayTextController
+                                                  .text,
+                                            },
+                                            ParamType.JSON,
+                                          ),
+                                          'listItemLession': serializeParam(
+                                            _model.requestData,
+                                            ParamType.DataStruct,
+                                          ),
+                                          'dataProgramDetail': serializeParam(
+                                            widget.dataDetail,
+                                            ParamType.DataStruct,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
                                     },
                                     text: 'Bài học',
                                     icon: const Icon(

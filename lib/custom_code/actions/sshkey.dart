@@ -10,53 +10,62 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:convert';
-
+import 'package:crypto_keys/crypto_keys.dart';
 import 'dart:typed_data';
-import 'package:pointycastle/export.dart';
 
-String sshkey(
+String? sshkey(
   String str,
   String? sshkeyPubKeyEncoding,
   bool boolCheck,
 ) {
-  // Mã hóa chuỗi thành Base64
-  String code = '${str} eworkflow';
-  String encodedString = base64.encode(utf8.encode(code));
-  return encodedString;
-}
+  // Create a key pair from a JWK representation
+  var keyPair = new KeyPair.fromJwk({
+    "kty": str,
+    "k": "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75"
+        "aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
+  });
 
-AsymmetricKeyPair generateRsaKeyPair() {
-  final secureRandom = SecureRandom('Fortuna')
-    ..seed(KeyParameter(Uint8List.fromList('seed'.codeUnits)));
+  // The private key can be used for signing
+  var publicKey = keyPair.publicKey;
 
-  final keyGen = RSAKeyGenerator()
-    ..init(ParametersWithRandom(
-      RSAKeyGeneratorParameters(BigInt.parse('65537'), 2048, 64),
-      secureRandom,
-    ));
+  // A key pair has a private and public key, possibly one of them is null, if
+  // required info was not available when construction
+  // The private key can be used for signing
+  var privateKey = keyPair.privateKey;
 
-  return keyGen.generateKeyPair();
-}
+  // Create a signer for the key using the HMAC/SHA-256 algorithm
+  var signer = privateKey?.createSigner(algorithms.signing.hmac.sha256);
+  var signature = signer?.sign(str.codeUnits);
 
-Uint8List publicKeyToBytes(RSAPublicKey publicKey) {
-  final modulus = publicKey.modulus!;
-  final exponent = publicKey.exponent!;
+  print('123213');
+  var hexPublickey = publicKey.hashCode.toRadixString(16);
+  var hexSignature = signature?.data.hashCode.toRadixString(16);
+  print(hexPublickey);
+  print(hexSignature);
+  //     {curve = 'secp256r1'}) {
+  //   var param =
+  //       curve == 'secp256r1' ? ECCurve_secp256r1() : ECCurve_secp256k1();
+  //   var keyParams = ECKeyGeneratorParameters(param);
 
-  final modulusBytes = _encodeBigInt(modulus);
-  final exponentBytes = _encodeBigInt(exponent);
+  //   var random = FortunaRandom();
+  //   random.seed(KeyParameter(_seed()));
 
-  final bytes = Uint8List(modulusBytes.length + exponentBytes.length);
-  bytes.setRange(0, modulusBytes.length, modulusBytes);
-  bytes.setRange(modulusBytes.length, bytes.length, exponentBytes);
+  //   var generator = ECKeyGenerator();
+  //   generator.init(ParametersWithRandom(keyParams, random));
 
-  return bytes;
-}
+  //   return generator.generateKeyPair();
 
-Uint8List _encodeBigInt(BigInt number) {
-  final data = number.toRadixString(16);
-  final padding = (data.length % 2 == 1)
-      ? '0$data'
-      : data; // Ensure even number of characters
-  return Uint8List.fromList(List.generate(padding.length ~/ 2,
-      (i) => int.parse(padding.substring(2 * i, 2 * i + 2), radix: 16)));
+  // Uint8List _seed() {
+  //   var random = Random.secure();
+  //   var seed = List<int>.generate(32, (_) => random.nextInt(256));
+  //   return Uint8List.fromList(seed);
+  // }
+
+  // ;
+  // print(AsymmetricKeyPair(publicKey, privateKey));
+  if (boolCheck) {
+    return hexPublickey;
+  } else {
+    return hexSignature;
+  }
 }

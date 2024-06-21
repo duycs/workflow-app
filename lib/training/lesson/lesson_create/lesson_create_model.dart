@@ -40,6 +40,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
     updateFn(listLession ??= LessonsStruct());
   }
 
+  String checkIamge = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -198,6 +200,10 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
               widget.listItemLession,
               ParamType.DataStruct,
             ),
+            'imagesProgram': serializeParam(
+              widget.imageProgram,
+              ParamType.FFUploadedFile,
+            ),
           }.withoutNulls,
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(
@@ -213,6 +219,41 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         }
         context.pushNamed(
           'LessonsList',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: const TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
+      }
+
+      if (widget.checkPage == 'StudyProgramEdit') {
+        context.pushNamed(
+          'StudyProgramList',
+          queryParameters: {
+            'showModal': serializeParam(
+              'StudyProgramEdit',
+              ParamType.String,
+            ),
+            'programsItem': serializeParam(
+              widget.programsItem,
+              ParamType.JSON,
+            ),
+            'itemListLession': serializeParam(
+              widget.listItemLession,
+              ParamType.DataStruct,
+            ),
+            'dataProframDeatail': serializeParam(
+              widget.dataProgramDetail,
+              ParamType.DataStruct,
+            ),
+            'itemLesstion': serializeParam(
+              listLession,
+              ParamType.DataStruct,
+            ),
+          }.withoutNulls,
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
@@ -307,7 +348,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Lỗi tải ảnh!',
+              'Ảnh vượt quá dung lượng!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -316,9 +357,12 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+        checkIamge = '1';
       } else {
         await uploadFIleImage(context);
       }
+
+      return;
     }
   }
 

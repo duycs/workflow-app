@@ -35,6 +35,13 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
           int index, Function(StudyProgramListLessionsIdStruct) updateFn) =>
       listLessions[index] = updateFn(listLessions[index]);
 
+  dynamic itemPrograms;
+
+  StudyProgramListStruct? itemLessions;
+  void updateItemLessionsStruct(Function(StudyProgramListStruct) updateFn) {
+    updateFn(itemLessions ??= StudyProgramListStruct());
+  }
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
@@ -195,6 +202,34 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
       }
 
       return;
+    }
+  }
+
+  Future<bool?> addLession(
+    BuildContext context, {
+    LessonsStruct? itemLession,
+  }) async {
+    if (!requestData!.lessions
+        .map((e) => e.lessionsId.id)
+        .toList()
+        .toList()
+        .contains(widget.itemLession!.id)) {
+      listLessions = [];
+      listLessions = requestData!.lessions
+          .toList()
+          .cast<StudyProgramListLessionsIdStruct>();
+      addToListLessions(StudyProgramListLessionsIdStruct(
+        lessionsId: LessonsStruct(
+          id: widget.itemLession?.id,
+          name: widget.itemLession?.name,
+        ),
+      ));
+      updateRequestDataStruct(
+        (e) => e..lessions = listLessions.toList(),
+      );
+      return true;
+    } else {
+      return false;
     }
   }
 }

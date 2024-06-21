@@ -22,6 +22,7 @@ class LessonListHomepageWidget extends StatefulWidget {
     required this.lessonNewCreate,
     required this.lesonHistory,
     this.checkLesson,
+    this.staffId,
   });
 
   final String? statusLesson;
@@ -29,6 +30,7 @@ class LessonListHomepageWidget extends StatefulWidget {
   final String? lessonNewCreate;
   final String? lesonHistory;
   final String? checkLesson;
+  final String? staffId;
 
   @override
   State<LessonListHomepageWidget> createState() =>
@@ -384,7 +386,7 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
                               LessonGroup.employeeLessonListCall.call(
-                            filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${_model.nameSearchTextController.text != '' ? ',' : ' '}${_model.nameSearchTextController.text != '' ? '{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',' : ' '}${(_model.status != '') && (_model.status != 'noData') ? '{\"lession_id\":{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? ',' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? _model.dateStartList : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '\"}}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ',' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ((String var1) {
+                            filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget.staffId != null && widget.staffId != '' ? widget.staffId : FFAppState().staffid}\"}}}${_model.nameSearchTextController.text != '' ? ',' : ' '}${_model.nameSearchTextController.text != '' ? '{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',' : ' '}${(_model.status != '') && (_model.status != 'noData') ? '{\"lession_id\":{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? ',' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? _model.dateStartList : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '\"}}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ',' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ((String var1) {
                                 return DateTime.parse(var1)
                                     .add(const Duration(days: 1))
                                     .toString();

@@ -1,11 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'profile_user_setting_model.dart';
 export 'profile_user_setting_model.dart';
@@ -27,30 +27,6 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileUserSettingModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      var confirmDialogResponse = await showDialog<bool>(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content:
-                    Text(FFAppState().user.enableBiometric.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
-    });
 
     _model.switchValue =
         FFAppState().user.enableBiometric.toString() == '1';
@@ -206,125 +182,248 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                           ),
                                           Switch.adaptive(
                                             value: _model.switchValue!,
-                                            onChanged: (newValue) async {
-                                              setState(() => _model
-                                                  .switchValue = newValue);
-                                              if (newValue) {
-                                                var shouldSetState = false;
-                                                _model.tokenReloadProfileUserSetting =
-                                                    await action_blocks
-                                                        .tokenReload(context);
-                                                shouldSetState = true;
-                                                if (_model
-                                                    .tokenReloadProfileUserSetting!) {
-                                                  _model.dataSetting = null;
-                                                  setState(() {});
-                                                  _model.sshkeyPublicKeySettingOn =
-                                                      actions.sshkey(
-                                                    getJsonField(
-                                                      FFAppState().staffLogin,
-                                                      r'''$.email''',
-                                                    ).toString(),
-                                                    '',
-                                                    true,
-                                                  );
-                                                  shouldSetState = true;
-                                                  _model
-                                                      .updateDataSettingStruct(
-                                                    (e) => e
-                                                      ..enableBiometric = 1
-                                                      ..publicKey = _model
-                                                          .sshkeyPublicKeySettingOn,
-                                                  );
-                                                  setState(() {});
-                                                } else {
-                                                  setState(() {});
-                                                  if (shouldSetState) {
-                                                    setState(() {});
-                                                  }
-                                                  return;
-                                                }
+                                            onChanged: (_model.load == true)
+                                                ? null
+                                                : (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue =
+                                                            newValue);
+                                                    if (newValue) {
+                                                      var shouldSetState =
+                                                          false;
+                                                      _model.load = true;
+                                                      setState(() {});
+                                                      _model.tokenReloadProfileUserSetting =
+                                                          await action_blocks
+                                                              .tokenReload(
+                                                                  context);
+                                                      shouldSetState = true;
+                                                      if (_model
+                                                          .tokenReloadProfileUserSetting!) {
+                                                        _model.dataSetting =
+                                                            null;
+                                                        setState(() {});
+                                                        _model.sshkeyPublicKeySettingOn =
+                                                            actions
+                                                                .sshkey(
+                                                          getJsonField(
+                                                            FFAppState()
+                                                                .staffLogin,
+                                                            r'''$.email''',
+                                                          ).toString(),
+                                                          '',
+                                                          true,
+                                                        );
+                                                        shouldSetState = true;
+                                                        _model
+                                                            .updateDataSettingStruct(
+                                                          (e) => e
+                                                            ..enableBiometric =
+                                                                1
+                                                            ..publicKey = _model
+                                                                .sshkeyPublicKeySettingOn,
+                                                        );
+                                                        setState(() {});
+                                                      } else {
+                                                        setState(() {});
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
+                                                        return;
+                                                      }
 
-                                                _model.apiResultz8c =
-                                                    await SettingAcountGroup
-                                                        .updateBiometricVerificationCopyCall
-                                                        .call(
-                                                  accessToken:
-                                                      FFAppState().accessToken,
-                                                  dataJson: _model.dataSetting
-                                                      ?.toMap(),
-                                                );
+                                                      _model.apiResultz8c =
+                                                          await SettingAcountGroup
+                                                              .updateBiometricVerificationCopyCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        dataJson: _model
+                                                            .dataSetting
+                                                            ?.toMap(),
+                                                      );
 
-                                                shouldSetState = true;
-                                                if ((_model.apiResultz8c
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  await actions.saveInfoUser(
-                                                    'bv',
-                                                    DateTime.now().toString(),
-                                                  );
-                                                }
-                                                if (shouldSetState) {
-                                                  setState(() {});
-                                                }
-                                              } else {
-                                                var shouldSetState = false;
-                                                _model.tokenReloadProfileUserSettingCopy =
-                                                    await action_blocks
-                                                        .tokenReload(context);
-                                                shouldSetState = true;
-                                                if (_model
-                                                    .tokenReloadProfileUserSettingCopy!) {
-                                                  _model.dataSetting = null;
-                                                  setState(() {});
-                                                  _model.sshkeyPublicKeySetting =
-                                                      actions.sshkey(
-                                                    getJsonField(
-                                                      FFAppState().staffLogin,
-                                                      r'''$.email''',
-                                                    ).toString(),
-                                                    '',
-                                                    true,
-                                                  );
-                                                  shouldSetState = true;
-                                                  _model
-                                                      .updateDataSettingStruct(
-                                                    (e) => e
-                                                      ..enableBiometric = 0
-                                                      ..publicKey = '',
-                                                  );
-                                                  setState(() {});
-                                                } else {
-                                                  setState(() {});
-                                                  if (shouldSetState) {
-                                                    setState(() {});
-                                                  }
-                                                  return;
-                                                }
+                                                      shouldSetState = true;
+                                                      if ((_model.apiResultz8c
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        await actions
+                                                            .saveInfoUser(
+                                                          'bv',
+                                                          DateTime.now()
+                                                              .toString(),
+                                                        );
+                                                        _model.getUserSetting =
+                                                            await UserGroup
+                                                                .userMeCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                        );
 
-                                                _model.apiResultz8cCopy =
-                                                    await SettingAcountGroup
-                                                        .updateBiometricVerificationCopyCall
-                                                        .call(
-                                                  dataJson: _model.dataSetting
-                                                      ?.toMap(),
-                                                  accessToken:
-                                                      FFAppState().accessToken,
-                                                );
+                                                        shouldSetState = true;
+                                                        if ((_model
+                                                                .getUserSetting
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          FFAppState()
+                                                              .user = UserResourceDataStruct
+                                                                  .maybeFromMap((_model
+                                                                          .getUserSetting
+                                                                          ?.jsonBody ??
+                                                                      ''))!
+                                                              .data;
+                                                          setState(() {});
+                                                        }
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Lỗi cài đặt!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                          ),
+                                                        );
+                                                      }
 
-                                                shouldSetState = true;
-                                                if ((_model.apiResultz8cCopy
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  await actions.clearInfoUser(
-                                                    'bv',
-                                                  );
-                                                }
-                                                if (shouldSetState) {
-                                                  setState(() {});
-                                                }
-                                              }
-                                            },
+                                                      _model.load = false;
+                                                      setState(() {});
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
+                                                    } else {
+                                                      var shouldSetState =
+                                                          false;
+                                                      _model.load = true;
+                                                      setState(() {});
+                                                      _model.tokenReloadProfileUserSettingCopy =
+                                                          await action_blocks
+                                                              .tokenReload(
+                                                                  context);
+                                                      shouldSetState = true;
+                                                      if (_model
+                                                          .tokenReloadProfileUserSettingCopy!) {
+                                                        _model.dataSetting =
+                                                            null;
+                                                        setState(() {});
+                                                        _model.sshkeyPublicKeySetting =
+                                                            actions
+                                                                .sshkey(
+                                                          getJsonField(
+                                                            FFAppState()
+                                                                .staffLogin,
+                                                            r'''$.email''',
+                                                          ).toString(),
+                                                          '',
+                                                          true,
+                                                        );
+                                                        shouldSetState = true;
+                                                        _model
+                                                            .updateDataSettingStruct(
+                                                          (e) => e
+                                                            ..enableBiometric =
+                                                                0
+                                                            ..publicKey = '',
+                                                        );
+                                                        setState(() {});
+                                                      } else {
+                                                        setState(() {});
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
+                                                        return;
+                                                      }
+
+                                                      _model.apiResultz8cCopy =
+                                                          await SettingAcountGroup
+                                                              .updateBiometricVerificationCopyCall
+                                                              .call(
+                                                        dataJson: _model
+                                                            .dataSetting
+                                                            ?.toMap(),
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                      );
+
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultz8cCopy
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        await actions
+                                                            .clearInfoUser(
+                                                          'bv',
+                                                        );
+                                                        _model.getUserSettingOff =
+                                                            await UserGroup
+                                                                .userMeCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                        );
+
+                                                        shouldSetState = true;
+                                                        if ((_model
+                                                                .getUserSettingOff
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          FFAppState()
+                                                              .user = UserResourceDataStruct
+                                                                  .maybeFromMap((_model
+                                                                          .getUserSettingOff
+                                                                          ?.jsonBody ??
+                                                                      ''))!
+                                                              .data;
+                                                          setState(() {});
+                                                        }
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Lỗi cài đặt!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: const Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                          ),
+                                                        );
+                                                      }
+
+                                                      _model.load = false;
+                                                      setState(() {});
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
+                                                    }
+                                                  },
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,

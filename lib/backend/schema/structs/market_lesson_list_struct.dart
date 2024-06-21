@@ -26,6 +26,8 @@ class MarketLessonListStruct extends BaseStruct {
     int? limitInvite,
     int? inviteCount,
     int? private,
+    String? iapGoogleProductId,
+    String? iapAppleProductId,
   })  : _estimateInDay = estimateInDay,
         _organizationId = organizationId,
         _id = id,
@@ -45,7 +47,9 @@ class MarketLessonListStruct extends BaseStruct {
         _categoryId = categoryId,
         _limitInvite = limitInvite,
         _inviteCount = inviteCount,
-        _private = private;
+        _private = private,
+        _iapGoogleProductId = iapGoogleProductId,
+        _iapAppleProductId = iapAppleProductId;
 
   // "estimate_in_day" field.
   int? _estimateInDay;
@@ -227,6 +231,20 @@ class MarketLessonListStruct extends BaseStruct {
 
   bool hasPrivate() => _private != null;
 
+  // "iap_google_product_id" field.
+  String? _iapGoogleProductId;
+  String get iapGoogleProductId => _iapGoogleProductId ?? '';
+  set iapGoogleProductId(String? val) => _iapGoogleProductId = val;
+
+  bool hasIapGoogleProductId() => _iapGoogleProductId != null;
+
+  // "iap_apple_product_id" field.
+  String? _iapAppleProductId;
+  String get iapAppleProductId => _iapAppleProductId ?? '';
+  set iapAppleProductId(String? val) => _iapAppleProductId = val;
+
+  bool hasIapAppleProductId() => _iapAppleProductId != null;
+
   static MarketLessonListStruct fromMap(Map<String, dynamic> data) =>
       MarketLessonListStruct(
         estimateInDay: castToType<int>(data['estimate_in_day']),
@@ -258,6 +276,8 @@ class MarketLessonListStruct extends BaseStruct {
         limitInvite: castToType<int>(data['limit_invite']),
         inviteCount: castToType<int>(data['invite_count']),
         private: castToType<int>(data['private']),
+        iapGoogleProductId: data['iap_google_product_id'] as String?,
+        iapAppleProductId: data['iap_apple_product_id'] as String?,
       );
 
   static MarketLessonListStruct? maybeFromMap(dynamic data) => data is Map
@@ -285,6 +305,8 @@ class MarketLessonListStruct extends BaseStruct {
         'limit_invite': _limitInvite,
         'invite_count': _inviteCount,
         'private': _private,
+        'iap_google_product_id': _iapGoogleProductId,
+        'iap_apple_product_id': _iapAppleProductId,
       }.withoutNulls;
 
   @override
@@ -371,6 +393,14 @@ class MarketLessonListStruct extends BaseStruct {
         'private': serializeParam(
           _private,
           ParamType.int,
+        ),
+        'iap_google_product_id': serializeParam(
+          _iapGoogleProductId,
+          ParamType.String,
+        ),
+        'iap_apple_product_id': serializeParam(
+          _iapAppleProductId,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -483,6 +513,16 @@ class MarketLessonListStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        iapGoogleProductId: deserializeParam(
+          data['iap_google_product_id'],
+          ParamType.String,
+          false,
+        ),
+        iapAppleProductId: deserializeParam(
+          data['iap_apple_product_id'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -511,7 +551,9 @@ class MarketLessonListStruct extends BaseStruct {
         categoryId == other.categoryId &&
         limitInvite == other.limitInvite &&
         inviteCount == other.inviteCount &&
-        private == other.private;
+        private == other.private &&
+        iapGoogleProductId == other.iapGoogleProductId &&
+        iapAppleProductId == other.iapAppleProductId;
   }
 
   @override
@@ -535,7 +577,9 @@ class MarketLessonListStruct extends BaseStruct {
         categoryId,
         limitInvite,
         inviteCount,
-        private
+        private,
+        iapGoogleProductId,
+        iapAppleProductId
       ]);
 }
 
@@ -557,6 +601,8 @@ MarketLessonListStruct createMarketLessonListStruct({
   int? limitInvite,
   int? inviteCount,
   int? private,
+  String? iapGoogleProductId,
+  String? iapAppleProductId,
 }) =>
     MarketLessonListStruct(
       estimateInDay: estimateInDay,
@@ -576,4 +622,6 @@ MarketLessonListStruct createMarketLessonListStruct({
       limitInvite: limitInvite,
       inviteCount: inviteCount,
       private: private,
+      iapGoogleProductId: iapGoogleProductId,
+      iapAppleProductId: iapAppleProductId,
     );

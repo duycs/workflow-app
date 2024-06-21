@@ -20,6 +20,8 @@ class ProfileUserSettingModel
     updateFn(dataSetting ??= DataSettingStruct());
   }
 
+  bool? load = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -31,12 +33,16 @@ class ProfileUserSettingModel
   String? sshkeyPublicKeySettingOn;
   // Stores action output result for [Backend Call - API (UpdateBiometricVerification Copy)] action in Switch widget.
   ApiCallResponse? apiResultz8c;
+  // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
+  ApiCallResponse? getUserSetting;
   // Stores action output result for [Action Block - tokenReload] action in Switch widget.
   bool? tokenReloadProfileUserSettingCopy;
   // Stores action output result for [Custom Action - sshkey] action in Switch widget.
   String? sshkeyPublicKeySetting;
   // Stores action output result for [Backend Call - API (UpdateBiometricVerification Copy)] action in Switch widget.
   ApiCallResponse? apiResultz8cCopy;
+  // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
+  ApiCallResponse? getUserSettingOff;
 
   @override
   void initState(BuildContext context) {}

@@ -5,13 +5,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +29,6 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
   late ReportStaffModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late StreamSubscription<bool> _keyboardVisibilitySubscription;
-  bool _isKeyboardVisible = false;
 
   @override
   void initState() {
@@ -41,21 +39,14 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getStaffList2Token = await action_blocks.tokenReload(context);
       if (_model.getStaffList2Token!) {
+        await _model.getListStaffs(context);
+        setState(() {});
         _model.isShow = true;
         setState(() {});
       } else {
         setState(() {});
       }
     });
-
-    if (!isWeb) {
-      _keyboardVisibilitySubscription =
-          KeyboardVisibilityController().onChange.listen((bool visible) {
-        setState(() {
-          _isKeyboardVisible = visible;
-        });
-      });
-    }
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -65,9 +56,6 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
   void dispose() {
     _model.dispose();
 
-    if (!isWeb) {
-      _keyboardVisibilitySubscription.cancel();
-    }
     super.dispose();
   }
 
@@ -82,32 +70,6 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Visibility(
-          visible: !(isWeb
-              ? MediaQuery.viewInsetsOf(context).bottom > 0
-              : _isKeyboardVisible),
-          child: FloatingActionButton(
-            onPressed: () async {
-              context.pushNamed(
-                'StaffCreate',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-            },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            elevation: 8.0,
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).info,
-              size: 24.0,
-            ),
-          ),
-        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
@@ -138,14 +100,36 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Báo cáo công việc',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text((_model.listzzz!.toMap()).toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Báo cáo công việc',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ],
           ),
@@ -387,6 +371,28 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                 ),
                       ),
                     ),
+                  Align(
+                    alignment: const AlignmentDirectional(1.0, -1.0),
+                    child: FlutterFlowIconButton(
+                      borderColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      icon: FaIcon(
+                        FontAwesomeIcons.fileExport,
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        await actions.exportExcel(
+                          (_model.listzzz!.toMap()).toString(),
+                        );
+                      },
+                    ),
+                  ),
                   Expanded(
                     child: Padding(
                       padding:
@@ -1051,9 +1057,12 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                     ? (double.parse((dataListItem
                                                                 .tasks
                                                                 .where((e) =>
-                                                                    e.tasksId
-                                                                        .status ==
-                                                                    'done')
+                                                                    (e.tasksId
+                                                                            .status ==
+                                                                        'done') &&
+                                                                    (e.tasksId
+                                                                            .overDeadline ==
+                                                                        1))
                                                                 .toList()
                                                                 .length /
                                                             dataListItem
@@ -1071,7 +1080,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .accent4,
                                                 center: Text(
-                                                  '${(dataListItem.tasks.isNotEmpty ? (double.parse(((dataListItem.tasks.where((e) => e.tasksId.status == 'done').toList().length / dataListItem.tasks.length) * 100).toStringAsFixed(1))) : 0.0).toString()}%',
+                                                  '${(dataListItem.tasks.isNotEmpty ? (double.parse(((dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.overDeadline == 1)).toList().length / dataListItem.tasks.length) * 100).toStringAsFixed(1))) : 0.0).toString()}%',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .headlineSmall

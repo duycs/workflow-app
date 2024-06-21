@@ -1023,6 +1023,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                       }
                                                                       return;
                                                                     }
+
+                                                                    if (shouldSetState) {
+                                                                      setState(
+                                                                          () {});
+                                                                    }
+                                                                    return;
                                                                   }
                                                                 } else {
                                                                   ScaffoldMessenger.of(
@@ -1069,6 +1075,47 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                             if (shouldSetState) {
                                                               setState(() {});
                                                             }
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  if ((_model.showSTH ==
+                                                          true) &&
+                                                      (FFAppState()
+                                                              .biometricLogin ==
+                                                          true))
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child:
+                                                            FlutterFlowIconButton(
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .noColor,
+                                                          borderRadius: 50.0,
+                                                          borderWidth: 1.0,
+                                                          buttonSize: 52.0,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          icon: Icon(
+                                                            Icons.fingerprint,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          onPressed: () async {
+                                                            await actions
+                                                                .authenticateUsingBiometrics();
                                                           },
                                                         ),
                                                       ),

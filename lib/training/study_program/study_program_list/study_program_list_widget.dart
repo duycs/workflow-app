@@ -29,6 +29,8 @@ class StudyProgramListWidget extends StatefulWidget {
     this.itemLesstion,
     this.programsItem,
     this.itemListLession,
+    this.imagesProgram,
+    this.dataProframDeatail,
   });
 
   final String? checkpage;
@@ -36,6 +38,8 @@ class StudyProgramListWidget extends StatefulWidget {
   final LessonsStruct? itemLesstion;
   final dynamic programsItem;
   final StudyProgramListStruct? itemListLession;
+  final FFUploadedFile? imagesProgram;
+  final StudyProgramListStruct? dataProframDeatail;
 
   @override
   State<StudyProgramListWidget> createState() => _StudyProgramListWidgetState();
@@ -76,7 +80,79 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                     itemLesstion: widget.itemLesstion,
                     programsItem: widget.programsItem,
                     itemListLesstion: widget.itemListLession,
+                    imageProgram: widget.imagesProgram,
                     callBackList: () async {
+                      _model.checkShow = null;
+                      _model.dataList = [];
+                      _model.meta = null;
+                      _model.isLoad = false;
+                      _model.nameSearch = '';
+                      _model.dateEndSearch = '';
+                      _model.dateStartSearch = '';
+                      _model.lessionsNameSearch = '';
+                      setState(() {});
+                      setState(() {
+                        _model.textFieldNameSearchTextController?.clear();
+                      });
+                      setState(
+                          () => _model.listViewPagingController1?.refresh());
+
+                      setState(() {});
+                    },
+                  ),
+                ),
+              );
+            },
+          ).then((value) => setState(() {}));
+        }
+        if (widget.showModal == 'StudyProgramEdit') {
+          await showDialog(
+            context: context,
+            builder: (dialogContext) {
+              return Dialog(
+                elevation: 0,
+                insetPadding: EdgeInsets.zero,
+                backgroundColor: Colors.transparent,
+                alignment: const AlignmentDirectional(0.0, 0.0)
+                    .resolve(Directionality.of(context)),
+                child: GestureDetector(
+                  onTap: () => _model.unfocusNode.canRequestFocus
+                      ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                      : FocusScope.of(context).unfocus(),
+                  child: ActionChinhSuaWidget(
+                    dataDetail: widget.dataProframDeatail,
+                    checkpage: 'programEdit',
+                    checkMarket: ((widget.dataProframDeatail?.template == 0) &&
+                                (getJsonField(
+                                      FFAppState().staffOrganization,
+                                      r'''$.authors[0]''',
+                                    ) !=
+                                    null) &&
+                                ((widget.dataProframDeatail == null) ||
+                                    ((widget.dataProframDeatail?.authorId !=
+                                                null &&
+                                            widget.dataProframDeatail
+                                                    ?.authorId !=
+                                                '') &&
+                                        (widget.dataProframDeatail?.authorId ==
+                                            getJsonField(
+                                              FFAppState().staffOrganization,
+                                              r'''$.authors[0]''',
+                                            ).toString().toString()))) &&
+                                (widget.dataProframDeatail
+                                            ?.copyrightProgramId ==
+                                        null ||
+                                    widget.dataProframDeatail
+                                            ?.copyrightProgramId ==
+                                        '') &&
+                                (widget.dataProframDeatail?.version == 0)) ==
+                            true
+                        ? true
+                        : false,
+                    itemProgram: widget.programsItem,
+                    itemLessions: widget.itemListLession,
+                    itemLession: widget.itemLesstion,
+                    callBackList2: () async {
                       _model.checkShow = null;
                       _model.dataList = [];
                       _model.meta = null;
@@ -676,23 +752,29 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                               children: [
                                                 Stack(
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${dataListViewItem.imageCover != null && dataListViewItem.imageCover != '' ? dataListViewItem.imageCover : ' '}?access_token=${FFAppState().accessToken}',
-                                                          width: 80.0,
-                                                          height: 80.0,
-                                                          fit: BoxFit.cover,
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataListViewItem.imageCover != null && dataListViewItem.imageCover != '' ? dataListViewItem.imageCover : ' '}?access_token=${FFAppState().accessToken}',
+                                                            width: 80.0,
+                                                            height: 80.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -879,8 +961,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                           .resolve(
                                                                               Directionality.of(context)),
                                                                       followerAnchor: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
+                                                                              1.0,
+                                                                              -1.0)
                                                                           .resolve(
                                                                               Directionality.of(context)),
                                                                       builder:
@@ -914,7 +996,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                       true
                                                                                   ? true
                                                                                   : false,
-                                                                              checkpage: widget.checkpage!,
+                                                                              checkpage: widget.checkpage,
                                                                               callBackList2: () async {
                                                                                 _model.checkShow = null;
                                                                                 _model.dataList = [];

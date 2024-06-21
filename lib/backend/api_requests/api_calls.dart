@@ -25,6 +25,91 @@ class GroupTemplateGroup {
 
 /// End GroupTemplate Group Code
 
+/// Start Newsfeed Group Code
+
+class NewsfeedGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static NewsfeedListCall newsfeedListCall = NewsfeedListCall();
+  static NewsfeedOneCall newsfeedOneCall = NewsfeedOneCall();
+}
+
+class NewsfeedListCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'NewsfeedList',
+      apiUrl: '$baseUrl/items/news',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+        'limit': limit,
+        'offset': offset,
+        'sort': "-date_created",
+        'fields[]':
+            "id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class NewsfeedOneCall {
+  Future<ApiCallResponse> call({
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'NewsfeedOne',
+      apiUrl: '$baseUrl/items/news/$id',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields[]':
+            "user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Newsfeed Group Code
+
 /// Start ProcedurePublished Group Code
 
 class ProcedurePublishedGroup {
@@ -1777,7 +1862,7 @@ class StaffsTestsListCall {
         },
         params: {
           'fields':
-              "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description",
+              "id,status,test_id.id,test_id.name,score,date_start,date_end,total_correct,total_incorrect,test_id.duration_minutes,date_created,percent_correct,test_id.good_score,lession_id.name, lession_id.id, lession_id.image_cover,test_id.description, pass",
           'filter': filter,
           'sort': "-date_created",
           'limit': limit,
@@ -3112,7 +3197,7 @@ class GetStaffListCall {
         },
         params: {
           'fields':
-              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct",
+              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,tasks.tasks_id.over_deadline,staff_tests.percent_correct",
           'filter': filter,
           'sort': sort,
           'limit': limit,
@@ -3199,7 +3284,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "staff_programs.program_id, staff_programs.status, id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
+            "staff_tests.pass, tasks.tasks_id.over_deadline, staff_programs.program_id, staff_programs.status, id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,staff_tests.score,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
         'filter': filter,
       },
       returnBody: true,
@@ -3975,7 +4060,7 @@ class GetListMarketLessonCall {
         },
         params: {
           'fields[]':
-              "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar,lessions.lessions_id.status",
+              "date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar,lessions.lessions_id.status,iap_google_product_id,iap_apple_product_id",
           'filter': filter,
           'limit': limit,
           'offset': offset,
@@ -4019,7 +4104,7 @@ class GetOneProgramsCall {
       },
       params: {
         'fields[]':
-            "private, date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar, limit_invite, invite_count,lessions.lessions_id.status, author_id.organization_id",
+            "private, date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id,template,domain_id,category_id,author_id,price,author_id.id,author_id.status,author_id.alias,author_id.description,author_id.domains.domains_id.id,author_id.domains.domains_id.name,domain_id.name, domain_id.id,image_cover, order_count, reacts.id, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,category_id.name,category_id.id,author_id.avatar, limit_invite, invite_count,lessions.lessions_id.status, author_id.organization_id,iap_google_product_id,iap_apple_product_id",
         'offset': offset,
         'limit': limit,
         'filter': filter,
@@ -4353,7 +4438,7 @@ class GetListOrderCall {
     int? limit = 5000,
     int? offset = 0,
     String? filter = '',
-    String? sort = '',
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -4373,8 +4458,9 @@ class GetListOrderCall {
           'limit': limit,
           'offset': offset,
           'fields':
-              " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
+              " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.lessions.lessions_id.id,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
           'filter': filter,
+          'sort': sort,
         },
         returnBody: true,
         encodeBodyUtf8: false,

@@ -25,12 +25,16 @@ class LessonCreateWidget extends StatefulWidget {
     this.checkPage,
     this.programsItem,
     this.listItemLession,
+    this.imageProgram,
+    this.dataProgramDetail,
   }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
   final String? checkPage;
   final dynamic programsItem;
   final StudyProgramListStruct? listItemLession;
+  final FFUploadedFile? imageProgram;
+  final StudyProgramListStruct? dataProgramDetail;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -98,36 +102,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
               context.pop();
             },
           ),
-          title: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(_model.testId),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Text(
-              'Tạo bài học',
-              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                    fontFamily: 'Nunito Sans',
-                    fontSize: 18.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-            ),
+          title: Text(
+            'Tạo bài học',
+            style: FlutterFlowTheme.of(context).headlineSmall.override(
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.normal,
+                ),
           ),
           actions: const [],
           centerTitle: false,
@@ -1113,86 +1095,91 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                               ),
                               Expanded(
                                 flex: 2,
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    final selectedFiles = await selectFiles(
-                                      multiFile: false,
-                                    );
-                                    if (selectedFiles != null) {
-                                      setState(
-                                          () => _model.isDataUploading3 = true);
-                                      var selectedUploadedFiles =
-                                          <FFUploadedFile>[];
+                                child: Opacity(
+                                  opacity: 0.4,
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      final selectedFiles = await selectFiles(
+                                        multiFile: false,
+                                      );
+                                      if (selectedFiles != null) {
+                                        setState(() =>
+                                            _model.isDataUploading3 = true);
+                                        var selectedUploadedFiles =
+                                            <FFUploadedFile>[];
 
-                                      try {
-                                        showUploadMessage(
-                                          context,
-                                          'Uploading file...',
-                                          showLoading: true,
-                                        );
-                                        selectedUploadedFiles = selectedFiles
-                                            .map((m) => FFUploadedFile(
-                                                  name: m.storagePath
-                                                      .split('/')
-                                                      .last,
-                                                  bytes: m.bytes,
-                                                ))
-                                            .toList();
-                                      } finally {
-                                        ScaffoldMessenger.of(context)
-                                            .hideCurrentSnackBar();
-                                        _model.isDataUploading3 = false;
+                                        try {
+                                          showUploadMessage(
+                                            context,
+                                            'Uploading file...',
+                                            showLoading: true,
+                                          );
+                                          selectedUploadedFiles = selectedFiles
+                                              .map((m) => FFUploadedFile(
+                                                    name: m.storagePath
+                                                        .split('/')
+                                                        .last,
+                                                    bytes: m.bytes,
+                                                  ))
+                                              .toList();
+                                        } finally {
+                                          ScaffoldMessenger.of(context)
+                                              .hideCurrentSnackBar();
+                                          _model.isDataUploading3 = false;
+                                        }
+                                        if (selectedUploadedFiles.length ==
+                                            selectedFiles.length) {
+                                          setState(() {
+                                            _model.uploadedLocalFile3 =
+                                                selectedUploadedFiles.first;
+                                          });
+                                          showUploadMessage(
+                                            context,
+                                            'Success!',
+                                          );
+                                        } else {
+                                          setState(() {});
+                                          showUploadMessage(
+                                            context,
+                                            'Failed to upload file',
+                                          );
+                                          return;
+                                        }
                                       }
-                                      if (selectedUploadedFiles.length ==
-                                          selectedFiles.length) {
-                                        setState(() {
-                                          _model.uploadedLocalFile3 =
-                                              selectedUploadedFiles.first;
-                                        });
-                                        showUploadMessage(
-                                          context,
-                                          'Success!',
-                                        );
-                                      } else {
-                                        setState(() {});
-                                        showUploadMessage(
-                                          context,
-                                          'Failed to upload file',
-                                        );
-                                        return;
-                                      }
-                                    }
 
-                                    _model.uploadFile = _model.uploadFile;
-                                    setState(() {});
-                                  },
-                                  text: 'File',
-                                  icon: const Icon(
-                                    Icons.add,
-                                    size: 18.0,
-                                  ),
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        26.0, 0.0, 26.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
+                                      _model.uploadFile = _model.uploadFile;
+                                      setState(() {});
+                                    },
+                                    text: 'File',
+                                    icon: const Icon(
+                                      Icons.add,
+                                      size: 18.0,
                                     ),
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          26.0, 0.0, 26.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: Colors.white,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1358,22 +1345,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             false)) {
                       await _model.uploadFIleImage(context);
                       setState(() {});
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Chưa có ảnh tải lên!',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).info,
-                            ),
-                          ),
-                          duration: const Duration(milliseconds: 4000),
-                          backgroundColor: FlutterFlowTheme.of(context).error,
-                        ),
-                      );
-                      return;
                     }
-
                     if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFileFile(context);
@@ -1418,15 +1390,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                 return 'Tiêu đề chưa có dữ liệu!';
                               } else if (_model.checkContent == '') {
                                 return 'Nội dung chưa có dữ liệu!';
-                              } else if (_model.descriptionTextController.text == '') {
-                                return 'Mô tả chưa có dữ liệu!';
                               } else if (_model.durationHoursTextController.text ==
                                       '') {
                                 return 'Thời gian học chưa có dữ liệu!';
-                              } else if (_model.uploadImage == '') {
+                              } else if ((_model.uploadImage == '') &&
+                                  (_model.checkIamge != '1')) {
                                 return 'Chưa có ảnh tải lên!';
                               } else {
-                                return '';
+                                return 'Mô tả chưa có dữ liệu!';
                               }
                             }(),
                             style: TextStyle(

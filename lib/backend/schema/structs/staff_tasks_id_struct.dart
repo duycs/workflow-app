@@ -13,12 +13,14 @@ class StaffTasksIdStruct extends BaseStruct {
     int? current,
     String? deadline,
     String? dateEnd,
+    int? overDeadline,
   })  : _id = id,
         _name = name,
         _status = status,
         _current = current,
         _deadline = deadline,
-        _dateEnd = dateEnd;
+        _dateEnd = dateEnd,
+        _overDeadline = overDeadline;
 
   // "id" field.
   String? _id;
@@ -64,6 +66,16 @@ class StaffTasksIdStruct extends BaseStruct {
 
   bool hasDateEnd() => _dateEnd != null;
 
+  // "over_deadline" field.
+  int? _overDeadline;
+  int get overDeadline => _overDeadline ?? 0;
+  set overDeadline(int? val) => _overDeadline = val;
+
+  void incrementOverDeadline(int amount) =>
+      overDeadline = overDeadline + amount;
+
+  bool hasOverDeadline() => _overDeadline != null;
+
   static StaffTasksIdStruct fromMap(Map<String, dynamic> data) =>
       StaffTasksIdStruct(
         id: data['id'] as String?,
@@ -72,6 +84,7 @@ class StaffTasksIdStruct extends BaseStruct {
         current: castToType<int>(data['current']),
         deadline: data['deadline'] as String?,
         dateEnd: data['date_end'] as String?,
+        overDeadline: castToType<int>(data['over_deadline']),
       );
 
   static StaffTasksIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -85,6 +98,7 @@ class StaffTasksIdStruct extends BaseStruct {
         'current': _current,
         'deadline': _deadline,
         'date_end': _dateEnd,
+        'over_deadline': _overDeadline,
       }.withoutNulls;
 
   @override
@@ -112,6 +126,10 @@ class StaffTasksIdStruct extends BaseStruct {
         'date_end': serializeParam(
           _dateEnd,
           ParamType.String,
+        ),
+        'over_deadline': serializeParam(
+          _overDeadline,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -147,6 +165,11 @@ class StaffTasksIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        overDeadline: deserializeParam(
+          data['over_deadline'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -160,12 +183,13 @@ class StaffTasksIdStruct extends BaseStruct {
         status == other.status &&
         current == other.current &&
         deadline == other.deadline &&
-        dateEnd == other.dateEnd;
+        dateEnd == other.dateEnd &&
+        overDeadline == other.overDeadline;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, name, status, current, deadline, dateEnd]);
+  int get hashCode => const ListEquality()
+      .hash([id, name, status, current, deadline, dateEnd, overDeadline]);
 }
 
 StaffTasksIdStruct createStaffTasksIdStruct({
@@ -175,6 +199,7 @@ StaffTasksIdStruct createStaffTasksIdStruct({
   int? current,
   String? deadline,
   String? dateEnd,
+  int? overDeadline,
 }) =>
     StaffTasksIdStruct(
       id: id,
@@ -183,4 +208,5 @@ StaffTasksIdStruct createStaffTasksIdStruct({
       current: current,
       deadline: deadline,
       dateEnd: dateEnd,
+      overDeadline: overDeadline,
     );
