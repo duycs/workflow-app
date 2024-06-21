@@ -4438,7 +4438,7 @@ class GetListOrderCall {
     int? limit = 5000,
     int? offset = 0,
     String? filter = '',
-    String? sort = '',
+    String? sort = '-date_created',
     String? accessToken = '',
   }) async {
     final baseUrl = OrderGroup.getBaseUrl(
@@ -4460,6 +4460,7 @@ class GetListOrderCall {
           'fields':
               " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.lessions.lessions_id.id,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
           'filter': filter,
+          'sort': sort,
         },
         returnBody: true,
         encodeBodyUtf8: false,

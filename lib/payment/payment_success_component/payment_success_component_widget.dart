@@ -58,7 +58,7 @@ class _PaymentSuccessComponentWidgetState
           const Icon(
             Icons.check_circle_outline,
             color: Color(0xFF19DB8A),
-            size: 100.0,
+            size: 70.0,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 0.0, 0.0),
@@ -66,9 +66,9 @@ class _PaymentSuccessComponentWidgetState
               'Thanh toán thành công!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).headlineLarge.override(
-                    fontFamily: 'Inter',
+                    fontFamily: 'Nunito Sans',
                     color: const Color(0xFF14181B),
-                    fontSize: 26.0,
+                    fontSize: 22.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -80,7 +80,7 @@ class _PaymentSuccessComponentWidgetState
               'Đơn hàng của bạn đã được thanh toán thành công. Hãy trải nghiệm ngay khóa học của bạn!',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Readex Pro',
+                    fontFamily: 'Nunito Sans',
                     color: const Color(0xFF57636C),
                     fontSize: 14.0,
                     letterSpacing: 0.0,
@@ -110,7 +110,7 @@ class _PaymentSuccessComponentWidgetState
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: const Color(0xFF19DB8A),
                 textStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily: 'Readex Pro',
+                      fontFamily: 'Nunito Sans',
                       color: Colors.white,
                       fontSize: 14.0,
                       letterSpacing: 0.0,
@@ -121,44 +121,46 @@ class _PaymentSuccessComponentWidgetState
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
-            child: FFButtonWidget(
-              onPressed: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: InviteUserWidget(
-                        programId: widget.programId!,
+          if (false)
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 24.0),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    enableDrag: false,
+                    context: context,
+                    builder: (context) {
+                      return Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: InviteUserWidget(
+                          programId: widget.programId!,
+                        ),
+                      );
+                    },
+                  ).then((value) => safeSetState(() {}));
+                },
+                text: 'Chia sẻ cho thành viên khác',
+                options: FFButtonOptions(
+                  width: double.infinity,
+                  height: 55.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
                       ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-              },
-              text: 'Chia sẻ cho thành viên khác',
-              options: FFButtonOptions(
-                width: double.infinity,
-                height: 55.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily: 'Readex Pro',
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.w500,
-                    ),
-                elevation: 2.0,
-                borderRadius: BorderRadius.circular(10.0),
+                  elevation: 2.0,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

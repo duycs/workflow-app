@@ -147,6 +147,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
               r'''$.errors''',
             ) !=
             null) {
+          ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -236,6 +237,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
         return;
       } else {
+        ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(

@@ -1070,6 +1070,9 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         return;
                                       }
                                     }
+
+                                    _model.file = _model.file;
+                                    setState(() {});
                                   },
                                   text: 'File',
                                   icon: const Icon(
