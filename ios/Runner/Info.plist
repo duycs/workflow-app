@@ -61,6 +61,8 @@
 	<string>Ứng dụng cần quyền nhận thông báo từ xa để cập nhật nội dung và thông tin mới nhất, ngay cả khi ứng dụng đang chạy ở chế độ nền.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Ứng dụng cần quyền truy cập vào Face ID để xác thực danh tính của bạn một cách an toàn và tiện lợi khi đăng nhập vào ứng dụng.</string>
+	<key>NSBiometricUsageDescription</key>
+	<string>Ứng dụng cần quyền truy cập vào sinh trắc học để xác thực.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

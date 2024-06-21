@@ -190,7 +190,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
             loop!,
             (_) => () {
               if (loop == 0) {
-                return (staff?.staffPrograms.isEmpty
+                return (staff!.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'draft')
@@ -199,7 +199,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffPrograms.length)
                         .toStringAsFixed(2))));
               } else if (loop == 1) {
-                return (staff?.staffPrograms.isEmpty
+                return (staff!.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'inprogress')
@@ -208,7 +208,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffPrograms.length)
                         .toStringAsFixed(2))));
               } else {
-                return (staff?.staffPrograms.isEmpty
+                return (staff!.staffPrograms.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffPrograms
                                 .where((e) => e.status == 'done')
@@ -227,7 +227,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
             loop!,
             (_) => () {
               if (loop == 0) {
-                return (staff?.staffLessions.isEmpty
+                return (staff!.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'draft')
@@ -236,7 +236,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffLessions.length)
                         .toStringAsFixed(2))));
               } else if (loop == 1) {
-                return (staff?.staffLessions.isEmpty
+                return (staff!.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'inprogress')
@@ -245,7 +245,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
                             staff!.staffLessions.length)
                         .toStringAsFixed(2))));
               } else {
-                return (staff?.staffLessions.isEmpty
+                return (staff!.staffLessions.isEmpty
                     ? 0.0
                     : (double.parse((staff!.staffLessions
                                 .where((e) => e.status == 'done')
