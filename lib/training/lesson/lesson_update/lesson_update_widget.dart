@@ -426,6 +426,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                             child: QuizCreationLessonWidget(
                                               callBack: (testId) async {
                                                 await _model.testList(context);
+                                                await _model.testList(context);
                                                 setState(() {
                                                   _model.testIdValueController
                                                       ?.value = testId;

@@ -97,166 +97,193 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
           top: true,
           child: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.searchDomainsTextController,
-                      focusNode: _model.searchDomainsFocusNode,
-                      onChanged: (_) => EasyDebounce.debounce(
-                        '_model.searchDomainsTextController',
-                        const Duration(milliseconds: 500),
-                        () async {
-                          setState(() {});
-                          setState(
-                              () => _model.gridViewPagingController?.refresh());
-                        },
-                      ),
-                      autofocus: false,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                        hintText: 'Tìm kiếm lĩnh vực...',
-                        hintStyle: FlutterFlowTheme.of(context)
-                            .bodyLarge
-                            .override(
+            child: SingleChildScrollView(
+              primary: false,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextFormField(
+                        controller: _model.searchDomainsTextController,
+                        focusNode: _model.searchDomainsFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.searchDomainsTextController',
+                          const Duration(milliseconds: 500),
+                          () async {
+                            setState(() {});
+                            setState(() =>
+                                _model.gridViewPagingController?.refresh());
+                          },
+                        ),
+                        autofocus: false,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintText: 'Tìm kiếm lĩnh vực...',
+                          hintStyle: FlutterFlowTheme.of(context)
+                              .bodyLarge
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 14.0,
+                                letterSpacing: 0.0,
+                              ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0x15FF5963),
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 8.0, 0.0, 8.0),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          suffixIcon: _model
+                                  .searchDomainsTextController!.text.isNotEmpty
+                              ? InkWell(
+                                  onTap: () async {
+                                    _model.searchDomainsTextController?.clear();
+                                    setState(() {});
+                                    setState(() => _model
+                                        .gridViewPagingController
+                                        ?.refresh());
+                                    setState(() {});
+                                  },
+                                  child: const Icon(
+                                    Icons.clear,
+                                    color: Color(0xFF757575),
+                                    size: 22.0,
+                                  ),
+                                )
+                              : null,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: FlutterFlowTheme.of(context).primaryText,
                               fontSize: 14.0,
                               letterSpacing: 0.0,
                             ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        filled: true,
-                        fillColor: const Color(0x15FF5963),
-                        contentPadding:
-                            const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 0.0, 8.0),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 24.0,
-                        ),
-                        suffixIcon: _model
-                                .searchDomainsTextController!.text.isNotEmpty
-                            ? InkWell(
-                                onTap: () async {
-                                  _model.searchDomainsTextController?.clear();
-                                  setState(() {});
-                                  setState(() => _model.gridViewPagingController
-                                      ?.refresh());
-                                  setState(() {});
-                                },
-                                child: const Icon(
-                                  Icons.clear,
-                                  color: Color(0xFF757575),
-                                  size: 22.0,
-                                ),
-                              )
-                            : null,
+                        maxLines: null,
+                        validator: _model.searchDomainsTextControllerValidator
+                            .asValidator(context),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Nunito Sans',
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            fontSize: 14.0,
-                            letterSpacing: 0.0,
-                          ),
-                      maxLines: null,
-                      validator: _model.searchDomainsTextControllerValidator
-                          .asValidator(context),
                     ),
                   ),
-                ),
-                if (_model.searchDomainsTextController.text != '')
+                  if (_model.searchDomainsTextController.text != '')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                      child: Text(
+                        '#Kết quả tìm kiếm theo bộ lọc',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                              fontStyle: FontStyle.italic,
+                            ),
+                      ),
+                    ),
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
                     child: Text(
-                      '#Kết quả tìm kiếm theo bộ lọc',
+                      'Top tìm kiếm',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Nunito Sans',
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            fontSize: 12.0,
                             letterSpacing: 0.0,
-                            fontStyle: FontStyle.italic,
                           ),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 8.0),
-                  child: Text(
-                    'Top tìm kiếm',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          letterSpacing: 0.0,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'ProgramListMarket',
+                              queryParameters: {
+                                'price': serializeParam(
+                                  'free1',
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType: PageTransitionType.fade,
+                                  duration: Duration(milliseconds: 0),
+                                ),
+                              },
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              borderRadius: BorderRadius.circular(2.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 8.0, 16.0, 8.0),
+                              child: Text(
+                                'Thiết kế',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ),
                         ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'ProgramListMarket',
-                            queryParameters: {
-                              'price': serializeParam(
-                                'free1',
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: const TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.fade,
-                                duration: Duration(milliseconds: 0),
-                              ),
-                            },
-                          );
-                        },
-                        child: Container(
+                        Container(
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).alternate,
                             borderRadius: BorderRadius.circular(2.0),
@@ -265,7 +292,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 8.0, 16.0, 8.0),
                             child: Text(
-                              'Thiết kế',
+                              'Thời trang',
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -276,133 +303,113 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(2.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 8.0),
-                          child: Text(
-                            'Thời trang',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            child: Text(
+                              'Công nghệ ',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(2.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 8.0),
-                          child: Text(
-                            'Công nghệ ',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ].divide(const SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(2.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 8.0),
-                          child: Text(
-                            'Kỹ thuật',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            child: Text(
+                              'Kỹ thuật',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(2.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 8.0),
-                          child: Text(
-                            'Xây dựng',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
+                        Container(
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            child: Text(
+                              'Xây dựng',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(2.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 8.0, 16.0, 8.0),
-                          child: Text(
-                            'Marketing',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).alternate,
+                            borderRadius: BorderRadius.circular(2.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
+                            child: Text(
+                              'Marketing',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 8.0),
-                  child: Text(
-                    'Tất cả lĩnh vực',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          letterSpacing: 0.0,
-                        ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 8.0),
+                    child: Text(
+                      'Tất cả lĩnh vực',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: PagedGridView<ApiPagingParams, dynamic>(
+                  PagedGridView<ApiPagingParams, dynamic>(
                     pagingController: _model.setGridViewController(
                       (nextPageMarker) => GetDomainsGroup.getDomainsCall.call(
                         accessToken: FFAppState().accessToken,
@@ -418,6 +425,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                       crossAxisSpacing: 20.0,
                       childAspectRatio: 1.0,
                     ),
+                    primary: false,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
@@ -550,8 +558,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                       },
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

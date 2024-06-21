@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/payment/payment_succes_exception_component/payment_succes_exception_component_widget.dart';
 import '/payment/payment_success_component/payment_success_component_widget.dart';
 import '/training/order/order_create/order_create_widget.dart';
 import 'dart:ui';
@@ -1183,7 +1184,13 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                       getJsonField(
                         FFAppState().staffOrganization,
                         r'''$.id''',
-                      ).toString()))
+                      ).toString()) &&
+                  ((isiOS &&
+                          (_model.dataGetOne?.iapAppleProductId != null &&
+                              _model.dataGetOne?.iapAppleProductId != '')) ||
+                      (isAndroid &&
+                          (_model.dataGetOne?.iapGoogleProductId != null &&
+                              _model.dataGetOne?.iapGoogleProductId != ''))))
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
@@ -1194,43 +1201,100 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                         child: Builder(
                           builder: (context) => FFButtonWidget(
                             onPressed: () async {
+                              // Mở widget thanh toán IAP
                               _model.paymentResponse =
                                   await actions.openInAppPurchase(
-                                'product_5k',
+                                () {
+                                  if (isiOS) {
+                                    return _model.dataGetOne!.iapAppleProductId;
+                                  } else if (isAndroid) {
+                                    return _model
+                                        .dataGetOne!.iapGoogleProductId;
+                                  } else {
+                                    return '';
+                                  }
+                                }(),
                                 true,
                               );
                               if (_model.paymentResponse != null) {
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          child:
-                                              const PaymentSuccessComponentWidget(),
+                                _model.apiResultOrderCreate =
+                                    await _model.orderCreate(
+                                  context,
+                                  checkType: 'staff',
+                                  quantity: 1,
+                                );
+                                if (_model.apiResultOrderCreate!) {
+                                  // Mở dialog thanh toán thành công
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child:
+                                                const PaymentSuccessComponentWidget(),
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child:
+                                                const PaymentSuccesExceptionComponentWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                }
                               } else {
+                                // Thông báo lỗi
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1334,59 +1398,143 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                       Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OrderCreateWidget(
-                                      image: _model.dataGetOne?.imageCover,
-                                      price: _model.dataGetOne?.price,
-                                      name: _model.dataGetOne?.name,
-                                      numOfListLessions:
-                                          _model.dataGetOne?.lessions.length,
-                                      author:
-                                          _model.dataGetOne?.authorId.alias,
-                                      programId: widget.idProgram,
-                                      checkType: 'organization',
+                        child: Builder(
+                          builder: (context) => FFButtonWidget(
+                            onPressed: () async {
+                              // Mở widget thanh toán IAP
+                              _model.paymentResponsOrg =
+                                  await actions.openInAppPurchase(
+                                () {
+                                  if (isiOS) {
+                                    return _model.dataGetOne!.iapAppleProductId;
+                                  } else if (isAndroid) {
+                                    return _model
+                                        .dataGetOne!.iapGoogleProductId;
+                                  } else {
+                                    return '';
+                                  }
+                                }(),
+                                true,
+                              );
+                              if (_model.paymentResponsOrg != null) {
+                                _model.apiResultOrderCreatOrg =
+                                    await _model.orderCreate(
+                                  context,
+                                  checkType: 'organization',
+                                  quantity: 1,
+                                );
+                                if (_model.paymentResponsOrg!) {
+                                  // Mở dialog thanh toán thành công
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child:
+                                                const PaymentSuccessComponentWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child:
+                                                const PaymentSuccesExceptionComponentWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                }
+                              } else {
+                                // Thông báo lỗi
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Thanh toán không thành công',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
                                     ),
+                                    duration: const Duration(milliseconds: 4000),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).tertiary,
                                   ),
                                 );
-                              },
-                            ).then((value) => safeSetState(() {}));
-                          },
-                          text: 'Mua cho tổ chức',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              }
+
+                              setState(() {});
+                            },
+                            text: 'Mua cho tổ chức',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),

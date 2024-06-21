@@ -16,6 +16,7 @@ class TestListStruct extends BaseStruct {
     int? goodScore,
     String? percentCorrect,
     TestUserCreatedStruct? userCreated,
+    int? pass,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -25,7 +26,8 @@ class TestListStruct extends BaseStruct {
         _organizationId = organizationId,
         _goodScore = goodScore,
         _percentCorrect = percentCorrect,
-        _userCreated = userCreated;
+        _userCreated = userCreated,
+        _pass = pass;
 
   // "id" field.
   String? _id;
@@ -111,6 +113,15 @@ class TestListStruct extends BaseStruct {
 
   bool hasUserCreated() => _userCreated != null;
 
+  // "pass" field.
+  int? _pass;
+  int get pass => _pass ?? 0;
+  set pass(int? val) => _pass = val;
+
+  void incrementPass(int amount) => pass = pass + amount;
+
+  bool hasPass() => _pass != null;
+
   static TestListStruct fromMap(Map<String, dynamic> data) => TestListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -125,6 +136,7 @@ class TestListStruct extends BaseStruct {
         goodScore: castToType<int>(data['good_score']),
         percentCorrect: data['percent_correct'] as String?,
         userCreated: TestUserCreatedStruct.maybeFromMap(data['user_created']),
+        pass: castToType<int>(data['pass']),
       );
 
   static TestListStruct? maybeFromMap(dynamic data) =>
@@ -141,6 +153,7 @@ class TestListStruct extends BaseStruct {
         'good_score': _goodScore,
         'percent_correct': _percentCorrect,
         'user_created': _userCreated?.toMap(),
+        'pass': _pass,
       }.withoutNulls;
 
   @override
@@ -185,6 +198,10 @@ class TestListStruct extends BaseStruct {
         'user_created': serializeParam(
           _userCreated,
           ParamType.DataStruct,
+        ),
+        'pass': serializeParam(
+          _pass,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -242,6 +259,11 @@ class TestListStruct extends BaseStruct {
           false,
           structBuilder: TestUserCreatedStruct.fromSerializableMap,
         ),
+        pass: deserializeParam(
+          data['pass'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -260,7 +282,8 @@ class TestListStruct extends BaseStruct {
         organizationId == other.organizationId &&
         goodScore == other.goodScore &&
         percentCorrect == other.percentCorrect &&
-        userCreated == other.userCreated;
+        userCreated == other.userCreated &&
+        pass == other.pass;
   }
 
   @override
@@ -274,7 +297,8 @@ class TestListStruct extends BaseStruct {
         organizationId,
         goodScore,
         percentCorrect,
-        userCreated
+        userCreated,
+        pass
       ]);
 }
 
@@ -288,6 +312,7 @@ TestListStruct createTestListStruct({
   int? goodScore,
   String? percentCorrect,
   TestUserCreatedStruct? userCreated,
+  int? pass,
 }) =>
     TestListStruct(
       id: id,
@@ -299,4 +324,5 @@ TestListStruct createTestListStruct({
       goodScore: goodScore,
       percentCorrect: percentCorrect,
       userCreated: userCreated ?? TestUserCreatedStruct(),
+      pass: pass,
     );

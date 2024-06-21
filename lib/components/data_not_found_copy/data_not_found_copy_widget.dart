@@ -2,18 +2,18 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'data_not_found_model.dart';
-export 'data_not_found_model.dart';
+import 'data_not_found_copy_model.dart';
+export 'data_not_found_copy_model.dart';
 
-class DataNotFoundWidget extends StatefulWidget {
-  const DataNotFoundWidget({super.key});
+class DataNotFoundCopyWidget extends StatefulWidget {
+  const DataNotFoundCopyWidget({super.key});
 
   @override
-  State<DataNotFoundWidget> createState() => _DataNotFoundWidgetState();
+  State<DataNotFoundCopyWidget> createState() => _DataNotFoundCopyWidgetState();
 }
 
-class _DataNotFoundWidgetState extends State<DataNotFoundWidget> {
-  late DataNotFoundModel _model;
+class _DataNotFoundCopyWidgetState extends State<DataNotFoundCopyWidget> {
+  late DataNotFoundCopyModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -24,7 +24,7 @@ class _DataNotFoundWidgetState extends State<DataNotFoundWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DataNotFoundModel());
+    _model = createModel(context, () => DataNotFoundCopyModel());
   }
 
   @override
@@ -39,7 +39,7 @@ class _DataNotFoundWidgetState extends State<DataNotFoundWidget> {
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,

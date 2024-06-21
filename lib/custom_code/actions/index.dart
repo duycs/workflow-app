@@ -11,6 +11,6 @@ export 'notifi_remove_server.dart' show notifiRemoveServer;
 export 'check_nofi_load.dart' show checkNofiLoad;
 export 'check_token_call_a_p_i.dart' show checkTokenCallAPI;
 export 'block_navigate_back.dart' show blockNavigateBack;
-export 'bio_auth.dart' show bioAuth;
 export 'sshkey.dart' show sshkey;
 export 'open_in_app_purchase.dart' show openInAppPurchase;
+export 'export_excel.dart' show exportExcel;

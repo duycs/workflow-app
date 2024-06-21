@@ -89,6 +89,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'checkLesson',
               ParamType.String,
             ),
+            staffId: params.getParam(
+              'staffId',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -243,6 +247,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               structBuilder: StudyProgramListStruct.fromSerializableMap,
             ),
+            imagesProgram: params.getParam(
+              'imagesProgram',
+              ParamType.FFUploadedFile,
+            ),
+            dataProframDeatail: params.getParam(
+              'dataProframDeatail',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
+            ),
           ),
         ),
         FFRoute(
@@ -390,6 +404,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: false,
               structBuilder: StudyProgramListStruct.fromSerializableMap,
             ),
+            imageProgram: params.getParam(
+              'imageProgram',
+              ParamType.FFUploadedFile,
+            ),
+            dataProgramDetail: params.getParam(
+              'dataProgramDetail',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
+            ),
           ),
         ),
         FFRoute(
@@ -455,6 +479,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => DoTestListWidget(
             lessionId: params.getParam(
               'lessionId',
+              ParamType.String,
+            ),
+            status: params.getParam(
+              'status',
+              ParamType.int,
+            ),
+            staffId: params.getParam(
+              'staffId',
               ParamType.String,
             ),
           ),

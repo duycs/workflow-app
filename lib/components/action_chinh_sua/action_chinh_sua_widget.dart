@@ -13,16 +13,22 @@ export 'action_chinh_sua_model.dart';
 class ActionChinhSuaWidget extends StatefulWidget {
   const ActionChinhSuaWidget({
     super.key,
-    required this.dataDetail,
-    required this.callBackList2,
+    this.dataDetail,
+    this.callBackList2,
     bool? checkMarket,
-    required this.checkpage,
+    this.checkpage,
+    this.itemProgram,
+    this.itemLessions,
+    this.itemLession,
   }) : checkMarket = checkMarket ?? true;
 
   final StudyProgramListStruct? dataDetail;
   final Future Function()? callBackList2;
   final bool checkMarket;
   final String? checkpage;
+  final dynamic itemProgram;
+  final StudyProgramListStruct? itemLessions;
+  final LessonsStruct? itemLession;
 
   @override
   State<ActionChinhSuaWidget> createState() => _ActionChinhSuaWidgetState();
@@ -44,15 +50,77 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.checkPage = widget.checkpage!;
+      setState(() {});
       while ('1' == '1') {
         setState(() {});
-        if (_model.triggerRefreshList == true) {
+        if ((_model.checkPage != 'programEdit') &&
+            (_model.triggerRefreshList == true)) {
           await widget.callBackList2?.call();
           _model.triggerRefreshList = false;
           setState(() {});
           Navigator.pop(context);
           break;
+        } else if ((_model.checkPage == 'programEdit') &&
+            (_model.checkPage == '') &&
+            (_model.triggerRefreshList != true)) {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: const Text('123'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+          await showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            enableDrag: false,
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: StudyProgramEditWidget(
+                  dataDetail: widget.dataDetail,
+                  itemLessions: widget.itemLessions,
+                  itemPrograms: widget.itemProgram,
+                  itemLession: widget.itemLession,
+                  callBackList1: () async {
+                    _model.triggerRefreshList = true;
+                    setState(() {});
+                  },
+                ),
+              );
+            },
+          ).then((value) => safeSetState(() {}));
+
+          _model.checkPage = '';
+          setState(() {});
+          break;
+        } else {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: const Text('345'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+          break;
         }
+
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -124,7 +192,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: StudyProgramEditWidget(
-                              dataDetail: widget.dataDetail!,
+                              dataDetail: widget.dataDetail,
                               callBackList1: () async {
                                 _model.triggerRefreshList = true;
                                 setState(() {});

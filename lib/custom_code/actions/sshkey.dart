@@ -10,53 +10,35 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:convert';
-
+import 'package:crypto_keys/crypto_keys.dart';
 import 'dart:typed_data';
-import 'package:pointycastle/export.dart';
 
 String sshkey(
   String str,
   String? sshkeyPubKeyEncoding,
   bool boolCheck,
 ) {
-  // Mã hóa chuỗi thành Base64
-  String code = '${str} eworkflow';
-  String encodedString = base64.encode(utf8.encode(code));
-  return encodedString;
-}
+  // Create a key pair from a JWK representation
+  var keyPair = new KeyPair.fromJwk({
+    "kty": "oct",
+    "k": "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75"
+        "aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
+  });
 
-AsymmetricKeyPair generateRsaKeyPair() {
-  final secureRandom = SecureRandom('Fortuna')
-    ..seed(KeyParameter(Uint8List.fromList('seed'.codeUnits)));
+  // A key pair has a private and public key, possibly one of them is null, if
+  // required info was not available when construction
+  // The private key can be used for signing
+  var privateKey = keyPair.privateKey;
 
-  final keyGen = RSAKeyGenerator()
-    ..init(ParametersWithRandom(
-      RSAKeyGeneratorParameters(BigInt.parse('65537'), 2048, 64),
-      secureRandom,
-    ));
+  // The private key can be used for signing
+  var publicKey = keyPair.publicKey;
 
-  return keyGen.generateKeyPair();
-}
+  // Create a signer for the key using the HMAC/SHA-256 algorithm
+  var signer = privateKey?.createSigner(algorithms.signing.hmac.sha256);
 
-Uint8List publicKeyToBytes(RSAPublicKey publicKey) {
-  final modulus = publicKey.modulus!;
-  final exponent = publicKey.exponent!;
-
-  final modulusBytes = _encodeBigInt(modulus);
-  final exponentBytes = _encodeBigInt(exponent);
-
-  final bytes = Uint8List(modulusBytes.length + exponentBytes.length);
-  bytes.setRange(0, modulusBytes.length, modulusBytes);
-  bytes.setRange(modulusBytes.length, bytes.length, exponentBytes);
-
-  return bytes;
-}
-
-Uint8List _encodeBigInt(BigInt number) {
-  final data = number.toRadixString(16);
-  final padding = (data.length % 2 == 1)
-      ? '0$data'
-      : data; // Ensure even number of characters
-  return Uint8List.fromList(List.generate(padding.length ~/ 2,
-      (i) => int.parse(padding.substring(2 * i, 2 * i + 2), radix: 16)));
+  if (boolCheck) {
+    return publicKey.toString();
+  } else {
+    return signer.toString();
+  }
 }

@@ -1,6 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'dart:async';
 import 'report_staff_widget.dart' show ReportStaffWidget;
 import 'package:flutter/material.dart';
@@ -16,6 +18,17 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
   String branch = '';
 
   String department = '';
+
+  List<StaffListStruct> listStaffs = [];
+  void addToListStaffs(StaffListStruct item) => listStaffs.add(item);
+  void removeFromListStaffs(StaffListStruct item) => listStaffs.remove(item);
+  void removeAtIndexFromListStaffs(int index) => listStaffs.removeAt(index);
+  void insertAtIndexInListStaffs(int index, StaffListStruct item) =>
+      listStaffs.insert(index, item);
+  void updateListStaffsAtIndex(int index, Function(StaffListStruct) updateFn) =>
+      listStaffs[index] = updateFn(listStaffs[index]);
+
+  String list123 = '';
 
   ///  State fields for stateful widgets in this page.
 
@@ -45,6 +58,84 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
     textController?.dispose();
 
     listViewPagingController?.dispose();
+  }
+
+  /// Action blocks.
+  Future getListStaffs(BuildContext context) async {
+    ApiCallResponse? apiResultGetList;
+    bool? checkRefreshTokenBlock;
+
+    apiResultGetList = await StaffGroup.getStaffListCall.call(
+      accessToken: FFAppState().accessToken,
+      offset: 0,
+      limit: 5000,
+      filter:
+          '{\"_and\":[{}${(textController.text != '') && (textController.text != ' ') ? ',{\"user_id\":{\"first_name\":{\"_icontains\":\"${textController.text}\"}}}' : ' '}${() {
+        if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
+          return ',{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.organization_id''',
+          ).toString().toString()}\"}}}';
+        } else if (FFAppState().user.role ==
+            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+          return ',{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.branch_id''',
+          ).toString().toString()}\"}}}';
+        } else if (FFAppState().user.role ==
+            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+          return ',{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+            FFAppState().staffLogin,
+            r'''$.department_id''',
+          ).toString().toString()}\"}}}';
+        } else {
+          return ' ';
+        }
+      }()}${() {
+        if ((statusFilter != '') &&
+            (statusFilter == 'Hoạt động') &&
+            (statusFilter != ' ')) {
+          return ',{\"status\":{\"_eq\":\"active\"}}';
+        } else if ((statusFilter != '') &&
+            (statusFilter == 'Không hoạt động') &&
+            (statusFilter != ' ')) {
+          return ',{\"status\":{\"_neq\":\"active\"}}';
+        } else {
+          return ' ';
+        }
+      }()}${(branch != '1') && (branch != ' ') && (branch != '') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"$branch\"}}}' : ' '}${(department != '1') && (department != ' ') && (department != '') ? ',{\"department_id\":{\"id\":{\"_eq\":\"$department\"}}}' : ' '}]}',
+      sort: 'sort',
+    );
+
+    if ((apiResultGetList.succeeded ?? true)) {
+      listStaffs =
+          StaffListDataStruct.maybeFromMap((apiResultGetList.jsonBody ?? ''))!
+              .data
+              .toList()
+              .cast<StaffListStruct>();
+      list123 = (apiResultGetList.jsonBody ?? '').toString();
+    } else {
+      checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetList.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await getListStaffs(context);
+      }
+    }
   }
 
   /// Additional helper methods.

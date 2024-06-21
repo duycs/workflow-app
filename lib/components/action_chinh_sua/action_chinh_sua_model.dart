@@ -7,6 +7,8 @@ class ActionChinhSuaModel extends FlutterFlowModel<ActionChinhSuaWidget> {
 
   bool triggerRefreshList = false;
 
+  String checkPage = '';
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for MouseRegion widget.

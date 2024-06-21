@@ -30,9 +30,11 @@ dependencies:
   cached_network_image: 3.3.1
   chewie: 1.7.1
   collection: 1.18.0
+  crypto_keys: ^0.3.0+1
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5
+  excel: ^2.0.6
   expandable: 5.0.1
   file_picker: 6.1.1
   fl_chart: 0.55.0
@@ -64,16 +66,17 @@ dependencies:
   internet_file: 1.2.0
   intl: 0.18.1
   json_path: 0.6.2
-  local_auth: ^2.2.0
+  local_auth: 2.1.6
   local_auth_android: 1.0.30
   local_auth_ios: 1.1.3
   local_auth_platform_interface: 1.0.7
   local_auth_windows: 1.0.8
   mime_type: 1.0.0
   onesignal_flutter: ^5.1.6
+  open_file: ^3.1.2
   page_transition: 2.1.0
   path: ^1.9.0
-  path_provider: 2.0.14
+  path_provider: ^2.0.11
   path_provider_android: 2.0.25
   path_provider_foundation: 2.2.2
   path_provider_platform_interface: 2.0.6
@@ -82,7 +85,6 @@ dependencies:
   permission_handler: ^11.3.1
   photo_view: 0.14.0
   plugin_platform_interface: 2.1.8
-  pointycastle: ^3.9.1
   provider: 6.0.5
   share_plus: ^7.2.2
   shared_preferences: 2.2.2

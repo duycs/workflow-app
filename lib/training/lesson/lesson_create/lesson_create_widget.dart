@@ -25,12 +25,16 @@ class LessonCreateWidget extends StatefulWidget {
     this.checkPage,
     this.programsItem,
     this.listItemLession,
+    this.imageProgram,
+    this.dataProgramDetail,
   }) : checkScroll = checkScroll ?? '0';
 
   final String checkScroll;
   final String? checkPage;
   final dynamic programsItem;
   final StudyProgramListStruct? listItemLession;
+  final FFUploadedFile? imageProgram;
+  final StudyProgramListStruct? dataProgramDetail;
 
   @override
   State<LessonCreateWidget> createState() => _LessonCreateWidgetState();
@@ -98,36 +102,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
               context.pop();
             },
           ),
-          title: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(_model.testId),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: const Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Text(
-              'Tạo bài học',
-              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                    fontFamily: 'Nunito Sans',
-                    fontSize: 18.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.normal,
-                  ),
-            ),
+          title: Text(
+            'Tạo bài học',
+            style: FlutterFlowTheme.of(context).headlineSmall.override(
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.normal,
+                ),
           ),
           actions: const [],
           centerTitle: false,

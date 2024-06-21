@@ -15,11 +15,31 @@ class ProgramMarketDetailModel
     updateFn(dataGetOne ??= MarketLessonListStruct());
   }
 
+  List<OrderCreateProgramRequestStruct> programRequest = [];
+  void addToProgramRequest(OrderCreateProgramRequestStruct item) =>
+      programRequest.add(item);
+  void removeFromProgramRequest(OrderCreateProgramRequestStruct item) =>
+      programRequest.remove(item);
+  void removeAtIndexFromProgramRequest(int index) =>
+      programRequest.removeAt(index);
+  void insertAtIndexInProgramRequest(
+          int index, OrderCreateProgramRequestStruct item) =>
+      programRequest.insert(index, item);
+  void updateProgramRequestAtIndex(
+          int index, Function(OrderCreateProgramRequestStruct) updateFn) =>
+      programRequest[index] = updateFn(programRequest[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
   dynamic paymentResponse;
+  // Stores action output result for [Action Block - OrderCreate] action in Button widget.
+  bool? apiResultOrderCreate;
+  // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
+  dynamic paymentResponsOrg;
+  // Stores action output result for [Action Block - OrderCreate] action in Button widget.
+  bool? apiResultOrderCreatOrg;
 
   @override
   void initState(BuildContext context) {}
@@ -221,6 +241,44 @@ class ProgramMarketDetailModel
       }
 
       return;
+    }
+  }
+
+  Future<bool> orderCreate(
+    BuildContext context, {
+    required String? checkType,
+    required int? quantity,
+  }) async {
+    ApiCallResponse? apiResultCreateOrder;
+
+    programRequest = [];
+    addToProgramRequest(OrderCreateProgramRequestStruct(
+      id: dataGetOne?.id,
+      totalItem: quantity,
+      description: dataGetOne?.description,
+      private: checkType == 'organization' ? 0 : 1,
+    ));
+    apiResultCreateOrder = await OrderGroup.createOrderCall.call(
+      accessToken: FFAppState().accessToken,
+      requestDataJson: getJsonField(
+        <String, dynamic>{
+          'map': OrderCreateRequestStruct(
+            customerId: FFAppState().staffid,
+            description: 'Mua chương trình học',
+            private: checkType == 'organization' ? 0 : 1,
+            status: 'published',
+            programs: programRequest,
+          ).toMap(),
+        },
+        r'''$.map''',
+      ),
+    );
+
+    if ((apiResultCreateOrder.succeeded ?? true)) {
+      programRequest = [];
+      return true;
+    } else {
+      return false;
     }
   }
 }

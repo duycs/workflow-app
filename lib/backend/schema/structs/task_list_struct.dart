@@ -28,6 +28,7 @@ class TaskListStruct extends BaseStruct {
     String? dateCreated,
     String? timeOperate,
     UserStruct? createdUserId,
+    int? overDeadline,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -49,7 +50,8 @@ class TaskListStruct extends BaseStruct {
         _submitStaffId = submitStaffId,
         _dateCreated = dateCreated,
         _timeOperate = timeOperate,
-        _createdUserId = createdUserId;
+        _createdUserId = createdUserId,
+        _overDeadline = overDeadline;
 
   // "id" field.
   String? _id;
@@ -245,6 +247,16 @@ class TaskListStruct extends BaseStruct {
 
   bool hasCreatedUserId() => _createdUserId != null;
 
+  // "over_deadline" field.
+  int? _overDeadline;
+  int get overDeadline => _overDeadline ?? 0;
+  set overDeadline(int? val) => _overDeadline = val;
+
+  void incrementOverDeadline(int amount) =>
+      overDeadline = overDeadline + amount;
+
+  bool hasOverDeadline() => _overDeadline != null;
+
   static TaskListStruct fromMap(Map<String, dynamic> data) => TaskListStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -279,6 +291,7 @@ class TaskListStruct extends BaseStruct {
         dateCreated: data['date_created'] as String?,
         timeOperate: data['time_operate'] as String?,
         createdUserId: UserStruct.maybeFromMap(data['created_user_id']),
+        overDeadline: castToType<int>(data['over_deadline']),
       );
 
   static TaskListStruct? maybeFromMap(dynamic data) =>
@@ -307,6 +320,7 @@ class TaskListStruct extends BaseStruct {
         'date_created': _dateCreated,
         'time_operate': _timeOperate,
         'created_user_id': _createdUserId?.toMap(),
+        'over_deadline': _overDeadline,
       }.withoutNulls;
 
   @override
@@ -401,6 +415,10 @@ class TaskListStruct extends BaseStruct {
         'created_user_id': serializeParam(
           _createdUserId,
           ParamType.DataStruct,
+        ),
+        'over_deadline': serializeParam(
+          _overDeadline,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -523,6 +541,11 @@ class TaskListStruct extends BaseStruct {
           false,
           structBuilder: UserStruct.fromSerializableMap,
         ),
+        overDeadline: deserializeParam(
+          data['over_deadline'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -553,7 +576,8 @@ class TaskListStruct extends BaseStruct {
         submitStaffId == other.submitStaffId &&
         dateCreated == other.dateCreated &&
         timeOperate == other.timeOperate &&
-        createdUserId == other.createdUserId;
+        createdUserId == other.createdUserId &&
+        overDeadline == other.overDeadline;
   }
 
   @override
@@ -579,7 +603,8 @@ class TaskListStruct extends BaseStruct {
         submitStaffId,
         dateCreated,
         timeOperate,
-        createdUserId
+        createdUserId,
+        overDeadline
       ]);
 }
 
@@ -603,6 +628,7 @@ TaskListStruct createTaskListStruct({
   String? dateCreated,
   String? timeOperate,
   UserStruct? createdUserId,
+  int? overDeadline,
 }) =>
     TaskListStruct(
       id: id,
@@ -624,4 +650,5 @@ TaskListStruct createTaskListStruct({
       dateCreated: dateCreated,
       timeOperate: timeOperate,
       createdUserId: createdUserId ?? UserStruct(),
+      overDeadline: overDeadline,
     );

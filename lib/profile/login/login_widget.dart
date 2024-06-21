@@ -1023,6 +1023,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                       }
                                                                       return;
                                                                     }
+
+                                                                    if (shouldSetState) {
+                                                                      setState(
+                                                                          () {});
+                                                                    }
+                                                                    return;
                                                                   }
                                                                 } else {
                                                                   ScaffoldMessenger.of(
