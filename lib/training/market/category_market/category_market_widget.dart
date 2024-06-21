@@ -96,7 +96,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 24.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 24.0),
             child: SingleChildScrollView(
               primary: false,
               child: Column(
@@ -105,7 +105,7 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                     child: SizedBox(
                       width: double.infinity,
                       child: TextFormField(

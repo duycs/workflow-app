@@ -40,6 +40,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
     updateFn(listLession ??= LessonsStruct());
   }
 
+  String checkIamge = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -346,7 +348,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Lỗi tải ảnh!',
+              'Ảnh vượt quá dung lượng!',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -355,9 +357,12 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
             backgroundColor: FlutterFlowTheme.of(context).error,
           ),
         );
+        checkIamge = '1';
       } else {
         await uploadFIleImage(context);
       }
+
+      return;
     }
   }
 

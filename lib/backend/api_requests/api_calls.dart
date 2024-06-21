@@ -65,7 +65,7 @@ class NewsfeedListCall {
         'offset': offset,
         'sort': "-date_created",
         'fields[]':
-            "id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
+            "id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -96,7 +96,7 @@ class NewsfeedOneCall {
       },
       params: {
         'fields[]':
-            "files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
+            "user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -4458,7 +4458,7 @@ class GetListOrderCall {
           'limit': limit,
           'offset': offset,
           'fields':
-              " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
+              " id, status, date_created, date_updated, code, description, organization_id, total_item, total_price, program_order_items.id, program_order_items.description, program_order_items.price, program_order_items.total_item, program_order_items.total_price, program_order_items.status, program_order_items.program_id.id, program_order_items.program_id.name, program_order_items.program_id.author_id.id, program_order_items.program_id.author_id.alias, program_order_items.program_id.tags.tags_id.name, customer_id.id, customer_id.user_id.email,program_order_items.program_id.lessions,program_order_items.program_id.lessions.lessions_id.id,program_order_items.program_id.image_cover,program_order_items.program_id.price,private",
           'filter': filter,
         },
         returnBody: true,

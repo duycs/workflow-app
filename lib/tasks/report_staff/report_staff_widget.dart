@@ -100,14 +100,36 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Báo cáo công việc',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                    ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text((_model.listzzz!.toMap()).toString()),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: const Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Báo cáo công việc',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
             ],
           ),
@@ -349,29 +371,28 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                 ),
                       ),
                     ),
-                  if (_model.list123 != '')
-                    Align(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
-                      child: FlutterFlowIconButton(
-                        borderColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        icon: FaIcon(
-                          FontAwesomeIcons.fileExport,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 24.0,
-                        ),
-                        onPressed: () async {
-                          await actions.exportExcel(
-                            _model.list123,
-                          );
-                        },
+                  Align(
+                    alignment: const AlignmentDirectional(1.0, -1.0),
+                    child: FlutterFlowIconButton(
+                      borderColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      fillColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      icon: FaIcon(
+                        FontAwesomeIcons.fileExport,
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 24.0,
                       ),
+                      onPressed: () async {
+                        await actions.exportExcel(
+                          (_model.listzzz!.toMap()).toString(),
+                        );
+                      },
                     ),
+                  ),
                   Expanded(
                     child: Padding(
                       padding:

@@ -46,7 +46,8 @@ class FFAppState extends ChangeNotifier {
       _marketOn = prefs.getBool('ff_marketOn') ?? _marketOn;
     });
     _safeInit(() {
-      _biometricLogin = prefs.getBool('ff_biometricLogin') ?? _biometricLogin;
+      _IsInDevelopment =
+          prefs.getBool('ff_IsInDevelopment') ?? _IsInDevelopment;
     });
   }
 
@@ -181,11 +182,17 @@ class FFAppState extends ChangeNotifier {
     _Author = value;
   }
 
-  bool _biometricLogin = true;
+  bool _biometricLogin = false;
   bool get biometricLogin => _biometricLogin;
   set biometricLogin(bool value) {
     _biometricLogin = value;
-    prefs.setBool('ff_biometricLogin', value);
+  }
+
+  bool _IsInDevelopment = false;
+  bool get IsInDevelopment => _IsInDevelopment;
+  set IsInDevelopment(bool value) {
+    _IsInDevelopment = value;
+    prefs.setBool('ff_IsInDevelopment', value);
   }
 }
 

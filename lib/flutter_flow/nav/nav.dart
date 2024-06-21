@@ -1131,6 +1131,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'profilePublish2',
           path: '/profilePublish2',
           builder: (context, params) => const ProfilePublish2Widget(),
+        ),
+        FFRoute(
+          name: 'Processing',
+          path: '/processing',
+          builder: (context, params) => const ProcessingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

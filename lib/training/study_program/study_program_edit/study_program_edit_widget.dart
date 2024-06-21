@@ -78,16 +78,21 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
     });
 
     _model.programNameTextController ??= TextEditingController(
-        text: widget.dataDetail?.name != null && widget.dataDetail?.name != ''
+        text: (widget.dataDetail?.name != null &&
+                    widget.dataDetail?.name != '') &&
+                (widget.itemPrograms == null)
             ? widget.dataDetail?.name
-            : ' ');
+            : getJsonField(
+                widget.itemPrograms,
+                r'''$.name''',
+              ).toString().toString());
     _model.programNameFocusNode ??= FocusNode();
 
     _model.programDescriptionTextController ??= TextEditingController(
         text: widget.dataDetail?.description != null &&
                 widget.dataDetail?.description != ''
             ? widget.dataDetail?.description
-            : ' ');
+            : '');
     _model.programDescriptionFocusNode ??= FocusNode();
 
     _model.estimateInDayTextController ??= TextEditingController(

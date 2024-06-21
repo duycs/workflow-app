@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/payment/payment_succes_exception_component/payment_succes_exception_component_widget.dart';
 import '/payment/payment_success_component/payment_success_component_widget.dart';
+import '/payment/waiting_process_component/waiting_process_component_widget.dart';
 import '/training/order/order_create/order_create_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
@@ -1217,6 +1218,39 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 true,
                               );
                               if (_model.paymentResponse != null) {
+                                // Mở layout loading
+                                showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          child:
+                                              const WaitingProcessComponentWidget(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+
+                                // Tạo đơn hàng
                                 _model.apiResultOrderCreate =
                                     await _model.orderCreate(
                                   context,
@@ -1224,6 +1258,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                   quantity: 1,
                                 );
                                 if (_model.apiResultOrderCreate!) {
+                                  Navigator.pop(context);
                                   // Mở dialog thanh toán thành công
                                   await showDialog(
                                     context: context,
@@ -1252,13 +1287,17 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                     .width *
                                                 1.0,
                                             child:
-                                                const PaymentSuccessComponentWidget(),
+                                                PaymentSuccessComponentWidget(
+                                              programId: _model.dataGetOne!.id,
+                                              checkType: '1',
+                                            ),
                                           ),
                                         ),
                                       );
                                     },
                                   ).then((value) => setState(() {}));
                                 } else {
+                                  // Mở dialog tạo đơn thất bại
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -1298,7 +1337,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Thanh toán không thành công',
+                                      'Thanh toán không thành công!',
                                       style: TextStyle(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
@@ -1417,13 +1456,46 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 true,
                               );
                               if (_model.paymentResponsOrg != null) {
+                                // Mở layout loading
+                                showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          child:
+                                              const WaitingProcessComponentWidget(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+
                                 _model.apiResultOrderCreatOrg =
                                     await _model.orderCreate(
                                   context,
                                   checkType: 'organization',
                                   quantity: 1,
                                 );
-                                if (_model.paymentResponsOrg!) {
+                                if (_model.apiResultOrderCreatOrg!) {
+                                  Navigator.pop(context);
                                   // Mở dialog thanh toán thành công
                                   await showDialog(
                                     context: context,
@@ -1452,7 +1524,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                     .width *
                                                 1.0,
                                             child:
-                                                const PaymentSuccessComponentWidget(),
+                                                PaymentSuccessComponentWidget(
+                                              programId: _model.dataGetOne!.id,
+                                              checkType: '0',
+                                            ),
                                           ),
                                         ),
                                       );
@@ -1498,7 +1573,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Thanh toán không thành công',
+                                      'Thanh toán không thành công!',
                                       style: TextStyle(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
@@ -1535,6 +1610,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
+                            showLoadingIndicator: false,
                           ),
                         ),
                       ),

@@ -62,22 +62,7 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
           Navigator.pop(context);
           break;
         } else if ((_model.checkPage == 'programEdit') &&
-            (_model.checkPage == '') &&
             (_model.triggerRefreshList != true)) {
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: const Text('123'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: const Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
           await showModalBottomSheet(
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
@@ -102,22 +87,6 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
 
           _model.checkPage = '';
           setState(() {});
-          break;
-        } else {
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: const Text('345'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: const Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
           break;
         }
 

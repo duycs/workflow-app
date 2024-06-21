@@ -183,3 +183,4 @@ export '/news_feed/profile_publish/profile_publish_widget.dart'
     show ProfilePublishWidget;
 export '/news_feed/profile_publish2/profile_publish2_widget.dart'
     show ProfilePublish2Widget;
+export '/processing/processing_widget.dart' show ProcessingWidget;

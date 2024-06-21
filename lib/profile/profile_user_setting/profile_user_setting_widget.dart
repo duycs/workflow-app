@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'profile_user_setting_model.dart';
 export 'profile_user_setting_model.dart';
@@ -28,30 +27,6 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileUserSettingModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      var confirmDialogResponse = await showDialog<bool>(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content:
-                    Text(FFAppState().user.enableBiometric.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: const Text('Confirm'),
-                  ),
-                ],
-              );
-            },
-          ) ??
-          false;
-    });
 
     _model.switchValue =
         FFAppState().user.enableBiometric.toString() == '1';

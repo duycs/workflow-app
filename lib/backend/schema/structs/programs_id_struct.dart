@@ -8,18 +8,18 @@ class ProgramsIdStruct extends BaseStruct {
   ProgramsIdStruct({
     String? id,
     String? name,
-    List<LessionIdStruct>? lessions,
     String? imageCover,
     AuthorIdStruct? authorId,
     String? price,
     List<DepartmentsIddddStruct>? departments,
+    List<StudyProgramListLessionsIdStruct>? lessions,
   })  : _id = id,
         _name = name,
-        _lessions = lessions,
         _imageCover = imageCover,
         _authorId = authorId,
         _price = price,
-        _departments = departments;
+        _departments = departments,
+        _lessions = lessions;
 
   // "id" field.
   String? _id;
@@ -34,17 +34,6 @@ class ProgramsIdStruct extends BaseStruct {
   set name(String? val) => _name = val;
 
   bool hasName() => _name != null;
-
-  // "lessions" field.
-  List<LessionIdStruct>? _lessions;
-  List<LessionIdStruct> get lessions => _lessions ?? const [];
-  set lessions(List<LessionIdStruct>? val) => _lessions = val;
-
-  void updateLessions(Function(List<LessionIdStruct>) updateFn) {
-    updateFn(lessions ??= []);
-  }
-
-  bool hasLessions() => _lessions != null;
 
   // "image_cover" field.
   String? _imageCover;
@@ -82,20 +71,32 @@ class ProgramsIdStruct extends BaseStruct {
 
   bool hasDepartments() => _departments != null;
 
+  // "lessions" field.
+  List<StudyProgramListLessionsIdStruct>? _lessions;
+  List<StudyProgramListLessionsIdStruct> get lessions => _lessions ?? const [];
+  set lessions(List<StudyProgramListLessionsIdStruct>? val) => _lessions = val;
+
+  void updateLessions(
+      Function(List<StudyProgramListLessionsIdStruct>) updateFn) {
+    updateFn(lessions ??= []);
+  }
+
+  bool hasLessions() => _lessions != null;
+
   static ProgramsIdStruct fromMap(Map<String, dynamic> data) =>
       ProgramsIdStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
-        lessions: getStructList(
-          data['lessions'],
-          LessionIdStruct.fromMap,
-        ),
         imageCover: data['image_cover'] as String?,
         authorId: AuthorIdStruct.maybeFromMap(data['author_id']),
         price: data['price'] as String?,
         departments: getStructList(
           data['departments'],
           DepartmentsIddddStruct.fromMap,
+        ),
+        lessions: getStructList(
+          data['lessions'],
+          StudyProgramListLessionsIdStruct.fromMap,
         ),
       );
 
@@ -106,11 +107,11 @@ class ProgramsIdStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
-        'lessions': _lessions?.map((e) => e.toMap()).toList(),
         'image_cover': _imageCover,
         'author_id': _authorId?.toMap(),
         'price': _price,
         'departments': _departments?.map((e) => e.toMap()).toList(),
+        'lessions': _lessions?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -122,11 +123,6 @@ class ProgramsIdStruct extends BaseStruct {
         'name': serializeParam(
           _name,
           ParamType.String,
-        ),
-        'lessions': serializeParam(
-          _lessions,
-          ParamType.DataStruct,
-          isList: true,
         ),
         'image_cover': serializeParam(
           _imageCover,
@@ -145,6 +141,11 @@ class ProgramsIdStruct extends BaseStruct {
           ParamType.DataStruct,
           isList: true,
         ),
+        'lessions': serializeParam(
+          _lessions,
+          ParamType.DataStruct,
+          isList: true,
+        ),
       }.withoutNulls;
 
   static ProgramsIdStruct fromSerializableMap(Map<String, dynamic> data) =>
@@ -158,12 +159,6 @@ class ProgramsIdStruct extends BaseStruct {
           data['name'],
           ParamType.String,
           false,
-        ),
-        lessions: deserializeStructParam<LessionIdStruct>(
-          data['lessions'],
-          ParamType.DataStruct,
-          true,
-          structBuilder: LessionIdStruct.fromSerializableMap,
         ),
         imageCover: deserializeParam(
           data['image_cover'],
@@ -187,6 +182,12 @@ class ProgramsIdStruct extends BaseStruct {
           true,
           structBuilder: DepartmentsIddddStruct.fromSerializableMap,
         ),
+        lessions: deserializeStructParam<StudyProgramListLessionsIdStruct>(
+          data['lessions'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: StudyProgramListLessionsIdStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -198,16 +199,16 @@ class ProgramsIdStruct extends BaseStruct {
     return other is ProgramsIdStruct &&
         id == other.id &&
         name == other.name &&
-        listEquality.equals(lessions, other.lessions) &&
         imageCover == other.imageCover &&
         authorId == other.authorId &&
         price == other.price &&
-        listEquality.equals(departments, other.departments);
+        listEquality.equals(departments, other.departments) &&
+        listEquality.equals(lessions, other.lessions);
   }
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, name, lessions, imageCover, authorId, price, departments]);
+      .hash([id, name, imageCover, authorId, price, departments, lessions]);
 }
 
 ProgramsIdStruct createProgramsIdStruct({

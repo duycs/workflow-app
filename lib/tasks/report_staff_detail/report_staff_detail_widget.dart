@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found_copy/data_not_found_copy_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -2175,7 +2176,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   ),
                                                 ),
                                               ),
-
+                                              noItemsFoundIndicatorBuilder:
+                                                  (_) => const Center(
+                                                child: SizedBox(
+                                                  width: double.infinity,
+                                                  child:
+                                                      DataNotFoundCopyWidget(),
+                                                ),
+                                              ),
                                               itemBuilder:
                                                   (context, _, dataListIndex) {
                                                 final dataListItem = _model

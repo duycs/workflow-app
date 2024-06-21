@@ -14,3 +14,4 @@ export 'block_navigate_back.dart' show blockNavigateBack;
 export 'sshkey.dart' show sshkey;
 export 'open_in_app_purchase.dart' show openInAppPurchase;
 export 'export_excel.dart' show exportExcel;
+export 'authenticate_using_biometrics.dart' show authenticateUsingBiometrics;

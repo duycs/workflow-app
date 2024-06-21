@@ -19,16 +19,10 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
 
   String department = '';
 
-  List<StaffListStruct> listStaffs = [];
-  void addToListStaffs(StaffListStruct item) => listStaffs.add(item);
-  void removeFromListStaffs(StaffListStruct item) => listStaffs.remove(item);
-  void removeAtIndexFromListStaffs(int index) => listStaffs.removeAt(index);
-  void insertAtIndexInListStaffs(int index, StaffListStruct item) =>
-      listStaffs.insert(index, item);
-  void updateListStaffsAtIndex(int index, Function(StaffListStruct) updateFn) =>
-      listStaffs[index] = updateFn(listStaffs[index]);
-
-  String list123 = '';
+  StaffListDataStruct? listzzz;
+  void updateListzzzStruct(Function(StaffListDataStruct) updateFn) {
+    updateFn(listzzz ??= StaffListDataStruct());
+  }
 
   ///  State fields for stateful widgets in this page.
 
@@ -108,12 +102,8 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
     );
 
     if ((apiResultGetList.succeeded ?? true)) {
-      listStaffs =
-          StaffListDataStruct.maybeFromMap((apiResultGetList.jsonBody ?? ''))!
-              .data
-              .toList()
-              .cast<StaffListStruct>();
-      list123 = (apiResultGetList.jsonBody ?? '').toString();
+      listzzz =
+          StaffListDataStruct.maybeFromMap((apiResultGetList.jsonBody ?? ''));
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,
