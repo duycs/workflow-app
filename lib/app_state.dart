@@ -169,7 +169,7 @@ class FFAppState extends ChangeNotifier {
     _idCheck = value;
   }
 
-  bool _marketOn = false;
+  bool _marketOn = true;
   bool get marketOn => _marketOn;
   set marketOn(bool value) {
     _marketOn = value;
