@@ -50,8 +50,6 @@ class StudyProgramCreateModel
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Action Block - LessionAddList] action in StudyProgramCreate widget.
-  bool? itemLesstion123;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -93,6 +91,8 @@ class StudyProgramCreateModel
   late LessionsDropdownModel lessionsDropdownModel;
   // Stores action output result for [Action Block - LessionsAddList] action in LessionsDropdown widget.
   bool? lessionsAddListCheck;
+  // Stores action output result for [Action Block - LessionAddList] action in Button widget.
+  bool? addLesstionInProgram;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? tokenReloadStudyProgramCreate;
   // Stores action output result for [Backend Call - API (StudyProgramCreate)] action in Button widget.
@@ -208,15 +208,15 @@ class StudyProgramCreateModel
         .map((e) => e.lessionsId.id)
         .toList()
         .toList()
-        .contains(widget.itemLesstion!.id)) {
+        .contains(itemLesstion!.id)) {
       listLessions = [];
       listLessions = requestData!.lessions
           .toList()
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: widget.itemLesstion?.id,
-          name: widget.itemLesstion?.name,
+          id: itemLesstion.id,
+          name: itemLesstion.name,
         ),
       ));
       updateRequestDataStruct(

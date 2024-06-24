@@ -29,6 +29,14 @@ class ProgramMarketDetailModel
           int index, Function(OrderCreateProgramRequestStruct) updateFn) =>
       programRequest[index] = updateFn(programRequest[index]);
 
+  dynamic iapPaymentResponse;
+
+  InAppPurchaseResponseStruct? inAppPurchaseResponse;
+  void updateInAppPurchaseResponseStruct(
+      Function(InAppPurchaseResponseStruct) updateFn) {
+    updateFn(inAppPurchaseResponse ??= InAppPurchaseResponseStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -37,9 +45,9 @@ class ProgramMarketDetailModel
   // Stores action output result for [Action Block - OrderCreate] action in Button widget.
   bool? apiResultOrderCreate;
   // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
-  dynamic paymentResponsOrg;
+  dynamic paymentResponeOrg;
   // Stores action output result for [Action Block - OrderCreate] action in Button widget.
-  bool? apiResultOrderCreatOrg;
+  bool? apiResultOrderCreateOrg;
 
   @override
   void initState(BuildContext context) {}

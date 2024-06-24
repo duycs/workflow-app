@@ -86,6 +86,8 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
 
   bool checkStatus6 = false;
 
+  dynamic jsonExport;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -99,6 +101,10 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? getOneStaffTask1;
+  // Stores action output result for [Backend Call - API (StaffGetOne)] action in Button widget.
+  ApiCallResponse? apiResultGetOneStaff1;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -156,6 +162,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
           (apiResultGetOneStaff.jsonBody ?? ''),
           r'''$.data''',
         ));
+        jsonExport = (apiResultGetOneStaff.jsonBody ?? '');
         while (loop! < 3) {
           updateListPercentAtIndex(
             loop!,

@@ -104,7 +104,7 @@ class _CKEditorUpdateState extends State<CKEditorUpdate> {
                 child: HtmlEditor(
                   controller: controller,
                   htmlToolbarOptions: HtmlToolbarOptions(
-                    toolbarPosition: ToolbarPosition.belowEditor,
+                    toolbarPosition: ToolbarPosition.aboveEditor,
                     toolbarType: ToolbarType.nativeScrollable,
                     customToolbarButtons: [
                       TextButton(
@@ -127,12 +127,12 @@ class _CKEditorUpdateState extends State<CKEditorUpdate> {
                   htmlEditorOptions: HtmlEditorOptions(
                     hint: "Nhập văn bản",
                     shouldEnsureVisible: true,
-                    autoAdjustHeight: false,
-                    adjustHeightForKeyboard: false,
+                    autoAdjustHeight: true,
+                    adjustHeightForKeyboard: true,
                     spellCheck: true,
                     initialText: widget.initialData,
                   ),
-                  otherOptions: OtherOptions(height: widget.height! - 40),
+                  otherOptions: OtherOptions(height: widget.height!),
                   callbacks: Callbacks(
                     onChangeContent: (String? currentHtml) {
                       if (widget.action != null) {

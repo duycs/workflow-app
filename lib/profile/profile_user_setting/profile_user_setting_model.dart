@@ -27,6 +27,8 @@ class ProfileUserSettingModel
   final unfocusNode = FocusNode();
   // State field(s) for Switch widget.
   bool? switchValue;
+  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Switch widget.
+  bool? authenticateUsingBiometricsSettingLoad;
   // Stores action output result for [Action Block - tokenReload] action in Switch widget.
   bool? tokenReloadProfileUserSetting;
   // Stores action output result for [Custom Action - sshkey] action in Switch widget.
@@ -35,6 +37,8 @@ class ProfileUserSettingModel
   ApiCallResponse? apiResultz8c;
   // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
   ApiCallResponse? getUserSetting;
+  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Switch widget.
+  bool? authenticateUsingBiometricsSettingOff;
   // Stores action output result for [Action Block - tokenReload] action in Switch widget.
   bool? tokenReloadProfileUserSettingCopy;
   // Stores action output result for [Custom Action - sshkey] action in Switch widget.

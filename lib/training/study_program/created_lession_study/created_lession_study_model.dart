@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -37,6 +38,12 @@ class CreatedLessionStudyModel
   String output = '';
 
   String checkContent = '';
+
+  String testId = '';
+
+  bool checkValidateImage = false;
+
+  bool checkValiContent = false;
 
   ///  State fields for stateful widgets in this component.
 
@@ -77,18 +84,6 @@ class CreatedLessionStudyModel
   FocusNode? estimateInDayFocusNode;
   TextEditingController? estimateInDayTextController;
   String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
-  String? _estimateInDayTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    if (!RegExp('').hasMatch(val)) {
-      return 'Invalid text';
-    }
-    return null;
-  }
-
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -101,12 +96,19 @@ class CreatedLessionStudyModel
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? checkReloadTokenCreatedLession2;
+  // Stores action output result for [Backend Call - API (PostLesson)] action in Button widget.
+  ApiCallResponse? apiResultCreatedLession2;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? checkReloadTokenCreatedLession1;
+  // Stores action output result for [Backend Call - API (PostLesson)] action in Button widget.
+  ApiCallResponse? apiResultCreatedLession1;
+
   @override
   void initState(BuildContext context) {
     nameTextControllerValidator = _nameTextControllerValidator;
     descriptionTextControllerValidator = _descriptionTextControllerValidator;
-    estimateInDayTextControllerValidator =
-        _estimateInDayTextControllerValidator;
   }
 
   @override
@@ -152,5 +154,129 @@ class CreatedLessionStudyModel
     }
   }
 
-  Future getUploadImage(BuildContext context) async {}
+  Future getUploadImage(BuildContext context) async {
+    bool? checkReloadTokenImage;
+    ApiCallResponse? apiResultUploadFileImage;
+
+    checkReloadTokenImage = await action_blocks.tokenReload(context);
+    if (checkReloadTokenImage!) {
+      apiResultUploadFileImage = await UploadFileGroup.uploadFileCall.call(
+        accessToken: FFAppState().accessToken,
+        file: uploadedLocalFile1,
+      );
+
+      if ((apiResultUploadFileImage.succeeded ?? true)) {
+        image = getJsonField(
+          (apiResultUploadFileImage.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Tải ảnh không thành công',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future getDataUploadVideo(BuildContext context) async {
+    bool? checkReloadTockenUploadVideo;
+    ApiCallResponse? apiResultUploadVideoLession;
+
+    checkReloadTockenUploadVideo = await action_blocks.tokenReload(context);
+    if (checkReloadTockenUploadVideo!) {
+      apiResultUploadVideoLession = await UploadFileGroup.uploadFileCall.call();
+
+      if ((apiResultUploadVideoLession.succeeded ?? true)) {
+        video = getJsonField(
+          (apiResultUploadVideoLession.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future getDataUploadFile(BuildContext context) async {
+    bool? checkReloadTokenVideo;
+    ApiCallResponse? apiResultq1c;
+
+    checkReloadTokenVideo = await action_blocks.tokenReload(context);
+    if (checkReloadTokenVideo!) {
+      apiResultq1c = await UploadFileGroup.uploadFileCall.call(
+        accessToken: FFAppState().accessToken,
+        file: uploadedLocalFile3,
+      );
+
+      if ((apiResultq1c.succeeded ?? true)) {
+        file = getJsonField(
+          (apiResultq1c.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      }
+    } else {
+      FFAppState().update(() {});
+    }
+  }
+
+  Future getCreatedLession(BuildContext context) async {
+    bool? checkReloadTokenCreatedLession;
+    ApiCallResponse? apiResultCreatedLession;
+
+    checkReloadTokenCreatedLession = await action_blocks.tokenReload(context);
+    if (checkReloadTokenCreatedLession!) {
+      apiResultCreatedLession = await LessonGroup.postLessonCall.call(
+        accessToken: FFAppState().accessToken,
+        requestDataJson: <String, dynamic>{
+          'status': 'published',
+          'name': nameTextController.text,
+          'description': descriptionTextController.text,
+          'content': checkContent,
+          'image_cover': image != '' ? image : null,
+          'video': video != '' ? video : null,
+          'duration_hours': durationHoursTextController.text,
+          'test_id': testIdValue,
+          'file': file != '' ? file : null,
+          'estimate_in_day': estimateInDayTextController.text != ''
+              ? estimateInDayTextController.text
+              : '',
+        },
+      );
+
+      if ((apiResultCreatedLession.succeeded ?? true)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Tạo mới bài học thành công',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+        dataListLession = LessonsStruct.maybeFromMap(getJsonField(
+          (apiResultCreatedLession.jsonBody ?? ''),
+          r'''$.data''',
+        ));
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
 }

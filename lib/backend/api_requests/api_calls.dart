@@ -38,6 +38,10 @@ class NewsfeedGroup {
   };
   static NewsfeedListCall newsfeedListCall = NewsfeedListCall();
   static NewsfeedOneCall newsfeedOneCall = NewsfeedOneCall();
+  static ReactNewsfeedCall reactNewsfeedCall = ReactNewsfeedCall();
+  static ReactNewsfeedDeleteCall reactNewsfeedDeleteCall =
+      ReactNewsfeedDeleteCall();
+  static CommentsNewFeedCall commentsNewFeedCall = CommentsNewFeedCall();
 }
 
 class NewsfeedListCall {
@@ -51,30 +55,37 @@ class NewsfeedListCall {
       accessToken: accessToken,
     );
 
-    return ApiManager.instance.makeApiCall(
-      callName: 'NewsfeedList',
-      apiUrl: '$baseUrl/items/news',
-      callType: ApiCallType.GET,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
-      },
-      params: {
-        'filter': filter,
-        'limit': limit,
-        'offset': offset,
-        'sort': "-date_created",
-        'fields[]':
-            "id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar",
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'NewsfeedList',
+        apiUrl: '$baseUrl/items/news',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'limit': limit,
+          'offset': offset,
+          'sort': "-date_created",
+          'fields[]':
+              "reacts.id, comments.id, comments.comments_id.date_created, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
     );
   }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
 }
 
 class NewsfeedOneCall {
@@ -96,8 +107,105 @@ class NewsfeedOneCall {
       },
       params: {
         'fields[]':
-            "user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
+            "reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status",
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReactNewsfeedCall {
+  Future<ApiCallResponse> call({
+    String? newsId = '',
+    String? staffId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "status": "love",
+  "news_id": "$newsId",
+  "staff_id": "$staffId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReactNewsfeed',
+      apiUrl: '$baseUrl/flows/trigger/a6b2b14e-e289-40b1-a140-b8d7b29d8072',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ReactNewsfeedDeleteCall {
+  Future<ApiCallResponse> call({
+    int? id,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ReactNewsfeedDelete',
+      apiUrl: '$baseUrl/items/news_reacts/$id',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CommentsNewFeedCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CommentsNewFeed',
+      apiUrl: '$baseUrl/flows/trigger/de32a25c-cdc7-4e5f-9f45-33a8498dade6',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3197,7 +3305,7 @@ class GetStaffListCall {
         },
         params: {
           'fields':
-              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,tasks.tasks_id.over_deadline,staff_tests.percent_correct",
+              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,tasks.tasks_id.over_deadline,staff_tests.percent_correct,staff_programs.program_id.name,staff_programs.status,staff_programs.date_created,staff_programs.deadline,staff_programs.program_id.lessions,staff_lessions.lession_id.name,staff_lessions.program_id.name,staff_lessions.status,staff_lessions.date_created,staff_lessions.deadline,staff_lessions.date_start,staff_tests.test_id.name,staff_tests.lession_id.name,staff_tests.pass,staff_tests.date_start,staff_tests.date_end,staff_tests.percent_correct,staff_tests.test_id.good_score,staff_tests.score,staff_tests.total_correct,staff_tests.total_incorrect",
           'filter': filter,
           'sort': sort,
           'limit': limit,
@@ -3284,7 +3392,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "staff_tests.pass, tasks.tasks_id.over_deadline, staff_programs.program_id, staff_programs.status, id, title, user_id.role, status, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,tasks.id, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current,skills.id, skills.skills_id.id, skills.skills_id.name,current_step_id.id, current_step_id.name,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,staff_tests.score,tasks.tasks_id.status,staff_tests.percent_correct,date_created",
+            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download",
         'filter': filter,
       },
       returnBody: true,

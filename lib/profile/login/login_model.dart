@@ -58,7 +58,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
     return null;
   }
 
-  bool biometricVerificationLogin = false;
+  // Stores action output result for [Custom Action - authenticateUsingBiometrics] action in IconButton widget.
+  bool? loginauthencateUssingBV;
   // Stores action output result for [Custom Action - getReTokenUser] action in IconButton widget.
   String? checkWfEmailBV;
   // Stores action output result for [Custom Action - sshkey] action in IconButton widget.
@@ -67,6 +68,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   ApiCallResponse? apiResultvlloginSTH1;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.
   ApiCallResponse? apiResultGetStaffIdSTH;
+  bool ame = false;
 
   @override
   void initState(BuildContext context) {
@@ -97,6 +99,21 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
       FFAppState().user = UserResourceDataStruct.maybeFromMap(
               (apiResultUserMe.jsonBody ?? ''))!
           .data;
+      if ((UserResourceDataStruct.maybeFromMap(
+                      (apiResultUserMe.jsonBody ?? ''))
+                  ?.data
+                  .enableBiometric ==
+              null) &&
+          (UserResourceDataStruct.maybeFromMap(
+                      (apiResultUserMe.jsonBody ?? ''))
+                  ?.data
+                  .enableBiometric ==
+              1)) {
+        await actions.saveInfoUser(
+          'bv',
+          DateTime.now().toString(),
+        );
+      }
       return;
     } else {
       return;

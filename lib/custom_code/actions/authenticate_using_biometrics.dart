@@ -14,25 +14,47 @@ import 'package:local_auth/local_auth.dart';
 import 'package:local_auth_android/local_auth_android.dart';
 import 'package:local_auth_ios/local_auth_ios.dart';
 
-Future<void> authenticateUsingBiometrics() async {
+Future<bool> authenticateUsingBiometrics() async {
   // Add your function code here!
   final auth = LocalAuthentication();
+
   try {
     // Add your function code here!
     bool result = await auth.authenticate(
-        localizedReason: 'Xác nhận vân tay cho ComOS',
-        authMessages: const <AuthMessages>[
-          AndroidAuthMessages(
-            signInTitle:
-                'Quý khách vui lòng quét vân tay để đăng nhập ứng dụng. (Lưu ý: Quý khác có thể sử dụng các vân tay đã cài đặt thành công trên thiết bị)',
-            cancelButton: 'Hủy',
-          ),
-          IOSAuthMessages(
-            cancelButton: 'Hủy',
-          ),
-        ],
-        options: AuthenticationOptions(biometricOnly: true));
+      options: AuthenticationOptions(
+        useErrorDialogs: true,
+        stickyAuth: true,
+        // androidOptions: AndroidAuthOptions(
+        //   cancelButtonTextStyle: AndroidTextStyle(
+        //       color: Colors
+        //           .green), // Android: Set text style for Cancel button in options
+        // ),
+        // iOSOptions: IOSAuthOptions(
+        //   cancelButtonTextStyle: IOSTextStyle(
+        //       color: Colors
+        //           .green), // iOS: Set text style for Cancel button in options
+        // ),
+      ),
+      localizedReason:
+          'Quý khách vui lòng quét vân tay để đăng nhập ứng dụng. (Lưu ý: Quý khách có thể sử dụng các vân tay đã cài đặt thành công trên thiết bị)',
+      authMessages: const <AuthMessages>[
+        AndroidAuthMessages(
+          signInTitle: 'Xác nhận vân tay cho ComOS',
+          cancelButton: 'Hủy',
+          biometricHint: '',
+          // fingerprintHint: ''
+          // lockOut: '',
+        ),
+        IOSAuthMessages(
+          localizedFallbackTitle: 'Xác nhận vân tay cho ComOS',
+          cancelButton: 'Hủy',
+          lockOut: '',
+        ),
+      ],
+    );
+    return result;
   } catch (e) {
     print('Error during authentication: $e');
+    return false;
   }
 }

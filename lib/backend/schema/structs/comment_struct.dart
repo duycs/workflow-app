@@ -12,12 +12,14 @@ class CommentStruct extends BaseStruct {
     String? image,
     String? file,
     String? video,
+    String? dateCreated,
   })  : _id = id,
         _staffId = staffId,
         _content = content,
         _image = image,
         _file = file,
-        _video = video;
+        _video = video,
+        _dateCreated = dateCreated;
 
   // "id" field.
   String? _id;
@@ -65,6 +67,13 @@ class CommentStruct extends BaseStruct {
 
   bool hasVideo() => _video != null;
 
+  // "date_created" field.
+  String? _dateCreated;
+  String get dateCreated => _dateCreated ?? '';
+  set dateCreated(String? val) => _dateCreated = val;
+
+  bool hasDateCreated() => _dateCreated != null;
+
   static CommentStruct fromMap(Map<String, dynamic> data) => CommentStruct(
         id: data['id'] as String?,
         staffId: StaffListStruct.maybeFromMap(data['staff_id']),
@@ -72,6 +81,7 @@ class CommentStruct extends BaseStruct {
         image: data['image'] as String?,
         file: data['file'] as String?,
         video: data['video'] as String?,
+        dateCreated: data['date_created'] as String?,
       );
 
   static CommentStruct? maybeFromMap(dynamic data) =>
@@ -84,6 +94,7 @@ class CommentStruct extends BaseStruct {
         'image': _image,
         'file': _file,
         'video': _video,
+        'date_created': _dateCreated,
       }.withoutNulls;
 
   @override
@@ -110,6 +121,10 @@ class CommentStruct extends BaseStruct {
         ),
         'video': serializeParam(
           _video,
+          ParamType.String,
+        ),
+        'date_created': serializeParam(
+          _dateCreated,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -147,6 +162,11 @@ class CommentStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        dateCreated: deserializeParam(
+          data['date_created'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -160,12 +180,13 @@ class CommentStruct extends BaseStruct {
         content == other.content &&
         image == other.image &&
         file == other.file &&
-        video == other.video;
+        video == other.video &&
+        dateCreated == other.dateCreated;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, staffId, content, image, file, video]);
+  int get hashCode => const ListEquality()
+      .hash([id, staffId, content, image, file, video, dateCreated]);
 }
 
 CommentStruct createCommentStruct({
@@ -175,6 +196,7 @@ CommentStruct createCommentStruct({
   String? image,
   String? file,
   String? video,
+  String? dateCreated,
 }) =>
     CommentStruct(
       id: id,
@@ -183,4 +205,5 @@ CommentStruct createCommentStruct({
       image: image,
       file: file,
       video: video,
+      dateCreated: dateCreated,
     );

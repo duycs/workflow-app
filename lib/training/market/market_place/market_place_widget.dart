@@ -870,6 +870,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                         },
                                         child: Container(
                                           width: 150.0,
+                                          height: double.infinity,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(4.0),

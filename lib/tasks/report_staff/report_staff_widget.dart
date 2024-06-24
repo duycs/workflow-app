@@ -4,10 +4,11 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/tasks/export_excel/export_excel_widget.dart';
 import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -100,36 +101,14 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (alertDialogContext) {
-                      return AlertDialog(
-                        title: Text((_model.listzzz!.toMap()).toString()),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(alertDialogContext),
-                            child: const Text('Ok'),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-                child: Text(
-                  'Báo cáo công việc',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 18.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
+              Text(
+                'Báo cáo công việc',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontSize: 18.0,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ],
           ),
@@ -373,24 +352,51 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                     ),
                   Align(
                     alignment: const AlignmentDirectional(1.0, -1.0),
-                    child: FlutterFlowIconButton(
-                      borderColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 40.0,
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      icon: FaIcon(
-                        FontAwesomeIcons.fileExport,
-                        color: FlutterFlowTheme.of(context).primary,
-                        size: 24.0,
+                    child: Builder(
+                      builder: (context) => FlutterFlowIconButton(
+                        borderColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        icon: FaIcon(
+                          FontAwesomeIcons.fileExport,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          await showAlignedDialog(
+                            context: context,
+                            isGlobal: false,
+                            avoidOverflow: true,
+                            targetAnchor: const AlignmentDirectional(0.0, 0.0)
+                                .resolve(Directionality.of(context)),
+                            followerAnchor: const AlignmentDirectional(1.0, -1.0)
+                                .resolve(Directionality.of(context)),
+                            builder: (dialogContext) {
+                              return Material(
+                                color: Colors.transparent,
+                                child: GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: SizedBox(
+                                    height: 190.0,
+                                    width: 300.0,
+                                    child: ExportExcelWidget(
+                                      json: _model.json,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
                       ),
-                      onPressed: () async {
-                        await actions.exportExcel(
-                          (_model.listzzz!.toMap()).toString(),
-                        );
-                      },
                     ),
                   ),
                   Expanded(

@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/training/study_program/created_lession_study/created_lession_study_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -57,32 +58,6 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.requestData = StudyProgramListStruct();
       setState(() {});
-      if (widget.itemListLesstion != null) {
-        _model.requestData = widget.itemListLesstion;
-        setState(() {});
-      }
-      if (widget.itemLesstion != null) {
-        _model.itemLesstion123 = await _model.lessionAddList(
-          context,
-          itemLesstion: widget.itemLesstion,
-        );
-        if (_model.itemLesstion123 == true) {
-          setState(() {});
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Bài học đã được chọn',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-              ),
-              duration: const Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).error,
-            ),
-          );
-        }
-      }
     });
 
     _model.programNameTextController ??= TextEditingController(
@@ -736,90 +711,102 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                         ),
                                       ),
                                     ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        _model.listItemLession =
-                                            _model.requestData;
-                                        setState(() {});
+                                    Builder(
+                                      builder: (context) => FFButtonWidget(
+                                        onPressed: () async {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child:
+                                                    CreatedLessionStudyWidget(
+                                                  callBack:
+                                                      (dataLession) async {
+                                                    _model.addLesstionInProgram =
+                                                        await _model
+                                                            .lessionAddList(
+                                                      context,
+                                                      itemLesstion: dataLession,
+                                                    );
+                                                    if (_model
+                                                            .addLesstionInProgram ==
+                                                        true) {
+                                                      setState(() {});
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Bài học đã được chọn',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                            ),
+                                                          ),
+                                                          duration: const Duration(
+                                                              milliseconds:
+                                                                  4000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .error,
+                                                        ),
+                                                      );
+                                                    }
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => setState(() {}));
 
-                                        context.pushNamed(
-                                          'LessonCreate',
-                                          queryParameters: {
-                                            'checkScroll': serializeParam(
-                                              '1',
-                                              ParamType.String,
-                                            ),
-                                            'checkPage': serializeParam(
-                                              _model.checkPage,
-                                              ParamType.String,
-                                            ),
-                                            'programsItem': serializeParam(
-                                              <String, dynamic>{
-                                                'name': _model
-                                                    .programNameTextController
-                                                    .text,
-                                                'descriptions': _model
-                                                    .programDescriptionTextController
-                                                    .text,
-                                                'day': _model
-                                                    .estimateInDayTextController
-                                                    .text,
-                                              },
-                                              ParamType.JSON,
-                                            ),
-                                            'listItemLession': serializeParam(
-                                              _model.requestData,
-                                              ParamType.DataStruct,
-                                            ),
-                                            'imageProgram': serializeParam(
-                                              _model.uploadedLocalFile,
-                                              ParamType.FFUploadedFile,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                            ),
-                                          },
-                                        );
-                                      },
-                                      text: 'Bài học',
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        size: 15.0,
-                                      ),
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 16.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          setState(() {});
+                                        },
+                                        text: 'Bài học',
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          size: 15.0,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
                                       ),
                                     ),
                                   ].divide(const SizedBox(width: 8.0)),

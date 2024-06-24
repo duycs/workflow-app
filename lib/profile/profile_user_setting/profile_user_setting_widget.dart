@@ -191,8 +191,21 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                     if (newValue) {
                                                       var shouldSetState =
                                                           false;
-                                                      _model.load = true;
-                                                      setState(() {});
+                                                      _model.authenticateUsingBiometricsSettingLoad =
+                                                          await actions
+                                                              .authenticateUsingBiometricsSetting();
+                                                      shouldSetState = true;
+                                                      if (_model
+                                                          .authenticateUsingBiometricsSettingLoad!) {
+                                                        _model.load = true;
+                                                        setState(() {});
+                                                      } else {
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
+                                                        return;
+                                                      }
+
                                                       _model.tokenReloadProfileUserSetting =
                                                           await action_blocks
                                                               .tokenReload(
@@ -204,7 +217,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                             null;
                                                         setState(() {});
                                                         _model.sshkeyPublicKeySettingOn =
-                                                            actions
+                                                            await actions
                                                                 .sshkey(
                                                           getJsonField(
                                                             FFAppState()
@@ -309,8 +322,21 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                     } else {
                                                       var shouldSetState =
                                                           false;
-                                                      _model.load = true;
-                                                      setState(() {});
+                                                      _model.authenticateUsingBiometricsSettingOff =
+                                                          await actions
+                                                              .authenticateUsingBiometricsSetting();
+                                                      shouldSetState = true;
+                                                      if (_model
+                                                          .authenticateUsingBiometricsSettingOff!) {
+                                                        _model.load = true;
+                                                        setState(() {});
+                                                      } else {
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
+                                                        return;
+                                                      }
+
                                                       _model.tokenReloadProfileUserSettingCopy =
                                                           await action_blocks
                                                               .tokenReload(
@@ -322,7 +348,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                             null;
                                                         setState(() {});
                                                         _model.sshkeyPublicKeySetting =
-                                                            actions
+                                                            await actions
                                                                 .sshkey(
                                                           getJsonField(
                                                             FFAppState()

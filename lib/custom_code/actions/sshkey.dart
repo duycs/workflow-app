@@ -12,60 +12,55 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:crypto_keys/crypto_keys.dart';
 import 'dart:typed_data';
+import 'package:fast_rsa/fast_rsa.dart';
 
-String? sshkey(
+Future<String?> sshkey(
   String str,
   String? sshkeyPubKeyEncoding,
   bool boolCheck,
-) {
-  // Create a key pair from a JWK representation
-  var keyPair = new KeyPair.fromJwk({
-    "kty": str,
-    "k": "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75"
-        "aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
-  });
+) async {
+  // // Create a key pair from a JWK representation
+  // var keyPair = new KeyPair.fromJwk({
+  //   "kty": "oct",
+  //   "k": "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75"
+  //       "aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
+  // });
 
-  // The private key can be used for signing
-  var publicKey = keyPair.publicKey;
+  // // The private key can be used for signing
+  // var publicKey = keyPair.publicKey;
 
-  // A key pair has a private and public key, possibly one of them is null, if
-  // required info was not available when construction
-  // The private key can be used for signing
-  var privateKey = keyPair.privateKey;
+  // // A key pair has a private and public key, possibly one of them is null, if
+  // // required info was not available when construction
+  // // The private key can be used for signing
+  // var privateKey = keyPair.privateKey;
 
-  // Create a signer for the key using the HMAC/SHA-256 algorithm
-  var signer = privateKey?.createSigner(algorithms.signing.hmac.sha256);
-  var signature = signer?.sign(str.codeUnits);
-
-  print('123213');
-  var hexPublickey = publicKey.hashCode.toRadixString(16);
-  var hexSignature = signature?.data.hashCode.toRadixString(16);
-  print(hexPublickey);
-  print(hexSignature);
-  //     {curve = 'secp256r1'}) {
-  //   var param =
-  //       curve == 'secp256r1' ? ECCurve_secp256r1() : ECCurve_secp256k1();
-  //   var keyParams = ECKeyGeneratorParameters(param);
-
-  //   var random = FortunaRandom();
-  //   random.seed(KeyParameter(_seed()));
-
-  //   var generator = ECKeyGenerator();
-  //   generator.init(ParametersWithRandom(keyParams, random));
-
-  //   return generator.generateKeyPair();
-
-  // Uint8List _seed() {
-  //   var random = Random.secure();
-  //   var seed = List<int>.generate(32, (_) => random.nextInt(256));
-  //   return Uint8List.fromList(seed);
+  // // Create a signer for the key using the HMAC/SHA-256 algorithm
+  // var signer = privateKey?.createSigner(algorithms.signing.hmac.sha256);
+  // var signature = signer?.sign(str.codeUnits);
+  // var hexPublickey = publicKey.hashCode.toRadixString(16);
+  // var hexSignature = signature?.data.hashCode.toRadixString(16);
+  // print('hexSignature');
+  // print(hexSignature);
+  // if (boolCheck) {
+  //   return hexPublickey;
+  // } else {
+  //   return hexSignature;
   // }
+  try {
+    PKCS12KeyPair _pkcs12KeyPair = PKCS12KeyPair("", "", "");
 
-  // ;
-  // print(AsymmetricKeyPair(publicKey, privateKey));
-  if (boolCheck) {
-    return hexPublickey;
-  } else {
-    return hexSignature;
+    const pkcs12 =
+        '''MIIQSQIBAzCCEA8GCSqGSIb3DQEHAaCCEAAEgg/8MIIP+DCCBi8GCSqGSIb3DQEHBqCCBiAwggYcAgEAMIIGFQYJKoZIhvcNAQcBMBwGCiqGSIb3DQEMAQYwDgQI/pTmUKFwK/UCAggAgIIF6N5rjkv/eidrXYlkrkyl2EBNfK8hQU+cJt0lkLt6zVC+ddNWTHJW4R98rhFGqYvSRHP13H65Pq+zG8nFu4WyRog3qO/rOcQPNCFeJQ1k1RUa7HSxUgjki8s7WG+EsuA39jqZDrVDdaU2gWrgR9Oj5d5/zITYu7Rr37I+S1es9otUBusYPd/YaNwtWyLuZJikDjQuMxtHEzyRshu0fylDloTFLGSmdQQR2DxQDWffoi3Hq1Ga7KoDW9kgqZPAyOOeRf24Y3dqNYJbJ9Sk5w5GNQldGy++LH26fhcu+/fXMxjq590Z2mJguDGbKf4JtAXEaFQGE7UQFULjdh4dmfl45Wv4rhfyst+BA6wvW3EClJ3/7a/pmtM0SmiGmIxKO3AYsqCljkRJvpE5Ph5SmsX8HJQBMX0AkYzQI9KmSuCyuze64y4VmW0ZLxfL/rmJn1UIywaznQcE/f2eN52K39eo96P1rY19hbTx+b+pSTnpFnxf8evkbVvLKLug0ifZcw+cIF+AeUS/SRVA06icC6ul2vdAsc78tlSXkVBzV/dj1ohIU6i3atO7Lz+OIHRlh02IVtCW/Pwgm44kmxYu6ZM3P1uQjVympBkelD/4wBLdZMCUwP4z9wGD9gQUVzxspwL3d9NHRdd1JLVFxoLG0kmt1zj2EEMTyPuHtGMyzhRRM6qDu11JUTDgyO1dFHmWqBbWyrPe1gAaGvZUaMrmv2ekvncOgvMZEIbvxEVf3nH49lBJ5hqBNBHDPgIjQcrpF4ym5ghWq/fmoH27Wn5wKyJkfs54TLy7AWM125zqINntTN89MfIcqLLBumlgRfy0QnsZiAzeQf6ELrrMUw1LqV9PPwTGlcqk9CfVI2jaDYGSKtkbrr''';
+
+    // tạo privateKey
+
+    var privateKey = await RSA.convertJWKToPrivateKey(str, pkcs12);
+    print('result ${privateKey}');
+    var publicKey = await RSA.convertJWKToPublicKey(str, pkcs12);
+    print('result ${publicKey}');
+    return '1';
+  } catch (e) {
+    print('erro ${e}');
+    return '12';
   }
 }

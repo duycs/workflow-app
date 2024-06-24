@@ -6,13 +6,19 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'report_staff_detail_model.dart';
@@ -493,6 +499,83 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   isOverButton: true,
                                                   isSearchable: false,
                                                   isMultiSelect: false,
+                                                ),
+                                              ),
+                                              FFButtonWidget(
+                                                onPressed: () async {
+                                                  var shouldSetState = false;
+                                                  _model.getOneStaffTask1 =
+                                                      await action_blocks
+                                                          .tokenReload(context);
+                                                  shouldSetState = true;
+                                                  if (_model
+                                                      .getOneStaffTask1!) {
+                                                    _model.apiResultGetOneStaff1 =
+                                                        await StaffGroup
+                                                            .staffGetOneCall
+                                                            .call(
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                      staffId: widget.staffId,
+                                                      filter:
+                                                          _model.filterRequest,
+                                                    );
+
+                                                    shouldSetState = true;
+                                                    if ((_model
+                                                            .apiResultGetOneStaff1
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      await actions
+                                                          .reportDetailToCsv(
+                                                        (_model.apiResultGetOneStaff1
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                      );
+                                                    }
+                                                  } else {
+                                                    FFAppState().update(() {});
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                    return;
+                                                  }
+
+                                                  if (shouldSetState) {
+                                                    setState(() {});
+                                                  }
+                                                },
+                                                text: 'Button',
+                                                options: FFButtonOptions(
+                                                  height: 40.0,
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          24.0, 0.0, 24.0, 0.0),
+                                                  iconPadding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: Colors.white,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                  elevation: 3.0,
+                                                  borderSide: const BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
                                               ),
                                             ],
@@ -2955,6 +3038,80 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     isOverButton: true,
                                                     isSearchable: false,
                                                     isMultiSelect: false,
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) =>
+                                                      FlutterFlowIconButton(
+                                                    borderColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryBackground,
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    icon: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .fileExport,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      await showAlignedDialog(
+                                                        context: context,
+                                                        isGlobal: false,
+                                                        avoidOverflow: true,
+                                                        targetAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        followerAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: SizedBox(
+                                                                height: 190.0,
+                                                                width: 300.0,
+                                                                child:
+                                                                    ExportExcelGetOneWidget(
+                                                                  json: _model
+                                                                      .jsonExport,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
                                                   ),
                                                 ),
                                               ],
