@@ -7,7 +7,14 @@ import 'noti_create_model.dart';
 export 'noti_create_model.dart';
 
 class NotiCreateWidget extends StatefulWidget {
-  const NotiCreateWidget({super.key});
+  const NotiCreateWidget({
+    super.key,
+    required this.checkRequire,
+    required this.checkScope,
+  });
+
+  final int? checkRequire;
+  final int? checkScope;
 
   @override
   State<NotiCreateWidget> createState() => _NotiCreateWidgetState();

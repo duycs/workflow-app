@@ -15,3 +15,11 @@ export 'sshkey.dart' show sshkey;
 export 'open_in_app_purchase.dart' show openInAppPurchase;
 export 'export_excel.dart' show exportExcel;
 export 'authenticate_using_biometrics.dart' show authenticateUsingBiometrics;
+export 'report_detail_to_csv.dart' show reportDetailToCsv;
+export 'authenticate_using_biometrics_setting.dart'
+    show authenticateUsingBiometricsSetting;
+export 'export_excel_lesson.dart' show exportExcelLesson;
+export 'export_excel_test.dart' show exportExcelTest;
+export 'export_excel_get_one_test.dart' show exportExcelGetOneTest;
+export 'export_excel_get_one.dart' show exportExcelGetOne;
+export 'export_excel_get_one_lesson.dart' show exportExcelGetOneLesson;

@@ -9,98 +9,159 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// Flutter imports
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:excel/excel.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:open_file/open_file.dart';
+import 'package:share_plus/share_plus.dart';
+import 'dart:math';
+import 'package:intl/intl.dart';
 
-// Custom imports
+String generateRandomString(int length) {
+  const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  final random = Random();
+  return List.generate(length, (index) => chars[random.nextInt(chars.length)])
+      .join();
+}
 
-// Function to export Excel
-Future<void> exportExcel(String jsonData) async {
+String formatDate(String dateStr) {
+  if (dateStr.isEmpty) return '';
   try {
-    // Decode JSON data
-    Map<String, dynamic> data = jsonDecode(jsonData);
+    final DateTime date = DateTime.parse(dateStr);
+    return DateFormat('dd-MM-yyyy').format(date);
+  } catch (e) {
+    return '';
+  }
+}
 
-    // Extract data list from JSON
-    List<dynamic> dataList = data['data'];
+Future<void> exportExcel(dynamic item) async {
+  try {
+    String extensionFirst = generateRandomString(12);
+    final Map<String, dynamic> parsedData =
+        item is String ? jsonDecode(item) : item;
 
-    // Create Excel instance and add headers to sheet
-    var excel = Excel.createExcel();
-    var sheet = excel['Sheet1'];
-    sheet.appendRow([
-      'Sắp xếp',
-      'ID',
-      'Tiêu đề',
-      'Trạng thái',
-      'CCCD',
-      'Giới tính',
-      'Điện thoại',
-      'Ngày sinh',
-      'Vai trò người dùng',
-      'ID người dùng',
-      'Email',
-      'Tên',
-      'Họ',
-      'Trạng thái người dùng',
-      'Avatar',
-      'ID tổ chức',
-      'Tên tổ chức',
-      'ID chi nhánh',
-      'Tên chi nhánh',
-      'ID phòng ban',
-      'Tên phòng ban'
-    ]);
-
-    // Iterate through data list and add rows to Excel sheet
-    for (var item in dataList) {
-      sheet.appendRow([
-        item['sort'].toString(),
-        item['id'].toString(),
-        item['title'].toString(),
-        item['status'].toString(),
-        item['cccd'].toString(),
-        item['gender'].toString(),
-        item['phone'].toString(),
-        item['dob'].toString(),
-        item['user_id']['role'].toString(),
-        item['user_id']['id'].toString(),
-        item['user_id']['email'].toString(),
-        item['user_id']['first_name'].toString(),
-        item['user_id']['last_name'].toString(),
-        item['user_id']['status'].toString(),
-        item['user_id']['avatar'].toString(),
-        item['organization_id']['id'].toString(),
-        item['organization_id']['name'].toString(),
-        item['branch_id'] != null ? item['branch_id']['id'].toString() : '',
-        item['branch_id'] != null ? item['branch_id']['name'].toString() : '',
-        item['department_id'] != null
-            ? item['department_id']['id'].toString()
-            : '',
-        item['department_id'] != null
-            ? item['department_id']['name'].toString()
-            : '',
-      ]);
+    if (!(parsedData.containsKey('data') && parsedData['data'] is List)) {
+      throw FormatException(
+          'Cấu trúc JSON không hợp lệ hoặc thiếu mảng dữ liệu.');
     }
 
-    // Encode Excel data to bytes
-    final fileBytes = excel.encode();
+    final List<dynamic> dataList = parsedData['data'];
+    var excel = Excel.createExcel();
+    String sheetName = "Sheet1";
+    Sheet sheetObject = excel[sheetName];
 
-    // Prepare file path for saving
-    final fileName = 'du_lieu_xuat_excel.xlsx';
-    final dir = await getExternalStorageDirectory();
-    final filePath = '${dir?.path}/$fileName';
+    sheetObject.appendRow([
+      "Tên",
+      "Chức vụ",
+      "Chi nhánh",
+      "Bộ phận",
+      "Email",
+      "Trạng thái hoạt động",
+      "Số điện thoại",
+      "Tên chương trình",
+      "Trạng thái chương trình",
+      "Thời gian tạo",
+      "Thời hạn học",
+      "Số bài học",
+    ]);
 
-    // Write Excel bytes to file
-    final file = File(filePath);
-    await file.writeAsBytes(fileBytes!);
+    for (var item in dataList) {
+      String userName =
+          item["user_id"] != null && item["user_id"]["first_name"] != null
+              ? item["user_id"]["first_name"]
+              : '';
+      String title = item["title"] ?? '';
+      String branchName =
+          item["branch_id"] != null && item["branch_id"]["name"] != null
+              ? item["branch_id"]["name"]
+              : '';
+      String departmentName =
+          item["department_id"] != null && item["department_id"]["name"] != null
+              ? item["department_id"]["name"]
+              : '';
+      String email = item["user_id"] != null && item["user_id"]["email"] != null
+          ? item["user_id"]["email"]
+          : '';
+      String phone = item["phone"] ?? '';
+      String status =
+          item["status"] == 'active' ? 'Hoạt động' : 'Không hoạt động';
 
-    // Open the exported Excel file
-    await OpenFile.open(filePath);
+      if (item["staff_programs"] != null && item["staff_programs"].isNotEmpty) {
+        for (var program in item["staff_programs"]) {
+          String programName = program["program_id"] != null &&
+                  program["program_id"]["name"] != null
+              ? program["program_id"]["name"]
+              : '';
+          String programStatus = program["status"] == 'draft'
+              ? 'Chưa học'
+              : program["status"] == 'done'
+                  ? 'Hoàn thành'
+                  : program["status"] == 'inprogress'
+                      ? 'Đang học'
+                      : '';
+          String dateCreated = formatDate(program["date_created"] ?? '');
+          String deadline = formatDate(program["deadline"] ?? '');
+          int numberOfLessons = program["program_id"] != null &&
+                  program["program_id"]["lessions"] != null
+              ? program["program_id"]["lessions"].length
+              : 0;
+
+          sheetObject.appendRow([
+            userName,
+            title,
+            branchName,
+            departmentName,
+            email,
+            status,
+            phone,
+            programName,
+            programStatus,
+            dateCreated,
+            deadline,
+            numberOfLessons,
+          ]);
+        }
+      } else {
+        // Handle case where no staff_programs exist
+        sheetObject.appendRow([
+          userName,
+          title,
+          branchName,
+          departmentName,
+          email,
+          status,
+          phone,
+          '', // programName
+          '', // programStatus
+          '', // dateCreated
+          '', // deadline
+          0, // numberOfLessons
+        ]);
+      }
+    }
+
+    String directoryPath;
+    if (Platform.isAndroid) {
+      directoryPath = '/storage/emulated/0/Download';
+    } else if (Platform.isIOS) {
+      directoryPath = (await getApplicationDocumentsDirectory()).path;
+    } else {
+      throw UnsupportedError('Nền tảng không được hỗ trợ');
+    }
+
+    String filePath =
+        '$directoryPath/bao-cao-ve-tien-do-chuong-trinh-dao-tao-cua-nhan-vien-$extensionFirst.xlsx';
+    File(filePath)
+      ..createSync(recursive: true)
+      ..writeAsBytesSync(excel.encode()!);
+    await Share.shareXFiles([XFile(filePath)]);
+
+    if (Platform.isAndroid) {
+      Fluttertoast.showToast(msg: 'Tải xuống thành công');
+    }
   } catch (e) {
-    print('Lỗi khi xuất Excel: $e');
+    Fluttertoast.showToast(msg: 'Đã xảy ra lỗi: $e');
   }
 }

@@ -27,7 +27,8 @@ extension PurchaseDetailsExtension on PurchaseDetails {
       'status': status.toString(),
       'transactionDate': transactionDate,
       'verificationData': {
-        'localVerificationData': verificationData.localVerificationData,
+        'localVerificationData':
+            jsonDecode(verificationData.localVerificationData),
         'serverVerificationData': verificationData.serverVerificationData,
         'source': verificationData.source,
       },
@@ -71,7 +72,14 @@ Future<dynamic> openInAppPurchase(String productId, bool isConsumable) async {
   // Kiểm tra xem Google Pay có khả dụng không
   final bool available = await _inAppPurchase.isAvailable();
   if (!available) {
-    throw PlatformException(code: 'Google Pay không khả dụng');
+    return jsonEncode({
+      'productId': productId,
+      'error': {
+        'code': '01',
+        'message':
+            'Phương thức thanh toán không khả dụng. Bạn vui lòng quay lại sau.'
+      }
+    });
   }
 
   // Tạo danh sách các sản phẩm cần mua
@@ -80,7 +88,14 @@ Future<dynamic> openInAppPurchase(String productId, bool isConsumable) async {
   final List<ProductDetails> products = response.productDetails;
 
   if (products.isEmpty) {
-    throw PlatformException(code: 'Không tìm thấy sản phẩm');
+    return jsonEncode({
+      'productId': productId,
+      'error': {
+        'code': '02',
+        'message':
+            'Sản phẩm không khả dụng trên Store. Bạn vui lòng quay lại sau.'
+      }
+    });
   }
 
   // Mở Google Pay để thanh toán

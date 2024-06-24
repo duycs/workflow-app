@@ -19,10 +19,9 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
 
   String department = '';
 
-  StaffListDataStruct? listzzz;
-  void updateListzzzStruct(Function(StaffListDataStruct) updateFn) {
-    updateFn(listzzz ??= StaffListDataStruct());
-  }
+  String listaaaa = '';
+
+  dynamic json;
 
   ///  State fields for stateful widgets in this page.
 
@@ -102,8 +101,8 @@ class ReportStaffModel extends FlutterFlowModel<ReportStaffWidget> {
     );
 
     if ((apiResultGetList.succeeded ?? true)) {
-      listzzz =
-          StaffListDataStruct.maybeFromMap((apiResultGetList.jsonBody ?? ''));
+      listaaaa = (apiResultGetList.jsonBody ?? '').toString();
+      json = (apiResultGetList.jsonBody ?? '');
     } else {
       checkRefreshTokenBlock = await action_blocks.checkRefreshToken(
         context,

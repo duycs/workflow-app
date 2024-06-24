@@ -213,15 +213,15 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
         .map((e) => e.lessionsId.id)
         .toList()
         .toList()
-        .contains(widget.itemLession!.id)) {
+        .contains(itemLession!.id)) {
       listLessions = [];
       listLessions = requestData!.lessions
           .toList()
           .cast<StudyProgramListLessionsIdStruct>();
       addToListLessions(StudyProgramListLessionsIdStruct(
         lessionsId: LessonsStruct(
-          id: widget.itemLession?.id,
-          name: widget.itemLession?.name,
+          id: itemLession.id,
+          name: itemLession.name,
         ),
       ));
       updateRequestDataStruct(

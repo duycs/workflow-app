@@ -10,7 +10,12 @@ import 'newsfeed_detail_model.dart';
 export 'newsfeed_detail_model.dart';
 
 class NewsfeedDetailWidget extends StatefulWidget {
-  const NewsfeedDetailWidget({super.key});
+  const NewsfeedDetailWidget({
+    super.key,
+    required this.newsfeedId,
+  });
+
+  final String? newsfeedId;
 
   @override
   State<NewsfeedDetailWidget> createState() => _NewsfeedDetailWidgetState();

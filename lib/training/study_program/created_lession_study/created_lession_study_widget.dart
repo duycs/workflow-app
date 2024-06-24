@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -7,16 +9,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/training/lesson/ckeditor_create_lesson/ckeditor_create_lesson_widget.dart';
+import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'created_lession_study_model.dart';
 export 'created_lession_study_model.dart';
 
 class CreatedLessionStudyWidget extends StatefulWidget {
-  const CreatedLessionStudyWidget({super.key});
+  const CreatedLessionStudyWidget({
+    super.key,
+    this.callBack,
+  });
+
+  final Future Function(LessonsStruct? dataLession)? callBack;
 
   @override
   State<CreatedLessionStudyWidget> createState() =>
@@ -36,6 +47,12 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CreatedLessionStudyModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.getListTest(context);
+      setState(() {});
+    });
 
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
@@ -59,7 +76,10 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
+      width: MediaQuery.sizeOf(context).width * 1.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -95,8 +115,8 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                         color: FlutterFlowTheme.of(context).primaryText,
                         size: 24.0,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        Navigator.pop(context);
                       },
                     ),
                   ],
@@ -266,7 +286,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                 child: FlutterFlowDropDown<String>(
                                   controller: _model.testIdValueController ??=
                                       FormFieldController<String>(
-                                    _model.testIdValue ??= '',
+                                    _model.testIdValue ??= _model.testId,
                                   ),
                                   options: List<String>.from(_model.dataTest
                                       .map((e) => e.id)
@@ -309,8 +329,37 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                               ),
                             ),
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: Colors.transparent,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: QuizCreationLessonWidget(
+                                        callBack: (testId) async {
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 1000));
+                                          await _model.getListTest(context);
+                                          if (_model.dataTest.isNotEmpty) {
+                                            setState(() {
+                                              _model.testIdValueController
+                                                  ?.reset();
+                                            });
+                                            setState(() {
+                                              _model.testIdValueController
+                                                  ?.value = testId;
+                                            });
+                                            _model.testId = testId;
+                                            setState(() {});
+                                          }
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => safeSetState(() {}));
                               },
                               text: 'Bài thi',
                               icon: const Icon(
@@ -586,7 +635,13 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             ].divide(const SizedBox(width: 4.0)),
                           ),
                         ),
-                        if (_model.checkDay! <= 0)
+                        if (((_model.estimateInDayTextController.text !=
+                                        '') &&
+                                (int.parse(_model
+                                        .estimateInDayTextController.text) <
+                                    1)) &&
+                            ((_model.checkDay != null) &&
+                                ((_model.checkDay!) < 1)))
                           Text(
                             'Thời hạn học bài phải lớn hơn 0',
                             style: FlutterFlowTheme.of(context)
@@ -744,6 +799,19 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             ].divide(const SizedBox(width: 16.0)),
                           ),
                         ),
+                        if (_model.checkValidateImage == true)
+                          Text(
+                            'Vui lòng upload ảnh',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: FlutterFlowTheme.of(context).error,
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                          ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
@@ -1203,25 +1271,28 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                           print('IconButton pressed ...');
                                         },
                                       ),
-                                      Text(
-                                        'Nhập nội dung',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Chỉnh sửa nội dung',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
+                                      if (_model.checkContent == '')
+                                        Text(
+                                          'Nhập nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      if (_model.checkContent != '')
+                                        Text(
+                                          'Chỉnh sửa nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -1230,22 +1301,46 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                           ),
                         ),
                         Container(
-                          width: double.infinity,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).noColor,
-                            borderRadius: BorderRadius.circular(0.0),
-                            shape: BoxShape.rectangle,
                             border: Border.all(
-                              color: FlutterFlowTheme.of(context).noColor,
+                              color: _model.checkValiContent == true
+                                  ? FlutterFlowTheme.of(context).error
+                                  : const Color(0x00000000),
                             ),
                           ),
-                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 9.0),
+                            child: custom_widgets.HTMLView(
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              height: 100.0,
+                              html: functions.formatHtml(_model.checkContent),
+                            ),
+                          ),
                         ),
-                        custom_widgets.HTMLView(
-                          width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 100.0,
-                          html: functions.formatHtml(_model.checkContent),
-                        ),
+                        if (_model.checkValiContent == true)
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 20.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Vui lòng nhập nội dung',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
                       ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),
@@ -1254,8 +1349,194 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    var shouldSetState = false;
+                    if (_model.formKey.currentState == null ||
+                        !_model.formKey.currentState!.validate()) {
+                      return;
+                    }
+                    if (_model.checkContent != '') {
+                      _model.checkValiContent = false;
+                      setState(() {});
+                      if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                              false)) {
+                        await _model.getUploadImage(context);
+                        setState(() {});
+                        _model.checkValidateImage = false;
+                        setState(() {});
+                      } else {
+                        _model.checkValidateImage = true;
+                        setState(() {});
+                        if (shouldSetState) setState(() {});
+                        return;
+                      }
+
+                      if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                              false)) {
+                        await _model.getDataUploadVideo(context);
+                        setState(() {});
+                      }
+                      if ((_model.uploadedLocalFile3.bytes?.isNotEmpty ??
+                              false)) {
+                        await _model.getDataUploadFile(context);
+                        setState(() {});
+                      }
+                      if (_model.estimateInDayTextController.text != '') {
+                        if (int.parse(_model.estimateInDayTextController.text) >
+                            0) {
+                          _model.checkReloadTokenCreatedLession2 =
+                              await action_blocks.tokenReload(context);
+                          shouldSetState = true;
+                          if (_model.checkReloadTokenCreatedLession2!) {
+                            _model.apiResultCreatedLession2 =
+                                await LessonGroup.postLessonCall.call(
+                              accessToken: FFAppState().accessToken,
+                              requestDataJson: <String, dynamic>{
+                                'status': 'published',
+                                'name': _model.nameTextController.text,
+                                'description':
+                                    _model.descriptionTextController.text,
+                                'content': _model.checkContent,
+                                'image_cover':
+                                    _model.image != ''
+                                        ? _model.image
+                                        : null,
+                                'video':
+                                    _model.video != ''
+                                        ? _model.video
+                                        : null,
+                                'duration_hours':
+                                    _model.durationHoursTextController.text,
+                                'test_id': _model.testIdValue != null &&
+                                        _model.testIdValue != ''
+                                    ? _model.testIdValue
+                                    : null,
+                                'file': _model.file != ''
+                                    ? _model.file
+                                    : null,
+                                'estimate_in_day': _model.estimateInDayTextController
+                                                .text !=
+                                            ''
+                                    ? _model.estimateInDayTextController.text
+                                    : '',
+                              },
+                            );
+
+                            shouldSetState = true;
+                            if ((_model.apiResultCreatedLession2?.succeeded ??
+                                true)) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Tạo mới bài học thành công',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                              _model.dataListLession =
+                                  LessonsStruct.maybeFromMap(getJsonField(
+                                (_model.apiResultCreatedLession2?.jsonBody ??
+                                    ''),
+                                r'''$.data''',
+                              ));
+                              setState(() {});
+                              await widget.callBack?.call(
+                                _model.dataListLession,
+                              );
+                              Navigator.pop(context);
+                            }
+                          } else {
+                            FFAppState().update(() {});
+                            if (shouldSetState) setState(() {});
+                            return;
+                          }
+                        }
+                      } else {
+                        _model.checkReloadTokenCreatedLession1 =
+                            await action_blocks.tokenReload(context);
+                        shouldSetState = true;
+                        if (_model.checkReloadTokenCreatedLession1!) {
+                          _model.apiResultCreatedLession1 =
+                              await LessonGroup.postLessonCall.call(
+                            accessToken: FFAppState().accessToken,
+                            requestDataJson: <String, dynamic>{
+                              'status': 'published',
+                              'name': _model.nameTextController.text,
+                              'description':
+                                  _model.descriptionTextController.text,
+                              'content': _model.checkContent,
+                              'image_cover':
+                                  _model.image != ''
+                                      ? _model.image
+                                      : null,
+                              'video':
+                                  _model.video != ''
+                                      ? _model.video
+                                      : null,
+                              'duration_hours':
+                                  _model.durationHoursTextController.text,
+                              'test_id': _model.testIdValue != null &&
+                                      _model.testIdValue != ''
+                                  ? _model.testIdValue
+                                  : null,
+                              'file': _model.file != ''
+                                  ? _model.file
+                                  : null,
+                              'estimate_in_day': _model.estimateInDayTextController.text !=
+                                          ''
+                                  ? _model.estimateInDayTextController.text
+                                  : null,
+                            },
+                          );
+
+                          shouldSetState = true;
+                          if ((_model.apiResultCreatedLession1?.succeeded ??
+                              true)) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Tạo mới bài học thành công',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                            _model.dataListLession =
+                                LessonsStruct.maybeFromMap(getJsonField(
+                              (_model.apiResultCreatedLession1?.jsonBody ?? ''),
+                              r'''$.data''',
+                            ));
+                            setState(() {});
+                            await widget.callBack?.call(
+                              _model.dataListLession,
+                            );
+                            Navigator.pop(context);
+                          }
+                        } else {
+                          FFAppState().update(() {});
+                          if (shouldSetState) setState(() {});
+                          return;
+                        }
+                      }
+                    } else {
+                      _model.checkValiContent = true;
+                      setState(() {});
+                      if (shouldSetState) setState(() {});
+                      return;
+                    }
+
+                    if (shouldSetState) setState(() {});
                   },
                   text: 'Lưu',
                   options: FFButtonOptions(

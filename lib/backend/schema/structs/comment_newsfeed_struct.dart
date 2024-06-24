@@ -7,7 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class CommentNewsfeedStruct extends BaseStruct {
   CommentNewsfeedStruct({
     CommentStruct? commentsId,
-  }) : _commentsId = commentsId;
+    int? id,
+  })  : _commentsId = commentsId,
+        _id = id;
 
   // "comments_id" field.
   CommentStruct? _commentsId;
@@ -20,9 +22,19 @@ class CommentNewsfeedStruct extends BaseStruct {
 
   bool hasCommentsId() => _commentsId != null;
 
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+
+  void incrementId(int amount) => id = id + amount;
+
+  bool hasId() => _id != null;
+
   static CommentNewsfeedStruct fromMap(Map<String, dynamic> data) =>
       CommentNewsfeedStruct(
         commentsId: CommentStruct.maybeFromMap(data['comments_id']),
+        id: castToType<int>(data['id']),
       );
 
   static CommentNewsfeedStruct? maybeFromMap(dynamic data) => data is Map
@@ -31,6 +43,7 @@ class CommentNewsfeedStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'comments_id': _commentsId?.toMap(),
+        'id': _id,
       }.withoutNulls;
 
   @override
@@ -38,6 +51,10 @@ class CommentNewsfeedStruct extends BaseStruct {
         'comments_id': serializeParam(
           _commentsId,
           ParamType.DataStruct,
+        ),
+        'id': serializeParam(
+          _id,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -49,6 +66,11 @@ class CommentNewsfeedStruct extends BaseStruct {
           false,
           structBuilder: CommentStruct.fromSerializableMap,
         ),
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -56,16 +78,20 @@ class CommentNewsfeedStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is CommentNewsfeedStruct && commentsId == other.commentsId;
+    return other is CommentNewsfeedStruct &&
+        commentsId == other.commentsId &&
+        id == other.id;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([commentsId]);
+  int get hashCode => const ListEquality().hash([commentsId, id]);
 }
 
 CommentNewsfeedStruct createCommentNewsfeedStruct({
   CommentStruct? commentsId,
+  int? id,
 }) =>
     CommentNewsfeedStruct(
       commentsId: commentsId ?? CommentStruct(),
+      id: id,
     );

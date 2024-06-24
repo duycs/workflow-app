@@ -176,9 +176,8 @@ export '/news_feed/newsfeed_detail_draft/newsfeed_detail_draft_widget.dart'
 export '/news_feed/infor_list/infor_list_widget.dart' show InforListWidget;
 export '/news_feed/newsfeed_detail/newsfeed_detail_widget.dart'
     show NewsfeedDetailWidget;
-export '/training/study_program/lesson_create_copy/lesson_create_copy_widget.dart'
-    show LessonCreateCopyWidget;
-export '/news_feed/newsfeed2/newsfeed2_widget.dart' show Newsfeed2Widget;
+export '/news_feed/newsfeed_list_require/newsfeed_list_require_widget.dart'
+    show NewsfeedListRequireWidget;
 export '/news_feed/profile_publish/profile_publish_widget.dart'
     show ProfilePublishWidget;
 export '/news_feed/profile_publish2/profile_publish2_widget.dart'

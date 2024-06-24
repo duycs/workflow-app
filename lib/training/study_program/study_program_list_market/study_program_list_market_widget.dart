@@ -8,7 +8,6 @@ import '/training/order/invite_user/invite_user_widget.dart';
 import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -44,10 +43,6 @@ class _StudyProgramListMarketWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await actions.blockNavigateBack(
-        context,
-        1,
-      );
       _model.tokenReloadStudyProgramList =
           await action_blocks.tokenReload(context);
       if (_model.tokenReloadStudyProgramList!) {
@@ -78,57 +73,57 @@ class _StudyProgramListMarketWidgetState
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pushNamed(
-                'Profile',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-            },
-          ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Chương trình đã mua',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                    ),
+          appBar: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            automaticallyImplyLeading: false,
+            leading: FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
               ),
-            ],
+              onPressed: () async {
+                context.pushNamed(
+                  'Profile',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              },
+            ),
+            title: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Chương trình đã mua',
+                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 18.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ],
+            ),
+            actions: const [],
+            centerTitle: true,
+            elevation: 1.0,
           ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 1.0,
-        ),
-        body: Visibility(
-          visible: _model.isShow == true,
-          child: Padding(
+          body: Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,

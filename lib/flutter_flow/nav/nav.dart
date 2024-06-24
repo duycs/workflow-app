@@ -1101,26 +1101,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'NewsfeedDetail',
           path: '/newsfeedDetail',
-          builder: (context, params) => const NewsfeedDetailWidget(),
-        ),
-        FFRoute(
-          name: 'LessonCreateCopy',
-          path: '/lessonCreateCopy',
-          builder: (context, params) => LessonCreateCopyWidget(
-            checkScroll: params.getParam(
-              'checkScroll',
-              ParamType.String,
-            ),
-            checkPage: params.getParam(
-              'checkPage',
+          builder: (context, params) => NewsfeedDetailWidget(
+            newsfeedId: params.getParam(
+              'newsfeedId',
               ParamType.String,
             ),
           ),
         ),
         FFRoute(
-          name: 'Newsfeed2',
-          path: '/newsfeed2',
-          builder: (context, params) => const Newsfeed2Widget(),
+          name: 'NewsfeedListRequire',
+          path: '/newsfeedListRequire',
+          builder: (context, params) => NewsfeedListRequireWidget(
+            checkScope: params.getParam(
+              'checkScope',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'profilePublish',
