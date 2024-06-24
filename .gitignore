@@ -864,3 +864,4 @@ DerivedData/
 
 # FVM Version Cache
 .fvm/
+.fvmrc
