@@ -313,6 +313,40 @@ List<String> cronToType(String cron) {
   }
 }
 
+bool isRoleAdminGroup(UserStruct user) {
+  try {
+    return user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725' ||
+        user.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39' ||
+        user.role == '82073000-1ba2-43a4-a55c-459d17c23b68';
+  } catch (e) {
+    return false;
+  }
+}
+
+bool isRoleDepartmentAdminCopy(UserStruct user) {
+  try {
+    return user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725';
+  } catch (e) {
+    return false;
+  }
+}
+
+bool isRoleBranchAdmin(UserStruct user) {
+  try {
+    return user.role == 'a8d33527-375b-4599-ac70-6a3fcad1de39';
+  } catch (e) {
+    return false;
+  }
+}
+
+bool isRoleOrgAdmin(UserStruct user) {
+  try {
+    return user.role == '82073000-1ba2-43a4-a55c-459d17c23b68';
+  } catch (e) {
+    return false;
+  }
+}
+
 String checkTypeCron(String cron) {
   if (cron == null) {
     return '0';
@@ -632,5 +666,13 @@ String? compareDatetime(
     return 'after';
   } else {
     return 'equal';
+  }
+}
+
+bool isRoleStaff(UserStruct user) {
+  try {
+    return user.role == '3755a98d-f064-45cd-80e4-5084ab1dd2c4';
+  } catch (e) {
+    return false;
   }
 }

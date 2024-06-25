@@ -55,7 +55,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -90,144 +90,145 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
               // This list view is "shrink wrapped" this can affect your app performance, we would suggest limiting the number of items you query in this list view.
               //
               // The list view is shrink wrapped to prevent the page from having two scrollable elements. The parent column is the element that is scrollable and it provides a smooth user experience.
-              PagedListView<ApiPagingParams, dynamic>.separated(
-            pagingController: _model.setListViewController(
-              (nextPageMarker) => NewsfeedGroup.newsfeedListCall.call(
-                offset: nextPageMarker.nextPageNumber * 20,
-                accessToken: FFAppState().accessToken,
-                limit: 20,
-                filter: () {
-                  if (widget.checkScope == 'Tổ chức') {
-                    return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                      FFAppState().staffOrganization,
-                      r'''$.id''',
-                    ).toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
-                  } else if (widget.checkScope == 'Chi nhánh') {
-                    return () {
-                      if (FFAppState().user.role ==
-                          '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffBranch,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffBranch,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffBranch,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else {
-                        return ' ';
-                      }
-                    }();
-                  } else if (widget.checkScope == 'Bộ phận') {
-                    return () {
-                      if (FFAppState().user.role ==
-                          '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffDepartment,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffDepartment,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"department_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffBranch,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else if (FFAppState().user.role ==
-                          '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                          FFAppState().staffOrganization,
-                          r'''$.id''',
-                        ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
-                      } else {
-                        return ' ';
-                      }
-                    }();
-                  } else {
-                    return ' ';
-                  }
-                }(),
+              Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+            child: PagedListView<ApiPagingParams, dynamic>.separated(
+              pagingController: _model.setListViewController(
+                (nextPageMarker) => NewsfeedGroup.newsfeedListCall.call(
+                  offset: nextPageMarker.nextPageNumber * 20,
+                  accessToken: FFAppState().accessToken,
+                  limit: 20,
+                  filter: () {
+                    if (widget.checkScope == 'Tổ chức') {
+                      return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                        FFAppState().staffOrganization,
+                        r'''$.id''',
+                      ).toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
+                    } else if (widget.checkScope == 'Chi nhánh') {
+                      return () {
+                        if (FFAppState().user.role ==
+                            '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffBranch,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffBranch,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffBranch,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else {
+                          return ' ';
+                        }
+                      }();
+                    } else if (widget.checkScope == 'Bộ phận') {
+                      return () {
+                        if (FFAppState().user.role ==
+                            '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffDepartment,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffDepartment,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"department_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffBranch,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else if (FFAppState().user.role ==
+                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+                        } else {
+                          return ' ';
+                        }
+                      }();
+                    } else {
+                      return ' ';
+                    }
+                  }(),
+                ),
               ),
-            ),
-            padding: const EdgeInsets.fromLTRB(
-              0,
-              0,
-              0,
-              44.0,
-            ),
-            primary: false,
-            reverse: false,
-            scrollDirection: Axis.vertical,
-            separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-            builderDelegate: PagedChildBuilderDelegate<dynamic>(
-              // Customize what your widget looks like when it's loading the first page.
-              firstPageProgressIndicatorBuilder: (_) => Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
+              padding: const EdgeInsets.fromLTRB(
+                0,
+                0,
+                0,
+                44.0,
+              ),
+              primary: false,
+              reverse: false,
+              scrollDirection: Axis.vertical,
+              separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+              builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                // Customize what your widget looks like when it's loading the first page.
+                firstPageProgressIndicatorBuilder: (_) => Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              // Customize what your widget looks like when it's loading another page.
-              newPageProgressIndicatorBuilder: (_) => Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
+                // Customize what your widget looks like when it's loading another page.
+                newPageProgressIndicatorBuilder: (_) => Center(
+                  child: SizedBox(
+                    width: 50.0,
+                    height: 50.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
-              itemBuilder: (context, _, newsfeedListRequireIndex) {
-                final newsfeedListRequireItem = _model.listViewPagingController!
-                    .itemList![newsfeedListRequireIndex];
-                return Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                  child: Container(
+                noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                itemBuilder: (context, _, newsfeedListRequireIndex) {
+                  final newsfeedListRequireItem = _model
+                      .listViewPagingController!
+                      .itemList![newsfeedListRequireIndex];
+                  return Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -428,10 +429,12 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                           '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                       videoType: VideoType.network,
                                       autoPlay: false,
-                                      looping: true,
-                                      showControls: true,
+                                      looping: false,
+                                      showControls: false,
                                       allowFullScreen: true,
                                       allowPlaybackSpeedMenu: false,
+                                      lazyLoad: true,
+                                      pauseOnNavigate: false,
                                     );
                                   },
                                 );
@@ -475,7 +478,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: Text(
-                                    '1 bình luận',
+                                    '${newsfeedListRequireItem.comments.length.toString()} bình luận',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -492,41 +495,129 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                           Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 4.0, 8.0, 4.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.favorite_border,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 20.0,
-                                      ),
-                                      Text(
-                                        'Thích',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                              if (newsfeedListRequireItem.reacts
+                                      .where((e) =>
+                                          e.reactsId.staffId ==
+                                          FFAppState().staffid)
+                                      .toList()
+                                      .length ==
+                                  0)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await _model.reactCreated(
+                                      context,
+                                      newsId: newsfeedListRequireItem.id,
+                                    );
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 4.0, 8.0, 4.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.favorite_border,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 20.0,
+                                          ),
+                                          Text(
+                                            'Thích',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .secondaryText,
-                                              letterSpacing: 0.0,
-                                            ),
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(width: 4.0)),
                                       ),
-                                    ].divide(const SizedBox(width: 4.0)),
+                                    ),
                                   ),
                                 ),
-                              ),
+                              if (newsfeedListRequireItem.reacts
+                                      .where((e) =>
+                                          e.reactsId.staffId ==
+                                          FFAppState().staffid)
+                                      .toList()
+                                      .length >
+                                  0)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await _model.reactDelete(
+                                      context,
+                                      reactId: newsfeedListRequireItem.reacts
+                                          .where((e) =>
+                                              e.reactsId.staffId ==
+                                              FFAppState().staffid)
+                                          .toList()
+                                          .first
+                                          .id,
+                                    );
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 4.0, 8.0, 4.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Icon(
+                                            Icons.favorite,
+                                            color: Color(0xFFF40A0A),
+                                            size: 20.0,
+                                          ),
+                                          Text(
+                                            'Thích',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(width: 4.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               Expanded(
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -572,9 +663,9 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                         ],
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),

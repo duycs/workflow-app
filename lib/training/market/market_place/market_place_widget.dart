@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/chip_custom_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/rating_staf_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -529,8 +530,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                           ),
                                                     ),
                                                     Text(
-                                                      listProgramsFreeItem
-                                                          .authorId.alias,
+                                                      'Tác giả: ${listProgramsFreeItem.authorId.alias}',
                                                       maxLines: 2,
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -953,8 +953,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                         ),
                                               ),
                                               Text(
-                                                listProgramsNoFreeItem
-                                                    .authorId.alias,
+                                                'Tác giả: ${listProgramsNoFreeItem.authorId.alias}',
                                                 maxLines: 2,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -968,14 +967,16 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                               FontStyle.italic,
                                                         ),
                                               ),
-                                              RichText(
-                                                textScaler:
-                                                    MediaQuery.of(context)
-                                                        .textScaler,
-                                                text: TextSpan(
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 6.0, 0.0, 6.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
                                                   children: [
-                                                    TextSpan(
-                                                      text: formatNumber(
+                                                    Text(
+                                                      '${formatNumber(
                                                         functions.stringToInt(
                                                             listProgramsNoFreeItem
                                                                 .price),
@@ -983,158 +984,99 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                             FormatType.decimal,
                                                         decimalType: DecimalType
                                                             .commaDecimal,
-                                                      ),
+                                                      )} đ',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            fontSize: 12.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle: FontStyle
-                                                                .italic,
+                                                                FontWeight.bold,
                                                           ),
                                                     ),
-                                                    const TextSpan(
-                                                      text: 'đ',
-                                                      style: TextStyle(
-                                                        fontSize: 12.0,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    ),
-                                                    const TextSpan(
-                                                      text: ' ',
-                                                      style: TextStyle(
-                                                        fontSize: 12.0,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: formatNumber(
-                                                        double.tryParse((double.parse(
-                                                                    listProgramsNoFreeItem
-                                                                        .price) /
-                                                                0.7)
-                                                            .toStringAsFixed(
-                                                                0)),
-                                                        formatType:
-                                                            FormatType.decimal,
-                                                        decimalType: DecimalType
-                                                            .commaDecimal,
-                                                      ),
-                                                      style: const TextStyle(
-                                                        color:
-                                                            Color(0xFFFF0000),
-                                                        fontSize: 11.0,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    ),
-                                                    const TextSpan(
-                                                      text: 'đ',
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFFFF0000),
-                                                        fontSize: 11.0,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .lineThrough,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                    )
                                                   ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  height: 20.0,
-                                                  decoration: const BoxDecoration(),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 2.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        if (listProgramsNoFreeItem
-                                                                .reacts.isNotEmpty)
+                                              if (false)
+                                                Expanded(
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: 20.0,
+                                                    decoration: const BoxDecoration(),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  2.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          if (listProgramsNoFreeItem
+                                                                  .reacts.isNotEmpty)
+                                                            Expanded(
+                                                              flex: 5,
+                                                              child:
+                                                                  RatingStafWidget(
+                                                                key: Key(
+                                                                    'Keyi65_${listProgramsNoFreeIndex}_of_${listProgramsNoFree.length}'),
+                                                                list:
+                                                                    listProgramsNoFreeItem
+                                                                        .reacts,
+                                                              ),
+                                                            ),
+                                                          if (listProgramsNoFreeItem
+                                                                  .reacts.isEmpty)
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Text(
+                                                                '',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
                                                           Expanded(
                                                             flex: 5,
-                                                            child:
-                                                                RatingStafWidget(
-                                                              key: Key(
-                                                                  'Keyi65_${listProgramsNoFreeIndex}_of_${listProgramsNoFree.length}'),
-                                                              list:
-                                                                  listProgramsNoFreeItem
-                                                                      .reacts,
-                                                            ),
-                                                          ),
-                                                        if (listProgramsNoFreeItem
-                                                                .reacts.isEmpty)
-                                                          Expanded(
-                                                            flex: 1,
                                                             child: Text(
-                                                              '',
+                                                              '(${listProgramsNoFreeItem.orderCount.toString()})',
+                                                              textAlign:
+                                                                  TextAlign.end,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
                                                                   .override(
                                                                     fontFamily:
                                                                         'Nunito Sans',
+                                                                    fontSize:
+                                                                        12.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
                                                             ),
                                                           ),
-                                                        Expanded(
-                                                          flex: 5,
-                                                          child: Text(
-                                                            '(${listProgramsNoFreeItem.orderCount.toString()})',
-                                                            textAlign:
-                                                                TextAlign.end,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -2157,7 +2099,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             ),
                                       ),
                                       Text(
-                                        itemProgramListAllItem.authorId.alias,
+                                        'Tác giả: ${itemProgramListAllItem.authorId.alias}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -2177,6 +2119,57 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                               letterSpacing: 0.0,
                                               fontStyle: FontStyle.italic,
                                             ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 6.0, 0.0, 6.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            if (functions.stringToInt(
+                                                    itemProgramListAllItem
+                                                        .price) ==
+                                                0)
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: ChipCustomWidget(
+                                                  key: Key(
+                                                      'Key6ow_${itemProgramListAllIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                  borderColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .green,
+                                                  text: 'Miễn phí',
+                                                ),
+                                              ),
+                                            if (functions.stringToInt(
+                                                    itemProgramListAllItem
+                                                        .price) >
+                                                0)
+                                              Text(
+                                                '${formatNumber(
+                                                  functions.stringToInt(
+                                                      itemProgramListAllItem
+                                                          .price),
+                                                  formatType:
+                                                      FormatType.decimal,
+                                                  decimalType:
+                                                      DecimalType.commaDecimal,
+                                                )} đ',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                          ],
+                                        ),
                                       ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,

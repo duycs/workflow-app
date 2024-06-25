@@ -340,9 +340,8 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: QuizCreationLessonWidget(
                                         callBack: (testId) async {
-                                          await Future.delayed(const Duration(
-                                              milliseconds: 1000));
-                                          await _model.getListTest(context);
+                                          _model.addToDataTest(testId!);
+                                          setState(() {});
                                           if (_model.dataTest.isNotEmpty) {
                                             setState(() {
                                               _model.testIdValueController
@@ -350,9 +349,9 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                             });
                                             setState(() {
                                               _model.testIdValueController
-                                                  ?.value = testId;
+                                                  ?.value = testId.id;
                                             });
-                                            _model.testId = testId;
+                                            _model.testId = testId.id;
                                             setState(() {});
                                           }
                                         },

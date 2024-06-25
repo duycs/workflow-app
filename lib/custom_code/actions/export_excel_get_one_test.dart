@@ -37,7 +37,6 @@ String formatDate(String dateStr) {
 }
 
 Future exportExcelGetOneTest(dynamic item) async {
-  // Add your function code here!
   try {
     String extensionFirst = generateRandomString(12);
     final Map<String, dynamic> parsedData =
@@ -66,7 +65,7 @@ Future exportExcelGetOneTest(dynamic item) async {
       "Trạng thái",
       "Thời gian thi",
       "Thời gian kết thúc thi",
-      "Phần trăm điểm",
+      "Phần trăm điểm(%)",
       "Điểm đạt bài thi",
       "Thang điểm",
       "Số câu đúng",
@@ -144,7 +143,6 @@ Future exportExcelGetOneTest(dynamic item) async {
         ]);
       }
     } else {
-      // Handle case where no tests exist
       sheetObject.appendRow([
         userName,
         title,
@@ -153,16 +151,16 @@ Future exportExcelGetOneTest(dynamic item) async {
         email,
         status,
         phone,
-        '', // testName
-        '', // lessonName
-        '', // testStatus
-        '', // dateStart
-        '', // dateEnd
-        '', // percentCorrect
-        '', // goodScore
-        '', // score
-        '', // totalCorrect
-        '', // totalIncorrect
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
       ]);
     }
 
@@ -176,15 +174,15 @@ Future exportExcelGetOneTest(dynamic item) async {
     }
 
     String filePath =
-        '$directoryPath/bao-cao-ve-tien-do-chuong-trinh-dao-tao-cua-nhan-vien-$extensionFirst.xlsx';
+        '$directoryPath/bao-cao-ve-tien-do-bai-thi-cua-nhan-vien-$extensionFirst.xlsx';
     File(filePath)
       ..createSync(recursive: true)
       ..writeAsBytesSync(excel.encode()!);
-    await Share.shareXFiles([XFile(filePath)]);
-
     if (Platform.isAndroid) {
       Fluttertoast.showToast(msg: 'Tải xuống thành công');
     }
+    await Future.delayed(Duration(seconds: 1));
+    await Share.shareXFiles([XFile(filePath)]);
   } catch (e) {
     Fluttertoast.showToast(msg: 'Đã xảy ra lỗi: $e');
   }

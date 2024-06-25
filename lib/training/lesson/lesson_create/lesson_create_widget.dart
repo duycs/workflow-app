@@ -349,14 +349,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           child: SizedBox(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
-                                                0.9,
+                                                1.0,
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
-                                                0.9,
+                                                1.0,
                                             child: QuizCreationLessonWidget(
                                               callBack: (testId) async {
-                                                await _model.testList(context);
-                                                await _model.testList(context);
+                                                _model.addToList(testId!);
+                                                setState(() {});
                                                 if (_model.list.isNotEmpty) {
                                                   setState(() {
                                                     _model.testIdValueController
@@ -364,9 +364,9 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                   });
                                                   setState(() {
                                                     _model.testIdValueController
-                                                        ?.value = testId;
+                                                        ?.value = testId.id;
                                                   });
-                                                  _model.testId = testId;
+                                                  _model.testId = testId.id;
                                                   setState(() {});
                                                 } else {
                                                   return;

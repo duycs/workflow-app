@@ -323,97 +323,83 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                     (_model.dataGetOne
                                                                             ?.price !=
                                                                         '0'))
-                                                                  RichText(
-                                                                    textScaler:
-                                                                        MediaQuery.of(context)
-                                                                            .textScaler,
-                                                                    text:
-                                                                        TextSpan(
-                                                                      children: [
-                                                                        TextSpan(
-                                                                          text: (_model.dataGetOne != null) && (_model.dataGetOne?.price != null && _model.dataGetOne?.price != '')
-                                                                              ? formatNumber(
-                                                                                  functions.stringToInt(_model.dataGetOne!.price),
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.commaDecimal,
-                                                                                )
-                                                                              : '',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Nunito Sans',
-                                                                                fontSize: 20.0,
-                                                                                letterSpacing: 0.0,
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                        ),
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              'đ',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                20.0,
-                                                                            fontStyle:
-                                                                                FontStyle.normal,
+                                                                  Expanded(
+                                                                    child:
+                                                                        RichText(
+                                                                      textScaler:
+                                                                          MediaQuery.of(context)
+                                                                              .textScaler,
+                                                                      text:
+                                                                          TextSpan(
+                                                                        children: [
+                                                                          TextSpan(
+                                                                            text: (_model.dataGetOne != null) && (_model.dataGetOne?.price != null && _model.dataGetOne?.price != '')
+                                                                                ? formatNumber(
+                                                                                    functions.stringToInt(_model.dataGetOne!.price),
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.commaDecimal,
+                                                                                  )
+                                                                                : '',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Nunito Sans',
+                                                                                  fontSize: 20.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
                                                                           ),
-                                                                        ),
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              '   ',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                12.0,
+                                                                          const TextSpan(
+                                                                            text:
+                                                                                'đ',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontSize: 20.0,
+                                                                              fontStyle: FontStyle.normal,
+                                                                            ),
                                                                           ),
-                                                                        ),
-                                                                        TextSpan(
-                                                                          text: (_model.dataGetOne != null) && (_model.dataGetOne?.price != null && _model.dataGetOne?.price != '')
-                                                                              ? formatNumber(
-                                                                                  double.tryParse((double.parse(_model.dataGetOne!.price) / 0.7).toStringAsFixed(0)),
-                                                                                  formatType: FormatType.decimal,
-                                                                                  decimalType: DecimalType.commaDecimal,
-                                                                                )
-                                                                              : '',
-                                                                          style:
-                                                                              const TextStyle(
-                                                                            color:
-                                                                                Color(0xFFFF0000),
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            decoration:
-                                                                                TextDecoration.lineThrough,
-                                                                            fontStyle:
-                                                                                FontStyle.normal,
+                                                                          const TextSpan(
+                                                                            text:
+                                                                                '   ',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontSize: 12.0,
+                                                                            ),
                                                                           ),
-                                                                        ),
-                                                                        const TextSpan(
-                                                                          text:
-                                                                              'đ',
-                                                                          style:
-                                                                              TextStyle(
-                                                                            color:
-                                                                                Color(0xFFFF0000),
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            decoration:
-                                                                                TextDecoration.lineThrough,
-                                                                            fontStyle:
-                                                                                FontStyle.normal,
+                                                                          TextSpan(
+                                                                            text: (_model.dataGetOne != null) && (_model.dataGetOne?.price != null && _model.dataGetOne?.price != '')
+                                                                                ? formatNumber(
+                                                                                    double.tryParse((double.parse(_model.dataGetOne!.price) / 0.7).toStringAsFixed(0)),
+                                                                                    formatType: FormatType.decimal,
+                                                                                    decimalType: DecimalType.commaDecimal,
+                                                                                  )
+                                                                                : '',
+                                                                            style:
+                                                                                const TextStyle(
+                                                                              color: Color(0xFFFF0000),
+                                                                              fontSize: 14.0,
+                                                                              decoration: TextDecoration.lineThrough,
+                                                                              fontStyle: FontStyle.normal,
+                                                                            ),
                                                                           ),
-                                                                        )
-                                                                      ],
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
+                                                                          const TextSpan(
+                                                                            text:
+                                                                                'đ',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Color(0xFFFF0000),
+                                                                              fontSize: 14.0,
+                                                                              decoration: TextDecoration.lineThrough,
+                                                                              fontStyle: FontStyle.normal,
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 if ((_model.dataGetOne !=
@@ -625,6 +611,17 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                           fit: BoxFit.cover,
                                         ),
                                       ),
+                                      Text(
+                                        'Tác giả:',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
                                       Expanded(
                                         child: Text(
                                           _model.dataGetOne!.authorId.alias,
@@ -699,7 +696,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 4.0, 16.0, 0.0),
+                                      4.0, 6.0, 16.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -741,7 +738,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 4.0, 16.0, 12.0),
+                                      4.0, 6.0, 16.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,

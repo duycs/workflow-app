@@ -1,6 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'newsfeed_list_require_widget.dart' show NewsfeedListRequireWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -22,6 +25,77 @@ class NewsfeedListRequireModel
   void dispose() {
     unfocusNode.dispose();
     listViewPagingController?.dispose();
+  }
+
+  /// Action blocks.
+  Future reactCreated(
+    BuildContext context, {
+    String? newsId,
+  }) async {
+    bool? reactNewsfeedRequire;
+    ApiCallResponse? apiResultReact;
+
+    reactNewsfeedRequire = await action_blocks.tokenReload(context);
+    if (reactNewsfeedRequire!) {
+      apiResultReact = await NewsfeedGroup.reactNewsfeedCall.call(
+        accessToken: FFAppState().accessToken,
+        staffId: FFAppState().staffid,
+        newsId: newsId,
+      );
+
+      if (!(apiResultReact.succeeded ?? true)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi yêu thích',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future reactDelete(
+    BuildContext context, {
+    int? reactId,
+  }) async {
+    bool? reactNewsfeedDeleteRequire;
+    ApiCallResponse? apiResultReactDeleteRequire;
+
+    reactNewsfeedDeleteRequire = await action_blocks.tokenReload(context);
+    if (reactNewsfeedDeleteRequire!) {
+      apiResultReactDeleteRequire =
+          await NewsfeedGroup.reactNewsfeedDeleteCall.call(
+        accessToken: FFAppState().accessToken,
+        id: reactId,
+      );
+
+      if (!(apiResultReactDeleteRequire.succeeded ?? true)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi yêu thích',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
   }
 
   /// Additional helper methods.
@@ -71,4 +145,20 @@ class NewsfeedListRequireModel
               : null,
         );
       });
+
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
 }

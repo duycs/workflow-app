@@ -423,17 +423,23 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                         _model.unfocusNode)
                                                 : FocusScope.of(context)
                                                     .unfocus(),
-                                            child: QuizCreationLessonWidget(
-                                              callBack: (testId) async {
-                                                await _model.testList(context);
-                                                await _model.testList(context);
-                                                setState(() {
-                                                  _model.testIdValueController
-                                                      ?.value = testId;
-                                                });
-                                                _model.testId = testId;
-                                                setState(() {});
-                                              },
+                                            child: SizedBox(
+                                              height: 100.0,
+                                              width: 100.0,
+                                              child: QuizCreationLessonWidget(
+                                                callBack: (testId) async {
+                                                  _model.addToList(testId!);
+                                                  setState(() {});
+                                                  await _model
+                                                      .testList(context);
+                                                  setState(() {
+                                                    _model.testIdValueController
+                                                        ?.value = testId.id;
+                                                  });
+                                                  _model.testId = testId.id;
+                                                  setState(() {});
+                                                },
+                                              ),
                                             ),
                                           ),
                                         );

@@ -1,9 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'comment_newsfeed_widget.dart' show CommentNewsfeedWidget;
-import 'dart:async';
 import 'package:flutter/material.dart';
 
 class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
@@ -22,6 +22,10 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
+  bool? checkTokenDeleteComment1;
+  // Stores action output result for [Backend Call - API (CommentsNewFeedDelete)] action in IconButton widget.
+  ApiCallResponse? apiResultDeleteComment;
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -38,7 +42,6 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  Completer<ApiCallResponse>? apiRequestCompleter;
 
   @override
   void initState(BuildContext context) {}
@@ -174,19 +177,60 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
     }
   }
 
-  /// Additional helper methods.
-  Future waitForApiRequestCompleted({
-    double minWait = 0,
-    double maxWait = double.infinity,
+  Future deleteComment(
+    BuildContext context, {
+    int? id,
   }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(const Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = apiRequestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
+    bool? checkTokenDeleteComment;
+    ApiCallResponse? apiResult4jt;
+
+    checkTokenDeleteComment = await action_blocks.tokenReload(context);
+    if (checkTokenDeleteComment!) {
+      var confirmDialogResponse = await showDialog<bool>(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: const Text('Xác nhận'),
+                content: const Text('Bạn chắc chắn muốn xóa'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                    child: const Text('Hủy'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                    child: const Text('Xác nhận'),
+                  ),
+                ],
+              );
+            },
+          ) ??
+          false;
+      if (confirmDialogResponse) {
+        apiResult4jt = await NewsfeedGroup.commentsNewFeedDeleteCall.call(
+          accessToken: FFAppState().accessToken,
+          id: id,
+        );
+
+        if ((apiResult4jt.succeeded ?? true)) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Xóa bình luận thành công',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+              ),
+              duration: const Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).secondary,
+            ),
+          );
+        }
+      } else {
+        return;
       }
+    } else {
+      return;
     }
   }
 }
