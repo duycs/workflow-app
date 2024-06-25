@@ -368,6 +368,19 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       setState(() => _model.testIdValue = val),
                                   width: 300.0,
                                   height: 50.0,
+                                  searchHintTextStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                  searchTextStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -376,6 +389,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Danh sách bài thi',
+                                  searchHintText: '',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
                                     color: FlutterFlowTheme.of(context)
@@ -393,7 +407,7 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
-                                  isSearchable: false,
+                                  isSearchable: true,
                                   isMultiSelect: false,
                                 ),
                               ),
@@ -424,14 +438,20 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                 : FocusScope.of(context)
                                                     .unfocus(),
                                             child: SizedBox(
-                                              height: 100.0,
-                                              width: 100.0,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  1.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
                                               child: QuizCreationLessonWidget(
                                                 callBack: (testId) async {
                                                   _model.addToList(testId!);
                                                   setState(() {});
-                                                  await _model
-                                                      .testList(context);
+                                                  setState(() {
+                                                    _model.testIdValueController
+                                                        ?.reset();
+                                                  });
                                                   setState(() {
                                                     _model.testIdValueController
                                                         ?.value = testId.id;
@@ -1452,31 +1472,39 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                                 .requestFocus(
                                                     _model.unfocusNode)
                                             : FocusScope.of(context).unfocus(),
-                                        child: CkeditorUpdateLessonWidget(
-                                          input: () {
-                                            if ((getJsonField(
-                                                      widget.items,
-                                                      r'''$.content''',
-                                                    ) !=
-                                                    null) &&
-                                                (_model.output == '')) {
-                                              return getJsonField(
-                                                widget.items,
-                                                r'''$.content''',
-                                              ).toString();
-                                            } else if (_model.output != '') {
-                                              return _model.output;
-                                            } else {
-                                              return '';
-                                            }
-                                          }(),
-                                          output: _model.output,
-                                          callBack: (input, output) async {
-                                            _model.checkContent = output!;
-                                            _model.input = input!;
-                                            _model.output = output;
-                                            setState(() {});
-                                          },
+                                        child: SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          child: CkeditorUpdateLessonWidget(
+                                            input: () {
+                                              if ((getJsonField(
+                                                        widget.items,
+                                                        r'''$.content''',
+                                                      ) !=
+                                                      null) &&
+                                                  (_model.output == '')) {
+                                                return getJsonField(
+                                                  widget.items,
+                                                  r'''$.content''',
+                                                ).toString();
+                                              } else if (_model.output != '') {
+                                                return _model.output;
+                                              } else {
+                                                return '';
+                                              }
+                                            }(),
+                                            output: _model.output,
+                                            callBack: (input, output) async {
+                                              _model.checkContent = output!;
+                                              _model.input = input!;
+                                              _model.output = output;
+                                              setState(() {});
+                                            },
+                                          ),
                                         ),
                                       ),
                                     );

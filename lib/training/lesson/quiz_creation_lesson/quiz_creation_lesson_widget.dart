@@ -803,29 +803,6 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
                                           r'''$.data''',
                                         )),
                                       );
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                TestListStruct.maybeFromMap(
-                                                        getJsonField(
-                                              (_model.apiResultCreatedTest
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.data''',
-                                            ).toString())!
-                                                    .name),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: const Text('Ok'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
                                       Navigator.pop(context);
                                     } else {
                                       ScaffoldMessenger.of(context)

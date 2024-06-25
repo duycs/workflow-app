@@ -1061,389 +1061,42 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            var confirmDialogResponse = await showDialog<bool>(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo!'),
-                                      content:
-                                          const Text('Áp dụng khoá học cho cá nhân'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, false),
-                                          child: const Text('Huỷ'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, true),
-                                          child: const Text('Xác nhận'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ) ??
-                                false;
-                            if (confirmDialogResponse) {
-                              await _model.postStaffsProgramsFree(context);
-                              setState(() {});
-                            } else {
-                              return;
-                            }
-                          },
-                          text: 'Áp dụng cho cá nhân',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            var confirmDialogResponse = await showDialog<bool>(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo!'),
-                                      content:
-                                          const Text('Áp dụng khoá học cho tổ chức'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, false),
-                                          child: const Text('Huỷ'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () => Navigator.pop(
-                                              alertDialogContext, true),
-                                          child: const Text('Xác nhận'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ) ??
-                                false;
-                            if (confirmDialogResponse) {
-                              await _model.postCopyStaffPrograms(context);
-                              setState(() {});
-                            } else {
-                              return;
-                            }
-                          },
-                          text: 'Áp dụng cho tổ chức',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ].divide(const SizedBox(width: 16.0)),
-                  ),
-                ),
-              if ((_model.dataGetOne?.price != '0') &&
-                  (_model.dataGetOne?.authorId.organizationId !=
-                      getJsonField(
-                        FFAppState().staffOrganization,
-                        r'''$.id''',
-                      ).toString()) &&
-                  ((isiOS &&
-                          (_model.dataGetOne?.iapAppleProductId != null &&
-                              _model.dataGetOne?.iapAppleProductId != '')) ||
-                      (isAndroid &&
-                          (_model.dataGetOne?.iapGoogleProductId != null &&
-                              _model.dataGetOne?.iapGoogleProductId != ''))))
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Builder(
-                          builder: (context) => FFButtonWidget(
+                      if (functions.isRoleStaff(FFAppState().user))
+                        Expanded(
+                          child: FFButtonWidget(
                             onPressed: () async {
-                              var shouldSetState = false;
-                              // Mở widget thanh toán IAP
-                              _model.paymentResponse =
-                                  await actions.openInAppPurchase(
-                                () {
-                                  if (isiOS) {
-                                    return _model.dataGetOne!.iapAppleProductId;
-                                  } else if (isAndroid) {
-                                    return _model
-                                        .dataGetOne!.iapGoogleProductId;
-                                  } else {
-                                    return '';
-                                  }
-                                }(),
-                                true,
-                              );
-                              shouldSetState = true;
-                              if (_model.paymentResponse != null) {
-                                _model.iapPaymentResponse =
-                                    functions.stringToJson(
-                                        _model.paymentResponse!.toString());
-                                _model.inAppPurchaseResponse =
-                                    InAppPurchaseResponseStruct.maybeFromMap(
-                                        functions.stringToJson(_model
-                                            .paymentResponse!
-                                            .toString()));
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Thông báo!'),
+                                            content: const Text(
+                                                'Áp dụng khoá học cho cá nhân'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Huỷ'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Xác nhận'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await _model.postStaffsProgramsFree(context);
                                 setState(() {});
                               } else {
-                                if (shouldSetState) setState(() {});
                                 return;
                               }
-
-                              if (_model.inAppPurchaseResponse?.error.code ==
-                                  '01') {
-                                // Lỗi IAP không khả dụng
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: Text(_model
-                                          .inAppPurchaseResponse!
-                                          .error
-                                          .message),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else if (_model
-                                      .inAppPurchaseResponse?.error.code ==
-                                  '02') {
-                                // Lỗi sản phẩm không khả dụng
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: Text(_model
-                                          .inAppPurchaseResponse!
-                                          .error
-                                          .message),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else if (getJsonField(
-                                    _model.iapPaymentResponse,
-                                    r'''$.error''',
-                                  ) ==
-                                  null) {
-                                // Mở layout loading
-                                showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          child:
-                                              const WaitingProcessComponentWidget(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
-
-                                // Tạo đơn hàng
-                                _model.apiResultOrderCreate =
-                                    await _model.orderCreate(
-                                  context,
-                                  checkType: 'staff',
-                                  quantity: _model
-                                      .inAppPurchaseResponse
-                                      ?.verificationData
-                                      .localVerificationData
-                                      .quantity,
-                                );
-                                shouldSetState = true;
-                                if (_model.apiResultOrderCreate!) {
-                                  Navigator.pop(context);
-                                  // Mở dialog thanh toán thành công
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            child:
-                                                PaymentSuccessComponentWidget(
-                                              programId: _model.dataGetOne!.id,
-                                              checkType: '1',
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
-                                } else {
-                                  // Mở dialog tạo đơn thất bại
-                                  await showDialog(
-                                    context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            child:
-                                                const PaymentSuccesExceptionComponentWidget(),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
-                                }
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Error code'),
-                                      content: Text(valueOrDefault<String>(
-                                        _model
-                                            .inAppPurchaseResponse?.error.code,
-                                        'Null',
-                                      )),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: const Text(
-                                          'Thanh toán không thành công. Bạn vui lòng liên hệ Hotline để được hỗ trợ!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-
-                              if (shouldSetState) setState(() {});
                             },
-                            text: 'Mua cho cá nhân',
+                            text: 'Áp dụng cho cá nhân',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1465,10 +1118,367 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                               ),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
-                      ),
+                      if (functions.isRoleAdminGroup(FFAppState().user))
+                        Expanded(
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              var confirmDialogResponse =
+                                  await showDialog<bool>(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: const Text('Thông báo!'),
+                                            content: const Text(
+                                                'Áp dụng khoá học cho tổ chức'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: const Text('Huỷ'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: const Text('Xác nhận'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ) ??
+                                      false;
+                              if (confirmDialogResponse) {
+                                await _model.postCopyStaffPrograms(context);
+                                setState(() {});
+                              } else {
+                                return;
+                              }
+                            },
+                            text: 'Áp dụng cho tổ chức',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                    ].divide(const SizedBox(width: 16.0)),
+                  ),
+                ),
+              if ((_model.dataGetOne?.price != '0') &&
+                  (_model.dataGetOne?.authorId.organizationId !=
+                      getJsonField(
+                        FFAppState().staffOrganization,
+                        r'''$.id''',
+                      ).toString()) &&
+                  ((isiOS &&
+                          (_model.dataGetOne?.iapAppleProductId != null &&
+                              _model.dataGetOne?.iapAppleProductId != '')) ||
+                      (isAndroid &&
+                          (_model.dataGetOne?.iapGoogleProductId != null &&
+                              _model.dataGetOne?.iapGoogleProductId != ''))))
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      if (functions.isRoleStaff(FFAppState().user))
+                        Expanded(
+                          child: Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                var shouldSetState = false;
+                                // Mở widget thanh toán IAP
+                                _model.paymentResponse =
+                                    await actions.openInAppPurchase(
+                                  () {
+                                    if (isiOS) {
+                                      return _model
+                                          .dataGetOne!.iapAppleProductId;
+                                    } else if (isAndroid) {
+                                      return _model
+                                          .dataGetOne!.iapGoogleProductId;
+                                    } else {
+                                      return '';
+                                    }
+                                  }(),
+                                  true,
+                                );
+                                shouldSetState = true;
+                                if (_model.paymentResponse != null) {
+                                  _model.iapPaymentResponse =
+                                      functions.stringToJson(
+                                          _model.paymentResponse!.toString());
+                                  _model.inAppPurchaseResponse =
+                                      InAppPurchaseResponseStruct.maybeFromMap(
+                                          functions.stringToJson(_model
+                                              .paymentResponse!
+                                              .toString()));
+                                  setState(() {});
+                                } else {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (_model.inAppPurchaseResponse?.error.code ==
+                                    '01') {
+                                  // Lỗi IAP không khả dụng
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: Text(_model
+                                            .inAppPurchaseResponse!
+                                            .error
+                                            .message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else if (_model
+                                        .inAppPurchaseResponse?.error.code ==
+                                    '02') {
+                                  // Lỗi sản phẩm không khả dụng
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: Text(_model
+                                            .inAppPurchaseResponse!
+                                            .error
+                                            .message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else if (getJsonField(
+                                      _model.iapPaymentResponse,
+                                      r'''$.error''',
+                                    ) ==
+                                    null) {
+                                  // Mở layout loading
+                                  showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child:
+                                                const WaitingProcessComponentWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+
+                                  // Tạo đơn hàng
+                                  _model.apiResultOrderCreate =
+                                      await _model.orderCreate(
+                                    context,
+                                    checkType: 'staff',
+                                    quantity: _model
+                                        .inAppPurchaseResponse
+                                        ?.verificationData
+                                        .localVerificationData
+                                        .quantity,
+                                  );
+                                  shouldSetState = true;
+                                  if (_model.apiResultOrderCreate!) {
+                                    Navigator.pop(context);
+                                    // Mở dialog thanh toán thành công
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  1.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              child:
+                                                  PaymentSuccessComponentWidget(
+                                                programId:
+                                                    _model.dataGetOne!.id,
+                                                checkType: '1',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  } else {
+                                    // Mở dialog tạo đơn thất bại
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  1.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              child:
+                                                  const PaymentSuccesExceptionComponentWidget(),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  }
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Error code'),
+                                        content: Text(valueOrDefault<String>(
+                                          _model.inAppPurchaseResponse?.error
+                                              .code,
+                                          'Null',
+                                        )),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: const Text(
+                                            'Thanh toán không thành công. Bạn vui lòng liên hệ Hotline để được hỗ trợ!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+
+                                if (shouldSetState) setState(() {});
+                              },
+                              text: 'Mua cho cá nhân',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).secondary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              showLoadingIndicator: false,
+                            ),
+                          ),
+                        ),
                       if (false)
                         Expanded(
                           child: FFButtonWidget(
@@ -1527,137 +1537,93 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             ),
                           ),
                         ),
-                      Expanded(
-                        child: Builder(
-                          builder: (context) => FFButtonWidget(
-                            onPressed: () async {
-                              var shouldSetState = false;
-                              // Mở widget thanh toán IAP
-                              _model.paymentResponeOrg =
-                                  await actions.openInAppPurchase(
-                                () {
-                                  if (isiOS) {
-                                    return _model.dataGetOne!.iapAppleProductId;
-                                  } else if (isAndroid) {
-                                    return _model
-                                        .dataGetOne!.iapGoogleProductId;
-                                  } else {
-                                    return '';
-                                  }
-                                }(),
-                                true,
-                              );
-                              shouldSetState = true;
-                              if (_model.paymentResponeOrg != null) {
-                                _model.inAppPurchaseResponse =
-                                    InAppPurchaseResponseStruct.maybeFromMap(
-                                        functions.stringToJson(_model
-                                            .paymentResponeOrg!
-                                            .toString()));
-                                setState(() {});
-                              } else {
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
-
-                              if (_model.inAppPurchaseResponse?.error.code ==
-                                  '01') {
-                                // Lỗi IAP không khả dụng
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: Text(_model
-                                          .inAppPurchaseResponse!
-                                          .error
-                                          .message),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else if (_model
-                                      .inAppPurchaseResponse?.error.code ==
-                                  '02') {
-                                // Lỗi sản phẩm không khả dụng
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: Text(_model
-                                          .inAppPurchaseResponse!
-                                          .error
-                                          .message),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else if (getJsonField(
-                                    _model.iapPaymentResponse,
-                                    r'''$.error''',
-                                  ) ==
-                                  null) {
-                                // Mở layout loading
-                                showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          child:
-                                              const WaitingProcessComponentWidget(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
-
-                                // Tạo đơn hàng
-                                _model.apiResultOrderCreateOrg =
-                                    await _model.orderCreate(
-                                  context,
-                                  checkType: 'staff',
-                                  quantity: _model
-                                      .inAppPurchaseResponse
-                                      ?.verificationData
-                                      .localVerificationData
-                                      .quantity,
+                      if (functions.isRoleAdminGroup(FFAppState().user))
+                        Expanded(
+                          child: Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                var shouldSetState = false;
+                                // Mở widget thanh toán IAP
+                                _model.paymentResponeOrg =
+                                    await actions.openInAppPurchase(
+                                  () {
+                                    if (isiOS) {
+                                      return _model
+                                          .dataGetOne!.iapAppleProductId;
+                                    } else if (isAndroid) {
+                                      return _model
+                                          .dataGetOne!.iapGoogleProductId;
+                                    } else {
+                                      return '';
+                                    }
+                                  }(),
+                                  true,
                                 );
                                 shouldSetState = true;
-                                if (_model.apiResultOrderCreateOrg!) {
-                                  Navigator.pop(context);
-                                  // Mở dialog thanh toán thành công
+                                if (_model.paymentResponeOrg != null) {
+                                  _model.inAppPurchaseResponse =
+                                      InAppPurchaseResponseStruct.maybeFromMap(
+                                          functions.stringToJson(_model
+                                              .paymentResponeOrg!
+                                              .toString()));
+                                  setState(() {});
+                                } else {
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (_model.inAppPurchaseResponse?.error.code ==
+                                    '01') {
+                                  // Lỗi IAP không khả dụng
                                   await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: Text(_model
+                                            .inAppPurchaseResponse!
+                                            .error
+                                            .message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else if (_model
+                                        .inAppPurchaseResponse?.error.code ==
+                                    '02') {
+                                  // Lỗi sản phẩm không khả dụng
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: Text(_model
+                                            .inAppPurchaseResponse!
+                                            .error
+                                            .message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else if (getJsonField(
+                                      _model.iapPaymentResponse,
+                                      r'''$.error''',
+                                    ) ==
+                                    null) {
+                                  // Mở layout loading
+                                  showDialog(
                                     context: context,
                                     builder: (dialogContext) {
                                       return Dialog(
@@ -1684,99 +1650,149 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                     .width *
                                                 1.0,
                                             child:
-                                                PaymentSuccessComponentWidget(
-                                              programId: _model.dataGetOne!.id,
-                                              checkType: '1',
+                                                const WaitingProcessComponentWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+
+                                  // Tạo đơn hàng
+                                  _model.apiResultOrderCreateOrg =
+                                      await _model.orderCreate(
+                                    context,
+                                    checkType: 'organization',
+                                    quantity: _model
+                                        .inAppPurchaseResponse
+                                        ?.verificationData
+                                        .localVerificationData
+                                        .quantity,
+                                  );
+                                  shouldSetState = true;
+                                  if (_model.apiResultOrderCreateOrg!) {
+                                    Navigator.pop(context);
+                                    // Mở dialog thanh toán thành công
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  1.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              child:
+                                                  PaymentSuccessComponentWidget(
+                                                programId:
+                                                    _model.dataGetOne!.id,
+                                                checkType: '0',
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ).then((value) => setState(() {}));
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  } else {
+                                    // Mở dialog tạo đơn thất bại
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: SizedBox(
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  1.0,
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              child:
+                                                  const PaymentSuccesExceptionComponentWidget(),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  }
                                 } else {
-                                  // Mở dialog tạo đơn thất bại
                                   await showDialog(
                                     context: context,
-                                    builder: (dialogContext) {
-                                      return Dialog(
-                                        elevation: 0,
-                                        insetPadding: EdgeInsets.zero,
-                                        backgroundColor: Colors.transparent,
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                        child: GestureDetector(
-                                          onTap: () => _model
-                                                  .unfocusNode.canRequestFocus
-                                              ? FocusScope.of(context)
-                                                  .requestFocus(
-                                                      _model.unfocusNode)
-                                              : FocusScope.of(context)
-                                                  .unfocus(),
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            child:
-                                                const PaymentSuccesExceptionComponentWidget(),
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: const Text(
+                                            'Thanh toán không thành công. Bạn vui lòng liên hệ Hotline để được hỗ trợ!'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
                                           ),
-                                        ),
+                                        ],
                                       );
                                     },
-                                  ).then((value) => setState(() {}));
+                                  );
                                 }
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Thông báo'),
-                                      content: const Text(
-                                          'Thanh toán không thành công. Bạn vui lòng liên hệ Hotline để được hỗ trợ!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
 
-                              if (shouldSetState) setState(() {});
-                            },
-                            text: 'Mua cho tổ chức',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                if (shouldSetState) setState(() {});
+                              },
+                              text: 'Mua cho tổ chức',
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              showLoadingIndicator: false,
                             ),
-                            showLoadingIndicator: false,
                           ),
                         ),
-                      ),
                     ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),

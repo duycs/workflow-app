@@ -11,7 +11,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -518,113 +517,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       accessToken: FFAppState()
                                                           .accessToken,
                                                       staffId: widget.staffId,
-                                                      filter: '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  _model
-                                                                      .dateStart1Filter),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
-                                                          return DateTime.parse(
-                                                                  var1)
-                                                              .add(const Duration(
-                                                                  days: 1))
-                                                              .toString();
-                                                        }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  _model
-                                                                      .dateStart2Filter),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
-                                                          if (_model
-                                                                  .typeFilter ==
-                                                              'Nhập văn bản') {
-                                                            return 'submit_text';
-                                                          } else if (_model
-                                                                  .typeFilter ==
-                                                              'Upload File') {
-                                                            return 'upload_file';
-                                                          } else if (_model
-                                                                  .typeFilter ==
-                                                              'Chụp ảnh') {
-                                                            return 'image';
-                                                          } else if (_model
-                                                                  .typeFilter ==
-                                                              'Check List Công việc') {
-                                                            return 'to_do_list';
-                                                          } else if (_model
-                                                                  .typeFilter ==
-                                                              'Phê duyệt') {
-                                                            return ' approve';
-                                                          } else {
-                                                            return ' ';
-                                                          }
-                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  _model
-                                                                      .dateEnd1Filter),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
-                                                          return DateTime.parse(
-                                                                  var1)
-                                                              .add(const Duration(
-                                                                  days: 1))
-                                                              .toString();
-                                                        }(dateTimeFormat(
-                                                          'yyyy-MM-dd',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  _model
-                                                                      .dateEnd2Filter),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
-                                                          if (_model
-                                                                  .statusFilter ==
-                                                              'Chưa thực hiện') {
-                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
-                                                          } else if (_model
-                                                                  .statusFilter ==
-                                                              'Đang thực hiện') {
-                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
-                                                          } else if (_model
-                                                                  .statusFilter ==
-                                                              'Hoàn thành') {
-                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
-                                                          } else {
-                                                            return ' ';
-                                                          }
-                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}',
+                                                      filter:
+                                                          _model.filterRequest,
                                                     );
 
                                                     shouldSetState = true;
                                                     if ((_model
                                                             .apiResultGetOneStaff1
                                                             ?.succeeded ??
-                                                        true)) {
-                                                      await actions
-                                                          .reportDetailToCsv(
-                                                        (_model.apiResultGetOneStaff1
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                      );
-                                                    }
+                                                        true)) {}
                                                   } else {
                                                     FFAppState().update(() {});
                                                     if (shouldSetState) {
@@ -918,6 +819,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         'Chưa thực hiện';
                                                                     _model.checkStatus1 =
                                                                         true;
+                                                                    _model.filterRequest =
+                                                                        '';
                                                                     setState(
                                                                         () {});
                                                                     setState(() => _model
@@ -927,6 +830,72 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         false;
                                                                     _model.checkStatus3 =
                                                                         false;
+                                                                    _model
+                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                        if (_model.typeFilter ==
+                                                                            'Nhập văn bản') {
+                                                                          return 'submit_text';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Upload File') {
+                                                                          return 'upload_file';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Chụp ảnh') {
+                                                                          return 'image';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Check List Công việc') {
+                                                                          return 'to_do_list';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Phê duyệt') {
+                                                                          return ' approve';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                        if (_model.statusFilter ==
+                                                                            'Chưa thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Đang thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Hoàn thành') {
+                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                                     setState(
                                                                         () {});
                                                                   },
@@ -1057,6 +1026,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         'Đang thực hiện';
                                                                     _model.checkStatus2 =
                                                                         true;
+                                                                    _model.filterRequest =
+                                                                        '';
                                                                     setState(
                                                                         () {});
                                                                     setState(() => _model
@@ -1066,6 +1037,72 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         false;
                                                                     _model.checkStatus3 =
                                                                         false;
+                                                                    _model
+                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                        if (_model.typeFilter ==
+                                                                            'Nhập văn bản') {
+                                                                          return 'submit_text';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Upload File') {
+                                                                          return 'upload_file';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Chụp ảnh') {
+                                                                          return 'image';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Check List Công việc') {
+                                                                          return 'to_do_list';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Phê duyệt') {
+                                                                          return ' approve';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                        if (_model.statusFilter ==
+                                                                            'Chưa thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Đang thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Hoàn thành') {
+                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                                     setState(
                                                                         () {});
                                                                   },
@@ -1195,6 +1232,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         'Hoàn thành';
                                                                     _model.checkStatus3 =
                                                                         true;
+                                                                    _model.filterRequest =
+                                                                        '';
                                                                     setState(
                                                                         () {});
                                                                     setState(() => _model
@@ -1204,6 +1243,72 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                         false;
                                                                     _model.checkStatus1 =
                                                                         false;
+                                                                    _model
+                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateStart2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                        if (_model.typeFilter ==
+                                                                            'Nhập văn bản') {
+                                                                          return 'submit_text';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Upload File') {
+                                                                          return 'upload_file';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Chụp ảnh') {
+                                                                          return 'image';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Check List Công việc') {
+                                                                          return 'to_do_list';
+                                                                        } else if (_model.typeFilter ==
+                                                                            'Phê duyệt') {
+                                                                          return ' approve';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd1Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                        return DateTime.parse(var1)
+                                                                            .add(const Duration(days: 1))
+                                                                            .toString();
+                                                                      }(dateTimeFormat(
+                                                                        'yyyy-MM-dd',
+                                                                        functions
+                                                                            .stringToDateTime(_model.dateEnd2Filter),
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                        if (_model.statusFilter ==
+                                                                            'Chưa thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Đang thực hiện') {
+                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                        } else if (_model.statusFilter ==
+                                                                            'Hoàn thành') {
+                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                        } else {
+                                                                          return ' ';
+                                                                        }
+                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                                     setState(
                                                                         () {});
                                                                   },
@@ -1374,6 +1479,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     onTap: () async {
                                                       _model.checkStatus4 =
                                                           true;
+                                                      _model.filterRequest = '';
                                                       setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController
@@ -1388,6 +1494,100 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model.checkStatus6 =
                                                           false;
+                                                      _model
+                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                          if (_model
+                                                                  .typeFilter ==
+                                                              'Nhập văn bản') {
+                                                            return 'submit_text';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Upload File') {
+                                                            return 'upload_file';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Chụp ảnh') {
+                                                            return 'image';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Check List Công việc') {
+                                                            return 'to_do_list';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Phê duyệt') {
+                                                            return ' approve';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                          if (_model
+                                                                  .statusFilter ==
+                                                              'Chưa thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Đang thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Hoàn thành') {
+                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                       setState(() {});
                                                     },
                                                     child: Text(
@@ -1541,6 +1741,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           true;
                                                       _model.statusFilter =
                                                           'Đang thực hiện';
+                                                      _model.filterRequest = '';
                                                       setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController
@@ -1555,6 +1756,100 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model.checkStatus4 =
                                                           false;
+                                                      _model
+                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                          if (_model
+                                                                  .typeFilter ==
+                                                              'Nhập văn bản') {
+                                                            return 'submit_text';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Upload File') {
+                                                            return 'upload_file';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Chụp ảnh') {
+                                                            return 'image';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Check List Công việc') {
+                                                            return 'to_do_list';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Phê duyệt') {
+                                                            return ' approve';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                          if (_model
+                                                                  .statusFilter ==
+                                                              'Chưa thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Đang thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Hoàn thành') {
+                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                       setState(() {});
                                                     },
                                                     child: Text(
@@ -1705,6 +2000,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           true;
                                                       _model.statusFilter =
                                                           'Hoàn thành';
+                                                      _model.filterRequest = '';
                                                       setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController
@@ -1719,6 +2015,100 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model.checkStatus4 =
                                                           false;
+                                                      _model
+                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                          if (_model
+                                                                  .typeFilter ==
+                                                              'Nhập văn bản') {
+                                                            return 'submit_text';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Upload File') {
+                                                            return 'upload_file';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Chụp ảnh') {
+                                                            return 'image';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Check List Công việc') {
+                                                            return 'to_do_list';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Phê duyệt') {
+                                                            return ' approve';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                          if (_model
+                                                                  .statusFilter ==
+                                                              'Chưa thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Đang thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Hoàn thành') {
+                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
                                                       setState(() {});
                                                     },
                                                     child: Text(
@@ -1762,6 +2152,101 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       setState(() => _model
                                                           .listViewPagingController
                                                           ?.refresh());
+                                                      _model
+                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateStart2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                          if (_model
+                                                                  .typeFilter ==
+                                                              'Nhập văn bản') {
+                                                            return 'submit_text';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Upload File') {
+                                                            return 'upload_file';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Chụp ảnh') {
+                                                            return 'image';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Check List Công việc') {
+                                                            return 'to_do_list';
+                                                          } else if (_model
+                                                                  .typeFilter ==
+                                                              'Phê duyệt') {
+                                                            return ' approve';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd1Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                          return DateTime.parse(
+                                                                  var1)
+                                                              .add(const Duration(
+                                                                  days: 1))
+                                                              .toString();
+                                                        }(dateTimeFormat(
+                                                          'yyyy-MM-dd',
+                                                          functions
+                                                              .stringToDateTime(
+                                                                  _model
+                                                                      .dateEnd2Filter),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                          if (_model
+                                                                  .statusFilter ==
+                                                              'Chưa thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Đang thực hiện') {
+                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                          } else if (_model
+                                                                  .statusFilter ==
+                                                              'Hoàn thành') {
+                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                          } else {
+                                                            return ' ';
+                                                          }
+                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                      setState(() {});
                                                     },
                                                   ),
                                                   autofocus: false,
@@ -1849,29 +2334,118 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       Icons.search,
                                                       size: 24.0,
                                                     ),
-                                                    suffixIcon: _model
-                                                            .textController!
-                                                            .text
-                                                            .isNotEmpty
-                                                        ? InkWell(
-                                                            onTap: () async {
-                                                              _model
-                                                                  .textController
-                                                                  ?.clear();
-                                                              setState(() => _model
-                                                                  .listViewPagingController
-                                                                  ?.refresh());
-                                                              setState(() {});
-                                                            },
-                                                            child: Icon(
-                                                              Icons.clear,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 18.0,
-                                                            ),
-                                                          )
-                                                        : null,
+                                                    suffixIcon:
+                                                        _model.textController!
+                                                                .text.isNotEmpty
+                                                            ? InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  _model
+                                                                      .textController
+                                                                      ?.clear();
+                                                                  setState(() => _model
+                                                                      .listViewPagingController
+                                                                      ?.refresh());
+                                                                  _model
+                                                                      .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                      'yyyy-MM-dd',
+                                                                      functions.stringToDateTime(
+                                                                          _model
+                                                                              .dateStart1Filter),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                      return DateTime.parse(
+                                                                              var1)
+                                                                          .add(const Duration(
+                                                                              days: 1))
+                                                                          .toString();
+                                                                    }(dateTimeFormat(
+                                                                      'yyyy-MM-dd',
+                                                                      functions.stringToDateTime(
+                                                                          _model
+                                                                              .dateStart2Filter),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                      if (_model
+                                                                              .typeFilter ==
+                                                                          'Nhập văn bản') {
+                                                                        return 'submit_text';
+                                                                      } else if (_model
+                                                                              .typeFilter ==
+                                                                          'Upload File') {
+                                                                        return 'upload_file';
+                                                                      } else if (_model
+                                                                              .typeFilter ==
+                                                                          'Chụp ảnh') {
+                                                                        return 'image';
+                                                                      } else if (_model
+                                                                              .typeFilter ==
+                                                                          'Check List Công việc') {
+                                                                        return 'to_do_list';
+                                                                      } else if (_model
+                                                                              .typeFilter ==
+                                                                          'Phê duyệt') {
+                                                                        return ' approve';
+                                                                      } else {
+                                                                        return ' ';
+                                                                      }
+                                                                    }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                      'yyyy-MM-dd',
+                                                                      functions.stringToDateTime(
+                                                                          _model
+                                                                              .dateEnd1Filter),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                      return DateTime.parse(
+                                                                              var1)
+                                                                          .add(const Duration(
+                                                                              days: 1))
+                                                                          .toString();
+                                                                    }(dateTimeFormat(
+                                                                      'yyyy-MM-dd',
+                                                                      functions.stringToDateTime(
+                                                                          _model
+                                                                              .dateEnd2Filter),
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                      if (_model
+                                                                              .statusFilter ==
+                                                                          'Chưa thực hiện') {
+                                                                        return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                      } else if (_model
+                                                                              .statusFilter ==
+                                                                          'Đang thực hiện') {
+                                                                        return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                      } else if (_model
+                                                                              .statusFilter ==
+                                                                          'Hoàn thành') {
+                                                                        return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                      } else {
+                                                                        return ' ';
+                                                                      }
+                                                                    }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                                  setState(
+                                                                      () {});
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                child: Icon(
+                                                                  Icons.clear,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 18.0,
+                                                                ),
+                                                              )
+                                                            : null,
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -1973,6 +2547,95 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 setState(() => _model
                                                                     .listViewPagingController
                                                                     ?.refresh());
+                                                                _model
+                                                                    .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    functions.stringToDateTime(
+                                                                        _model
+                                                                            .dateStart1Filter),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                    return DateTime.parse(
+                                                                            var1)
+                                                                        .add(const Duration(
+                                                                            days:
+                                                                                1))
+                                                                        .toString();
+                                                                  }(dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    functions.stringToDateTime(
+                                                                        _model
+                                                                            .dateStart2Filter),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                    if (_model
+                                                                            .typeFilter ==
+                                                                        'Nhập văn bản') {
+                                                                      return 'submit_text';
+                                                                    } else if (_model
+                                                                            .typeFilter ==
+                                                                        'Upload File') {
+                                                                      return 'upload_file';
+                                                                    } else if (_model
+                                                                            .typeFilter ==
+                                                                        'Chụp ảnh') {
+                                                                      return 'image';
+                                                                    } else if (_model
+                                                                            .typeFilter ==
+                                                                        'Check List Công việc') {
+                                                                      return 'to_do_list';
+                                                                    } else if (_model
+                                                                            .typeFilter ==
+                                                                        'Phê duyệt') {
+                                                                      return ' approve';
+                                                                    } else {
+                                                                      return ' ';
+                                                                    }
+                                                                  }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    functions.stringToDateTime(
+                                                                        _model
+                                                                            .dateEnd1Filter),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                    return DateTime.parse(
+                                                                            var1)
+                                                                        .add(const Duration(
+                                                                            days:
+                                                                                1))
+                                                                        .toString();
+                                                                  }(dateTimeFormat(
+                                                                    'yyyy-MM-dd',
+                                                                    functions.stringToDateTime(
+                                                                        _model
+                                                                            .dateEnd2Filter),
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                    if (_model
+                                                                            .statusFilter ==
+                                                                        'Chưa thực hiện') {
+                                                                      return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                    } else if (_model
+                                                                            .statusFilter ==
+                                                                        'Đang thực hiện') {
+                                                                      return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                    } else if (_model
+                                                                            .statusFilter ==
+                                                                        'Hoàn thành') {
+                                                                      return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                    } else {
+                                                                      return ' ';
+                                                                    }
+                                                                  }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                                setState(() {});
                                                               },
                                                             ),
                                                           ),
@@ -2142,6 +2805,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           false;
                                                       _model.statusFilter =
                                                           null;
+                                                      _model.filterRequest = '';
                                                       setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController

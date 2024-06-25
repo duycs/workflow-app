@@ -298,6 +298,19 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       setState(() => _model.testIdValue = val),
                                   width: 300.0,
                                   height: 50.0,
+                                  searchHintTextStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                  searchTextStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -306,6 +319,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Danh sách bài thi',
+                                  searchHintText: '',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
                                     color: FlutterFlowTheme.of(context)
@@ -323,7 +337,7 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
-                                  isSearchable: false,
+                                  isSearchable: true,
                                   isMultiSelect: false,
                                 ),
                               ),
@@ -342,18 +356,16 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                         callBack: (testId) async {
                                           _model.addToDataTest(testId!);
                                           setState(() {});
-                                          if (_model.dataTest.isNotEmpty) {
-                                            setState(() {
-                                              _model.testIdValueController
-                                                  ?.reset();
-                                            });
-                                            setState(() {
-                                              _model.testIdValueController
-                                                  ?.value = testId.id;
-                                            });
-                                            _model.testId = testId.id;
-                                            setState(() {});
-                                          }
+                                          setState(() {
+                                            _model.testIdValueController
+                                                ?.reset();
+                                          });
+                                          setState(() {
+                                            _model.testIdValueController
+                                                ?.value = testId.id;
+                                          });
+                                          _model.testId = testId.id;
+                                          setState(() {});
                                         },
                                       ),
                                     );

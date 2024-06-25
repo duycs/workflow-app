@@ -10,7 +10,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
-import '/news_feed/noti_create/noti_create_widget.dart';
+import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -386,7 +386,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: NotiCreateWidget(
+                                          child: NewsfeedCreateWidget(
                                             checkRequire: 1,
                                             checkScope: () {
                                               if (_model.choiceChipsValue ==
@@ -992,7 +992,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: NotiCreateWidget(
+                                          child: NewsfeedCreateWidget(
                                             checkRequire: 0,
                                             checkScope: () {
                                               if (_model.choiceChipsValue ==
@@ -1367,9 +1367,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
-                                          if ((newsfeedItem.content != null &&
+                                          if ((_model.newsfeedPublished
+                                                  .isNotEmpty) &&
+                                              (newsfeedItem != null) &&
+                                              (newsfeedItem.content != null &&
                                                   newsfeedItem.content != '') &&
-                                              ('1' == '1'))
+                                              ('1' == '2'))
                                             Text(
                                               newsfeedItem.content,
                                               textAlign: TextAlign.start,
@@ -1386,51 +1389,45 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'NewsfeedDetail',
-                                                queryParameters: {
-                                                  'newsfeedId': serializeParam(
-                                                    newsfeedItem.id,
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      const TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                    duration: Duration(
-                                                        milliseconds: 0),
-                                                  ),
+                                          if ((_model.newsfeedPublished
+                                                  .isNotEmpty) &&
+                                              (newsfeedItem != null) &&
+                                              (newsfeedItem.content != null &&
+                                                  newsfeedItem.content != '') &&
+                                              ('1' == '1'))
+                                            SizedBox(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              child: custom_widgets.FormatText(
+                                                width: 100.0,
+                                                height: 100.0,
+                                                number: 16,
+                                                text: newsfeedItem.content,
+                                                action: () async {
+                                                  context.pushNamed(
+                                                    'NewsfeedDetail',
+                                                    queryParameters: {
+                                                      'newsfeedId':
+                                                          serializeParam(
+                                                        newsfeedItem.id,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
                                                 },
-                                              );
-                                            },
-                                            child: Text(
-                                              'Xem thêm',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelSmall
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontStyle: FontStyle.italic,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                  ),
+                                              ),
                                             ),
-                                          ),
                                           if (newsfeedItem.images.length > 0)
                                             Container(
                                               decoration: const BoxDecoration(),
@@ -1441,6 +1438,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       .toList();
                                                   return MasonryGridView
                                                       .builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
                                                     gridDelegate:
                                                         const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                                       crossAxisCount: 2,
@@ -1524,6 +1523,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       .toList();
                                                   return MasonryGridView
                                                       .builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
                                                     gridDelegate:
                                                         const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                                       crossAxisCount: 2,
@@ -1542,6 +1543,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                         videoType:
                                                             VideoType.network,
+                                                        width: double.infinity,
+                                                        height: double.infinity,
                                                         autoPlay: false,
                                                         looping: true,
                                                         showControls: true,

@@ -72,7 +72,7 @@ class NewsfeedListCall {
           'offset': offset,
           'sort': "-date_created",
           'fields[]':
-              "reacts.id, comments.id, comments.comments_id.date_created, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar",
+              "reacts.id, comments.id, comments.comments_id.date_created, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -109,7 +109,7 @@ class NewsfeedOneCall {
       },
       params: {
         'fields[]':
-            "reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,comments.comments_id.staff_id.user_id.first_name.comments.comments_id.staff_id.user_id.id,user_created.id",
+            "reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.id,user_created.id,comments.comments_id.staff_id.user_id.avatar",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -229,7 +229,7 @@ class CommentsNewFeedDeleteCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'CommentsNewFeedDelete',
-      apiUrl: '$baseUrl/items/news_reacts/$id',
+      apiUrl: '$baseUrl/items/news_comments/$id',
       callType: ApiCallType.DELETE,
       headers: {
         'Content-Type': 'application/json',
@@ -3749,8 +3749,8 @@ class TaskGroup {
 class GetListTaskCall {
   Future<ApiCallResponse> call({
     String? filter = '',
-    int? limit = 20,
-    int? offset = 0,
+    int? limit,
+    int? offset,
     String? sort = '',
     String? meta = '',
     String? accessToken = '',

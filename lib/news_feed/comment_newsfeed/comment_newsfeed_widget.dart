@@ -661,60 +661,65 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                 ),
                               ),
                             ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  allowPhoto: false,
-                                  allowVideo: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  setState(
-                                      () => _model.isDataUploading2 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 2.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  final selectedMedia =
+                                      await selectMediaWithSourceBottomSheet(
+                                    context: context,
+                                    allowPhoto: false,
+                                    allowVideo: true,
+                                  );
+                                  if (selectedMedia != null &&
+                                      selectedMedia.every((m) =>
+                                          validateFileFormat(
+                                              m.storagePath, context))) {
+                                    setState(
+                                        () => _model.isDataUploading2 = true);
+                                    var selectedUploadedFiles =
+                                        <FFUploadedFile>[];
 
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading2 = false;
+                                    try {
+                                      selectedUploadedFiles = selectedMedia
+                                          .map((m) => FFUploadedFile(
+                                                name: m.storagePath
+                                                    .split('/')
+                                                    .last,
+                                                bytes: m.bytes,
+                                                height: m.dimensions?.height,
+                                                width: m.dimensions?.width,
+                                                blurHash: m.blurHash,
+                                              ))
+                                          .toList();
+                                    } finally {
+                                      _model.isDataUploading2 = false;
+                                    }
+                                    if (selectedUploadedFiles.length ==
+                                        selectedMedia.length) {
+                                      setState(() {
+                                        _model.uploadedLocalFile2 =
+                                            selectedUploadedFiles.first;
+                                      });
+                                    } else {
+                                      setState(() {});
+                                      return;
+                                    }
                                   }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedMedia.length) {
-                                    setState(() {
-                                      _model.uploadedLocalFile2 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    setState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/10764003.png',
-                                  width: 30.0,
-                                  height: 30.0,
-                                  fit: BoxFit.contain,
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    'assets/images/10764003.png',
+                                    width: 30.0,
+                                    height: 30.0,
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
                             ),
@@ -826,6 +831,19 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                         size: 24.0,
                                       ),
                                       onPressed: () async {
+                                        if (!((_model.textController.text !=
+                                                    '') ||
+                                            ((_model.uploadedLocalFile1.bytes
+                                                        ?.isNotEmpty ??
+                                                    false)) ||
+                                            ((_model.uploadedLocalFile2.bytes
+                                                        ?.isNotEmpty ??
+                                                    false)) ||
+                                            ((_model.uploadedLocalFile3.bytes
+                                                        ?.isNotEmpty ??
+                                                    false)))) {
+                                          return;
+                                        }
                                         if ((_model.uploadedLocalFile1.bytes
                                                     ?.isNotEmpty ??
                                                 false)) {
@@ -856,6 +874,30 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                         _model.uploadVideo = '';
                                         _model.uploadFile = '';
                                         setState(() {});
+                                        setState(() {
+                                          _model.isDataUploading1 = false;
+                                          _model.uploadedLocalFile1 =
+                                              FFUploadedFile(
+                                                  bytes:
+                                                      Uint8List.fromList([]));
+                                        });
+
+                                        setState(() {
+                                          _model.isDataUploading2 = false;
+                                          _model.uploadedLocalFile2 =
+                                              FFUploadedFile(
+                                                  bytes:
+                                                      Uint8List.fromList([]));
+                                        });
+
+                                        setState(() {
+                                          _model.isDataUploading3 = false;
+                                          _model.uploadedLocalFile3 =
+                                              FFUploadedFile(
+                                                  bytes:
+                                                      Uint8List.fromList([]));
+                                        });
+
                                         await _model.newsFeedGetOne(context);
                                         setState(() {});
                                         await widget.callBack?.call();
