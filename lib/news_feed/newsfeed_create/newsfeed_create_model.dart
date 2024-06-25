@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'noti_create_widget.dart' show NotiCreateWidget;
+import 'newsfeed_create_widget.dart' show NewsfeedCreateWidget;
 import 'package:flutter/material.dart';
 
-class NotiCreateModel extends FlutterFlowModel<NotiCreateWidget> {
+class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Content widget.

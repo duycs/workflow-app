@@ -10,7 +10,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
-import '/news_feed/noti_create/noti_create_widget.dart';
+import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -212,7 +212,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                     Flexible(
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            17.0, 16.0, 17.0, 0.0),
+                            17.0, 16.0, 17.0, 6.0),
                         child: FlutterFlowChoiceChips(
                           options: const [
                             ChipData('Tổ chức', Icons.location_city),
@@ -293,7 +293,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -386,7 +386,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: NotiCreateWidget(
+                                          child: NewsfeedCreateWidget(
                                             checkRequire: 1,
                                             checkScope: () {
                                               if (_model.choiceChipsValue ==
@@ -471,6 +471,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                 },
                                                 child: Container(
                                                   width: 170.0,
+                                                  height: 190.0,
                                                   decoration: BoxDecoration(
                                                     image: DecorationImage(
                                                       fit: BoxFit.cover,
@@ -784,36 +785,39 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                       if ((_model.newsfeedPublished.isEmpty) &&
                           (_model.isLoad == true))
                         Container(
-                          width: 100.0,
-                          height: 100.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 5.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.database,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  size: 30.0,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 16.0, 0.0, 16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 15.0),
+                                  child: FaIcon(
+                                    FontAwesomeIcons.database,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    size: 55.0,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                'Không có dữ liệu !',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ],
+                                Text(
+                                  'Không có dữ liệu !',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       if ('1' == '2')
@@ -931,7 +935,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                         ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -988,7 +992,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         child: Padding(
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
-                                          child: NotiCreateWidget(
+                                          child: NewsfeedCreateWidget(
                                             checkRequire: 0,
                                             checkScope: () {
                                               if (_model.choiceChipsValue ==
@@ -1023,8 +1027,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               () => _model.listViewPagingController?.refresh());
                           await _model.waitForOnePageForListView();
                         },
-                        child:
-                            PagedListView<ApiPagingParams, dynamic>.separated(
+                        child: PagedListView<ApiPagingParams, dynamic>(
                           pagingController: _model.setListViewController(
                             (nextPageMarker) =>
                                 NewsfeedGroup.newsfeedListCall.call(
@@ -1123,17 +1126,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               offset: nextPageMarker.nextPageNumber * 20,
                             ),
                           ),
-                          padding: const EdgeInsets.fromLTRB(
-                            0,
-                            0,
-                            0,
-                            44.0,
-                          ),
+                          padding: EdgeInsets.zero,
                           primary: false,
                           shrinkWrap: true,
                           reverse: false,
                           scrollDirection: Axis.vertical,
-                          separatorBuilder: (_, __) => const SizedBox(height: 8.0),
                           builderDelegate: PagedChildBuilderDelegate<dynamic>(
                             // Customize what your widget looks like when it's loading the first page.
                             firstPageProgressIndicatorBuilder: (_) => Center(
@@ -1165,617 +1162,482 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               final newsfeedItem = _model
                                   .listViewPagingController!
                                   .itemList![newsfeedIndex];
-                              return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 4.0, 0.0, 0.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 16.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .accent1,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          90.0),
-                                                  shape: BoxShape.rectangle,
-                                                  border: Border.all(
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 16.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primary,
-                                                    width: 2.0,
-                                                  ),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(2.0),
-                                                  child: ClipRRect(
+                                                        .accent1,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             90.0),
-                                                    child: Image.network(
-                                                      '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
-                                                      width: 300.0,
-                                                      height: 200.0,
-                                                      fit: BoxFit.cover,
+                                                    shape: BoxShape.rectangle,
+                                                    border: Border.all(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 2.0,
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 0.0, 0.0, 0.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        newsfeedItem.userCreated
-                                                            .firstName,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                      ),
-                                                      Text(
-                                                        dateTimeFormat(
-                                                          'relative',
-                                                          functions
-                                                              .stringToDateTime(
-                                                                  newsfeedItem
-                                                                      .dateCreated),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      13.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              Builder(
-                                                builder: (context) =>
-                                                    FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Colors.transparent,
-                                                  borderRadius: 20.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons.keyboard_control,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    await showAlignedDialog(
-                                                      context: context,
-                                                      isGlobal: false,
-                                                      avoidOverflow: false,
-                                                      targetAnchor:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      followerAnchor:
-                                                          const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                      builder: (dialogContext) {
-                                                        return Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                const ActionNewsfeedWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        setState(() {}));
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        if (newsfeedItem.title != null &&
-                                            newsfeedItem.title != '')
-                                          Text(
-                                            newsfeedItem.title,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 14.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                          ),
-                                        if ((newsfeedItem.content != null &&
-                                                newsfeedItem.content != '') &&
-                                            ('1' == '1'))
-                                          Text(
-                                            newsfeedItem.content,
-                                            textAlign: TextAlign.start,
-                                            maxLines: 2,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'NewsfeedDetail',
-                                              queryParameters: {
-                                                'newsfeedId': serializeParam(
-                                                  newsfeedItem.id,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          child: Text(
-                                            'Xem thêm',
-                                            textAlign: TextAlign.end,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelSmall
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  fontSize: 14.0,
-                                                  letterSpacing: 0.0,
-                                                  fontStyle: FontStyle.italic,
-                                                  decoration:
-                                                      TextDecoration.underline,
-                                                ),
-                                          ),
-                                        ),
-                                        if (newsfeedItem.images.length > 0)
-                                          Container(
-                                            decoration: const BoxDecoration(),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final imageList = newsfeedItem
-                                                    .images
-                                                    .toList();
-                                                return MasonryGridView.builder(
-                                                  gridDelegate:
-                                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 2,
-                                                  ),
-                                                  crossAxisSpacing: 6.0,
-                                                  mainAxisSpacing: 6.0,
-                                                  itemCount: imageList.length,
-                                                  shrinkWrap: true,
-                                                  itemBuilder: (context,
-                                                      imageListIndex) {
-                                                    final imageListItem =
-                                                        imageList[
-                                                            imageListIndex];
-                                                    return InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            child:
-                                                                FlutterFlowExpandedImageView(
-                                                              image:
-                                                                  Image.network(
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                              allowRotation:
-                                                                  false,
-                                                              tag:
-                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                              useHeroAnimation:
-                                                                  true,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: Hero(
-                                                        tag:
-                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                        transitionOnUserGestures:
-                                                            true,
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        Container(
-                                          decoration: const BoxDecoration(),
-                                          child: Visibility(
-                                            visible:
-                                                newsfeedItem.videos.length > 0,
-                                            child: Builder(
-                                              builder: (context) {
-                                                final videoList = newsfeedItem
-                                                    .videos
-                                                    .toList();
-                                                return MasonryGridView.builder(
-                                                  gridDelegate:
-                                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 2,
-                                                  ),
-                                                  crossAxisSpacing: 6.0,
-                                                  mainAxisSpacing: 6.0,
-                                                  itemCount: videoList.length,
-                                                  shrinkWrap: true,
-                                                  itemBuilder: (context,
-                                                      videoListIndex) {
-                                                    final videoListItem =
-                                                        videoList[
-                                                            videoListIndex];
-                                                    return FlutterFlowVideoPlayer(
-                                                      path:
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                      videoType:
-                                                          VideoType.network,
-                                                      autoPlay: false,
-                                                      looping: true,
-                                                      showControls: true,
-                                                      allowFullScreen: true,
-                                                      allowPlaybackSpeedMenu:
-                                                          false,
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 8.0, 0.0, 6.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              const Icon(
-                                                Icons.favorite,
-                                                color: Color(0xFFF40A0A),
-                                                size: 18.0,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 16.0, 0.0),
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    newsfeedItem.reacts.length
-                                                        .toString(),
-                                                    '0',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                              Icon(
-                                                Icons.comment,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 18.0,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 16.0, 0.0),
-                                                child: Text(
-                                                  '${valueOrDefault<String>(
-                                                    newsfeedItem.comments.length
-                                                        .toString(),
-                                                    '0',
-                                                  )} bình luận',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ].divide(const SizedBox(width: 3.0)),
-                                          ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            if (newsfeedItem.reacts
-                                                    .where((e) =>
-                                                        e.reactsId.staffId ==
-                                                        FFAppState().staffid)
-                                                    .toList()
-                                                    .length ==
-                                                0)
-                                              InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await _model.reactNewsfeed(
-                                                    context,
-                                                    newsId: newsfeedItem.id,
-                                                  );
-                                                  setState(() {});
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-
-                                                  setState(() {});
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
                                                   ),
                                                   child: Padding(
                                                     padding:
+                                                        const EdgeInsets.all(2.0),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              90.0),
+                                                      child: Image.network(
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
+                                                        width: 300.0,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 4.0,
-                                                                8.0, 4.0),
-                                                    child: Row(
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Column(
                                                       mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Icon(
-                                                          Icons.favorite_border,
+                                                        Text(
+                                                          newsfeedItem
+                                                              .userCreated
+                                                              .firstName,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                        Text(
+                                                          dateTimeFormat(
+                                                            'relative',
+                                                            functions
+                                                                .stringToDateTime(
+                                                                    newsfeedItem
+                                                                        .dateCreated),
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Builder(
+                                                  builder: (context) =>
+                                                      FlutterFlowIconButton(
+                                                    borderColor:
+                                                        Colors.transparent,
+                                                    borderRadius: 20.0,
+                                                    borderWidth: 1.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.keyboard_control,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      await showAlignedDialog(
+                                                        context: context,
+                                                        isGlobal: false,
+                                                        avoidOverflow: false,
+                                                        targetAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        followerAnchor:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  const ActionNewsfeedWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          if (newsfeedItem.title != null &&
+                                              newsfeedItem.title != '')
+                                            Text(
+                                              newsfeedItem.title,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          if ((_model.newsfeedPublished
+                                                  .isNotEmpty) &&
+                                              (newsfeedItem != null) &&
+                                              (newsfeedItem.content != null &&
+                                                  newsfeedItem.content != '') &&
+                                              ('1' == '2'))
+                                            Text(
+                                              newsfeedItem.content,
+                                              textAlign: TextAlign.start,
+                                              maxLines: 3,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          if ((_model.newsfeedPublished
+                                                  .isNotEmpty) &&
+                                              (newsfeedItem != null) &&
+                                              (newsfeedItem.content != null &&
+                                                  newsfeedItem.content != '') &&
+                                              ('1' == '1'))
+                                            SizedBox(
+                                              width: 100.0,
+                                              height: 100.0,
+                                              child: custom_widgets.FormatText(
+                                                width: 100.0,
+                                                height: 100.0,
+                                                number: 16,
+                                                text: newsfeedItem.content,
+                                                action: () async {
+                                                  context.pushNamed(
+                                                    'NewsfeedDetail',
+                                                    queryParameters: {
+                                                      'newsfeedId':
+                                                          serializeParam(
+                                                        newsfeedItem.id,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          if (newsfeedItem.images.length > 0)
+                                            Container(
+                                              decoration: const BoxDecoration(),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final imageList = newsfeedItem
+                                                      .images
+                                                      .toList();
+                                                  return MasonryGridView
+                                                      .builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    gridDelegate:
+                                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                      crossAxisCount: 2,
+                                                    ),
+                                                    crossAxisSpacing: 6.0,
+                                                    mainAxisSpacing: 6.0,
+                                                    itemCount: imageList.length,
+                                                    shrinkWrap: true,
+                                                    itemBuilder: (context,
+                                                        imageListIndex) {
+                                                      final imageListItem =
+                                                          imageList[
+                                                              imageListIndex];
+                                                      return InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            PageTransition(
+                                                              type:
+                                                                  PageTransitionType
+                                                                      .fade,
+                                                              child:
+                                                                  FlutterFlowExpandedImageView(
+                                                                image: Image
+                                                                    .network(
+                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                  fit: BoxFit
+                                                                      .contain,
+                                                                ),
+                                                                allowRotation:
+                                                                    false,
+                                                                tag:
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                useHeroAnimation:
+                                                                    true,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Hero(
+                                                          tag:
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                          transitionOnUserGestures:
+                                                              true,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          Container(
+                                            decoration: const BoxDecoration(),
+                                            child: Visibility(
+                                              visible:
+                                                  newsfeedItem.videos.length >
+                                                      0,
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final videoList = newsfeedItem
+                                                      .videos
+                                                      .toList();
+                                                  return MasonryGridView
+                                                      .builder(
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    gridDelegate:
+                                                        const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                      crossAxisCount: 2,
+                                                    ),
+                                                    crossAxisSpacing: 6.0,
+                                                    mainAxisSpacing: 6.0,
+                                                    itemCount: videoList.length,
+                                                    shrinkWrap: true,
+                                                    itemBuilder: (context,
+                                                        videoListIndex) {
+                                                      final videoListItem =
+                                                          videoList[
+                                                              videoListIndex];
+                                                      return FlutterFlowVideoPlayer(
+                                                        path:
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                        videoType:
+                                                            VideoType.network,
+                                                        width: double.infinity,
+                                                        height: double.infinity,
+                                                        autoPlay: false,
+                                                        looping: true,
+                                                        showControls: true,
+                                                        allowFullScreen: true,
+                                                        allowPlaybackSpeedMenu:
+                                                            false,
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 6.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                const Icon(
+                                                  Icons.favorite,
+                                                  color: Color(0xFFF40A0A),
+                                                  size: 18.0,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 16.0, 0.0),
+                                                  child: Text(
+                                                    valueOrDefault<String>(
+                                                      newsfeedItem.reacts.length
+                                                          .toString(),
+                                                      '0',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          size: 20.0,
+                                                          letterSpacing: 0.0,
                                                         ),
-                                                        Text(
-                                                          'Thích',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ].divide(
-                                                          const SizedBox(width: 4.0)),
-                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            if (newsfeedItem.reacts
-                                                    .where((e) =>
-                                                        e.reactsId.staffId ==
-                                                        FFAppState().staffid)
-                                                    .toList()
-                                                    .length >
-                                                0)
-                                              InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await _model
-                                                      .reactNewsfeedDelete(
-                                                    context,
-                                                    reactId: newsfeedItem.reacts
-                                                        .where((e) =>
-                                                            e.reactsId
-                                                                .staffId ==
-                                                            FFAppState()
-                                                                .staffid)
-                                                        .toList()
-                                                        .first
-                                                        .id,
-                                                  );
-                                                  setState(() {});
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-
-                                                  setState(() {});
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
+                                                Icon(
+                                                  Icons.comment,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 18.0,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 16.0, 0.0),
+                                                  child: Text(
+                                                    '${valueOrDefault<String>(
+                                                      newsfeedItem
+                                                          .comments.length
+                                                          .toString(),
+                                                      '0',
+                                                    )} bình luận',
+                                                    style: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 4.0,
-                                                                8.0, 4.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        const Icon(
-                                                          Icons.favorite,
-                                                          color:
-                                                              Color(0xFFF40A0A),
-                                                          size: 20.0,
-                                                        ),
-                                                        Text(
-                                                          'Thích',
-                                                          style: FlutterFlowTheme
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
                                                         ),
-                                                      ].divide(
-                                                          const SizedBox(width: 4.0)),
-                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            Expanded(
-                                              child: Builder(
-                                                builder: (context) => InkWell(
+                                              ].divide(const SizedBox(width: 3.0)),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              if (newsfeedItem.reacts
+                                                      .where((e) =>
+                                                          e.reactsId.staffId ==
+                                                          FFAppState().staffid)
+                                                      .toList()
+                                                      .length ==
+                                                  0)
+                                                InkWell(
                                                   splashColor:
                                                       Colors.transparent,
                                                   focusColor:
@@ -1785,47 +1647,14 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                CommentNewsfeedWidget(
-                                                              comment:
-                                                                  newsfeedItem
-                                                                      .comments,
-                                                              id: newsfeedItem
-                                                                  .id,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        setState(() {}));
+                                                    await _model.reactNewsfeed(
+                                                      context,
+                                                      newsId: newsfeedItem.id,
+                                                    );
+                                                    setState(() {});
+                                                    setState(() => _model
+                                                        .listViewPagingController
+                                                        ?.refresh());
                                                   },
                                                   child: Container(
                                                     decoration: BoxDecoration(
@@ -1834,7 +1663,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           .primaryBackground,
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              90.0),
+                                                              20.0),
                                                     ),
                                                     child: Padding(
                                                       padding:
@@ -1851,40 +1680,245 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                             MainAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Expanded(
-                                                            child: Text(
-                                                              'Nhập bình luận',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                          ),
                                                           Icon(
-                                                            Icons.tag_faces,
+                                                            Icons
+                                                                .favorite_border,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
-                                                            size: 24.0,
+                                                            size: 20.0,
                                                           ),
-                                                        ],
+                                                          Text(
+                                                            'Thích',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 4.0)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              if (newsfeedItem.reacts
+                                                      .where((e) =>
+                                                          e.reactsId.staffId ==
+                                                          FFAppState().staffid)
+                                                      .toList()
+                                                      .length >
+                                                  0)
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await _model
+                                                        .reactNewsfeedDelete(
+                                                      context,
+                                                      reactId: newsfeedItem
+                                                          .reacts
+                                                          .where((e) =>
+                                                              e.reactsId
+                                                                  .staffId ==
+                                                              FFAppState()
+                                                                  .staffid)
+                                                          .toList()
+                                                          .first
+                                                          .id,
+                                                    );
+                                                    setState(() {});
+                                                    setState(() => _model
+                                                        .listViewPagingController
+                                                        ?.refresh());
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  4.0,
+                                                                  8.0,
+                                                                  4.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Icon(
+                                                            Icons.favorite,
+                                                            color: Color(
+                                                                0xFFF40A0A),
+                                                            size: 20.0,
+                                                          ),
+                                                          Text(
+                                                            'Thích',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ].divide(const SizedBox(
+                                                            width: 4.0)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              Expanded(
+                                                child: Builder(
+                                                  builder: (context) => InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  CommentNewsfeedWidget(
+                                                                comment:
+                                                                    newsfeedItem
+                                                                        .comments,
+                                                                id: newsfeedItem
+                                                                    .id,
+                                                                callBack:
+                                                                    () async {
+                                                                  await _model
+                                                                      .newsfeedListRequire(
+                                                                          context);
+
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          setState(() {}));
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(90.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    4.0,
+                                                                    8.0,
+                                                                    4.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                'Nhập bình luận',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            Icon(
+                                                              Icons.tag_faces,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ].divide(const SizedBox(width: 8.0)),
-                                        ),
-                                      ],
+                                            ].divide(const SizedBox(width: 8.0)),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

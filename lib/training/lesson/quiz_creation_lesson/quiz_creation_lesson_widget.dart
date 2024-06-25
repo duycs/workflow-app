@@ -23,7 +23,7 @@ class QuizCreationLessonWidget extends StatefulWidget {
     required this.callBack,
   });
 
-  final Future Function(String testId)? callBack;
+  final Future Function(TestListStruct? testId)? callBack;
 
   @override
   State<QuizCreationLessonWidget> createState() =>
@@ -75,7 +75,12 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
           child: Container(
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(0.0),
+                bottomRight: Radius.circular(0.0),
+                topLeft: Radius.circular(0.0),
+                topRight: Radius.circular(0.0),
+              ),
               border: Border.all(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -768,8 +773,6 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
                                     );
 
                                     shouldSetState = true;
-                                    await Future.delayed(
-                                        const Duration(milliseconds: 500));
                                     if ((_model
                                             .apiResultCreatedTest?.succeeded ??
                                         true)) {
@@ -792,12 +795,13 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
                                         ),
                                       );
                                       await widget.callBack?.call(
-                                        getJsonField(
+                                        TestListStruct.maybeFromMap(
+                                            getJsonField(
                                           (_model.apiResultCreatedTest
                                                   ?.jsonBody ??
                                               ''),
-                                          r'''$.data.id''',
-                                        ).toString(),
+                                          r'''$.data''',
+                                        )),
                                       );
                                       Navigator.pop(context);
                                     } else {

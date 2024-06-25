@@ -162,6 +162,9 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                   }
                                 }
 
+                                await _model.getListStaffs(context);
+                                setState(() {});
+
                                 setState(() {});
                               },
                             ),
@@ -248,6 +251,9 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                           }
                                         }
 
+                                        await _model.getListStaffs(context);
+                                        setState(() {});
+
                                         setState(() {});
                                         setState(() {});
                                       },
@@ -317,6 +323,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                           setState(() => _model
                                               .listViewPagingController
                                               ?.refresh());
+                                          await _model.getListStaffs(context);
                                         },
                                       ),
                                     ),
@@ -385,7 +392,7 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
                                   child: SizedBox(
-                                    height: 190.0,
+                                    height: 240.0,
                                     width: 300.0,
                                     child: ExportExcelWidget(
                                       json: _model.json,

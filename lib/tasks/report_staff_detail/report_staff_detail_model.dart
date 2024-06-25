@@ -96,8 +96,6 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // State field(s) for Column widget.
-  ScrollController? columnController1;
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
@@ -110,39 +108,25 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
-  ScrollController? listViewController0;
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
-  // State field(s) for Column widget.
-  ScrollController? columnController2;
   // State field(s) for DropDown widget.
   String? dropDownValue2;
   FormFieldController<String>? dropDownValueController2;
-  // State field(s) for Column widget.
-  ScrollController? columnController3;
 
   @override
-  void initState(BuildContext context) {
-    columnController1 = ScrollController();
-    listViewController0 = ScrollController();
-    columnController2 = ScrollController();
-    columnController3 = ScrollController();
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
-    columnController1?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    listViewController0?.dispose();
     listViewPagingController?.dispose();
-    columnController2?.dispose();
-    columnController3?.dispose();
   }
 
   /// Action blocks.

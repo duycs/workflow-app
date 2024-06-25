@@ -160,6 +160,40 @@ class _ExportExcelWidgetState extends State<ExportExcelWidget> {
                   ].divide(const SizedBox(width: 5.0)),
                 ),
               ),
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await actions.reportStaffDetailToCsv(
+                    widget.json!,
+                  );
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      Icons.rule,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 20.0,
+                    ),
+                    Container(
+                      width: 200.0,
+                      decoration: const BoxDecoration(),
+                      child: Text(
+                        'Báo cáo về tiến độ thực hiện nhiện vụ của nhân viên',
+                        maxLines: 2,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
+                  ].divide(const SizedBox(width: 5.0)),
+                ),
+              ),
             ].divide(const SizedBox(height: 3.0)),
           ),
         ),

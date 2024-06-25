@@ -3,11 +3,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'noti_create_model.dart';
-export 'noti_create_model.dart';
+import 'newsfeed_create_model.dart';
+export 'newsfeed_create_model.dart';
 
-class NotiCreateWidget extends StatefulWidget {
-  const NotiCreateWidget({
+class NewsfeedCreateWidget extends StatefulWidget {
+  const NewsfeedCreateWidget({
     super.key,
     required this.checkRequire,
     required this.checkScope,
@@ -17,11 +17,11 @@ class NotiCreateWidget extends StatefulWidget {
   final int? checkScope;
 
   @override
-  State<NotiCreateWidget> createState() => _NotiCreateWidgetState();
+  State<NewsfeedCreateWidget> createState() => _NewsfeedCreateWidgetState();
 }
 
-class _NotiCreateWidgetState extends State<NotiCreateWidget> {
-  late NotiCreateModel _model;
+class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
+  late NewsfeedCreateModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -32,7 +32,7 @@ class _NotiCreateWidgetState extends State<NotiCreateWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NotiCreateModel());
+    _model = createModel(context, () => NewsfeedCreateModel());
 
     _model.contentTextController ??= TextEditingController();
     _model.contentFocusNode ??= FocusNode();

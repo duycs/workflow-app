@@ -294,6 +294,19 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       setState(() => _model.testIdValue = val),
                                   width: 300.0,
                                   height: 50.0,
+                                  searchHintTextStyle:
+                                      FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                  searchTextStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -302,6 +315,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: 'Danh sách bài thi',
+                                  searchHintText: '',
                                   icon: Icon(
                                     Icons.keyboard_arrow_down_rounded,
                                     color: FlutterFlowTheme.of(context)
@@ -319,7 +333,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       16.0, 4.0, 16.0, 4.0),
                                   hidesUnderline: true,
                                   isOverButton: true,
-                                  isSearchable: false,
+                                  isSearchable: true,
                                   isMultiSelect: false,
                                 ),
                               ),
@@ -349,28 +363,24 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           child: SizedBox(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
-                                                0.9,
+                                                1.0,
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
-                                                0.9,
+                                                1.0,
                                             child: QuizCreationLessonWidget(
                                               callBack: (testId) async {
-                                                await _model.testList(context);
-                                                await _model.testList(context);
-                                                if (_model.list.isNotEmpty) {
-                                                  setState(() {
-                                                    _model.testIdValueController
-                                                        ?.reset();
-                                                  });
-                                                  setState(() {
-                                                    _model.testIdValueController
-                                                        ?.value = testId;
-                                                  });
-                                                  _model.testId = testId;
-                                                  setState(() {});
-                                                } else {
-                                                  return;
-                                                }
+                                                _model.addToList(testId!);
+                                                setState(() {});
+                                                setState(() {
+                                                  _model.testIdValueController
+                                                      ?.reset();
+                                                });
+                                                setState(() {
+                                                  _model.testIdValueController
+                                                      ?.value = testId.id;
+                                                });
+                                                _model.testId = testId.id;
+                                                setState(() {});
                                               },
                                             ),
                                           ),
@@ -1230,15 +1240,23 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                                 .requestFocus(
                                                     _model.unfocusNode)
                                             : FocusScope.of(context).unfocus(),
-                                        child: CkeditorCreateLessonWidget(
-                                          input: _model.input,
-                                          output: _model.output,
-                                          callBack: (input, output) async {
-                                            _model.checkContent = output!;
-                                            _model.input = input!;
-                                            _model.output = output;
-                                            setState(() {});
-                                          },
+                                        child: SizedBox(
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          child: CkeditorCreateLessonWidget(
+                                            input: _model.input,
+                                            output: _model.output,
+                                            callBack: (input, output) async {
+                                              _model.checkContent = output!;
+                                              _model.input = input!;
+                                              _model.output = output;
+                                              setState(() {});
+                                            },
+                                          ),
                                         ),
                                       ),
                                     );

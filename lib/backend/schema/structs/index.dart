@@ -21,6 +21,7 @@ export 'create_domain_authors_struct.dart';
 export 'create_domain_authors_list_struct.dart';
 export 'customer_id_struct.dart';
 export 'data_struct.dart';
+export 'data_list_news_feed_struct.dart';
 export 'department_list_struct.dart';
 export 'department_list_data_struct.dart';
 export 'departments_id_struct.dart';

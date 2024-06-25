@@ -38,7 +38,7 @@ class _ActionNewsfeedWidgetState extends State<ActionNewsfeedWidget> {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
       child: Container(
-        width: double.infinity,
+        width: 200.0,
         constraints: const BoxConstraints(
           maxWidth: 300.0,
           maxHeight: 200.0,

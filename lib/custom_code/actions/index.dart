@@ -23,3 +23,4 @@ export 'export_excel_test.dart' show exportExcelTest;
 export 'export_excel_get_one_test.dart' show exportExcelGetOneTest;
 export 'export_excel_get_one.dart' show exportExcelGetOne;
 export 'export_excel_get_one_lesson.dart' show exportExcelGetOneLesson;
+export 'report_staff_detail_to_csv.dart' show reportStaffDetailToCsv;

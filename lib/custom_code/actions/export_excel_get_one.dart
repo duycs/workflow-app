@@ -37,7 +37,6 @@ String formatDate(String dateStr) {
 }
 
 Future exportExcelGetOne(dynamic item) async {
-  // Add your function code here!
   try {
     String extensionFirst = generateRandomString(12);
     final Map<String, dynamic> parsedData =
@@ -124,7 +123,6 @@ Future exportExcelGetOne(dynamic item) async {
         ]);
       }
     } else {
-      // Handle case where no staff_programs exist
       sheetObject.appendRow([
         userName,
         title,
@@ -133,11 +131,11 @@ Future exportExcelGetOne(dynamic item) async {
         email,
         status,
         phone,
-        '', // programName
-        '', // programStatus
-        '', // dateCreated
-        '', // deadline
-        0, // numberOfLessons
+        '',
+        '',
+        '',
+        '',
+        0,
       ]);
     }
 
@@ -155,11 +153,13 @@ Future exportExcelGetOne(dynamic item) async {
     File(filePath)
       ..createSync(recursive: true)
       ..writeAsBytesSync(excel.encode()!);
-    await Share.shareXFiles([XFile(filePath)]);
 
     if (Platform.isAndroid) {
       Fluttertoast.showToast(msg: 'Tải xuống thành công');
     }
+    await Future.delayed(Duration(seconds: 1));
+
+    await Share.shareXFiles([XFile(filePath)]);
   } catch (e) {
     Fluttertoast.showToast(msg: 'Đã xảy ra lỗi: $e');
   }

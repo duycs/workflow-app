@@ -328,7 +328,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.goNamed(
-                      'ProfileCPN',
+                      'Newsfeed',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
@@ -357,7 +357,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              Icons.location_city,
+                              Icons.newspaper_sharp,
                               color: valueOrDefault<Color>(
                                 widget.selectedPageIndex == 4
                                     ? FlutterFlowTheme.of(context)
@@ -371,7 +371,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                             ),
                             if (widget.selectedPageIndex == 4)
                               Text(
-                                'Công ty',
+                                'Bảng tin',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
