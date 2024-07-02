@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
+import '/procedure_publishing/procedure_published/procedure_published_widget.dart';
 import '/tasks/do_action_type_approve/do_action_type_approve_widget.dart';
 import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
@@ -68,7 +68,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                     : FocusScope.of(context).unfocus(),
                 child: Padding(
                   padding: MediaQuery.viewInsetsOf(context),
-                  child: ProcedurePushlishedWidget(
+                  child: ProcedurePublishedWidget(
                     callback: () async {
                       await _model.getTaskToDo(context);
                       await _model.getTaskToDo(context);
@@ -128,42 +128,49 @@ class _TaskListWidgetState extends State<TaskListWidget> {
           visible: !(isWeb
               ? MediaQuery.viewInsetsOf(context).bottom > 0
               : _isKeyboardVisible),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
-            child: FloatingActionButton(
-              onPressed: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  enableDrag: false,
-                  context: context,
-                  builder: (context) {
-                    return GestureDetector(
-                      onTap: () => _model.unfocusNode.canRequestFocus
-                          ? FocusScope.of(context)
-                              .requestFocus(_model.unfocusNode)
-                          : FocusScope.of(context).unfocus(),
-                      child: Padding(
-                        padding: MediaQuery.viewInsetsOf(context),
-                        child: ProcedurePushlishedWidget(
-                          callback: () async {
-                            await _model.getTaskToDo(context);
-                            await _model.getNumberTask(context);
-                            setState(() =>
-                                _model.listViewPagingController1?.refresh());
-                          },
+          child: Builder(
+            builder: (context) => Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
+              child: FloatingActionButton(
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return Dialog(
+                        elevation: 0,
+                        insetPadding: EdgeInsets.zero,
+                        backgroundColor: Colors.transparent,
+                        alignment: const AlignmentDirectional(0.0, 0.0)
+                            .resolve(Directionality.of(context)),
+                        child: GestureDetector(
+                          onTap: () => _model.unfocusNode.canRequestFocus
+                              ? FocusScope.of(context)
+                                  .requestFocus(_model.unfocusNode)
+                              : FocusScope.of(context).unfocus(),
+                          child: SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            child: ProcedurePublishedWidget(
+                              callback: () async {
+                                await _model.getTaskToDo(context);
+                                await _model.getNumberTask(context);
+                                setState(() => _model.listViewPagingController1
+                                    ?.refresh());
+                              },
+                            ),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-              },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              elevation: 1.0,
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
+                      );
+                    },
+                  ).then((value) => setState(() {}));
+                },
+                backgroundColor: FlutterFlowTheme.of(context).primary,
+                elevation: 1.0,
+                child: Icon(
+                  Icons.add,
+                  color: FlutterFlowTheme.of(context).info,
+                  size: 24.0,
+                ),
               ),
             ),
           ),

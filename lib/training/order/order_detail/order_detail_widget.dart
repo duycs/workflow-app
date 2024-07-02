@@ -807,141 +807,150 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: OrderUpdateWidget(
-                                        image: widget.image,
-                                        name: widget.name!,
-                                        rating: widget.rating,
-                                        numlession: 0,
-                                        price: widget.price!,
-                                        quantity: widget.quantity!,
-                                        totalPrice: widget.totalPrice!,
-                                        author: widget.author!,
-                                        private: widget.private!,
-                                        orderId: widget.orderId!,
-                                        programId: widget.programId!,
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
+                            child: Builder(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: OrderUpdateWidget(
+                                          image: widget.image,
+                                          name: widget.name!,
+                                          rating: widget.rating,
+                                          author: widget.author!,
+                                          numlession: 0,
+                                          price: widget.price!,
+                                          quantity: widget.quantity!,
+                                          totalPrice: widget.totalPrice!,
+                                          private: widget.private!,
+                                          orderId: widget.orderId!,
+                                          programId: widget.programId!,
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
 
-                                Navigator.pop(context);
-                              },
-                              text: 'Chỉnh sửa',
-                              icon: const Icon(
-                                Icons.edit,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  Navigator.pop(context);
+                                },
+                                text: 'Chỉnh sửa',
+                                icon: const Icon(
+                                  Icons.edit,
+                                  size: 15.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                             ),
                           ),
                           Expanded(
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                var shouldSetState = false;
-                                _model.orderUpdateStatus1 =
-                                    await action_blocks.tokenReload(context);
-                                shouldSetState = true;
-                                if (_model.orderUpdateStatus1!) {
-                                  _model.apiResultQrCodeCreate =
-                                      await OrderGroup.qrCodeCall.call(
-                                    accessToken: FFAppState().accessToken,
-                                    orderId: widget.orderId,
-                                  );
-
+                            child: Builder(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  var shouldSetState = false;
+                                  _model.orderUpdateStatus1 =
+                                      await action_blocks.tokenReload(context);
                                   shouldSetState = true;
-                                  if ((_model
-                                          .apiResultQrCodeCreate?.succeeded ??
-                                      true)) {
-                                    await showModalBottomSheet(
-                                      isScrollControlled: true,
-                                      backgroundColor: Colors.transparent,
-                                      enableDrag: false,
-                                      context: context,
-                                      builder: (context) {
-                                        return Padding(
-                                          padding:
-                                              MediaQuery.viewInsetsOf(context),
-                                          child: PaymentWidget(
-                                            orderId: widget.orderId!,
-                                            private: widget.private == '0'
-                                                ? 'private0'
-                                                : 'private1',
-                                            qr: (_model.apiResultQrCodeCreate
-                                                    ?.jsonBody ??
-                                                ''),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => safeSetState(() {}));
+                                  if (_model.orderUpdateStatus1!) {
+                                    _model.apiResultQrCodeCreate =
+                                        await OrderGroup.qrCodeCall.call(
+                                      accessToken: FFAppState().accessToken,
+                                      orderId: widget.orderId,
+                                    );
 
-                                    Navigator.pop(context);
+                                    shouldSetState = true;
+                                    if ((_model
+                                            .apiResultQrCodeCreate?.succeeded ??
+                                        true)) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: const AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: PaymentWidget(
+                                              orderId: widget.orderId!,
+                                              private: widget.private == '0'
+                                                  ? 'private0'
+                                                  : 'private1',
+                                              qr: (_model.apiResultQrCodeCreate
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+
+                                      Navigator.pop(context);
+                                    } else {
+                                      if (shouldSetState) setState(() {});
+                                      return;
+                                    }
                                   } else {
+                                    setState(() {});
                                     if (shouldSetState) setState(() {});
                                     return;
                                   }
-                                } else {
-                                  setState(() {});
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                }
 
-                                if (shouldSetState) setState(() {});
-                              },
-                              text: 'Thanh toán',
-                              icon: const Icon(
-                                Icons.payments_outlined,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFF33BA45),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  if (shouldSetState) setState(() {});
+                                },
+                                text: 'Thanh toán',
+                                icon: const Icon(
+                                  Icons.payments_outlined,
+                                  size: 15.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: const Color(0xFF33BA45),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                             ),
                           ),

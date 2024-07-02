@@ -741,7 +741,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 6.0,
-                                                                8.0, 0.0),
+                                                                8.0, 6.0),
                                                     child: custom_widgets
                                                         .HtmlToDoc(
                                                       width: double.infinity,

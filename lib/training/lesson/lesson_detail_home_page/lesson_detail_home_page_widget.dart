@@ -2262,24 +2262,56 @@ class _LessonDetailHomePageWidgetState
                                             decoration: const BoxDecoration(
                                               shape: BoxShape.rectangle,
                                             ),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40.0),
-                                              child: Image.network(
-                                                '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                                                  listItemsItem,
-                                                  r'''$.comments_id.staff_id.user_id.avatar''',
-                                                ).toString()}?access_token=${FFAppState().accessToken}',
-                                                width: 40.0,
-                                                height: 40.0,
-                                                fit: BoxFit.cover,
-                                                errorBuilder: (context, error,
-                                                        stackTrace) =>
-                                                    Image.asset(
-                                                  'assets/images/error_image.jpg',
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'ProfileUserNew',
+                                                  queryParameters: {
+                                                    'staffId': serializeParam(
+                                                      getJsonField(
+                                                        listItemsItem,
+                                                        r'''$.comments_id.staff_id.id''',
+                                                      ).toString(),
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                                                    listItemsItem,
+                                                    r'''$.comments_id.staff_id.user_id.avatar''',
+                                                  ).toString()}?access_token=${FFAppState().accessToken}',
                                                   width: 40.0,
                                                   height: 40.0,
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.jpg',
+                                                    width: 40.0,
+                                                    height: 40.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),

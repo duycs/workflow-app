@@ -268,7 +268,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           type: PageTransitionType.fade,
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
-                                              'https://workflow-api.pexnic.com/assets/${getJsonField(
+                                              '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                                 widget.staffDetail,
                                                 r'''$.user_id.avatar''',
                                               ).toString()}?access_token=${FFAppState().accessToken}',
@@ -276,7 +276,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             ),
                                             allowRotation: false,
                                             tag:
-                                                'https://workflow-api.pexnic.com/assets/${getJsonField(
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                               widget.staffDetail,
                                               r'''$.user_id.avatar''',
                                             ).toString()}?access_token=${FFAppState().accessToken}',
@@ -287,7 +287,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                     },
                                     child: Hero(
                                       tag:
-                                          'https://workflow-api.pexnic.com/assets/${getJsonField(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                         widget.staffDetail,
                                         r'''$.user_id.avatar''',
                                       ).toString()}?access_token=${FFAppState().accessToken}',
@@ -300,7 +300,7 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
-                                          'https://workflow-api.pexnic.com/assets/${getJsonField(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                             widget.staffDetail,
                                             r'''$.user_id.avatar''',
                                           ).toString()}?access_token=${FFAppState().accessToken}',

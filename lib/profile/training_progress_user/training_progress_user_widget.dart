@@ -1309,7 +1309,7 @@ class _TrainingProgressUserWidgetState extends State<TrainingProgressUserWidget>
                                       barWidth: 2.0,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
+                                      dotData: const FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
                                         color: FlutterFlowTheme.of(context)
@@ -1332,7 +1332,7 @@ class _TrainingProgressUserWidgetState extends State<TrainingProgressUserWidget>
                                       barWidth: 2.0,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
+                                      dotData: const FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
                                         color: FlutterFlowTheme.of(context)

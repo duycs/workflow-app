@@ -15,7 +15,7 @@ class StepListDataStruct extends BaseStruct {
   set data(List<StepsStruct>? val) => _data = val;
 
   void updateData(Function(List<StepsStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

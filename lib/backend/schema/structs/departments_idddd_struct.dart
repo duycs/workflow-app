@@ -15,7 +15,7 @@ class DepartmentsIddddStruct extends BaseStruct {
   set departmentsId(DepartmentsStruct? val) => _departmentsId = val;
 
   void updateDepartmentsId(Function(DepartmentsStruct) updateFn) {
-    updateFn(departmentsId ??= DepartmentsStruct());
+    updateFn(_departmentsId ??= DepartmentsStruct());
   }
 
   bool hasDepartmentsId() => _departmentsId != null;

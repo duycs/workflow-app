@@ -121,7 +121,7 @@ class MarketLessonListStruct extends BaseStruct {
   set lessions(List<LessonMarketStruct>? val) => _lessions = val;
 
   void updateLessions(Function(List<LessonMarketStruct>) updateFn) {
-    updateFn(lessions ??= []);
+    updateFn(_lessions ??= []);
   }
 
   bool hasLessions() => _lessions != null;
@@ -132,7 +132,7 @@ class MarketLessonListStruct extends BaseStruct {
   set tests(List<TestsMarketStruct>? val) => _tests = val;
 
   void updateTests(Function(List<TestsMarketStruct>) updateFn) {
-    updateFn(tests ??= []);
+    updateFn(_tests ??= []);
   }
 
   bool hasTests() => _tests != null;
@@ -150,7 +150,7 @@ class MarketLessonListStruct extends BaseStruct {
   set authorId(AuthorIdMarketStruct? val) => _authorId = val;
 
   void updateAuthorId(Function(AuthorIdMarketStruct) updateFn) {
-    updateFn(authorId ??= AuthorIdMarketStruct());
+    updateFn(_authorId ??= AuthorIdMarketStruct());
   }
 
   bool hasAuthorId() => _authorId != null;
@@ -161,7 +161,7 @@ class MarketLessonListStruct extends BaseStruct {
   set domainId(DomainsIdStruct? val) => _domainId = val;
 
   void updateDomainId(Function(DomainsIdStruct) updateFn) {
-    updateFn(domainId ??= DomainsIdStruct());
+    updateFn(_domainId ??= DomainsIdStruct());
   }
 
   bool hasDomainId() => _domainId != null;
@@ -188,7 +188,7 @@ class MarketLessonListStruct extends BaseStruct {
   set reacts(List<ReactsMarketStruct>? val) => _reacts = val;
 
   void updateReacts(Function(List<ReactsMarketStruct>) updateFn) {
-    updateFn(reacts ??= []);
+    updateFn(_reacts ??= []);
   }
 
   bool hasReacts() => _reacts != null;
@@ -199,7 +199,7 @@ class MarketLessonListStruct extends BaseStruct {
   set categoryId(CategoryIdStruct? val) => _categoryId = val;
 
   void updateCategoryId(Function(CategoryIdStruct) updateFn) {
-    updateFn(categoryId ??= CategoryIdStruct());
+    updateFn(_categoryId ??= CategoryIdStruct());
   }
 
   bool hasCategoryId() => _categoryId != null;

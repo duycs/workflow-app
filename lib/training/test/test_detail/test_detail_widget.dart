@@ -403,9 +403,8 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                                     child: Html(
                                                       data: questionListItem
                                                           .questionsId.content,
-                                                      onLinkTap:
-                                                          (url, _, __, ___) =>
-                                                              launchURL(url!),
+                                                      onLinkTap: (url, _, __) =>
+                                                          launchURL(url!),
                                                     ),
                                                   ),
                                                 ].divide(const SizedBox(width: 4.0)),

@@ -733,57 +733,61 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.05),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            enableDrag: false,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: BranchUpdateWidget(
-                                  id: widget.id,
-                                  name: widget.name,
-                                  code: widget.code,
-                                  description: widget.description,
-                                  codeList: widget.codeListitem,
-                                  status: widget.status,
-                                  nameList: widget.itemNameList,
-                                ),
-                              );
-                            },
-                          ).then((value) => safeSetState(() {}));
-                        },
-                        text: 'Chỉnh sửa',
-                        options: FFButtonOptions(
-                          width: 270.0,
-                          height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
+                    child: Builder(
+                      builder: (context) => Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 24.0, 0.0, 24.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: BranchUpdateWidget(
+                                    id: widget.id,
+                                    name: widget.name,
+                                    code: widget.code,
+                                    description: widget.description,
+                                    codeList: widget.codeListitem,
+                                    status: widget.status,
+                                    nameList: widget.itemNameList,
                                   ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
+                          text: 'Chỉnh sửa',
+                          options: FFButtonOptions(
+                            width: 270.0,
+                            height: 50.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
-                          borderRadius: BorderRadius.circular(12.0),
+                          showLoadingIndicator: false,
                         ),
-                        showLoadingIndicator: false,
                       ),
                     ),
                   ),

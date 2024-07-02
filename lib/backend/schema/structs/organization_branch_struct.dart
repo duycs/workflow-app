@@ -35,7 +35,7 @@ class OrganizationBranchStruct extends BaseStruct {
   set departments(List<DepartmentsStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentsStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;

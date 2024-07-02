@@ -15,7 +15,7 @@ class ProgramOrderDataStruct extends BaseStruct {
   set data(List<ProgramOrderStruct>? val) => _data = val;
 
   void updateData(Function(List<ProgramOrderStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

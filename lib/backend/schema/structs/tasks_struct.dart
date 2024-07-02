@@ -78,7 +78,7 @@ class TasksStruct extends BaseStruct {
   set staffs(List<TasksStaffsIdStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<TasksStaffsIdStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;

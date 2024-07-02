@@ -15,7 +15,7 @@ class ProgramLessonDataStruct extends BaseStruct {
   set data(List<DataStruct>? val) => _data = val;
 
   void updateData(Function(List<DataStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

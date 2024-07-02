@@ -15,7 +15,7 @@ class StaffStepOneStruct extends BaseStruct {
   set staffsId(IdStruct? val) => _staffsId = val;
 
   void updateStaffsId(Function(IdStruct) updateFn) {
-    updateFn(staffsId ??= IdStruct());
+    updateFn(_staffsId ??= IdStruct());
   }
 
   bool hasStaffsId() => _staffsId != null;

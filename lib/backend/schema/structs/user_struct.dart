@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -15,6 +14,7 @@ class UserStruct extends BaseStruct {
     String? status,
     String? role,
     int? enableBiometric,
+    List<StaffListStruct>? staffs,
   })  : _id = id,
         _firstName = firstName,
         _lastName = lastName,
@@ -22,7 +22,8 @@ class UserStruct extends BaseStruct {
         _avatar = avatar,
         _status = status,
         _role = role,
-        _enableBiometric = enableBiometric;
+        _enableBiometric = enableBiometric,
+        _staffs = staffs;
 
   // "id" field.
   String? _id;
@@ -83,6 +84,17 @@ class UserStruct extends BaseStruct {
 
   bool hasEnableBiometric() => _enableBiometric != null;
 
+  // "staffs" field.
+  List<StaffListStruct>? _staffs;
+  List<StaffListStruct> get staffs => _staffs ?? const [];
+  set staffs(List<StaffListStruct>? val) => _staffs = val;
+
+  void updateStaffs(Function(List<StaffListStruct>) updateFn) {
+    updateFn(_staffs ??= []);
+  }
+
+  bool hasStaffs() => _staffs != null;
+
   static UserStruct fromMap(Map<String, dynamic> data) => UserStruct(
         id: data['id'] as String?,
         firstName: data['first_name'] as String?,
@@ -92,6 +104,10 @@ class UserStruct extends BaseStruct {
         status: data['status'] as String?,
         role: data['role'] as String?,
         enableBiometric: castToType<int>(data['enable_biometric']),
+        staffs: getStructList(
+          data['staffs'],
+          StaffListStruct.fromMap,
+        ),
       );
 
   static UserStruct? maybeFromMap(dynamic data) =>
@@ -106,6 +122,7 @@ class UserStruct extends BaseStruct {
         'status': _status,
         'role': _role,
         'enable_biometric': _enableBiometric,
+        'staffs': _staffs?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -141,6 +158,11 @@ class UserStruct extends BaseStruct {
         'enable_biometric': serializeParam(
           _enableBiometric,
           ParamType.int,
+        ),
+        'staffs': serializeParam(
+          _staffs,
+          ParamType.DataStruct,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -186,6 +208,12 @@ class UserStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        staffs: deserializeStructParam<StaffListStruct>(
+          data['staffs'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: StaffListStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -193,6 +221,7 @@ class UserStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is UserStruct &&
         id == other.id &&
         firstName == other.firstName &&
@@ -201,12 +230,22 @@ class UserStruct extends BaseStruct {
         avatar == other.avatar &&
         status == other.status &&
         role == other.role &&
-        enableBiometric == other.enableBiometric;
+        enableBiometric == other.enableBiometric &&
+        listEquality.equals(staffs, other.staffs);
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [id, firstName, lastName, email, avatar, status, role, enableBiometric]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        firstName,
+        lastName,
+        email,
+        avatar,
+        status,
+        role,
+        enableBiometric,
+        staffs
+      ]);
 }
 
 UserStruct createUserStruct({

@@ -16,7 +16,7 @@ class ProgaramsCreateDepartmentsStruct extends BaseStruct {
   set programsId(ProgramIdCreateDepartmentsStruct? val) => _programsId = val;
 
   void updateProgramsId(Function(ProgramIdCreateDepartmentsStruct) updateFn) {
-    updateFn(programsId ??= ProgramIdCreateDepartmentsStruct());
+    updateFn(_programsId ??= ProgramIdCreateDepartmentsStruct());
   }
 
   bool hasProgramsId() => _programsId != null;

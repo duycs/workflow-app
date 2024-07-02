@@ -106,47 +106,41 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
-      child: Container(
-        width: double.infinity,
-        constraints: const BoxConstraints(
-          maxWidth: 300.0,
-          maxHeight: 200.0,
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        boxShadow: const [
+          BoxShadow(
+            blurRadius: 4.0,
+            color: Color(0x2B202529),
+            offset: Offset(
+              0.0,
+              2.0,
+            ),
+          )
+        ],
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(0.0),
+          bottomRight: Radius.circular(0.0),
+          topLeft: Radius.circular(16.0),
+          topRight: Radius.circular(16.0),
         ),
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 4.0,
-              color: Color(0x2B202529),
-              offset: Offset(
-                0.0,
-                2.0,
-              ),
-            )
-          ],
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: ListView(
-            padding: EdgeInsets.zero,
-            primary: false,
-            shrinkWrap: true,
-            scrollDirection: Axis.vertical,
-            children: [
-              if (widget.dataDetail?.userCreated.id == FFAppState().user.id)
-                MouseRegion(
-                  opaque: false,
-                  cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered1 = false);
-                  }),
-                  child: InkWell(
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              children: [
+                if (widget.dataDetail?.userCreated.id == FFAppState().user.id)
+                  InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
@@ -171,48 +165,25 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         },
                       ).then((value) => safeSetState(() {}));
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: Icon(
-                            Icons.mode,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 8.0),
-                            child: Text(
-                              'Chỉnh sửa',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.edit,
+                      ),
+                      title: Text(
+                        'Chỉnh sửa',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
-                          ),
-                        ),
-                      ],
+                      ),
+                      tileColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      dense: false,
                     ),
                   ),
-                ),
-              if (widget.dataDetail?.status == 'published')
-                MouseRegion(
-                  opaque: false,
-                  cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered2 = false);
-                  }),
-                  child: InkWell(
+                if (widget.dataDetail?.status == 'published')
+                  InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
@@ -238,66 +209,43 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                         },
                       ).then((value) => safeSetState(() {}));
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: Icon(
-                            Icons.people,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 8.0),
-                            child: Text(
-                              'Gán chương trình cho bộ phận',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.supervisor_account,
+                      ),
+                      title: Text(
+                        'Gán cho bộ phận',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
-                          ),
-                        ),
-                      ],
+                      ),
+                      tileColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      dense: false,
                     ),
                   ),
-                ),
-              if ((widget.dataDetail?.template == 0) &&
-                  (getJsonField(
-                        FFAppState().staffOrganization,
-                        r'''$.authors[0]''',
-                      ) !=
-                      null) &&
-                  ((widget.dataDetail?.authorId == null ||
-                          widget.dataDetail?.authorId == '') ||
-                      ((widget.dataDetail?.authorId != null &&
-                              widget.dataDetail?.authorId != '') &&
-                          (widget.dataDetail?.authorId ==
-                              getJsonField(
-                                FFAppState().staffOrganization,
-                                r'''$.authors[0]''',
-                              ).toString()))) &&
-                  (widget.dataDetail?.copyrightOrganizationId == null ||
-                      widget.dataDetail?.copyrightOrganizationId == '') &&
-                  (FFAppState().marketOn == true) &&
-                  (widget.dataDetail?.status == 'published'))
-                MouseRegion(
-                  opaque: false,
-                  cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered3 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered3 = false);
-                  }),
-                  child: InkWell(
+                if ((widget.dataDetail?.template == 0) &&
+                    (getJsonField(
+                          FFAppState().staffOrganization,
+                          r'''$.authors[0]''',
+                        ) !=
+                        null) &&
+                    ((widget.dataDetail?.authorId == null ||
+                            widget.dataDetail?.authorId == '') ||
+                        ((widget.dataDetail?.authorId != null &&
+                                widget.dataDetail?.authorId != '') &&
+                            (widget.dataDetail?.authorId ==
+                                getJsonField(
+                                  FFAppState().staffOrganization,
+                                  r'''$.authors[0]''',
+                                ).toString()))) &&
+                    (widget.dataDetail?.copyrightOrganizationId == null ||
+                        widget.dataDetail?.copyrightOrganizationId == '') &&
+                    (FFAppState().marketOn == true) &&
+                    (widget.dataDetail?.status == 'published'))
+                  InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
@@ -327,67 +275,44 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
 
                       Navigator.pop(context);
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: Icon(
-                            Icons.shopify,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 8.0),
-                            child: Text(
-                              'Đưa khóa học lên Market',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.storefront_outlined,
+                      ),
+                      title: Text(
+                        'Đưa khóa học lên Market',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
-                          ),
-                        ),
-                      ],
+                      ),
+                      tileColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      dense: false,
                     ),
                   ),
-                ),
-              if ((widget.dataDetail?.template == 0) &&
-                  (getJsonField(
-                        FFAppState().staffOrganization,
-                        r'''$.authors[0]''',
-                      ) !=
-                      null) &&
-                  ((widget.dataDetail?.authorId == null ||
-                          widget.dataDetail?.authorId == '') ||
-                      ((widget.dataDetail?.authorId != null &&
-                              widget.dataDetail?.authorId != '') &&
-                          (widget.dataDetail?.authorId ==
-                              getJsonField(
-                                FFAppState().staffOrganization,
-                                r'''$.authors[0]''',
-                              ).toString()))) &&
-                  (widget.dataDetail?.copyrightOrganizationId == null ||
-                      widget.dataDetail?.copyrightOrganizationId == '') &&
-                  (widget.dataDetail!.version > 0) &&
-                  (FFAppState().marketOn == true) &&
-                  (widget.dataDetail?.status == 'published'))
-                MouseRegion(
-                  opaque: false,
-                  cursor: MouseCursor.defer ?? MouseCursor.defer,
-                  onEnter: ((event) async {
-                    setState(() => _model.mouseRegionHovered4 = true);
-                  }),
-                  onExit: ((event) async {
-                    setState(() => _model.mouseRegionHovered4 = false);
-                  }),
-                  child: InkWell(
+                if ((widget.dataDetail?.template == 0) &&
+                    (getJsonField(
+                          FFAppState().staffOrganization,
+                          r'''$.authors[0]''',
+                        ) !=
+                        null) &&
+                    ((widget.dataDetail?.authorId == null ||
+                            widget.dataDetail?.authorId == '') ||
+                        ((widget.dataDetail?.authorId != null &&
+                                widget.dataDetail?.authorId != '') &&
+                            (widget.dataDetail?.authorId ==
+                                getJsonField(
+                                  FFAppState().staffOrganization,
+                                  r'''$.authors[0]''',
+                                ).toString()))) &&
+                    (widget.dataDetail?.copyrightOrganizationId == null ||
+                        widget.dataDetail?.copyrightOrganizationId == '') &&
+                    (widget.dataDetail!.version > 0) &&
+                    (FFAppState().marketOn == true) &&
+                    (widget.dataDetail?.status == 'published'))
+                  InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
                     hoverColor: Colors.transparent,
@@ -406,47 +331,38 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                               price: widget.dataDetail?.price,
                               version: widget.dataDetail?.version,
                               checkPage: widget.checkpage,
-                              category: widget.dataDetail?.categoryId,
-                              domain: widget.dataDetail?.domainId,
+                              nameLession: widget.dataDetail?.lessions
+                                  .map((e) => e.lessionsId.name)
+                                  .toList(),
+                              lessions: widget.dataDetail,
                             ),
                           );
                         },
                       ).then((value) => safeSetState(() {}));
+
+                      Navigator.pop(context);
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 12.0, 0.0),
-                          child: Icon(
-                            Icons.shopify,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 24.0,
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 8.0),
-                            child: Text(
-                              'Update version khóa học trên Market',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.update_sharp,
+                      ),
+                      title: Text(
+                        'Cập nhật phiên bản khóa học',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily: 'Nunito Sans',
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
                             ),
-                          ),
-                        ),
-                      ],
+                      ),
+                      tileColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      dense: false,
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -28,7 +28,7 @@ class StaffIdStruct extends BaseStruct {
   set userId(UserIdStruct? val) => _userId = val;
 
   void updateUserId(Function(UserIdStruct) updateFn) {
-    updateFn(userId ??= UserIdStruct());
+    updateFn(_userId ??= UserIdStruct());
   }
 
   bool hasUserId() => _userId != null;
@@ -40,7 +40,7 @@ class StaffIdStruct extends BaseStruct {
   set departmentId(DepartmentListStruct? val) => _departmentId = val;
 
   void updateDepartmentId(Function(DepartmentListStruct) updateFn) {
-    updateFn(departmentId ??= DepartmentListStruct());
+    updateFn(_departmentId ??= DepartmentListStruct());
   }
 
   bool hasDepartmentId() => _departmentId != null;

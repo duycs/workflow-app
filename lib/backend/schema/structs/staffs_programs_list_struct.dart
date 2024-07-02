@@ -16,6 +16,7 @@ class StaffsProgramsListStruct extends BaseStruct {
     String? dateStart,
     String? dateEnd,
     StudyProgramListStruct? programId,
+    String? dateUpdated,
   })  : _id = id,
         _status = status,
         _dateCreated = dateCreated,
@@ -25,7 +26,8 @@ class StaffsProgramsListStruct extends BaseStruct {
         _lessionCount = lessionCount,
         _dateStart = dateStart,
         _dateEnd = dateEnd,
-        _programId = programId;
+        _programId = programId,
+        _dateUpdated = dateUpdated;
 
   // "id" field.
   String? _id;
@@ -102,10 +104,17 @@ class StaffsProgramsListStruct extends BaseStruct {
   set programId(StudyProgramListStruct? val) => _programId = val;
 
   void updateProgramId(Function(StudyProgramListStruct) updateFn) {
-    updateFn(programId ??= StudyProgramListStruct());
+    updateFn(_programId ??= StudyProgramListStruct());
   }
 
   bool hasProgramId() => _programId != null;
+
+  // "date_updated" field.
+  String? _dateUpdated;
+  String get dateUpdated => _dateUpdated ?? '';
+  set dateUpdated(String? val) => _dateUpdated = val;
+
+  bool hasDateUpdated() => _dateUpdated != null;
 
   static StaffsProgramsListStruct fromMap(Map<String, dynamic> data) =>
       StaffsProgramsListStruct(
@@ -119,6 +128,7 @@ class StaffsProgramsListStruct extends BaseStruct {
         dateStart: data['date_start'] as String?,
         dateEnd: data['date_end'] as String?,
         programId: StudyProgramListStruct.maybeFromMap(data['program_id']),
+        dateUpdated: data['date_updated'] as String?,
       );
 
   static StaffsProgramsListStruct? maybeFromMap(dynamic data) => data is Map
@@ -136,6 +146,7 @@ class StaffsProgramsListStruct extends BaseStruct {
         'date_start': _dateStart,
         'date_end': _dateEnd,
         'program_id': _programId?.toMap(),
+        'date_updated': _dateUpdated,
       }.withoutNulls;
 
   @override
@@ -179,6 +190,10 @@ class StaffsProgramsListStruct extends BaseStruct {
         'program_id': serializeParam(
           _programId,
           ParamType.DataStruct,
+        ),
+        'date_updated': serializeParam(
+          _dateUpdated,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -236,6 +251,11 @@ class StaffsProgramsListStruct extends BaseStruct {
           false,
           structBuilder: StudyProgramListStruct.fromSerializableMap,
         ),
+        dateUpdated: deserializeParam(
+          data['date_updated'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -253,7 +273,8 @@ class StaffsProgramsListStruct extends BaseStruct {
         lessionCount == other.lessionCount &&
         dateStart == other.dateStart &&
         dateEnd == other.dateEnd &&
-        programId == other.programId;
+        programId == other.programId &&
+        dateUpdated == other.dateUpdated;
   }
 
   @override
@@ -267,7 +288,8 @@ class StaffsProgramsListStruct extends BaseStruct {
         lessionCount,
         dateStart,
         dateEnd,
-        programId
+        programId,
+        dateUpdated
       ]);
 }
 
@@ -282,6 +304,7 @@ StaffsProgramsListStruct createStaffsProgramsListStruct({
   String? dateStart,
   String? dateEnd,
   StudyProgramListStruct? programId,
+  String? dateUpdated,
 }) =>
     StaffsProgramsListStruct(
       id: id,
@@ -294,4 +317,5 @@ StaffsProgramsListStruct createStaffsProgramsListStruct({
       dateStart: dateStart,
       dateEnd: dateEnd,
       programId: programId ?? StudyProgramListStruct(),
+      dateUpdated: dateUpdated,
     );

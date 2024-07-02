@@ -12,7 +12,6 @@ import '/training/study_program/study_program_create/study_program_create_widget
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -928,101 +927,95 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        FlutterFlowIconButton(
-                                                                  borderRadius:
-                                                                      20.0,
-                                                                  borderWidth:
-                                                                      1.0,
-                                                                  buttonSize:
-                                                                      40.0,
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .more_vert,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await showAlignedDialog(
-                                                                      context:
-                                                                          context,
-                                                                      isGlobal:
-                                                                          false,
-                                                                      avoidOverflow:
-                                                                          true,
-                                                                      targetAnchor: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      followerAnchor: const AlignmentDirectional(
-                                                                              1.0,
-                                                                              -1.0)
-                                                                          .resolve(
-                                                                              Directionality.of(context)),
-                                                                      builder:
-                                                                          (dialogContext) {
-                                                                        return Material(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          child:
-                                                                              GestureDetector(
-                                                                            onTap: () => _model.unfocusNode.canRequestFocus
-                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                                : FocusScope.of(context).unfocus(),
-                                                                            child:
-                                                                                ActionChinhSuaWidget(
-                                                                              dataDetail: dataListViewItem,
-                                                                              checkMarket: ((dataListViewItem.template == 0) &&
-                                                                                          (getJsonField(
-                                                                                                FFAppState().staffOrganization,
-                                                                                                r'''$.authors[0]''',
-                                                                                              ) !=
-                                                                                              null) &&
-                                                                                          ((dataListViewItem.authorId == null || dataListViewItem.authorId == '') ||
-                                                                                              ((dataListViewItem.authorId != null && dataListViewItem.authorId != '') &&
-                                                                                                  (dataListViewItem.authorId ==
-                                                                                                      getJsonField(
-                                                                                                        FFAppState().staffOrganization,
-                                                                                                        r'''$.authors[0]''',
-                                                                                                      ).toString()))) &&
-                                                                                          (dataListViewItem.copyrightOrganizationId == null || dataListViewItem.copyrightOrganizationId == '') &&
-                                                                                          (dataListViewItem.version == 0)) ==
-                                                                                      true
-                                                                                  ? true
-                                                                                  : false,
-                                                                              checkpage: widget.checkpage,
-                                                                              callBackList2: () async {
-                                                                                _model.checkShow = null;
-                                                                                _model.dataList = [];
-                                                                                _model.meta = null;
-                                                                                _model.isLoad = false;
-                                                                                _model.nameSearch = '';
-                                                                                _model.dateEndSearch = '';
-                                                                                _model.dateStartSearch = '';
-                                                                                _model.lessionsNameSearch = '';
-                                                                                setState(() {});
-                                                                                setState(() {
-                                                                                  _model.textFieldNameSearchTextController?.clear();
-                                                                                });
-                                                                                setState(() => _model.listViewPagingController1?.refresh());
-
-                                                                                setState(() {});
-                                                                              },
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
-                                                                  },
+                                                              FlutterFlowIconButton(
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    1.0,
+                                                                buttonSize:
+                                                                    40.0,
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .more_vert,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 24.0,
                                                                 ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    useSafeArea:
+                                                                        true,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return GestureDetector(
+                                                                        onTap: () => _model.unfocusNode.canRequestFocus
+                                                                            ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                            : FocusScope.of(context).unfocus(),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
+                                                                          child:
+                                                                              ActionChinhSuaWidget(
+                                                                            dataDetail:
+                                                                                dataListViewItem,
+                                                                            checkMarket: ((dataListViewItem.template == 0) &&
+                                                                                        (getJsonField(
+                                                                                              FFAppState().staffOrganization,
+                                                                                              r'''$.authors[0]''',
+                                                                                            ) !=
+                                                                                            null) &&
+                                                                                        ((dataListViewItem.authorId == null || dataListViewItem.authorId == '') ||
+                                                                                            ((dataListViewItem.authorId != null && dataListViewItem.authorId != '') &&
+                                                                                                (dataListViewItem.authorId ==
+                                                                                                    getJsonField(
+                                                                                                      FFAppState().staffOrganization,
+                                                                                                      r'''$.authors[0]''',
+                                                                                                    ).toString()))) &&
+                                                                                        (dataListViewItem.copyrightOrganizationId == null || dataListViewItem.copyrightOrganizationId == '') &&
+                                                                                        (dataListViewItem.version == 0)) ==
+                                                                                    true
+                                                                                ? true
+                                                                                : false,
+                                                                            checkpage:
+                                                                                widget.checkpage,
+                                                                            callBackList2:
+                                                                                () async {
+                                                                              _model.checkShow = null;
+                                                                              _model.dataList = [];
+                                                                              _model.meta = null;
+                                                                              _model.isLoad = false;
+                                                                              _model.nameSearch = '';
+                                                                              _model.dateEndSearch = '';
+                                                                              _model.dateStartSearch = '';
+                                                                              _model.lessionsNameSearch = '';
+                                                                              setState(() {});
+                                                                              setState(() {
+                                                                                _model.textFieldNameSearchTextController?.clear();
+                                                                              });
+                                                                              setState(() => _model.listViewPagingController1?.refresh());
+
+                                                                              setState(() {});
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      safeSetState(
+                                                                          () {}));
+                                                                },
                                                               ),
                                                             ],
                                                           ),
@@ -1139,81 +1132,81 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     (dataListViewItem
                                                                             .version ==
                                                                         0))
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            1.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        await showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          enableDrag:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: AddProgramMarketWidget(
-                                                                                  id: dataListViewItem.id,
-                                                                                  price: dataListViewItem.price,
-                                                                                  version: dataListViewItem.version,
-                                                                                  checkPage: widget.checkpage,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await showDialog(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (dialogContext) {
+                                                                              return Dialog(
+                                                                                elevation: 0,
+                                                                                insetPadding: EdgeInsets.zero,
+                                                                                backgroundColor: Colors.transparent,
+                                                                                alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                  child: AddProgramMarketWidget(
+                                                                                    id: dataListViewItem.id,
+                                                                                    price: dataListViewItem.price,
+                                                                                    version: dataListViewItem.version,
+                                                                                    checkPage: widget.checkpage,
+                                                                                  ),
                                                                                 ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              setState(() {}));
+                                                                        },
+                                                                        text:
+                                                                            'Market',
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .upgrade_sharp,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          height:
+                                                                              32.0,
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              6.0,
+                                                                              0.0,
+                                                                              8.0,
+                                                                              0.0),
+                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                                                fontSize: 13.0,
+                                                                                letterSpacing: 0.0,
                                                                               ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            safeSetState(() {}));
-                                                                      },
-                                                                      text:
-                                                                          'Market',
-                                                                      icon:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .upgrade_sharp,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        size:
-                                                                            20.0,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        height:
-                                                                            32.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            6.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).tertiary,
-                                                                              fontSize: 13.0,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1247,83 +1240,83 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                     (dataListViewItem
                                                                             .version >
                                                                         0))
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            1.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        await showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          enableDrag:
-                                                                              false,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: AddProgramMarketWidget(
-                                                                                  id: dataListViewItem.id,
-                                                                                  price: dataListViewItem.price,
-                                                                                  version: dataListViewItem.version,
-                                                                                  checkPage: widget.checkpage,
-                                                                                  category: dataListViewItem.categoryId,
-                                                                                  domain: dataListViewItem.domainId,
+                                                                  Builder(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await showDialog(
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (dialogContext) {
+                                                                              return Dialog(
+                                                                                elevation: 0,
+                                                                                insetPadding: EdgeInsets.zero,
+                                                                                backgroundColor: Colors.transparent,
+                                                                                alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                  child: AddProgramMarketWidget(
+                                                                                    id: dataListViewItem.id,
+                                                                                    price: dataListViewItem.price,
+                                                                                    version: dataListViewItem.version,
+                                                                                    checkPage: widget.checkpage,
+                                                                                    category: dataListViewItem.categoryId,
+                                                                                    domain: dataListViewItem.domainId,
+                                                                                  ),
                                                                                 ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              setState(() {}));
+                                                                        },
+                                                                        text:
+                                                                            'Market',
+                                                                        icon:
+                                                                            const Icon(
+                                                                          Icons
+                                                                              .check,
+                                                                          color:
+                                                                              Color(0xFF38B647),
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          height:
+                                                                              32.0,
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              6.0,
+                                                                              0.0,
+                                                                              8.0,
+                                                                              0.0),
+                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                color: FlutterFlowTheme.of(context).tertiary,
+                                                                                fontSize: 13.0,
+                                                                                letterSpacing: 0.0,
                                                                               ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            safeSetState(() {}));
-                                                                      },
-                                                                      text:
-                                                                          'Market',
-                                                                      icon:
-                                                                          const Icon(
-                                                                        Icons
-                                                                            .check,
-                                                                        color: Color(
-                                                                            0xFF38B647),
-                                                                        size:
-                                                                            20.0,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        height:
-                                                                            32.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            6.0,
-                                                                            0.0,
-                                                                            8.0,
-                                                                            0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).tertiary,
-                                                                              fontSize: 13.0,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -2131,6 +2124,18 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                             .String,
                                                                       ),
                                                                     }.withoutNulls,
+                                                                    extra: <String,
+                                                                        dynamic>{
+                                                                      kTransitionInfoKey:
+                                                                          const TransitionInfo(
+                                                                        hasTransition:
+                                                                            true,
+                                                                        transitionType:
+                                                                            PageTransitionType.fade,
+                                                                        duration:
+                                                                            Duration(milliseconds: 0),
+                                                                      ),
+                                                                    },
                                                                   );
                                                                 },
                                                                 text: 'Bài học',

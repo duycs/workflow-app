@@ -16,7 +16,7 @@ class GroupTemplateGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -31,7 +31,7 @@ class NewsfeedGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -44,6 +44,10 @@ class NewsfeedGroup {
   static CommentsNewFeedCall commentsNewFeedCall = CommentsNewFeedCall();
   static CommentsNewFeedDeleteCall commentsNewFeedDeleteCall =
       CommentsNewFeedDeleteCall();
+  static NewsfeedConfirmReadedCall newsfeedConfirmReadedCall =
+      NewsfeedConfirmReadedCall();
+  static CreateNewsFeedCall createNewsFeedCall = CreateNewsFeedCall();
+  static EditNewsFeedCall editNewsFeedCall = EditNewsFeedCall();
 }
 
 class NewsfeedListCall {
@@ -72,7 +76,7 @@ class NewsfeedListCall {
           'offset': offset,
           'sort': "-date_created",
           'fields[]':
-              "reacts.id, comments.id, comments.comments_id.date_created, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id",
+              "user_created.staffs.id, reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.id,user_created.id,comments.comments_id.staff_id.user_id.avatar, reads.reads_id.id, reads.reads_id.staff_id, reads.reads_id.status, reads.reads_id.staff_id.user_id.avatar, reads.reads_id.staff_id.user_id.id",
         },
         returnBody: true,
         encodeBodyUtf8: false,
@@ -109,7 +113,7 @@ class NewsfeedOneCall {
       },
       params: {
         'fields[]':
-            "reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.id,user_created.id,comments.comments_id.staff_id.user_id.avatar",
+            "user_created.staffs.id, comments.comments_id.staff_id.id, reacts.id, comments.id, comments.comments_id.date_created, user_created.first_name, user_created.avatar, files.directus_files_id.id, files.id, videos.id, videos.directus_files_id.id, id, status, date_created, title, content, organization_id, branch_id.name, department_id.name, images.id, images.directus_files_id.id, comments.comments_id.id, comments.comments_id.staff_id, comments.comments_id.content, comments.comments_id.image, comments.comments_id.file, comments.comments_id.video, reacts.reacts_id.id, reacts.reacts_id.staff_id, reacts.reacts_id.status,comments.comments_id.staff_id.user_id.first_name,comments.comments_id.staff_id.user_id.id,user_created.id,comments.comments_id.staff_id.user_id.avatar, reads.reads_id.id, reads.reads_id.staff_id, reads.reads_id.status, reads.reads_id.staff_id.user_id.avatar, reads.reads_id.staff_id.user_id.id, files.directus_files_id.filename_download",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -246,6 +250,108 @@ class CommentsNewFeedDeleteCall {
   }
 }
 
+class NewsfeedConfirmReadedCall {
+  Future<ApiCallResponse> call({
+    String? newsId = '',
+    String? staffId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "status": "readed",
+  "news_id": "$newsId",
+  "staff_id": "$staffId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'NewsfeedConfirmReaded',
+      apiUrl: '$baseUrl/flows/trigger/45430b59-ddec-4fc2-8baf-70fe635033ab',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateNewsFeedCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'CreateNewsFeed',
+      apiUrl: '$baseUrl/items/news',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class EditNewsFeedCall {
+  Future<ApiCallResponse> call({
+    dynamic requestDataJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NewsfeedGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final requestData = _serializeJson(requestDataJson);
+    final ffApiRequestBody = requestData;
+    return ApiManager.instance.makeApiCall(
+      callName: 'EditNewsFeed',
+      apiUrl: '$baseUrl/items/news/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End Newsfeed Group Code
 
 /// Start ProcedurePublished Group Code
@@ -254,7 +360,7 @@ class ProcedurePublishedGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -390,7 +496,7 @@ class DepartmentGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -604,7 +710,7 @@ class UploadFileGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -684,7 +790,7 @@ class UserGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -826,7 +932,7 @@ class DeleteAccountCall {
 /// Start Authen Group Code
 
 class AuthenGroup {
-  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
+  static String getBaseUrl() => 'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };
@@ -935,7 +1041,7 @@ class LessonGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1424,7 +1530,7 @@ class StudyProgramGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -1688,7 +1794,7 @@ class StaffsProgramsCall {
         },
         params: {
           'fields[]':
-              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created,program_id.image_cover",
+              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created,program_id.image_cover,date_updated",
           'filter': filter,
           'limit': limit,
           'offset': offset,
@@ -1964,7 +2070,7 @@ class DoTestGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2194,7 +2300,7 @@ class TestGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2391,7 +2497,7 @@ class QuestionGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -2549,7 +2655,7 @@ class ProcedureTemplateGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3168,7 +3274,7 @@ class BranchGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3295,7 +3401,7 @@ class StaffGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3422,7 +3528,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download",
+            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan",
         'filter': filter,
       },
       returnBody: true,
@@ -3609,7 +3715,7 @@ class OrganizationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3734,7 +3840,7 @@ class TaskGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -3951,7 +4057,7 @@ class OperationGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4079,7 +4185,7 @@ class CategoriesGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4122,7 +4228,7 @@ class DomainGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4165,7 +4271,7 @@ class GroupMarketLessonGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4301,7 +4407,7 @@ class GroupAuthorsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4498,7 +4604,7 @@ class GetDomainsGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4557,7 +4663,7 @@ class OrderGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -4814,7 +4920,7 @@ class CheckTransferCall {
 /// Start STHLoginAcounts Group Code
 
 class STHLoginAcountsGroup {
-  static String getBaseUrl() => 'https://workflow-api.pexnic.com';
+  static String getBaseUrl() => 'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
   };

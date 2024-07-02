@@ -54,7 +54,7 @@ class OrderCreateRequestStruct extends BaseStruct {
 
   void updatePrograms(
       Function(List<OrderCreateProgramRequestStruct>) updateFn) {
-    updateFn(programs ??= []);
+    updateFn(_programs ??= []);
   }
 
   bool hasPrograms() => _programs != null;

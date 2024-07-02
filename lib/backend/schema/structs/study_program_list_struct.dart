@@ -106,7 +106,7 @@ class StudyProgramListStruct extends BaseStruct {
 
   void updateLessions(
       Function(List<StudyProgramListLessionsIdStruct>) updateFn) {
-    updateFn(lessions ??= []);
+    updateFn(_lessions ??= []);
   }
 
   bool hasLessions() => _lessions != null;
@@ -117,7 +117,7 @@ class StudyProgramListStruct extends BaseStruct {
   set tests(List<StudyProgramListTestIdStruct>? val) => _tests = val;
 
   void updateTests(Function(List<StudyProgramListTestIdStruct>) updateFn) {
-    updateFn(tests ??= []);
+    updateFn(_tests ??= []);
   }
 
   bool hasTests() => _tests != null;
@@ -128,7 +128,7 @@ class StudyProgramListStruct extends BaseStruct {
   set studioIdTest(List<StaffsTestsListStruct>? val) => _studioIdTest = val;
 
   void updateStudioIdTest(Function(List<StaffsTestsListStruct>) updateFn) {
-    updateFn(studioIdTest ??= []);
+    updateFn(_studioIdTest ??= []);
   }
 
   bool hasStudioIdTest() => _studioIdTest != null;
@@ -264,7 +264,7 @@ class StudyProgramListStruct extends BaseStruct {
   set departments(List<DepartmentsIdStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;
@@ -275,7 +275,7 @@ class StudyProgramListStruct extends BaseStruct {
   set userCreated(UserStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(UserStruct) updateFn) {
-    updateFn(userCreated ??= UserStruct());
+    updateFn(_userCreated ??= UserStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;

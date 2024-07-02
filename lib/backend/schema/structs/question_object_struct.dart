@@ -82,7 +82,7 @@ class QuestionObjectStruct extends BaseStruct {
   set answers(List<QuestionAnswerObjectStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<QuestionAnswerObjectStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;
@@ -94,7 +94,7 @@ class QuestionObjectStruct extends BaseStruct {
   set organizationId(OrganizationIdStruct? val) => _organizationId = val;
 
   void updateOrganizationId(Function(OrganizationIdStruct) updateFn) {
-    updateFn(organizationId ??= OrganizationIdStruct());
+    updateFn(_organizationId ??= OrganizationIdStruct());
   }
 
   bool hasOrganizationId() => _organizationId != null;

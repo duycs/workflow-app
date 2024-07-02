@@ -15,7 +15,7 @@ class StudyProgramListTestIdStruct extends BaseStruct {
   set testsId(StaffsTestsListStruct? val) => _testsId = val;
 
   void updateTestsId(Function(StaffsTestsListStruct) updateFn) {
-    updateFn(testsId ??= StaffsTestsListStruct());
+    updateFn(_testsId ??= StaffsTestsListStruct());
   }
 
   bool hasTestsId() => _testsId != null;

@@ -15,7 +15,7 @@ class BranchListDataStruct extends BaseStruct {
   set data(List<BranchListStruct>? val) => _data = val;
 
   void updateData(Function(List<BranchListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

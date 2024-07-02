@@ -18,7 +18,7 @@ class TestQuestionsStruct extends BaseStruct {
   set questionsId(TestQuestionsIdStruct? val) => _questionsId = val;
 
   void updateQuestionsId(Function(TestQuestionsIdStruct) updateFn) {
-    updateFn(questionsId ??= TestQuestionsIdStruct());
+    updateFn(_questionsId ??= TestQuestionsIdStruct());
   }
 
   bool hasQuestionsId() => _questionsId != null;

@@ -48,7 +48,7 @@ class ProgramsIdStruct extends BaseStruct {
   set authorId(AuthorIdStruct? val) => _authorId = val;
 
   void updateAuthorId(Function(AuthorIdStruct) updateFn) {
-    updateFn(authorId ??= AuthorIdStruct());
+    updateFn(_authorId ??= AuthorIdStruct());
   }
 
   bool hasAuthorId() => _authorId != null;
@@ -66,7 +66,7 @@ class ProgramsIdStruct extends BaseStruct {
   set departments(List<DepartmentsIddddStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentsIddddStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;
@@ -78,7 +78,7 @@ class ProgramsIdStruct extends BaseStruct {
 
   void updateLessions(
       Function(List<StudyProgramListLessionsIdStruct>) updateFn) {
-    updateFn(lessions ??= []);
+    updateFn(_lessions ??= []);
   }
 
   bool hasLessions() => _lessions != null;

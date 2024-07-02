@@ -1939,7 +1939,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 16.0),
+                                        0.0, 0.0, 0.0, 24.0),
                                     child: Container(
                                       width: double.infinity,
                                       constraints: const BoxConstraints(

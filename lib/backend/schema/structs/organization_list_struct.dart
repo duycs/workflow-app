@@ -102,7 +102,7 @@ class OrganizationListStruct extends BaseStruct {
   set branchs(List<OrganizationBranchStruct>? val) => _branchs = val;
 
   void updateBranchs(Function(List<OrganizationBranchStruct>) updateFn) {
-    updateFn(branchs ??= []);
+    updateFn(_branchs ??= []);
   }
 
   bool hasBranchs() => _branchs != null;
@@ -113,7 +113,7 @@ class OrganizationListStruct extends BaseStruct {
   set staffs(List<StaffsStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffsStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;
@@ -131,7 +131,7 @@ class OrganizationListStruct extends BaseStruct {
   set files(List<FileDataTypeStruct>? val) => _files = val;
 
   void updateFiles(Function(List<FileDataTypeStruct>) updateFn) {
-    updateFn(files ??= []);
+    updateFn(_files ??= []);
   }
 
   bool hasFiles() => _files != null;

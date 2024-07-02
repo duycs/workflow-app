@@ -28,6 +28,30 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for SwipeableStack widget.
   late CardSwiperController swipeableStackController;
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
+  // Stores action output result for [Action Block - tokenReload] action in Button widget.
+  bool? confirmReaded;
+  // Stores action output result for [Backend Call - API (NewsfeedConfirmReaded)] action in Button widget.
+  ApiCallResponse? apiResultConfirmReaded;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  bool isDataUploading2 = false;
+  FFUploadedFile uploadedLocalFile2 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
+  bool isDataUploading3 = false;
+  FFUploadedFile uploadedLocalFile3 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -133,6 +157,128 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
           ),
         );
       }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future postDataUploadImage(BuildContext context) async {
+    bool? checkReloadTokenImagePost;
+    ApiCallResponse? apiResultPostData;
+
+    checkReloadTokenImagePost = await action_blocks.tokenReload(context);
+    if (checkReloadTokenImagePost!) {
+      apiResultPostData = await UploadFileGroup.uploadFileCall.call(
+        accessToken: FFAppState().accessToken,
+        file: uploadedLocalFile1,
+      );
+
+      if ((apiResultPostData.succeeded ?? true)) {
+        uploadImage = getJsonField(
+          (apiResultPostData.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future postDataVideo(BuildContext context) async {
+    bool? checkTokenPostVideo;
+    ApiCallResponse? apiResultPostDataVideo;
+
+    checkTokenPostVideo = await action_blocks.tokenReload(context);
+    if (checkTokenPostVideo!) {
+      apiResultPostDataVideo = await UploadFileGroup.uploadFileCall.call(
+        accessToken: FFAppState().accessToken,
+        file: uploadedLocalFile2,
+      );
+
+      if ((apiResultPostDataVideo.succeeded ?? true)) {
+        uploadVideo = getJsonField(
+          (apiResultPostDataVideo.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future postDataFile(BuildContext context) async {
+    bool? checkTokenPostVideo;
+    ApiCallResponse? apiResultPostDataVideo;
+
+    checkTokenPostVideo = await action_blocks.tokenReload(context);
+    if (checkTokenPostVideo!) {
+      apiResultPostDataVideo = await UploadFileGroup.uploadFileCall.call(
+        accessToken: FFAppState().accessToken,
+        file: uploadedLocalFile3,
+      );
+
+      if ((apiResultPostDataVideo.succeeded ?? true)) {
+        uploadFile = getJsonField(
+          (apiResultPostDataVideo.jsonBody ?? ''),
+          r'''$.data.id''',
+        ).toString().toString();
+      }
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future postDataComment(BuildContext context) async {
+    bool? checkTokenPostDataComment;
+    ApiCallResponse? apiResultPostDataComment;
+
+    checkTokenPostDataComment = await action_blocks.tokenReload(context);
+    if (checkTokenPostDataComment!) {
+      apiResultPostDataComment = await NewsfeedGroup.commentsNewFeedCall.call(
+        accessToken: FFAppState().accessToken,
+        requestDataJson: <String, dynamic>{
+          'status': 'published',
+          'content': textController.text,
+          'image':
+              uploadImage != '' ? uploadImage : null,
+          'video':
+              uploadVideo != '' ? uploadVideo : null,
+          'file': uploadFile != '' ? uploadFile : null,
+          'news_id': newsfeedItem?.id,
+          'staff_id': getJsonField(
+            FFAppState().staffLogin,
+            r'''$.id''',
+          ),
+        },
+      );
+
+      if ((apiResultPostDataComment.succeeded ?? true)) {}
+    } else {
+      FFAppState().update(() {});
+      return;
+    }
+  }
+
+  Future deleteComment(
+    BuildContext context, {
+    int? id,
+  }) async {
+    bool? checkTokenReloadDeleteComment;
+    ApiCallResponse? apiResultDeleteComment;
+
+    checkTokenReloadDeleteComment = await action_blocks.tokenReload(context);
+    if (checkTokenReloadDeleteComment!) {
+      apiResultDeleteComment =
+          await NewsfeedGroup.commentsNewFeedDeleteCall.call(
+        accessToken: FFAppState().accessToken,
+        id: id,
+      );
+
+      if ((apiResultDeleteComment.succeeded ?? true)) {}
     } else {
       FFAppState().update(() {});
       return;

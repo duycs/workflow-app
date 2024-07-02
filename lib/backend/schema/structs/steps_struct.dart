@@ -107,7 +107,7 @@ class StepsStruct extends BaseStruct {
   set workflowId(WorkflowsStruct? val) => _workflowId = val;
 
   void updateWorkflowId(Function(WorkflowsStruct) updateFn) {
-    updateFn(workflowId ??= WorkflowsStruct());
+    updateFn(_workflowId ??= WorkflowsStruct());
   }
 
   bool hasWorkflowId() => _workflowId != null;
@@ -118,7 +118,7 @@ class StepsStruct extends BaseStruct {
   set taskId(TasksStruct? val) => _taskId = val;
 
   void updateTaskId(Function(TasksStruct) updateFn) {
-    updateFn(taskId ??= TasksStruct());
+    updateFn(_taskId ??= TasksStruct());
   }
 
   bool hasTaskId() => _taskId != null;
@@ -129,7 +129,7 @@ class StepsStruct extends BaseStruct {
   set operations(List<OperationsStruct>? val) => _operations = val;
 
   void updateOperations(Function(List<OperationsStruct>) updateFn) {
-    updateFn(operations ??= []);
+    updateFn(_operations ??= []);
   }
 
   bool hasOperations() => _operations != null;
@@ -140,7 +140,7 @@ class StepsStruct extends BaseStruct {
   set staffs(List<StaffsStepStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffsStepStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;
@@ -189,7 +189,7 @@ class StepsStruct extends BaseStruct {
   set departments(List<DepartmentListStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentListStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;

@@ -15,7 +15,7 @@ class StaffsTestsListDataStruct extends BaseStruct {
   set data(List<StaffsTestsListStruct>? val) => _data = val;
 
   void updateData(Function(List<StaffsTestsListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

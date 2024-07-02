@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/profile/profile_staff/profile_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -510,137 +509,131 @@ class _ListStaffProfileCompanyWidgetState
                             return Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 0.0, 16.0, 8.0),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 1.0,
-                                      color: Color(0x32000000),
-                                      offset: Offset(
-                                        0.0,
-                                        1.0,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'ProfileUserNew',
+                                    queryParameters: {
+                                      'staffId': serializeParam(
+                                        listStaff1Item.id,
+                                        ParamType.String,
                                       ),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 8.0, 8.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(26.0),
-                                        child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${listStaff1Item.userId.avatar}?access_token=${FFAppState().accessToken}',
-                                          width: 36.0,
-                                          height: 36.0,
-                                          fit: BoxFit.cover,
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 1.0,
+                                        color: Color(0x32000000),
+                                        offset: Offset(
+                                          0.0,
+                                          1.0,
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 0.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                listStaff1Item.userId.firstName,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: Text(
-                                                  listStaff1Item.title,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(26.0),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${listStaff1Item.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                            width: 36.0,
+                                            height: 36.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  listStaff1Item
+                                                      .userId.firstName,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .labelMedium
+                                                      .bodyMedium
                                                       .override(
                                                         fontFamily:
                                                             'Nunito Sans',
                                                         letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
                                                 ),
-                                              ),
-                                            ],
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    listStaff1Item.title,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Builder(
-                                        builder: (context) => FFButtonWidget(
+                                        FFButtonWidget(
                                           onPressed: () async {
-                                            await showDialog(
-                                              barrierDismissible: false,
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: ProfileStaffWidget(
-                                                      name: listStaff1Item
-                                                          .userId.firstName,
-                                                      gender:
-                                                          listStaff1Item.gender,
-                                                      phone:
-                                                          listStaff1Item.phone,
-                                                      role:
-                                                          listStaff1Item.title,
-                                                      image: listStaff1Item
-                                                          .userId.avatar,
-                                                      email: listStaff1Item
-                                                          .userId.email,
-                                                      branch: listStaff1Item
-                                                          .branchId.name,
-                                                      bophan: listStaff1Item
-                                                          .departmentId.name,
-                                                      ngaySinh:
-                                                          listStaff1Item.dob,
-                                                    ),
-                                                  ),
-                                                );
+                                            context.pushNamed(
+                                              'ProfileUserNew',
+                                              queryParameters: {
+                                                'staffId': serializeParam(
+                                                  listStaff1Item.id,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
                                               },
-                                            ).then((value) => setState(() {}));
+                                            );
                                           },
                                           text: 'Xem',
                                           options: FFButtonOptions(
@@ -674,8 +667,8 @@ class _ListStaffProfileCompanyWidgetState
                                                 BorderRadius.circular(8.0),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

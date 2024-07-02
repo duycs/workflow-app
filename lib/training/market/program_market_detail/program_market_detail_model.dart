@@ -40,12 +40,16 @@ class ProgramMarketDetailModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
-  dynamic paymentResponse;
+  // Stores action output result for [Custom Action - openGoogleInAppPurchases] action in Button widget.
+  dynamic paymentResponseGoogle;
+  // Stores action output result for [Custom Action - openAppleInAppPurchases] action in Button widget.
+  dynamic paymentResponseApple;
   // Stores action output result for [Action Block - OrderCreate] action in Button widget.
   bool? apiResultOrderCreate;
-  // Stores action output result for [Custom Action - openInAppPurchase] action in Button widget.
-  dynamic paymentResponeOrg;
+  // Stores action output result for [Custom Action - openGoogleInAppPurchases] action in Button widget.
+  dynamic paymentResponseGoogleOrg;
+  // Stores action output result for [Custom Action - openAppleInAppPurchases] action in Button widget.
+  dynamic paymentResponseAppleOrg;
   // Stores action output result for [Action Block - OrderCreate] action in Button widget.
   bool? apiResultOrderCreateOrg;
 

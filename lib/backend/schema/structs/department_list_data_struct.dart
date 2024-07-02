@@ -15,7 +15,7 @@ class DepartmentListDataStruct extends BaseStruct {
   set data(List<DepartmentListStruct>? val) => _data = val;
 
   void updateData(Function(List<DepartmentListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

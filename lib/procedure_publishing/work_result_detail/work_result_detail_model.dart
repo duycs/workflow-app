@@ -49,6 +49,8 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
           r'''$.organization_id''',
         ).toString().toString()}\"}}}]}',
         sort: '-number',
+        limit: 200,
+        offset: 0,
       );
 
       if ((apiResultGetTaskList.succeeded ?? true)) {

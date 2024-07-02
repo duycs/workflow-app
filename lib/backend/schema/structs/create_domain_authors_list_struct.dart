@@ -15,7 +15,7 @@ class CreateDomainAuthorsListStruct extends BaseStruct {
   set create(List<CreateDomainAuthorsStruct>? val) => _create = val;
 
   void updateCreate(Function(List<CreateDomainAuthorsStruct>) updateFn) {
-    updateFn(create ??= []);
+    updateFn(_create ??= []);
   }
 
   bool hasCreate() => _create != null;

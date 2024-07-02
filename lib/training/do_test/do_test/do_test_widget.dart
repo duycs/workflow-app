@@ -674,8 +674,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                       16.0, 0.0, 16.0, 0.0),
                                   child: Html(
                                     data: _model.list!.description,
-                                    onLinkTap: (url, _, __, ___) =>
-                                        launchURL(url!),
+                                    onLinkTap: (url, _, __) => launchURL(url!),
                                   ),
                                 ),
                                 Builder(
@@ -753,9 +752,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                                   .questionsId
                                                                   .content,
                                                               onLinkTap: (url,
-                                                                      _,
-                                                                      __,
-                                                                      ___) =>
+                                                                      _, __) =>
                                                                   launchURL(
                                                                       url!),
                                                             ),

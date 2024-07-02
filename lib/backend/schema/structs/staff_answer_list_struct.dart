@@ -66,7 +66,7 @@ class StaffAnswerListStruct extends BaseStruct {
   set testId(TestListStruct? val) => _testId = val;
 
   void updateTestId(Function(TestListStruct) updateFn) {
-    updateFn(testId ??= TestListStruct());
+    updateFn(_testId ??= TestListStruct());
   }
 
   bool hasTestId() => _testId != null;
@@ -77,7 +77,7 @@ class StaffAnswerListStruct extends BaseStruct {
   set answers(List<AnswersListStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<AnswersListStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;
@@ -88,7 +88,7 @@ class StaffAnswerListStruct extends BaseStruct {
   set questionId(QuestionObjectStruct? val) => _questionId = val;
 
   void updateQuestionId(Function(QuestionObjectStruct) updateFn) {
-    updateFn(questionId ??= QuestionObjectStruct());
+    updateFn(_questionId ??= QuestionObjectStruct());
   }
 
   bool hasQuestionId() => _questionId != null;

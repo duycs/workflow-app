@@ -55,7 +55,7 @@ class QuestionAnswersStruct extends BaseStruct {
   set answers(List<QuestionAnswersIdStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<QuestionAnswersIdStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;
@@ -66,7 +66,7 @@ class QuestionAnswersStruct extends BaseStruct {
   set answersId(List<QuestionAnswersIdStruct>? val) => _answersId = val;
 
   void updateAnswersId(Function(List<QuestionAnswersIdStruct>) updateFn) {
-    updateFn(answersId ??= []);
+    updateFn(_answersId ??= []);
   }
 
   bool hasAnswersId() => _answersId != null;

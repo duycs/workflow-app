@@ -80,7 +80,7 @@ class QuestionsStruct extends BaseStruct {
   set answers(List<QuestionAnswersStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<QuestionAnswersStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;

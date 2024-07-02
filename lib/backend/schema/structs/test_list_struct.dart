@@ -73,7 +73,7 @@ class TestListStruct extends BaseStruct {
   set questions(List<TestQuestionsStruct>? val) => _questions = val;
 
   void updateQuestions(Function(List<TestQuestionsStruct>) updateFn) {
-    updateFn(questions ??= []);
+    updateFn(_questions ??= []);
   }
 
   bool hasQuestions() => _questions != null;
@@ -108,7 +108,7 @@ class TestListStruct extends BaseStruct {
   set userCreated(TestUserCreatedStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(TestUserCreatedStruct) updateFn) {
-    updateFn(userCreated ??= TestUserCreatedStruct());
+    updateFn(_userCreated ??= TestUserCreatedStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;

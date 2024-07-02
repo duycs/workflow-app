@@ -23,7 +23,7 @@ class InAppPurchaseVerificationDataStruct extends BaseStruct {
   void updateLocalVerificationData(
       Function(InAppPurchaseLocalVerificationDataStruct) updateFn) {
     updateFn(
-        localVerificationData ??= InAppPurchaseLocalVerificationDataStruct());
+        _localVerificationData ??= InAppPurchaseLocalVerificationDataStruct());
   }
 
   bool hasLocalVerificationData() => _localVerificationData != null;

@@ -18,7 +18,7 @@ class QuestionAnswerObjectStruct extends BaseStruct {
   set answersId(QuestionAnswersIdStruct? val) => _answersId = val;
 
   void updateAnswersId(Function(QuestionAnswersIdStruct) updateFn) {
-    updateFn(answersId ??= QuestionAnswersIdStruct());
+    updateFn(_answersId ??= QuestionAnswersIdStruct());
   }
 
   bool hasAnswersId() => _answersId != null;

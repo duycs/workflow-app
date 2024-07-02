@@ -24,7 +24,7 @@ class ErorrItemStruct extends BaseStruct {
   set extensions(ErorrExtensionStruct? val) => _extensions = val;
 
   void updateExtensions(Function(ErorrExtensionStruct) updateFn) {
-    updateFn(extensions ??= ErorrExtensionStruct());
+    updateFn(_extensions ??= ErorrExtensionStruct());
   }
 
   bool hasExtensions() => _extensions != null;

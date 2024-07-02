@@ -109,7 +109,7 @@ class AuthorsListStruct extends BaseStruct {
   set domains(List<DomainsStruct>? val) => _domains = val;
 
   void updateDomains(Function(List<DomainsStruct>) updateFn) {
-    updateFn(domains ??= []);
+    updateFn(_domains ??= []);
   }
 
   bool hasDomains() => _domains != null;

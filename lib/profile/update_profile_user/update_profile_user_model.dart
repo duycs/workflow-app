@@ -31,10 +31,10 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   }
 
   // State field(s) for hotline widget.
-  FocusNode? hotlineFocusNode;
-  TextEditingController? hotlineTextController;
-  String? Function(BuildContext, String?)? hotlineTextControllerValidator;
-  String? _hotlineTextControllerValidator(BuildContext context, String? val) {
+  FocusNode? hotlineFocusNode1;
+  TextEditingController? hotlineTextController1;
+  String? Function(BuildContext, String?)? hotlineTextController1Validator;
+  String? _hotlineTextController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Vui lòng nhập số điện thoại';
     }
@@ -45,11 +45,15 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
     return null;
   }
 
+  // State field(s) for hotline widget.
+  FocusNode? hotlineFocusNode2;
+  TextEditingController? hotlineTextController2;
+  String? Function(BuildContext, String?)? hotlineTextController2Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
+  TextEditingController? textController4;
+  String? Function(BuildContext, String?)? textController4Validator;
+  String? _textController4Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Yêu cầu nhập email';
     }
@@ -68,6 +72,10 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
   DateTime? datePicked;
+  // State field(s) for hotline widget.
+  FocusNode? hotlineFocusNode3;
+  TextEditingController? hotlineTextController3;
+  String? Function(BuildContext, String?)? hotlineTextController3Validator;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -90,8 +98,8 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
   @override
   void initState(BuildContext context) {
     nameTextControllerValidator = _nameTextControllerValidator;
-    hotlineTextControllerValidator = _hotlineTextControllerValidator;
-    textController3Validator = _textController3Validator;
+    hotlineTextController1Validator = _hotlineTextController1Validator;
+    textController4Validator = _textController4Validator;
   }
 
   @override
@@ -99,13 +107,19 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
     nameFocusNode?.dispose();
     nameTextController?.dispose();
 
-    hotlineFocusNode?.dispose();
-    hotlineTextController?.dispose();
+    hotlineFocusNode1?.dispose();
+    hotlineTextController1?.dispose();
+
+    hotlineFocusNode2?.dispose();
+    hotlineTextController2?.dispose();
 
     textFieldFocusNode?.dispose();
-    textController3?.dispose();
+    textController4?.dispose();
 
     addressFocusNode?.dispose();
     addressTextController?.dispose();
+
+    hotlineFocusNode3?.dispose();
+    hotlineTextController3?.dispose();
   }
 }

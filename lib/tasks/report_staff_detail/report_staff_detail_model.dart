@@ -103,6 +103,10 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
   bool? getOneStaffTask1;
   // Stores action output result for [Backend Call - API (StaffGetOne)] action in Button widget.
   ApiCallResponse? apiResultGetOneStaff1;
+  // Stores action output result for [Action Block - tokenReload] action in Image widget.
+  bool? getOneStaffTask2;
+  // Stores action output result for [Backend Call - API (StaffGetOne)] action in Image widget.
+  ApiCallResponse? apiResultGetOneStaff2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

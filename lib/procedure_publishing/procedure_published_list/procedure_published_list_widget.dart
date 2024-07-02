@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure_publishing/filter_procedure_published/filter_procedure_published_widget.dart';
-import '/procedure_publishing/procedure_pushlished/procedure_pushlished_widget.dart';
+import '/procedure_publishing/procedure_published/procedure_published_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -89,42 +89,45 @@ class _ProcedurePublishedListWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
-          child: FloatingActionButton(
-            onPressed: () async {
-              await showModalBottomSheet(
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                enableDrag: false,
-                context: context,
-                builder: (context) {
-                  return GestureDetector(
-                    onTap: () => _model.unfocusNode.canRequestFocus
-                        ? FocusScope.of(context)
-                            .requestFocus(_model.unfocusNode)
-                        : FocusScope.of(context).unfocus(),
-                    child: Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: ProcedurePushlishedWidget(
-                        callback: () async {
-                          setState(
-                              () => _model.listViewPagingController?.refresh());
+        floatingActionButton: Builder(
+          builder: (context) => Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 70.0),
+            child: FloatingActionButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return Dialog(
+                      elevation: 0,
+                      insetPadding: EdgeInsets.zero,
+                      backgroundColor: Colors.transparent,
+                      alignment: const AlignmentDirectional(0.0, 0.0)
+                          .resolve(Directionality.of(context)),
+                      child: GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: ProcedurePublishedWidget(
+                          callback: () async {
+                            setState(() =>
+                                _model.listViewPagingController?.refresh());
 
-                          setState(() {});
-                        },
+                            setState(() {});
+                          },
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ).then((value) => safeSetState(() {}));
-            },
-            backgroundColor: FlutterFlowTheme.of(context).primary,
-            elevation: 1.0,
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).info,
-              size: 24.0,
+                    );
+                  },
+                ).then((value) => setState(() {}));
+              },
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              elevation: 1.0,
+              child: Icon(
+                Icons.add,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
             ),
           ),
         ),

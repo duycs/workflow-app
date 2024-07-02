@@ -15,7 +15,7 @@ class TestsMarketStruct extends BaseStruct {
   set testsId(TestsIdMarketStruct? val) => _testsId = val;
 
   void updateTestsId(Function(TestsIdMarketStruct) updateFn) {
-    updateFn(testsId ??= TestsIdMarketStruct());
+    updateFn(_testsId ??= TestsIdMarketStruct());
   }
 
   bool hasTestsId() => _testsId != null;

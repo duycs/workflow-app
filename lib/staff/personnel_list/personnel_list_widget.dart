@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,6 +12,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -24,12 +26,15 @@ class PersonnelListWidget extends StatefulWidget {
   State<PersonnelListWidget> createState() => _PersonnelListWidgetState();
 }
 
-class _PersonnelListWidgetState extends State<PersonnelListWidget> {
+class _PersonnelListWidgetState extends State<PersonnelListWidget>
+    with TickerProviderStateMixin {
   late PersonnelListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late StreamSubscription<bool> _keyboardVisibilitySubscription;
   bool _isKeyboardVisible = false;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -59,6 +64,29 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'containerOnActionTriggerAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          TintEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x4CC3BFEA),
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+    });
+    setupAnimations(
+      animationsMap.values.where((anim) =>
+          anim.trigger == AnimationTrigger.onActionTrigger ||
+          !anim.applyInitialState),
+      this,
+    );
   }
 
   @override
@@ -482,6 +510,15 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                if (animationsMap[
+                                        'containerOnActionTriggerAnimation'] !=
+                                    null) {
+                                  await animationsMap[
+                                          'containerOnActionTriggerAnimation']!
+                                      .controller
+                                      .forward(from: 0.0);
+                                }
+
                                 context.pushNamed(
                                   'StaffDetail',
                                   queryParameters: {
@@ -498,6 +535,15 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                     ),
                                   },
                                 );
+
+                                if (animationsMap[
+                                        'containerOnActionTriggerAnimation'] !=
+                                    null) {
+                                  await animationsMap[
+                                          'containerOnActionTriggerAnimation']!
+                                      .controller
+                                      .reverse();
+                                }
                               },
                               child: Container(
                                 width: double.infinity,
@@ -566,12 +612,12 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         child:
                                                             FlutterFlowExpandedImageView(
                                                           image: Image.network(
-                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                             fit: BoxFit.contain,
                                                           ),
                                                           allowRotation: false,
                                                           tag:
-                                                              'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                           useHeroAnimation:
                                                               true,
                                                         ),
@@ -580,7 +626,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                   },
                                                   child: Hero(
                                                     tag:
-                                                        'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                     transitionOnUserGestures:
                                                         true,
                                                     child: ClipRRect(
@@ -588,7 +634,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           BorderRadius.circular(
                                                               8.0),
                                                       child: Image.network(
-                                                        'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                         width: 120.0,
                                                         height: 120.0,
                                                         fit: BoxFit.cover,
@@ -1203,6 +1249,9 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                   ),
                                 ),
                               ),
+                            ).animateOnActionTrigger(
+                              animationsMap[
+                                  'containerOnActionTriggerAnimation']!,
                             );
                           },
                         ),

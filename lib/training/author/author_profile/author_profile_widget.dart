@@ -1247,96 +1247,111 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                             ),
                                           ),
                                         ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              context: context,
-                                              builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () => _model
-                                                          .unfocusNode
-                                                          .canRequestFocus
-                                                      ? FocusScope.of(context)
-                                                          .requestFocus(_model
-                                                              .unfocusNode)
-                                                      : FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child: UpdateAuthorWidget(
-                                                      name:
-                                                          _model.author!.alias,
-                                                      avatar:
-                                                          _model.author!.avatar,
-                                                      description: _model
-                                                          .author!.description,
-                                                      domains: _model
-                                                          .author?.domains
-                                                          .map((e) =>
-                                                              e.domainsId.id)
-                                                          .toList(),
-                                                      id: _model.author!.id,
-                                                      domainIds: _model
-                                                          .author?.domains
-                                                          .map((e) => e.id)
-                                                          .toList(),
-                                                      callBack: () async {
-                                                        await _model
-                                                            .getListProgramAuthors(
-                                                                context);
-                                                        await _model
-                                                            .getOneAuthor(
-                                                                context);
+                                      Builder(
+                                        builder: (context) => Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (dialogContext) {
+                                                  return Dialog(
+                                                    elevation: 0,
+                                                    insetPadding:
+                                                        EdgeInsets.zero,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                                0.0, 0.0)
+                                                            .resolve(
+                                                                Directionality.of(
+                                                                    context)),
+                                                    child: GestureDetector(
+                                                      onTap: () => _model
+                                                              .unfocusNode
+                                                              .canRequestFocus
+                                                          ? FocusScope.of(
+                                                                  context)
+                                                              .requestFocus(_model
+                                                                  .unfocusNode)
+                                                          : FocusScope.of(
+                                                                  context)
+                                                              .unfocus(),
+                                                      child: SizedBox(
+                                                        height: double.infinity,
+                                                        width: double.infinity,
+                                                        child:
+                                                            UpdateAuthorWidget(
+                                                          name: _model
+                                                              .author!.alias,
+                                                          avatar: _model
+                                                              .author!.avatar,
+                                                          description: _model
+                                                              .author!
+                                                              .description,
+                                                          domains: _model
+                                                              .author?.domains
+                                                              .map((e) => e
+                                                                  .domainsId.id)
+                                                              .toList(),
+                                                          id: _model.author!.id,
+                                                          domainIds: _model
+                                                              .author?.domains
+                                                              .map((e) => e.id)
+                                                              .toList(),
+                                                          callBack: () async {
+                                                            await _model
+                                                                .getListProgramAuthors(
+                                                                    context);
+                                                            await _model
+                                                                .getOneAuthor(
+                                                                    context);
 
-                                                        setState(() {});
-                                                      },
+                                                            setState(() {});
+                                                          },
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then(
-                                                (value) => safeSetState(() {}));
-                                          },
-                                          text: 'Chỉnh sửa',
-                                          icon: const Icon(
-                                            Icons.edit,
-                                            size: 15.0,
-                                          ),
-                                          options: FFButtonOptions(
-                                            width: 150.0,
-                                            height: 40.0,
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 0.0, 24.0, 0.0),
-                                            iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      color: Colors.white,
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                            elevation: 3.0,
-                                            borderSide: const BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.0,
+                                                  );
+                                                },
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            },
+                                            text: 'Chỉnh sửa',
+                                            icon: const Icon(
+                                              Icons.edit,
+                                              size: 15.0,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
+                                            options: FFButtonOptions(
+                                              width: 150.0,
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 0.0, 24.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color: Colors.white,
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 3.0,
+                                              borderSide: const BorderSide(
+                                                color: Colors.transparent,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
                                           ),
                                         ),
                                       ),

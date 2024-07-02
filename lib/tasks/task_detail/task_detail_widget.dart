@@ -761,6 +761,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           filter:
                                                               '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
                                                           sort: 'number',
+                                                          limit: 100,
+                                                          offset: 0,
                                                         );
 
                                                         shouldSetState = true;

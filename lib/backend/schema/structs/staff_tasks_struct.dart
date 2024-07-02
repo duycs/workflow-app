@@ -17,7 +17,7 @@ class StaffTasksStruct extends BaseStruct {
   set tasksId(StaffTasksIdStruct? val) => _tasksId = val;
 
   void updateTasksId(Function(StaffTasksIdStruct) updateFn) {
-    updateFn(tasksId ??= StaffTasksIdStruct());
+    updateFn(_tasksId ??= StaffTasksIdStruct());
   }
 
   bool hasTasksId() => _tasksId != null;

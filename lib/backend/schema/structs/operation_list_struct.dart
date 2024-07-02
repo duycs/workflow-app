@@ -17,7 +17,7 @@ class OperationListStruct extends BaseStruct {
   set operationsId(OperationsIdStruct? val) => _operationsId = val;
 
   void updateOperationsId(Function(OperationsIdStruct) updateFn) {
-    updateFn(operationsId ??= OperationsIdStruct());
+    updateFn(_operationsId ??= OperationsIdStruct());
   }
 
   bool hasOperationsId() => _operationsId != null;

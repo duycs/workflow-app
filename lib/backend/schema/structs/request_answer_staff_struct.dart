@@ -66,7 +66,7 @@ class RequestAnswerStaffStruct extends BaseStruct {
   set answers(List<AnswersListStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<AnswersListStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;

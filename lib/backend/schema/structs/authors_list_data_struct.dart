@@ -15,7 +15,7 @@ class AuthorsListDataStruct extends BaseStruct {
   set data(List<AuthorsListStruct>? val) => _data = val;
 
   void updateData(Function(List<AuthorsListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

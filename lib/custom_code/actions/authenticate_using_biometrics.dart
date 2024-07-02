@@ -9,13 +9,19 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
+// // Automatic FlutterFlow imports
+// // Begin custom action code
+// // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
+
 import 'package:local_auth/local_auth.dart';
 
 import 'package:local_auth_android/local_auth_android.dart';
-import 'package:local_auth_ios/local_auth_ios.dart';
+import 'package:local_auth_darwin/local_auth_darwin.dart';
 
 Future<bool> authenticateUsingBiometrics() async {
-  // Add your function code here!
+//   // Add your function code here!
   final auth = LocalAuthentication();
 
   try {
@@ -57,4 +63,5 @@ Future<bool> authenticateUsingBiometrics() async {
     print('Error during authentication: $e');
     return false;
   }
+  return false;
 }

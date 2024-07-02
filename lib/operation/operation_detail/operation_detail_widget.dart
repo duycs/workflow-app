@@ -478,46 +478,49 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                           ),
                         ),
                         Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: OperationUpdateWidget(
-                                      operationUpdate: widget.operationDetail,
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
+                          child: Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: OperationUpdateWidget(
+                                        operationUpdate: widget.operationDetail,
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
 
-                              Navigator.pop(context);
-                            },
-                            text: 'Chỉnh sửa',
-                            options: FFButtonOptions(
-                              height: 44.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 20.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                Navigator.pop(context);
+                              },
+                              text: 'Chỉnh sửa',
+                              options: FFButtonOptions(
+                                height: 44.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 20.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(40.0),
                               ),
-                              borderRadius: BorderRadius.circular(40.0),
                             ),
                           ),
                         ),

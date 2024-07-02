@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/tasks/export_excel/export_excel_widget.dart';
 import '/tasks/filter_report_staff/filter_report_staff_widget.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -85,35 +86,20 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'Profile',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.pop();
             },
           ),
-          title: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Báo cáo công việc',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      fontSize: 18.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-            ],
+          title: Text(
+            'Báo cáo công việc',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                ),
           ),
           actions: const [],
-          centerTitle: true,
+          centerTitle: false,
           elevation: 1.0,
         ),
         body: SafeArea(
@@ -336,74 +322,271 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                       ),
                     ],
                   ),
-                  if ((_model.textController.text != '') ||
-                      ((_model.statusFilter != '') &&
-                          (_model.statusFilter != ' ')) ||
-                      ((_model.branch != '') &&
-                          (_model.branch != ' ')) ||
-                      ((_model.department != '') &&
-                          (_model.department != ' ')))
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 8.0),
-                      child: Text(
-                        '# Kết quả tìm kiếm theo bộ lọc',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                      ),
-                    ),
-                  Align(
-                    alignment: const AlignmentDirectional(1.0, -1.0),
-                    child: Builder(
-                      builder: (context) => FlutterFlowIconButton(
-                        borderColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 40.0,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        icon: FaIcon(
-                          FontAwesomeIcons.fileExport,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 24.0,
-                        ),
-                        onPressed: () async {
-                          await showAlignedDialog(
-                            context: context,
-                            isGlobal: false,
-                            avoidOverflow: true,
-                            targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(1.0, -1.0)
-                                .resolve(Directionality.of(context)),
-                            builder: (dialogContext) {
-                              return Material(
-                                color: Colors.transparent,
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: SizedBox(
-                                    height: 240.0,
-                                    width: 300.0,
-                                    child: ExportExcelWidget(
-                                      json: _model.json,
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        if ((_model.textController.text != '') ||
+                            ((_model.statusFilter != '') &&
+                                (_model.statusFilter != ' ')) ||
+                            ((_model.branch != '') &&
+                                (_model.branch != ' ')) ||
+                            ((_model.department != '') &&
+                                (_model.department != ' ')))
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 0.0, 8.0),
+                            child: Text(
+                              '# Kết quả tìm kiếm theo bộ lọc',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 1.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                if ('1' == '2')
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 16.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          useSafeArea: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: ExportExcelWidget(
+                                                  json: _model.json,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 70),
+                                        curve: Curves.easeIn,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 4.0, 8.0, 4.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              if ('1' == '2')
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Builder(
+                                                    builder: (context) =>
+                                                        FlutterFlowIconButton(
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      borderRadius: 20.0,
+                                                      borderWidth: 1.0,
+                                                      buttonSize: 40.0,
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      icon: FaIcon(
+                                                        FontAwesomeIcons
+                                                            .fileExport,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        await showAlignedDialog(
+                                                          context: context,
+                                                          isGlobal: false,
+                                                          avoidOverflow: true,
+                                                          targetAnchor:
+                                                              const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                          followerAnchor:
+                                                              const AlignmentDirectional(
+                                                                      1.0, -1.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    SizedBox(
+                                                                  height: 240.0,
+                                                                  width: 300.0,
+                                                                  child:
+                                                                      ExportExcelWidget(
+                                                                    json: _model
+                                                                        .json,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                              Text(
+                                                'Xuất excel',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                              ),
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.asset(
+                                                  'assets/images/export-spreadsheet-512.webp',
+                                                  width: 35.0,
+                                                  height: 35.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ].divide(const SizedBox(width: 4.0)),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 16.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        useSafeArea: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: ExportExcelWidget(
+                                                json: _model.json,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
+                                    text: 'Xuất excel',
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.fileExcel,
+                                      color: Color(0xFF09923F),
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 45.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 2.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
-                        },
-                      ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(

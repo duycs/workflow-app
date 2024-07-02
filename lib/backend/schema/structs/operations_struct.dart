@@ -65,7 +65,7 @@ class OperationsStruct extends BaseStruct {
   set operationsId(OperationsIdStruct? val) => _operationsId = val;
 
   void updateOperationsId(Function(OperationsIdStruct) updateFn) {
-    updateFn(operationsId ??= OperationsIdStruct());
+    updateFn(_operationsId ??= OperationsIdStruct());
   }
 
   bool hasOperationsId() => _operationsId != null;
@@ -118,7 +118,7 @@ class OperationsStruct extends BaseStruct {
   set userCreated(UserOperationStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(UserOperationStruct) updateFn) {
-    updateFn(userCreated ??= UserOperationStruct());
+    updateFn(_userCreated ??= UserOperationStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;

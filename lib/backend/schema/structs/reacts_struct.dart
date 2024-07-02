@@ -26,7 +26,7 @@ class ReactsStruct extends BaseStruct {
   set reactsId(ReactsIdStruct? val) => _reactsId = val;
 
   void updateReactsId(Function(ReactsIdStruct) updateFn) {
-    updateFn(reactsId ??= ReactsIdStruct());
+    updateFn(_reactsId ??= ReactsIdStruct());
   }
 
   bool hasReactsId() => _reactsId != null;

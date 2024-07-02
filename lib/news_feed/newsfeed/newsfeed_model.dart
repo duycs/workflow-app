@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -36,18 +37,30 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
+  // Model for navBar component.
+  late NavBarModel navBarModel;
+
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    navBarModel = createModel(context, () => NavBarModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    tabBarController?.dispose();
     listViewPagingController?.dispose();
+    navBarModel.dispose();
   }
 
   /// Action blocks.
