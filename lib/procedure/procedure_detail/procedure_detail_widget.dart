@@ -1147,7 +1147,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                               height: 15.0,
                                                               child:
                                                                   VerticalDivider(
-                                                                thickness: 4.0,
+                                                                thickness: 3.0,
                                                                 color: Color(
                                                                     0xB00F0E0E),
                                                               ),

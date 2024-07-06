@@ -163,6 +163,11 @@ export '/news_feed/newsfeed_detail/newsfeed_detail_widget.dart'
 export '/news_feed/newsfeed_list_require/newsfeed_list_require_widget.dart'
     show NewsfeedListRequireWidget;
 export '/processing/processing_widget.dart' show ProcessingWidget;
-export '/training/lesson/certificate_list/certificate_list_widget.dart'
+export '/training/certificate/certificate_list/certificate_list_widget.dart'
     show CertificateListWidget;
-export '/tab_funtion/tab_funtion_widget.dart' show TabFuntionWidget;
+export '/home/home/home_widget.dart' show HomeWidget;
+export '/profile/intro_screen_draft/intro_screen_draft_widget.dart'
+    show IntroScreenDraftWidget;
+export '/profile/intro_screen/intro_screen_widget.dart' show IntroScreenWidget;
+export '/training/study_program/study_program_detail/study_program_detail_widget.dart'
+    show StudyProgramDetailWidget;

@@ -15,7 +15,6 @@ import '/procedure/procedure_step_menu/procedure_step_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -782,6 +781,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                     .labelMedium
                                                     .override(
                                                       fontFamily: 'Nunito Sans',
+                                                      fontSize: 16.0,
                                                       letterSpacing: 0.0,
                                                     ),
                                             enabledBorder: InputBorder.none,
@@ -1041,7 +1041,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                             true,
                                                         backgroundColor:
                                                             Colors.transparent,
-                                                        enableDrag: false,
+                                                        useSafeArea: true,
                                                         context: context,
                                                         builder: (context) {
                                                           return GestureDetector(
@@ -1087,7 +1087,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                             true,
                                                         backgroundColor:
                                                             Colors.transparent,
-                                                        enableDrag: false,
+                                                        useSafeArea: true,
                                                         context: context,
                                                         builder: (context) {
                                                           return GestureDetector(
@@ -3854,7 +3854,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               height: 15.0,
                                                               child:
                                                                   VerticalDivider(
-                                                                thickness: 4.0,
+                                                                thickness: 3.0,
                                                                 color: Color(
                                                                     0xB00F0E0E),
                                                               ),
@@ -4003,65 +4003,62 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      Builder(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FlutterFlowIconButton(
-                                                                          borderRadius:
-                                                                              20.0,
-                                                                          borderWidth:
-                                                                              1.0,
-                                                                          buttonSize:
-                                                                              40.0,
-                                                                          icon:
-                                                                              const Icon(
-                                                                            Icons.more_vert,
-                                                                            color:
-                                                                                Colors.white,
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showAlignedDialog(
-                                                                              context: context,
-                                                                              isGlobal: false,
-                                                                              avoidOverflow: true,
-                                                                              targetAnchor: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                              followerAnchor: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                              builder: (dialogContext) {
-                                                                                return Material(
-                                                                                  color: Colors.transparent,
-                                                                                  child: GestureDetector(
-                                                                                    onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                                    child: SizedBox(
-                                                                                      height: 150.0,
-                                                                                      width: 250.0,
-                                                                                      child: ProcedureStepMenuWidget(
-                                                                                        item: listViewItem,
-                                                                                        idItem: 'null',
-                                                                                        callBack: (upStep, idItem) async {
-                                                                                          await _model.updateStep(
-                                                                                            context,
-                                                                                            item: upStep,
-                                                                                            index: listViewIndex,
-                                                                                          );
-
-                                                                                          setState(() {});
-                                                                                        },
-                                                                                        callBackDelete: () async {
-                                                                                          _model.removeAtIndexFromStepsList(listViewIndex);
-                                                                                          setState(() {});
-                                                                                        },
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
-                                                                          },
+                                                                      FlutterFlowIconButton(
+                                                                        borderRadius:
+                                                                            20.0,
+                                                                        borderWidth:
+                                                                            1.0,
+                                                                        buttonSize:
+                                                                            40.0,
+                                                                        icon:
+                                                                            const Icon(
+                                                                          Icons
+                                                                              .more_vert,
+                                                                          color:
+                                                                              Colors.white,
+                                                                          size:
+                                                                              24.0,
                                                                         ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          await showModalBottomSheet(
+                                                                            isScrollControlled:
+                                                                                true,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            useSafeArea:
+                                                                                true,
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (context) {
+                                                                              return GestureDetector(
+                                                                                onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                child: Padding(
+                                                                                  padding: MediaQuery.viewInsetsOf(context),
+                                                                                  child: ProcedureStepMenuWidget(
+                                                                                    item: listViewItem,
+                                                                                    idItem: 'null',
+                                                                                    callBack: (upStep, idItem) async {
+                                                                                      await _model.updateStep(
+                                                                                        context,
+                                                                                        item: upStep,
+                                                                                        index: listViewIndex,
+                                                                                      );
+
+                                                                                      setState(() {});
+                                                                                    },
+                                                                                    callBackDelete: () async {
+                                                                                      _model.removeAtIndexFromStepsList(listViewIndex);
+                                                                                      setState(() {});
+                                                                                    },
+                                                                                  ),
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              safeSetState(() {}));
+                                                                        },
                                                                       ),
                                                                     ],
                                                                   ),

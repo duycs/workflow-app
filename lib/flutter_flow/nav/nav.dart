@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const LoginWidget(),
+          : const IntroScreenWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -63,7 +63,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const LoginWidget(),
+              : const IntroScreenWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -1089,9 +1089,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const CertificateListWidget(),
         ),
         FFRoute(
-          name: 'TabFuntion',
-          path: '/tabFuntion',
-          builder: (context, params) => const TabFuntionWidget(),
+          name: 'Home',
+          path: '/home',
+          builder: (context, params) => const HomeWidget(),
+        ),
+        FFRoute(
+          name: 'IntroScreenDraft',
+          path: '/introScreenDraft',
+          builder: (context, params) => const IntroScreenDraftWidget(),
+        ),
+        FFRoute(
+          name: 'IntroScreen',
+          path: '/introScreen',
+          builder: (context, params) => const IntroScreenWidget(),
+        ),
+        FFRoute(
+          name: 'StudyProgramDetail',
+          path: '/studyProgramDetail',
+          builder: (context, params) => StudyProgramDetailWidget(
+            studyProgramList: params.getParam(
+              'studyProgramList',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

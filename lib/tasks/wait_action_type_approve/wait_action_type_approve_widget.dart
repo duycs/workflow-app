@@ -39,10 +39,10 @@ class _WaitActionTypeApproveWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FFButtonWidget(
             onPressed: ('1' == '1')
@@ -53,22 +53,20 @@ class _WaitActionTypeApproveWidgetState
             text: 'Từ chối',
             icon: const Icon(
               Icons.close,
-              size: 15.0,
+              size: 20.0,
             ),
             options: FFButtonOptions(
-              height: 40.0,
+              width: 110.0,
+              height: 35.0,
               padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
               iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              color: FlutterFlowTheme.of(context).alternate,
               textStyle: FlutterFlowTheme.of(context).labelLarge.override(
                     fontFamily: 'Nunito Sans',
                     color: FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 14.0,
+                    fontSize: 13.0,
                     letterSpacing: 0.0,
                   ),
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),

@@ -65,8 +65,8 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                   padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 6.0,
+                    mainAxisSpacing: 6.0,
                     childAspectRatio: 1.0,
                   ),
                   primary: false,

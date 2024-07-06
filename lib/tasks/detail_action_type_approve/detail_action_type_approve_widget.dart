@@ -46,50 +46,44 @@ class _DetailActionTypeApproveWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FFButtonWidget(
-            onPressed:
-                ((widget.data?.status == 'todo') && (widget.data?.current == 0))
-                    ? null
-                    : () async {
-                        await widget.callback?.call(
-                          'rejected',
-                        );
-                      },
-            text: 'Từ chối',
-            icon: Icon(
-              Icons.close,
-              color:
-                  (widget.data?.status == 'todo') && (widget.data?.current == 1)
-                      ? FlutterFlowTheme.of(context).error
-                      : FlutterFlowTheme.of(context).secondaryText,
-              size: 15.0,
-            ),
-            options: FFButtonOptions(
-              width: 150.0,
-              height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).alternate,
-              textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                    fontFamily: 'Nunito Sans',
-                    color: FlutterFlowTheme.of(context).error,
-                    fontSize: 14.0,
-                    letterSpacing: 0.0,
-                  ),
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).alternate,
-              ),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FFButtonWidget(
+          onPressed:
+              ((widget.data?.status == 'todo') && (widget.data?.current == 0))
+                  ? null
+                  : () async {
+                      await widget.callback?.call(
+                        'rejected',
+                      );
+                    },
+          text: 'Từ chối',
+          icon: Icon(
+            Icons.close,
+            color:
+                (widget.data?.status == 'todo') && (widget.data?.current == 1)
+                    ? FlutterFlowTheme.of(context).secondaryText
+                    : FlutterFlowTheme.of(context).secondaryText,
+            size: 20.0,
           ),
-        ].divide(const SizedBox(width: 16.0)),
-      ),
+          options: FFButtonOptions(
+            width: 110.0,
+            height: 35.0,
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+            iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+            color: FlutterFlowTheme.of(context).alternate,
+            textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                  fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 13.0,
+                  letterSpacing: 0.0,
+                ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+      ].divide(const SizedBox(width: 16.0)),
     );
   }
 }

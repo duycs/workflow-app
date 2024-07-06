@@ -113,6 +113,8 @@ class NewsfeedEditModel extends FlutterFlowModel<NewsfeedEditWidget> {
           int index, Function(FileDataTypeStruct) updateFn) =>
       listVideoUploadNF[index] = updateFn(listVideoUploadNF[index]);
 
+  int setColor = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Title widget.

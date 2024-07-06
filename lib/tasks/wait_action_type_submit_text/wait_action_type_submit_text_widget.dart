@@ -45,61 +45,60 @@ class _WaitActionTypeSubmitTextWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-      child: TextFormField(
-        controller: _model.textController,
-        focusNode: _model.textFieldFocusNode,
-        autofocus: false,
-        readOnly: true,
-        obscureText: false,
-        decoration: InputDecoration(
-          labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
-          hintText: 'Nhập nội dung...',
-          hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                fontFamily: 'Nunito Sans',
-                letterSpacing: 0.0,
-              ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: FlutterFlowTheme.of(context).alternate,
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Color(0x00000000),
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: FlutterFlowTheme.of(context).error,
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: FlutterFlowTheme.of(context).error,
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
-        ),
-        style: FlutterFlowTheme.of(context).bodyMedium.override(
+    return TextFormField(
+      controller: _model.textController,
+      focusNode: _model.textFieldFocusNode,
+      autofocus: false,
+      readOnly: true,
+      obscureText: false,
+      decoration: InputDecoration(
+        labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
               fontFamily: 'Nunito Sans',
               letterSpacing: 0.0,
             ),
-        maxLines: 4,
-        validator: _model.textControllerValidator.asValidator(context),
+        hintText: 'Nhập nội dung...',
+        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+              fontFamily: 'Nunito Sans',
+              letterSpacing: 0.0,
+            ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: FlutterFlowTheme.of(context).alternate,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Color(0x00000000),
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: FlutterFlowTheme.of(context).error,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: FlutterFlowTheme.of(context).error,
+            width: 1.0,
+          ),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        filled: true,
+        fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+        contentPadding: const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 16.0),
       ),
+      style: FlutterFlowTheme.of(context).bodyMedium.override(
+            fontFamily: 'Nunito Sans',
+            letterSpacing: 0.0,
+          ),
+      maxLines: 3,
+      validator: _model.textControllerValidator.asValidator(context),
     );
   }
 }

@@ -13,6 +13,8 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
     updateFn(staffDetail ??= StaffListStruct());
   }
 
+  bool checkLoading = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -3,8 +3,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_update_widget.dart' show LessonUpdateWidget;
 import 'package:flutter/material.dart';
 
@@ -37,6 +37,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   String output = '';
 
   String testId = '';
+
+  dynamic content;
 
   ///  State fields for stateful widgets in this page.
 
@@ -77,8 +79,14 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
+
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
 
   @override
   void dispose() {
@@ -94,6 +102,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
     estimateInDayFocusNode?.dispose();
     estimateInDayTextController?.dispose();
+
+    mobileEditorDisplayComponentModel.dispose();
   }
 
   /// Action blocks.
@@ -153,12 +163,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         'status': radioButtonStatusValue == 'Hoạt động' ? 'published' : 'draft',
         'name': nameTextController.text,
         'description': descriptionTextController.text,
-        'content': checkContent != ''
-            ? checkContent
-            : functions.formatHtml(getJsonField(
-                widget.items,
-                r'''$.content''',
-              ).toString().toString()),
+        'content': content,
         'image_cover': () {
           if (uploadImage != '') {
             return uploadImage;

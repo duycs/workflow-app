@@ -74,6 +74,8 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
     updateFn(requestData ??= CreateNNewsFeedDataStruct());
   }
 
+  int setColor = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Title widget.

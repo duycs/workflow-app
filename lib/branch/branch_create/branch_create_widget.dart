@@ -222,6 +222,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               maxLength: 250,
+                              buildCounter: (context,
+                                      {required currentLength,
+                                      required isFocused,
+                                      maxLength}) =>
+                                  null,
                               validator: _model
                                   .branchNameTextControllerValidator
                                   .asValidator(context),
@@ -334,6 +339,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               maxLength: 50,
+                              buildCounter: (context,
+                                      {required currentLength,
+                                      required isFocused,
+                                      maxLength}) =>
+                                  null,
                               validator: _model
                                   .branchCodeTextControllerValidator
                                   .asValidator(context),
@@ -430,6 +440,11 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     ),
                                 maxLines: 3,
                                 maxLength: 250,
+                                buildCounter: (context,
+                                        {required currentLength,
+                                        required isFocused,
+                                        maxLength}) =>
+                                    null,
                                 validator: _model
                                     .descriptionBranchTextControllerValidator
                                     .asValidator(context),

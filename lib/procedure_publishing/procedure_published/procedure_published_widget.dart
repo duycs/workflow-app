@@ -437,18 +437,18 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                 const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 3.0, 0.0, 0.0),
                                             child: Text(
-                                              'Thiết lập: ${_model.workflowSelected?.cron != null && _model.workflowSelected?.cron != '' ? () {
+                                              'Thiết lập lặp: ${_model.workflowSelected?.cron != null && _model.workflowSelected?.cron != '' ? () {
                                                   if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '3') {
-                                                    return 'trong tháng';
+                                                    return 'Trong tháng';
                                                   } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '2') {
-                                                    return 'trong tuần';
+                                                    return 'Trong tuần';
                                                   } else if (functions.checkTypeCron(_model.workflowSelected!.cron) ==
                                                       '1') {
-                                                    return 'hàng ngày';
+                                                    return 'Hàng ngày';
                                                   } else {
-                                                    return 'không lặp';
+                                                    return 'Không lặp';
                                                   }
                                                 }() : ' '}',
                                               style: FlutterFlowTheme.of(
@@ -699,7 +699,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                                   child:
                                                                       VerticalDivider(
                                                                     thickness:
-                                                                        4.0,
+                                                                        3.0,
                                                                     color: Color(
                                                                         0xB00F0E0E),
                                                                   ),

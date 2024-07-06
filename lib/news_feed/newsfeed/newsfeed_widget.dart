@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -11,15 +10,15 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
+import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'newsfeed_model.dart';
@@ -53,11 +52,6 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
       setState(() {});
     });
 
-    _model.tabBarController = TabController(
-      vsync: this,
-      length: 3,
-      initialIndex: 0,
-    )..addListener(() => setState(() {}));
     animationsMap.addAll({
       'rowOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -96,127 +90,17 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          title: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                child: Text(
-                  'Good Morning',
-                  style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: 'Nunito Sans',
-                        fontSize: 24.0,
-                        letterSpacing: 0.0,
-                      ),
+          title: Text(
+            'Newsfeed',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
                 ),
-              ),
-              Text(
-                'Trang tin tức',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 14.0,
-                      letterSpacing: 0.0,
-                    ),
-              ),
-            ].divide(const SizedBox(height: 4.0)),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 12.0, 0.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(
-                    color: FlutterFlowTheme.of(context).primary,
-                    width: 2.0,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.pushNamed(
-                        'ProfileCPN',
-                        extra: <String, dynamic>{
-                          kTransitionInfoKey: const TransitionInfo(
-                            hasTransition: true,
-                            transitionType: PageTransitionType.fade,
-                            duration: Duration(milliseconds: 0),
-                          ),
-                        },
-                      );
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        if ('1' == '2')
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/08-47-33-566_512.webp',
-                              width: 30.0,
-                              height: 40.0,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Icon(
-                              Icons.keyboard_double_arrow_right,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 18.0,
-                            ),
-                            Text(
-                              'Đi đến Tổ chức',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                            ),
-                          ],
-                        ),
-                        if ('1' == '2')
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(90.0),
-                              border: Border.all(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(90.0),
-                              child: Image.asset(
-                                'assets/images/Chuc-nang-to-chuc-Organizational-functions-la-gi.jpg',
-                                width: 50.0,
-                                height: 50.0,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                      ].divide(const SizedBox(width: 4.0)),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          actions: const [],
           centerTitle: false,
-          toolbarHeight: 72.0,
-          elevation: 0.0,
+          elevation: 1.0,
         ),
         body: SafeArea(
           top: true,
@@ -228,20 +112,21 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Flexible(
+                        Expanded(
                           child: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                17.0, 16.0, 17.0, 6.0),
+                                17.0, 0.0, 17.0, 0.0),
                             child: FlutterFlowChoiceChips(
                               options: const [
-                                ChipData('Tổ chức', Icons.location_city),
-                                ChipData('Chi nhánh', Icons.home_work_outlined),
-                                ChipData('Bộ phận', Icons.groups_2_outlined)
+                                ChipData('Tổ chức'),
+                                ChipData('Chi nhánh'),
+                                ChipData('Bộ phận')
                               ],
                               onChanged: (val) async {
                                 setState(() =>
@@ -256,8 +141,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 setState(() {});
                               },
                               selectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).accent1,
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -266,19 +151,19 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           FlutterFlowTheme.of(context).primary,
                                       letterSpacing: 0.0,
                                     ),
-                                iconColor: FlutterFlowTheme.of(context).primary,
-                                iconSize: 18.0,
+                                iconColor: const Color(0x00000000),
+                                iconSize: 0.0,
                                 labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 6.0, 12.0, 6.0),
+                                    8.0, 0.0, 8.0, 0.0),
                                 elevation: 0.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                borderWidth: 2.0,
+                                borderColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderWidth: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               unselectedChipStyle: ChipStyle(
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).alternate,
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -287,95 +172,69 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           .secondaryText,
                                       letterSpacing: 0.0,
                                     ),
-                                iconColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                iconSize: 18.0,
+                                iconColor: const Color(0x00000000),
+                                iconSize: 0.0,
                                 labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 6.0, 12.0, 6.0),
+                                    8.0, 0.0, 8.0, 0.0),
                                 elevation: 0.0,
+                                borderColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              chipSpacing: 12.0,
+                              chipSpacing: 0.0,
                               rowSpacing: 12.0,
                               multiselect: false,
                               initialized: _model.choiceChipsValue != null,
-                              alignment: WrapAlignment.start,
+                              alignment: WrapAlignment.spaceAround,
                               controller: _model.choiceChipsValueController ??=
                                   FormFieldController<List<String>>(
                                 ['Tổ chức'],
                               ),
-                              wrapped: false,
+                              wrapped: true,
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    decoration: const BoxDecoration(),
-                    child: Visibility(
-                      visible: '1' == '2',
-                      child: Container(
-                        height: 60.0,
-                        decoration: const BoxDecoration(),
-                        child: Column(
-                          children: [
-                            Align(
-                              alignment: const Alignment(-1.0, 0),
-                              child: TabBar(
-                                isScrollable: true,
-                                labelColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                unselectedLabelColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                unselectedLabelStyle:
-                                    FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                indicatorColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                padding: const EdgeInsets.all(4.0),
-                                tabs: const [
-                                  Tab(
-                                    text: 'Example 1',
-                                  ),
-                                  Tab(
-                                    text: 'Example 2',
-                                  ),
-                                  Tab(
-                                    text: 'Example 3',
-                                  ),
-                                ],
-                                controller: _model.tabBarController,
-                                onTap: (i) async {
-                                  [() async {}, () async {}, () async {}][i]();
-                                },
-                              ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            height: 1.0,
+                            decoration: BoxDecoration(
+                              color: _model.choiceChipsValue == 'Tổ chức'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : const Color(0x00000000),
                             ),
-                            Expanded(
-                              child: TabBarView(
-                                controller: _model.tabBarController,
-                                children: [
-                                  Container(),
-                                  Container(),
-                                  Container(),
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Expanded(
+                          child: Container(
+                            height: 1.0,
+                            decoration: BoxDecoration(
+                              color: _model.choiceChipsValue == 'Chi nhánh'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : const Color(0x00000000),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            height: 1.0,
+                            decoration: BoxDecoration(
+                              color: _model.choiceChipsValue == 'Bộ phận'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : const Color(0x00000000),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
@@ -390,22 +249,21 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Tin tức yêu cầu đọc',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 4.0, 0.0),
+                                  child: Text(
+                                    'Tin tức yêu cầu đọc',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
                                 ),
                                 if (_model.newsfeedPublished.length > 5)
@@ -452,6 +310,14 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       ),
                                     ),
                                   ),
+                                Container(
+                                  width: 1.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                ),
                                 if (valueOrDefault<bool>(
                                   () {
                                     if (_model.choiceChipsValue == 'Tổ chức') {
@@ -540,14 +406,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                           ),
                           if ((_model.newsfeedPublished.isNotEmpty) &&
                               (_model.isLoad == true))
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 16.0, 0.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  if ('1' == '2')
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 16.0),
@@ -823,82 +688,480 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                         },
                                       ),
                                     ),
-                                    if (_model.newsfeedPublished.length > 5)
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'NewsfeedListRequire',
-                                            queryParameters: {
-                                              'checkScope': serializeParam(
-                                                _model.choiceChipsValue,
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4.0),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Xem tất cả',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                              ),
-                                              Icon(
-                                                Icons
-                                                    .keyboard_arrow_right_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                  if ((_model.newsfeedPublished.length > 5) &&
+                                      ('1' == '2'))
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'NewsfeedListRequire',
+                                          queryParameters: {
+                                            'checkScope': serializeParam(
+                                              _model.choiceChipsValue,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Xem tất cả',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                            ],
-                                          ),
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                            Icon(
+                                              Icons
+                                                  .keyboard_arrow_right_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                  ].divide(const SizedBox(width: 16.0)),
+                                    ),
+                                ].divide(const SizedBox(width: 16.0)),
+                              ),
+                            ),
+                          if ((_model.newsfeedPublished.isNotEmpty) &&
+                              (_model.isLoad == true))
+                            Container(
+                              height: 200.0,
+                              decoration: const BoxDecoration(),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 4.0, 12.0, 1.0),
+                                child: Builder(
+                                  builder: (context) {
+                                    final newsfeedRequireList =
+                                        _model.newsfeedPublished.toList();
+                                    return SizedBox(
+                                      width: double.infinity,
+                                      height: 180.0,
+                                      child: CarouselSlider.builder(
+                                        itemCount: newsfeedRequireList.length,
+                                        itemBuilder: (context,
+                                            newsfeedRequireListIndex, _) {
+                                          final newsfeedRequireListItem =
+                                              newsfeedRequireList[
+                                                  newsfeedRequireListIndex];
+                                          return Stack(
+                                            children: [
+                                              if (newsfeedRequireListIndex < 5)
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'NewsfeedDetail',
+                                                      queryParameters: {
+                                                        'newsfeedId':
+                                                            serializeParam(
+                                                          newsfeedRequireListItem
+                                                              .id,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: Image.network(
+                                                          newsfeedRequireListItem
+                                                                      .images.isNotEmpty
+                                                              ? '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedRequireListItem.images.first.directusFilesId.id}?access_token=${FFAppState().accessToken}'
+                                                              : ' ',
+                                                        ).image,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4.0),
+                                                    ),
+                                                    child: SizedBox(
+                                                      height: 190.0,
+                                                      child: Stack(
+                                                        children: [
+                                                          Align(
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            child: Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          -1.0),
+                                                                  image: Image
+                                                                      .asset(
+                                                                    'assets/images/2vqf7_',
+                                                                  ).image,
+                                                                ),
+                                                                gradient:
+                                                                    LinearGradient(
+                                                                  colors: [
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .noColor,
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText
+                                                                  ],
+                                                                  stops: const [
+                                                                    0.0,
+                                                                    1.0
+                                                                  ],
+                                                                  begin:
+                                                                      const AlignmentDirectional(
+                                                                          0.0,
+                                                                          -1.0),
+                                                                  end:
+                                                                      const AlignmentDirectional(
+                                                                          0,
+                                                                          1.0),
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            4.0),
+                                                              ),
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 0.0),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        12.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .end,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  newsfeedRequireListItem
+                                                                      .title,
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                                ),
+                                                                Text(
+                                                                  newsfeedRequireListItem
+                                                                      .content,
+                                                                  maxLines: 2,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        fontSize:
+                                                                            13.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .chat_bubble_rounded,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      size:
+                                                                          16.0,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          newsfeedRequireListItem
+                                                                              .comments
+                                                                              .length
+                                                                              .toString(),
+                                                                          '0',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Icon(
+                                                                      Icons
+                                                                          .favorite,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      size:
+                                                                          16.0,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          newsfeedRequireListItem
+                                                                              .reacts
+                                                                              .length
+                                                                              .toString(),
+                                                                          '0',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ].divide(const SizedBox(
+                                                                      width:
+                                                                          2.0)),
+                                                                ),
+                                                              ].divide(const SizedBox(
+                                                                  height: 4.0)),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              if ((_model.newsfeedPublished
+                                                          .length >
+                                                      5) &&
+                                                  (newsfeedRequireListIndex ==
+                                                      5))
+                                                InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      'NewsfeedListRequire',
+                                                      queryParameters: {
+                                                        'checkScope':
+                                                            serializeParam(
+                                                          _model
+                                                              .choiceChipsValue,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4.0),
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            -1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'Xem tất cả',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                          Icon(
+                                                            Icons
+                                                                .keyboard_arrow_right_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          );
+                                        },
+                                        carouselController:
+                                            _model.carouselController ??=
+                                                CarouselController(),
+                                        options: CarouselOptions(
+                                          initialPage: max(
+                                              0,
+                                              min(
+                                                  1,
+                                                  newsfeedRequireList.length -
+                                                      1)),
+                                          viewportFraction: 0.5,
+                                          disableCenter: true,
+                                          enlargeCenterPage: true,
+                                          enlargeFactor: 0.4,
+                                          enableInfiniteScroll: false,
+                                          scrollDirection: Axis.horizontal,
+                                          autoPlay: false,
+                                          onPageChanged: (index, _) => _model
+                                              .carouselCurrentIndex = index,
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ),
                           if (_model.isLoad == false)
-                            Container(
-                              width: 100.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 16.0),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 16.0, 0.0, 56.0),
+                              child: Container(
+                                width: 100.0,
+                                height: 100.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
                                 child: SizedBox(
                                   width: double.infinity,
                                   height: double.infinity,
@@ -913,40 +1176,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                             ),
                           if ((_model.newsfeedPublished.isEmpty) &&
                               (_model.isLoad == true))
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 16.0, 0.0, 16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 15.0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.database,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        size: 55.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Không có dữ liệu !',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 25.0),
+                              child: wrapWithModel(
+                                model: _model.dNFNewsfeedModel,
+                                updateCallback: () => setState(() {}),
+                                child: const DNFNewsfeedWidget(),
                               ),
                             ),
                           if ('1' == '2')
@@ -1077,122 +1313,111 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                               ).animateOnPageLoad(
                                   animationsMap['rowOnPageLoadAnimation']!),
                             ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: _model.isLoad == true
-                                  ? FlutterFlowTheme.of(context)
-                                      .primaryBackground
-                                  : const Color(0x00000000),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 4.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 24.0, 0.0, 4.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 0.0, 6.0),
+                                  child: Text(
+                                    'Tất cả tin tức',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                if (valueOrDefault<bool>(
+                                  () {
+                                    if (_model.choiceChipsValue == 'Tổ chức') {
+                                      return true;
+                                    } else if ((_model.choiceChipsValue ==
+                                            'Chi nhánh') &&
+                                        (FFAppState().user.role !=
+                                            '82073000-1ba2-43a4-a55c-459d17c23b68')) {
+                                      return true;
+                                    } else if ((_model.choiceChipsValue ==
+                                            'Bộ phận') &&
+                                        ((FFAppState().user.role ==
+                                                '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                            (FFAppState().user.role ==
+                                                '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))) {
+                                      return true;
+                                    } else {
+                                      return false;
+                                    }
+                                  }(),
+                                  false,
+                                ))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 0.0, 6.0),
-                                    child: Text(
-                                      'Tất cả tin tức',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                                        0.0, 0.0, 16.0, 0.0),
+                                    child: FlutterFlowIconButton(
+                                      borderRadius: 8.0,
+                                      buttonSize: 40.0,
+                                      icon: Icon(
+                                        Icons.edit_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 22.0,
+                                      ),
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          useSafeArea: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: NewsfeedCreateWidget(
+                                                  checkRequire: 'published',
+                                                  checkScope: () {
+                                                    if (_model
+                                                            .choiceChipsValue ==
+                                                        'Tổ chức') {
+                                                      return 0;
+                                                    } else if (_model
+                                                            .choiceChipsValue ==
+                                                        'Chi nhánh') {
+                                                      return 1;
+                                                    } else {
+                                                      return 2;
+                                                    }
+                                                  }(),
+                                                  callback: () async {
+                                                    setState(() => _model
+                                                        .listViewPagingController
+                                                        ?.refresh());
+
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
                                     ),
                                   ),
-                                  if (valueOrDefault<bool>(
-                                    () {
-                                      if (_model.choiceChipsValue ==
-                                          'Tổ chức') {
-                                        return true;
-                                      } else if ((_model.choiceChipsValue ==
-                                              'Chi nhánh') &&
-                                          (FFAppState().user.role !=
-                                              '82073000-1ba2-43a4-a55c-459d17c23b68')) {
-                                        return true;
-                                      } else if ((_model.choiceChipsValue ==
-                                              'Bộ phận') &&
-                                          ((FFAppState().user.role ==
-                                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
-                                              (FFAppState().user.role ==
-                                                  '3755a98d-f064-45cd-80e4-5084ab1dd2c4'))) {
-                                        return true;
-                                      } else {
-                                        return false;
-                                      }
-                                    }(),
-                                    false,
-                                  ))
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 16.0, 0.0),
-                                      child: FlutterFlowIconButton(
-                                        borderRadius: 8.0,
-                                        buttonSize: 40.0,
-                                        icon: Icon(
-                                          Icons.edit_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 22.0,
-                                        ),
-                                        onPressed: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Colors.transparent,
-                                            useSafeArea: true,
-                                            context: context,
-                                            builder: (context) {
-                                              return GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child: NewsfeedCreateWidget(
-                                                    checkRequire: 'published',
-                                                    checkScope: () {
-                                                      if (_model
-                                                              .choiceChipsValue ==
-                                                          'Tổ chức') {
-                                                        return 0;
-                                                      } else if (_model
-                                                              .choiceChipsValue ==
-                                                          'Chi nhánh') {
-                                                        return 1;
-                                                      } else {
-                                                        return 2;
-                                                      }
-                                                    }(),
-                                                    callback: () async {
-                                                      setState(() => _model
-                                                          .listViewPagingController
-                                                          ?.refresh());
-
-                                                      setState(() {});
-                                                    },
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          ).then(
-                                              (value) => safeSetState(() {}));
-                                        },
-                                      ),
-                                    ),
-                                ],
-                              ),
+                              ],
                             ),
                           ),
 
@@ -1342,7 +1567,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                   ),
                                 ),
                                 noItemsFoundIndicatorBuilder: (_) =>
-                                    const DataNotFoundWidget(),
+                                    const DNFNewsfeedWidget(),
                                 itemBuilder: (context, _, newsfeedIndex) {
                                   final newsfeedItem = _model
                                       .listViewPagingController!
@@ -1524,75 +1749,63 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     if (newsfeedItem
                                                             .userCreated.id ==
                                                         FFAppState().user.id)
-                                                      Builder(
-                                                        builder: (context) =>
-                                                            FlutterFlowIconButton(
-                                                          borderColor: Colors
-                                                              .transparent,
-                                                          borderRadius: 20.0,
-                                                          borderWidth: 1.0,
-                                                          buttonSize: 40.0,
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_control,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          onPressed: () async {
-                                                            await showAlignedDialog(
-                                                              context: context,
-                                                              isGlobal: false,
-                                                              avoidOverflow:
-                                                                  true,
-                                                              targetAnchor:
-                                                                  const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0)
-                                                                      .resolve(
-                                                                          Directionality.of(
-                                                                              context)),
-                                                              followerAnchor:
-                                                                  const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0)
-                                                                      .resolve(
-                                                                          Directionality.of(
-                                                                              context)),
-                                                              builder:
-                                                                  (dialogContext) {
-                                                                return Material(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  child:
-                                                                      GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
-                                                                    child:
-                                                                        ActionNewsfeedWidget(
-                                                                      newsFeedList:
-                                                                          newsfeedItem,
-                                                                      callback:
-                                                                          () async {
-                                                                        setState(() => _model
-                                                                            .listViewPagingController
-                                                                            ?.refresh());
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
-                                                          },
+                                                      FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 20.0,
+                                                        borderWidth: 1.0,
+                                                        buttonSize: 40.0,
+                                                        icon: Icon(
+                                                          Icons
+                                                              .keyboard_control,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
                                                         ),
+                                                        onPressed: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            useSafeArea: true,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
+                                                                  child:
+                                                                      ActionNewsfeedWidget(
+                                                                    newsFeedList:
+                                                                        newsfeedItem,
+                                                                    callback:
+                                                                        () async {
+                                                                      setState(() => _model
+                                                                          .listViewPagingController
+                                                                          ?.refresh());
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(
+                                                                  () {}));
+                                                        },
                                                       ),
                                                   ],
                                                 ),
@@ -2574,7 +2787,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                 child: wrapWithModel(
                   model: _model.navBarModel,
                   updateCallback: () => setState(() {}),

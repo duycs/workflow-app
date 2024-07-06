@@ -1,14 +1,13 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
+import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -222,7 +221,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                     ),
                   ),
                 ),
-                noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                noItemsFoundIndicatorBuilder: (_) => const DNFNewsfeedWidget(),
                 itemBuilder: (context, _, newsfeedListRequireIndex) {
                   final newsfeedListRequireItem = _model
                       .listViewPagingController!
@@ -347,57 +346,49 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                 ),
                                 if (newsfeedListRequireItem.userCreated.id ==
                                     FFAppState().user.id)
-                                  Builder(
-                                    builder: (context) => FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 20.0,
-                                      borderWidth: 1.0,
-                                      buttonSize: 40.0,
-                                      icon: Icon(
-                                        Icons.keyboard_control,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      onPressed: () async {
-                                        await showAlignedDialog(
-                                          context: context,
-                                          isGlobal: false,
-                                          avoidOverflow: true,
-                                          targetAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          builder: (dialogContext) {
-                                            return Material(
-                                              color: Colors.transparent,
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: ActionNewsfeedWidget(
-                                                  newsFeedList:
-                                                      newsfeedListRequireItem,
-                                                  callback: () async {
-                                                    setState(() => _model
-                                                        .listViewPagingController
-                                                        ?.refresh());
-                                                  },
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => setState(() {}));
-                                      },
+                                  FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: Icon(
+                                      Icons.keyboard_control,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
                                     ),
+                                    onPressed: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        useSafeArea: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: ActionNewsfeedWidget(
+                                                newsFeedList:
+                                                    newsfeedListRequireItem,
+                                                callback: () async {
+                                                  setState(() => _model
+                                                      .listViewPagingController
+                                                      ?.refresh());
+                                                },
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
                                   ),
                               ],
                             ),

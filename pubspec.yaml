@@ -26,8 +26,11 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   aligned_dialog: 0.0.6
+  appflowy_editor: ^3.0.0
   auto_size_text: 3.0.0
+  badges: 2.0.2
   cached_network_image: 3.3.1
+  carousel_slider: 4.2.1
   chewie: 1.8.1
   collection: 1.18.0
   crypto_keys: ^0.3.0+1
@@ -81,7 +84,6 @@ dependencies:
   path_provider_android: 2.2.5
   path_provider_foundation: 2.4.0
   path_provider_platform_interface: 2.1.2
-  pdf: ^3.10.8
   pdfx: 2.6.0
   percent_indicator: 4.2.2
   permission_handler: ^11.3.1
@@ -98,7 +100,6 @@ dependencies:
   sqflite: 2.2.6
   stop_watch_timer: 3.0.2
   timeago: 3.6.1
-  universal_io: ^2.0.4
   url_launcher: 6.2.5
   url_launcher_android: 6.3.0
   url_launcher_ios: 6.2.5

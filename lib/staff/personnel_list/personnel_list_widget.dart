@@ -1,6 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -12,7 +11,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -26,15 +24,12 @@ class PersonnelListWidget extends StatefulWidget {
   State<PersonnelListWidget> createState() => _PersonnelListWidgetState();
 }
 
-class _PersonnelListWidgetState extends State<PersonnelListWidget>
-    with TickerProviderStateMixin {
+class _PersonnelListWidgetState extends State<PersonnelListWidget> {
   late PersonnelListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late StreamSubscription<bool> _keyboardVisibilitySubscription;
   bool _isKeyboardVisible = false;
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -64,29 +59,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    animationsMap.addAll({
-      'containerOnActionTriggerAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          TintEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            color: const Color(0x4CC3BFEA),
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-    });
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -510,15 +482,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (animationsMap[
-                                        'containerOnActionTriggerAnimation'] !=
-                                    null) {
-                                  await animationsMap[
-                                          'containerOnActionTriggerAnimation']!
-                                      .controller
-                                      .forward(from: 0.0);
-                                }
-
                                 context.pushNamed(
                                   'StaffDetail',
                                   queryParameters: {
@@ -535,15 +498,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                     ),
                                   },
                                 );
-
-                                if (animationsMap[
-                                        'containerOnActionTriggerAnimation'] !=
-                                    null) {
-                                  await animationsMap[
-                                          'containerOnActionTriggerAnimation']!
-                                      .controller
-                                      .reverse();
-                                }
                               },
                               child: Container(
                                 width: double.infinity,
@@ -738,7 +692,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                                 BoxDecoration(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .accent3,
+                                                                  .accent1,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
@@ -747,7 +701,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                                   Border.all(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primary,
                                                                 width: 1.0,
                                                               ),
                                                             ),
@@ -772,6 +726,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                                       .override(
                                                                         fontFamily:
                                                                             'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1122,6 +1078,48 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
+                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                    Text(
+                                                      'Đang chờ',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
                                                       '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -1164,7 +1162,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      '${dataListItem.tasks.where((e) => e.tasksId.status == 'done').toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1200,48 +1198,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                                   ],
                                                 ),
                                               ),
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                    Text(
-                                                      'Đang chờ',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
                                             ].divide(const SizedBox(width: 12.0)),
                                           ),
                                         ),
@@ -1249,9 +1205,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget>
                                   ),
                                 ),
                               ),
-                            ).animateOnActionTrigger(
-                              animationsMap[
-                                  'containerOnActionTriggerAnimation']!,
                             );
                           },
                         ),

@@ -1,10 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'work_result_list_widget.dart' show WorkResultListWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -64,13 +63,8 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
-  // Model for navBar component.
-  late NavBarModel navBarModel;
-
   @override
-  void initState(BuildContext context) {
-    navBarModel = createModel(context, () => NavBarModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
@@ -79,7 +73,6 @@ class WorkResultListModel extends FlutterFlowModel<WorkResultListWidget> {
     textController?.dispose();
 
     listViewPagingController?.dispose();
-    navBarModel.dispose();
   }
 
   /// Action blocks.

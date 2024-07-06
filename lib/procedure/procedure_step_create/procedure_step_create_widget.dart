@@ -2093,7 +2093,6 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
                                   _model.stepsEdit,
                                 );
                                 Navigator.pop(context);
-                                Navigator.pop(context);
                                 return;
                               }
                             } else {

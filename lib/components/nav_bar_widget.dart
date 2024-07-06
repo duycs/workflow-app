@@ -79,6 +79,73 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.goNamed(
+                      'Home',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: const TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: valueOrDefault<Color>(
+                        widget.selectedPageIndex == 3
+                            ? FlutterFlowTheme.of(context).primary
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    child: Opacity(
+                      opacity: widget.selectedPageIndex == 3 ? 1.0 : 0.5,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            14.0, 10.0, 14.0, 10.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.home_outlined,
+                              color: valueOrDefault<Color>(
+                                widget.selectedPageIndex == 3
+                                    ? FlutterFlowTheme.of(context)
+                                        .secondaryBackground
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                FlutterFlowTheme.of(context).secondaryText,
+                              ),
+                              size: 24.0,
+                            ),
+                            if (widget.selectedPageIndex == 3)
+                              Text(
+                                'Home',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                          ].divide(const SizedBox(width: 4.0)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.goNamed(
                       'TaskList',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: const TransitionInfo(
@@ -100,7 +167,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       opacity: widget.selectedPageIndex == 1 ? 1.0 : 0.5,
                       child: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 10.0, 12.0, 10.0),
+                            14.0, 10.0, 14.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -132,131 +199,68 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     ),
                   ),
                 ),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.goNamed(
-                      'ProcedurePublishedList',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                        ),
-                      },
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: valueOrDefault<Color>(
-                        widget.selectedPageIndex == 3
+                if ('1' == '2')
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.goNamed(
+                        'WorkResultList',
+                        extra: <String, dynamic>{
+                          kTransitionInfoKey: const TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.fade,
+                            duration: Duration(milliseconds: 0),
+                          ),
+                        },
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: widget.selectedPageIndex == 5
                             ? FlutterFlowTheme.of(context).primary
                             : FlutterFlowTheme.of(context).secondaryBackground,
-                        FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(24.0),
                       ),
-                      borderRadius: BorderRadius.circular(24.0),
-                    ),
-                    child: Opacity(
-                      opacity: widget.selectedPageIndex == 3 ? 1.0 : 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.work_outline,
-                              color: valueOrDefault<Color>(
-                                widget.selectedPageIndex == 3
+                      child: Opacity(
+                        opacity: widget.selectedPageIndex == 5 ? 1.0 : 0.5,
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              14.0, 10.0, 14.0, 10.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.check_circle_outlined,
+                                color: widget.selectedPageIndex == 5
                                     ? FlutterFlowTheme.of(context)
                                         .secondaryBackground
                                     : FlutterFlowTheme.of(context)
                                         .secondaryText,
-                                FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
                               ),
-                              size: 24.0,
-                            ),
-                            if (widget.selectedPageIndex == 3)
-                              Text(
-                                'Công việc',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                          ].divide(const SizedBox(width: 4.0)),
+                              if (widget.selectedPageIndex == 5)
+                                Text(
+                                  'Kết quả',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                            ].divide(const SizedBox(width: 4.0)),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.goNamed(
-                      'WorkResultList',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                        ),
-                      },
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: widget.selectedPageIndex == 5
-                          ? FlutterFlowTheme.of(context).primary
-                          : FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(24.0),
-                    ),
-                    child: Opacity(
-                      opacity: widget.selectedPageIndex == 5 ? 1.0 : 0.5,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.check_circle_outlined,
-                              color: widget.selectedPageIndex == 5
-                                  ? FlutterFlowTheme.of(context)
-                                      .secondaryBackground
-                                  : FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
-                            ),
-                            if (widget.selectedPageIndex == 5)
-                              Text(
-                                'Kết quả',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                          ].divide(const SizedBox(width: 4.0)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 if ((FFAppState().user.role !=
                         'a8d33527-375b-4599-ac70-6a3fcad1de39') &&
                     (FFAppState().user.role !=
@@ -288,7 +292,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                       child: Opacity(
                         opacity: widget.selectedPageIndex == 6 ? 1.0 : 0.5,
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              14.0, 10.0, 14.0, 10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -351,7 +356,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 4 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            14.0, 10.0, 14.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -418,7 +424,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                     child: Opacity(
                       opacity: widget.selectedPageIndex == 2 ? 1.0 : 0.5,
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            14.0, 10.0, 14.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,

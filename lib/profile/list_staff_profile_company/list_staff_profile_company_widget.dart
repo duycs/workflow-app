@@ -1,6 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_foud_row/data_not_foud_row_widget.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
+import '/components/data_not_found_row_new/data_not_found_row_new_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -373,7 +373,7 @@ class _ListStaffProfileCompanyWidgetState
                                 ),
                               ),
                               noItemsFoundIndicatorBuilder: (_) => const Center(
-                                child: DataNotFoudRowWidget(),
+                                child: DataNotFoundRowNewWidget(),
                               ),
                               itemBuilder: (context, _, imagesIndex) {
                                 final imagesItem = _model

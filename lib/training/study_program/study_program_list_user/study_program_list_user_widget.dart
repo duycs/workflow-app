@@ -4,9 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/certificate/certificate1_download/certificate1_download_widget.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
-import '/training/lesson/certificate/certificate_widget.dart';
-import '/training/lesson/certificate1/certificate1_widget.dart';
 import '/training/study_program/filter_study_program_user_copy/filter_study_program_user_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -866,7 +865,7 @@ class _StudyProgramListUserWidgetState
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
+                                                                            5.0,
                                                                             0.0,
                                                                             3.0,
                                                                             0.0),
@@ -895,10 +894,13 @@ class _StudyProgramListUserWidgetState
                                                                                 : FocusScope.of(context).unfocus(),
                                                                             child:
                                                                                 SizedBox(
-                                                                              height: MediaQuery.sizeOf(context).height * 0.6,
+                                                                              height: 200.0,
                                                                               width: MediaQuery.sizeOf(context).width * 0.9,
-                                                                              child: CertificateWidget(
+                                                                              child: Certificate1DownloadWidget(
                                                                                 program: itemProgramIdTilteItem.programId.name,
+                                                                                dateStart: itemProgramIdTilteItem.dateCreated,
+                                                                                dateEnd: itemProgramIdTilteItem.dateUpdated,
+                                                                                checkShow: itemProgramIdTilteItem.programId.certificateId.toMap(),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -962,113 +964,6 @@ class _StudyProgramListUserWidgetState
                                                                 ),
                                                               ),
                                                             ),
-                                                          Builder(
-                                                            builder:
-                                                                (context) =>
-                                                                    Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          3.0,
-                                                                          0.0),
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  await showDialog(
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (dialogContext) {
-                                                                      return Dialog(
-                                                                        elevation:
-                                                                            0,
-                                                                        insetPadding:
-                                                                            EdgeInsets.zero,
-                                                                        backgroundColor:
-                                                                            Colors.transparent,
-                                                                        alignment:
-                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                        child:
-                                                                            GestureDetector(
-                                                                          onTap: () => _model.unfocusNode.canRequestFocus
-                                                                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                                                                              : FocusScope.of(context).unfocus(),
-                                                                          child:
-                                                                              SizedBox(
-                                                                            height:
-                                                                                200.0,
-                                                                            width:
-                                                                                MediaQuery.sizeOf(context).width * 0.9,
-                                                                            child:
-                                                                                Certificate1Widget(
-                                                                              program: itemProgramIdTilteItem.programId.name,
-                                                                              dateStar: itemProgramIdTilteItem.dateStart,
-                                                                              dateEnd: itemProgramIdTilteItem.dateUpdated,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      setState(
-                                                                          () {}));
-                                                                },
-                                                                text:
-                                                                    'Chứng chỉ',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  height: 25.0,
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0),
-                                                                  iconPadding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: Colors
-                                                                            .white,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                      ),
-                                                                  elevation:
-                                                                      3.0,
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                ),
-                                                                showLoadingIndicator:
-                                                                    false,
-                                                              ),
-                                                            ),
-                                                          ),
                                                           if ('1' == '2')
                                                             FlutterFlowIconButton(
                                                               borderColor:

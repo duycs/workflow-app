@@ -323,7 +323,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        if (_model.dataNewFeed?.userCreated.id ==
+                                                                        if (commentListItem.commentsId.staffId.userId.id ==
                                                                             FFAppState().user.id)
                                                                           FlutterFlowIconButton(
                                                                             borderRadius:
@@ -699,7 +699,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            8.0, 4.0, 16.0, 44.0),
+                            12.0, 0.0, 12.0, 4.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -870,53 +870,73 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                 ),
                               ),
                             ),
+                          ].divide(const SizedBox(width: 10.0)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            8.0, 4.0, 16.0, 44.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
                             Expanded(
                               child: Container(
                                 width: 150.0,
-                                height: 44.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
                                 ),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Expanded(
-                                      child: TextFormField(
-                                        controller: _model.textController,
-                                        focusNode: _model.textFieldFocusNode,
-                                        autofocus: true,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: InputBorder.none,
-                                          focusedBorder: InputBorder.none,
-                                          errorBorder: InputBorder.none,
-                                          focusedErrorBorder: InputBorder.none,
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController,
+                                          focusNode: _model.textFieldFocusNode,
+                                          autofocus: true,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            hintText: 'Viết bình luận....',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            errorBorder: InputBorder.none,
+                                            focusedErrorBorder:
+                                                InputBorder.none,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          validator: _model
+                                              .textControllerValidator
+                                              .asValidator(context),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        validator: _model
-                                            .textControllerValidator
-                                            .asValidator(context),
                                       ),
                                     ),
                                     FlutterFlowIconButton(
@@ -969,10 +989,6 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                         setState(() {
                                           _model.textController?.clear();
                                         });
-                                        _model.uploadImage = '';
-                                        _model.uploadVideo = '';
-                                        _model.uploadFile = '';
-                                        setState(() {});
                                         setState(() {
                                           _model.isDataUploading1 = false;
                                           _model.uploadedLocalFile1 =
@@ -997,6 +1013,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                       Uint8List.fromList([]));
                                         });
 
+                                        _model.uploadImage = '';
+                                        _model.uploadVideo = '';
+                                        _model.uploadFile = '';
+                                        setState(() {});
                                         await _model.newsFeedGetOne(context);
                                         setState(() {});
                                         await widget.callBack?.call();

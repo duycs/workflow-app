@@ -4,6 +4,10 @@ import 'menu_delete_widget.dart' show MenuDeleteWidget;
 import 'package:flutter/material.dart';
 
 class MenuDeleteModel extends FlutterFlowModel<MenuDeleteWidget> {
+  ///  Local state fields for this component.
+
+  bool setColor = false;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for MouseRegion widget.

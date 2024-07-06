@@ -396,7 +396,7 @@ class ProcedurePublishedListCall {
         },
         params: {
           'fields':
-              "steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id,steps.tasks.submit_staff_id.branch_id, steps.tasks.submit_staff_id.department_id,steps.tasks.submit_staff_id.id,steps.tasks.submit_staff_id.user_id.first_name",
+              "steps.tasks.created_user_id.avatar, steps.tasks.id, steps.tasks.name, steps.tasks.workflow_id, steps.tasks.published_count, steps.tasks.date_created, steps.number, steps.tasks.operations.operations_id.content, steps.tasks.operations.operations_id.files.directus_files_id.id, steps.tasks.operations.operations_id.result,id,name,steps.id,steps.tasks.user_created.first_name,steps.tasks.status, steps.tasks.created_user_id.first_name, steps.tasks.created_user_id.email,organization_id,steps.staffs.staffs_id.id,departments.departments_id.staffs.id,branch_id, steps.tasks.date_end,steps.departments.departments_id.staffs.id,steps.departments.departments_id.id,departments.departments_id.id,steps.tasks.created_staff_id.branch_id, steps.tasks.created_staff_id.department_id, steps.tasks.created_staff_id.user_id,steps.tasks.submit_staff_id.branch_id, steps.tasks.submit_staff_id.department_id,steps.tasks.submit_staff_id.id,steps.tasks.submit_staff_id.user_id.first_name",
           'filter': filter,
           'offset': offset,
           'limit': limit,
@@ -1557,6 +1557,7 @@ class StudyProgramGroup {
   static UpdateDepartmentSynchronizedCall updateDepartmentSynchronizedCall =
       UpdateDepartmentSynchronizedCall();
   static ReviewProgramCall reviewProgramCall = ReviewProgramCall();
+  static IapProductsCall iapProductsCall = IapProductsCall();
 }
 
 class StudyProgramListCall {
@@ -1582,7 +1583,7 @@ class StudyProgramListCall {
         params: {
           'filter': filter,
           'fields':
-              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id",
+              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name,date_created, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id,user_created.avatar,lessions.lessions_id.duration_hours",
           'offset': offset,
           'limit': limit,
           'meta': "total_count,filter_count",
@@ -1661,7 +1662,7 @@ class StudyProgramGetOneCall {
       },
       params: {
         'fields':
-            "lessions.id, lessions.lessions_id.id,  lessions.lessions_id.name, lessions.lessions_id.status,  lessions.lessions_id.description, lessions.lessions_id.content, lessions.lessions_id.duration_hours, lessions.lessions_id.estimate_in_day, lessions.lessions_id.image_cover, lessions.lessions_id.video, lessions.lessions_id.test_id, lessions.lessions_id.files, lessions.lessions_id.file",
+            "id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.id, departments.departments_id.id,departments.departments_id.name,certificate_id,user_created.first_name,user_created.avatar",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -1794,7 +1795,7 @@ class StaffsProgramsCall {
         },
         params: {
           'fields[]':
-              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created,program_id.image_cover,date_updated",
+              "id, status, date_created, staff_id, organization_id, progress, lession_done, lession_count, date_start, date_end, deadline,program_id.id, program_id.name, program_id.lessions.lessions_id,program_id.description,program_id.duration_hours,program_id.organization_id,program_id.estimate_in_day,program_id.date_create,program_id.lessions.lessions_id.id,program_id.lessions.lessions_id.status,program_id.lessions.lessions_id.name,program_id.lessions.lessions_id.description,program_id.lessions.lessions_id.content,program_id.lessions.lessions_id.image_cover,program_id.lessions.lessions_id.video,program_id.lessions.lessions_id.date_created,program_id.lessions.lessions_id.date_updated,program_id.lessions.lessions_id.duration_hours,program_id.lessions.lessions_id.organization_id,program_id.lessions.lessions_id.estimate_in_day,program_id.tests.tests_id.id,program_id.tests.tests_id.status,program_id.status,program_id.date_created,program_id.image_cover,date_updated,program_id.certificate_id,program_id.certificate_id.code",
           'filter': filter,
           'limit': limit,
           'offset': offset,
@@ -1824,6 +1825,8 @@ class UpdateStudyProgramPriceCall {
     int? version,
     String? category = '',
     String? domain = '',
+    String? iapApple = '',
+    String? iapGoogle = '',
     String? accessToken = '',
   }) async {
     final baseUrl = StudyProgramGroup.getBaseUrl(
@@ -1833,6 +1836,8 @@ class UpdateStudyProgramPriceCall {
     final ffApiRequestBody = '''
 {
   "price": $price,
+"iap_apple_product_id":"$iapApple",
+"iap_google_product_id":"$iapGoogle",
   "author_id": "$authorId",
   "category_id": "$category",
   "domain_id": "$domain",
@@ -2052,6 +2057,36 @@ class ReviewProgramCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class IapProductsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = StudyProgramGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'IapProducts',
+      apiUrl: '$baseUrl/items/iap_products',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -3441,7 +3476,7 @@ class GetStaffListCall {
         },
         params: {
           'fields':
-              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,tasks.tasks_id.over_deadline,staff_tests.percent_correct,staff_programs.program_id.name,staff_programs.status,staff_programs.date_created,staff_programs.deadline,staff_programs.program_id.lessions,staff_lessions.lession_id.name,staff_lessions.program_id.name,staff_lessions.status,staff_lessions.date_created,staff_lessions.deadline,staff_lessions.date_start,staff_tests.test_id.name,staff_tests.lession_id.name,staff_tests.pass,staff_tests.date_start,staff_tests.date_end,staff_tests.percent_correct,staff_tests.test_id.good_score,staff_tests.score,staff_tests.total_correct,staff_tests.total_incorrect,tasks.id, tasks.tasks_id.id, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.current,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, tasks.tasks_id.name, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id,tasks.tasks_id.date_created,tasks.tasks_id.date_start,tasks.tasks_id.date_end,tasks.tasks_id.action_type,tasks.tasks_id.operations.operations_id.content,tasks.tasks_id.operations.operations_id.result,tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download",
+              "sort,id, title, user_id.role, status,organization_id.id,organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar,staff_lessions.id,staff_lessions.status,staff_tests.id,staff_tests.status,tasks.tasks_id.status,tasks.tasks_id.over_deadline,staff_tests.percent_correct,staff_programs.program_id.name,staff_programs.status,staff_programs.date_created,staff_programs.deadline,staff_programs.program_id.lessions,staff_lessions.lession_id.name,staff_lessions.program_id.name,staff_lessions.status,staff_lessions.date_created,staff_lessions.deadline,staff_lessions.date_start,staff_tests.test_id.name,staff_tests.lession_id.name,staff_tests.pass,staff_tests.date_start,staff_tests.date_end,staff_tests.percent_correct,staff_tests.test_id.good_score,staff_tests.score,staff_tests.total_correct,staff_tests.total_incorrect,tasks.id, tasks.tasks_id.id, tasks.tasks_id.number, tasks.tasks_id.status, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.current,tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, tasks.tasks_id.name, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id,tasks.tasks_id.date_created,tasks.tasks_id.date_start,tasks.tasks_id.date_end,tasks.tasks_id.action_type,tasks.tasks_id.operations.operations_id.content,tasks.tasks_id.operations.operations_id.result,tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,tasks.tasks_id.submit_staff_id.id",
           'filter': filter,
           'sort': sort,
           'limit': limit,
@@ -3748,7 +3783,7 @@ class GetOneOrganizationCall {
       },
       params: {
         'fields':
-            "id, status, name, description, code,hotline,avatar,logo,address,video,image,files.id,files.directus_files_id,files.directus_files_id.id,branchs.id, branchs.name,branchs.branchs_id.departments.departments_id.id, branchs.branchs_id.departments.departments_id.name,staffs.id, staffs.user_id.id, staffs.user_id.email",
+            "id, status, name, description, code,hotline,avatar,logo,address,video,image,files.id,files.directus_files_id,files.directus_files_id.id,branchs.id, branchs.name,branchs.branchs_id.departments.departments_id.id, branchs.branchs_id.departments.departments_id.name,staffs.id, staffs.user_id.id, staffs.user_id.email,tasks.tasks_id.submit_staff_id.id",
         'limit': limit,
         'offset': offset,
         'sort': "-date_created",
@@ -3876,7 +3911,7 @@ class GetListTaskCall {
         },
         params: {
           'fields':
-              "id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created,time_operate",
+              "created_user_id.staffs, created_user_id.avatar, id, status, name, description, content, date_start, date_end, deadline, estimate_in_second, workflow_id.id,workflow_id.name, number, published_count, step_id, execute_type, action_type, current,staffs.id, staffs.staffs_id.id, staffs.staffs_id.user_id.id, staffs.staffs_id.user_id.first_name,operations.id, operations.operations_id.id, operations.operations_id.name, operations.operations_id.date_start, operations.operations_id.date_end, operations.operations_id.deadline, operations.operations_id.estimate_in_second, operations.operations_id.operation_id,operations.operations_id.action_type, operations.operations_id.step_id,operations.operations_id.content, operations.operations_id.result, operations.operations_id.staffs.id, operations.operations_id.staffs.staffs_id.id,  operations.operations_id.staffs.staffs_id.user_id.email,operations.operations_id.status,staffs.staffs_id.department_id.name,step_id.id,step_id.name,step_id.number, operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.files.directus_files_id.filename_download,operations.operations_id.files.directus_files_id.id,operations.operations_id.files.directus_files_id.type,operations.operations_id.date_updated,workflow_id.name,staffs.staffs_id.user_id.avatar, organization_id.id, workflow_id.organization_id,submit_staff_id.id, submit_staff_id.user_id.first_name,submit_staff_id.user_id.avatar,submit_staff_id.user_id.id,submit_staff_id.branch_id,submit_staff_id.department_id,created_user_id.first_name, date_created,time_operate",
           'filter': filter,
           'sort': sort,
           'limit': limit,
@@ -5071,6 +5106,57 @@ class LoginBiometricVerificationCopyCall {
 }
 
 /// End SettingAcount Group Code
+
+/// Start Certificate Group Code
+
+class CertificateGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static ProgramsCall programsCall = ProgramsCall();
+}
+
+class ProgramsCall {
+  Future<ApiCallResponse> call({
+    String? idProgram = '',
+    String? certificateId = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = CertificateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "certificate_id": "$certificateId"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'programs',
+      apiUrl: '$baseUrl/items/programs/$idProgram',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Certificate Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

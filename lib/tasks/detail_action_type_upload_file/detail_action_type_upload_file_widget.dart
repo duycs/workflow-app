@@ -80,141 +80,341 @@ class _DetailActionTypeUploadFileWidgetState
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (_model.listFileUpload.isNotEmpty)
-            Builder(
-              builder: (context) {
-                final dataFileUpload = _model.listFileUpload.toList();
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(dataFileUpload.length,
-                      (dataFileUploadIndex) {
-                    final dataFileUploadItem =
-                        dataFileUpload[dataFileUploadIndex];
-                    return Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'video')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/images111.png',
-                                fit: BoxFit.cover,
-                              ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (_model.listFileUpload.isNotEmpty)
+          Builder(
+            builder: (context) {
+              final dataFileUpload = _model.listFileUpload.toList();
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children:
+                    List.generate(dataFileUpload.length, (dataFileUploadIndex) {
+                  final dataFileUploadItem =
+                      dataFileUpload[dataFileUploadIndex];
+                  return Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'video')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
                             ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'img')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/9967614.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'exc')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/excel.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'word')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/images.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'pptx')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/ppt.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(functions.fileName(dataFileUploadItem)!)) ==
-                              'pdf')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/pdf.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          Expanded(
-                            child: Text(
-                              valueOrDefault<String>(
-                                functions.fileName(dataFileUploadItem),
-                                'Loading',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
+                            child: Image.asset(
+                              'assets/images/images111.png',
+                              fit: BoxFit.cover,
                             ),
                           ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'img')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/9967614.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'exc')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/excel.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'word')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/images.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'pptx')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/ppt.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(functions.fileName(dataFileUploadItem)!)) ==
+                            'pdf')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/pdf.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        Expanded(
+                          child: Text(
+                            valueOrDefault<String>(
+                              functions.fileName(dataFileUploadItem),
+                              'Loading',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).error,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            _model.removeAtIndexFromListFileUpload(
+                                dataFileUploadIndex);
+                            setState(() {});
+                          },
+                        ),
+                      ].divide(const SizedBox(width: 8.0)),
+                    ),
+                  );
+                }).divide(const SizedBox(height: 4.0)),
+              );
+            },
+          ),
+        if (widget.dataPass!.operations.first.operationsId.files.isNotEmpty)
+          Builder(
+            builder: (context) {
+              final dataFile = _model.listFileId.toList();
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(dataFile.length, (dataFileIndex) {
+                  final dataFileItem = dataFile[dataFileIndex];
+                  return Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'video')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/images111.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'img')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/9967614.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'exc')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/excel.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'word')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/images.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'pptx')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/ppt.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        if (functions.checkFileLast((String tail) {
+                              return tail.split('.').last;
+                            }(dataFileItem.filenameDownload)) ==
+                            'pdf')
+                          Container(
+                            width: 35.0,
+                            height: 35.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(
+                              'assets/images/pdf.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        Expanded(
+                          child: Text(
+                            dataFileItem.filenameDownload,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Builder(
+                          builder: (context) => FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 20.0,
+                            borderWidth: 1.0,
+                            buttonSize: 40.0,
+                            icon: Icon(
+                              Icons.remove_red_eye,
+                              color: FlutterFlowTheme.of(context).alternate,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: PopupSeeMoreWidget(
+                                      fileName: dataFileItem.filenameDownload,
+                                      fileId: dataFileItem.id,
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
+                          ),
+                        ),
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 40.0,
+                          icon: Icon(
+                            Icons.download_sharp,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            _model.downloadFileToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.downloadFileToken!) {
+                              await actions.downloadFile(
+                                '${FFAppConstants.ApiBaseUrl}/assets/${dataFileItem.id}?access_token=${FFAppState().accessToken}',
+                                widget.dataPass!.name,
+                                dataFileItem.filenameDownload,
+                              );
+                            } else {
+                              setState(() {});
+                            }
+
+                            setState(() {});
+                          },
+                        ),
+                        if (widget.dataPass?.status != 'done')
                           FlutterFlowIconButton(
                             borderColor: Colors.transparent,
                             borderRadius: 20.0,
@@ -226,401 +426,190 @@ class _DetailActionTypeUploadFileWidgetState
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              _model.removeAtIndexFromListFileUpload(
-                                  dataFileUploadIndex);
+                              _model.removeAtIndexFromListFileId(dataFileIndex);
                               setState(() {});
                             },
                           ),
-                        ].divide(const SizedBox(width: 8.0)),
-                      ),
-                    );
-                  }).divide(const SizedBox(height: 8.0)),
-                );
-              },
-            ),
-          if (widget.dataPass!.operations.first.operationsId.files.isNotEmpty)
-            Builder(
-              builder: (context) {
-                final dataFile = _model.listFileId.toList();
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(dataFile.length, (dataFileIndex) {
-                    final dataFileItem = dataFile[dataFileIndex];
-                    return Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'video')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/images111.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'img')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/9967614.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'exc')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/excel.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'word')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/images.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'pptx')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/ppt.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          if (functions.checkFileLast((String tail) {
-                                return tail.split('.').last;
-                              }(dataFileItem.filenameDownload)) ==
-                              'pdf')
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/pdf.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          Expanded(
-                            child: Text(
-                              dataFileItem.filenameDownload,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ),
-                          Builder(
-                            builder: (context) => FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.remove_red_eye,
-                                color: FlutterFlowTheme.of(context).alternate,
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: PopupSeeMoreWidget(
-                                        fileName: dataFileItem.filenameDownload,
-                                        fileId: dataFileItem.id,
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
-                              },
-                            ),
-                          ),
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            icon: Icon(
-                              Icons.download_sharp,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              _model.downloadFileToken =
-                                  await action_blocks.tokenReload(context);
-                              if (_model.downloadFileToken!) {
-                                await actions.downloadFile(
-                                  '${FFAppConstants.ApiBaseUrl}/assets/${dataFileItem.id}?access_token=${FFAppState().accessToken}',
-                                  widget.dataPass!.name,
-                                  dataFileItem.filenameDownload,
-                                );
-                              } else {
-                                setState(() {});
-                              }
-
-                              setState(() {});
-                            },
-                          ),
-                          if (widget.dataPass?.status != 'done')
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              icon: Icon(
-                                Icons.close,
-                                color: FlutterFlowTheme.of(context).error,
-                                size: 24.0,
-                              ),
-                              onPressed: () async {
-                                _model
-                                    .removeAtIndexFromListFileId(dataFileIndex);
-                                setState(() {});
-                              },
-                            ),
-                        ].divide(const SizedBox(width: 8.0)),
-                      ),
-                    );
-                  }).divide(const SizedBox(height: 8.0)),
-                );
-              },
-            ),
-          if (widget.dataPass?.status == 'todo')
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FFButtonWidget(
-                  onPressed: (widget.dataPass?.current == 0)
-                      ? null
-                      : () async {
-                          setState(() {
-                            _model.isDataUploading = false;
-                            _model.uploadedLocalFile =
-                                FFUploadedFile(bytes: Uint8List.fromList([]));
-                          });
-
-                          final selectedFiles = await selectFiles(
-                            multiFile: false,
-                          );
-                          if (selectedFiles != null) {
-                            setState(() => _model.isDataUploading = true);
-                            var selectedUploadedFiles = <FFUploadedFile>[];
-
-                            try {
-                              selectedUploadedFiles = selectedFiles
-                                  .map((m) => FFUploadedFile(
-                                        name: m.storagePath.split('/').last,
-                                        bytes: m.bytes,
-                                      ))
-                                  .toList();
-                            } finally {
-                              _model.isDataUploading = false;
-                            }
-                            if (selectedUploadedFiles.length ==
-                                selectedFiles.length) {
-                              setState(() {
-                                _model.uploadedLocalFile =
-                                    selectedUploadedFiles.first;
-                              });
-                            } else {
-                              setState(() {});
-                              return;
-                            }
-                          }
-
-                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
-                                  false)) {
-                            _model
-                                .addToListFileUpload(_model.uploadedLocalFile);
-                            setState(() {});
-                          }
-                        },
-                  text: 'Chọn file',
-                  icon: const Icon(
-                    Icons.attach_file,
-                    size: 20.0,
-                  ),
-                  options: FFButtonOptions(
-                    width: 140.0,
-                    height: 40.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).alternate,
-                    textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Nunito Sans',
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                        ),
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      ].divide(const SizedBox(width: 8.0)),
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-                FFButtonWidget(
-                  onPressed: (widget.dataPass?.current == 0)
-                      ? null
-                      : () async {
-                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
-                                  false)) {
-                            _model.uploadFileToken =
-                                await action_blocks.tokenReload(context);
-                            if (_model.uploadFileToken!) {
-                              _model.apiResultUploadFile =
-                                  await UploadFileGroup.uploadListFileCall.call(
-                                accessToken: FFAppState().accessToken,
-                                fileList: _model.listFileUpload,
-                              );
+                  );
+                }).divide(const SizedBox(height: 4.0)),
+              );
+            },
+          ),
+        if (widget.dataPass?.status == 'todo')
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FFButtonWidget(
+                onPressed: (widget.dataPass?.current == 0)
+                    ? null
+                    : () async {
+                        setState(() {
+                          _model.isDataUploading = false;
+                          _model.uploadedLocalFile =
+                              FFUploadedFile(bytes: Uint8List.fromList([]));
+                        });
 
-                              if ((_model.apiResultUploadFile?.succeeded ??
-                                  true)) {
-                                if (_model.listFileUpload.length == 1) {
+                        final selectedFiles = await selectFiles(
+                          multiFile: false,
+                        );
+                        if (selectedFiles != null) {
+                          setState(() => _model.isDataUploading = true);
+                          var selectedUploadedFiles = <FFUploadedFile>[];
+
+                          try {
+                            selectedUploadedFiles = selectedFiles
+                                .map((m) => FFUploadedFile(
+                                      name: m.storagePath.split('/').last,
+                                      bytes: m.bytes,
+                                    ))
+                                .toList();
+                          } finally {
+                            _model.isDataUploading = false;
+                          }
+                          if (selectedUploadedFiles.length ==
+                              selectedFiles.length) {
+                            setState(() {
+                              _model.uploadedLocalFile =
+                                  selectedUploadedFiles.first;
+                            });
+                          } else {
+                            setState(() {});
+                            return;
+                          }
+                        }
+
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          _model.addToListFileUpload(_model.uploadedLocalFile);
+                          setState(() {});
+                        }
+                      },
+                text: 'Chọn file',
+                icon: const Icon(
+                  Icons.attach_file,
+                  size: 20.0,
+                ),
+                options: FFButtonOptions(
+                  width: 110.0,
+                  height: 35.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).alternate,
+                  textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                        fontFamily: 'Nunito Sans',
+                        fontSize: 13.0,
+                        letterSpacing: 0.0,
+                      ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+              FFButtonWidget(
+                onPressed: (widget.dataPass?.current == 0)
+                    ? null
+                    : () async {
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          _model.uploadFileToken =
+                              await action_blocks.tokenReload(context);
+                          if (_model.uploadFileToken!) {
+                            _model.apiResultUploadFile =
+                                await UploadFileGroup.uploadListFileCall.call(
+                              accessToken: FFAppState().accessToken,
+                              fileList: _model.listFileUpload,
+                            );
+
+                            if ((_model.apiResultUploadFile?.succeeded ??
+                                true)) {
+                              if (_model.listFileUpload.length == 1) {
+                                _model.addToListFileId(FileIDDataTypeStruct(
+                                  id: getJsonField(
+                                    (_model.apiResultUploadFile?.jsonBody ??
+                                        ''),
+                                    r'''$.data.id''',
+                                  ).toString(),
+                                  filenameDownload: getJsonField(
+                                    (_model.apiResultUploadFile?.jsonBody ??
+                                        ''),
+                                    r'''$.data.filename_download''',
+                                  ).toString(),
+                                ));
+                                setState(() {});
+                              } else {
+                                while (_model.loop <
+                                    _model.listFileUpload.length) {
                                   _model.addToListFileId(FileIDDataTypeStruct(
-                                    id: getJsonField(
-                                      (_model.apiResultUploadFile?.jsonBody ??
-                                          ''),
-                                      r'''$.data.id''',
-                                    ).toString(),
-                                    filenameDownload: getJsonField(
-                                      (_model.apiResultUploadFile?.jsonBody ??
-                                          ''),
-                                      r'''$.data.filename_download''',
-                                    ).toString(),
+                                    id: (FileUploadStruct.maybeFromMap((_model
+                                                    .apiResultUploadFile
+                                                    ?.jsonBody ??
+                                                ''))
+                                            ?.data[_model.loop])
+                                        ?.id,
+                                    filenameDownload:
+                                        (FileUploadStruct.maybeFromMap((_model
+                                                        .apiResultUploadFile
+                                                        ?.jsonBody ??
+                                                    ''))
+                                                ?.data[_model.loop])
+                                            ?.filenameDownload,
                                   ));
                                   setState(() {});
-                                } else {
-                                  while (_model.loop <
-                                      _model.listFileUpload.length) {
-                                    _model.addToListFileId(FileIDDataTypeStruct(
-                                      id: (FileUploadStruct.maybeFromMap((_model
-                                                      .apiResultUploadFile
-                                                      ?.jsonBody ??
-                                                  ''))
-                                              ?.data[_model.loop])
-                                          ?.id,
-                                      filenameDownload:
-                                          (FileUploadStruct.maybeFromMap((_model
-                                                          .apiResultUploadFile
-                                                          ?.jsonBody ??
-                                                      ''))
-                                                  ?.data[_model.loop])
-                                              ?.filenameDownload,
-                                    ));
-                                    setState(() {});
-                                    _model.loop = _model.loop + 1;
-                                    setState(() {});
-                                  }
-                                  _model.loop = 0;
+                                  _model.loop = _model.loop + 1;
                                   setState(() {});
                                 }
+                                _model.loop = 0;
+                                setState(() {});
                               }
-                            } else {
-                              setState(() {});
                             }
-                          }
-                          while (_model.loop < _model.listFileId.length) {
-                            _model.addToListStringId(
-                                _model.listFileId[_model.loop].id);
-                            setState(() {});
-                            _model.loop = _model.loop + 1;
+                          } else {
                             setState(() {});
                           }
-                          _model.loop = 0;
+                        }
+                        while (_model.loop < _model.listFileId.length) {
+                          _model.addToListStringId(
+                              _model.listFileId[_model.loop].id);
                           setState(() {});
-                          await widget.callback?.call(
-                            _model.listStringId,
-                          );
-                          _model.listFileUpload = [];
+                          _model.loop = _model.loop + 1;
                           setState(() {});
+                        }
+                        _model.loop = 0;
+                        setState(() {});
+                        await widget.callback?.call(
+                          _model.listStringId,
+                        );
+                        _model.listFileUpload = [];
+                        setState(() {});
 
-                          setState(() {});
-                        },
-                  text: 'Lưu',
-                  icon: Icon(
-                    Icons.save,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    size: 20.0,
-                  ),
-                  options: FFButtonOptions(
-                    width: 140.0,
-                    height: 40.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Nunito Sans',
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                        ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
+                        setState(() {});
+                      },
+                text: 'Lưu',
+                icon: Icon(
+                  Icons.save_alt,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  size: 20.0,
                 ),
-              ].divide(const SizedBox(width: 8.0)),
-            ),
-        ].divide(const SizedBox(height: 8.0)),
-      ),
+                options: FFButtonOptions(
+                  width: 110.0,
+                  height: 35.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        fontSize: 13.0,
+                        letterSpacing: 0.0,
+                      ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ].divide(const SizedBox(width: 8.0)),
+          ),
+      ].divide(const SizedBox(height: 8.0)),
     );
   }
 }

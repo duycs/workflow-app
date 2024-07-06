@@ -1289,7 +1289,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
-                                                                        0.0,
+                                                                        20.0,
                                                                         0.0),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1301,7 +1301,6 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
-                                                          maxLines: null,
                                                           validator: _model
                                                               .hotlineTextController3Validator
                                                               .asValidator(

@@ -4,9 +4,11 @@ import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'dart:async';
 import 'newsfeed_widget.dart' show NewsfeedWidget;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -37,11 +39,12 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
+  // State field(s) for Carousel widget.
+  CarouselController? carouselController;
+  int carouselCurrentIndex = 1;
 
+  // Model for DNFNewsfeed component.
+  late DNFNewsfeedModel dNFNewsfeedModel;
   // State field(s) for ListView widget.
 
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
@@ -52,13 +55,14 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
 
   @override
   void initState(BuildContext context) {
+    dNFNewsfeedModel = createModel(context, () => DNFNewsfeedModel());
     navBarModel = createModel(context, () => NavBarModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    tabBarController?.dispose();
+    dNFNewsfeedModel.dispose();
     listViewPagingController?.dispose();
     navBarModel.dispose();
   }

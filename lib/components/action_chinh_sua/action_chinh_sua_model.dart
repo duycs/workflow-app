@@ -9,6 +9,8 @@ class ActionChinhSuaModel extends FlutterFlowModel<ActionChinhSuaWidget> {
 
   String checkPage = '';
 
+  int setColor = 0;
+
   @override
   void initState(BuildContext context) {}
 

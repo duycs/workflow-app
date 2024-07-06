@@ -1,9 +1,8 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'procedure_published_list_widget.dart' show ProcedurePublishedListWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -49,13 +48,8 @@ class ProcedurePublishedListModel
   PagingController<ApiPagingParams, dynamic>? listViewPagingController;
   Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
-  // Model for navBar component.
-  late NavBarModel navBarModel;
-
   @override
-  void initState(BuildContext context) {
-    navBarModel = createModel(context, () => NavBarModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
@@ -64,7 +58,6 @@ class ProcedurePublishedListModel
     textController?.dispose();
 
     listViewPagingController?.dispose();
-    navBarModel.dispose();
   }
 
   /// Action blocks.

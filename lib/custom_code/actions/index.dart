@@ -26,4 +26,6 @@ export 'open_apple_in_app_purchases.dart' show openAppleInAppPurchases;
 export 'export_excel_get_one_lesson.dart' show exportExcelGetOneLesson;
 export 'report_staff_detail_to_csv.dart' show reportStaffDetailToCsv;
 export 'call_screen.dart' show callScreen;
-export 'convert_json_to_pdf.dart' show convertJsonToPdf;
+export 'check_intro_screen.dart' show checkIntroScreen;
+export 'screen_certificate.dart' show screenCertificate;
+export 'screen_certificate1.dart' show screenCertificate1;

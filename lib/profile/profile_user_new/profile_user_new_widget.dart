@@ -1,10 +1,11 @@
+import '/components/data_not_found_certificate/data_not_found_certificate_widget.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/profile/profile_staff_copy/profile_staff_copy_widget.dart';
-import '/training/lesson/certificate/certificate_widget.dart';
+import '/profile/profile_staff_new/profile_staff_new_widget.dart';
+import '/training/certificate/certificate/certificate_widget.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -314,10 +315,9 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                         const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 12.0, 0.0),
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .titleMedium
+                                        .bodyMedium
                                         .override(
-                                          fontFamily: 'Nunito Sans',
-                                          fontSize: 14.0,
+                                          fontFamily: 'Roboto',
                                           letterSpacing: 0.0,
                                         ),
                                     unselectedLabelStyle: const TextStyle(),
@@ -668,7 +668,7 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                             context)
                                                                         .unfocus(),
                                                                 child:
-                                                                    ProfileStaffCopyWidget(
+                                                                    ProfileStaffNewWidget(
                                                                   name: _model
                                                                       .staffDetail
                                                                       ?.userId
@@ -945,6 +945,13 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                   .toList()
                                                   .toList() ??
                                               [];
+                                          if (listCeri.isEmpty) {
+                                            return const SizedBox(
+                                              width: double.infinity,
+                                              child:
+                                                  DataNotFoundCertificateWidget(),
+                                            );
+                                          }
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             primary: false,

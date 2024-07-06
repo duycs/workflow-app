@@ -2219,7 +2219,6 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                     _model.stepsEdit,
                                   );
                                   Navigator.pop(context);
-                                  Navigator.pop(context);
                                   return;
                                 }
                               } else {

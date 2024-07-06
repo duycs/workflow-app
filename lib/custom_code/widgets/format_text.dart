@@ -51,34 +51,44 @@ class _FormatTextState extends State<FormatText> {
             });
           }
         },
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    fontSize: 14,
-                    //color: Colors.black,
-                    color: Color(0xFF34383A),
-                  ),
-                  children: [
-                    TextSpan(
-                      text: displayText,
-                      style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    if (widget.text.length > widget.number && !showFullText)
-                      TextSpan(
-                        text: ' Xem thêm',
-                        style: TextStyle(
-                          color: Color(0xFF57636C),
-                        ),
-                      ),
-                  ],
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 14,
+                  //color: Colors.black,
+                  color: Color(0xFF34383A),
                 ),
+                children: [
+                  TextSpan(
+                    text: displayText,
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
               ),
             ),
+            if (widget.text.length > widget.number && !showFullText)
+              Padding(
+                padding: EdgeInsets.only(top: 4),
+                child: GestureDetector(
+                  onTap: () async {
+                    await widget.action();
+                    setState(() {
+                      showFullText = true;
+                    });
+                  },
+                  child: Text(
+                    'Xem thêm...',
+                    style: TextStyle(
+                      color: Color(0xFF57636C),
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),

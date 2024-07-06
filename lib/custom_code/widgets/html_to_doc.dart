@@ -130,7 +130,7 @@ class _HtmlToDocState extends State<HtmlToDoc> {
         widget.height != null &&
         _scrollController.offset >= (widget.height! / 4)) {
       setState(() {
-        canScroll = false; // Vô hiệu hóa cuộn khi nội dung đã cuộn đến đáy
+        canScroll = false;
       });
     }
   }
