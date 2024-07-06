@@ -8,11 +8,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/training/lesson/ckeditor_create_lesson/ckeditor_create_lesson_widget.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1228,15 +1227,9 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                                       backgroundColor: Colors.transparent,
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: CkeditorCreateLessonWidget(
-                                        input: _model.input,
-                                        output: _model.output,
-                                        callBack: (input, output) async {
-                                          _model.checkContent = output!;
-                                          _model.input = input!;
-                                          _model.output = output;
-                                          setState(() {});
-                                        },
+                                      child: MobileEditorComponentWidget(
+                                        setContentCallback:
+                                            (editorContent) async {},
                                       ),
                                     );
                                   },
@@ -1311,21 +1304,21 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 150.0,
+                          child: custom_widgets.MobileEditorDisplay(
+                            width: double.infinity,
+                            height: 150.0,
+                            content: _model.nameTextController.text,
+                          ),
+                        ),
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: _model.checkValiContent == true
                                   ? FlutterFlowTheme.of(context).error
                                   : const Color(0x00000000),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 9.0),
-                            child: custom_widgets.HTMLView(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              height: 100.0,
-                              html: functions.formatHtml(_model.checkContent),
                             ),
                           ),
                         ),

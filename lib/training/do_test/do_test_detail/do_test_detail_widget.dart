@@ -475,7 +475,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                               .questionId
                                                               .content,
                                                           onLinkTap: (url, _,
-                                                                  __, ___) =>
+                                                                  __) =>
                                                               launchURL(url!),
                                                         ),
                                                       ),

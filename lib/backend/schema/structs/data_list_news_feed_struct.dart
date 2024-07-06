@@ -15,7 +15,7 @@ class DataListNewsFeedStruct extends BaseStruct {
   set data(NewsfeedListStruct? val) => _data = val;
 
   void updateData(Function(NewsfeedListStruct) updateFn) {
-    updateFn(data ??= NewsfeedListStruct());
+    updateFn(_data ??= NewsfeedListStruct());
   }
 
   bool hasData() => _data != null;

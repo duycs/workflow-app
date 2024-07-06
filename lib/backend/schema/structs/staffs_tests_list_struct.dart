@@ -111,7 +111,7 @@ class StaffsTestsListStruct extends BaseStruct {
   set testId(TestListStruct? val) => _testId = val;
 
   void updateTestId(Function(TestListStruct) updateFn) {
-    updateFn(testId ??= TestListStruct());
+    updateFn(_testId ??= TestListStruct());
   }
 
   bool hasTestId() => _testId != null;
@@ -153,7 +153,7 @@ class StaffsTestsListStruct extends BaseStruct {
   set lessionId(StaffTestLessonStruct? val) => _lessionId = val;
 
   void updateLessionId(Function(StaffTestLessonStruct) updateFn) {
-    updateFn(lessionId ??= StaffTestLessonStruct());
+    updateFn(_lessionId ??= StaffTestLessonStruct());
   }
 
   bool hasLessionId() => _lessionId != null;
@@ -181,7 +181,7 @@ class StaffsTestsListStruct extends BaseStruct {
   set userCreated(TestUserCreatedStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(TestUserCreatedStruct) updateFn) {
-    updateFn(userCreated ??= TestUserCreatedStruct());
+    updateFn(_userCreated ??= TestUserCreatedStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;

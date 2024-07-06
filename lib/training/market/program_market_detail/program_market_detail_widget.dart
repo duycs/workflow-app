@@ -363,33 +363,6 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                                                 TextStyle(
                                                                               fontSize: 12.0,
                                                                             ),
-                                                                          ),
-                                                                          TextSpan(
-                                                                            text: (_model.dataGetOne != null) && (_model.dataGetOne?.price != null && _model.dataGetOne?.price != '')
-                                                                                ? formatNumber(
-                                                                                    double.tryParse((double.parse(_model.dataGetOne!.price) / 0.7).toStringAsFixed(0)),
-                                                                                    formatType: FormatType.decimal,
-                                                                                    decimalType: DecimalType.commaDecimal,
-                                                                                  )
-                                                                                : '',
-                                                                            style:
-                                                                                const TextStyle(
-                                                                              color: Color(0xFFFF0000),
-                                                                              fontSize: 14.0,
-                                                                              decoration: TextDecoration.lineThrough,
-                                                                              fontStyle: FontStyle.normal,
-                                                                            ),
-                                                                          ),
-                                                                          const TextSpan(
-                                                                            text:
-                                                                                'đ',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: Color(0xFFFF0000),
-                                                                              fontSize: 14.0,
-                                                                              decoration: TextDecoration.lineThrough,
-                                                                              fontStyle: FontStyle.normal,
-                                                                            ),
                                                                           )
                                                                         ],
                                                                         style: FlutterFlowTheme.of(context)
@@ -1206,34 +1179,71 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             builder: (context) => FFButtonWidget(
                               onPressed: () async {
                                 var shouldSetState = false;
-                                // Mở widget thanh toán IAP
-                                _model.paymentResponse =
-                                    await actions.openInAppPurchase(
-                                  () {
-                                    if (isiOS) {
-                                      return _model
-                                          .dataGetOne!.iapAppleProductId;
-                                    } else if (isAndroid) {
-                                      return _model
-                                          .dataGetOne!.iapGoogleProductId;
-                                    } else {
-                                      return '';
-                                    }
-                                  }(),
-                                  true,
-                                );
-                                shouldSetState = true;
-                                if (_model.paymentResponse != null) {
-                                  _model.iapPaymentResponse =
-                                      functions.stringToJson(
-                                          _model.paymentResponse!.toString());
+                                if (isAndroid) {
+                                  // Mở widget thanh toán IAP
+                                  _model.paymentResponseGoogle =
+                                      await actions.openGoogleInAppPurchases(
+                                    () {
+                                      if (isiOS) {
+                                        return _model
+                                            .dataGetOne!.iapAppleProductId;
+                                      } else if (isAndroid) {
+                                        return _model
+                                            .dataGetOne!.iapGoogleProductId;
+                                      } else {
+                                        return '';
+                                      }
+                                    }(),
+                                    true,
+                                  );
+                                  shouldSetState = true;
                                   _model.inAppPurchaseResponse =
                                       InAppPurchaseResponseStruct.maybeFromMap(
                                           functions.stringToJson(_model
-                                              .paymentResponse!
+                                              .paymentResponseGoogle!
+                                              .toString()));
+                                  setState(() {});
+                                } else if (isiOS) {
+                                  _model.paymentResponseApple =
+                                      await actions.openAppleInAppPurchases(
+                                    () {
+                                      if (isiOS) {
+                                        return _model
+                                            .dataGetOne!.iapAppleProductId;
+                                      } else if (isAndroid) {
+                                        return _model
+                                            .dataGetOne!.iapGoogleProductId;
+                                      } else {
+                                        return '';
+                                      }
+                                    }(),
+                                    true,
+                                  );
+                                  shouldSetState = true;
+                                  _model.inAppPurchaseResponse =
+                                      InAppPurchaseResponseStruct.maybeFromMap(
+                                          functions.stringToJson(_model
+                                              .paymentResponseApple!
                                               .toString()));
                                   setState(() {});
                                 } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: const Text(
+                                            'Phương thức thanh toán không khả dụng.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }
@@ -1543,31 +1553,71 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             builder: (context) => FFButtonWidget(
                               onPressed: () async {
                                 var shouldSetState = false;
-                                // Mở widget thanh toán IAP
-                                _model.paymentResponeOrg =
-                                    await actions.openInAppPurchase(
-                                  () {
-                                    if (isiOS) {
-                                      return _model
-                                          .dataGetOne!.iapAppleProductId;
-                                    } else if (isAndroid) {
-                                      return _model
-                                          .dataGetOne!.iapGoogleProductId;
-                                    } else {
-                                      return '';
-                                    }
-                                  }(),
-                                  true,
-                                );
-                                shouldSetState = true;
-                                if (_model.paymentResponeOrg != null) {
+                                if (isAndroid) {
+                                  // Mở widget thanh toán IAP
+                                  _model.paymentResponseGoogleOrg =
+                                      await actions.openGoogleInAppPurchases(
+                                    () {
+                                      if (isiOS) {
+                                        return _model
+                                            .dataGetOne!.iapAppleProductId;
+                                      } else if (isAndroid) {
+                                        return _model
+                                            .dataGetOne!.iapGoogleProductId;
+                                      } else {
+                                        return '';
+                                      }
+                                    }(),
+                                    true,
+                                  );
+                                  shouldSetState = true;
                                   _model.inAppPurchaseResponse =
                                       InAppPurchaseResponseStruct.maybeFromMap(
                                           functions.stringToJson(_model
-                                              .paymentResponeOrg!
+                                              .paymentResponseGoogleOrg!
+                                              .toString()));
+                                  setState(() {});
+                                } else if (isiOS) {
+                                  _model.paymentResponseAppleOrg =
+                                      await actions.openAppleInAppPurchases(
+                                    () {
+                                      if (isiOS) {
+                                        return _model
+                                            .dataGetOne!.iapAppleProductId;
+                                      } else if (isAndroid) {
+                                        return _model
+                                            .dataGetOne!.iapGoogleProductId;
+                                      } else {
+                                        return '';
+                                      }
+                                    }(),
+                                    true,
+                                  );
+                                  shouldSetState = true;
+                                  _model.inAppPurchaseResponse =
+                                      InAppPurchaseResponseStruct.maybeFromMap(
+                                          functions.stringToJson(_model
+                                              .paymentResponseAppleOrg!
                                               .toString()));
                                   setState(() {});
                                 } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('Thông báo'),
+                                        content: const Text(
+                                            'Phương thức thanh toán không khả dụng.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('Ok'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }

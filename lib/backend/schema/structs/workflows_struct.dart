@@ -65,7 +65,7 @@ class WorkflowsStruct extends BaseStruct {
   set userCreated(UserStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(UserStruct) updateFn) {
-    updateFn(userCreated ??= UserStruct());
+    updateFn(_userCreated ??= UserStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;
@@ -76,7 +76,7 @@ class WorkflowsStruct extends BaseStruct {
   set steps(List<StepsStruct>? val) => _steps = val;
 
   void updateSteps(Function(List<StepsStruct>) updateFn) {
-    updateFn(steps ??= []);
+    updateFn(_steps ??= []);
   }
 
   bool hasSteps() => _steps != null;

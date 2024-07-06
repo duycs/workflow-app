@@ -105,7 +105,7 @@ class LessonIdMarketStruct extends BaseStruct {
   set file(FileStruct? val) => _file = val;
 
   void updateFile(Function(FileStruct) updateFn) {
-    updateFn(file ??= FileStruct());
+    updateFn(_file ??= FileStruct());
   }
 
   bool hasFile() => _file != null;

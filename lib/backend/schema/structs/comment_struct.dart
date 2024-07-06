@@ -34,7 +34,7 @@ class CommentStruct extends BaseStruct {
   set staffId(StaffListStruct? val) => _staffId = val;
 
   void updateStaffId(Function(StaffListStruct) updateFn) {
-    updateFn(staffId ??= StaffListStruct());
+    updateFn(_staffId ??= StaffListStruct());
   }
 
   bool hasStaffId() => _staffId != null;

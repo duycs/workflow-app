@@ -58,7 +58,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
 
   void updateUserCreated(
       Function(ProcedurePublishedUserCreatedStruct) updateFn) {
-    updateFn(userCreated ??= ProcedurePublishedUserCreatedStruct());
+    updateFn(_userCreated ??= ProcedurePublishedUserCreatedStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;
@@ -79,7 +79,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
 
   void updateCreatedUserId(
       Function(ProcedurePublishedUserCreatedIdStruct) updateFn) {
-    updateFn(createdUserId ??= ProcedurePublishedUserCreatedIdStruct());
+    updateFn(_createdUserId ??= ProcedurePublishedUserCreatedIdStruct());
   }
 
   bool hasCreatedUserId() => _createdUserId != null;
@@ -98,7 +98,7 @@ class ProcedurePublishedStepTaskStruct extends BaseStruct {
   set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
 
   void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) {
-    updateFn(submitStaffId ??= SubmitStaffIdStruct());
+    updateFn(_submitStaffId ??= SubmitStaffIdStruct());
   }
 
   bool hasSubmitStaffId() => _submitStaffId != null;

@@ -26,7 +26,7 @@ class ReactsMarketStruct extends BaseStruct {
   set reactsId(ReactsIdMarketStruct? val) => _reactsId = val;
 
   void updateReactsId(Function(ReactsIdMarketStruct) updateFn) {
-    updateFn(reactsId ??= ReactsIdMarketStruct());
+    updateFn(_reactsId ??= ReactsIdMarketStruct());
   }
 
   bool hasReactsId() => _reactsId != null;

@@ -121,7 +121,7 @@ class ProgramOrderStruct extends BaseStruct {
 
   void updateProgramOrderItems(
       Function(List<ProgramOrderItemsStruct>) updateFn) {
-    updateFn(programOrderItems ??= []);
+    updateFn(_programOrderItems ??= []);
   }
 
   bool hasProgramOrderItems() => _programOrderItems != null;

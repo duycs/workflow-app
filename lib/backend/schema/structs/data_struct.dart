@@ -17,7 +17,7 @@ class DataStruct extends BaseStruct {
   set programsId(ProgramsIdStruct? val) => _programsId = val;
 
   void updateProgramsId(Function(ProgramsIdStruct) updateFn) {
-    updateFn(programsId ??= ProgramsIdStruct());
+    updateFn(_programsId ??= ProgramsIdStruct());
   }
 
   bool hasProgramsId() => _programsId != null;
@@ -28,7 +28,7 @@ class DataStruct extends BaseStruct {
   set lessionsId(LessonsStruct? val) => _lessionsId = val;
 
   void updateLessionsId(Function(LessonsStruct) updateFn) {
-    updateFn(lessionsId ??= LessonsStruct());
+    updateFn(_lessionsId ??= LessonsStruct());
   }
 
   bool hasLessionsId() => _lessionsId != null;

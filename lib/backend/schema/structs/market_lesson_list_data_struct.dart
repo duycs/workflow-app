@@ -15,7 +15,7 @@ class MarketLessonListDataStruct extends BaseStruct {
   set data(List<MarketLessonListStruct>? val) => _data = val;
 
   void updateData(Function(List<MarketLessonListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

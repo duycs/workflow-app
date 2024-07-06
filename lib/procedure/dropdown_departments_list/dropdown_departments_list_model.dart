@@ -46,6 +46,8 @@ class DropdownDepartmentsListModel
           int index, Function(StaffsStepStruct) updateFn) =>
       checkDepar[index] = updateFn(checkDepar[index]);
 
+  bool checkLoading = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in DropdownDepartmentsList widget.

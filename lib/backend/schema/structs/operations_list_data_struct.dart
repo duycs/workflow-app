@@ -15,7 +15,7 @@ class OperationsListDataStruct extends BaseStruct {
   set data(List<OperationsStruct>? val) => _data = val;
 
   void updateData(Function(List<OperationsStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

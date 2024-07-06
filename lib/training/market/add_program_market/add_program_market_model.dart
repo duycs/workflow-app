@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/market/checkbox_lessions/checkbox_lessions_widget.dart';
@@ -68,6 +69,16 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
     updateFn(checkBoxLession ??= StudyProgramListStruct());
   }
 
+  List<IapProductsStruct> priceList = [];
+  void addToPriceList(IapProductsStruct item) => priceList.add(item);
+  void removeFromPriceList(IapProductsStruct item) => priceList.remove(item);
+  void removeAtIndexFromPriceList(int index) => priceList.removeAt(index);
+  void insertAtIndexInPriceList(int index, IapProductsStruct item) =>
+      priceList.insert(index, item);
+  void updatePriceListAtIndex(
+          int index, Function(IapProductsStruct) updateFn) =>
+      priceList[index] = updateFn(priceList[index]);
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in AddProgramMarket widget.
@@ -90,6 +101,9 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for DropDownPrice widget.
+  String? dropDownPriceValue;
+  FormFieldController<String>? dropDownPriceValueController;
   // State field(s) for SwitchOn widget.
   bool? switchOnValue;
   // State field(s) for SwitchOff widget.
@@ -166,6 +180,48 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
       } else {
         return;
       }
+    }
+  }
+
+  Future getPriceList(BuildContext context) async {
+    bool? getPriceList;
+    ApiCallResponse? getPrices;
+
+    getPriceList = await action_blocks.tokenReload(context);
+    if (getPriceList!) {
+      getPrices = await StudyProgramGroup.iapProductsCall.call(
+        accessToken: FFAppState().accessToken,
+        filter: '{\"status\":{\"_eq\":\"published\"}}',
+      );
+
+      if (!(getPrices.succeeded ?? true)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi tải dữ liệu!',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+        return;
+      }
+      priceList = (getJsonField(
+        (getPrices.jsonBody ?? ''),
+        r'''$.data''',
+        true,
+      )!
+              .toList()
+              .map<IapProductsStruct?>(IapProductsStruct.maybeFromMap)
+              .toList() as Iterable<IapProductsStruct?>)
+          .withoutNulls
+          .toList()
+          .cast<IapProductsStruct>();
+    } else {
+      return;
     }
   }
 }

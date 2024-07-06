@@ -24,7 +24,7 @@ class CommentsStruct extends BaseStruct {
   set commentsId(CommentsIdStruct? val) => _commentsId = val;
 
   void updateCommentsId(Function(CommentsIdStruct) updateFn) {
-    updateFn(commentsId ??= CommentsIdStruct());
+    updateFn(_commentsId ??= CommentsIdStruct());
   }
 
   bool hasCommentsId() => _commentsId != null;

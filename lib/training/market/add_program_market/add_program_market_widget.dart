@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/training/market/checkbox_lessions/checkbox_lessions_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -84,6 +85,8 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                 .data
                 .toList()
                 .cast<DomainsListStruct>();
+            setState(() {});
+            await _model.getPriceList(context);
             setState(() {});
             while (_model.loop < widget.nameLession!.length) {
               _model.updateCheckBoxLessionStruct(
@@ -173,266 +176,373 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Visibility(
-      visible: _model.isLoad == true,
-      child: Align(
-        alignment: const AlignmentDirectional(0.0, 0.0),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            width: double.infinity,
-            constraints: const BoxConstraints(
-              maxHeight: 800.0,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 4.0,
-                  color: Color(0x33000000),
-                  offset: Offset(
-                    0.0,
-                    2.0,
-                  ),
-                )
-              ],
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 24.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      primary: false,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Đưa khóa học lên Market',
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 0.0),
+      child: SafeArea(
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 4.0,
+                color: Color(0x33000000),
+                offset: Offset(
+                  0.0,
+                  2.0,
+                ),
+              )
+            ],
+            borderRadius: BorderRadius.circular(0.0),
+          ),
+          child: Stack(
+            children: [
+              if (_model.isLoad == true)
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          primary: false,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 12.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Đưa khóa học lên Market',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                    FlutterFlowIconButton(
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 40.0,
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () async {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 20.0),
+                                  child: FlutterFlowDropDown<String>(
+                                    controller:
+                                        _model.dropDownDomainValueController ??=
+                                            FormFieldController<String>(
+                                      _model.dropDownDomainValue ??=
+                                          widget.domain,
+                                    ),
+                                    options: List<String>.from(_model.domainList
+                                        .map((e) => e.id)
+                                        .toList()),
+                                    optionLabels: _model.domainList
+                                        .map((e) => e.name)
+                                        .toList(),
+                                    onChanged: (val) => setState(
+                                        () => _model.dropDownDomainValue = val),
+                                    width: double.infinity,
+                                    height: 56.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'Vui lòng chọn lĩnh vực',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isOverButton: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: FlutterFlowDropDown<String>(
+                                    controller: _model
+                                            .dropDownCategoryValueController ??=
+                                        FormFieldController<String>(
+                                      _model.dropDownCategoryValue ??=
+                                          widget.category,
+                                    ),
+                                    options: List<String>.from(_model
+                                        .categoryList
+                                        .map((e) => e.id)
+                                        .toList()),
+                                    optionLabels: _model.categoryList
+                                        .map((e) => e.name)
+                                        .toList(),
+                                    onChanged: (val) => setState(() =>
+                                        _model.dropDownCategoryValue = val),
+                                    width: double.infinity,
+                                    height: 56.0,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    hintText: 'Vui lòng chọn danh mục',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isOverButton: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ),
+                              ),
+                              if ('1' == '2')
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 36.0),
+                                  child: TextFormField(
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
+                                    autofocus: false,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'Giá bán',
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'Nhập giá bán...',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      errorStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    keyboardType: TextInputType.number,
+                                    validator: _model.textControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 36.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Thiết lập giá bán:\n(VND)',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: FlutterFlowDropDown<String>(
+                                          controller: _model
+                                                  .dropDownPriceValueController ??=
+                                              FormFieldController<String>(
+                                            _model
+                                                .dropDownPriceValue ??= (widget
+                                                                .price !=
+                                                            null &&
+                                                        widget.price != '') &&
+                                                    (widget.price != '0')
+                                                ? _model.priceList
+                                                    .where((e) =>
+                                                        e.price ==
+                                                        functions.stringToInt(
+                                                            widget.price!))
+                                                    .toList()
+                                                    .first
+                                                    .id
+                                                : ' ',
+                                          ),
+                                          options: List<String>.from(_model
+                                              .priceList
+                                              .map((e) => e.id)
+                                              .toList()),
+                                          optionLabels: _model.priceList
+                                              .map((e) => formatNumber(
+                                                    e.price,
+                                                    formatType:
+                                                        FormatType.decimal,
+                                                    decimalType: DecimalType
+                                                        .commaDecimal,
+                                                  ))
+                                              .toList(),
+                                          onChanged: (val) => setState(() =>
+                                              _model.dropDownPriceValue = val),
+                                          width: double.infinity,
+                                          height: 56.0,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          hintText: 'Chọn giá cho khóa học',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down_rounded,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          fillColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          elevation: 2.0,
+                                          borderColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          borderWidth: 2.0,
+                                          borderRadius: 8.0,
+                                          margin:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 4.0, 16.0, 4.0),
+                                          hidesUnderline: true,
+                                          isOverButton: true,
+                                          isSearchable: false,
+                                          isMultiSelect: false,
+                                        ),
+                                      ),
+                                    ),
+                                  ].divide(const SizedBox(width: 16.0)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 16.0),
+                                child: Text(
+                                  'Thiết lập bài học được phép học thử',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyLarge
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        fontSize: 18.0,
+                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 24.0,
-                                  ),
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 20.0),
-                              child: FlutterFlowDropDown<String>(
-                                controller:
-                                    _model.dropDownDomainValueController ??=
-                                        FormFieldController<String>(
-                                  _model.dropDownDomainValue ??= widget.domain,
-                                ),
-                                options: List<String>.from(_model.domainList
-                                    .map((e) => e.id)
-                                    .toList()),
-                                optionLabels: _model.domainList
-                                    .map((e) => e.name)
-                                    .toList(),
-                                onChanged: (val) => setState(
-                                    () => _model.dropDownDomainValue = val),
-                                width: double.infinity,
-                                height: 56.0,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: 'Vui lòng chọn lĩnh vực',
-                                icon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                                fillColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 2.0,
-                                borderColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                borderWidth: 2.0,
-                                borderRadius: 8.0,
-                                margin: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 4.0, 16.0, 4.0),
-                                hidesUnderline: true,
-                                isOverButton: true,
-                                isSearchable: false,
-                                isMultiSelect: false,
                               ),
-                            ),
-                          ),
-                          Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: FlutterFlowDropDown<String>(
-                              controller:
-                                  _model.dropDownCategoryValueController ??=
-                                      FormFieldController<String>(
-                                _model.dropDownCategoryValue ??=
-                                    widget.category,
-                              ),
-                              options: List<String>.from(_model.categoryList
-                                  .map((e) => e.id)
-                                  .toList()),
-                              optionLabels: _model.categoryList
-                                  .map((e) => e.name)
-                                  .toList(),
-                              onChanged: (val) => setState(
-                                  () => _model.dropDownCategoryValue = val),
-                              width: double.infinity,
-                              height: 56.0,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Vui lòng chọn danh mục',
-                              icon: Icon(
-                                Icons.keyboard_arrow_down_rounded,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
-                              ),
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 2.0,
-                              borderColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              borderWidth: 2.0,
-                              borderRadius: 8.0,
-                              margin: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 4.0, 16.0, 4.0),
-                              hidesUnderline: true,
-                              isOverButton: true,
-                              isSearchable: false,
-                              isMultiSelect: false,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 20.0, 0.0, 36.0),
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'Giá bán',
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                hintText: 'Nhập giá bán...',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                                errorStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context).error,
-                                      letterSpacing: 0.0,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 2.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                              keyboardType: TextInputType.number,
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 16.0),
-                            child: Text(
-                              'Thiết lập bài học được phép học thử',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                          ),
-                          if (widget.price == '0')
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 12.0),
-                              child: Row(
+                              Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   if (_model.checkBoxLession?.lessions
@@ -539,302 +649,390 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                   ),
                                 ],
                               ),
-                            ),
-                          Builder(
-                            builder: (context) {
-                              final programItems =
-                                  _model.checkBoxLession?.lessions.toList() ??
+                              Builder(
+                                builder: (context) {
+                                  final programItems = _model
+                                          .checkBoxLession?.lessions
+                                          .toList() ??
                                       [];
-                              return ListView.builder(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: programItems.length,
-                                itemBuilder: (context, programItemsIndex) {
-                                  final programItemsItem =
-                                      programItems[programItemsIndex];
-                                  return Visibility(
-                                    visible: _model.checkBoxLession != null,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        wrapWithModel(
-                                          model: _model.checkboxLessionsModels
-                                              .getModel(
-                                            '${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}',
-                                            programItemsIndex,
-                                          ),
-                                          updateCallback: () => setState(() {}),
-                                          updateOnChange: true,
-                                          child: CheckboxLessionsWidget(
-                                            key: Key(
-                                              'Key6ry_${'${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}'}',
-                                            ),
-                                            parameter1: programItemsIndex,
-                                            checkLessions: programItemsItem
-                                                .lessionsId.checkLession,
-                                            callBack: (check) async {
-                                              setState(() {});
-                                              while (_model.loop <
-                                                  widget.nameLession!.length) {
-                                                _model
-                                                    .updateCheckBoxLessionStruct(
-                                                  (e) => e
-                                                    ..updateLessions(
-                                                      (e) =>
-                                                          e[programItemsIndex]
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: programItems.length,
+                                    itemBuilder: (context, programItemsIndex) {
+                                      final programItemsItem =
+                                          programItems[programItemsIndex];
+                                      return Visibility(
+                                        visible: _model.checkBoxLession != null,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            wrapWithModel(
+                                              model: _model
+                                                  .checkboxLessionsModels
+                                                  .getModel(
+                                                '${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}',
+                                                programItemsIndex,
+                                              ),
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              updateOnChange: true,
+                                              child: CheckboxLessionsWidget(
+                                                key: Key(
+                                                  'Key6ry_${'${programItemsItem.lessionsId.name}${programItemsItem.lessionsId.checkLession.toString()}${programItemsItem.lessionsId.id}'}',
+                                                ),
+                                                parameter1: programItemsIndex,
+                                                checkLessions: programItemsItem
+                                                    .lessionsId.checkLession,
+                                                callBack: (check) async {
+                                                  setState(() {});
+                                                  while (_model.loop <
+                                                      widget.nameLession!
+                                                          .length) {
+                                                    _model
+                                                        .updateCheckBoxLessionStruct(
+                                                      (e) => e
+                                                        ..updateLessions(
+                                                          (e) => e[
+                                                              programItemsIndex]
                                                             ..updateLessionsId(
                                                               (e) => e
                                                                 ..checkLession =
                                                                     check,
                                                             ),
-                                                    ),
-                                                );
-                                                setState(() {});
-                                                _model.loop = _model.loop + 1;
-                                                setState(() {});
-                                              }
-                                              _model.loop = 0;
-                                              setState(() {});
-                                            },
-                                          ),
+                                                        ),
+                                                    );
+                                                    setState(() {});
+                                                    _model.loop =
+                                                        _model.loop + 1;
+                                                    setState(() {});
+                                                  }
+                                                  _model.loop = 0;
+                                                  setState(() {});
+                                                },
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                programItemsItem
+                                                    .lessionsId.name,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                        Expanded(
-                                          child: Text(
-                                            programItemsItem.lessionsId.name,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      );
+                                    },
                                   );
                                 },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              Navigator.pop(context);
-                            },
-                            text: 'Đóng',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
                               ),
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              var shouldSetState = false;
-                              if (_model.textController.text != '') {
-                                var confirmDialogResponse =
-                                    await showDialog<bool>(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: const Text('Xác nhận:'),
-                                              content: const Text(
-                                                  'Đưa chương trình lên Market!'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: const Text('Đóng'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: const Text('Xác nhận'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        ) ??
-                                        false;
-                                if (!confirmDialogResponse) {
-                                  if (shouldSetState) setState(() {});
-                                  return;
-                                }
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Vui lòng nhập giá bán!',
-                                      style: TextStyle(
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                                text: 'Đóng',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryText,
+                                            .secondaryText,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
                                       ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
                                   ),
-                                );
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  var shouldSetState = false;
+                                  if (_model.dropDownPriceValue != null &&
+                                      _model.dropDownPriceValue != '') {
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('Xác nhận:'),
+                                                  content: const Text(
+                                                      'Đưa chương trình lên Market!'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Đóng'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Xác nhận'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (!confirmDialogResponse) {
+                                      if (shouldSetState) setState(() {});
+                                      return;
+                                    }
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Vui lòng nhập giá bán!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context).error,
+                                      ),
+                                    );
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
 
-                              setState(() {});
-                              if ((_model.dropDownDomainValue != null &&
-                                      _model.dropDownDomainValue != '') &&
-                                  (_model.dropDownCategoryValue != null &&
-                                      _model.dropDownCategoryValue != '') &&
-                                  (_model.dropDownDomainValue != ' ') &&
-                                  (_model.dropDownCategoryValue != ' ')) {
-                                _model.updatePrice =
-                                    await action_blocks.tokenReload(context);
-                                shouldSetState = true;
-                                if (_model.updatePrice!) {
-                                  _model.apiResultUpdatePrice =
-                                      await StudyProgramGroup
-                                          .updateStudyProgramPriceCall
-                                          .call(
-                                    accessToken: FFAppState().accessToken,
-                                    id: widget.id,
-                                    price: int.tryParse(
-                                        _model.textController.text),
-                                    authorId: getJsonField(
-                                      FFAppState().staffOrganization,
-                                      r'''$.authors[0]''',
-                                    ).toString(),
-                                    version: (widget.version!) + 1,
-                                    category: _model.dropDownCategoryValue,
-                                    domain: _model.dropDownDomainValue,
-                                  );
-
-                                  shouldSetState = true;
-                                  if ((_model.apiResultUpdatePrice?.succeeded ??
-                                      true)) {
-                                    _model.addMarket = await action_blocks
+                                  setState(() {});
+                                  if ((_model.dropDownDomainValue != null &&
+                                          _model.dropDownDomainValue != '') &&
+                                      (_model.dropDownCategoryValue != null &&
+                                          _model.dropDownCategoryValue != '') &&
+                                      (_model.dropDownDomainValue != ' ') &&
+                                      (_model.dropDownCategoryValue != ' ')) {
+                                    _model.updatePrice = await action_blocks
                                         .tokenReload(context);
                                     shouldSetState = true;
-                                    if (_model.addMarket!) {
-                                      _model.apiResultk6q =
+                                    if (_model.updatePrice!) {
+                                      _model.apiResultUpdatePrice =
                                           await StudyProgramGroup
-                                              .addProgramMarketCall
+                                              .updateStudyProgramPriceCall
                                               .call(
                                         accessToken: FFAppState().accessToken,
                                         id: widget.id,
-                                        domainId: _model.dropDownDomainValue,
-                                        categoryId:
-                                            _model.dropDownCategoryValue,
+                                        price: _model.priceList
+                                            .where((e) =>
+                                                e.id ==
+                                                _model.dropDownPriceValue)
+                                            .toList()
+                                            .first
+                                            .price,
+                                        authorId: getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.authors[0]''',
+                                        ).toString(),
+                                        version: (widget.version!) + 1,
+                                        category: _model.dropDownCategoryValue,
+                                        domain: _model.dropDownDomainValue,
+                                        iapApple: _model.priceList
+                                            .where((e) =>
+                                                e.id ==
+                                                _model.dropDownPriceValue)
+                                            .toList()
+                                            .first
+                                            .iapAppleProductId,
+                                        iapGoogle: _model.priceList
+                                            .where((e) =>
+                                                e.id ==
+                                                _model.dropDownPriceValue)
+                                            .toList()
+                                            .first
+                                            .iapGoogleProductId,
                                       );
 
                                       shouldSetState = true;
-                                      if ((_model.apiResultk6q?.succeeded ??
+                                      if ((_model.apiResultUpdatePrice
+                                              ?.succeeded ??
                                           true)) {
-                                        _model.reloadTockenStudyProgramGetOne =
-                                            await action_blocks
-                                                .tokenReload(context);
+                                        _model.addMarket = await action_blocks
+                                            .tokenReload(context);
                                         shouldSetState = true;
-                                        if (_model
-                                            .reloadTockenStudyProgramGetOne!) {
-                                          _model.apiResultProgramsOne =
+                                        if (_model.addMarket!) {
+                                          _model.apiResultk6q =
                                               await StudyProgramGroup
-                                                  .studyProgramGetOneCall
+                                                  .addProgramMarketCall
                                                   .call(
                                             accessToken:
                                                 FFAppState().accessToken,
-                                            id: getJsonField(
-                                              (_model.apiResultk6q?.jsonBody ??
-                                                  ''),
-                                              r'''$.id''',
-                                            ).toString(),
+                                            id: widget.id,
+                                            domainId:
+                                                _model.dropDownDomainValue,
+                                            categoryId:
+                                                _model.dropDownCategoryValue,
                                           );
 
                                           shouldSetState = true;
-                                          if ((_model.apiResultProgramsOne
-                                                  ?.succeeded ??
+                                          if ((_model.apiResultk6q?.succeeded ??
                                               true)) {
-                                            while (_model.loop <
-                                                _model.checkBoxLession!.lessions
-                                                    .length) {
-                                              if ((_model.checkBoxLession
-                                                              ?.lessions[
-                                                          _model.loop])
-                                                      ?.lessionsId
-                                                      .checkLession ==
-                                                  true) {
-                                                _model.apiResulti06 =
-                                                    await LessonGroup
-                                                        .updateLessonStatusMarketCall
-                                                        .call(
-                                                  accessToken:
-                                                      FFAppState().accessToken,
-                                                  id: (LessionDataMarketStatusStruct
-                                                              .maybeFromMap((_model
-                                                                      .apiResultProgramsOne
-                                                                      ?.jsonBody ??
-                                                                  ''))
-                                                          ?.data
-                                                          .lessions[_model.loop])
-                                                      ?.lessionsId
-                                                      .id,
-                                                  status: 'trial',
-                                                );
+                                            _model.reloadTockenStudyProgramGetOne =
+                                                await action_blocks
+                                                    .tokenReload(context);
+                                            shouldSetState = true;
+                                            if (_model
+                                                .reloadTockenStudyProgramGetOne!) {
+                                              _model.apiResultProgramsOne =
+                                                  await StudyProgramGroup
+                                                      .studyProgramGetOneCall
+                                                      .call(
+                                                accessToken:
+                                                    FFAppState().accessToken,
+                                                id: getJsonField(
+                                                  (_model.apiResultk6q
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.id''',
+                                                ).toString(),
+                                              );
 
-                                                shouldSetState = true;
-                                                if ((_model.apiResulti06
-                                                        ?.succeeded ??
-                                                    true)) {
+                                              shouldSetState = true;
+                                              if ((_model.apiResultProgramsOne
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                while (_model.loop <
+                                                    _model.checkBoxLession!
+                                                        .lessions.length) {
+                                                  if ((_model.checkBoxLession
+                                                                  ?.lessions[
+                                                              _model.loop])
+                                                          ?.lessionsId
+                                                          .checkLession ==
+                                                      true) {
+                                                    _model.apiResulti06 =
+                                                        await LessonGroup
+                                                            .updateLessonStatusMarketCall
+                                                            .call(
+                                                      accessToken: FFAppState()
+                                                          .accessToken,
+                                                      id: (LessionDataMarketStatusStruct
+                                                                  .maybeFromMap((_model
+                                                                          .apiResultProgramsOne
+                                                                          ?.jsonBody ??
+                                                                      ''))
+                                                              ?.data
+                                                              .lessions[_model.loop])
+                                                          ?.lessionsId
+                                                          .id,
+                                                      status: 'trial',
+                                                    );
+
+                                                    shouldSetState = true;
+                                                    if ((_model.apiResulti06
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      setState(() {});
+                                                    }
+                                                  } else {
+                                                    setState(() {});
+                                                  }
+
+                                                  _model.loop = _model.loop + 1;
                                                   setState(() {});
                                                 }
-                                              } else {
+                                                _model.loop = 0;
+                                                setState(() {});
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Đưa chương trình lên Market thành công!',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
+                                                  ),
+                                                );
+                                                await _model
+                                                    .deletePreProgramVersion(
+                                                        context);
+                                                setState(() {});
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
+                                                context.pushNamed(
+                                                  'StudyProgramList',
+                                                  queryParameters: {
+                                                    'checkpage': serializeParam(
+                                                      widget.checkPage,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        const TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .fade,
+                                                      duration: Duration(
+                                                          milliseconds: 0),
+                                                    ),
+                                                  },
+                                                );
+                                              }
+                                            } else {
+                                              setState(() {});
+                                              if (shouldSetState) {
                                                 setState(() {});
                                               }
-
-                                              _model.loop = _model.loop + 1;
-                                              setState(() {});
+                                              return;
                                             }
-                                            _model.loop = 0;
-                                            setState(() {});
+                                          } else {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
                                                 content: Text(
-                                                  'Đưa chương trình lên Market thành công!',
+                                                  'Lỗi đẩy chương trình lên market',
                                                   style: TextStyle(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -845,124 +1043,84 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondary,
+                                                        .error,
                                               ),
-                                            );
-                                            await _model
-                                                .deletePreProgramVersion(
-                                                    context);
-                                            setState(() {});
-                                            if (Navigator.of(context)
-                                                .canPop()) {
-                                              context.pop();
-                                            }
-                                            context.pushNamed(
-                                              'StudyProgramList',
-                                              queryParameters: {
-                                                'checkpage': serializeParam(
-                                                  widget.checkPage,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
                                             );
                                           }
                                         } else {
                                           setState(() {});
-                                          if (shouldSetState) setState(() {});
-                                          return;
                                         }
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Lỗi đẩy chương trình lên market',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
                                       }
                                     } else {
                                       setState(() {});
                                     }
-                                  }
-                                } else {
-                                  setState(() {});
-                                }
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      content: const Text(
-                                          'Vui lòng chọn lĩnh vực và danh mục!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          content: const Text(
+                                              'Vui lòng chọn lĩnh vực và danh mục!'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: const Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
                                     );
-                                  },
-                                );
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
 
-                              if (shouldSetState) setState(() {});
-                            },
-                            text: 'Xác nhận',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
+                                  if (shouldSetState) setState(() {});
+                                },
+                                text: 'Xác nhận',
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      24.0, 0.0, 24.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: Colors.white,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                  elevation: 3.0,
+                                  borderSide: const BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1.0,
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(20.0),
                             ),
-                          ),
+                          ].divide(const SizedBox(width: 12.0)),
                         ),
-                      ].divide(const SizedBox(width: 12.0)),
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              if (_model.isLoad == false)
+                SizedBox(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: custom_widgets.LoadingPageWidget(
+                    width: double.infinity,
+                    height: double.infinity,
+                    size: 50.0,
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+            ],
           ),
         ),
       ),

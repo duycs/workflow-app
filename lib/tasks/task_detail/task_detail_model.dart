@@ -118,6 +118,8 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
         filter:
             '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
         sort: 'number',
+        offset: 0,
+        limit: 100,
       );
 
       if ((apiResultGetTaskList.succeeded ?? true)) {

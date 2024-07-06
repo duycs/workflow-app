@@ -8,7 +8,6 @@ import '/training/question/question_create/question_create_widget.dart';
 import '/training/question/question_menu/question_menu_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -129,7 +128,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
             ),
             onPressed: () async {
               context.pushNamed(
-                'Profile',
+                'Home',
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
@@ -465,83 +464,64 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                               ),
                                             ),
                                           ),
-                                          Builder(
-                                            builder: (context) =>
-                                                FlutterFlowIconButton(
-                                              borderRadius: 20.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 40.0,
-                                              icon: Icon(
-                                                Icons.more_vert,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
-                                              ),
-                                              onPressed: () async {
-                                                await showAlignedDialog(
-                                                  context: context,
-                                                  isGlobal: false,
-                                                  avoidOverflow: true,
-                                                  targetAnchor:
-                                                      const AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  followerAnchor:
-                                                      const AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  builder: (dialogContext) {
-                                                    return Material(
-                                                      color: Colors.transparent,
-                                                      child: GestureDetector(
-                                                        onTap: () => _model
-                                                                .unfocusNode
-                                                                .canRequestFocus
-                                                            ? FocusScope.of(
-                                                                    context)
-                                                                .requestFocus(_model
-                                                                    .unfocusNode)
-                                                            : FocusScope.of(
-                                                                    context)
-                                                                .unfocus(),
-                                                        child: SizedBox(
-                                                          height: 150.0,
-                                                          child:
-                                                              QuestionMenuWidget(
-                                                            item:
-                                                                detailViewItem,
-                                                            callBackRequest:
-                                                                () async {
-                                                              _model.nameSearch =
-                                                                  ' ';
-                                                              _model.status =
-                                                                  ' ';
-                                                              setState(() {});
-                                                              setState(() {
-                                                                _model
-                                                                    .questionNameTextController
-                                                                    ?.clear();
-                                                              });
-                                                              setState(() => _model
-                                                                  .listViewPagingController
-                                                                  ?.refresh());
-
-                                                              setState(() {});
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
+                                          FlutterFlowIconButton(
+                                            borderRadius: 20.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            icon: Icon(
+                                              Icons.more_vert,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
                                             ),
+                                            onPressed: () async {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                useSafeArea: true,
+                                                context: context,
+                                                builder: (context) {
+                                                  return GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: QuestionMenuWidget(
+                                                        item: detailViewItem,
+                                                        callBackRequest:
+                                                            () async {
+                                                          _model.nameSearch =
+                                                              ' ';
+                                                          _model.status = ' ';
+                                                          setState(() {});
+                                                          setState(() {
+                                                            _model
+                                                                .questionNameTextController
+                                                                ?.clear();
+                                                          });
+                                                          setState(() => _model
+                                                              .listViewPagingController
+                                                              ?.refresh());
+
+                                                          setState(() {});
+                                                        },
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then((value) =>
+                                                  safeSetState(() {}));
+                                            },
                                           ),
                                         ],
                                       ),

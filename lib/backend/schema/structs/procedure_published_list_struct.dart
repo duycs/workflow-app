@@ -33,7 +33,7 @@ class ProcedurePublishedListStruct extends BaseStruct {
   set steps(List<ProcedurePublishedStepStruct>? val) => _steps = val;
 
   void updateSteps(Function(List<ProcedurePublishedStepStruct>) updateFn) {
-    updateFn(steps ??= []);
+    updateFn(_steps ??= []);
   }
 
   bool hasSteps() => _steps != null;

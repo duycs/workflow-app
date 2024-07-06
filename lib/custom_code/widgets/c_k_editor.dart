@@ -18,17 +18,14 @@ class CKEditor extends StatefulWidget {
     double? width,
     double? height,
     String? initialData,
-    Future Function(String data)?
-        action, // Tham số action là một hàm nhận một chuỗi và không trả về giá trị
+    Future Function(String data)? action,
   }) {
     return CKEditor._internal(
       width: width,
       height: height,
       editorKeyValue: '',
-      initialData: initialData ??
-          '', // Sử dụng initialData hoặc chuỗi rỗng nếu nó là null
-      action:
-          action, // Sử dụng action hoặc một hàm không làm gì cả nếu nó là null
+      initialData: initialData ?? '',
+      action: action,
     );
   }
 
@@ -124,12 +121,9 @@ class CKEditorState extends State<CKEditor> {
         //   // });
         // }),
         callbacks: Callbacks(onChangeContent: (String? currentHtml) {
-          // Kiểm tra và xử lý nội dung khi bị xóa
           if (currentHtml != null && currentHtml.trim().isEmpty) {
-            currentHtml =
-                ""; // Đặt nội dung thành chuỗi rỗng nếu bị xóa hoàn toàn
+            currentHtml = "";
           } else {
-            // Loại bỏ tất cả các thẻ <br> nếu không có nội dung nào khác
             currentHtml = currentHtml?.replaceAll(RegExp(r'<br\s*/?>'), '');
           }
 

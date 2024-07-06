@@ -27,7 +27,7 @@ class FileDataStruct extends BaseStruct {
   set directusFilesId(FileIDDataTypeStruct? val) => _directusFilesId = val;
 
   void updateDirectusFilesId(Function(FileIDDataTypeStruct) updateFn) {
-    updateFn(directusFilesId ??= FileIDDataTypeStruct());
+    updateFn(_directusFilesId ??= FileIDDataTypeStruct());
   }
 
   bool hasDirectusFilesId() => _directusFilesId != null;

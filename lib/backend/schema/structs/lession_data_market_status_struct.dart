@@ -15,7 +15,7 @@ class LessionDataMarketStatusStruct extends BaseStruct {
   set data(StudyProgramListStruct? val) => _data = val;
 
   void updateData(Function(StudyProgramListStruct) updateFn) {
-    updateFn(data ??= StudyProgramListStruct());
+    updateFn(_data ??= StudyProgramListStruct());
   }
 
   bool hasData() => _data != null;

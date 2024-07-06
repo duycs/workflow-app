@@ -15,7 +15,7 @@ class ErorrsStruct extends BaseStruct {
   set errors(List<ErorrItemStruct>? val) => _errors = val;
 
   void updateErrors(Function(List<ErorrItemStruct>) updateFn) {
-    updateFn(errors ??= []);
+    updateFn(_errors ??= []);
   }
 
   bool hasErrors() => _errors != null;

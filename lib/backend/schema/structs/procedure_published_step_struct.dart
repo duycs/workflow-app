@@ -37,7 +37,7 @@ class ProcedurePublishedStepStruct extends BaseStruct {
   set tasks(List<ProcedurePublishedStepTaskStruct>? val) => _tasks = val;
 
   void updateTasks(Function(List<ProcedurePublishedStepTaskStruct>) updateFn) {
-    updateFn(tasks ??= []);
+    updateFn(_tasks ??= []);
   }
 
   bool hasTasks() => _tasks != null;
@@ -48,7 +48,7 @@ class ProcedurePublishedStepStruct extends BaseStruct {
   set staffs(List<StaffStepOneStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffStepOneStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;

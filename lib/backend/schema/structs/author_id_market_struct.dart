@@ -55,7 +55,7 @@ class AuthorIdMarketStruct extends BaseStruct {
   set domains(List<DomainsMarketStruct>? val) => _domains = val;
 
   void updateDomains(Function(List<DomainsMarketStruct>) updateFn) {
-    updateFn(domains ??= []);
+    updateFn(_domains ??= []);
   }
 
   bool hasDomains() => _domains != null;

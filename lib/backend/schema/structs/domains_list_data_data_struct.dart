@@ -15,7 +15,7 @@ class DomainsListDataDataStruct extends BaseStruct {
   set data(List<DomainsListListStruct>? val) => _data = val;
 
   void updateData(Function(List<DomainsListListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

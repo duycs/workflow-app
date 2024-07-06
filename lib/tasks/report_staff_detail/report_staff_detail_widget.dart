@@ -1,5 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_found_copy/data_not_found_copy_widget.dart';
+import '/components/data_not_found_row_new/data_not_found_row_new_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -11,6 +11,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/tasks/export_excel_get_one/export_excel_get_one_widget.dart';
 import '/tasks/filter_report_staff_detail/filter_report_staff_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
@@ -89,13 +90,13 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
     ];
     final chartPieChartColorsList2 = [
       FlutterFlowTheme.of(context).tertiary,
-      const Color(0xFF33BA45),
-      FlutterFlowTheme.of(context).primary
+      FlutterFlowTheme.of(context).primary,
+      const Color(0xFF33BA45)
     ];
     final chartPieChartColorsList3 = [
       FlutterFlowTheme.of(context).accent3,
-      FlutterFlowTheme.of(context).accent2,
-      FlutterFlowTheme.of(context).accent1
+      FlutterFlowTheme.of(context).accent1,
+      FlutterFlowTheme.of(context).accent2
     ];
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -141,176 +142,180 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 16.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.contact_page_outlined,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 20.0,
-                            ),
-                            RichText(
-                              textScaler: MediaQuery.of(context).textScaler,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: 'Chức vụ: ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          letterSpacing: 0.0,
+              if ('1' == '2')
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 6.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.contact_page_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 20.0,
+                              ),
+                              RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'Chức vụ: ',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    TextSpan(
+                                      text: widget.title!,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                maxLines: 2,
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              if ((widget.department != null &&
+                                      widget.department != '') &&
+                                  (widget.department != ' '))
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.groups_rounded,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 20.0,
+                                      ),
+                                      Expanded(
+                                        child: RichText(
+                                          textScaler:
+                                              MediaQuery.of(context).textScaler,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'Bộ phận: ',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                              TextSpan(
+                                                text: widget.department!,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              )
+                                            ],
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          maxLines: 2,
                                         ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
-                                  TextSpan(
-                                    text: widget.title!,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              maxLines: 2,
-                            ),
-                          ].divide(const SizedBox(width: 8.0)),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            if ((widget.department != null &&
-                                    widget.department != '') &&
-                                (widget.department != ' '))
-                              Expanded(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.groups_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 20.0,
-                                    ),
-                                    Expanded(
-                                      child: RichText(
-                                        textScaler:
-                                            MediaQuery.of(context).textScaler,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: 'Bộ phận: ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                            TextSpan(
-                                              text: widget.department!,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                            )
-                                          ],
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                  ].divide(const SizedBox(width: 8.0)),
                                 ),
-                              ),
-                            if ((widget.branch != null &&
-                                    widget.branch != '') &&
-                                (widget.branch != ' '))
-                              Expanded(
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.home_work_outlined,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 20.0,
-                                    ),
-                                    Expanded(
-                                      child: RichText(
-                                        textScaler:
-                                            MediaQuery.of(context).textScaler,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: 'Chi nhánh: ',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                            TextSpan(
-                                              text: widget.branch!,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                            )
-                                          ],
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                        maxLines: 2,
+                              if ((widget.branch != null &&
+                                      widget.branch != '') &&
+                                  (widget.branch != ' '))
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.home_work_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 20.0,
                                       ),
-                                    ),
-                                  ].divide(const SizedBox(width: 8.0)),
+                                      Expanded(
+                                        child: RichText(
+                                          textScaler:
+                                              MediaQuery.of(context).textScaler,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'Chi nhánh: ',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                              TextSpan(
+                                                text: widget.branch!,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                              )
+                                            ],
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                    ].divide(const SizedBox(width: 8.0)),
+                                  ),
                                 ),
-                              ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
               Flexible(
                 child: Stack(
                   children: [
@@ -359,7 +364,6 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                     18.0, 0.0, 18.0, 0.0),
                                 buttonMargin: const EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                padding: const EdgeInsets.all(4.0),
                                 tabs: const [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -369,7 +373,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                             0.0, 0.0, 6.0, 0.0),
                                         child: Icon(
                                           Icons.work_outline,
-                                          size: 24.0,
+                                          size: 20.0,
                                         ),
                                       ),
                                       Tab(
@@ -385,7 +389,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                             0.0, 0.0, 6.0, 0.0),
                                         child: Icon(
                                           Icons.menu_book,
-                                          size: 24.0,
+                                          size: 20.0,
                                         ),
                                       ),
                                       Tab(
@@ -406,7 +410,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 8.0, 8.0, 16.0),
+                                        8.0, 16.0, 8.0, 16.0),
                                     child: SingleChildScrollView(
                                       primary: false,
                                       child: Column(
@@ -439,153 +443,230 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                   ),
                                                 ),
                                               ),
+                                              if ('1' == '2')
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 8.0, 0.0),
+                                                  child: FlutterFlowDropDown<
+                                                      String>(
+                                                    controller: _model
+                                                            .dropDownValueController1 ??=
+                                                        FormFieldController<
+                                                            String>(
+                                                      _model.dropDownValue1 ??=
+                                                          'Tổng',
+                                                    ),
+                                                    options: const [
+                                                      'Tuần này',
+                                                      'Tháng này',
+                                                      'Năm nay',
+                                                      'Tổng'
+                                                    ],
+                                                    onChanged: (val) =>
+                                                        setState(() => _model
+                                                                .dropDownValue1 =
+                                                            val),
+                                                    width: 120.0,
+                                                    height: 48.0,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    icon: Icon(
+                                                      Icons
+                                                          .keyboard_arrow_down_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      size: 24.0,
+                                                    ),
+                                                    fillColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    elevation: 0.0,
+                                                    borderColor:
+                                                        Colors.transparent,
+                                                    borderWidth: 0.0,
+                                                    borderRadius: 4.0,
+                                                    margin:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                8.0, 0.0),
+                                                    hidesUnderline: true,
+                                                    isOverButton: true,
+                                                    isSearchable: false,
+                                                    isMultiSelect: false,
+                                                  ),
+                                                ),
+                                              if ('1' == '2')
+                                                FFButtonWidget(
+                                                  onPressed: () async {
+                                                    var shouldSetState = false;
+
+                                                    setState(() {});
+                                                    _model.getOneStaffTask1 =
+                                                        await action_blocks
+                                                            .tokenReload(
+                                                                context);
+                                                    shouldSetState = true;
+                                                    if (_model
+                                                        .getOneStaffTask1!) {
+                                                      _model.apiResultGetOneStaff1 =
+                                                          await StaffGroup
+                                                              .staffGetOneCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        staffId: widget.staffId,
+                                                        filter: _model
+                                                            .filterRequest,
+                                                      );
+
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultGetOneStaff1
+                                                              ?.succeeded ??
+                                                          true)) {}
+                                                    } else {
+                                                      FFAppState()
+                                                          .update(() {});
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
+                                                      return;
+                                                    }
+
+                                                    if (shouldSetState) {
+                                                      setState(() {});
+                                                    }
+                                                  },
+                                                  text: 'Button',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: Colors.white,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    elevation: 3.0,
+                                                    borderSide: const BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 8.0, 0.0),
-                                                child:
-                                                    FlutterFlowDropDown<String>(
-                                                  controller: _model
-                                                          .dropDownValueController1 ??=
-                                                      FormFieldController<
-                                                          String>(
-                                                    _model.dropDownValue1 ??=
-                                                        'Tổng',
-                                                  ),
-                                                  options: const [
-                                                    'Tuần này',
-                                                    'Tháng này',
-                                                    'Năm nay',
-                                                    'Tổng'
-                                                  ],
-                                                  onChanged: (val) => setState(
-                                                      () => _model
-                                                              .dropDownValue1 =
-                                                          val),
-                                                  width: 120.0,
-                                                  height: 48.0,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  icon: Icon(
-                                                    Icons
-                                                        .keyboard_arrow_down_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                  fillColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  elevation: 0.0,
-                                                  borderColor:
+                                                child: InkWell(
+                                                  splashColor:
                                                       Colors.transparent,
-                                                  borderWidth: 0.0,
-                                                  borderRadius: 4.0,
-                                                  margin: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 0.0, 8.0, 0.0),
-                                                  hidesUnderline: true,
-                                                  isOverButton: true,
-                                                  isSearchable: false,
-                                                  isMultiSelect: false,
-                                                ),
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  var shouldSetState = false;
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    var shouldSetState = false;
 
-                                                  setState(() {});
-                                                  _model.getOneStaffTask1 =
-                                                      await action_blocks
-                                                          .tokenReload(context);
-                                                  shouldSetState = true;
-                                                  if (_model
-                                                      .getOneStaffTask1!) {
-                                                    _model.apiResultGetOneStaff1 =
-                                                        await StaffGroup
-                                                            .staffGetOneCall
-                                                            .call(
-                                                      accessToken: FFAppState()
-                                                          .accessToken,
-                                                      staffId: widget.staffId,
-                                                      filter:
-                                                          _model.filterRequest,
-                                                    );
-
+                                                    setState(() {});
+                                                    _model.getOneStaffTask2 =
+                                                        await action_blocks
+                                                            .tokenReload(
+                                                                context);
                                                     shouldSetState = true;
-                                                    if ((_model
-                                                            .apiResultGetOneStaff1
-                                                            ?.succeeded ??
-                                                        true)) {}
-                                                  } else {
-                                                    FFAppState().update(() {});
+                                                    if (_model
+                                                        .getOneStaffTask2!) {
+                                                      _model.apiResultGetOneStaff2 =
+                                                          await StaffGroup
+                                                              .staffGetOneCall
+                                                              .call(
+                                                        accessToken:
+                                                            FFAppState()
+                                                                .accessToken,
+                                                        staffId: widget.staffId,
+                                                        filter: _model
+                                                            .filterRequest,
+                                                      );
+
+                                                      shouldSetState = true;
+                                                      if ((_model
+                                                              .apiResultGetOneStaff2
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        await actions
+                                                            .reportDetailToCsv(
+                                                          (_model.apiResultGetOneStaff2
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                        );
+                                                      }
+                                                    } else {
+                                                      FFAppState()
+                                                          .update(() {});
+                                                      if (shouldSetState) {
+                                                        setState(() {});
+                                                      }
+                                                      return;
+                                                    }
+
                                                     if (shouldSetState) {
                                                       setState(() {});
                                                     }
-                                                    return;
-                                                  }
-
-                                                  if (shouldSetState) {
-                                                    setState(() {});
-                                                  }
-                                                },
-                                                text: 'Button',
-                                                options: FFButtonOptions(
-                                                  height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          24.0, 0.0, 24.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                  elevation: 3.0,
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1.0,
+                                                  },
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/export-spreadsheet-512.webp',
+                                                      width: 45.0,
+                                                      height: 45.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    18.0, 4.0, 0.0, 4.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          0.0, 0.0),
+                                          Stack(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            children: [
+                                              Align(
+                                                alignment: const AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 8.0, 0.0, 8.0),
                                                   child: Container(
                                                     width: 160.0,
                                                     height: 160.0,
@@ -640,6 +721,63 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     ),
                                                   ),
                                                 ),
+                                              ),
+                                              if ((_model.staff!.tasks.isNotEmpty
+                                                      ? formatNumber(
+                                                          _model.staff?.tasks
+                                                              .where((e) =>
+                                                                  e.tasksId !=
+                                                                  null)
+                                                              .toList()
+                                                              .length,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .commaDecimal,
+                                                        )
+                                                      : '0') ==
+                                                  '0')
+                                                Container(
+                                                  width: 160.0,
+                                                  height: 160.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            90.0),
+                                                  ),
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Text(
+                                                    '',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 4.0, 0.0, 4.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
@@ -716,625 +854,697 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 ),
                                                           ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiary,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            2.0),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: RichText(
-                                                                textScaler: MediaQuery.of(
-                                                                        context)
-                                                                    .textScaler,
-                                                                text: TextSpan(
-                                                                  children: [
-                                                                    TextSpan(
-                                                                      text:
-                                                                          'Chưa thực hiện (',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                    TextSpan(
-                                                                      text: _model.staff!.tasks.isNotEmpty
-                                                                          ? formatNumber(
-                                                                              _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                            )
-                                                                          : '0',
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                    const TextSpan(
-                                                                      text: ')',
-                                                                      style:
-                                                                          TextStyle(),
-                                                                    )
-                                                                  ],
-                                                                  style: FlutterFlowTheme.of(
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      6.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Container(
+                                                                width: 20.0,
+                                                                height: 20.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        fontSize:
-                                                                            13.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
+                                                                      .tertiary,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              2.0),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: 90.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    _model.statusFilter =
-                                                                        'Chưa thực hiện';
-                                                                    _model.checkStatus1 =
-                                                                        true;
-                                                                    _model.filterRequest =
-                                                                        '';
-                                                                    setState(
-                                                                        () {});
-                                                                    setState(() => _model
-                                                                        .listViewPagingController
-                                                                        ?.refresh());
-                                                                    _model.checkStatus2 =
-                                                                        false;
-                                                                    _model.checkStatus3 =
-                                                                        false;
-                                                                    _model
-                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
-                                                                        if (_model.typeFilter ==
-                                                                            'Nhập văn bản') {
-                                                                          return 'submit_text';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Upload File') {
-                                                                          return 'upload_file';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Chụp ảnh') {
-                                                                          return 'image';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Check List Công việc') {
-                                                                          return 'to_do_list';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Phê duyệt') {
-                                                                          return ' approve';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
-                                                                        if (_model.statusFilter ==
-                                                                            'Chưa thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Đang thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Hoàn thành') {
-                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Text(
-                                                                    'Xem',
+                                                              Expanded(
+                                                                child: RichText(
+                                                                  textScaler: MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: [
+                                                                      TextSpan(
+                                                                        text:
+                                                                            'Chưa thực hiện (',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                            ? formatNumber(
+                                                                                _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length,
+                                                                                formatType: FormatType.decimal,
+                                                                                decimalType: DecimalType.commaDecimal,
+                                                                              )
+                                                                            : '0',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                      const TextSpan(
+                                                                        text:
+                                                                            ')',
+                                                                        style:
+                                                                            TextStyle(),
+                                                                      )
+                                                                    ],
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              13.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontStyle:
-                                                                              FontStyle.italic,
-                                                                          decoration:
-                                                                              TextDecoration.underline,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ].divide(const SizedBox(
-                                                              width: 4.0)),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  width: 90.0,
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      _model.statusFilter =
+                                                                          'Chưa thực hiện';
+                                                                      _model.checkStatus1 =
+                                                                          true;
+                                                                      _model.filterRequest =
+                                                                          '';
+                                                                      setState(
+                                                                          () {});
+                                                                      setState(() => _model
+                                                                          .listViewPagingController
+                                                                          ?.refresh());
+                                                                      _model.checkStatus2 =
+                                                                          false;
+                                                                      _model.checkStatus3 =
+                                                                          false;
+                                                                      _model
+                                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                          if (_model.typeFilter ==
+                                                                              'Nhập văn bản') {
+                                                                            return 'submit_text';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Upload File') {
+                                                                            return 'upload_file';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Chụp ảnh') {
+                                                                            return 'image';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Check List Công việc') {
+                                                                            return 'to_do_list';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Phê duyệt') {
+                                                                            return ' approve';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                          if (_model.statusFilter ==
+                                                                              'Chưa thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Đang thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Hoàn thành') {
+                                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                                      _model.checkStatus4 =
+                                                                          false;
+                                                                      _model.checkStatus5 =
+                                                                          false;
+                                                                      _model.checkStatus6 =
+                                                                          false;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Text(
+                                                                      _model.checkStatus1
+                                                                          ? 'Đang chọn xem'
+                                                                          : 'Xem',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .end,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color: _model.checkStatus1
+                                                                                ? FlutterFlowTheme.of(context).secondary
+                                                                                : FlutterFlowTheme.of(context).secondaryText,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                            decoration:
+                                                                                TextDecoration.underline,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 4.0)),
+                                                          ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            2.0),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: RichText(
-                                                                textScaler: MediaQuery.of(
-                                                                        context)
-                                                                    .textScaler,
-                                                                text: TextSpan(
-                                                                  children: [
-                                                                    TextSpan(
-                                                                      text:
-                                                                          'Đang thực hiện (',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                    TextSpan(
-                                                                      text: _model.staff!.tasks.isNotEmpty
-                                                                          ? formatNumber(
-                                                                              _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                            )
-                                                                          : '0',
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                    const TextSpan(
-                                                                      text: ')',
-                                                                      style:
-                                                                          TextStyle(),
-                                                                    )
-                                                                  ],
-                                                                  style: FlutterFlowTheme.of(
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      6.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Container(
+                                                                width: 20.0,
+                                                                height: 20.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        fontSize:
-                                                                            13.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
+                                                                      .primary,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              2.0),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: 90.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    _model.statusFilter =
-                                                                        'Đang thực hiện';
-                                                                    _model.checkStatus2 =
-                                                                        true;
-                                                                    _model.filterRequest =
-                                                                        '';
-                                                                    setState(
-                                                                        () {});
-                                                                    setState(() => _model
-                                                                        .listViewPagingController
-                                                                        ?.refresh());
-                                                                    _model.checkStatus1 =
-                                                                        false;
-                                                                    _model.checkStatus3 =
-                                                                        false;
-                                                                    _model
-                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
-                                                                        if (_model.typeFilter ==
-                                                                            'Nhập văn bản') {
-                                                                          return 'submit_text';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Upload File') {
-                                                                          return 'upload_file';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Chụp ảnh') {
-                                                                          return 'image';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Check List Công việc') {
-                                                                          return 'to_do_list';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Phê duyệt') {
-                                                                          return ' approve';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
-                                                                        if (_model.statusFilter ==
-                                                                            'Chưa thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Đang thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Hoàn thành') {
-                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Text(
-                                                                    'Xem',
+                                                              Expanded(
+                                                                child: RichText(
+                                                                  textScaler: MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: [
+                                                                      TextSpan(
+                                                                        text:
+                                                                            'Đang thực hiện (',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                            ? formatNumber(
+                                                                                _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length,
+                                                                                formatType: FormatType.decimal,
+                                                                                decimalType: DecimalType.commaDecimal,
+                                                                              )
+                                                                            : '0',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                      const TextSpan(
+                                                                        text:
+                                                                            ')',
+                                                                        style:
+                                                                            TextStyle(),
+                                                                      )
+                                                                    ],
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              13.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontStyle:
-                                                                              FontStyle.italic,
-                                                                          decoration:
-                                                                              TextDecoration.underline,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ].divide(const SizedBox(
-                                                              width: 4.0)),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  width: 90.0,
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      _model.statusFilter =
+                                                                          'Đang thực hiện';
+                                                                      _model.checkStatus2 =
+                                                                          true;
+                                                                      _model.filterRequest =
+                                                                          '';
+                                                                      setState(
+                                                                          () {});
+                                                                      setState(() => _model
+                                                                          .listViewPagingController
+                                                                          ?.refresh());
+                                                                      _model.checkStatus1 =
+                                                                          false;
+                                                                      _model.checkStatus3 =
+                                                                          false;
+                                                                      _model
+                                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                          if (_model.typeFilter ==
+                                                                              'Nhập văn bản') {
+                                                                            return 'submit_text';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Upload File') {
+                                                                            return 'upload_file';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Chụp ảnh') {
+                                                                            return 'image';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Check List Công việc') {
+                                                                            return 'to_do_list';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Phê duyệt') {
+                                                                            return ' approve';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                          if (_model.statusFilter ==
+                                                                              'Chưa thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Đang thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Hoàn thành') {
+                                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                                      _model.checkStatus4 =
+                                                                          false;
+                                                                      _model.checkStatus5 =
+                                                                          false;
+                                                                      _model.checkStatus6 =
+                                                                          false;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Text(
+                                                                      _model.checkStatus2
+                                                                          ? 'Đang chọn xem'
+                                                                          : 'Xem',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .end,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color: _model.checkStatus2
+                                                                                ? FlutterFlowTheme.of(context).secondary
+                                                                                : FlutterFlowTheme.of(context).secondaryText,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                            decoration:
+                                                                                TextDecoration.underline,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 4.0)),
+                                                          ),
                                                         ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: const Color(
-                                                                    0xFF33BA45),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            2.0),
-                                                              ),
-                                                            ),
-                                                            Expanded(
-                                                              child: RichText(
-                                                                textScaler: MediaQuery.of(
-                                                                        context)
-                                                                    .textScaler,
-                                                                text: TextSpan(
-                                                                  children: [
-                                                                    TextSpan(
-                                                                      text:
-                                                                          'Hoàn thành (',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                    TextSpan(
-                                                                      text: _model.staff!.tasks.isNotEmpty
-                                                                          ? formatNumber(
-                                                                              _model.staff!.tasks.where((e) => e.tasksId.status == 'done').toList().length,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                            )
-                                                                          : '0',
-                                                                      style:
-                                                                          const TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                    const TextSpan(
-                                                                      text: ')',
-                                                                      style:
-                                                                          TextStyle(),
-                                                                    )
-                                                                  ],
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        fontSize:
-                                                                            13.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      6.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Container(
+                                                                width: 20.0,
+                                                                height: 20.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: const Color(
+                                                                      0xFF33BA45),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              2.0),
                                                                 ),
                                                               ),
-                                                            ),
-                                                            Expanded(
-                                                              child: Container(
-                                                                width: 90.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                alignment:
-                                                                    const AlignmentDirectional(
-                                                                        1.0,
-                                                                        0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    _model.statusFilter =
-                                                                        'Hoàn thành';
-                                                                    _model.checkStatus3 =
-                                                                        true;
-                                                                    _model.filterRequest =
-                                                                        '';
-                                                                    setState(
-                                                                        () {});
-                                                                    setState(() => _model
-                                                                        .listViewPagingController
-                                                                        ?.refresh());
-                                                                    _model.checkStatus2 =
-                                                                        false;
-                                                                    _model.checkStatus1 =
-                                                                        false;
-                                                                    _model
-                                                                        .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateStart2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
-                                                                        if (_model.typeFilter ==
-                                                                            'Nhập văn bản') {
-                                                                          return 'submit_text';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Upload File') {
-                                                                          return 'upload_file';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Chụp ảnh') {
-                                                                          return 'image';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Check List Công việc') {
-                                                                          return 'to_do_list';
-                                                                        } else if (_model.typeFilter ==
-                                                                            'Phê duyệt') {
-                                                                          return ' approve';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd1Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
-                                                                        return DateTime.parse(var1)
-                                                                            .add(const Duration(days: 1))
-                                                                            .toString();
-                                                                      }(dateTimeFormat(
-                                                                        'yyyy-MM-dd',
-                                                                        functions
-                                                                            .stringToDateTime(_model.dateEnd2Filter),
-                                                                        locale:
-                                                                            FFLocalizations.of(context).languageCode,
-                                                                      ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
-                                                                        if (_model.statusFilter ==
-                                                                            'Chưa thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Đang thực hiện') {
-                                                                          return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
-                                                                        } else if (_model.statusFilter ==
-                                                                            'Hoàn thành') {
-                                                                          return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
-                                                                        } else {
-                                                                          return ' ';
-                                                                        }
-                                                                      }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Text(
-                                                                    'Xem',
+                                                              Expanded(
+                                                                child: RichText(
+                                                                  textScaler: MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: [
+                                                                      TextSpan(
+                                                                        text:
+                                                                            'Hoàn thành (',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text: _model.staff!.tasks.isNotEmpty
+                                                                            ? formatNumber(
+                                                                                _model.staff!.tasks.where((e) => e.tasksId.status == 'done').toList().length,
+                                                                                formatType: FormatType.decimal,
+                                                                                decimalType: DecimalType.commaDecimal,
+                                                                              )
+                                                                            : '0',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                      const TextSpan(
+                                                                        text:
+                                                                            ')',
+                                                                        style:
+                                                                            TextStyle(),
+                                                                      )
+                                                                    ],
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
                                                                         .override(
                                                                           fontFamily:
                                                                               'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              13.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                          fontStyle:
-                                                                              FontStyle.italic,
-                                                                          decoration:
-                                                                              TextDecoration.underline,
                                                                         ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ].divide(const SizedBox(
-                                                              width: 4.0)),
+                                                              Expanded(
+                                                                child:
+                                                                    Container(
+                                                                  width: 90.0,
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          1.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      _model.statusFilter =
+                                                                          'Hoàn thành';
+                                                                      _model.checkStatus3 =
+                                                                          true;
+                                                                      _model.filterRequest =
+                                                                          '';
+                                                                      setState(
+                                                                          () {});
+                                                                      setState(() => _model
+                                                                          .listViewPagingController
+                                                                          ?.refresh());
+                                                                      _model.checkStatus2 =
+                                                                          false;
+                                                                      _model.checkStatus1 =
+                                                                          false;
+                                                                      _model
+                                                                          .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateStart2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                          if (_model.typeFilter ==
+                                                                              'Nhập văn bản') {
+                                                                            return 'submit_text';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Upload File') {
+                                                                            return 'upload_file';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Chụp ảnh') {
+                                                                            return 'image';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Check List Công việc') {
+                                                                            return 'to_do_list';
+                                                                          } else if (_model.typeFilter ==
+                                                                              'Phê duyệt') {
+                                                                            return ' approve';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd1Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                          return DateTime.parse(var1)
+                                                                              .add(const Duration(days: 1))
+                                                                              .toString();
+                                                                        }(dateTimeFormat(
+                                                                          'yyyy-MM-dd',
+                                                                          functions
+                                                                              .stringToDateTime(_model.dateEnd2Filter),
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                          if (_model.statusFilter ==
+                                                                              'Chưa thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Đang thực hiện') {
+                                                                            return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                          } else if (_model.statusFilter ==
+                                                                              'Hoàn thành') {
+                                                                            return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                          } else {
+                                                                            return ' ';
+                                                                          }
+                                                                        }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                                      _model.checkStatus4 =
+                                                                          false;
+                                                                      _model.checkStatus5 =
+                                                                          false;
+                                                                      _model.checkStatus6 =
+                                                                          false;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Text(
+                                                                      _model.checkStatus3
+                                                                          ? 'Đang chọn xem'
+                                                                          : 'Xem',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .end,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color: _model.checkStatus3
+                                                                                ? FlutterFlowTheme.of(context).secondary
+                                                                                : FlutterFlowTheme.of(context).secondaryText,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                            decoration:
+                                                                                TextDecoration.underline,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 4.0)),
+                                                          ),
                                                         ),
                                                       ].divide(const SizedBox(
                                                           height: 4.0)),
@@ -1435,7 +1645,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           ),
                                                           const TextSpan(
                                                             text:
-                                                                '%) nhiệm vụ trễ deadline. Trong đó: ',
+                                                                '%) nhiệm vụ trễ deadline.\nTrong đó: ',
                                                             style: TextStyle(),
                                                           )
                                                         ],
@@ -1591,16 +1801,24 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       setState(() {});
                                                     },
                                                     child: Text(
-                                                      'Xem',
+                                                      _model.checkStatus4
+                                                          ? 'Đang chọn xem'
+                                                          : 'Xem',
+                                                      textAlign: TextAlign.end,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: _model
+                                                                    .checkStatus4
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                             letterSpacing: 0.0,
                                                             fontStyle: FontStyle
                                                                 .italic,
@@ -1636,30 +1854,30 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
-                                                          text: _model
-                                                                      .staff!
-                                                                      .tasks.isNotEmpty
-                                                              ? formatNumber(
-                                                                  _model.staff!
-                                                                      .tasks
-                                                                      .where((e) =>
-                                                                          (e.tasksId.status == 'todo') &&
-                                                                          (e.tasksId.current ==
-                                                                              1) &&
-                                                                          (e.tasksId.deadline !=
-                                                                                  '') &&
-                                                                          ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') ||
-                                                                              (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal')))
-                                                                      .toList()
-                                                                      .length,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .commaDecimal,
-                                                                )
-                                                              : '0',
+                                                          text: valueOrDefault<
+                                                              String>(
+                                                            _model.staff!.tasks.isNotEmpty
+                                                                ? formatNumber(
+                                                                    _model.staff
+                                                                        ?.tasks
+                                                                        .where((e) =>
+                                                                            (e.tasksId.status == 'todo') &&
+                                                                            (e.tasksId.current ==
+                                                                                1) &&
+                                                                            (e.tasksId.deadline != '') &&
+                                                                            ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal')))
+                                                                        .toList()
+                                                                        .length,
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .commaDecimal,
+                                                                  )
+                                                                : '0',
+                                                            '0',
+                                                          ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -1674,16 +1892,27 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           style: TextStyle(),
                                                         ),
                                                         TextSpan(
-                                                          text: _model
-                                                                      .staff!
-                                                                      .tasks.isNotEmpty
-                                                              ? (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                          double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(
-                                                                              2)))
-                                                                      .toStringAsFixed(
-                                                                          2)))
-                                                                  .toString()
-                                                              : '0',
+                                                          text: valueOrDefault<
+                                                              String>(
+                                                            _model.staff!.tasks.isNotEmpty
+                                                                ? valueOrDefault<
+                                                                    String>(
+                                                                    formatNumber(
+                                                                      double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
+                                                                              double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                          .toStringAsFixed(2)),
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .decimal,
+                                                                      decimalType:
+                                                                          DecimalType
+                                                                              .automatic,
+                                                                    ),
+                                                                    '0',
+                                                                  )
+                                                                : '0',
+                                                            '0',
+                                                          ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -1853,16 +2082,24 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       setState(() {});
                                                     },
                                                     child: Text(
-                                                      'Xem',
+                                                      _model.checkStatus5
+                                                          ? 'Đang chọn xem'
+                                                          : 'Xem',
+                                                      textAlign: TextAlign.end,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: _model
+                                                                    .checkStatus5
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                             letterSpacing: 0.0,
                                                             fontStyle: FontStyle
                                                                 .italic,
@@ -1879,7 +2116,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 8.0, 24.0),
+                                                    16.0, 0.0, 8.0, 16.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -1898,29 +2135,29 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     text: TextSpan(
                                                       children: [
                                                         TextSpan(
-                                                          text: _model
-                                                                      .staff!
-                                                                      .tasks.isNotEmpty
-                                                              ? formatNumber(
-                                                                  _model.staff!
-                                                                      .tasks
-                                                                      .where((e) =>
-                                                                          (e.tasksId.status ==
-                                                                              'done') &&
-                                                                          (e.tasksId.deadline !=
-                                                                                  '') &&
-                                                                          (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) ==
-                                                                              'before'))
-                                                                      .toList()
-                                                                      .length,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .commaDecimal,
-                                                                )
-                                                              : '0',
+                                                          text: valueOrDefault<
+                                                              String>(
+                                                            _model.staff!.tasks.isNotEmpty
+                                                                ? formatNumber(
+                                                                    _model.staff
+                                                                        ?.tasks
+                                                                        .where((e) =>
+                                                                            (e.tasksId.status ==
+                                                                                'done') &&
+                                                                            (e.tasksId.deadline != '') &&
+                                                                            (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before'))
+                                                                        .toList()
+                                                                        .length,
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .commaDecimal,
+                                                                  )
+                                                                : '0',
+                                                            '0',
+                                                          ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -1935,16 +2172,20 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                           style: TextStyle(),
                                                         ),
                                                         TextSpan(
-                                                          text: _model
-                                                                      .staff!
-                                                                      .tasks.isNotEmpty
-                                                              ? (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
-                                                                          double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(
-                                                                              2)))
-                                                                      .toStringAsFixed(
-                                                                          2)))
-                                                                  .toString()
-                                                              : '0',
+                                                          text: valueOrDefault<
+                                                              String>(
+                                                            _model.staff!.tasks.isNotEmpty
+                                                                ? valueOrDefault<
+                                                                    String>(
+                                                                    (double.parse(((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length / _model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'before')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'after') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) *
+                                                                                double.parse((((_model.staff!.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.deadline != '') && (functions.compareDatetime(e.tasksId.deadline, e.tasksId.dateEnd) == 'after')).toList().length + _model.staff!.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1) && (e.tasksId.deadline != '') && ((functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'before') || (functions.compareDatetime(e.tasksId.deadline, getCurrentTimestamp.toString()) == 'equal'))).toList().length) / _model.staff!.tasks.length) * 100).toStringAsFixed(2)))
+                                                                            .toStringAsFixed(2)))
+                                                                        .toString(),
+                                                                    '0',
+                                                                  )
+                                                                : '0',
+                                                            '0',
+                                                          ),
                                                           style: TextStyle(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -2112,16 +2353,24 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       setState(() {});
                                                     },
                                                     child: Text(
-                                                      'Xem',
+                                                      _model.checkStatus6
+                                                          ? 'Đang chọn xem'
+                                                          : 'Xem',
+                                                      textAlign: TextAlign.end,
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
                                                           .override(
                                                             fontFamily:
                                                                 'Nunito Sans',
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
+                                                            color: _model
+                                                                    .checkStatus6
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                             letterSpacing: 0.0,
                                                             fontStyle: FontStyle
                                                                 .italic,
@@ -2648,190 +2897,327 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                               ),
                                             ],
                                           ),
-                                          if ((_model.textController.text !=
-                                                      '') ||
-                                              ((_model.dateStart1Filter != null &&
-                                                      _model.dateStart1Filter !=
-                                                          '') &&
-                                                  (_model.dateStart1Filter !=
-                                                      '') &&
-                                                  (_model.dateStart1Filter !=
-                                                      ' ')) ||
-                                              ((_model.dateStart2Filter !=
-                                                          null &&
-                                                      _model.dateStart2Filter !=
-                                                          '') &&
-                                                  (_model.dateStart2Filter !=
-                                                      '') &&
-                                                  (_model.dateStart2Filter !=
-                                                      ' ')) ||
-                                              ((_model.typeFilter != null && _model.typeFilter != '') &&
-                                                  (_model.typeFilter != '') &&
-                                                  (_model.typeFilter != ' ')) ||
-                                              ((_model.statusFilter != null &&
-                                                      _model.statusFilter !=
-                                                          '') &&
-                                                  (_model.statusFilter != '') &&
-                                                  (_model.statusFilter !=
-                                                      ' ')) ||
-                                              ((_model.dateEnd1Filter != null &&
-                                                      _model.dateEnd1Filter !=
-                                                          '') &&
-                                                  (_model.dateEnd1Filter !=
-                                                      '') &&
-                                                  (_model.dateEnd1Filter !=
-                                                      ' ')) ||
-                                              ((_model.dateEnd2Filter != null &&
-                                                      _model.dateEnd2Filter != '') &&
-                                                  (_model.dateEnd2Filter != '') &&
-                                                  (_model.dateEnd2Filter != ' ')))
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                '# Kết quả tìm kiếm theo bộ lọc',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontStyle:
-                                                              FontStyle.italic,
-                                                        ),
-                                              ),
-                                            ),
-                                          if ((_model.checkStatus1 == true) ||
-                                              (_model.checkStatus3 == true) ||
-                                              (_model.checkStatus2 == true) ||
-                                              (_model.checkStatus4 == true) ||
-                                              (_model.checkStatus5 == true) ||
-                                              (_model.checkStatus6 == true))
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  if (_model.checkStatus1)
-                                                    Expanded(
-                                                      child: Text(
-                                                        '#Công việc chưa thực hiện',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  if (_model.checkStatus2)
-                                                    Expanded(
-                                                      child: Text(
-                                                        '#Công việc đang thực hiện',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  if (_model.checkStatus3)
-                                                    Expanded(
-                                                      child: Text(
-                                                        '#Công việc hoàn thành',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      _model.checkStatus1 =
-                                                          false;
-                                                      _model.checkStatus2 =
-                                                          false;
-                                                      _model.checkStatus3 =
-                                                          false;
-                                                      _model.checkStatus4 =
-                                                          false;
-                                                      _model.checkStatus5 =
-                                                          false;
-                                                      _model.checkStatus6 =
-                                                          false;
-                                                      _model.statusFilter =
-                                                          null;
-                                                      _model.filterRequest = '';
-                                                      setState(() {});
-                                                      setState(() => _model
-                                                          .listViewPagingController
-                                                          ?.refresh());
-                                                    },
-                                                    child: Text(
-                                                      'Xóa bộ lọc',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if ((_model.textController.text !=
+                                                                '') ||
+                                                        ((_model.dateStart1Filter != null && _model.dateStart1Filter != '') &&
+                                                            (_model.dateStart1Filter !=
+                                                                '') &&
+                                                            (_model.dateStart1Filter !=
+                                                                ' ')) ||
+                                                        ((_model.dateStart2Filter != null && _model.dateStart2Filter != '') &&
+                                                            (_model.dateStart2Filter !=
+                                                                '') &&
+                                                            (_model.dateStart2Filter !=
+                                                                ' ')) ||
+                                                        ((_model.typeFilter != null && _model.typeFilter != '') &&
+                                                            (_model.typeFilter !=
+                                                                '') &&
+                                                            (_model.typeFilter !=
+                                                                ' ')) ||
+                                                        ((_model.statusFilter != null && _model.statusFilter != '') &&
+                                                            (_model.statusFilter !=
+                                                                '') &&
+                                                            (_model.statusFilter !=
+                                                                ' ')) ||
+                                                        ((_model.dateEnd1Filter != null &&
+                                                                _model.dateEnd1Filter !=
+                                                                    '') &&
+                                                            (_model.dateEnd1Filter !=
+                                                                '') &&
+                                                            (_model.dateEnd1Filter !=
+                                                                ' ')) ||
+                                                        ((_model.dateEnd2Filter !=
+                                                                    null &&
+                                                                _model.dateEnd2Filter != '') &&
+                                                            (_model.dateEnd2Filter != '') &&
+                                                            (_model.dateEnd2Filter != ' ')))
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Đang tìm kiếm theo bộ lọc',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                                fontSize: 12.0,
+                                                                fontSize: 13.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
                                                               ),
-                                                    ),
-                                                  ),
-                                                ],
+                                                        ),
+                                                      ),
+                                                    if ((_model.checkStatus1 == true) ||
+                                                        (_model.checkStatus3 ==
+                                                            true) ||
+                                                        (_model.checkStatus2 ==
+                                                            true) ||
+                                                        (_model.checkStatus4 ==
+                                                            true) ||
+                                                        (_model.checkStatus5 ==
+                                                            true) ||
+                                                        (_model.checkStatus6 ==
+                                                            true))
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          _model.checkStatus1 =
+                                                              false;
+                                                          _model.checkStatus2 =
+                                                              false;
+                                                          _model.checkStatus3 =
+                                                              false;
+                                                          _model.checkStatus4 =
+                                                              false;
+                                                          _model.checkStatus5 =
+                                                              false;
+                                                          _model.checkStatus6 =
+                                                              false;
+                                                          _model.statusFilter =
+                                                              null;
+                                                          _model.filterRequest =
+                                                              '';
+                                                          setState(() {});
+                                                          setState(() => _model
+                                                              .listViewPagingController
+                                                              ?.refresh());
+                                                        },
+                                                        text: 'Xóa bộ lọc',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 32.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
+                                              if ((_model.checkStatus1 == true) ||
+                                                  (_model.checkStatus3 ==
+                                                      true) ||
+                                                  (_model.checkStatus2 ==
+                                                      true) ||
+                                                  (_model.checkStatus4 ==
+                                                      true) ||
+                                                  (_model.checkStatus5 ==
+                                                      true) ||
+                                                  (_model.checkStatus6 == true))
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 8.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      if (_model.checkStatus1)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc chưa thực hiện',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      if (_model.checkStatus2)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc đang thực hiện',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      if (_model.checkStatus3)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc hoàn thành',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      if (_model.checkStatus4)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc trễ deadline',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      if (_model.checkStatus5)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc đang thực hiện trễ deadline',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      if (_model.checkStatus6)
+                                                        Expanded(
+                                                          child: Text(
+                                                            'Công việc hoàn thành trễ deadline',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                           PagedListView<ApiPagingParams,
                                               dynamic>.separated(
                                             pagingController:
@@ -2979,7 +3365,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 child: SizedBox(
                                                   width: double.infinity,
                                                   child:
-                                                      DataNotFoundCopyWidget(),
+                                                      DataNotFoundRowNewWidget(),
                                                 ),
                                               ),
                                               itemBuilder:
@@ -3048,7 +3434,14 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                           .start,
                                                                   children: [
                                                                     Text(
-                                                                      '1. ${dataListItem.name}',
+                                                                      '${formatNumber(
+                                                                        dataListIndex +
+                                                                            1,
+                                                                        formatType:
+                                                                            FormatType.decimal,
+                                                                        decimalType:
+                                                                            DecimalType.commaDecimal,
+                                                                      )}. ${dataListItem.name}',
                                                                       textAlign:
                                                                           TextAlign
                                                                               .start,
@@ -3120,7 +3513,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             return FlutterFlowTheme.of(context).accent2;
                                                                           } else if ((dataListItem.status == 'todo') &&
                                                                               (dataListItem.current == 1)) {
-                                                                            return FlutterFlowTheme.of(context).primary;
+                                                                            return FlutterFlowTheme.of(context).accent1;
                                                                           } else {
                                                                             return FlutterFlowTheme.of(context).alternate;
                                                                           }
@@ -3162,7 +3555,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                   if (dataListItem.status == 'done') {
                                                                                     return FlutterFlowTheme.of(context).secondary;
                                                                                   } else if ((dataListItem.status == 'todo') && (dataListItem.current == 1)) {
-                                                                                    return FlutterFlowTheme.of(context).secondaryBackground;
+                                                                                    return FlutterFlowTheme.of(context).primary;
                                                                                   } else {
                                                                                     return FlutterFlowTheme.of(context).secondaryText;
                                                                                   }
@@ -3655,7 +4048,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 16.0),
+                                        0.0, 16.0, 0.0, 16.0),
                                     child: SingleChildScrollView(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -3692,140 +4085,215 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                     ),
                                                   ),
                                                 ),
+                                                if ('1' == '2')
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .dropDownValueController2 ??=
+                                                          FormFieldController<
+                                                              String>(
+                                                        _model.dropDownValue2 ??=
+                                                            '3',
+                                                      ),
+                                                      options:
+                                                          List<String>.from([
+                                                        '0',
+                                                        '1',
+                                                        '2',
+                                                        '3'
+                                                      ]),
+                                                      optionLabels: const [
+                                                        'Tuần này',
+                                                        'Tháng này',
+                                                        'Năm nay',
+                                                        'Tổng'
+                                                      ],
+                                                      onChanged: (val) =>
+                                                          setState(() => _model
+                                                                  .dropDownValue2 =
+                                                              val),
+                                                      width: 120.0,
+                                                      height: 48.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 0.0,
+                                                      borderColor:
+                                                          Colors.transparent,
+                                                      borderWidth: 0.0,
+                                                      borderRadius: 4.0,
+                                                      margin:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
+                                                    ),
+                                                  ),
+                                                if ('1' == '2')
+                                                  Builder(
+                                                    builder: (context) =>
+                                                        FlutterFlowIconButton(
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      borderRadius: 20.0,
+                                                      borderWidth: 1.0,
+                                                      buttonSize: 40.0,
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      icon: FaIcon(
+                                                        FontAwesomeIcons
+                                                            .fileExcel,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 24.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        await showAlignedDialog(
+                                                          context: context,
+                                                          isGlobal: false,
+                                                          avoidOverflow: true,
+                                                          targetAnchor:
+                                                              const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                          followerAnchor:
+                                                              const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    SizedBox(
+                                                                  height: 190.0,
+                                                                  width: 300.0,
+                                                                  child:
+                                                                      ExportExcelGetOneWidget(
+                                                                    json: _model
+                                                                        .jsonExport,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
+                                                    ),
+                                                  ),
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 8.0, 0.0),
-                                                  child: FlutterFlowDropDown<
-                                                      String>(
-                                                    controller: _model
-                                                            .dropDownValueController2 ??=
-                                                        FormFieldController<
-                                                            String>(
-                                                      _model.dropDownValue2 ??=
-                                                          '3',
-                                                    ),
-                                                    options: List<String>.from(
-                                                        ['0', '1', '2', '3']),
-                                                    optionLabels: const [
-                                                      'Tuần này',
-                                                      'Tháng này',
-                                                      'Năm nay',
-                                                      'Tổng'
-                                                    ],
-                                                    onChanged: (val) =>
-                                                        setState(() => _model
-                                                                .dropDownValue2 =
-                                                            val),
-                                                    width: 120.0,
-                                                    height: 48.0,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    icon: Icon(
-                                                      Icons
-                                                          .keyboard_arrow_down_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 24.0,
-                                                    ),
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    elevation: 0.0,
-                                                    borderColor:
+                                                  child: InkWell(
+                                                    splashColor:
                                                         Colors.transparent,
-                                                    borderWidth: 0.0,
-                                                    borderRadius: 4.0,
-                                                    margin:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(16.0, 0.0,
-                                                                8.0, 0.0),
-                                                    hidesUnderline: true,
-                                                    isOverButton: true,
-                                                    isSearchable: false,
-                                                    isMultiSelect: false,
-                                                  ),
-                                                ),
-                                                Builder(
-                                                  builder: (context) =>
-                                                      FlutterFlowIconButton(
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    borderRadius: 20.0,
-                                                    borderWidth: 1.0,
-                                                    buttonSize: 40.0,
-                                                    fillColor: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    icon: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .fileExport,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 24.0,
-                                                    ),
-                                                    onPressed: () async {
-                                                      await showAlignedDialog(
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        useSafeArea: true,
                                                         context: context,
-                                                        isGlobal: false,
-                                                        avoidOverflow: true,
-                                                        targetAnchor:
-                                                            const AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                        followerAnchor:
-                                                            const AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Material(
-                                                            color: Colors
-                                                                .transparent,
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: SizedBox(
-                                                                height: 190.0,
-                                                                width: 300.0,
-                                                                child:
-                                                                    ExportExcelGetOneWidget(
-                                                                  json: _model
-                                                                      .jsonExport,
-                                                                ),
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  ExportExcelGetOneWidget(
+                                                                json: _model
+                                                                    .jsonExport,
                                                               ),
                                                             ),
                                                           );
                                                         },
                                                       ).then((value) =>
-                                                          setState(() {}));
+                                                          safeSetState(() {}));
                                                     },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/export-spreadsheet-512.webp',
+                                                        width: 45.0,
+                                                        height: 45.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -3849,7 +4317,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         MainAxisSize.min,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
-                                                            .start,
+                                                            .stretch,
                                                     children: [
                                                       Padding(
                                                         padding:
@@ -3867,65 +4335,102 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   .center,
                                                           children: [
                                                             Expanded(
-                                                              child: Align(
+                                                              child: Stack(
                                                                 alignment:
                                                                     const AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 160.0,
-                                                                  height: 160.0,
-                                                                  decoration:
-                                                                      const BoxDecoration(),
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height: double
-                                                                        .infinity,
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
                                                                     child:
-                                                                        FlutterFlowPieChart(
-                                                                      data:
-                                                                          FFPieChartData(
-                                                                        values:
-                                                                            _model.listPercentProgram,
-                                                                        colors:
-                                                                            chartPieChartColorsList2,
-                                                                        radius: [
-                                                                          80.0
-                                                                        ],
-                                                                        borderColor: [
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground
-                                                                        ],
-                                                                      ),
-                                                                      donutHoleRadius:
-                                                                          0.0,
-                                                                      donutHoleColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      sectionLabelType:
-                                                                          PieChartSectionLabelType
-                                                                              .percent,
-                                                                      sectionLabelStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
+                                                                        Container(
+                                                                      width:
+                                                                          160.0,
+                                                                      height:
+                                                                          160.0,
+                                                                      decoration:
+                                                                          const BoxDecoration(),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        child:
+                                                                            FlutterFlowPieChart(
+                                                                          data:
+                                                                              FFPieChartData(
+                                                                            values:
+                                                                                _model.listPercentProgram,
+                                                                            colors:
+                                                                                chartPieChartColorsList2,
+                                                                            radius: [
+                                                                              80.0
+                                                                            ],
+                                                                            borderColor: [
+                                                                              FlutterFlowTheme.of(context).secondaryBackground
+                                                                            ],
                                                                           ),
+                                                                          donutHoleRadius:
+                                                                              0.0,
+                                                                          donutHoleColor:
+                                                                              Colors.transparent,
+                                                                          sectionLabelType:
+                                                                              PieChartSectionLabelType.percent,
+                                                                          sectionLabelStyle: FlutterFlowTheme.of(context)
+                                                                              .headlineSmall
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                fontSize: 12.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
+                                                                  if ((_model.staff!.staffPrograms.isNotEmpty
+                                                                          ? formatNumber(
+                                                                              _model.staff?.staffPrograms.length,
+                                                                              formatType: FormatType.decimal,
+                                                                              decimalType: DecimalType.commaDecimal,
+                                                                            )
+                                                                          : '0') ==
+                                                                      '0')
+                                                                    Container(
+                                                                      width:
+                                                                          160.0,
+                                                                      height:
+                                                                          160.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(90.0),
+                                                                      ),
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                ],
                                                               ),
                                                             ),
                                                             if (_model.staff !=
@@ -4080,21 +4585,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     decimalType: DecimalType.commaDecimal,
                                                                                   ) : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4195,21 +4697,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     decimalType: DecimalType.commaDecimal,
                                                                                   ) : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4310,21 +4809,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     decimalType: DecimalType.commaDecimal,
                                                                                   ) : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4337,7 +4833,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 ),
                                                               ),
                                                           ].divide(const SizedBox(
-                                                              width: 18.0)),
+                                                              width: 12.0)),
                                                         ),
                                                       ),
                                                       Padding(
@@ -4356,65 +4852,102 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   .center,
                                                           children: [
                                                             Expanded(
-                                                              child: Align(
+                                                              child: Stack(
                                                                 alignment:
                                                                     const AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 160.0,
-                                                                  height: 120.0,
-                                                                  decoration:
-                                                                      const BoxDecoration(),
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height: double
-                                                                        .infinity,
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
                                                                     child:
-                                                                        FlutterFlowPieChart(
-                                                                      data:
-                                                                          FFPieChartData(
-                                                                        values:
-                                                                            _model.listPercentLesson,
-                                                                        colors:
-                                                                            chartPieChartColorsList3,
-                                                                        radius: [
-                                                                          60.0
-                                                                        ],
-                                                                        borderColor: [
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground
-                                                                        ],
-                                                                      ),
-                                                                      donutHoleRadius:
-                                                                          0.0,
-                                                                      donutHoleColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      sectionLabelType:
-                                                                          PieChartSectionLabelType
-                                                                              .percent,
-                                                                      sectionLabelStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
+                                                                        Container(
+                                                                      width:
+                                                                          160.0,
+                                                                      height:
+                                                                          120.0,
+                                                                      decoration:
+                                                                          const BoxDecoration(),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        child:
+                                                                            FlutterFlowPieChart(
+                                                                          data:
+                                                                              FFPieChartData(
+                                                                            values:
+                                                                                _model.listPercentLesson,
+                                                                            colors:
+                                                                                chartPieChartColorsList3,
+                                                                            radius: [
+                                                                              60.0
+                                                                            ],
+                                                                            borderColor: [
+                                                                              FlutterFlowTheme.of(context).secondaryBackground
+                                                                            ],
                                                                           ),
+                                                                          donutHoleRadius:
+                                                                              0.0,
+                                                                          donutHoleColor:
+                                                                              Colors.transparent,
+                                                                          sectionLabelType:
+                                                                              PieChartSectionLabelType.percent,
+                                                                          sectionLabelStyle: FlutterFlowTheme.of(context)
+                                                                              .headlineSmall
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                fontSize: 12.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
+                                                                  if ((_model.staff!.staffLessions.isNotEmpty
+                                                                          ? formatNumber(
+                                                                              _model.staff?.staffLessions.length,
+                                                                              formatType: FormatType.decimal,
+                                                                              decimalType: DecimalType.commaDecimal,
+                                                                            )
+                                                                          : '0') ==
+                                                                      '0')
+                                                                    Container(
+                                                                      width:
+                                                                          120.0,
+                                                                      height:
+                                                                          120.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(90.0),
+                                                                      ),
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        '',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                ],
                                                               ),
                                                             ),
                                                             if (_model.staff !=
@@ -4584,21 +5117,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     decimalType: DecimalType.commaDecimal,
                                                                                   ) : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4717,21 +5247,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                       )
                                                                                     : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4848,21 +5375,18 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                                     decimalType: DecimalType.commaDecimal,
                                                                                   ) : '0') !=
                                                                                 '0')
-                                                                              Expanded(
-                                                                                child: Container(
-                                                                                  width: 75.0,
-                                                                                  decoration: const BoxDecoration(),
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'Xem',
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Nunito Sans',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontStyle: FontStyle.italic,
-                                                                                          decoration: TextDecoration.underline,
-                                                                                        ),
-                                                                                  ),
+                                                                              Container(
+                                                                                decoration: const BoxDecoration(),
+                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                child: Text(
+                                                                                  'Xem',
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Nunito Sans',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontStyle: FontStyle.italic,
+                                                                                        decoration: TextDecoration.underline,
+                                                                                      ),
                                                                                 ),
                                                                               ),
                                                                           ].divide(const SizedBox(width: 4.0)),
@@ -4875,7 +5399,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                 ),
                                                               ),
                                                           ].divide(const SizedBox(
-                                                              width: 18.0)),
+                                                              width: 12.0)),
                                                         ),
                                                       ),
                                                       if (_model.staff != null)
@@ -5026,7 +5550,6 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    width: 90.0,
                                                                     decoration:
                                                                         const BoxDecoration(),
                                                                     alignment:
@@ -5112,13 +5635,15 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             TextStyle(),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: (double.parse((valueOrDefault<int>(
-                                                                                      _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList().length,
-                                                                                      0,
-                                                                                    ) /
-                                                                                    _model.staff!.staffTests.length)
-                                                                                .toStringAsFixed(2)))
-                                                                            .toString(),
+                                                                        text: _model.staff!.staffTests.isNotEmpty
+                                                                            ? (double.parse((valueOrDefault<int>(
+                                                                                          _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() == '1').toList().length,
+                                                                                          0,
+                                                                                        ) /
+                                                                                        _model.staff!.staffTests.length)
+                                                                                    .toStringAsFixed(2)))
+                                                                                .toString()
+                                                                            : '0',
                                                                         style:
                                                                             TextStyle(
                                                                           color:
@@ -5231,8 +5756,6 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    width:
-                                                                        100.0,
                                                                     decoration:
                                                                         const BoxDecoration(),
                                                                     alignment:
@@ -5318,14 +5841,16 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                             TextStyle(),
                                                                       ),
                                                                       TextSpan(
-                                                                        text: (double.parse(((valueOrDefault<int>(
-                                                                                          _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList().length,
-                                                                                          0,
-                                                                                        ) /
-                                                                                        _model.staff!.staffTests.length) *
-                                                                                    100)
-                                                                                .toStringAsFixed(2)))
-                                                                            .toString(),
+                                                                        text: _model.staff!.staffTests.isNotEmpty
+                                                                            ? (double.parse(((valueOrDefault<int>(
+                                                                                              _model.staff?.staffTests.where((e) => ((e.goodScore).compareTo(double.parse(e.percentCorrect))).toString() != '1').toList().length,
+                                                                                              0,
+                                                                                            ) /
+                                                                                            _model.staff!.staffTests.length) *
+                                                                                        100)
+                                                                                    .toStringAsFixed(2)))
+                                                                                .toString()
+                                                                            : '0',
                                                                         style:
                                                                             TextStyle(
                                                                           color:
@@ -5438,8 +5963,6 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    width:
-                                                                        100.0,
                                                                     decoration:
                                                                         const BoxDecoration(),
                                                                     alignment:

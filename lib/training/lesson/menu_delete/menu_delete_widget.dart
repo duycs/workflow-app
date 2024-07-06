@@ -87,6 +87,8 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
+                      _model.setColor = true;
+                      setState(() {});
                       var confirmDialogResponse = await showDialog<bool>(
                             context: context,
                             builder: (alertDialogContext) {
@@ -119,6 +121,8 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                         await widget.afterDeleteAction?.call();
                         Navigator.pop(context);
                       }
+                      _model.setColor = false;
+                      setState(() {});
 
                       setState(() {});
                     },
@@ -127,7 +131,9 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                       curve: Curves.easeInOut,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: _model.setColor == true
+                            ? FlutterFlowTheme.of(context).alternate
+                            : FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(

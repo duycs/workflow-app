@@ -17,7 +17,7 @@ class UploadListFileStruct extends BaseStruct {
   set create(List<FileDataStruct>? val) => _create = val;
 
   void updateCreate(Function(List<FileDataStruct>) updateFn) {
-    updateFn(create ??= []);
+    updateFn(_create ??= []);
   }
 
   bool hasCreate() => _create != null;
@@ -28,7 +28,7 @@ class UploadListFileStruct extends BaseStruct {
   set delete(List<int>? val) => _delete = val;
 
   void updateDelete(Function(List<int>) updateFn) {
-    updateFn(delete ??= []);
+    updateFn(_delete ??= []);
   }
 
   bool hasDelete() => _delete != null;

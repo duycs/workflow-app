@@ -13,6 +13,8 @@ class ProcedureStepMenuModel extends FlutterFlowModel<ProcedureStepMenuWidget> {
     updateFn(data ??= StepsStruct());
   }
 
+  int setColor = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for MouseRegion widget.

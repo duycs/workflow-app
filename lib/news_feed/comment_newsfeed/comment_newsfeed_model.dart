@@ -20,6 +20,8 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
     updateFn(dataNewFeed ??= NewsfeedListStruct());
   }
 
+  bool checkLoading = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
@@ -174,6 +176,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
         (apiResulNewFeddGetOne.jsonBody ?? ''),
         r'''$.data''',
       ));
+      checkLoading = true;
     }
   }
 

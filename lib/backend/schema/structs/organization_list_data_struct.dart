@@ -15,7 +15,7 @@ class OrganizationListDataStruct extends BaseStruct {
   set data(OrganizationListStruct? val) => _data = val;
 
   void updateData(Function(OrganizationListStruct) updateFn) {
-    updateFn(data ??= OrganizationListStruct());
+    updateFn(_data ??= OrganizationListStruct());
   }
 
   bool hasData() => _data != null;

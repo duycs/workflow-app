@@ -132,7 +132,7 @@ class TaskListStruct extends BaseStruct {
   set staffs(List<StaffInTaskListStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffInTaskListStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;
@@ -143,7 +143,7 @@ class TaskListStruct extends BaseStruct {
   set workflowId(TaskStruct? val) => _workflowId = val;
 
   void updateWorkflowId(Function(TaskStruct) updateFn) {
-    updateFn(workflowId ??= TaskStruct());
+    updateFn(_workflowId ??= TaskStruct());
   }
 
   bool hasWorkflowId() => _workflowId != null;
@@ -154,7 +154,7 @@ class TaskListStruct extends BaseStruct {
   set operations(List<OperationListStruct>? val) => _operations = val;
 
   void updateOperations(Function(List<OperationListStruct>) updateFn) {
-    updateFn(operations ??= []);
+    updateFn(_operations ??= []);
   }
 
   bool hasOperations() => _operations != null;
@@ -175,7 +175,7 @@ class TaskListStruct extends BaseStruct {
   set stepId(List<StepsStruct>? val) => _stepId = val;
 
   void updateStepId(Function(List<StepsStruct>) updateFn) {
-    updateFn(stepId ??= []);
+    updateFn(_stepId ??= []);
   }
 
   bool hasStepId() => _stepId != null;
@@ -205,7 +205,7 @@ class TaskListStruct extends BaseStruct {
   set organizationId(OrganizationIdStruct? val) => _organizationId = val;
 
   void updateOrganizationId(Function(OrganizationIdStruct) updateFn) {
-    updateFn(organizationId ??= OrganizationIdStruct());
+    updateFn(_organizationId ??= OrganizationIdStruct());
   }
 
   bool hasOrganizationId() => _organizationId != null;
@@ -217,7 +217,7 @@ class TaskListStruct extends BaseStruct {
   set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
 
   void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) {
-    updateFn(submitStaffId ??= SubmitStaffIdStruct());
+    updateFn(_submitStaffId ??= SubmitStaffIdStruct());
   }
 
   bool hasSubmitStaffId() => _submitStaffId != null;
@@ -242,7 +242,7 @@ class TaskListStruct extends BaseStruct {
   set createdUserId(UserStruct? val) => _createdUserId = val;
 
   void updateCreatedUserId(Function(UserStruct) updateFn) {
-    updateFn(createdUserId ??= UserStruct());
+    updateFn(_createdUserId ??= UserStruct());
   }
 
   bool hasCreatedUserId() => _createdUserId != null;

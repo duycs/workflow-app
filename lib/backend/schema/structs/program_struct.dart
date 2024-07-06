@@ -17,7 +17,7 @@ class ProgramStruct extends BaseStruct {
   set programsId(ProgramIdStruct? val) => _programsId = val;
 
   void updateProgramsId(Function(ProgramIdStruct) updateFn) {
-    updateFn(programsId ??= ProgramIdStruct());
+    updateFn(_programsId ??= ProgramIdStruct());
   }
 
   bool hasProgramsId() => _programsId != null;

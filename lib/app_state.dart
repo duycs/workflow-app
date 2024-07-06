@@ -194,6 +194,12 @@ class FFAppState extends ChangeNotifier {
     _IsInDevelopment = value;
     prefs.setBool('ff_IsInDevelopment', value);
   }
+
+  bool _isFirstTime = false;
+  bool get isFirstTime => _isFirstTime;
+  set isFirstTime(bool value) {
+    _isFirstTime = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

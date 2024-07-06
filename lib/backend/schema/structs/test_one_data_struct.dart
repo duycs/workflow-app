@@ -15,7 +15,7 @@ class TestOneDataStruct extends BaseStruct {
   set data(TestListStruct? val) => _data = val;
 
   void updateData(Function(TestListStruct) updateFn) {
-    updateFn(data ??= TestListStruct());
+    updateFn(_data ??= TestListStruct());
   }
 
   bool hasData() => _data != null;

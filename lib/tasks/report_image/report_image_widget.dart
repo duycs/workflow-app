@@ -398,7 +398,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                     primary: false,
                     reverse: false,
                     scrollDirection: Axis.vertical,
-                    separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                    separatorBuilder: (_, __) => const SizedBox(height: 12.0),
                     builderDelegate: PagedChildBuilderDelegate<dynamic>(
                       // Customize what your widget looks like when it's loading the first page.
                       firstPageProgressIndicatorBuilder: (_) => Center(
@@ -471,7 +471,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                    .primaryBackground,
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Color(0x33000000),
@@ -493,254 +493,256 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      width: 32.0,
-                                      height: 32.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .accent1,
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                      ),
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          'ProfileUserNew',
+                                          queryParameters: {
+                                            'staffId': serializeParam(
+                                              reportImagesItem.submitStaffId.id,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      },
                                       child: Container(
-                                        width: 120.0,
-                                        height: 120.0,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(90.0),
+                                          shape: BoxShape.rectangle,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
                                         ),
-                                        child: Image.network(
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.staffs.length > 0 ? reportImagesItem.submitStaffId.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
-                                          fit: BoxFit.cover,
+                                        child: Container(
+                                          width: 40.0,
+                                          height: 40.0,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Image.network(
+                                            '${FFAppConstants.ApiBaseUrl}/assets/${reportImagesItem.staffs.length > 0 ? reportImagesItem.submitStaffId.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
                                     Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 8.0, 0.0, 8.0),
-                                              child: Text(
-                                                reportImagesItem.staffs.length >
-                                                        0
-                                                    ? reportImagesItem
-                                                        .submitStaffId
-                                                        .userId
-                                                        .firstName
-                                                    : ' ',
-                                                maxLines: 1,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          if (reportImagesItem.content !=
+                                                  null &&
+                                              reportImagesItem.content != '')
+                                            Text(
+                                              reportImagesItem.content != ''
+                                                  ? reportImagesItem.content
+                                                  : '',
+                                              maxLines: 3,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
-                                            if (reportImagesItem.content !=
-                                                    null &&
-                                                reportImagesItem.content != '')
-                                              Text(
-                                                reportImagesItem.content != ''
-                                                    ? reportImagesItem.content
-                                                    : '',
-                                                maxLines: 3,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            if (reportImagesItem
-                                                        .workflowId.name !=
-                                                    null &&
-                                                reportImagesItem
-                                                        .workflowId.name !=
-                                                    '')
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 0.0),
-                                                child: Text(
-                                                  reportImagesItem.workflowId
-                                                                  .name !=
-                                                              null &&
-                                                          reportImagesItem
-                                                                  .workflowId
-                                                                  .name !=
-                                                              ''
-                                                      ? '#${reportImagesItem.workflowId.name}'
-                                                      : ' ',
-                                                  maxLines: 2,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        fontStyle:
-                                                            FontStyle.italic,
-                                                      ),
-                                                ),
-                                              ),
-                                            if ((reportImagesItem
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 8.0, 0.0, 8.0),
+                                            child: Text(
+                                              reportImagesItem.staffs.length > 0
+                                                  ? reportImagesItem
+                                                      .submitStaffId
+                                                      .userId
+                                                      .firstName
+                                                  : ' ',
+                                              maxLines: 1,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ),
+                                          if (reportImagesItem
+                                                      .workflowId.name !=
+                                                  null &&
+                                              reportImagesItem
+                                                      .workflowId.name !=
+                                                  '')
+                                            Text(
+                                              reportImagesItem.workflowId
+                                                              .name !=
+                                                          null &&
+                                                      reportImagesItem
+                                                              .workflowId
+                                                              .name !=
+                                                          ''
+                                                  ? '#${reportImagesItem.workflowId.name}'
+                                                  : ' ',
+                                              maxLines: 2,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle: FontStyle.italic,
+                                                  ),
+                                            ),
+                                          if ((reportImagesItem
+                                                      .operations
+                                                      .first
+                                                      .operationsId
+                                                      .files
+                                                      .length >
+                                                  0) &&
+                                              (reportImagesItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .files
+                                                          .first
+                                                          .directusFilesId
+                                                          .id !=
+                                                      null &&
+                                                  reportImagesItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .files
+                                                          .first
+                                                          .directusFilesId
+                                                          .id !=
+                                                      ''))
+                                            Container(
+                                              decoration: const BoxDecoration(),
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 12.0, 12.0, 0.0),
+                                                  child:
+                                                      GridviewReportImageWidget(
+                                                    key: Key(
+                                                        'Key1ct_${reportImagesIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                    parameter1: reportImagesItem
                                                         .operations
                                                         .first
                                                         .operationsId
                                                         .files
-                                                        .length >
-                                                    0) &&
-                                                (reportImagesItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .files
-                                                            .first
-                                                            .directusFilesId
-                                                            .id !=
-                                                        null &&
-                                                    reportImagesItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .files
-                                                            .first
-                                                            .directusFilesId
-                                                            .id !=
-                                                        ''))
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                                child: Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 12.0,
-                                                                12.0, 0.0),
-                                                    child:
-                                                        GridviewReportImageWidget(
-                                                      key: Key(
-                                                          'Key1ct_${reportImagesIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
-                                                      parameter1:
-                                                          reportImagesItem
-                                                              .operations
-                                                              .first
-                                                              .operationsId
-                                                              .files
-                                                              .length,
-                                                      parameter3:
-                                                          reportImagesItem
-                                                              .operations,
-                                                    ),
+                                                        .length,
+                                                    parameter3: reportImagesItem
+                                                        .operations,
                                                   ),
                                                 ),
                                               ),
-                                            if ((reportImagesItem
-                                                        .operations
-                                                        .first
-                                                        .operationsId
-                                                        .dateUpdated !=
-                                                    'null') &&
+                                            ),
+                                          if ((reportImagesItem
+                                                      .operations
+                                                      .first
+                                                      .operationsId
+                                                      .dateUpdated !=
+                                                  'null') &&
+                                              (reportImagesItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .dateUpdated !=
+                                                      null &&
+                                                  reportImagesItem
+                                                          .operations
+                                                          .first
+                                                          .operationsId
+                                                          .dateUpdated !=
+                                                      ''))
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
+                                              child: Text(
                                                 (reportImagesItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .dateUpdated !=
-                                                        null &&
-                                                    reportImagesItem
-                                                            .operations
-                                                            .first
-                                                            .operationsId
-                                                            .dateUpdated !=
-                                                        ''))
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 4.0, 0.0, 4.0),
-                                                child: Text(
-                                                  (reportImagesItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .dateUpdated !=
-                                                              'null') &&
-                                                          (reportImagesItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .dateUpdated !=
-                                                                  null &&
-                                                              reportImagesItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .dateUpdated !=
-                                                                  '')
-                                                      ? dateTimeFormat(
-                                                          'dd/MM/yyyy hh:MM',
-                                                          functions.stringToDateTime(
-                                                              reportImagesItem
-                                                                  .operations
-                                                                  .first
-                                                                  .operationsId
-                                                                  .dateUpdated),
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        )
-                                                      : ' ',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
+                                                                .operations
+                                                                .first
+                                                                .operationsId
+                                                                .dateUpdated !=
+                                                            'null') &&
+                                                        (reportImagesItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .dateUpdated !=
+                                                                null &&
+                                                            reportImagesItem
+                                                                    .operations
+                                                                    .first
+                                                                    .operationsId
+                                                                    .dateUpdated !=
+                                                                '')
+                                                    ? dateTimeFormat(
+                                                        'dd/MM/yyyy hh:MM',
+                                                        functions.stringToDateTime(
+                                                            reportImagesItem
+                                                                .operations
+                                                                .first
+                                                                .operationsId
+                                                                .dateUpdated),
+                                                        locale:
+                                                            FFLocalizations.of(
                                                                     context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
+                                                                .languageCode,
+                                                      )
+                                                    : ' ',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelSmall
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
                                               ),
-                                          ],
-                                        ),
+                                            ),
+                                        ],
                                       ),
                                     ),
                                   ],

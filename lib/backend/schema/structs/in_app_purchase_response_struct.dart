@@ -56,7 +56,7 @@ class InAppPurchaseResponseStruct extends BaseStruct {
 
   void updateVerificationData(
       Function(InAppPurchaseVerificationDataStruct) updateFn) {
-    updateFn(verificationData ??= InAppPurchaseVerificationDataStruct());
+    updateFn(_verificationData ??= InAppPurchaseVerificationDataStruct());
   }
 
   bool hasVerificationData() => _verificationData != null;
@@ -67,7 +67,7 @@ class InAppPurchaseResponseStruct extends BaseStruct {
   set error(InAppPurchaseErrorStruct? val) => _error = val;
 
   void updateError(Function(InAppPurchaseErrorStruct) updateFn) {
-    updateFn(error ??= InAppPurchaseErrorStruct());
+    updateFn(_error ??= InAppPurchaseErrorStruct());
   }
 
   bool hasError() => _error != null;

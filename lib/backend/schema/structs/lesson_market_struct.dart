@@ -15,7 +15,7 @@ class LessonMarketStruct extends BaseStruct {
   set lessionsId(LessonIdMarketStruct? val) => _lessionsId = val;
 
   void updateLessionsId(Function(LessonIdMarketStruct) updateFn) {
-    updateFn(lessionsId ??= LessonIdMarketStruct());
+    updateFn(_lessionsId ??= LessonIdMarketStruct());
   }
 
   bool hasLessionsId() => _lessionsId != null;

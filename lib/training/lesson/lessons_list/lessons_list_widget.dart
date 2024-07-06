@@ -267,68 +267,65 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                             ),
                           ),
                         ),
-                        Builder(
-                          builder: (context) => FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 10.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: FilterLessonWidget(
-                                        status: _model.status,
-                                        dateStart: _model.dateStart,
-                                        dateEnd: _model.dateEnd,
-                                        programId: _model.programId,
-                                        callBack: (status, dateStart, dateEnd,
-                                            programId) async {
-                                          _model.status = status!;
-                                          _model.dateStart = dateTimeFormat(
-                                            'yyyy-MM-dd',
-                                            dateStart,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          );
-                                          _model.dateEnd = dateTimeFormat(
-                                            'yyyy-MM-dd',
-                                            dateEnd,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          );
-                                          _model.programId = programId!;
-                                          setState(() {});
-                                          setState(() => _model
-                                              .listViewPagingController
-                                              ?.refresh());
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterLessonWidget(
+                                      status: _model.status,
+                                      dateStart: _model.dateStart,
+                                      dateEnd: _model.dateEnd,
+                                      programId: _model.programId,
+                                      callBack: (status, dateStart, dateEnd,
+                                          programId) async {
+                                        _model.status = status!;
+                                        _model.dateStart = dateTimeFormat(
+                                          'yyyy-MM-dd',
+                                          dateStart,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        );
+                                        _model.dateEnd = dateTimeFormat(
+                                          'yyyy-MM-dd',
+                                          dateEnd,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        );
+                                        _model.programId = programId!;
+                                        setState(() {});
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
 
-                                          setState(() {});
-                                        },
-                                      ),
+                                        setState(() {});
+                                      },
                                     ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
                         ),
                       ],
                     ),

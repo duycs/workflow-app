@@ -15,7 +15,7 @@ class TasksListDataStruct extends BaseStruct {
   set data(List<TasksStruct>? val) => _data = val;
 
   void updateData(Function(List<TasksStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

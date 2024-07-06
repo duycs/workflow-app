@@ -132,7 +132,7 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
   set staffs(List<StaffsStepStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffsStepStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;
@@ -143,7 +143,7 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
   set departments(List<DepartmentsIdStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentsIdStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;
@@ -161,7 +161,7 @@ class RequestWorkflowsCreateStruct extends BaseStruct {
   set steps(List<WorkflowsStepCreateStruct>? val) => _steps = val;
 
   void updateSteps(Function(List<WorkflowsStepCreateStruct>) updateFn) {
-    updateFn(steps ??= []);
+    updateFn(_steps ??= []);
   }
 
   bool hasSteps() => _steps != null;

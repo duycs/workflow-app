@@ -1,10 +1,12 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/news_feed/action_newsfeed/action_newsfeed_widget.dart';
 import '/news_feed/comment_newsfeed/comment_newsfeed_widget.dart';
+import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -189,16 +191,11 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                   }(),
                 ),
               ),
-              padding: const EdgeInsets.fromLTRB(
-                0,
-                0,
-                0,
-                44.0,
-              ),
+              padding: EdgeInsets.zero,
               primary: false,
               reverse: false,
               scrollDirection: Axis.vertical,
-              separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+              separatorBuilder: (_, __) => const SizedBox(height: 16.0),
               builderDelegate: PagedChildBuilderDelegate<dynamic>(
                 // Customize what your widget looks like when it's loading the first page.
                 firstPageProgressIndicatorBuilder: (_) => Center(
@@ -224,7 +221,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                     ),
                   ),
                 ),
-                noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                noItemsFoundIndicatorBuilder: (_) => const DNFNewsfeedWidget(),
                 itemBuilder: (context, _, newsfeedListRequireIndex) {
                   final newsfeedListRequireItem = _model
                       .listViewPagingController!
@@ -249,28 +246,56 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).accent1,
-                                    borderRadius: BorderRadius.circular(90.0),
-                                    shape: BoxShape.rectangle,
-                                    border: Border.all(
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'ProfileUserNew',
+                                      queryParameters: {
+                                        'staffId': serializeParam(
+                                          newsfeedListRequireItem
+                                              .userCreated.staffs.first.id,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
                                       color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 2.0,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: ClipRRect(
+                                          FlutterFlowTheme.of(context).accent1,
                                       borderRadius: BorderRadius.circular(90.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedListRequireItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
-                                        width: 300.0,
-                                        height: 200.0,
-                                        fit: BoxFit.cover,
+                                      shape: BoxShape.rectangle,
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(90.0),
+                                        child: Image.network(
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedListRequireItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
+                                          width: 300.0,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -319,21 +344,52 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                     ),
                                   ),
                                 ),
-                                FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 20.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  icon: Icon(
-                                    Icons.keyboard_control,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 24.0,
+                                if (newsfeedListRequireItem.userCreated.id ==
+                                    FFAppState().user.id)
+                                  FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 20.0,
+                                    borderWidth: 1.0,
+                                    buttonSize: 40.0,
+                                    icon: Icon(
+                                      Icons.keyboard_control,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    onPressed: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        useSafeArea: true,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: ActionNewsfeedWidget(
+                                                newsFeedList:
+                                                    newsfeedListRequireItem,
+                                                callback: () async {
+                                                  setState(() => _model
+                                                      .listViewPagingController
+                                                      ?.refresh());
+                                                },
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
                                   ),
-                                  onPressed: () {
-                                    print('IconButton pressed ...');
-                                  },
-                                ),
                               ],
                             ),
                           ),
@@ -350,100 +406,303 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
-                          Text(
-                            newsfeedListRequireItem.content,
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 13.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          Text(
-                            'Xem thêm',
-                            textAlign: TextAlign.end,
-                            style: FlutterFlowTheme.of(context)
-                                .labelSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontStyle: FontStyle.italic,
-                                  decoration: TextDecoration.underline,
-                                ),
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(),
-                            child: Builder(
-                              builder: (context) {
-                                final imageList =
-                                    newsfeedListRequireItem.images.toList();
-                                return MasonryGridView.builder(
-                                  gridDelegate:
-                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                  ),
-                                  crossAxisSpacing: 6.0,
-                                  mainAxisSpacing: 6.0,
-                                  itemCount: imageList.length,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, imageListIndex) {
-                                    final imageListItem =
-                                        imageList[imageListIndex];
-                                    return ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                        fit: BoxFit.cover,
+                          if ((newsfeedListRequireItem != null) &&
+                              (newsfeedListRequireItem.content != null &&
+                                  newsfeedListRequireItem.content != '') &&
+                              ((newsfeedListRequireItem.videos.length > 0) ||
+                                  (newsfeedListRequireItem.files.length > 0)))
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  'NewsfeedDetail',
+                                  queryParameters: {
+                                    'newsfeedId': serializeParam(
+                                      newsfeedListRequireItem.id,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: const TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: newsfeedListRequireItem.content,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            fontSize: 13.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
                                       ),
-                                    );
-                                  },
-                                );
-                              },
+                                ),
+                                maxLines: 2,
+                              ),
                             ),
-                          ),
-                          Container(
-                            decoration: const BoxDecoration(),
-                            child: Builder(
-                              builder: (context) {
-                                final videoList =
-                                    newsfeedListRequireItem.videos.toList();
-                                return MasonryGridView.builder(
-                                  gridDelegate:
-                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
+                          if ((newsfeedListRequireItem != null) &&
+                              (newsfeedListRequireItem.content != null &&
+                                  newsfeedListRequireItem.content != '') &&
+                              ((newsfeedListRequireItem.videos.length > 0) ||
+                                  (newsfeedListRequireItem.files.length > 0)))
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'NewsfeedDetail',
+                                    queryParameters: {
+                                      'newsfeedId': serializeParam(
+                                        newsfeedListRequireItem.id,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: RichText(
+                                  textScaler: MediaQuery.of(context).textScaler,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'Xem thêm...',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 14.0,
+                                          fontStyle: FontStyle.normal,
+                                        ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
-                                  crossAxisSpacing: 6.0,
-                                  mainAxisSpacing: 6.0,
-                                  itemCount: videoList.length,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, videoListIndex) {
-                                    final videoListItem =
-                                        videoList[videoListIndex];
-                                    return FlutterFlowVideoPlayer(
-                                      path:
-                                          '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                      videoType: VideoType.network,
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      autoPlay: false,
-                                      looping: false,
-                                      showControls: false,
-                                      allowFullScreen: true,
-                                      allowPlaybackSpeedMenu: false,
-                                      lazyLoad: true,
-                                      pauseOnNavigate: false,
+                                ),
+                              ),
+                            ),
+                          if ((newsfeedListRequireItem != null) &&
+                              (newsfeedListRequireItem.content != null &&
+                                  newsfeedListRequireItem.content != '') &&
+                              ((newsfeedListRequireItem.videos.length == 0) &&
+                                  (newsfeedListRequireItem.files.length == 0)))
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: custom_widgets.FormatText(
+                                width: 100.0,
+                                height: 100.0,
+                                number: 90,
+                                text: newsfeedListRequireItem.content,
+                                action: () async {
+                                  context.pushNamed(
+                                    'NewsfeedDetail',
+                                    queryParameters: {
+                                      'newsfeedId': serializeParam(
+                                        newsfeedListRequireItem.id,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          if (newsfeedListRequireItem.images.length > 0)
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Builder(
+                                  builder: (context) {
+                                    final imageList =
+                                        newsfeedListRequireItem.images.toList();
+                                    return MasonryGridView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                      ),
+                                      crossAxisSpacing: 6.0,
+                                      mainAxisSpacing: 6.0,
+                                      itemCount: imageList.length,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, imageListIndex) {
+                                        final imageListItem =
+                                            imageList[imageListIndex];
+                                        return Visibility(
+                                          visible: imageListIndex < 6,
+                                          child: Stack(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                  width: 180.0,
+                                                  height: 150.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              if ((newsfeedListRequireItem
+                                                          .images.length >
+                                                      6) &&
+                                                  (imageListIndex == 5))
+                                                Opacity(
+                                                  opacity: 0.7,
+                                                  child: Container(
+                                                    width: 180.0,
+                                                    height: 150.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    alignment:
+                                                        const AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Text(
+                                                      '+ ${formatNumber(
+                                                        newsfeedListRequireItem
+                                                                .images.length -
+                                                            6,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .commaDecimal,
+                                                      )}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
+                                ),
+                              ),
                             ),
-                          ),
+                          if (('1' == '2') &&
+                              (newsfeedListRequireItem.videos.length > 0))
+                            Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Visibility(
+                                visible: '1' == '2',
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Builder(
+                                    builder: (context) {
+                                      final videoList = newsfeedListRequireItem
+                                          .videos
+                                          .toList();
+                                      return MasonryGridView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                        ),
+                                        crossAxisSpacing: 6.0,
+                                        mainAxisSpacing: 6.0,
+                                        itemCount: videoList.length,
+                                        shrinkWrap: true,
+                                        itemBuilder: (context, videoListIndex) {
+                                          final videoListItem =
+                                              videoList[videoListIndex];
+                                          return FlutterFlowVideoPlayer(
+                                            path:
+                                                '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                            videoType: VideoType.network,
+                                            width: double.infinity,
+                                            height: double.infinity,
+                                            autoPlay: false,
+                                            looping: false,
+                                            showControls: false,
+                                            allowFullScreen: true,
+                                            allowPlaybackSpeedMenu: false,
+                                            lazyLoad: true,
+                                            pauseOnNavigate: false,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 6.0),
@@ -622,87 +881,80 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   ),
                                 ),
                               Expanded(
-                                child: Builder(
-                                  builder: (context) => InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: CommentNewsfeedWidget(
-                                                comment: newsfeedListRequireItem
-                                                    .comments,
-                                                id: newsfeedListRequireItem.id,
-                                                callBack: () async {
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                },
-                                              ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      useSafeArea: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: CommentNewsfeedWidget(
+                                              comment: newsfeedListRequireItem
+                                                  .comments,
+                                              id: newsfeedListRequireItem.id,
+                                              callBack: () async {
+                                                setState(() => _model
+                                                    .listViewPagingController
+                                                    ?.refresh());
+                                              },
                                             ),
-                                          );
-                                        },
-                                      ).then((value) => setState(() {}));
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(90.0),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 4.0, 8.0, 4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'Nhập bình luận',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                              ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(90.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 4.0, 8.0, 4.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              'Nhập bình luận',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
                                             ),
-                                            Icon(
-                                              Icons.tag_faces,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          Icon(
+                                            Icons.tag_faces,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),

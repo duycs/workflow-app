@@ -17,7 +17,7 @@ class DomainsStruct extends BaseStruct {
   set domainsId(DomainsIdStruct? val) => _domainsId = val;
 
   void updateDomainsId(Function(DomainsIdStruct) updateFn) {
-    updateFn(domainsId ??= DomainsIdStruct());
+    updateFn(_domainsId ??= DomainsIdStruct());
   }
 
   bool hasDomainsId() => _domainsId != null;

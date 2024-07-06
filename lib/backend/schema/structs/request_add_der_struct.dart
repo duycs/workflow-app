@@ -15,7 +15,7 @@ class RequestAddDerStruct extends BaseStruct {
   set departments(List<DepartmentListStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentListStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;

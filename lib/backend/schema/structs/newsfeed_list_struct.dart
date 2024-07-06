@@ -20,6 +20,7 @@ class NewsfeedListStruct extends BaseStruct {
     List<FileDataTypeStruct>? files,
     List<CommentNewsfeedStruct>? comments,
     List<ReactsStruct>? reacts,
+    List<ReadNewsfeedStruct>? reads,
   })  : _id = id,
         _status = status,
         _userCreated = userCreated,
@@ -33,7 +34,8 @@ class NewsfeedListStruct extends BaseStruct {
         _videos = videos,
         _files = files,
         _comments = comments,
-        _reacts = reacts;
+        _reacts = reacts,
+        _reads = reads;
 
   // "id" field.
   String? _id;
@@ -55,7 +57,7 @@ class NewsfeedListStruct extends BaseStruct {
   set userCreated(UserStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(UserStruct) updateFn) {
-    updateFn(userCreated ??= UserStruct());
+    updateFn(_userCreated ??= UserStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;
@@ -94,7 +96,7 @@ class NewsfeedListStruct extends BaseStruct {
   set branchId(BranchListStruct? val) => _branchId = val;
 
   void updateBranchId(Function(BranchListStruct) updateFn) {
-    updateFn(branchId ??= BranchListStruct());
+    updateFn(_branchId ??= BranchListStruct());
   }
 
   bool hasBranchId() => _branchId != null;
@@ -106,7 +108,7 @@ class NewsfeedListStruct extends BaseStruct {
   set departmentId(DepartmentListStruct? val) => _departmentId = val;
 
   void updateDepartmentId(Function(DepartmentListStruct) updateFn) {
-    updateFn(departmentId ??= DepartmentListStruct());
+    updateFn(_departmentId ??= DepartmentListStruct());
   }
 
   bool hasDepartmentId() => _departmentId != null;
@@ -117,7 +119,7 @@ class NewsfeedListStruct extends BaseStruct {
   set images(List<FileDataTypeStruct>? val) => _images = val;
 
   void updateImages(Function(List<FileDataTypeStruct>) updateFn) {
-    updateFn(images ??= []);
+    updateFn(_images ??= []);
   }
 
   bool hasImages() => _images != null;
@@ -128,7 +130,7 @@ class NewsfeedListStruct extends BaseStruct {
   set videos(List<FileDataTypeStruct>? val) => _videos = val;
 
   void updateVideos(Function(List<FileDataTypeStruct>) updateFn) {
-    updateFn(videos ??= []);
+    updateFn(_videos ??= []);
   }
 
   bool hasVideos() => _videos != null;
@@ -139,7 +141,7 @@ class NewsfeedListStruct extends BaseStruct {
   set files(List<FileDataTypeStruct>? val) => _files = val;
 
   void updateFiles(Function(List<FileDataTypeStruct>) updateFn) {
-    updateFn(files ??= []);
+    updateFn(_files ??= []);
   }
 
   bool hasFiles() => _files != null;
@@ -150,7 +152,7 @@ class NewsfeedListStruct extends BaseStruct {
   set comments(List<CommentNewsfeedStruct>? val) => _comments = val;
 
   void updateComments(Function(List<CommentNewsfeedStruct>) updateFn) {
-    updateFn(comments ??= []);
+    updateFn(_comments ??= []);
   }
 
   bool hasComments() => _comments != null;
@@ -161,10 +163,21 @@ class NewsfeedListStruct extends BaseStruct {
   set reacts(List<ReactsStruct>? val) => _reacts = val;
 
   void updateReacts(Function(List<ReactsStruct>) updateFn) {
-    updateFn(reacts ??= []);
+    updateFn(_reacts ??= []);
   }
 
   bool hasReacts() => _reacts != null;
+
+  // "reads" field.
+  List<ReadNewsfeedStruct>? _reads;
+  List<ReadNewsfeedStruct> get reads => _reads ?? const [];
+  set reads(List<ReadNewsfeedStruct>? val) => _reads = val;
+
+  void updateReads(Function(List<ReadNewsfeedStruct>) updateFn) {
+    updateFn(_reads ??= []);
+  }
+
+  bool hasReads() => _reads != null;
 
   static NewsfeedListStruct fromMap(Map<String, dynamic> data) =>
       NewsfeedListStruct(
@@ -197,6 +210,10 @@ class NewsfeedListStruct extends BaseStruct {
           data['reacts'],
           ReactsStruct.fromMap,
         ),
+        reads: getStructList(
+          data['reads'],
+          ReadNewsfeedStruct.fromMap,
+        ),
       );
 
   static NewsfeedListStruct? maybeFromMap(dynamic data) => data is Map
@@ -218,6 +235,7 @@ class NewsfeedListStruct extends BaseStruct {
         'files': _files?.map((e) => e.toMap()).toList(),
         'comments': _comments?.map((e) => e.toMap()).toList(),
         'reacts': _reacts?.map((e) => e.toMap()).toList(),
+        'reads': _reads?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -280,6 +298,11 @@ class NewsfeedListStruct extends BaseStruct {
         ),
         'reacts': serializeParam(
           _reacts,
+          ParamType.DataStruct,
+          isList: true,
+        ),
+        'reads': serializeParam(
+          _reads,
           ParamType.DataStruct,
           isList: true,
         ),
@@ -365,6 +388,12 @@ class NewsfeedListStruct extends BaseStruct {
           true,
           structBuilder: ReactsStruct.fromSerializableMap,
         ),
+        reads: deserializeStructParam<ReadNewsfeedStruct>(
+          data['reads'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: ReadNewsfeedStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -387,7 +416,8 @@ class NewsfeedListStruct extends BaseStruct {
         listEquality.equals(videos, other.videos) &&
         listEquality.equals(files, other.files) &&
         listEquality.equals(comments, other.comments) &&
-        listEquality.equals(reacts, other.reacts);
+        listEquality.equals(reacts, other.reacts) &&
+        listEquality.equals(reads, other.reads);
   }
 
   @override
@@ -405,7 +435,8 @@ class NewsfeedListStruct extends BaseStruct {
         videos,
         files,
         comments,
-        reacts
+        reacts,
+        reads
       ]);
 }
 

@@ -566,12 +566,12 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         child:
                                                             FlutterFlowExpandedImageView(
                                                           image: Image.network(
-                                                            'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                             fit: BoxFit.contain,
                                                           ),
                                                           allowRotation: false,
                                                           tag:
-                                                              'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                           useHeroAnimation:
                                                               true,
                                                         ),
@@ -580,7 +580,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                   },
                                                   child: Hero(
                                                     tag:
-                                                        'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                     transitionOnUserGestures:
                                                         true,
                                                     child: ClipRRect(
@@ -588,7 +588,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           BorderRadius.circular(
                                                               8.0),
                                                       child: Image.network(
-                                                        'https://workflow-api.pexnic.com/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
+                                                        '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                         width: 120.0,
                                                         height: 120.0,
                                                         fit: BoxFit.cover,
@@ -692,7 +692,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                 BoxDecoration(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .accent3,
+                                                                  .accent1,
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
@@ -701,7 +701,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                   Border.all(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .tertiary,
+                                                                    .primary,
                                                                 width: 1.0,
                                                               ),
                                                             ),
@@ -726,6 +726,8 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
@@ -1076,6 +1078,48 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
+                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                    Text(
+                                                      'Đang chờ',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
                                                       '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 1)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -1118,7 +1162,7 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      '${dataListItem.tasks.where((e) => e.tasksId.status == 'done').toList().length.toString()}/${dataListItem.tasks.length.toString()}',
+                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'done') && (e.tasksId.submitStaffId.id == dataListItem.id)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1136,48 +1180,6 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                     ),
                                                     Text(
                                                       'Hoàn thành',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      '${dataListItem.tasks.where((e) => (e.tasksId.status == 'todo') && (e.tasksId.current == 0)).toList().length.toString()}/${dataListItem.tasks.length.toString()}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                    ),
-                                                    Text(
-                                                      'Đang chờ',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

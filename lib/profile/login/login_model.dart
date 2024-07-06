@@ -232,7 +232,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
           FFAppState().update(() {});
 
           context.goNamed(
-            'TaskList',
+            'Home',
             extra: <String, dynamic>{
               kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,

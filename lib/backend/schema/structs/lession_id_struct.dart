@@ -121,7 +121,7 @@ class LessionIdStruct extends BaseStruct {
   set file(FileStruct? val) => _file = val;
 
   void updateFile(Function(FileStruct) updateFn) {
-    updateFn(file ??= FileStruct());
+    updateFn(_file ??= FileStruct());
   }
 
   bool hasFile() => _file != null;
@@ -132,7 +132,7 @@ class LessionIdStruct extends BaseStruct {
   set programs(List<ProgramsIdddStruct>? val) => _programs = val;
 
   void updatePrograms(Function(List<ProgramsIdddStruct>) updateFn) {
-    updateFn(programs ??= []);
+    updateFn(_programs ??= []);
   }
 
   bool hasPrograms() => _programs != null;

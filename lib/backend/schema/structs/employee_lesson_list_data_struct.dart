@@ -17,7 +17,7 @@ class EmployeeLessonListDataStruct extends BaseStruct {
   set data(List<EmployeeLessonListStruct>? val) => _data = val;
 
   void updateData(Function(List<EmployeeLessonListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;
@@ -28,7 +28,7 @@ class EmployeeLessonListDataStruct extends BaseStruct {
   set meta(MetaDataStruct? val) => _meta = val;
 
   void updateMeta(Function(MetaDataStruct) updateFn) {
-    updateFn(meta ??= MetaDataStruct());
+    updateFn(_meta ??= MetaDataStruct());
   }
 
   bool hasMeta() => _meta != null;

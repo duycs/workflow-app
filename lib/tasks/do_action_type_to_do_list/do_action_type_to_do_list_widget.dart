@@ -58,7 +58,7 @@ class _DoActionTypeToDoListWidgetState
                 borderRadius: BorderRadius.circular(4.0),
               ),
             ),
-            unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
+            unselectedWidgetColor: FlutterFlowTheme.of(context).primaryText,
           ),
           child: Checkbox(
             value: _model.checkboxValue ??=
@@ -134,10 +134,10 @@ class _DoActionTypeToDoListWidgetState
             },
             side: BorderSide(
               width: 2,
-              color: FlutterFlowTheme.of(context).secondaryText,
+              color: FlutterFlowTheme.of(context).primaryText,
             ),
             activeColor: FlutterFlowTheme.of(context).primary,
-            checkColor: FlutterFlowTheme.of(context).info,
+            checkColor: FlutterFlowTheme.of(context).secondaryBackground,
           ),
         ),
         Expanded(
@@ -146,6 +146,7 @@ class _DoActionTypeToDoListWidgetState
             maxLines: 5,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
                   letterSpacing: 0.0,
                 ),
           ),

@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : const LoginWidget(),
+          : const IntroScreenWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -63,7 +63,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : const LoginWidget(),
+              : const IntroScreenWidget(),
         ),
         FFRoute(
           name: 'LessonList_Homepage',
@@ -195,29 +195,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TrainingProgressUserWidget(),
         ),
         FFRoute(
-          name: 'TaoMoiQuyTrinh_1',
-          path: '/taoMoiQuyTrinh1',
-          builder: (context, params) => const TaoMoiQuyTrinh1Widget(),
-        ),
-        FFRoute(
-          name: 'TaoMoiQuyTrinh-2',
-          path: '/taoMoiQuyTrinh2',
-          builder: (context, params) => const TaoMoiQuyTrinh2Widget(),
-        ),
-        FFRoute(
-          name: 'chitietbuoc',
-          path: '/chitietbuoc',
-          builder: (context, params) => const ChitietbuocWidget(),
-        ),
-        FFRoute(
           name: 'ProcedurePublishedList',
           path: '/procedurePublishedList',
           builder: (context, params) => const ProcedurePublishedListWidget(),
-        ),
-        FFRoute(
-          name: 'ChiTietTienDoCongViec',
-          path: '/chiTietTienDoCongViec',
-          builder: (context, params) => const ChiTietTienDoCongViecWidget(),
         ),
         FFRoute(
           name: 'StudyProgramList',
@@ -333,16 +313,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProdureStep05',
           path: '/produreStep05',
           builder: (context, params) => const ProdureStep05Widget(),
-        ),
-        FFRoute(
-          name: 'chitietbuocnangcaoChay',
-          path: '/chitietbuocnangcaoChay',
-          builder: (context, params) => const ChitietbuocnangcaoChayWidget(),
-        ),
-        FFRoute(
-          name: 'quytrinhduocchay_chitietcongviec',
-          path: '/quytrinhduocchayChitietcongviec',
-          builder: (context, params) => const QuytrinhduocchayChitietcongviecWidget(),
         ),
         FFRoute(
           name: 'ProcedurePublishing',
@@ -1071,7 +1041,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ProfileUserNew',
           path: '/profileUserNew',
-          builder: (context, params) => const ProfileUserNewWidget(),
+          builder: (context, params) => ProfileUserNewWidget(
+            staffId: params.getParam(
+              'staffId',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ProfileUserSetting',
@@ -1079,24 +1054,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProfileUserSettingWidget(),
         ),
         FFRoute(
-          name: 'Profile17OtherUser',
-          path: '/profile17OtherUser',
-          builder: (context, params) => const Profile17OtherUserWidget(),
-        ),
-        FFRoute(
           name: 'Newsfeed',
           path: '/newsfeed',
           builder: (context, params) => const NewsfeedWidget(),
-        ),
-        FFRoute(
-          name: 'NewsfeedDetailDraft',
-          path: '/newsfeedDetailDraft',
-          builder: (context, params) => const NewsfeedDetailDraftWidget(),
-        ),
-        FFRoute(
-          name: 'InforList',
-          path: '/inforList',
-          builder: (context, params) => const InforListWidget(),
         ),
         FFRoute(
           name: 'NewsfeedDetail',
@@ -1119,19 +1079,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'profilePublish',
-          path: '/profilePublish',
-          builder: (context, params) => const ProfilePublishWidget(),
-        ),
-        FFRoute(
-          name: 'profilePublish2',
-          path: '/profilePublish2',
-          builder: (context, params) => const ProfilePublish2Widget(),
-        ),
-        FFRoute(
           name: 'Processing',
           path: '/processing',
           builder: (context, params) => const ProcessingWidget(),
+        ),
+        FFRoute(
+          name: 'CertificateList',
+          path: '/certificateList',
+          builder: (context, params) => const CertificateListWidget(),
+        ),
+        FFRoute(
+          name: 'Home',
+          path: '/home',
+          builder: (context, params) => const HomeWidget(),
+        ),
+        FFRoute(
+          name: 'IntroScreenDraft',
+          path: '/introScreenDraft',
+          builder: (context, params) => const IntroScreenDraftWidget(),
+        ),
+        FFRoute(
+          name: 'IntroScreen',
+          path: '/introScreen',
+          builder: (context, params) => const IntroScreenWidget(),
+        ),
+        FFRoute(
+          name: 'StudyProgramDetail',
+          path: '/studyProgramDetail',
+          builder: (context, params) => StudyProgramDetailWidget(
+            studyProgramList: params.getParam(
+              'studyProgramList',
+              ParamType.DataStruct,
+              isList: false,
+              structBuilder: StudyProgramListStruct.fromSerializableMap,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

@@ -1,10 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
-import '/components/data_not_found/data_not_found_widget.dart';
 import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/training/lesson/filter_lesson_home_page/filter_lesson_home_page_widget.dart';
+import '/training/lesson/no_data/no_data_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -101,14 +101,32 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          title: Text(
-            'Tài liệu đào tạo',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Nunito Sans',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
-                ),
+          title: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.pushNamed(
+                'CertificateList',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+            },
+            child: Text(
+              'Tài liệu đào tạo',
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Nunito Sans',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 18.0,
+                    letterSpacing: 0.0,
+                  ),
+            ),
           ),
           actions: const [],
           centerTitle: false,
@@ -122,7 +140,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
                   child: wrapWithModel(
                     model: _model.navBarModel,
                     updateCallback: () => setState(() {}),
@@ -3608,91 +3626,87 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     ),
                                 ].divide(const SizedBox(height: 4.0)),
                               ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Builder(
-                                  builder: (context) => FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 10.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 50.0,
-                                    icon: Icon(
-                                      Icons.tune_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30.0,
-                                    ),
-                                    onPressed: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: FilterLessonHomePageWidget(
-                                                status: _model.status,
-                                                dateStart: _model.dateStartList,
-                                                dateEnd: _model.dateEndList,
-                                                lessonFavoriteStatus: _model
-                                                    .lessonFavoriteStatusList,
-                                                statusLoveFilter: '',
-                                                statusDateToday: '',
-                                                statusDateHistory: '',
-                                                programsId:
-                                                    _model.programsAllId,
-                                                checkPrograms: 'programs',
-                                                callBack: (status,
-                                                    dateStart,
-                                                    dateEnd,
-                                                    lessonStatus,
-                                                    lessonFavoriteStatus,
-                                                    programsId) async {
-                                                  _model.status = status!;
-                                                  _model.dateStartList =
-                                                      dateTimeFormat(
-                                                    'yyyy-MM-dd',
-                                                    dateStart,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  );
-                                                  _model.dateEndList =
-                                                      dateTimeFormat(
-                                                    'yyyy-MM-dd',
-                                                    dateEnd,
-                                                    locale: FFLocalizations.of(
-                                                            context)
-                                                        .languageCode,
-                                                  );
-                                                  _model.lessonFavoriteStatusList =
-                                                      lessonFavoriteStatus!;
-                                                  _model.programsAllId =
-                                                      programsId!;
-                                                  setState(() {});
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                },
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => setState(() {}));
-                                    },
+                              Builder(
+                                builder: (context) => FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 10.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 50.0,
+                                  icon: Icon(
+                                    Icons.tune_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
                                   ),
+                                  onPressed: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 1.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: FilterLessonHomePageWidget(
+                                              status: _model.status,
+                                              dateStart: _model.dateStartList,
+                                              dateEnd: _model.dateEndList,
+                                              lessonFavoriteStatus: _model
+                                                  .lessonFavoriteStatusList,
+                                              statusLoveFilter: '',
+                                              statusDateToday: '',
+                                              statusDateHistory: '',
+                                              programsId: _model.programsAllId,
+                                              checkPrograms: 'programs',
+                                              callBack: (status,
+                                                  dateStart,
+                                                  dateEnd,
+                                                  lessonStatus,
+                                                  lessonFavoriteStatus,
+                                                  programsId) async {
+                                                _model.status = status!;
+                                                _model.dateStartList =
+                                                    dateTimeFormat(
+                                                  'yyyy-MM-dd',
+                                                  dateStart,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                );
+                                                _model.dateEndList =
+                                                    dateTimeFormat(
+                                                  'yyyy-MM-dd',
+                                                  dateEnd,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                );
+                                                _model.lessonFavoriteStatusList =
+                                                    lessonFavoriteStatus!;
+                                                _model.programsAllId =
+                                                    programsId!;
+                                                setState(() {});
+                                                setState(() => _model
+                                                    .listViewPagingController
+                                                    ?.refresh());
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+                                  },
                                 ),
                               ),
                             ],
@@ -3758,7 +3772,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   ),
                                 ),
                                 noItemsFoundIndicatorBuilder: (_) => const Center(
-                                  child: DataNotFoundWidget(),
+                                  child: NoDataWidget(),
                                 ),
                                 itemBuilder: (context, _, listIndex) {
                                   final listItem = _model

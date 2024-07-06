@@ -15,7 +15,7 @@ class CategoriesListDataStruct extends BaseStruct {
   set data(List<CategoriesListStruct>? val) => _data = val;
 
   void updateData(Function(List<CategoriesListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

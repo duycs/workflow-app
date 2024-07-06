@@ -15,7 +15,7 @@ class OneWorkFlowDataStruct extends BaseStruct {
   set data(WorkflowsStruct? val) => _data = val;
 
   void updateData(Function(WorkflowsStruct) updateFn) {
-    updateFn(data ??= WorkflowsStruct());
+    updateFn(_data ??= WorkflowsStruct());
   }
 
   bool hasData() => _data != null;

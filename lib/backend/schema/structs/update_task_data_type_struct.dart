@@ -33,7 +33,7 @@ class UpdateTaskDataTypeStruct extends BaseStruct {
   set files(List<FileDataTypeStruct>? val) => _files = val;
 
   void updateFiles(Function(List<FileDataTypeStruct>) updateFn) {
-    updateFn(files ??= []);
+    updateFn(_files ??= []);
   }
 
   bool hasFiles() => _files != null;

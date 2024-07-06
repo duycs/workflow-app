@@ -15,7 +15,7 @@ class ProcedurePublishedListDataStruct extends BaseStruct {
   set data(List<ProcedurePublishedListStruct>? val) => _data = val;
 
   void updateData(Function(List<ProcedurePublishedListStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

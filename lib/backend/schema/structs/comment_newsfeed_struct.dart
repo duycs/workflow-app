@@ -17,7 +17,7 @@ class CommentNewsfeedStruct extends BaseStruct {
   set commentsId(CommentStruct? val) => _commentsId = val;
 
   void updateCommentsId(Function(CommentStruct) updateFn) {
-    updateFn(commentsId ??= CommentStruct());
+    updateFn(_commentsId ??= CommentStruct());
   }
 
   bool hasCommentsId() => _commentsId != null;

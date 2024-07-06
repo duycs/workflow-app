@@ -7,3 +7,5 @@ export 'custom_radio_button.dart' show CustomRadioButton;
 export 'h_t_m_l_view.dart' show HTMLView;
 export 'loading_page_widget.dart' show LoadingPageWidget;
 export 'format_text.dart' show FormatText;
+export 'mobile_editor.dart' show MobileEditor;
+export 'mobile_editor_display.dart' show MobileEditorDisplay;

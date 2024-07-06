@@ -15,7 +15,7 @@ class UserResourceDataStruct extends BaseStruct {
   set data(UserStruct? val) => _data = val;
 
   void updateData(Function(UserStruct) updateFn) {
-    updateFn(data ??= UserStruct());
+    updateFn(_data ??= UserStruct());
   }
 
   bool hasData() => _data != null;

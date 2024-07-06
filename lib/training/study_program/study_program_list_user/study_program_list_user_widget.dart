@@ -4,8 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/certificate/certificate1_download/certificate1_download_widget.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
-import '/training/lesson/certificate/certificate_widget.dart';
 import '/training/study_program/filter_study_program_user_copy/filter_study_program_user_copy_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -865,7 +865,7 @@ class _StudyProgramListUserWidgetState
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
+                                                                            5.0,
                                                                             0.0,
                                                                             3.0,
                                                                             0.0),
@@ -894,10 +894,13 @@ class _StudyProgramListUserWidgetState
                                                                                 : FocusScope.of(context).unfocus(),
                                                                             child:
                                                                                 SizedBox(
-                                                                              height: MediaQuery.sizeOf(context).height * 0.6,
+                                                                              height: 200.0,
                                                                               width: MediaQuery.sizeOf(context).width * 0.9,
-                                                                              child: CertificateWidget(
+                                                                              child: Certificate1DownloadWidget(
                                                                                 program: itemProgramIdTilteItem.programId.name,
+                                                                                dateStart: itemProgramIdTilteItem.dateCreated,
+                                                                                dateEnd: itemProgramIdTilteItem.dateUpdated,
+                                                                                checkShow: itemProgramIdTilteItem.programId.certificateId.toMap(),
                                                                               ),
                                                                             ),
                                                                           ),

@@ -15,7 +15,7 @@ class LoginResponseDataStruct extends BaseStruct {
   set data(LoginResponseStruct? val) => _data = val;
 
   void updateData(Function(LoginResponseStruct) updateFn) {
-    updateFn(data ??= LoginResponseStruct());
+    updateFn(_data ??= LoginResponseStruct());
   }
 
   bool hasData() => _data != null;

@@ -10,9 +10,11 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
     String? id,
     String? firstName,
     String? email,
+    String? avatar,
   })  : _id = id,
         _firstName = firstName,
-        _email = email;
+        _email = email,
+        _avatar = avatar;
 
   // "id" field.
   String? _id;
@@ -35,12 +37,20 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
 
   bool hasEmail() => _email != null;
 
+  // "avatar" field.
+  String? _avatar;
+  String get avatar => _avatar ?? '';
+  set avatar(String? val) => _avatar = val;
+
+  bool hasAvatar() => _avatar != null;
+
   static ProcedurePublishedUserCreatedIdStruct fromMap(
           Map<String, dynamic> data) =>
       ProcedurePublishedUserCreatedIdStruct(
         id: data['id'] as String?,
         firstName: data['first_name'] as String?,
         email: data['email'] as String?,
+        avatar: data['avatar'] as String?,
       );
 
   static ProcedurePublishedUserCreatedIdStruct? maybeFromMap(dynamic data) =>
@@ -53,6 +63,7 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
         'id': _id,
         'first_name': _firstName,
         'email': _email,
+        'avatar': _avatar,
       }.withoutNulls;
 
   @override
@@ -67,6 +78,10 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
         ),
         'email': serializeParam(
           _email,
+          ParamType.String,
+        ),
+        'avatar': serializeParam(
+          _avatar,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -89,6 +104,11 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        avatar: deserializeParam(
+          data['avatar'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -99,11 +119,12 @@ class ProcedurePublishedUserCreatedIdStruct extends BaseStruct {
     return other is ProcedurePublishedUserCreatedIdStruct &&
         id == other.id &&
         firstName == other.firstName &&
-        email == other.email;
+        email == other.email &&
+        avatar == other.avatar;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, firstName, email]);
+  int get hashCode => const ListEquality().hash([id, firstName, email, avatar]);
 }
 
 ProcedurePublishedUserCreatedIdStruct
@@ -111,9 +132,11 @@ ProcedurePublishedUserCreatedIdStruct
   String? id,
   String? firstName,
   String? email,
+  String? avatar,
 }) =>
         ProcedurePublishedUserCreatedIdStruct(
           id: id,
           firstName: firstName,
           email: email,
+          avatar: avatar,
         );

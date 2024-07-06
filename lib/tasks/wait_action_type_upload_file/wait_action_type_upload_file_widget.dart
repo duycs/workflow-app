@@ -43,41 +43,42 @@ class _WaitActionTypeUploadFileWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FFButtonWidget(
-            onPressed: ('1' == '1')
-                ? null
-                : () {
-                    print('Button pressed ...');
-                  },
-            text: 'Upload tài liệu',
-            icon: const Icon(
-              Icons.attach_file,
-              size: 15.0,
-            ),
-            options: FFButtonOptions(
-              height: 40.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-              iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-              color: FlutterFlowTheme.of(context).alternate,
-              textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                    fontFamily: 'Nunito Sans',
-                    fontSize: 14.0,
-                    letterSpacing: 0.0,
-                  ),
-              borderSide: BorderSide(
-                color: FlutterFlowTheme.of(context).alternate,
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FFButtonWidget(
+              onPressed: ('1' == '1')
+                  ? null
+                  : () {
+                      print('Button pressed ...');
+                    },
+              text: 'Upload tài liệu',
+              icon: const Icon(
+                Icons.attach_file,
+                size: 20.0,
               ),
-              borderRadius: BorderRadius.circular(8.0),
+              options: FFButtonOptions(
+                width: 125.0,
+                height: 35.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                color: FlutterFlowTheme.of(context).alternate,
+                textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                      fontFamily: 'Nunito Sans',
+                      fontSize: 13.0,
+                      letterSpacing: 0.0,
+                    ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
             ),
-          ),
-        ].divide(const SizedBox(height: 6.0)),
-      ),
+          ],
+        ),
+      ].divide(const SizedBox(height: 6.0)),
     );
   }
 }

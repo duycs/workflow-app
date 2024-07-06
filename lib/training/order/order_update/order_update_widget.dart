@@ -876,110 +876,113 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
                           ),
                         ),
                         Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              var shouldSetState = false;
-                              if (_model.formKey2.currentState == null ||
-                                  !_model.formKey2.currentState!.validate()) {
-                                return;
-                              }
-                              if (_model.formKey1.currentState == null ||
-                                  !_model.formKey1.currentState!.validate()) {
-                                return;
-                              }
-                              if (_model.textController1.text == '0') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Số lượng phải lớn hơn 0!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
-                              await _model.updateOrder(context);
-                              setState(() {});
-                              _model.orderUpdateStatus =
-                                  await action_blocks.tokenReload(context);
-                              shouldSetState = true;
-                              if (_model.orderUpdateStatus!) {
-                                _model.apiResultQrCodeCreate =
-                                    await OrderGroup.qrCodeCall.call(
-                                  accessToken: FFAppState().accessToken,
-                                  orderId: widget.orderId,
-                                );
-
-                                shouldSetState = true;
-                                if ((_model.apiResultQrCodeCreate?.succeeded ??
-                                    true)) {
-                                  await showModalBottomSheet(
-                                    isScrollControlled: true,
-                                    backgroundColor: Colors.transparent,
-                                    enableDrag: false,
-                                    context: context,
-                                    builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: PaymentWidget(
-                                          orderId: widget.orderId!,
-                                          private: _model.dropDownValue == '1'
-                                              ? 'private1'
-                                              : 'private0',
-                                          qr: (_model.apiResultQrCodeCreate
-                                                  ?.jsonBody ??
-                                              ''),
+                          child: Builder(
+                            builder: (context) => FFButtonWidget(
+                              onPressed: () async {
+                                var shouldSetState = false;
+                                if (_model.formKey2.currentState == null ||
+                                    !_model.formKey2.currentState!.validate()) {
+                                  return;
+                                }
+                                if (_model.formKey1.currentState == null ||
+                                    !_model.formKey1.currentState!.validate()) {
+                                  return;
+                                }
+                                if (_model.textController1.text == '0') {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Số lượng phải lớn hơn 0!',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
                                         ),
-                                      );
-                                    },
-                                  ).then((value) => safeSetState(() {}));
-
-                                  Navigator.pop(context);
-                                } else {
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).error,
+                                    ),
+                                  );
                                   if (shouldSetState) setState(() {});
                                   return;
                                 }
-                              } else {
+                                await _model.updateOrder(context);
                                 setState(() {});
-                                if (shouldSetState) setState(() {});
-                                return;
-                              }
+                                _model.orderUpdateStatus =
+                                    await action_blocks.tokenReload(context);
+                                shouldSetState = true;
+                                if (_model.orderUpdateStatus!) {
+                                  _model.apiResultQrCodeCreate =
+                                      await OrderGroup.qrCodeCall.call(
+                                    accessToken: FFAppState().accessToken,
+                                    orderId: widget.orderId,
+                                  );
 
-                              if (shouldSetState) setState(() {});
-                            },
-                            text: 'Thanh toán',
-                            icon: const Icon(
-                              Icons.payments_outlined,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF33BA45),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
+                                  shouldSetState = true;
+                                  if ((_model
+                                          .apiResultQrCodeCreate?.succeeded ??
+                                      true)) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: PaymentWidget(
+                                            orderId: widget.orderId!,
+                                            private: widget.private!,
+                                            qr: (_model.apiResultQrCodeCreate
+                                                    ?.jsonBody ??
+                                                ''),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => setState(() {}));
+
+                                    Navigator.pop(context);
+                                  } else {
+                                    if (shouldSetState) setState(() {});
+                                    return;
+                                  }
+                                } else {
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (shouldSetState) setState(() {});
+                              },
+                              text: 'Thanh toán',
+                              icon: const Icon(
+                                Icons.payments_outlined,
+                                size: 15.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              options: FFButtonOptions(
+                                height: 40.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: const Color(0xFF33BA45),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 3.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
                         ),

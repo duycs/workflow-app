@@ -15,7 +15,7 @@ class StudyProgramListLessionsIdStruct extends BaseStruct {
   set lessionsId(LessonsStruct? val) => _lessionsId = val;
 
   void updateLessionsId(Function(LessonsStruct) updateFn) {
-    updateFn(lessionsId ??= LessonsStruct());
+    updateFn(_lessionsId ??= LessonsStruct());
   }
 
   bool hasLessionsId() => _lessionsId != null;

@@ -120,7 +120,7 @@ class LessonsStruct extends BaseStruct {
   set file(FileStruct? val) => _file = val;
 
   void updateFile(Function(FileStruct) updateFn) {
-    updateFn(file ??= FileStruct());
+    updateFn(_file ??= FileStruct());
   }
 
   bool hasFile() => _file != null;
@@ -131,7 +131,7 @@ class LessonsStruct extends BaseStruct {
   set reacts(List<ReactsStruct>? val) => _reacts = val;
 
   void updateReacts(Function(List<ReactsStruct>) updateFn) {
-    updateFn(reacts ??= []);
+    updateFn(_reacts ??= []);
   }
 
   bool hasReacts() => _reacts != null;
@@ -149,7 +149,7 @@ class LessonsStruct extends BaseStruct {
   set programs(List<ProgramsIdddStruct>? val) => _programs = val;
 
   void updatePrograms(Function(List<ProgramsIdddStruct>) updateFn) {
-    updateFn(programs ??= []);
+    updateFn(_programs ??= []);
   }
 
   bool hasPrograms() => _programs != null;
@@ -177,7 +177,7 @@ class LessonsStruct extends BaseStruct {
   set userCreated(UserCreatedStruct? val) => _userCreated = val;
 
   void updateUserCreated(Function(UserCreatedStruct) updateFn) {
-    updateFn(userCreated ??= UserCreatedStruct());
+    updateFn(_userCreated ??= UserCreatedStruct());
   }
 
   bool hasUserCreated() => _userCreated != null;

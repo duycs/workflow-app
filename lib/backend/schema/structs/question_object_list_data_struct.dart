@@ -15,7 +15,7 @@ class QuestionObjectListDataStruct extends BaseStruct {
   set data(List<QuestionObjectStruct>? val) => _data = val;
 
   void updateData(Function(List<QuestionObjectStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

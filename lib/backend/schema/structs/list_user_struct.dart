@@ -15,7 +15,7 @@ class ListUserStruct extends BaseStruct {
   set data(List<UserStruct>? val) => _data = val;
 
   void updateData(Function(List<UserStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

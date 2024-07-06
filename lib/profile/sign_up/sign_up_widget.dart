@@ -1110,7 +1110,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               text: 'Đăng ký',
                               options: FFButtonOptions(
                                 width: 230.0,
-                                height: 52.0,
+                                height: 55.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
@@ -1121,7 +1121,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     .override(
                                       fontFamily: 'Nunito Sans',
                                       color: Colors.white,
-                                      fontSize: 14.0,
+                                      fontSize: 16.0,
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
@@ -1129,7 +1129,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(40.0),
+                                borderRadius: BorderRadius.circular(50.0),
                               ),
                             ),
                           ),

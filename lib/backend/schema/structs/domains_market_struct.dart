@@ -15,7 +15,7 @@ class DomainsMarketStruct extends BaseStruct {
   set domainsId(DomainsIdMarketStruct? val) => _domainsId = val;
 
   void updateDomainsId(Function(DomainsIdMarketStruct) updateFn) {
-    updateFn(domainsId ??= DomainsIdMarketStruct());
+    updateFn(_domainsId ??= DomainsIdMarketStruct());
   }
 
   bool hasDomainsId() => _domainsId != null;

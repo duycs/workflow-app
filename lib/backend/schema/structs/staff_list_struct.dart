@@ -21,6 +21,8 @@ class StaffListStruct extends BaseStruct {
     List<StaffLessionStruct>? staffLessions,
     List<TestListStruct>? staffTests,
     List<StaffsProgramsListStruct>? staffPrograms,
+    String? slogan,
+    String? description,
   })  : _id = id,
         _status = status,
         _cccd = cccd,
@@ -35,7 +37,9 @@ class StaffListStruct extends BaseStruct {
         _check = check,
         _staffLessions = staffLessions,
         _staffTests = staffTests,
-        _staffPrograms = staffPrograms;
+        _staffPrograms = staffPrograms,
+        _slogan = slogan,
+        _description = description;
 
   // "id" field.
   String? _id;
@@ -85,7 +89,7 @@ class StaffListStruct extends BaseStruct {
   set branchId(BranchListStruct? val) => _branchId = val;
 
   void updateBranchId(Function(BranchListStruct) updateFn) {
-    updateFn(branchId ??= BranchListStruct());
+    updateFn(_branchId ??= BranchListStruct());
   }
 
   bool hasBranchId() => _branchId != null;
@@ -97,7 +101,7 @@ class StaffListStruct extends BaseStruct {
   set departmentId(DepartmentListStruct? val) => _departmentId = val;
 
   void updateDepartmentId(Function(DepartmentListStruct) updateFn) {
-    updateFn(departmentId ??= DepartmentListStruct());
+    updateFn(_departmentId ??= DepartmentListStruct());
   }
 
   bool hasDepartmentId() => _departmentId != null;
@@ -108,7 +112,7 @@ class StaffListStruct extends BaseStruct {
   set userId(UserStruct? val) => _userId = val;
 
   void updateUserId(Function(UserStruct) updateFn) {
-    updateFn(userId ??= UserStruct());
+    updateFn(_userId ??= UserStruct());
   }
 
   bool hasUserId() => _userId != null;
@@ -126,7 +130,7 @@ class StaffListStruct extends BaseStruct {
   set tasks(List<StaffTasksStruct>? val) => _tasks = val;
 
   void updateTasks(Function(List<StaffTasksStruct>) updateFn) {
-    updateFn(tasks ??= []);
+    updateFn(_tasks ??= []);
   }
 
   bool hasTasks() => _tasks != null;
@@ -144,7 +148,7 @@ class StaffListStruct extends BaseStruct {
   set staffLessions(List<StaffLessionStruct>? val) => _staffLessions = val;
 
   void updateStaffLessions(Function(List<StaffLessionStruct>) updateFn) {
-    updateFn(staffLessions ??= []);
+    updateFn(_staffLessions ??= []);
   }
 
   bool hasStaffLessions() => _staffLessions != null;
@@ -155,7 +159,7 @@ class StaffListStruct extends BaseStruct {
   set staffTests(List<TestListStruct>? val) => _staffTests = val;
 
   void updateStaffTests(Function(List<TestListStruct>) updateFn) {
-    updateFn(staffTests ??= []);
+    updateFn(_staffTests ??= []);
   }
 
   bool hasStaffTests() => _staffTests != null;
@@ -168,10 +172,24 @@ class StaffListStruct extends BaseStruct {
       _staffPrograms = val;
 
   void updateStaffPrograms(Function(List<StaffsProgramsListStruct>) updateFn) {
-    updateFn(staffPrograms ??= []);
+    updateFn(_staffPrograms ??= []);
   }
 
   bool hasStaffPrograms() => _staffPrograms != null;
+
+  // "slogan" field.
+  String? _slogan;
+  String get slogan => _slogan ?? '';
+  set slogan(String? val) => _slogan = val;
+
+  bool hasSlogan() => _slogan != null;
+
+  // "description" field.
+  String? _description;
+  String get description => _description ?? '';
+  set description(String? val) => _description = val;
+
+  bool hasDescription() => _description != null;
 
   static StaffListStruct fromMap(Map<String, dynamic> data) => StaffListStruct(
         id: data['id'] as String?,
@@ -201,6 +219,8 @@ class StaffListStruct extends BaseStruct {
           data['staff_programs'],
           StaffsProgramsListStruct.fromMap,
         ),
+        slogan: data['slogan'] as String?,
+        description: data['description'] as String?,
       );
 
   static StaffListStruct? maybeFromMap(dynamic data) => data is Map
@@ -223,6 +243,8 @@ class StaffListStruct extends BaseStruct {
         'staff_lessions': _staffLessions?.map((e) => e.toMap()).toList(),
         'staff_tests': _staffTests?.map((e) => e.toMap()).toList(),
         'staff_programs': _staffPrograms?.map((e) => e.toMap()).toList(),
+        'slogan': _slogan,
+        'description': _description,
       }.withoutNulls;
 
   @override
@@ -290,6 +312,14 @@ class StaffListStruct extends BaseStruct {
           _staffPrograms,
           ParamType.DataStruct,
           isList: true,
+        ),
+        'slogan': serializeParam(
+          _slogan,
+          ParamType.String,
+        ),
+        'description': serializeParam(
+          _description,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -377,6 +407,16 @@ class StaffListStruct extends BaseStruct {
           true,
           structBuilder: StaffsProgramsListStruct.fromSerializableMap,
         ),
+        slogan: deserializeParam(
+          data['slogan'],
+          ParamType.String,
+          false,
+        ),
+        description: deserializeParam(
+          data['description'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -400,7 +440,9 @@ class StaffListStruct extends BaseStruct {
         check == other.check &&
         listEquality.equals(staffLessions, other.staffLessions) &&
         listEquality.equals(staffTests, other.staffTests) &&
-        listEquality.equals(staffPrograms, other.staffPrograms);
+        listEquality.equals(staffPrograms, other.staffPrograms) &&
+        slogan == other.slogan &&
+        description == other.description;
   }
 
   @override
@@ -419,7 +461,9 @@ class StaffListStruct extends BaseStruct {
         check,
         staffLessions,
         staffTests,
-        staffPrograms
+        staffPrograms,
+        slogan,
+        description
       ]);
 }
 
@@ -435,6 +479,8 @@ StaffListStruct createStaffListStruct({
   UserStruct? userId,
   String? title,
   bool? check,
+  String? slogan,
+  String? description,
 }) =>
     StaffListStruct(
       id: id,
@@ -448,4 +494,6 @@ StaffListStruct createStaffListStruct({
       userId: userId ?? UserStruct(),
       title: title,
       check: check,
+      slogan: slogan,
+      description: description,
     );

@@ -32,16 +32,16 @@ class FormatText extends StatefulWidget {
 
 class _FormatTextState extends State<FormatText> {
   bool showFullText = false;
+
   @override
   Widget build(BuildContext context) {
     String displayText = widget.text;
     if (widget.text.length > widget.number && !showFullText) {
-      displayText = widget.text.substring(0, widget.number) + '... Xem thêm';
+      displayText = widget.text.substring(0, widget.number) + '...';
     }
 
     return Container(
       width: widget.width,
-      //height: widget.height,
       child: GestureDetector(
         onTap: () async {
           if (widget.text.length > widget.number && !showFullText) {
@@ -51,9 +51,45 @@ class _FormatTextState extends State<FormatText> {
             });
           }
         },
-        child: Text(
-          displayText,
-          style: TextStyle(fontSize: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 14,
+                  //color: Colors.black,
+                  color: Color(0xFF34383A),
+                ),
+                children: [
+                  TextSpan(
+                    text: displayText,
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (widget.text.length > widget.number && !showFullText)
+              Padding(
+                padding: EdgeInsets.only(top: 4),
+                child: GestureDetector(
+                  onTap: () async {
+                    await widget.action();
+                    setState(() {
+                      showFullText = true;
+                    });
+                  },
+                  child: Text(
+                    'Xem thêm...',
+                    style: TextStyle(
+                      color: Color(0xFF57636C),
+                    ),
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
     );

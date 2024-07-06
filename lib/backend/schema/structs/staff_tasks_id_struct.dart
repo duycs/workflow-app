@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,13 +13,15 @@ class StaffTasksIdStruct extends BaseStruct {
     String? deadline,
     String? dateEnd,
     int? overDeadline,
+    SubmitStaffIdStruct? submitStaffId,
   })  : _id = id,
         _name = name,
         _status = status,
         _current = current,
         _deadline = deadline,
         _dateEnd = dateEnd,
-        _overDeadline = overDeadline;
+        _overDeadline = overDeadline,
+        _submitStaffId = submitStaffId;
 
   // "id" field.
   String? _id;
@@ -76,6 +77,18 @@ class StaffTasksIdStruct extends BaseStruct {
 
   bool hasOverDeadline() => _overDeadline != null;
 
+  // "submit_staff_id" field.
+  SubmitStaffIdStruct? _submitStaffId;
+  SubmitStaffIdStruct get submitStaffId =>
+      _submitStaffId ?? SubmitStaffIdStruct();
+  set submitStaffId(SubmitStaffIdStruct? val) => _submitStaffId = val;
+
+  void updateSubmitStaffId(Function(SubmitStaffIdStruct) updateFn) {
+    updateFn(_submitStaffId ??= SubmitStaffIdStruct());
+  }
+
+  bool hasSubmitStaffId() => _submitStaffId != null;
+
   static StaffTasksIdStruct fromMap(Map<String, dynamic> data) =>
       StaffTasksIdStruct(
         id: data['id'] as String?,
@@ -85,6 +98,8 @@ class StaffTasksIdStruct extends BaseStruct {
         deadline: data['deadline'] as String?,
         dateEnd: data['date_end'] as String?,
         overDeadline: castToType<int>(data['over_deadline']),
+        submitStaffId:
+            SubmitStaffIdStruct.maybeFromMap(data['submit_staff_id']),
       );
 
   static StaffTasksIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -99,6 +114,7 @@ class StaffTasksIdStruct extends BaseStruct {
         'deadline': _deadline,
         'date_end': _dateEnd,
         'over_deadline': _overDeadline,
+        'submit_staff_id': _submitStaffId?.toMap(),
       }.withoutNulls;
 
   @override
@@ -130,6 +146,10 @@ class StaffTasksIdStruct extends BaseStruct {
         'over_deadline': serializeParam(
           _overDeadline,
           ParamType.int,
+        ),
+        'submit_staff_id': serializeParam(
+          _submitStaffId,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -170,6 +190,12 @@ class StaffTasksIdStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        submitStaffId: deserializeStructParam(
+          data['submit_staff_id'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: SubmitStaffIdStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -184,12 +210,21 @@ class StaffTasksIdStruct extends BaseStruct {
         current == other.current &&
         deadline == other.deadline &&
         dateEnd == other.dateEnd &&
-        overDeadline == other.overDeadline;
+        overDeadline == other.overDeadline &&
+        submitStaffId == other.submitStaffId;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, name, status, current, deadline, dateEnd, overDeadline]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        name,
+        status,
+        current,
+        deadline,
+        dateEnd,
+        overDeadline,
+        submitStaffId
+      ]);
 }
 
 StaffTasksIdStruct createStaffTasksIdStruct({
@@ -200,6 +235,7 @@ StaffTasksIdStruct createStaffTasksIdStruct({
   String? deadline,
   String? dateEnd,
   int? overDeadline,
+  SubmitStaffIdStruct? submitStaffId,
 }) =>
     StaffTasksIdStruct(
       id: id,
@@ -209,4 +245,5 @@ StaffTasksIdStruct createStaffTasksIdStruct({
       deadline: deadline,
       dateEnd: dateEnd,
       overDeadline: overDeadline,
+      submitStaffId: submitStaffId ?? SubmitStaffIdStruct(),
     );

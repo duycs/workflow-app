@@ -17,7 +17,7 @@ class StaffsAliasStruct extends BaseStruct {
   set departments(List<DepartmentsStruct>? val) => _departments = val;
 
   void updateDepartments(Function(List<DepartmentsStruct>) updateFn) {
-    updateFn(departments ??= []);
+    updateFn(_departments ??= []);
   }
 
   bool hasDepartments() => _departments != null;
@@ -28,7 +28,7 @@ class StaffsAliasStruct extends BaseStruct {
   set staffs(List<StaffIdStruct>? val) => _staffs = val;
 
   void updateStaffs(Function(List<StaffIdStruct>) updateFn) {
-    updateFn(staffs ??= []);
+    updateFn(_staffs ??= []);
   }
 
   bool hasStaffs() => _staffs != null;

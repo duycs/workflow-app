@@ -113,7 +113,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
+              context.goNamed(
                 'Profile',
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
@@ -617,8 +617,8 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(2.0, 0.0,
-                                                                2.0, 0.0),
+                                                            .fromSTEB(4.0, 0.0,
+                                                                4.0, 0.0),
                                                     child: InkWell(
                                                       splashColor:
                                                           Colors.transparent,

@@ -68,7 +68,7 @@ class EmployeeLessonListStruct extends BaseStruct {
   set staffId(StaffIdStruct? val) => _staffId = val;
 
   void updateStaffId(Function(StaffIdStruct) updateFn) {
-    updateFn(staffId ??= StaffIdStruct());
+    updateFn(_staffId ??= StaffIdStruct());
   }
 
   bool hasStaffId() => _staffId != null;
@@ -79,7 +79,7 @@ class EmployeeLessonListStruct extends BaseStruct {
   set lessionId(LessionIdStruct? val) => _lessionId = val;
 
   void updateLessionId(Function(LessionIdStruct) updateFn) {
-    updateFn(lessionId ??= LessionIdStruct());
+    updateFn(_lessionId ??= LessionIdStruct());
   }
 
   bool hasLessionId() => _lessionId != null;
@@ -90,7 +90,7 @@ class EmployeeLessonListStruct extends BaseStruct {
   set programId(ProgramsIddStruct? val) => _programId = val;
 
   void updateProgramId(Function(ProgramsIddStruct) updateFn) {
-    updateFn(programId ??= ProgramsIddStruct());
+    updateFn(_programId ??= ProgramsIddStruct());
   }
 
   bool hasProgramId() => _programId != null;

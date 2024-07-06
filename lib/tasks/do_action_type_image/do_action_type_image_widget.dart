@@ -84,41 +84,43 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   final listItem = list[listIndex];
                   return Visibility(
                     visible: listIndex == 0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          if ((widget.image != null) &&
-                              (listItem.operationsId.files.isNotEmpty))
-                            Container(
-                              width: double.infinity,
-                              decoration: const BoxDecoration(),
-                              child: Builder(
-                                builder: (context) {
-                                  final listImage =
-                                      _model.listUploadImage.toList();
-                                  return GridView.builder(
-                                    padding: EdgeInsets.zero,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 12.0,
-                                      mainAxisSpacing: 10.0,
-                                      childAspectRatio: 1.0,
-                                    ),
-                                    primary: false,
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount: listImage.length,
-                                    itemBuilder: (context, listImageIndex) {
-                                      final listImageItem =
-                                          listImage[listImageIndex];
-                                      return Stack(
-                                        alignment:
-                                            const AlignmentDirectional(1.0, -1.0),
-                                        children: [
-                                          InkWell(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        if ((widget.image != null) &&
+                            (listItem.operationsId.files.isNotEmpty))
+                          Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(),
+                            child: Builder(
+                              builder: (context) {
+                                final listImage =
+                                    _model.listUploadImage.toList();
+                                return GridView.builder(
+                                  padding: EdgeInsets.zero,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 6.0,
+                                    mainAxisSpacing: 6.0,
+                                    childAspectRatio: 1.0,
+                                  ),
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listImage.length,
+                                  itemBuilder: (context, listImageIndex) {
+                                    final listImageItem =
+                                        listImage[listImageIndex];
+                                    return Stack(
+                                      alignment:
+                                          const AlignmentDirectional(1.0, -1.0),
+                                      children: [
+                                        Container(
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          decoration: const BoxDecoration(),
+                                          child: InkWell(
                                             splashColor: Colors.transparent,
                                             focusColor: Colors.transparent,
                                             hoverColor: Colors.transparent,
@@ -156,79 +158,80 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                               ),
                                             ),
                                           ),
-                                          Opacity(
-                                            opacity: 0.7,
-                                            child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 6.0, 6.0, 0.0),
-                                              child: FlutterFlowIconButton(
-                                                borderRadius: 20.0,
-                                                borderWidth: 1.0,
-                                                buttonSize: 30.0,
-                                                fillColor:
+                                        ),
+                                        Opacity(
+                                          opacity: 0.7,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 6.0, 6.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 30.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              icon: Icon(
+                                                Icons.close,
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                icon: Icon(
-                                                  Icons.close,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 15.0,
-                                                ),
-                                                onPressed: () async {
-                                                  var confirmDialogResponse =
-                                                      await showDialog<bool>(
-                                                            context: context,
-                                                            builder:
-                                                                (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: const Text(
-                                                                    'Xác nhận'),
-                                                                content: const Text(
-                                                                    'Bạn chắc chắn muốn xóa'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                    child: const Text(
-                                                                        'Hủy '),
-                                                                  ),
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                    child: const Text(
-                                                                        'Confirm'),
-                                                                  ),
-                                                                ],
-                                                              );
-                                                            },
-                                                          ) ??
-                                                          false;
-                                                  if (confirmDialogResponse) {
-                                                    _model
-                                                        .removeAtIndexFromListUploadImage(
-                                                            listImageIndex);
-                                                    setState(() {});
-                                                  } else {
-                                                    return;
-                                                  }
-                                                },
+                                                        .primaryText,
+                                                size: 15.0,
                                               ),
+                                              onPressed: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: const Text(
+                                                                  'Xác nhận'),
+                                                              content: const Text(
+                                                                  'Bạn chắc chắn muốn xóa'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: const Text(
+                                                                      'Hủy '),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: const Text(
+                                                                      'Confirm'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  _model
+                                                      .removeAtIndexFromListUploadImage(
+                                                          listImageIndex);
+                                                  setState(() {});
+                                                } else {
+                                                  return;
+                                                }
+                                              },
                                             ),
                                           ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
                             ),
-                        ].divide(const SizedBox(height: 8.0)),
-                      ),
+                          ),
+                      ].divide(const SizedBox(height: 8.0)),
                     ),
                   );
                 }),
@@ -247,8 +250,8 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                   padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 12.0,
-                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 6.0,
+                    mainAxisSpacing: 6.0,
                     childAspectRatio: 1.0,
                   ),
                   primary: false,
@@ -261,38 +264,43 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                     return Stack(
                       alignment: const AlignmentDirectional(1.0, -1.0),
                       children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.fade,
-                                child: FlutterFlowExpandedImageView(
-                                  image: Image.memory(
-                                    listImageUploadItem.bytes ??
-                                        Uint8List.fromList([]),
-                                    fit: BoxFit.contain,
+                        Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          decoration: const BoxDecoration(),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: FlutterFlowExpandedImageView(
+                                    image: Image.memory(
+                                      listImageUploadItem.bytes ??
+                                          Uint8List.fromList([]),
+                                      fit: BoxFit.contain,
+                                    ),
+                                    allowRotation: false,
+                                    tag: 'imageTag2',
+                                    useHeroAnimation: true,
                                   ),
-                                  allowRotation: false,
-                                  tag: 'imageTag2',
-                                  useHeroAnimation: true,
                                 ),
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: 'imageTag2',
-                            transitionOnUserGestures: true,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.memory(
-                                listImageUploadItem.bytes ??
-                                    Uint8List.fromList([]),
-                                fit: BoxFit.cover,
+                              );
+                            },
+                            child: Hero(
+                              tag: 'imageTag2',
+                              transitionOnUserGestures: true,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.memory(
+                                  listImageUploadItem.bytes ??
+                                      Uint8List.fromList([]),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -353,7 +361,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
           ),
         Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FFButtonWidget(
               onPressed: () async {
@@ -404,26 +412,21 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               icon: Icon(
                 Icons.camera_alt,
                 color: FlutterFlowTheme.of(context).secondaryText,
-                size: 15.0,
+                size: 18.0,
               ),
               options: FFButtonOptions(
-                width: 150.0,
-                height: 40.0,
+                width: 110.0,
+                height: 35.0,
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).alternate,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 14.0,
+                      fontSize: 13.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.normal,
                     ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
@@ -482,32 +485,27 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
               },
               text: 'Lưu',
               icon: Icon(
-                Icons.save,
+                Icons.save_alt,
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                size: 15.0,
+                size: 20.0,
               ),
               options: FFButtonOptions(
-                width: 150.0,
-                height: 40.0,
+                width: 110.0,
+                height: 35.0,
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Nunito Sans',
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontSize: 14.0,
+                      fontSize: 13.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.normal,
                     ),
-                elevation: 3.0,
-                borderSide: const BorderSide(
-                  color: Colors.transparent,
-                  width: 1.0,
-                ),
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-          ],
+          ].divide(const SizedBox(width: 8.0)),
         ),
       ].divide(const SizedBox(height: 8.0)),
     );

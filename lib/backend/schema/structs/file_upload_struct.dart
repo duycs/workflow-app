@@ -15,7 +15,7 @@ class FileUploadStruct extends BaseStruct {
   set data(List<FileStruct>? val) => _data = val;
 
   void updateData(Function(List<FileStruct>) updateFn) {
-    updateFn(data ??= []);
+    updateFn(_data ??= []);
   }
 
   bool hasData() => _data != null;

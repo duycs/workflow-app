@@ -164,22 +164,19 @@ class _CkeditorUpdateLessonWidgetState
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 0.0),
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width * 1.0,
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.sizeOf(context).height * 0.85,
+              child: custom_widgets.CKEditor(
+                width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 0.85,
-                child: custom_widgets.CKEditor(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: MediaQuery.sizeOf(context).height * 0.85,
-                  initialData: widget.input != ''
-                      ? widget.input
-                      : '',
-                  action: (data) async {
-                    _model.check = data;
-                    setState(() {});
-                  },
-                ),
+                initialData: widget.input != ''
+                    ? widget.input
+                    : '',
+                action: (data) async {
+                  _model.check = data;
+                  setState(() {});
+                },
               ),
             ),
           ],

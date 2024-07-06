@@ -24,7 +24,7 @@ class SubmitStaffIdStruct extends BaseStruct {
   set userId(UserStruct? val) => _userId = val;
 
   void updateUserId(Function(UserStruct) updateFn) {
-    updateFn(userId ??= UserStruct());
+    updateFn(_userId ??= UserStruct());
   }
 
   bool hasUserId() => _userId != null;

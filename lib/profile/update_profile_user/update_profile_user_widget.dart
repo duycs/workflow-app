@@ -44,7 +44,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
     ).toString().toString());
     _model.nameFocusNode ??= FocusNode();
 
-    _model.hotlineTextController ??= TextEditingController(
+    _model.hotlineTextController1 ??= TextEditingController(
         text: (getJsonField(
                       widget.data,
                       r'''$.phone''',
@@ -64,10 +64,33 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 widget.data,
                 r'''$.phone''',
               ).toString().toString()
-            : 'Chưa có số điện thoại');
-    _model.hotlineFocusNode ??= FocusNode();
+            : '');
+    _model.hotlineFocusNode1 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(
+    _model.hotlineTextController2 ??= TextEditingController(
+        text: (getJsonField(
+                      widget.data,
+                      r'''$.slogan''',
+                    ).toString().toString() !=
+                    '') &&
+                (getJsonField(
+                      widget.data,
+                      r'''$.slogan''',
+                    ).toString().toString() !=
+                    'undefined') &&
+                (getJsonField(
+                      widget.data,
+                      r'''$.slogan''',
+                    ).toString().toString() !=
+                    'null')
+            ? getJsonField(
+                widget.data,
+                r'''$.slogan''',
+              ).toString().toString()
+            : '');
+    _model.hotlineFocusNode2 ??= FocusNode();
+
+    _model.textController4 ??= TextEditingController(
         text: getJsonField(
       widget.data,
       r'''$.user_id.email''',
@@ -96,6 +119,29 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
               ).toString().toString()
             : 'Chưa có số căn cước');
     _model.addressFocusNode ??= FocusNode();
+
+    _model.hotlineTextController3 ??= TextEditingController(
+        text: (getJsonField(
+                      widget.data,
+                      r'''$.description''',
+                    ).toString().toString() !=
+                    '') &&
+                (getJsonField(
+                      widget.data,
+                      r'''$.description''',
+                    ).toString().toString() !=
+                    'undefined') &&
+                (getJsonField(
+                      widget.data,
+                      r'''$.description''',
+                    ).toString().toString() !=
+                    'null')
+            ? getJsonField(
+                widget.data,
+                r'''$.description''',
+              ).toString().toString()
+            : '');
+    _model.hotlineFocusNode3 ??= FocusNode();
   }
 
   @override
@@ -388,6 +434,11 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     0.0,
                                                               ),
                                                           maxLength: 50,
+                                                          buildCounter: (context,
+                                                                  {required currentLength,
+                                                                  required isFocused,
+                                                                  maxLength}) =>
+                                                              null,
                                                           validator: _model
                                                               .nameTextControllerValidator
                                                               .asValidator(
@@ -404,9 +455,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     0.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .hotlineTextController,
+                                                              .hotlineTextController1,
                                                           focusNode: _model
-                                                              .hotlineFocusNode,
+                                                              .hotlineFocusNode1,
                                                           autofocus: false,
                                                           obscureText: false,
                                                           decoration:
@@ -509,7 +560,124 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               TextInputType
                                                                   .number,
                                                           validator: _model
-                                                              .hotlineTextControllerValidator
+                                                              .hotlineTextController1Validator
+                                                              .asValidator(
+                                                                  context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .hotlineTextController2,
+                                                          focusNode: _model
+                                                              .hotlineFocusNode2,
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText: 'Slogan',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            contentPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .hotlineTextController2Validator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -525,7 +693,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                       0.0),
                                                           child: TextFormField(
                                                             controller: _model
-                                                                .textController3,
+                                                                .textController4,
                                                             focusNode: _model
                                                                 .textFieldFocusNode,
                                                             autofocus: false,
@@ -632,7 +800,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 TextInputType
                                                                     .emailAddress,
                                                             validator: _model
-                                                                .textController3Validator
+                                                                .textController4Validator
                                                                 .asValidator(
                                                                     context),
                                                           ),
@@ -1021,22 +1189,126 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           ),
                                                         ),
                                                       ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .hotlineTextController3,
+                                                          focusNode: _model
+                                                              .hotlineFocusNode3,
+                                                          autofocus: false,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText:
+                                                                'Description',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          40.0),
+                                                            ),
+                                                            contentPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        20.0,
+                                                                        0.0),
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                          validator: _model
+                                                              .hotlineTextController3Validator
+                                                              .asValidator(
+                                                                  context),
+                                                        ),
+                                                      ),
                                                     ].divide(
                                                         const SizedBox(height: 20.0)),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 1.0),
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                      ),
-                                                    ),
                                                   ),
                                                 ].divide(const SizedBox(height: 4.0)),
                                               ),
@@ -1235,7 +1507,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                               'gender': _model.dropDownValue == 'Nam'
                                   ? 'male'
                                   : 'female',
-                              'phone': _model.hotlineTextController.text,
+                              'phone': _model.hotlineTextController1.text,
                               'dob': _model.datePicked != null
                                   ? dateTimeFormat(
                                       'yyyy-MM-dd',
@@ -1253,6 +1525,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     ),
+                              'description':
+                                  _model.hotlineTextController3.text !=
+                                              ''
+                                      ? _model.hotlineTextController3.text
+                                      : '',
+                              'slogan': _model.hotlineTextController2.text != ''
+                                  ? _model.hotlineTextController2.text
+                                  : '',
                             },
                           );
 
@@ -1322,7 +1602,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                             'gender': _model.dropDownValue == 'Nam'
                                 ? 'male'
                                 : 'female',
-                            'phone': _model.hotlineTextController.text,
+                            'phone': _model.hotlineTextController1.text,
                             'dob': _model.datePicked != null
                                 ? dateTimeFormat(
                                     'yyyy-MM-dd',
@@ -1340,6 +1620,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                     locale: FFLocalizations.of(context)
                                         .languageCode,
                                   ),
+                            'description':
+                                _model.hotlineTextController3.text != ''
+                                    ? _model.hotlineTextController3.text
+                                    : '',
+                            'slogan':
+                                _model.hotlineTextController2.text != ''
+                                    ? _model.hotlineTextController2.text
+                                    : '',
                           },
                         );
 

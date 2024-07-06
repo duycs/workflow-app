@@ -19,7 +19,7 @@ class GetStaffInfoStruct extends BaseStruct {
   set staff(StaffListInfoStruct? val) => _staff = val;
 
   void updateStaff(Function(StaffListInfoStruct) updateFn) {
-    updateFn(staff ??= StaffListInfoStruct());
+    updateFn(_staff ??= StaffListInfoStruct());
   }
 
   bool hasStaff() => _staff != null;
@@ -30,7 +30,7 @@ class GetStaffInfoStruct extends BaseStruct {
   set department(DepartmentListStruct? val) => _department = val;
 
   void updateDepartment(Function(DepartmentListStruct) updateFn) {
-    updateFn(department ??= DepartmentListStruct());
+    updateFn(_department ??= DepartmentListStruct());
   }
 
   bool hasDepartment() => _department != null;
@@ -41,7 +41,7 @@ class GetStaffInfoStruct extends BaseStruct {
   set branch(BranchListStruct? val) => _branch = val;
 
   void updateBranch(Function(BranchListStruct) updateFn) {
-    updateFn(branch ??= BranchListStruct());
+    updateFn(_branch ??= BranchListStruct());
   }
 
   bool hasBranch() => _branch != null;

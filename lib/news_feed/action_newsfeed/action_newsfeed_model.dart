@@ -3,6 +3,12 @@ import 'action_newsfeed_widget.dart' show ActionNewsfeedWidget;
 import 'package:flutter/material.dart';
 
 class ActionNewsfeedModel extends FlutterFlowModel<ActionNewsfeedWidget> {
+  ///  Local state fields for this component.
+
+  bool var1 = false;
+
+  int loop = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for MouseRegion widget.

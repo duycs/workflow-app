@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -1626,20 +1627,31 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 5.0, 12.0, 0.0),
-                                child: custom_widgets.HtmlToDoc(
-                                  width: double.infinity,
-                                  height: 150.0,
-                                  html: functions.formatHtml(getJsonField(
-                                    _model.listDetail,
-                                    r'''$.content''',
-                                  ).toString()),
+                              if (false)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 5.0, 12.0, 0.0),
+                                  child: custom_widgets.HtmlToDoc(
+                                    width: double.infinity,
+                                    height: 150.0,
+                                    html: functions.formatHtml(getJsonField(
+                                      _model.listDetail,
+                                      r'''$.content''',
+                                    ).toString()),
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
+                        wrapWithModel(
+                          model: _model.mobileEditorDisplayComponentModel,
+                          updateCallback: () => setState(() {}),
+                          child: MobileEditorDisplayComponentWidget(
+                            content: getJsonField(
+                              _model.listDetail,
+                              r'''$.content''',
+                            ).toString(),
+                          ),
+                        ),
                         if (widget.checkPage != 'lessonMarket')
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(

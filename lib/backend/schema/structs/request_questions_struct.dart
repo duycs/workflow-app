@@ -57,7 +57,7 @@ class RequestQuestionsStruct extends BaseStruct {
   set answers(List<QuestionAnswersIdStruct>? val) => _answers = val;
 
   void updateAnswers(Function(List<QuestionAnswersIdStruct>) updateFn) {
-    updateFn(answers ??= []);
+    updateFn(_answers ??= []);
   }
 
   bool hasAnswers() => _answers != null;

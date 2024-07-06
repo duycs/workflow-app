@@ -7,10 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/training/lesson/ckeditor_update_lesson/ckeditor_update_lesson_widget.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -48,6 +47,10 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
       await _model.testList(context);
       setState(() {});
       _model.isLoad = true;
+      _model.content = getJsonField(
+        widget.items,
+        r'''$.content''',
+      );
       setState(() {});
     });
 
@@ -1479,30 +1482,16 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                                           width:
                                               MediaQuery.sizeOf(context).width *
                                                   1.0,
-                                          child: CkeditorUpdateLessonWidget(
-                                            input: () {
-                                              if ((getJsonField(
-                                                        widget.items,
-                                                        r'''$.content''',
-                                                      ) !=
-                                                      null) &&
-                                                  (_model.output == '')) {
-                                                return getJsonField(
-                                                  widget.items,
-                                                  r'''$.content''',
-                                                ).toString();
-                                              } else if (_model.output != '') {
-                                                return _model.output;
-                                              } else {
-                                                return '';
-                                              }
-                                            }(),
-                                            output: _model.output,
-                                            callBack: (input, output) async {
-                                              _model.checkContent = output!;
-                                              _model.input = input!;
-                                              _model.output = output;
+                                          child: MobileEditorComponentWidget(
+                                            content: getJsonField(
+                                              widget.items,
+                                              r'''$.content''',
+                                            ),
+                                            setContentCallback:
+                                                (editorContent) async {
+                                              _model.content = editorContent;
                                               setState(() {});
+                                              Navigator.pop(context);
                                             },
                                           ),
                                         ),
@@ -1559,31 +1548,14 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
                             ),
                           ),
                         ),
-                        Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(),
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                        ),
-                        custom_widgets.HTMLView(
-                          width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 100.0,
-                          html: functions.formatHtml(() {
-                            if (_model.checkContent != '') {
-                              return _model.checkContent;
-                            } else if (getJsonField(
-                                  widget.items,
-                                  r'''$.content''',
-                                ) !=
-                                null) {
-                              return functions.formatHtml(getJsonField(
-                                widget.items,
-                                r'''$.content''',
-                              ).toString());
-                            } else {
-                              return '';
-                            }
-                          }()),
-                        ),
+                        if (_model.content != null)
+                          wrapWithModel(
+                            model: _model.mobileEditorDisplayComponentModel,
+                            updateCallback: () => setState(() {}),
+                            child: MobileEditorDisplayComponentWidget(
+                              content: _model.content!.toString(),
+                            ),
+                          ),
                       ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),

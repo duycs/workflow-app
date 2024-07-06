@@ -1,8 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'profile_c_p_n_widget.dart' show ProfileCPNWidget;
 import 'package:flutter/material.dart';
@@ -32,18 +30,13 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for navBar component.
-  late NavBarModel navBarModel;
 
   @override
-  void initState(BuildContext context) {
-    navBarModel = createModel(context, () => NavBarModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    navBarModel.dispose();
   }
 
   /// Action blocks.
@@ -77,8 +70,8 @@ class ProfileCPNModel extends FlutterFlowModel<ProfileCPNWidget> {
           loop = loop + 1;
         }
         loop = 3;
-        isLoad = true;
       }
+      isLoad = true;
     } else {
       FFAppState().update(() {});
       return;

@@ -78,7 +78,7 @@ class UpdateOrganizationStruct extends BaseStruct {
   set files(UploadListFileStruct? val) => _files = val;
 
   void updateFiles(Function(UploadListFileStruct) updateFn) {
-    updateFn(files ??= UploadListFileStruct());
+    updateFn(_files ??= UploadListFileStruct());
   }
 
   bool hasFiles() => _files != null;

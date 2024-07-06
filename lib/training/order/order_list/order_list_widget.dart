@@ -406,410 +406,141 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                               .itemList![dataListIndex];
                           return Visibility(
                             visible: dataListItem.programOrderItems.isNotEmpty,
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Colors.transparent,
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: OrderDetailWidget(
-                                          image: dataListItem.programOrderItems
-                                              .first.programId.imageCover,
-                                          name: dataListItem.programOrderItems
-                                              .first.programId.name,
-                                          rating: 0.0,
-                                          author: dataListItem.programOrderItems
-                                              .first.programId.authorId.alias,
-                                          quantity: valueOrDefault<int>(
-                                            dataListItem.totalItem,
-                                            0,
+                            child: Builder(
+                              builder: (context) => InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        elevation: 0,
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: OrderDetailWidget(
+                                            image: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .imageCover,
+                                            name: dataListItem.programOrderItems
+                                                .first.programId.name,
+                                            rating: 0.0,
+                                            author: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .authorId
+                                                .alias,
+                                            quantity: valueOrDefault<int>(
+                                              dataListItem.totalItem,
+                                              0,
+                                            ),
+                                            status: dataListItem.status,
+                                            price: valueOrDefault<String>(
+                                              dataListItem.programOrderItems
+                                                  .first.programId.price,
+                                              '0',
+                                            ),
+                                            numLessions: valueOrDefault<int>(
+                                              dataListItem
+                                                  .programOrderItems
+                                                  .first
+                                                  .programId
+                                                  .lessions
+                                                  .length,
+                                              0,
+                                            ),
+                                            totalPrice: valueOrDefault<String>(
+                                              dataListItem.totalPrice,
+                                              '0',
+                                            ),
+                                            private:
+                                                dataListItem.private.toString(),
+                                            code: dataListItem.code,
+                                            orderId: dataListItem.id,
+                                            programId: dataListItem
+                                                .programOrderItems
+                                                .first
+                                                .programId
+                                                .id,
                                           ),
-                                          status: dataListItem.status,
-                                          numLessions: valueOrDefault<int>(
-                                            dataListItem.programOrderItems.first
-                                                .programId.lessions.length,
-                                            0,
-                                          ),
-                                          totalPrice: valueOrDefault<String>(
-                                            dataListItem.totalPrice,
-                                            '0',
-                                          ),
-                                          private:
-                                              dataListItem.private.toString(),
-                                          code: dataListItem.code,
-                                          price: valueOrDefault<String>(
-                                            dataListItem.programOrderItems.first
-                                                .programId.price,
-                                            '0',
-                                          ),
-                                          orderId: dataListItem.id,
-                                          programId: dataListItem
-                                              .programOrderItems
-                                              .first
-                                              .programId
-                                              .id,
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
-                              },
-                              child: Container(
-                                decoration: const BoxDecoration(),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 8.0, 8.0, 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                width: 100.0,
-                                                height: 110.0,
-                                                decoration: const BoxDecoration(),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.programOrderItems.first.programId.imageCover}?access_token=${FFAppState().accessToken}',
-                                                    width: 100.0,
-                                                    height: 110.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        4.0, 4.0, 0.0, 0.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 8.0, 8.0, 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Stack(
+                                              children: [
+                                                Container(
+                                                  width: 100.0,
+                                                  height: 110.0,
+                                                  decoration: const BoxDecoration(),
+                                                  child: ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            20.0),
+                                                            8.0),
+                                                    child: Image.network(
+                                                      '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.programOrderItems.first.programId.imageCover}?access_token=${FFAppState().accessToken}',
+                                                      width: 100.0,
+                                                      height: 110.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 4.0, 0.0, 0.0),
                                                   child: Container(
                                                     decoration: BoxDecoration(
-                                                      color: dataListItem
-                                                                  .status ==
-                                                              'draft'
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent3
-                                                          : FlutterFlowTheme.of(
-                                                                  context)
-                                                              .accent2,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               20.0),
                                                     ),
-                                                    child: Align(
-                                                      alignment:
-                                                          const AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    2.0,
-                                                                    5.0,
-                                                                    2.0),
-                                                        child: Text(
-                                                          dataListItem.status ==
-                                                                  'draft'
-                                                              ? 'Nháp'
-                                                              : 'Hoàn tất',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: dataListItem
-                                                                            .status ==
-                                                                        'draft'
-                                                                    ? FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiary
-                                                                    : FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondary,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 4.0),
-                                                  child: RichText(
-                                                    textScaler:
-                                                        MediaQuery.of(context)
-                                                            .textScaler,
-                                                    text: TextSpan(
-                                                      children: [
-                                                        TextSpan(
-                                                          text:
-                                                              '#${(dataListIndex + 1).toString()}: ',
-                                                          style: const TextStyle(),
-                                                        ),
-                                                        TextSpan(
-                                                          text: dataListItem
-                                                              .programOrderItems
-                                                              .first
-                                                              .programId
-                                                              .name,
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize: 16.0,
-                                                          ),
-                                                        )
-                                                      ],
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    maxLines: 2,
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.videocam_sharp,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 20.0,
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          '${dataListItem.programOrderItems.first.programId.lessions.length.toString()} bài học',
-                                                          maxLines: 2,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      '${dataListItem.totalItem.toString()} bản',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.date_range,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 20.0,
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          dateTimeFormat(
-                                                            'dd/MM/yyyy',
-                                                            functions
-                                                                .stringToDateTime(
-                                                                    dataListItem
-                                                                        .dateCreated),
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        formatNumber(
-                                                          functions.stringToInt(
-                                                              dataListItem
-                                                                  .totalPrice),
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .commaDecimal,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.end,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .headlineSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Nunito Sans',
-                                                              fontSize: 16.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.person,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 20.0,
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    4.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          dataListItem
-                                                              .programOrderItems
-                                                              .first
-                                                              .programId
-                                                              .authorId
-                                                              .alias,
-                                                          maxLines: 2,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Container(
+                                                    child: Container(
                                                       decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
+                                                        color: dataListItem
+                                                                    .status ==
+                                                                'draft'
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent3
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent2,
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(12.0),
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                        ),
+                                                                .circular(20.0),
                                                       ),
                                                       child: Align(
                                                         alignment:
@@ -819,15 +550,188 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      8.0,
-                                                                      4.0,
-                                                                      8.0,
-                                                                      4.0),
+                                                                      5.0,
+                                                                      2.0,
+                                                                      5.0,
+                                                                      2.0),
                                                           child: Text(
-                                                            dataListItem.private ==
-                                                                    0
-                                                                ? 'Tổ chức'
-                                                                : 'Cá nhân',
+                                                            dataListItem.status ==
+                                                                    'draft'
+                                                                ? 'Nháp'
+                                                                : 'Hoàn tất',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: dataListItem
+                                                                              .status ==
+                                                                          'draft'
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 4.0),
+                                                    child: RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text:
+                                                                '#${(dataListIndex + 1).toString()}: ',
+                                                            style: const TextStyle(),
+                                                          ),
+                                                          TextSpan(
+                                                            text: dataListItem
+                                                                .programOrderItems
+                                                                .first
+                                                                .programId
+                                                                .name,
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 16.0,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                      maxLines: 2,
+                                                    ),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.videocam_sharp,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 20.0,
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            '${dataListItem.programOrderItems.first.programId.lessions.length.toString()} bài học',
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '${dataListItem.totalItem.toString()} bản',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 4.0)),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.date_range,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 20.0,
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                              'dd/MM/yyyy',
+                                                              functions.stringToDateTime(
+                                                                  dataListItem
+                                                                      .dateCreated),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelMedium
@@ -840,22 +744,145 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ].divide(
-                                                      const SizedBox(width: 4.0)),
-                                                ),
-                                              ],
+                                                      Expanded(
+                                                        child: Text(
+                                                          formatNumber(
+                                                            functions.stringToInt(
+                                                                dataListItem
+                                                                    .totalPrice),
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .commaDecimal,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 16.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 4.0)),
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.person,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 20.0,
+                                                      ),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            dataListItem
+                                                                .programOrderItems
+                                                                .first
+                                                                .programId
+                                                                .authorId
+                                                                .alias,
+                                                            maxLines: 2,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                          ),
+                                                        ),
+                                                        child: Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        4.0,
+                                                                        8.0,
+                                                                        4.0),
+                                                            child: Text(
+                                                              dataListItem.private ==
+                                                                      0
+                                                                  ? 'Tổ chức'
+                                                                  : 'Cá nhân',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 4.0)),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ].divide(const SizedBox(width: 8.0)),
+                                          ].divide(const SizedBox(width: 8.0)),
+                                        ),
                                       ),
-                                    ),
-                                    const Divider(
-                                      height: 1.0,
-                                      thickness: 1.0,
-                                      color: Color(0x5057636C),
-                                    ),
-                                  ],
+                                      const Divider(
+                                        height: 1.0,
+                                        thickness: 1.0,
+                                        color: Color(0x5057636C),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

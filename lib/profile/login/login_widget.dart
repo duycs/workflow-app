@@ -109,7 +109,16 @@ class _LoginWidgetState extends State<LoginWidget> {
             );
             setState(() {});
 
-            context.pushNamed('TaskList');
+            context.pushNamed(
+              'Home',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: const TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
 
             await actions.checkNofiLoad(
               context,
@@ -696,7 +705,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                             FFButtonOptions(
                                                           width:
                                                               double.infinity,
-                                                          height: 52.0,
+                                                          height: 55.0,
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -724,7 +733,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
-                                                                        14.0,
+                                                                        16.0,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -738,7 +747,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
-                                                                      10.0),
+                                                                      50.0),
                                                         ),
                                                       ),
                                                     ),
