@@ -15,6 +15,8 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A120C5862C2A82D0003F293B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A120C5852C2A82D0003F293B /* StoreKit.framework */; };
+		A120C58A2C2EAB42003F293B /* in_app_purchase_storekit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A120C5892C2EAB42003F293B /* in_app_purchase_storekit.framework */; };
 		AB208B4FDF8B87AAB09C9304 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF7DF9FB98A81B54FF9694FA /* Pods_Runner.framework */; };
 		B878EEEA579762A22EEC4FC1 /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAB27112D7DB8575497C04B /* Pods_OneSignalNotificationServiceExtension.framework */; };
 		C1D6864C2C0DC411002F25EF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D6864B2C0DC411002F25EF /* NotificationService.swift */; };
@@ -76,6 +78,10 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10CA3DB2C1719D200BBBA9A /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		A120C5852C2A82D0003F293B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A120C5872C2BF60E003F293B /* SyncedProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = SyncedProducts.storekit; sourceTree = "<group>"; };
+		A120C5882C2EA6EC003F293B /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
+		A120C5892C2EAB42003F293B /* in_app_purchase_storekit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = in_app_purchase_storekit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B218A52F67DAC5DB6F8CEC37 /* Pods-OneSignalNotificationServiceExtension.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.profile.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.profile.xcconfig"; sourceTree = "<group>"; };
 		C1D686442C0DC3D0002F25EF /* RunnerProfile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerProfile.entitlements; sourceTree = "<group>"; };
 		C1D686492C0DC411002F25EF /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A120C58A2C2EAB42003F293B /* in_app_purchase_storekit.framework in Frameworks */,
 				AB208B4FDF8B87AAB09C9304 /* Pods_Runner.framework in Frameworks */,
+				A120C5862C2A82D0003F293B /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +132,8 @@
 				97C146F01CF9000F007C117D /* Runner */,
 				C1D6864A2C0DC411002F25EF /* OneSignalNotificationServiceExtension */,
 				97C146EF1CF9000F007C117D /* Products */,
+				A120C5872C2BF60E003F293B /* SyncedProducts.storekit */,
+				A120C5882C2EA6EC003F293B /* StoreKitTestCertificate.cer */,
 				B640CE00441989C091F7B21E /* Pods */,
 				F481E34374FE37747FE3AD03 /* Frameworks */,
 			);
@@ -183,6 +193,8 @@
 		F481E34374FE37747FE3AD03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A120C5892C2EAB42003F293B /* in_app_purchase_storekit.framework */,
+				A120C5852C2A82D0003F293B /* StoreKit.framework */,
 				CF7DF9FB98A81B54FF9694FA /* Pods_Runner.framework */,
 				0CAB27112D7DB8575497C04B /* Pods_OneSignalNotificationServiceExtension.framework */,
 			);
@@ -343,7 +355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
 		9AF59F4E4A6594BCDDE37F2C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1035,7 +1047,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 793FFD98F1D078DED99819A4 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1076,7 +1088,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B0B4841A1355C639D54128D /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -1115,7 +1127,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B218A52F67DAC5DB6F8CEC37 /* Pods-OneSignalNotificationServiceExtension.profile.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;

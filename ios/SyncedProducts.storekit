@@ -1,0 +1,148 @@
+{
+  "identifier" : "A198432A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "99000",
+      "familyShareable" : false,
+      "internalID" : "6503697578",
+      "localizations" : [
+        {
+          "description" : "Company OS",
+          "displayName" : "ComOS",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.workflow",
+      "referenceName" : "ComOS",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "129000",
+      "familyShareable" : false,
+      "internalID" : "6504986544",
+      "localizations" : [
+        {
+          "description" : "Mua khoá học trong ứng dụng với giá 129k",
+          "displayName" : "Mua Khoá học 129k",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.comos.product_129k",
+      "referenceName" : "Mua Khoá học 129k",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "19000",
+      "familyShareable" : false,
+      "internalID" : "6504786445",
+      "localizations" : [
+        {
+          "description" : "Mua khoá học trong ứng dụng với giá 19k",
+          "displayName" : "Mua Khoá học 19k",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.comos.product_19k",
+      "referenceName" : "Mua Khoá học 19k",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "79000",
+      "familyShareable" : false,
+      "internalID" : "6504786918",
+      "localizations" : [
+        {
+          "description" : "Mua khoá học trong ứng dụng với giá 79k",
+          "displayName" : "Mua Khoá học 79k",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.comos.product_79k",
+      "referenceName" : "Mua Khoá học 79k",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "99000",
+      "familyShareable" : false,
+      "internalID" : "6504983367",
+      "localizations" : [
+        {
+          "description" : "Mua khoá học trong ứng dụng với giá 99k",
+          "displayName" : "Mua Khoá học 99k",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.comos.product_99k",
+      "referenceName" : "Mua Khoá học 99k",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6499068980",
+    "_developerTeamID" : "FZ78ZDT87T",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 741325744.37736595,
+    "_locale" : "vi",
+    "_storefront" : "VNM",
+    "_storeKitErrors" : [
+      {
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}
