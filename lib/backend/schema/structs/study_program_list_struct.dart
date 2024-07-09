@@ -34,6 +34,7 @@ class StudyProgramListStruct extends BaseStruct {
     UserStruct? userCreated,
     bool? checkBoxProgram,
     CertificateIdStruct? certificateId,
+    List<int>? reacts,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -61,7 +62,8 @@ class StudyProgramListStruct extends BaseStruct {
         _departments = departments,
         _userCreated = userCreated,
         _checkBoxProgram = checkBoxProgram,
-        _certificateId = certificateId;
+        _certificateId = certificateId,
+        _reacts = reacts;
 
   // "id" field.
   String? _id;
@@ -301,6 +303,17 @@ class StudyProgramListStruct extends BaseStruct {
 
   bool hasCertificateId() => _certificateId != null;
 
+  // "reacts" field.
+  List<int>? _reacts;
+  List<int> get reacts => _reacts ?? const [];
+  set reacts(List<int>? val) => _reacts = val;
+
+  void updateReacts(Function(List<int>) updateFn) {
+    updateFn(_reacts ??= []);
+  }
+
+  bool hasReacts() => _reacts != null;
+
   static StudyProgramListStruct fromMap(Map<String, dynamic> data) =>
       StudyProgramListStruct(
         id: data['id'] as String?,
@@ -343,6 +356,7 @@ class StudyProgramListStruct extends BaseStruct {
         userCreated: UserStruct.maybeFromMap(data['user_created']),
         checkBoxProgram: data['checkBoxProgram'] as bool?,
         certificateId: CertificateIdStruct.maybeFromMap(data['certificate_id']),
+        reacts: getDataList(data['reacts']),
       );
 
   static StudyProgramListStruct? maybeFromMap(dynamic data) => data is Map
@@ -378,6 +392,7 @@ class StudyProgramListStruct extends BaseStruct {
         'user_created': _userCreated?.toMap(),
         'checkBoxProgram': _checkBoxProgram,
         'certificate_id': _certificateId?.toMap(),
+        'reacts': _reacts,
       }.withoutNulls;
 
   @override
@@ -497,6 +512,11 @@ class StudyProgramListStruct extends BaseStruct {
         'certificate_id': serializeParam(
           _certificateId,
           ParamType.DataStruct,
+        ),
+        'reacts': serializeParam(
+          _reacts,
+          ParamType.int,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -649,6 +669,11 @@ class StudyProgramListStruct extends BaseStruct {
           false,
           structBuilder: CertificateIdStruct.fromSerializableMap,
         ),
+        reacts: deserializeParam<int>(
+          data['reacts'],
+          ParamType.int,
+          true,
+        ),
       );
 
   @override
@@ -685,7 +710,8 @@ class StudyProgramListStruct extends BaseStruct {
         listEquality.equals(departments, other.departments) &&
         userCreated == other.userCreated &&
         checkBoxProgram == other.checkBoxProgram &&
-        certificateId == other.certificateId;
+        certificateId == other.certificateId &&
+        listEquality.equals(reacts, other.reacts);
   }
 
   @override
@@ -717,7 +743,8 @@ class StudyProgramListStruct extends BaseStruct {
         departments,
         userCreated,
         checkBoxProgram,
-        certificateId
+        certificateId,
+        reacts
       ]);
 }
 

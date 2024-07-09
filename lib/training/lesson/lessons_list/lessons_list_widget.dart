@@ -114,7 +114,16 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.goNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(

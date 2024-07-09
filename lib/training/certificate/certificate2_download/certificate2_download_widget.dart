@@ -63,24 +63,21 @@ class _Certificate2DownloadWidgetState
         alignment: const AlignmentDirectional(0.0, 0.0),
         children: [
           Opacity(
-            opacity: 0.2,
+            opacity: 0.3,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
-                    child: Image.network(
-                      '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                        FFAppState().staffOrganization,
-                        r'''$.logo''',
-                      ).toString()}?access_token=${FFAppState().accessToken}',
-                      width: 60.0,
-                      height: 60.0,
-                      fit: BoxFit.cover,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Image.network(
+                    '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                      FFAppState().staffOrganization,
+                      r'''$.logo''',
+                    ).toString()}?access_token=${FFAppState().accessToken}',
+                    width: 40.0,
+                    height: 40.0,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Container(
@@ -92,7 +89,7 @@ class _Certificate2DownloadWidgetState
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 5.0,
+                          fontSize: 8.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -104,18 +101,22 @@ class _Certificate2DownloadWidgetState
             alignment: const AlignmentDirectional(0.0, 0.0),
             children: [
               Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            fontSize: 12.0,
-                            letterSpacing: 0.0,
-                          ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                      child: Text(
+                        'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
                     ),
                     Text(
                       'Độc lập - Tự do - Hạnh phúc',
@@ -164,7 +165,7 @@ class _Certificate2DownloadWidgetState
                               fontFamily: 'Nunito Sans',
                               fontSize: 12.0,
                               letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.normal,
                             ),
                       ),
                     ),
@@ -175,7 +176,7 @@ class _Certificate2DownloadWidgetState
                             fontFamily: 'Nunito Sans',
                             fontSize: 12.0,
                             letterSpacing: 0.0,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.normal,
                           ),
                     ),
                     Text(
@@ -191,13 +192,13 @@ class _Certificate2DownloadWidgetState
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Nunito Sans',
-                            fontSize: 10.0,
+                            fontSize: 8.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.normal,
                             fontStyle: FontStyle.italic,
                           ),
                     ),
-                  ],
+                  ].divide(const SizedBox(height: 3.0)),
                 ),
               ),
               Align(

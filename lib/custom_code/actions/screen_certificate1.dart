@@ -149,6 +149,146 @@ Future<void> captureAndSave(
   }
 }
 
+// Widget? findContainerByTag(
+//   String tag,
+//   String program,
+//   String dateStart,
+//   String dateEnd,
+//   Uint8List imageBytes,
+//   String nameOr,
+//   String userName,
+//   String position,
+// ) {
+//   if (tag == 'Stack') {
+//     return Center(
+//       child: RepaintBoundary(
+//         child: Container(
+//           width: double.infinity,
+//           height: 200,
+//           decoration: BoxDecoration(
+//             color: Colors.grey[200],
+//           ),
+//           child: Stack(
+//             alignment: AlignmentDirectional.center,
+//             children: [
+//               Opacity(
+//                 opacity: 0.2,
+//                 child: Column(
+//                   mainAxisSize: MainAxisSize.min,
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     Padding(
+//                       padding: EdgeInsets.all(8.0),
+//                       child: ClipRRect(
+//                         borderRadius: BorderRadius.circular(30),
+//                         child: Image.memory(
+//                           imageBytes,
+//                           width: 60,
+//                           height: 60,
+//                           fit: BoxFit.cover,
+//                         ),
+//                       ),
+//                     ),
+//                     // Text(
+//                     //   nameOr,
+//                     //   style: TextStyle(
+//                     //     color: Colors.black,
+//                     //     fontSize: 12,
+//                     //     fontFamily: 'Nunito Sans',
+//                     //   ),
+//                     // ),
+//                     Container(
+//                       width: 100,
+//                       alignment: Alignment.center,
+//                       child: Text(
+//                         nameOr,
+//                         style: TextStyle(
+//                           color: Colors.black,
+//                           fontSize: 12,
+//                           fontFamily: 'Nunito Sans',
+//                         ),
+//                         textAlign: TextAlign.center,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               Padding(
+//                 padding: EdgeInsets.all(8.0),
+//                 child: Column(
+//                   mainAxisSize: MainAxisSize.min,
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   children: [
+//                     Text(
+//                       'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
+//                       style: TextStyle(
+//                         fontSize: 12,
+//                         fontFamily: 'Nunito Sans',
+//                       ),
+//                     ),
+//                     Text(
+//                       'Độc lập - Tự do - Hạnh phúc',
+//                       style: TextStyle(
+//                         fontSize: 12,
+//                         fontFamily: 'Nunito Sans',
+//                       ),
+//                     ),
+//                     Text(
+//                       'Chứng nhận',
+//                       style: TextStyle(
+//                         color: Colors.red,
+//                         fontSize: 16,
+//                         fontFamily: 'Nunito Sans',
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     Text(
+//                       userName,
+//                       style: TextStyle(
+//                         fontSize: 12,
+//                         fontFamily: 'Nunito Sans',
+//                         fontWeight: FontWeight.w500,
+//                       ),
+//                     ),
+//                     Text(
+//                       'Chức vụ: \"$position\"',
+//                       style: TextStyle(
+//                         fontSize: 12,
+//                         fontFamily: 'Nunito Sans',
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     Text(
+//                       'Đã hoàn thành: "$program"',
+//                       textAlign: TextAlign.center,
+//                       style: TextStyle(
+//                         fontSize: 12,
+//                         fontFamily: 'Nunito Sans',
+//                         fontWeight: FontWeight.w500,
+//                       ),
+//                     ),
+//                     Text(
+//                       'Từ ngày $dateStart đến ngày $dateEnd',
+//                       textAlign: TextAlign.center,
+//                       style: TextStyle(
+//                         fontSize: 10,
+//                         fontFamily: 'Nunito Sans',
+//                         fontStyle: FontStyle.italic,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   return null;
+// }
+
 Widget? findContainerByTag(
   String tag,
   String program,
@@ -180,23 +320,15 @@ Widget? findContainerByTag(
                     Padding(
                       padding: EdgeInsets.all(8.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(20),
                         child: Image.memory(
                           imageBytes,
-                          width: 60,
-                          height: 60,
+                          width: 40,
+                          height: 40,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    // Text(
-                    //   nameOr,
-                    //   style: TextStyle(
-                    //     color: Colors.black,
-                    //     fontSize: 12,
-                    //     fontFamily: 'Nunito Sans',
-                    //   ),
-                    // ),
                     Container(
                       width: 100,
                       alignment: Alignment.center,
@@ -204,7 +336,7 @@ Widget? findContainerByTag(
                         nameOr,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 12,
+                          fontSize: 10,
                           fontFamily: 'Nunito Sans',
                         ),
                         textAlign: TextAlign.center,
@@ -233,6 +365,7 @@ Widget? findContainerByTag(
                         fontFamily: 'Nunito Sans',
                       ),
                     ),
+                    SizedBox(height: 10),
                     Text(
                       'Chứng nhận',
                       style: TextStyle(
@@ -242,6 +375,7 @@ Widget? findContainerByTag(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    SizedBox(height: 10),
                     Text(
                       userName,
                       style: TextStyle(
@@ -250,6 +384,7 @@ Widget? findContainerByTag(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    SizedBox(height: 5),
                     Text(
                       'Chức vụ: \"$position\"',
                       style: TextStyle(
@@ -271,7 +406,7 @@ Widget? findContainerByTag(
                       'Từ ngày $dateStart đến ngày $dateEnd',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 8,
                         fontFamily: 'Nunito Sans',
                         fontStyle: FontStyle.italic,
                       ),

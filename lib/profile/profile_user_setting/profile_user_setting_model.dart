@@ -49,6 +49,12 @@ class ProfileUserSettingModel
   ApiCallResponse? getUserSettingOff;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
+  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in SwitchListTile widget.
+  bool? authenticateUsingBiometriceSettingLoad1;
+  // Stores action output result for [Action Block - tokenReload] action in SwitchListTile widget.
+  bool? checktokenReloadBiometricsSetting;
+  // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.
+  String? shkeyPublicKeySettingOn;
 
   @override
   void initState(BuildContext context) {}

@@ -151,11 +151,19 @@ class _MobileEditorState extends State<MobileEditor> {
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontWeight: FontWeight.bold)),
           actions: [
-            IconButton(
-              icon: Text("Lưu",
-                  style: FlutterFlowTheme.of(context).titleMedium.copyWith(
-                        color: FlutterFlowTheme.of(context).blue,
-                      )),
+            TextButton(
+              style: TextButton.styleFrom(
+                padding: EdgeInsets.zero,
+                minimumSize: Size(50, 30),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                backgroundColor: Colors.transparent,
+              ),
+              child: Text(
+                "Lưu",
+                style: FlutterFlowTheme.of(context).titleMedium.copyWith(
+                      color: FlutterFlowTheme.of(context).blue,
+                    ),
+              ),
               onPressed: () {
                 final editorContent = _editorState.document.toJson();
                 final jsonString = json.encode(editorContent);
@@ -197,7 +205,7 @@ class _MobileEditorState extends State<MobileEditor> {
             Expanded(
               child: Stack(
                 children: [
-                  Expanded(
+                  Positioned.fill(
                     child: MobileFloatingToolbar(
                       editorState: _editorState,
                       editorScrollController: editorScrollController,
@@ -258,12 +266,13 @@ class _MobileEditorState extends State<MobileEditor> {
                   //   focusedSelection: Selection.collapsed(Position(path: [0])),
                   // ),
                   if (_isUploading)
-                    Container(
+                    Positioned.fill(
+                        child: Container(
                       color: Colors.black54,
                       child: const Center(
                         child: CircularProgressIndicator(),
                       ),
-                    ),
+                    )),
                 ],
               ),
             ),

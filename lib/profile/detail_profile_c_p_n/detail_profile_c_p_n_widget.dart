@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/profile/popup_detail_profile/popup_detail_profile_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
@@ -124,6 +125,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             if ((_model.data != null) &&
                 (_model.apiResultGetOrganization != null))
@@ -743,29 +745,32 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                             ),
                                                           ),
                                                         ),
-                                                        Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0),
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                            ),
-                                                          ),
-                                                          child: Visibility(
-                                                            visible: _model.data
-                                                                        ?.description !=
+                                                        if ((_model.data?.description !=
                                                                     null &&
                                                                 _model.data
                                                                         ?.description !=
-                                                                    '',
+                                                                    '') &&
+                                                            (_model.data
+                                                                    ?.description !=
+                                                                'undefined'))
+                                                          Container(
+                                                            height: 150.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                              ),
+                                                            ),
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsets
@@ -791,7 +796,95 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
+                                                        if ((_model.data?.description !=
+                                                                    null &&
+                                                                _model.data
+                                                                        ?.description !=
+                                                                    '') &&
+                                                            (_model.data
+                                                                    ?.description !=
+                                                                'undefined'))
+                                                          Builder(
+                                                            builder:
+                                                                (context) =>
+                                                                    Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (dialogContext) {
+                                                                      return Dialog(
+                                                                        elevation:
+                                                                            0,
+                                                                        insetPadding:
+                                                                            EdgeInsets.zero,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        alignment:
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                        child:
+                                                                            SizedBox(
+                                                                          height:
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 1.0,
+                                                                          child:
+                                                                              PopupDetailProfileWidget(
+                                                                            content:
+                                                                                _model.data?.description,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Mở rộng',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
                                                         if ((_model.data
                                                                         ?.description ==
                                                                     null ||
@@ -1317,7 +1410,7 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                 ),
               ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   if (Navigator.of(context).canPop()) {

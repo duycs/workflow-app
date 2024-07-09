@@ -26,6 +26,8 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
 
   bool isCheckLoad = false;
 
+  String checkColor = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

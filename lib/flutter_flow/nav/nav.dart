@@ -1118,6 +1118,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               structBuilder: StudyProgramListStruct.fromSerializableMap,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'TimekeepingGroup',
+          path: '/timekeepingGroup',
+          builder: (context, params) => const TimekeepingGroupWidget(),
+        ),
+        FFRoute(
+          name: 'TimekeepingCreate',
+          path: '/timekeepingCreate',
+          builder: (context, params) => const TimekeepingCreateWidget(),
+        ),
+        FFRoute(
+          name: 'TimeKeeping',
+          path: '/timeKeeping',
+          builder: (context, params) => const TimeKeepingWidget(),
+        ),
+        FFRoute(
+          name: 'Noti',
+          path: '/noti',
+          builder: (context, params) => const NotiWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

@@ -262,6 +262,180 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Align(
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      if ('1' == '2')
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.memory(
+                                            _model.uploadedLocalFile1.bytes ??
+                                                Uint8List.fromList([]),
+                                            width: 200.0,
+                                            height: 110.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      if ((_model.uploadedLocalFile1.bytes
+                                                  ?.isEmpty ??
+                                              true))
+                                        Container(
+                                          width: 200.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                          ),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Chưa có dữ liệu!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                      if ((_model.uploadedLocalFile1.bytes
+                                                  ?.isNotEmpty ??
+                                              false))
+                                        Container(
+                                          width: 200.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .success,
+                                            ),
+                                          ),
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Tải Video thành công!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: Colors.white,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    final selectedMedia = await selectMedia(
+                                      isVideo: true,
+                                      mediaSource: MediaSource.videoGallery,
+                                      multiImage: false,
+                                    );
+                                    if (selectedMedia != null &&
+                                        selectedMedia.every((m) =>
+                                            validateFileFormat(
+                                                m.storagePath, context))) {
+                                      setState(
+                                          () => _model.isDataUploading1 = true);
+                                      var selectedUploadedFiles =
+                                          <FFUploadedFile>[];
+
+                                      try {
+                                        selectedUploadedFiles = selectedMedia
+                                            .map((m) => FFUploadedFile(
+                                                  name: m.storagePath
+                                                      .split('/')
+                                                      .last,
+                                                  bytes: m.bytes,
+                                                  height: m.dimensions?.height,
+                                                  width: m.dimensions?.width,
+                                                  blurHash: m.blurHash,
+                                                ))
+                                            .toList();
+                                      } finally {
+                                        _model.isDataUploading1 = false;
+                                      }
+                                      if (selectedUploadedFiles.length ==
+                                          selectedMedia.length) {
+                                        setState(() {
+                                          _model.uploadedLocalFile1 =
+                                              selectedUploadedFiles.first;
+                                        });
+                                      } else {
+                                        setState(() {});
+                                        return;
+                                      }
+                                    }
+
+                                    _model.uploadVideo = _model.uploadVideo;
+                                    setState(() {});
+                                  },
+                                  text: ' Video',
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 18.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        26.0, 0.0, 26.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: Colors.white,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 16.0)),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Bài thi',
                             style: FlutterFlowTheme.of(context)
@@ -696,7 +870,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if ((_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile2.bytes
                                                 ?.isNotEmpty ??
                                             false))
                                       Align(
@@ -706,7 +880,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.memory(
-                                            _model.uploadedLocalFile1.bytes ??
+                                            _model.uploadedLocalFile2.bytes ??
                                                 Uint8List.fromList([]),
                                             width: 200.0,
                                             height: 110.0,
@@ -714,7 +888,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                           ),
                                         ),
                                       ),
-                                    if ((_model.uploadedLocalFile1.bytes
+                                    if ((_model.uploadedLocalFile2.bytes
                                                 ?.isEmpty ??
                                             true))
                                       Container(
@@ -760,180 +934,6 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                             validateFileFormat(
                                                 m.storagePath, context))) {
                                       setState(
-                                          () => _model.isDataUploading1 = true);
-                                      var selectedUploadedFiles =
-                                          <FFUploadedFile>[];
-
-                                      try {
-                                        selectedUploadedFiles = selectedMedia
-                                            .map((m) => FFUploadedFile(
-                                                  name: m.storagePath
-                                                      .split('/')
-                                                      .last,
-                                                  bytes: m.bytes,
-                                                  height: m.dimensions?.height,
-                                                  width: m.dimensions?.width,
-                                                  blurHash: m.blurHash,
-                                                ))
-                                            .toList();
-                                      } finally {
-                                        _model.isDataUploading1 = false;
-                                      }
-                                      if (selectedUploadedFiles.length ==
-                                          selectedMedia.length) {
-                                        setState(() {
-                                          _model.uploadedLocalFile1 =
-                                              selectedUploadedFiles.first;
-                                        });
-                                      } else {
-                                        setState(() {});
-                                        return;
-                                      }
-                                    }
-
-                                    _model.uploadImage = _model.uploadImage;
-                                    setState(() {});
-                                  },
-                                  text: 'Ảnh',
-                                  icon: const Icon(
-                                    Icons.add,
-                                    size: 18.0,
-                                  ),
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: Colors.white,
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    elevation: 3.0,
-                                    borderSide: const BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(8.0),
-                                  ),
-                                ),
-                              ),
-                            ].divide(const SizedBox(width: 16.0)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      if ('1' == '2')
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.memory(
-                                            _model.uploadedLocalFile2.bytes ??
-                                                Uint8List.fromList([]),
-                                            width: 200.0,
-                                            height: 110.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      if ((_model.uploadedLocalFile2.bytes
-                                                  ?.isEmpty ??
-                                              true))
-                                        Container(
-                                          width: 200.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                            ),
-                                          ),
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'Chưa có dữ liệu!',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ),
-                                      if ((_model.uploadedLocalFile2.bytes
-                                                  ?.isNotEmpty ??
-                                              false))
-                                        Container(
-                                          width: 200.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondary,
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                            border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .success,
-                                            ),
-                                          ),
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: Text(
-                                            'Tải Video thành công!',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: Colors.white,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    final selectedMedia = await selectMedia(
-                                      isVideo: true,
-                                      mediaSource: MediaSource.videoGallery,
-                                      multiImage: false,
-                                    );
-                                    if (selectedMedia != null &&
-                                        selectedMedia.every((m) =>
-                                            validateFileFormat(
-                                                m.storagePath, context))) {
-                                      setState(
                                           () => _model.isDataUploading2 = true);
                                       var selectedUploadedFiles =
                                           <FFUploadedFile>[];
@@ -965,10 +965,10 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                       }
                                     }
 
-                                    _model.uploadVideo = _model.uploadVideo;
+                                    _model.uploadImage = _model.uploadImage;
                                     setState(() {});
                                   },
-                                  text: ' Video',
+                                  text: 'Ảnh',
                                   icon: const Icon(
                                     Icons.add,
                                     size: 18.0,
@@ -976,7 +976,7 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                                   options: FFButtonOptions(
                                     height: 40.0,
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        26.0, 0.0, 26.0, 0.0),
+                                        16.0, 0.0, 16.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
@@ -1215,97 +1215,103 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             ),
                           ),
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                useSafeArea: true,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: SizedBox(
-                                        height: double.infinity,
-                                        child: MobileEditorComponentWidget(
-                                          content: _model.json,
-                                          setContentCallback:
-                                              (editorContent) async {
-                                            _model.checkContent =
-                                                editorContent.toString();
-                                            _model.json = editorContent;
-                                            setState(() {});
-                                            Navigator.pop(context);
-                                          },
+                          child: Builder(
+                            builder: (context) => InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: SizedBox(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          child: MobileEditorComponentWidget(
+                                            content: _model.json,
+                                            setContentCallback:
+                                                (editorContent) async {
+                                              _model.checkContent =
+                                                  editorContent.toString();
+                                              _model.json = editorContent;
+                                              setState(() {});
+                                              Navigator.pop(context);
+                                            },
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                            child: Container(
-                              width: 180.0,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(10.0),
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              },
+                              child: Container(
+                                width: 180.0,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  border: Border.all(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
                                 ),
-                              ),
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 5.0, 0.0),
-                                      child: Icon(
-                                        Icons.edit_note,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24.0,
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 5.0, 0.0),
+                                        child: Icon(
+                                          Icons.edit_note,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
-                                    ),
-                                    if (_model.checkContent == '')
-                                      Text(
-                                        'Nhập nội dung',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    if (_model.checkContent != '')
-                                      Text(
-                                        'Chỉnh sửa nội dung',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                  ],
+                                      if (_model.checkContent == '')
+                                        Text(
+                                          'Nhập nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      if (_model.checkContent != '')
+                                        Text(
+                                          'Chỉnh sửa nội dung',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -1341,12 +1347,12 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                 padding: const EdgeInsets.all(16.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFIleVideo(context);
                       setState(() {});
                     }
-                    if ((_model.uploadedLocalFile1.bytes?.isNotEmpty ??
+                    if ((_model.uploadedLocalFile2.bytes?.isNotEmpty ??
                             false)) {
                       await _model.uploadFIleImage(context);
                       setState(() {});

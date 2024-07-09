@@ -145,6 +145,152 @@ Future<void> captureAndSave(
   }
 }
 
+// Widget? findContainerByTag(
+//   String tag,
+//   String program,
+//   String dateStart,
+//   String dateEnd,
+//   Uint8List imageBytes,
+//   String nameOr,
+//   String userName,
+//   String position,
+// ) {
+//   if (tag == 'Stack') {
+//     return Center(
+//       child: Stack(
+//         children: [
+//           Container(
+//             width: double.infinity,
+//             height: 200,
+//             color: Colors.grey[200],
+//             alignment: Alignment.center,
+//             child: Padding(
+//               padding: const EdgeInsets.all(10),
+//               child: Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Expanded(
+//                     child: Stack(
+//                       alignment: Alignment.center,
+//                       children: [
+//                         Opacity(
+//                           opacity: 0.3,
+//                           child: Align(
+//                             alignment: Alignment.center,
+//                             child: Icon(
+//                               Icons.star,
+//                               color: Colors.amber,
+//                               size: 60,
+//                             ),
+//                           ),
+//                         ),
+//                         Align(
+//                           alignment: Alignment.center,
+//                           child: Column(
+//                             mainAxisSize: MainAxisSize.min,
+//                             mainAxisAlignment: MainAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
+//                                 style: TextStyle(
+//                                   fontSize: 12,
+//                                 ),
+//                               ),
+//                               Text(
+//                                 'Độc lập - Tự do - Hạnh phúc',
+//                                 style: TextStyle(
+//                                   fontSize: 12,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 6),
+//                               Text(
+//                                 'Chứng nhận',
+//                                 style: TextStyle(
+//                                   color: Colors.red,
+//                                   fontSize: 16,
+//                                   fontWeight: FontWeight.bold,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 6),
+//                               Text(
+//                                 userName,
+//                                 style: TextStyle(
+//                                   fontSize: 12,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 2),
+//                               Text(
+//                                 'Chức vụ: \"$position\"',
+//                                 style: TextStyle(
+//                                   fontSize: 12,
+//                                   fontWeight: FontWeight.bold,
+//                                 ),
+//                               ),
+//                               Text(
+//                                 'Đã hoàn thành: \"$program\"',
+//                                 textAlign: TextAlign.center,
+//                                 style: TextStyle(
+//                                   fontSize: 12,
+//                                 ),
+//                               ),
+//                               Text(
+//                                 'Từ ngày $dateStart đến ngày $dateEnd',
+//                                 textAlign: TextAlign.center,
+//                                 style: TextStyle(
+//                                   fontSize: 10,
+//                                   fontStyle: FontStyle.italic,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 6),
+//                             ],
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//           Positioned(
+//             top: 10,
+//             right: 10,
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 ClipRRect(
+//                   borderRadius: BorderRadius.circular(15),
+//                   child: Container(
+//                     width: 30,
+//                     height: 30,
+//                     child: Image.memory(
+//                       imageBytes,
+//                       fit: BoxFit.cover,
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   width: 50,
+//                   alignment: Alignment.center,
+//                   child: Text(
+//                     nameOr,
+//                     textAlign: TextAlign.center,
+//                     style: TextStyle(
+//                       fontSize: 8,
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   return null;
+// }
 Widget? findContainerByTag(
   String tag,
   String program,
@@ -179,9 +325,9 @@ Widget? findContainerByTag(
                           child: Align(
                             alignment: Alignment.center,
                             child: Icon(
-                              Icons.star,
+                              Icons.emoji_events,
                               color: Colors.amber,
-                              size: 60,
+                              size: 80,
                             ),
                           ),
                         ),
@@ -203,7 +349,7 @@ Widget? findContainerByTag(
                                   fontSize: 12,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 10),
                               Text(
                                 'Chứng nhận',
                                 style: TextStyle(
@@ -212,14 +358,14 @@ Widget? findContainerByTag(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 10),
                               Text(
                                 userName,
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
                               ),
-                              SizedBox(height: 2),
+                              SizedBox(height: 5),
                               Text(
                                 'Chức vụ: \"$position\"',
                                 style: TextStyle(
@@ -238,11 +384,11 @@ Widget? findContainerByTag(
                                 'Từ ngày $dateStart đến ngày $dateEnd',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 8,
                                   fontStyle: FontStyle.italic,
                                 ),
                               ),
-                              SizedBox(height: 6),
+                              SizedBox(height: 10),
                             ],
                           ),
                         ),
@@ -254,8 +400,8 @@ Widget? findContainerByTag(
             ),
           ),
           Positioned(
-            top: 10,
-            right: 10,
+            top: 20,
+            right: 20,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -271,7 +417,7 @@ Widget? findContainerByTag(
                   ),
                 ),
                 Container(
-                  width: 50,
+                  width: 60,
                   alignment: Alignment.center,
                   child: Text(
                     nameOr,

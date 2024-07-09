@@ -590,7 +590,6 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                                                       safeSetState(() {}));
                                                 },
                                                 child: Container(
-                                                  width: 120.0,
                                                   height: 30.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(

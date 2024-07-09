@@ -14,9 +14,11 @@ class CompanyReviewWidget extends StatefulWidget {
   const CompanyReviewWidget({
     super.key,
     this.programId,
+    this.callBack,
   });
 
   final String? programId;
+  final Future Function()? callBack;
 
   @override
   State<CompanyReviewWidget> createState() => _CompanyReviewWidgetState();
@@ -142,10 +144,10 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                         initialRating: _model.ratingBarValue ??= 0.0,
                         unratedColor: FlutterFlowTheme.of(context).accent3,
                         itemCount: 5,
-                        itemSize: 40.0,
+                        itemSize: 50.0,
                         glowColor: FlutterFlowTheme.of(context).tertiary,
                       ),
-                    ].divide(const SizedBox(height: 6.0)),
+                    ].divide(const SizedBox(height: 8.0)),
                   ),
                 ),
                 Row(
@@ -189,12 +191,13 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
+                            await widget.callBack?.call();
                             Navigator.pop(context);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  'Đánh giá không thành công',
+                                  'Đánh giá không thành công!',
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,

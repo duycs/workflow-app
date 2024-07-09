@@ -937,7 +937,12 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                       shouldSetState = true;
                       if (_model.tokenReloadStudyProgramCreate!) {
                         _model.updateRequestDataStruct(
-                          (e) => e..status = 'published',
+                          (e) => e
+                            ..status = 'published'
+                            ..organizationId = getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.organization_id''',
+                            ).toString(),
                         );
                         setState(() {});
                         if (_model.estimateInDayTextController.text != '') {
@@ -1035,6 +1040,10 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                                 r'''$.map''',
                               ),
                               'status': 'published',
+                              'organization_id': getJsonField(
+                                FFAppState().staffLogin,
+                                r'''$.organization_id''',
+                              ),
                             },
                           );
 

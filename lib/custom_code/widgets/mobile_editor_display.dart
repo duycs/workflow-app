@@ -40,19 +40,22 @@ class _MobileEditorDisplayState extends State<MobileEditorDisplay> {
         document: Document.fromJson(jsonMap),
       );
 
-      return AppFlowyEditor(
-        editorState: editorState,
-        editorStyle: EditorStyle.mobile(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-          textStyleConfiguration: TextStyleConfiguration(
-            text: TextStyle(
-              fontSize: FlutterFlowTheme.of(context).bodyMedium.fontSize,
-              color: FlutterFlowTheme.of(context).primaryText,
+      return SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: AppFlowyEditor(
+          editorState: editorState,
+          editorStyle: EditorStyle.mobile(
+            padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+            textStyleConfiguration: TextStyleConfiguration(
+              text: TextStyle(
+                fontSize: FlutterFlowTheme.of(context).bodyMedium.fontSize,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
             ),
           ),
+          editable: false,
+          shrinkWrap: true,
         ),
-        editable: false,
-        shrinkWrap: true,
       );
     } catch (e) {
       return Text('Lỗi khi hiển thị nội dung: $e');

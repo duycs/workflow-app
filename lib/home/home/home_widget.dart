@@ -527,6 +527,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '1';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'StudyProgramList',
                                     queryParameters: {
@@ -551,6 +558,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '1'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : const Color(0x00000000),
+                                    ),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
@@ -590,6 +602,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '2';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'LessonsList',
                                     queryParameters: {
@@ -614,6 +633,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '2'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : const Color(0x00000000),
+                                    ),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
@@ -653,6 +677,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '3';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'TestList',
                                     queryParameters: {
@@ -677,6 +708,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '3'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : const Color(0x00000000),
+                                    ),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
@@ -716,6 +752,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '4';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'QuestionList',
                                     extra: <String, dynamic>{
@@ -734,6 +777,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '4'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : const Color(0x00000000),
+                                    ),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
@@ -773,6 +821,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '5';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'CertificateList',
                                     extra: <String, dynamic>{
@@ -791,6 +846,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
                                     borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '5'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : const Color(0x00000000),
+                                    ),
                                   ),
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
@@ -857,6 +917,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '6';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'TaskList',
                                     queryParameters: {
@@ -887,8 +954,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: _model.checkColorBorder == '6'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : FlutterFlowTheme.of(context)
+                                              .alternate,
                                     ),
                                   ),
                                 ),
@@ -913,6 +982,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '7';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'ProcedurePublishedList',
                                     extra: <String, dynamic>{
@@ -937,8 +1013,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: _model.checkColorBorder == '7'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : FlutterFlowTheme.of(context)
+                                              .alternate,
                                     ),
                                   ),
                                 ),
@@ -963,6 +1041,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColorBorder = '8';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'WorkResultList',
                                     extra: <String, dynamic>{
@@ -987,8 +1072,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     ),
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: _model.checkColorBorder == '8'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : FlutterFlowTheme.of(context)
+                                              .alternate,
                                     ),
                                   ),
                                 ),
@@ -1038,6 +1125,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                _model.checkColorBorder = '9';
+                                setState(() {});
+                                await Future.delayed(
+                                    const Duration(milliseconds: 10));
+                                _model.checkColorBorder = '';
+                                setState(() {});
+
                                 context.pushNamed(
                                   'ProcedureList',
                                   extra: <String, dynamic>{
@@ -1053,6 +1147,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).alternate,
                                   borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: _model.checkColorBorder == '9'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : const Color(0x00000000),
+                                  ),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1104,6 +1203,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
+                                _model.checkColorBorder = '10';
+                                setState(() {});
+                                await Future.delayed(
+                                    const Duration(milliseconds: 10));
+                                _model.checkColorBorder = '';
+                                setState(() {});
+
                                 context.pushNamed(
                                   'ProcessTemplateList',
                                   extra: <String, dynamic>{
@@ -1119,6 +1225,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context).alternate,
                                   borderRadius: BorderRadius.circular(8.0),
+                                  border: Border.all(
+                                    color: _model.checkColorBorder == '10'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : const Color(0x00000000),
+                                  ),
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
@@ -1172,7 +1283,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
             child: wrapWithModel(
               model: _model.navBarModel,
               updateCallback: () => setState(() {}),

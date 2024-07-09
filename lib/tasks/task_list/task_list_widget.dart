@@ -14,6 +14,7 @@ import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
 import '/tasks/filter_task_list/filter_task_list_widget.dart';
+import '/tasks/popup_task_list/popup_task_list_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -693,7 +694,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                           firstPageProgressIndicatorBuilder: (_) => Center(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 100.0, 0.0, 0.0),
+                                  0.0, 250.0, 0.0, 0.0),
                               child: SizedBox(
                                 width: 50.0,
                                 height: 50.0,
@@ -709,7 +710,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                           newPageProgressIndicatorBuilder: (_) => Center(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 100.0, 0.0, 0.0),
+                                  0.0, 250.0, 0.0, 0.0),
                               child: SizedBox(
                                 width: 50.0,
                                 height: 50.0,
@@ -2653,7 +2654,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: Container(
-                                                      height: 300.0,
+                                                      height: 150.0,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
                                                                 .of(context)
@@ -2684,140 +2685,83 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       ),
                                                     ),
                                                   ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(6.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          useSafeArea: true,
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
+                                                  Builder(
+                                                    builder: (context) =>
+                                                        Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(6.0),
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (dialogContext) {
+                                                              return Dialog(
+                                                                elevation: 0,
+                                                                insetPadding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                alignment: const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0)
+                                                                    .resolve(
+                                                                        Directionality.of(
+                                                                            context)),
                                                                 child:
-                                                                    MobileEditorComponentWidget(
-                                                                  content:
-                                                                      getJsonField(
-                                                                    dataListItem
+                                                                    GestureDetector(
+                                                                  onTap: () => _model
+                                                                          .unfocusNode
+                                                                          .canRequestFocus
+                                                                      ? FocusScope.of(
+                                                                              context)
+                                                                          .requestFocus(_model
+                                                                              .unfocusNode)
+                                                                      : FocusScope.of(
+                                                                              context)
+                                                                          .unfocus(),
+                                                                  child:
+                                                                      PopupTaskListWidget(
+                                                                    content: dataListItem
                                                                         .operations
                                                                         .first
                                                                         .operationsId
-                                                                        .toMap(),
-                                                                    r'''$.result''',
+                                                                        .result,
                                                                   ),
-                                                                  setContentCallback:
-                                                                      (editorContent) async {
-                                                                    _model.updateoperation3Token =
-                                                                        await action_blocks
-                                                                            .tokenReload(context);
-                                                                    if (_model
-                                                                        .updateoperation3Token!) {
-                                                                      _model.apiResultUpdateoperation3Copy = await TaskGroup
-                                                                          .updateOperationCall
-                                                                          .call(
-                                                                        accessToken:
-                                                                            FFAppState().accessToken,
-                                                                        requestDataJson: <String,
-                                                                            dynamic>{
-                                                                          'status':
-                                                                              'done',
-                                                                          'result':
-                                                                              editorContent,
-                                                                        },
-                                                                        operationId: dataListItem
-                                                                            .operations
-                                                                            .first
-                                                                            .operationsId
-                                                                            .id,
-                                                                      );
-
-                                                                      if (!(_model
-                                                                              .apiResultUpdateoperation3Copy
-                                                                              ?.succeeded ??
-                                                                          true)) {
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .showSnackBar(
-                                                                          SnackBar(
-                                                                            content:
-                                                                                Text(
-                                                                              'Lưu thất bại!',
-                                                                              style: TextStyle(
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                              ),
-                                                                            ),
-                                                                            duration:
-                                                                                const Duration(milliseconds: 4000),
-                                                                            backgroundColor:
-                                                                                FlutterFlowTheme.of(context).error,
-                                                                          ),
-                                                                        );
-                                                                      }
-                                                                      setState(() => _model
-                                                                          .listViewPagingController1
-                                                                          ?.refresh());
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    } else {
-                                                                      setState(
-                                                                          () {});
-                                                                    }
-                                                                  },
                                                                 ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              setState(() {}));
+                                                        },
+                                                        child: Text(
+                                                          'Mở rộng',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
                                                               ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            safeSetState(
-                                                                () {}));
-
-                                                        setState(() {});
-                                                      },
-                                                      child: Text(
-                                                        'Mở rộng',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontStyle:
-                                                                      FontStyle
-                                                                          .italic,
-                                                                ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -2834,160 +2778,170 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
                                                 children: [
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      await showModalBottomSheet(
-                                                        isScrollControlled:
-                                                            true,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        useSafeArea: true,
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
+                                                  Builder(
+                                                    builder: (context) =>
+                                                        FFButtonWidget(
+                                                      onPressed: () async {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (dialogContext) {
+                                                            return Dialog(
+                                                              elevation: 0,
+                                                              insetPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              backgroundColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              alignment: const AlignmentDirectional(
+                                                                      0.0, 0.0)
+                                                                  .resolve(
+                                                                      Directionality.of(
+                                                                          context)),
                                                               child:
-                                                                  MobileEditorComponentWidget(
-                                                                content:
-                                                                    getJsonField(
-                                                                  dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .toMap(),
-                                                                  r'''$.result''',
-                                                                ),
-                                                                setContentCallback:
-                                                                    (editorContent) async {
-                                                                  _model.updateoperation22Token =
-                                                                      await action_blocks
-                                                                          .tokenReload(
-                                                                              context);
-                                                                  if (_model
-                                                                      .updateoperation22Token!) {
-                                                                    _model.apiResultUpdateoperation22Copy =
-                                                                        await TaskGroup
-                                                                            .updateOperationCall
-                                                                            .call(
-                                                                      accessToken:
-                                                                          FFAppState()
-                                                                              .accessToken,
-                                                                      requestDataJson: <String,
-                                                                          dynamic>{
-                                                                        'status':
-                                                                            'done',
-                                                                        'result':
-                                                                            editorContent,
-                                                                      },
-                                                                      operationId: dataListItem
+                                                                  GestureDetector(
+                                                                onTap: () => _model
+                                                                        .unfocusNode
+                                                                        .canRequestFocus
+                                                                    ? FocusScope.of(
+                                                                            context)
+                                                                        .requestFocus(_model
+                                                                            .unfocusNode)
+                                                                    : FocusScope.of(
+                                                                            context)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    SizedBox(
+                                                                  height: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .height *
+                                                                      1.0,
+                                                                  width: MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width *
+                                                                      1.0,
+                                                                  child:
+                                                                      MobileEditorComponentWidget(
+                                                                    content:
+                                                                        getJsonField(
+                                                                      dataListItem
                                                                           .operations
                                                                           .first
                                                                           .operationsId
-                                                                          .id,
-                                                                    );
+                                                                          .toMap(),
+                                                                      r'''$.result''',
+                                                                    ),
+                                                                    setContentCallback:
+                                                                        (editorContent) async {
+                                                                      _model.updateoperation22Token =
+                                                                          await action_blocks
+                                                                              .tokenReload(context);
+                                                                      if (_model
+                                                                          .updateoperation22Token!) {
+                                                                        _model.apiResultUpdateoperation22CopyCopy = await TaskGroup
+                                                                            .updateOperationCall
+                                                                            .call(
+                                                                          accessToken:
+                                                                              FFAppState().accessToken,
+                                                                          requestDataJson: <String,
+                                                                              dynamic>{
+                                                                            'status':
+                                                                                'done',
+                                                                            'result':
+                                                                                editorContent,
+                                                                          },
+                                                                          operationId: dataListItem
+                                                                              .operations
+                                                                              .first
+                                                                              .operationsId
+                                                                              .id,
+                                                                        );
 
-                                                                    if (!(_model
-                                                                            .apiResultUpdateoperation22Copy
-                                                                            ?.succeeded ??
-                                                                        true)) {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Lưu thất bại!',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                        if (!(_model.apiResultUpdateoperation22CopyCopy?.succeeded ??
+                                                                            true)) {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                'Lưu thất bại!',
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: const Duration(milliseconds: 4000),
+                                                                              backgroundColor: FlutterFlowTheme.of(context).error,
                                                                             ),
-                                                                          ),
-                                                                          duration:
-                                                                              const Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).error,
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    setState(() => _model
-                                                                        .listViewPagingController1
-                                                                        ?.refresh());
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  } else {
-                                                                    setState(
-                                                                        () {});
-                                                                  }
-                                                                },
+                                                                          );
+                                                                        }
+                                                                        setState(() => _model
+                                                                            .listViewPagingController1
+                                                                            ?.refresh());
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      } else {
+                                                                        setState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                  ),
+                                                                ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          safeSetState(() {}));
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
 
-                                                      setState(() {});
-                                                    },
-                                                    text: 'Nhập văn bản',
-                                                    icon: const Icon(
-                                                      Icons.edit_note,
-                                                      size: 20.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      width: 125.0,
-                                                      height: 35.0,
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
+                                                        setState(() {});
+                                                      },
+                                                      text: 'Nhập văn bản',
+                                                      icon: const Icon(
+                                                        Icons.edit_note,
+                                                        size: 20.0,
+                                                      ),
+                                                      options: FFButtonOptions(
+                                                        width: 125.0,
+                                                        height: 35.0,
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
                                                                     0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -3059,7 +3013,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                   child: wrapWithModel(
                     model: _model.navBarModel,
                     updateCallback: () => setState(() {}),

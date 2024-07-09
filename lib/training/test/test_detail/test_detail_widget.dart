@@ -138,6 +138,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: Stack(
@@ -355,7 +356,12 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                   final questionList =
                                       _model.detail?.questions.toList() ?? [];
                                   return ListView.separated(
-                                    padding: EdgeInsets.zero,
+                                    padding: const EdgeInsets.fromLTRB(
+                                      0,
+                                      0,
+                                      0,
+                                      24.0,
+                                    ),
                                     primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
@@ -530,7 +536,8 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 15.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if (Navigator.of(context).canPop()) {
@@ -584,6 +591,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
+                        width: double.infinity,
                         height: 40.0,
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             72.0, 0.0, 72.0, 0.0),

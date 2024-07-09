@@ -105,7 +105,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: Image.asset(
-                                        'assets/images/hinh-nen-vu-tru-35.jpg',
+                                        'assets/images/bao-cao-cong-viec-la-gi_84206fb4-22a3-4189-af72-5379af812256.jpg',
                                       ).image,
                                     ),
                                     borderRadius: const BorderRadius.only(
@@ -3513,7 +3513,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
             Align(
               alignment: const AlignmentDirectional(0.0, 1.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                 child: wrapWithModel(
                   model: _model.navBarModel,
                   updateCallback: () => setState(() {}),

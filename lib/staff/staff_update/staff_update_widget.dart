@@ -1755,60 +1755,125 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                           _model.uploadImageToken2 =
                               await action_blocks.tokenReload(context);
                           if (_model.uploadImageToken2!) {
-                            _model.apiResultUploadImage2 =
-                                await UploadFileGroup.uploadFileCall.call(
-                              file: _model.uploadedLocalFile,
-                              accessToken: FFAppState().accessToken,
-                            );
+                            if (_model.roleValue ==
+                                'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                              _model.apiResultUploadImage21 =
+                                  await UploadFileGroup.uploadFileCall.call(
+                                file: _model.uploadedLocalFile,
+                                accessToken: FFAppState().accessToken,
+                              );
 
-                            if ((_model.apiResultUploadImage2?.succeeded ??
-                                true)) {
-                              _model.avatarid = getJsonField(
-                                (_model.apiResultUploadImage2?.jsonBody ?? ''),
-                                r'''$.data.id''',
-                              ).toString();
+                              if ((_model.apiResultUploadImage21?.succeeded ??
+                                  true)) {
+                                _model.avatarid = getJsonField(
+                                  (_model.apiResultUploadImage21?.jsonBody ??
+                                      ''),
+                                  r'''$.data.id''',
+                                ).toString();
+                                setState(() {});
+                              }
+                              _model.requestStaff = <String, dynamic>{
+                                'first_name': _model.nameTextController.text,
+                                'last_name': _model.nameTextController.text,
+                                'email': _model.emailTextController.text,
+                                'role': _model.roleValue,
+                                'avatar': _model.avatarid,
+                              };
+                              _model.requestUserStaff = <String, dynamic>{
+                                'status': _model.switchListTileValue == true
+                                    ? 'active'
+                                    : 'draff',
+                                'cccd': _model.cccdTextController.text,
+                                'gender': _model.radioButtonValue == 'Nam'
+                                    ? 'male'
+                                    : 'female',
+                                'dob': _model.dob,
+                                'phone': _model.phoneTextController.text,
+                                'department_id': getJsonField(
+                                  <String, dynamic>{
+                                    'map': null,
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'branch_id': _model.branchValue,
+                                'title': _model.titleTextTextController.text,
+                                'sort': () {
+                                  if (_model.roleValue ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return '1';
+                                  } else if (_model.roleValue ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return '2';
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return '0';
+                                  } else {
+                                    return '3';
+                                  }
+                                }(),
+                              };
                               setState(() {});
+                              await _model.callRequest(context);
+                            } else {
+                              _model.apiResultUploadImage2 =
+                                  await UploadFileGroup.uploadFileCall.call(
+                                file: _model.uploadedLocalFile,
+                                accessToken: FFAppState().accessToken,
+                              );
+
+                              if ((_model.apiResultUploadImage2?.succeeded ??
+                                  true)) {
+                                _model.avatarid = getJsonField(
+                                  (_model.apiResultUploadImage2?.jsonBody ??
+                                      ''),
+                                  r'''$.data.id''',
+                                ).toString();
+                                setState(() {});
+                              }
+                              _model.requestStaff = <String, dynamic>{
+                                'first_name': _model.nameTextController.text,
+                                'last_name': _model.nameTextController.text,
+                                'email': _model.emailTextController.text,
+                                'role': _model.roleValue,
+                                'avatar': _model.avatarid,
+                              };
+                              _model.requestUserStaff = <String, dynamic>{
+                                'status': _model.switchListTileValue == true
+                                    ? 'active'
+                                    : 'draff',
+                                'cccd': _model.cccdTextController.text,
+                                'gender': _model.radioButtonValue == 'Nam'
+                                    ? 'male'
+                                    : 'female',
+                                'dob': _model.dob,
+                                'phone': _model.phoneTextController.text,
+                                'department_id': _model.departmentValue,
+                                'branch_id': _model.branchValue,
+                                'title': _model.titleTextTextController.text,
+                                'sort': () {
+                                  if (_model.roleValue ==
+                                      'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                    return '1';
+                                  } else if (_model.roleValue ==
+                                      '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                    return '2';
+                                  } else if (getJsonField(
+                                        widget.staffDetail,
+                                        r'''$.user_id.role''',
+                                      ).toString() ==
+                                      '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                    return '0';
+                                  } else {
+                                    return '3';
+                                  }
+                                }(),
+                              };
+                              setState(() {});
+                              await _model.callRequest(context);
                             }
-                            _model.requestStaff = <String, dynamic>{
-                              'first_name': _model.nameTextController.text,
-                              'last_name': _model.nameTextController.text,
-                              'email': _model.emailTextController.text,
-                              'role': _model.roleValue,
-                              'avatar': _model.avatarid,
-                            };
-                            _model.requestUserStaff = <String, dynamic>{
-                              'status': _model.switchListTileValue == true
-                                  ? 'active'
-                                  : 'draff',
-                              'cccd': _model.cccdTextController.text,
-                              'gender': _model.radioButtonValue == 'Nam'
-                                  ? 'male'
-                                  : 'female',
-                              'dob': _model.dob,
-                              'phone': _model.phoneTextController.text,
-                              'department_id': _model.departmentValue,
-                              'branch_id': _model.branchValue,
-                              'title': _model.titleTextTextController.text,
-                              'sort': () {
-                                if (_model.roleValue ==
-                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                  return '1';
-                                } else if (_model.roleValue ==
-                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                  return '2';
-                                } else if (getJsonField(
-                                      widget.staffDetail,
-                                      r'''$.user_id.role''',
-                                    ).toString() ==
-                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                  return '0';
-                                } else {
-                                  return '3';
-                                }
-                              }(),
-                            };
-                            setState(() {});
-                            await _model.callRequest(context);
                           } else {
                             setState(() {});
                           }
@@ -1891,49 +1956,101 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                             await _model.callRequest(context);
                           }
                         } else {
-                          _model.requestStaff = <String, dynamic>{
-                            'first_name': _model.nameTextController.text,
-                            'last_name': _model.nameTextController.text,
-                            'email': _model.emailTextController.text,
-                            'role': _model.roleValue,
-                            'avatar': getJsonField(
-                              widget.staffDetail,
-                              r'''$.user_id.avatar''',
-                            ),
-                          };
-                          _model.requestUserStaff = <String, dynamic>{
-                            'status': _model.switchListTileValue == true
-                                ? 'active'
-                                : 'draff',
-                            'cccd': _model.cccdTextController.text,
-                            'gender': _model.radioButtonValue == 'Nam'
-                                ? 'male'
-                                : 'female',
-                            'dob': _model.dob,
-                            'phone': _model.phoneTextController.text,
-                            'department_id': _model.departmentValue,
-                            'branch_id': _model.branchValue,
-                            'title': _model.titleTextTextController.text,
-                            'sort': () {
-                              if (_model.roleValue ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return '1';
-                              } else if (_model.roleValue ==
-                                  '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                return '2';
-                              } else if (getJsonField(
-                                    widget.staffDetail,
-                                    r'''$.user_id.role''',
-                                  ).toString() ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return '0';
-                              } else {
-                                return '3';
-                              }
-                            }(),
-                          };
-                          setState(() {});
-                          await _model.callRequest(context);
+                          if (_model.roleValue ==
+                              'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                            _model.requestStaff = <String, dynamic>{
+                              'first_name': _model.nameTextController.text,
+                              'last_name': _model.nameTextController.text,
+                              'email': _model.emailTextController.text,
+                              'role': _model.roleValue,
+                              'avatar': getJsonField(
+                                widget.staffDetail,
+                                r'''$.user_id.avatar''',
+                              ),
+                            };
+                            _model.requestUserStaff = <String, dynamic>{
+                              'status': _model.switchListTileValue == true
+                                  ? 'active'
+                                  : 'draff',
+                              'cccd': _model.cccdTextController.text,
+                              'gender': _model.radioButtonValue == 'Nam'
+                                  ? 'male'
+                                  : 'female',
+                              'dob': _model.dob,
+                              'phone': _model.phoneTextController.text,
+                              'department_id': getJsonField(
+                                <String, dynamic>{
+                                  'map': null,
+                                },
+                                r'''$.map''',
+                              ),
+                              'branch_id': _model.branchValue,
+                              'title': _model.titleTextTextController.text,
+                              'sort': () {
+                                if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return '1';
+                                } else if (_model.roleValue ==
+                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                  return '2';
+                                } else if (getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                  return '0';
+                                } else {
+                                  return '3';
+                                }
+                              }(),
+                            };
+                            setState(() {});
+                            await _model.callRequest(context);
+                          } else {
+                            _model.requestStaff = <String, dynamic>{
+                              'first_name': _model.nameTextController.text,
+                              'last_name': _model.nameTextController.text,
+                              'email': _model.emailTextController.text,
+                              'role': _model.roleValue,
+                              'avatar': getJsonField(
+                                widget.staffDetail,
+                                r'''$.user_id.avatar''',
+                              ),
+                            };
+                            _model.requestUserStaff = <String, dynamic>{
+                              'status': _model.switchListTileValue == true
+                                  ? 'active'
+                                  : 'draff',
+                              'cccd': _model.cccdTextController.text,
+                              'gender': _model.radioButtonValue == 'Nam'
+                                  ? 'male'
+                                  : 'female',
+                              'dob': _model.dob,
+                              'phone': _model.phoneTextController.text,
+                              'department_id': _model.departmentValue,
+                              'branch_id': _model.branchValue,
+                              'title': _model.titleTextTextController.text,
+                              'sort': () {
+                                if (_model.roleValue ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                  return '1';
+                                } else if (_model.roleValue ==
+                                    '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                  return '2';
+                                } else if (getJsonField(
+                                      widget.staffDetail,
+                                      r'''$.user_id.role''',
+                                    ).toString() ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                  return '0';
+                                } else {
+                                  return '3';
+                                }
+                              }(),
+                            };
+                            setState(() {});
+                            await _model.callRequest(context);
+                          }
                         }
                       }
                     }

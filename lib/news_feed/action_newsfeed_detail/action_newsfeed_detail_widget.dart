@@ -138,34 +138,25 @@ class _ActionNewsfeedDetailWidgetState
                       },
                       child: Container(
                         decoration: const BoxDecoration(),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 16.0, 0.0),
-                                child: Icon(
-                                  Icons.mode,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'Chỉnh sửa',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.edit_sharp,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
                           ),
+                          title: Text(
+                            'Chỉnh sửa',
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          tileColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          dense: false,
                         ),
                       ),
                     ),
