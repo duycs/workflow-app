@@ -65,22 +65,21 @@ class _ActionXoaWidgetState extends State<ActionXoaWidget> {
                       ? FlutterFlowTheme.of(context).alternate
                       : FlutterFlowTheme.of(context).secondaryBackground,
                 ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                      child: Icon(
-                        Icons.delete_outline,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 16.0, 0.0),
+                        child: Icon(
+                          Icons.delete_outline,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
+                      ),
+                      Expanded(
                         child: Text(
                           'Xóa',
                           style:
@@ -90,8 +89,8 @@ class _ActionXoaWidgetState extends State<ActionXoaWidget> {
                                   ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

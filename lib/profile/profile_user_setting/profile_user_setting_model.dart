@@ -47,6 +47,8 @@ class ProfileUserSettingModel
   ApiCallResponse? apiResultz8cCopy;
   // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
   ApiCallResponse? getUserSettingOff;
+  // State field(s) for SwitchListTile widget.
+  bool? switchListTileValue;
 
   @override
   void initState(BuildContext context) {}

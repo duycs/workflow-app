@@ -7,15 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/procedure_publishing/procedure_published/procedure_published_widget.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/tasks/do_action_type_approve/do_action_type_approve_widget.dart';
 import '/tasks/do_action_type_image/do_action_type_image_widget.dart';
 import '/tasks/do_action_type_to_do_list/do_action_type_to_do_list_widget.dart';
 import '/tasks/do_action_type_upload_file/do_action_type_upload_file_widget.dart';
 import '/tasks/filter_task_list/filter_task_list_widget.dart';
-import '/tasks/task_list_ck_popup/task_list_ck_popup_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -391,75 +391,69 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                       .asValidator(context),
                                 ),
                               ),
-                              Builder(
-                                builder: (context) => FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 10.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 50.0,
-                                  icon: Icon(
-                                    Icons.tune_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () async {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: FilterTaskListWidget(
-                                              filterSearch: _model
-                                                  .textFieldNameTextController
-                                                  .text,
-                                              dateStart: _model.dateStartFilter,
-                                              dateEnd: _model.dateEndFilter,
-                                              type: _model.typeFilter,
-                                              created: _model.createdFilter,
-                                              workflowName:
-                                                  _model.workflowNameFilter,
-                                              callback: (dateStartCallback,
-                                                  dateEndCallback,
-                                                  typeCallback,
-                                                  createdCallback,
-                                                  workflowNameCallback) async {
-                                                _model.dateStartFilter =
-                                                    dateStartCallback;
-                                                _model.dateEndFilter =
-                                                    dateEndCallback;
-                                                _model.typeFilter =
-                                                    typeCallback;
-                                                _model.createdFilter =
-                                                    createdCallback!;
-                                                _model.workflowNameFilter =
-                                                    workflowNameCallback!;
-                                                setState(() {});
-                                                setState(() => _model
-                                                    .listViewPagingController1
-                                                    ?.refresh());
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-                                  },
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 10.0,
+                                borderWidth: 1.0,
+                                buttonSize: 50.0,
+                                icon: Icon(
+                                  Icons.tune_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 30.0,
                                 ),
+                                onPressed: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    useSafeArea: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: FilterTaskListWidget(
+                                            filterSearch: _model
+                                                .textFieldNameTextController
+                                                .text,
+                                            dateStart: _model.dateStartFilter,
+                                            dateEnd: _model.dateEndFilter,
+                                            type: _model.typeFilter,
+                                            created: _model.createdFilter,
+                                            workflowName:
+                                                _model.workflowNameFilter,
+                                            callback: (dateStartCallback,
+                                                dateEndCallback,
+                                                typeCallback,
+                                                createdCallback,
+                                                workflowNameCallback) async {
+                                              _model.dateStartFilter =
+                                                  dateStartCallback;
+                                              _model.dateEndFilter =
+                                                  dateEndCallback;
+                                              _model.typeFilter = typeCallback;
+                                              _model.createdFilter =
+                                                  createdCallback!;
+                                              _model.workflowNameFilter =
+                                                  workflowNameCallback!;
+                                              setState(() {});
+                                              setState(() => _model
+                                                  .listViewPagingController1
+                                                  ?.refresh());
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => safeSetState(() {}));
+                                },
                               ),
                             ],
                           ),
@@ -697,24 +691,32 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                         builderDelegate: PagedChildBuilderDelegate<dynamic>(
                           // Customize what your widget looks like when it's loading the first page.
                           firstPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 100.0, 0.0, 0.0),
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           // Customize what your widget looks like when it's loading another page.
                           newPageProgressIndicatorBuilder: (_) => Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 100.0, 0.0, 0.0),
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
                             ),
@@ -2651,6 +2653,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 4.0),
                                                     child: Container(
+                                                      height: 300.0,
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
                                                                 .of(context)
@@ -2668,83 +2671,76 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       child: Padding(
                                                         padding:
                                                             const EdgeInsets.all(8.0),
-                                                        child: custom_widgets
-                                                            .HtmlToDoc(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 150.0,
-                                                          html: functions
-                                                              .formatHtml(
-                                                                  dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .result),
+                                                        child:
+                                                            MobileEditorDisplayComponentWidget(
+                                                          key: Key(
+                                                              'Keytlw_${dataListIndex}_of_${_model.listViewPagingController1!.itemList!.length}'),
+                                                          content: dataListItem
+                                                              .operations
+                                                              .first
+                                                              .operationsId
+                                                              .result,
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                            ),
-                                          if (dataListItem.actionType ==
-                                              'submit_text')
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Builder(
-                                                    builder: (context) =>
-                                                        FFButtonWidget(
-                                                      onPressed: () async {
-                                                        await showDialog(
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(6.0),
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          useSafeArea: true,
                                                           context: context,
-                                                          builder:
-                                                              (dialogContext) {
-                                                            return Dialog(
-                                                              elevation: 0,
-                                                              insetPadding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              alignment: const AlignmentDirectional(
-                                                                      0.0, 0.0)
-                                                                  .resolve(
-                                                                      Directionality.of(
-                                                                          context)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
                                                                 child:
-                                                                    TaskListCkPopupWidget(
-                                                                  item: dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .result,
-                                                                  action:
-                                                                      (ckString) async {
-                                                                    _model.updateoperation22Token =
+                                                                    MobileEditorComponentWidget(
+                                                                  content:
+                                                                      getJsonField(
+                                                                    dataListItem
+                                                                        .operations
+                                                                        .first
+                                                                        .operationsId
+                                                                        .toMap(),
+                                                                    r'''$.result''',
+                                                                  ),
+                                                                  setContentCallback:
+                                                                      (editorContent) async {
+                                                                    _model.updateoperation3Token =
                                                                         await action_blocks
                                                                             .tokenReload(context);
                                                                     if (_model
-                                                                        .updateoperation22Token!) {
-                                                                      _model.apiResultUpdateoperation22 = await TaskGroup
+                                                                        .updateoperation3Token!) {
+                                                                      _model.apiResultUpdateoperation3Copy = await TaskGroup
                                                                           .updateOperationCall
                                                                           .call(
                                                                         accessToken:
@@ -2754,7 +2750,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                           'status':
                                                                               'done',
                                                                           'result':
-                                                                              ckString,
+                                                                              editorContent,
                                                                         },
                                                                         operationId: dataListItem
                                                                             .operations
@@ -2764,7 +2760,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                       );
 
                                                                       if (!(_model
-                                                                              .apiResultUpdateoperation22
+                                                                              .apiResultUpdateoperation3Copy
                                                                               ?.succeeded ??
                                                                           true)) {
                                                                         ScaffoldMessenger.of(context)
@@ -2784,9 +2780,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                           ),
                                                                         );
                                                                       }
-
-                                                                      setState(
-                                                                          () {});
+                                                                      setState(() => _model
+                                                                          .listViewPagingController1
+                                                                          ?.refresh());
+                                                                      Navigator.pop(
+                                                                          context);
                                                                     } else {
                                                                       setState(
                                                                           () {});
@@ -2797,58 +2795,199 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                             );
                                                           },
                                                         ).then((value) =>
-                                                            setState(() {}));
+                                                            safeSetState(
+                                                                () {}));
 
                                                         setState(() {});
                                                       },
-                                                      text: 'Nhập văn bản',
-                                                      icon: const Icon(
-                                                        Icons.edit_note,
-                                                        size: 20.0,
-                                                      ),
-                                                      options: FFButtonOptions(
-                                                        width: 125.0,
-                                                        height: 35.0,
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
+                                                      child: Text(
+                                                        'Mở rộng',
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .alternate,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      13.0,
+                                                                      .primary,
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
                                                                 ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
                                                       ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          if (dataListItem.actionType ==
+                                              'submit_text')
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 8.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        useSafeArea: true,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  MobileEditorComponentWidget(
+                                                                content:
+                                                                    getJsonField(
+                                                                  dataListItem
+                                                                      .operations
+                                                                      .first
+                                                                      .operationsId
+                                                                      .toMap(),
+                                                                  r'''$.result''',
+                                                                ),
+                                                                setContentCallback:
+                                                                    (editorContent) async {
+                                                                  _model.updateoperation22Token =
+                                                                      await action_blocks
+                                                                          .tokenReload(
+                                                                              context);
+                                                                  if (_model
+                                                                      .updateoperation22Token!) {
+                                                                    _model.apiResultUpdateoperation22Copy =
+                                                                        await TaskGroup
+                                                                            .updateOperationCall
+                                                                            .call(
+                                                                      accessToken:
+                                                                          FFAppState()
+                                                                              .accessToken,
+                                                                      requestDataJson: <String,
+                                                                          dynamic>{
+                                                                        'status':
+                                                                            'done',
+                                                                        'result':
+                                                                            editorContent,
+                                                                      },
+                                                                      operationId: dataListItem
+                                                                          .operations
+                                                                          .first
+                                                                          .operationsId
+                                                                          .id,
+                                                                    );
+
+                                                                    if (!(_model
+                                                                            .apiResultUpdateoperation22Copy
+                                                                            ?.succeeded ??
+                                                                        true)) {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            'Lưu thất bại!',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              const Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).error,
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    setState(() => _model
+                                                                        .listViewPagingController1
+                                                                        ?.refresh());
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  } else {
+                                                                    setState(
+                                                                        () {});
+                                                                  }
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+
+                                                      setState(() {});
+                                                    },
+                                                    text: 'Nhập văn bản',
+                                                    icon: const Icon(
+                                                      Icons.edit_note,
+                                                      size: 20.0,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      width: 125.0,
+                                                      height: 35.0,
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 13.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
                                                     ),
                                                   ),
                                                 ],

@@ -20,6 +20,23 @@ class ProgramCertificateModel
           int index, Function(StudyProgramListStruct) updateFn) =>
       programs[index] = updateFn(programs[index]);
 
+  CertificatesStruct? certificate;
+  void updateCertificateStruct(Function(CertificatesStruct) updateFn) {
+    updateFn(certificate ??= CertificatesStruct());
+  }
+
+  List<String> listProgramPost = [];
+  void addToListProgramPost(String item) => listProgramPost.add(item);
+  void removeFromListProgramPost(String item) => listProgramPost.remove(item);
+  void removeAtIndexFromListProgramPost(int index) =>
+      listProgramPost.removeAt(index);
+  void insertAtIndexInListProgramPost(int index, String item) =>
+      listProgramPost.insert(index, item);
+  void updateListProgramPostAtIndex(int index, Function(String) updateFn) =>
+      listProgramPost[index] = updateFn(listProgramPost[index]);
+
+  bool isLoad = false;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Checkbox widget.
@@ -115,6 +132,92 @@ class ProgramCertificateModel
         );
       } else {
         await programsapi(context);
+      }
+    }
+  }
+
+  Future certificates(BuildContext context) async {
+    ApiCallResponse? apiResultGetOneCertificate;
+    bool? checkRefreshTokenBlockdf11;
+
+    apiResultGetOneCertificate =
+        await CertificateGroup.getOneCertificatesCall.call(
+      accessToken: FFAppState().accessToken,
+      idCertificates: widget.idCertificates,
+    );
+
+    if ((apiResultGetOneCertificate.succeeded ?? true)) {
+      certificate = CertificatesListDataStruct.maybeFromMap(
+              (apiResultGetOneCertificate.jsonBody ?? ''))
+          ?.data;
+    } else {
+      checkRefreshTokenBlockdf11 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultGetOneCertificate.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockdf11!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await certificates(context);
+      }
+    }
+  }
+
+  Future addProgramsToCertificate(BuildContext context) async {
+    ApiCallResponse? apiResultAdd;
+    bool? checkRefreshTokenBlockdf1122;
+
+    apiResultAdd = await CertificateGroup.pathCertificatesCall.call(
+      accessToken: FFAppState().accessToken,
+      programsList: listProgramPost,
+      idCertificate: widget.idCertificates,
+    );
+
+    if ((apiResultAdd.succeeded ?? true)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Áp dụng chứng chỉ cho chương trình thành công!',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+          ),
+          duration: const Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+      Navigator.pop(context);
+    } else {
+      checkRefreshTokenBlockdf1122 = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultAdd.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlockdf1122!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              FFAppConstants.ErrorLoadData,
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await addProgramsToCertificate(context);
       }
     }
   }

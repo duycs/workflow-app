@@ -27,9 +27,11 @@ class NewsfeedDetailWidget extends StatefulWidget {
   const NewsfeedDetailWidget({
     super.key,
     required this.newsfeedId,
+    this.checkpage,
   });
 
   final String? newsfeedId;
+  final String? checkpage;
 
   @override
   State<NewsfeedDetailWidget> createState() => _NewsfeedDetailWidgetState();
@@ -177,6 +179,74 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              if (widget.checkpage == 'newsfeed') {
+                context.pushNamed(
+                  'Newsfeed',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              } else if (widget.checkpage == 'newsfeedRequire') {
+                context.pushNamed(
+                  'NewsfeedListRequire',
+                  queryParameters: {
+                    'checkScope': serializeParam(
+                      () {
+                        if (_model.newsfeedItem?.departmentId != null) {
+                          return 'Bộ phận';
+                        } else if (_model.newsfeedItem?.branchId != null) {
+                          return 'Chi nhánh';
+                        } else {
+                          return 'Tổ chức';
+                        }
+                      }(),
+                      ParamType.String,
+                    ),
+                  }.withoutNulls,
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+              } else {
+                context.safePop();
+              }
+            },
+          ),
+          title: Text(
+            'Chi tiết Newsfeed',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: false,
+          elevation: 1.0,
+        ),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -207,270 +277,250 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                               child: Stack(
                                 children: [
                                   if ('1' == '2')
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
-                                      child: SafeArea(
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: 230.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: Image.network(
-                                                '',
-                                              ).image,
-                                            ),
-                                            borderRadius: const BorderRadius.only(
-                                              bottomLeft: Radius.circular(16.0),
-                                              bottomRight:
-                                                  Radius.circular(16.0),
-                                              topLeft: Radius.circular(0.0),
-                                              topRight: Radius.circular(0.0),
-                                            ),
+                                    SafeArea(
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 230.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.network(
+                                              '',
+                                            ).image,
                                           ),
-                                          child: Visibility(
-                                            visible: _model.newsfeedItem!.images.isNotEmpty,
-                                            child: Builder(
-                                              builder: (context) {
-                                                final imageList = _model
-                                                        .newsfeedItem?.images
-                                                        .toList() ??
-                                                    [];
-                                                return FlutterFlowSwipeableStack(
-                                                  onSwipeFn: (index) {},
-                                                  onLeftSwipe: (index) {},
-                                                  onRightSwipe: (index) {},
-                                                  onUpSwipe: (index) {},
-                                                  onDownSwipe: (index) {},
-                                                  itemBuilder: (context,
-                                                      imageListIndex) {
-                                                    final imageListItem =
-                                                        imageList[
-                                                            imageListIndex];
-                                                    return InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            child:
-                                                                FlutterFlowExpandedImageView(
-                                                              image:
-                                                                  Image.network(
-                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                              allowRotation:
-                                                                  false,
-                                                              tag:
-                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                              useHeroAnimation:
-                                                                  true,
+                                          borderRadius: const BorderRadius.only(
+                                            bottomLeft: Radius.circular(16.0),
+                                            bottomRight: Radius.circular(16.0),
+                                            topLeft: Radius.circular(0.0),
+                                            topRight: Radius.circular(0.0),
+                                          ),
+                                        ),
+                                        child: Visibility(
+                                          visible: _model
+                                                  .newsfeedItem!.images.isNotEmpty,
+                                          child: Builder(
+                                            builder: (context) {
+                                              final imageList = _model
+                                                      .newsfeedItem?.images
+                                                      .toList() ??
+                                                  [];
+                                              return FlutterFlowSwipeableStack(
+                                                onSwipeFn: (index) {},
+                                                onLeftSwipe: (index) {},
+                                                onRightSwipe: (index) {},
+                                                onUpSwipe: (index) {},
+                                                onDownSwipe: (index) {},
+                                                itemBuilder:
+                                                    (context, imageListIndex) {
+                                                  final imageListItem =
+                                                      imageList[imageListIndex];
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        PageTransition(
+                                                          type:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          child:
+                                                              FlutterFlowExpandedImageView(
+                                                            image:
+                                                                Image.network(
+                                                              '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                              fit: BoxFit
+                                                                  .contain,
                                                             ),
+                                                            allowRotation:
+                                                                false,
+                                                            tag:
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                            useHeroAnimation:
+                                                                true,
                                                           ),
-                                                        );
-                                                      },
-                                                      child: Hero(
-                                                        tag:
-                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                        transitionOnUserGestures:
-                                                            true,
-                                                        child: ClipRRect(
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Hero(
+                                                      tag:
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                      transitionOnUserGestures:
+                                                          true,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                itemCount: imageList.length,
+                                                controller: _model
+                                                    .swipeableStackController,
+                                                loop: true,
+                                                cardDisplayCount: 100,
+                                                scale: 0.97,
+                                                threshold: 1.0,
+                                                maxAngle: 360.0,
+                                                cardPadding:
+                                                    const EdgeInsets.all(8.0),
+                                                backCardOffset:
+                                                    const Offset(4.0, 0.0),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ).animateOnPageLoad(animationsMap[
+                                        'containerOnPageLoadAnimation1']!),
+                                  if (_model.newsfeedItem!.images.isNotEmpty)
+                                    Container(
+                                      height: 230.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius: const BorderRadius.only(
+                                          bottomLeft: Radius.circular(16.0),
+                                          bottomRight: Radius.circular(16.0),
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      child: Visibility(
+                                        visible:
+                                            _model.newsfeedItem!.images.isNotEmpty,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final images = _model
+                                                      .newsfeedItem?.images
+                                                      .toList() ??
+                                                  [];
+                                              return SizedBox(
+                                                width: double.infinity,
+                                                height: 500.0,
+                                                child: Stack(
+                                                  children: [
+                                                    PageView.builder(
+                                                      controller: _model
+                                                              .pageViewController ??=
+                                                          PageController(
+                                                              initialPage: max(
+                                                                  0,
+                                                                  min(
+                                                                      0,
+                                                                      images.length -
+                                                                          1))),
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      itemCount: images.length,
+                                                      itemBuilder: (context,
+                                                          imagesIndex) {
+                                                        final imagesItem =
+                                                            images[imagesIndex];
+                                                        return ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       8.0),
                                                           child: Image.network(
-                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                            width:
-                                                                double.infinity,
-                                                            height:
-                                                                double.infinity,
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                            width: 300.0,
+                                                            height: 200.0,
                                                             fit: BoxFit.cover,
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              -1.0, 1.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0),
+                                                        child: smooth_page_indicator
+                                                            .SmoothPageIndicator(
+                                                          controller: _model
+                                                                  .pageViewController ??=
+                                                              PageController(
+                                                                  initialPage: max(
+                                                                      0,
+                                                                      min(
+                                                                          0,
+                                                                          images.length -
+                                                                              1))),
+                                                          count: images.length,
+                                                          axisDirection:
+                                                              Axis.horizontal,
+                                                          onDotClicked:
+                                                              (i) async {
+                                                            await _model
+                                                                .pageViewController!
+                                                                .animateToPage(
+                                                              i,
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      500),
+                                                              curve:
+                                                                  Curves.ease,
+                                                            );
+                                                            setState(() {});
+                                                          },
+                                                          effect: smooth_page_indicator
+                                                              .ExpandingDotsEffect(
+                                                            expansionFactor:
+                                                                2.0,
+                                                            spacing: 4.0,
+                                                            radius: 90.0,
+                                                            dotWidth: 4.0,
+                                                            dotHeight: 8.0,
+                                                            dotColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                            activeDotColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                            paintStyle:
+                                                                PaintingStyle
+                                                                    .fill,
                                                           ),
                                                         ),
                                                       ),
-                                                    );
-                                                  },
-                                                  itemCount: imageList.length,
-                                                  controller: _model
-                                                      .swipeableStackController,
-                                                  loop: true,
-                                                  cardDisplayCount: 100,
-                                                  scale: 0.97,
-                                                  threshold: 1.0,
-                                                  maxAngle: 360.0,
-                                                  cardPadding:
-                                                      const EdgeInsets.all(8.0),
-                                                  backCardOffset:
-                                                      const Offset(4.0, 0.0),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'containerOnPageLoadAnimation1']!),
-                                    ),
-                                  Container(
-                                    height: 230.0,
-                                    decoration: const BoxDecoration(),
-                                    child: Visibility(
-                                      visible:
-                                          _model.newsfeedItem!.images.isNotEmpty,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Builder(
-                                          builder: (context) {
-                                            final images = _model
-                                                    .newsfeedItem?.images
-                                                    .toList() ??
-                                                [];
-                                            return SizedBox(
-                                              width: double.infinity,
-                                              height: 500.0,
-                                              child: Stack(
-                                                children: [
-                                                  PageView.builder(
-                                                    controller: _model
-                                                            .pageViewController ??=
-                                                        PageController(
-                                                            initialPage: max(
-                                                                0,
-                                                                min(
-                                                                    0,
-                                                                    images.length -
-                                                                        1))),
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: images.length,
-                                                    itemBuilder:
-                                                        (context, imagesIndex) {
-                                                      final imagesItem =
-                                                          images[imagesIndex];
-                                                      return ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        child: Image.network(
-                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                          width: 300.0,
-                                                          height: 200.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
-                                                      child: smooth_page_indicator
-                                                          .SmoothPageIndicator(
-                                                        controller: _model
-                                                                .pageViewController ??=
-                                                            PageController(
-                                                                initialPage: max(
-                                                                    0,
-                                                                    min(
-                                                                        0,
-                                                                        images.length -
-                                                                            1))),
-                                                        count: images.length,
-                                                        axisDirection:
-                                                            Axis.horizontal,
-                                                        onDotClicked:
-                                                            (i) async {
-                                                          await _model
-                                                              .pageViewController!
-                                                              .animateToPage(
-                                                            i,
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                            curve: Curves.ease,
-                                                          );
-                                                          setState(() {});
-                                                        },
-                                                        effect: smooth_page_indicator
-                                                            .ExpandingDotsEffect(
-                                                          expansionFactor: 2.0,
-                                                          spacing: 4.0,
-                                                          radius: 90.0,
-                                                          dotWidth: 4.0,
-                                                          dotHeight: 8.0,
-                                                          dotColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          activeDotColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          paintStyle:
-                                                              PaintingStyle
-                                                                  .fill,
-                                                        ),
-                                                      ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 8.0, 0.0, 0.0),
-                                        child: FlutterFlowIconButton(
-                                          borderColor: Colors.transparent,
-                                          borderRadius: 30.0,
-                                          borderWidth: 1.0,
-                                          buttonSize: 60.0,
-                                          fillColor: const Color(0x90FFFFFF),
-                                          icon: Icon(
-                                            Icons.arrow_back_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            size: 30.0,
-                                          ),
-                                          onPressed: () async {
-                                            context.safePop();
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ],
                               ),
                             ),
@@ -481,17 +531,21 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Text(
-                                    '${_model.newsfeedItem?.images.length.toString()} ảnh',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 2.0, 0.0, 0.0),
+                                    child: Text(
+                                      '${_model.newsfeedItem?.images.length.toString()} ảnh',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -545,7 +599,14 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${readListItem.readsId.staffId.userId.avatar}?access_token=${FFAppState().accessToken}',
+                                                  readListItem
+                                                                  .readsId
+                                                                  .staffId
+                                                                  .userId
+                                                                  .avatar !=
+                                                              ''
+                                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${readListItem.readsId.staffId.userId.avatar}?access_token=${FFAppState().accessToken}'
+                                                      : ' ',
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
@@ -1487,8 +1548,11 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                               children: [
                                                 if (_model.newsfeedItem?.reacts
                                                         .where((e) =>
-                                                            e.reactsId
-                                                                .staffId ==
+                                                            (_model.newsfeedItem !=
+                                                                    null
+                                                                ? e.reactsId
+                                                                    .staffId
+                                                                : ' ') ==
                                                             FFAppState()
                                                                 .staffid)
                                                         .toList().isEmpty)
@@ -1520,8 +1584,11 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                   ),
                                                 if (_model.newsfeedItem!.reacts
                                                         .where((e) =>
-                                                            e.reactsId
-                                                                .staffId ==
+                                                            (_model.newsfeedItem !=
+                                                                    null
+                                                                ? e.reactsId
+                                                                    .staffId
+                                                                : ' ') ==
                                                             FFAppState()
                                                                 .staffid)
                                                         .toList().isNotEmpty)

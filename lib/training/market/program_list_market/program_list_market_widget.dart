@@ -251,73 +251,69 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
                     ),
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Builder(
-                        builder: (context) => FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterProgramsWidget(
-                                      domain: _model.domain,
-                                      author: _model.author,
-                                      category: _model.category,
-                                      listDomain: _model.listDataDomain
-                                          .map((e) => e.name)
-                                          .toList(),
-                                      checkPrice: widget.price,
-                                      checkPrice1: 'checkPriceList',
-                                      priceMin1: _model.priceMin,
-                                      priceMax1: _model.priceMax,
-                                      priceMin: _model.priceMinDomain,
-                                      priceMax: _model.priceMaxDomain,
-                                      checkAuthor: widget.idAuthor,
-                                      callBack: (domain,
-                                          author,
-                                          category,
-                                          priceMin,
-                                          priceMax,
-                                          priceMin1,
-                                          priceMax1) async {
-                                        _model.domain = domain!;
-                                        _model.author = author!;
-                                        _model.category = category!;
-                                        _model.priceMin = priceMin1!;
-                                        _model.priceMax = priceMax1!;
-                                        _model.priceMinDomain = priceMin!;
-                                        _model.priceMaxDomain = priceMax!;
-                                        setState(() {});
-                                        setState(() => _model
-                                            .listViewPagingController
-                                            ?.refresh());
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
+                      child: FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
                         ),
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            useSafeArea: true,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: FilterProgramsWidget(
+                                    domain: _model.domain,
+                                    author: _model.author,
+                                    category: _model.category,
+                                    priceMin: _model.priceMinDomain,
+                                    priceMax: _model.priceMaxDomain,
+                                    listDomain: _model.listDataDomain
+                                        .map((e) => e.name)
+                                        .toList(),
+                                    checkPrice: widget.price,
+                                    checkPrice1: 'checkPriceList',
+                                    priceMin1: _model.priceMin,
+                                    priceMax1: _model.priceMax,
+                                    checkAuthor: widget.idAuthor,
+                                    callBack: (domain,
+                                        author,
+                                        category,
+                                        priceMin,
+                                        priceMax,
+                                        priceMin1,
+                                        priceMax1) async {
+                                      _model.domain = domain!;
+                                      _model.author = author!;
+                                      _model.category = category!;
+                                      _model.priceMin = priceMin1!;
+                                      _model.priceMax = priceMax1!;
+                                      _model.priceMinDomain = priceMin!;
+                                      _model.priceMaxDomain = priceMax!;
+                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
                       ),
                     ),
                   ],

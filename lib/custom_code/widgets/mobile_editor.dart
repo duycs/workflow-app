@@ -41,6 +41,10 @@ class MobileEditor extends StatefulWidget {
 
 class _MobileEditorState extends State<MobileEditor> {
   late EditorState _editorState;
+  late final EditorScrollController editorScrollController;
+  late Map<String, BlockComponentBuilder> blockComponentBuilders;
+  late EditorStyle editorStyle;
+
   bool _isUploading = false;
 
   @override
@@ -60,6 +64,71 @@ class _MobileEditorState extends State<MobileEditor> {
     } else {
       _editorState = EditorState.blank();
     }
+
+    editorScrollController = EditorScrollController(
+      editorState: _editorState,
+      shrinkWrap: false,
+    );
+
+    // editorStyle = _buildMobileEditorStyle();
+    blockComponentBuilders = _buildBlockComponentBuilders();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    editorStyle = _buildMobileEditorStyle();
+  }
+
+  // showcase 1: customize the editor style.
+  EditorStyle _buildMobileEditorStyle() {
+    return EditorStyle.mobile(
+      textScaleFactor: 1.0,
+      cursorColor: const Color.fromARGB(255, 134, 46, 247),
+      dragHandleColor: const Color.fromARGB(255, 134, 46, 247),
+      selectionColor: const Color.fromARGB(50, 134, 46, 247),
+      textStyleConfiguration: TextStyleConfiguration(
+        text: TextStyle(
+          fontSize: FlutterFlowTheme.of(context).bodyMedium.fontSize,
+          color: FlutterFlowTheme.of(context).primaryText,
+        ),
+        code: TextStyle(
+          fontSize: FlutterFlowTheme.of(context).bodyMedium.fontSize,
+          color: FlutterFlowTheme.of(context).secondaryText,
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      magnifierSize: const Size(144, 96),
+      mobileDragHandleBallSize: const Size(12, 12),
+    );
+  }
+
+  // showcase 2: customize the block style
+  Map<String, BlockComponentBuilder> _buildBlockComponentBuilders() {
+    final map = {
+      ...standardBlockComponentBuilderMap,
+    };
+    // customize the heading block component
+    final levelToFontSize = [
+      24.0,
+      22.0,
+      20.0,
+      18.0,
+      16.0,
+      14.0,
+    ];
+    map[HeadingBlockKeys.type] = HeadingBlockComponentBuilder(
+      textStyleBuilder: (level) => TextStyle(
+        fontSize: levelToFontSize.elementAtOrNull(level - 1) ?? 14.0,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+    map[ParagraphBlockKeys.type] = ParagraphBlockComponentBuilder(
+      configuration: BlockComponentConfiguration(
+        placeholderText: (node) => 'Nhập nội dung...',
+      ),
+    );
+    return map;
   }
 
   @override
@@ -128,23 +197,66 @@ class _MobileEditorState extends State<MobileEditor> {
             Expanded(
               child: Stack(
                 children: [
-                  AppFlowyEditor(
-                    editorState: _editorState,
-                    editorStyle: EditorStyle.mobile(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                      textStyleConfiguration: TextStyleConfiguration(
-                        text: TextStyle(
-                          fontSize:
-                              FlutterFlowTheme.of(context).bodyMedium.fontSize,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                        ),
+                  Expanded(
+                    child: MobileFloatingToolbar(
+                      editorState: _editorState,
+                      editorScrollController: editorScrollController,
+                      toolbarBuilder: (context, anchor, closeToolbar) {
+                        return AdaptiveTextSelectionToolbar.editable(
+                          clipboardStatus: ClipboardStatus.pasteable,
+                          onCopy: () {
+                            copyCommand.execute(_editorState);
+                            closeToolbar();
+                          },
+                          onCut: () => cutCommand.execute(_editorState),
+                          onPaste: () => pasteCommand.execute(_editorState),
+                          onSelectAll: () =>
+                              selectAllCommand.execute(_editorState),
+                          onLiveTextInput: null,
+                          onLookUp: null,
+                          onSearchWeb: null,
+                          onShare: null,
+                          anchors: TextSelectionToolbarAnchors(
+                            primaryAnchor: anchor,
+                          ),
+                        );
+                      },
+                      child: AppFlowyEditor(
+                        editorStyle: editorStyle,
+                        editorState: _editorState,
+                        editorScrollController: editorScrollController,
+                        blockComponentBuilders: blockComponentBuilders,
+                        showMagnifier: true,
+                        // showcase 3: customize the header and footer.
+                        // header: Padding(
+                        //   padding: const EdgeInsets.only(bottom: 10.0),
+                        //   child: Image.asset(
+                        //     'assets/images/header.png',
+                        //   ),
+                        // ),
+                        // footer: const SizedBox(
+                        //   height: 100,
+                        // ),
                       ),
                     ),
-                    shrinkWrap: false,
-                    autoFocus: true,
-                    focusedSelection: Selection.collapsed(Position(path: [0])),
                   ),
+                  // AppFlowyEditor(
+                  //   editorState: _editorState,
+                  //   editorStyle: EditorStyle.mobile(
+                  //     padding:
+                  //         EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                  //     textStyleConfiguration: TextStyleConfiguration(
+                  //       text: TextStyle(
+                  //         fontSize:
+                  //             FlutterFlowTheme.of(context).bodyMedium.fontSize,
+                  //         color: FlutterFlowTheme.of(context).primaryText,
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   shrinkWrap: false,
+                  //   autoFocus: true,
+                  //   focusedSelection: Selection.collapsed(Position(path: [0])),
+                  // ),
                   if (_isUploading)
                     Container(
                       color: Colors.black54,
@@ -555,7 +667,4 @@ class _FixedToolbar extends StatelessWidget {
       });
     }
   }
-
-  // Thêm các phương thức khác như _showUploadError, _pickImageAndInsert, _uploadImage, _insertImage, _getMimeType
-  // tương tự như trong fixed_toolbar_editor.dart
 }

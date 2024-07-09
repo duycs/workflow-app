@@ -242,75 +242,70 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                Builder(
-                                  builder: (context) => FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 10.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 50.0,
-                                    icon: Icon(
-                                      Icons.tune_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30.0,
-                                    ),
-                                    onPressed: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: FilterTaskListWaitWidget(
-                                                filterSearch:
-                                                    _model.textController.text,
-                                                dateStart:
-                                                    _model.dateStartFilter,
-                                                dateEnd: _model.dateEndFilter,
-                                                type: _model.typeFilter,
-                                                created: _model.createdFilter,
-                                                workflowName:
-                                                    _model.workflowNameFilter,
-                                                callback: (dateStartCallback,
-                                                    dateEndCallback,
-                                                    typeCallback,
-                                                    createdCallback,
-                                                    workflowNameCallback) async {
-                                                  _model.dateStartFilter =
-                                                      dateStartCallback;
-                                                  _model.dateEndFilter =
-                                                      dateEndCallback;
-                                                  _model.typeFilter =
-                                                      typeCallback;
-                                                  _model.createdFilter =
-                                                      createdCallback!;
-                                                  _model.workflowNameFilter =
-                                                      workflowNameCallback!;
-                                                  setState(() {});
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                },
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => setState(() {}));
-                                    },
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 10.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 50.0,
+                                  icon: Icon(
+                                    Icons.tune_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
                                   ),
+                                  onPressed: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      useSafeArea: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: FilterTaskListWaitWidget(
+                                              filterSearch:
+                                                  _model.textController.text,
+                                              dateStart: _model.dateStartFilter,
+                                              dateEnd: _model.dateEndFilter,
+                                              type: _model.typeFilter,
+                                              created: _model.createdFilter,
+                                              workflowName:
+                                                  _model.workflowNameFilter,
+                                              callback: (dateStartCallback,
+                                                  dateEndCallback,
+                                                  typeCallback,
+                                                  createdCallback,
+                                                  workflowNameCallback) async {
+                                                _model.dateStartFilter =
+                                                    dateStartCallback;
+                                                _model.dateEndFilter =
+                                                    dateEndCallback;
+                                                _model.typeFilter =
+                                                    typeCallback;
+                                                _model.createdFilter =
+                                                    createdCallback!;
+                                                _model.workflowNameFilter =
+                                                    workflowNameCallback!;
+                                                setState(() {});
+                                                setState(() => _model
+                                                    .listViewPagingController
+                                                    ?.refresh());
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
                                 ),
                               ],
                             ),

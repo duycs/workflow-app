@@ -131,10 +131,14 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
   bool? updateoperationCopyCopyCopyCopyToken;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in do_action_type_to_do_list widget.
   ApiCallResponse? apiResultUpdateoperationCopyCopyCopyCopy;
+  // Stores action output result for [Action Block - tokenReload] action in Text widget.
+  bool? updateoperation3Token;
+  // Stores action output result for [Backend Call - API (UpdateOperation)] action in Text widget.
+  ApiCallResponse? apiResultUpdateoperation3Copy;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? updateoperation22Token;
   // Stores action output result for [Backend Call - API (UpdateOperation)] action in Button widget.
-  ApiCallResponse? apiResultUpdateoperation22;
+  ApiCallResponse? apiResultUpdateoperation22Copy;
   // Model for navBar component.
   late NavBarModel navBarModel;
 

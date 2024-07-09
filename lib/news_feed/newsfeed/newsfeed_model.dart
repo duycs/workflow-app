@@ -39,6 +39,11 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
       choiceChipsValueController?.value?.firstOrNull;
   set choiceChipsValue(String? val) =>
       choiceChipsValueController?.value = val != null ? [val] : [];
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // State field(s) for Carousel widget.
   CarouselController? carouselController;
   int carouselCurrentIndex = 1;
@@ -62,6 +67,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    tabBarController?.dispose();
     dNFNewsfeedModel.dispose();
     listViewPagingController?.dispose();
     navBarModel.dispose();
@@ -148,12 +154,12 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
     apiResultRepuireList = await NewsfeedGroup.newsfeedListCall.call(
       accessToken: FFAppState().accessToken,
       filter: () {
-        if (choiceChipsValue == 'Tổ chức') {
+        if (tabBarCurrentIndex == 0) {
           return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffOrganization,
             r'''$.id''',
           ).toString().toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
-        } else if (choiceChipsValue == 'Chi nhánh') {
+        } else if (tabBarCurrentIndex == 1) {
           return () {
             if (FFAppState().user.role ==
                 '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
@@ -192,7 +198,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
               return ' ';
             }
           }();
-        } else if (choiceChipsValue == 'Bộ phận') {
+        } else if (tabBarCurrentIndex == 2) {
           return () {
             if (FFAppState().user.role ==
                 '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {

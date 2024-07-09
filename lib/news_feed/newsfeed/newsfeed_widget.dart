@@ -52,6 +52,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
       setState(() {});
     });
 
+    _model.tabBarController = TabController(
+      vsync: this,
+      length: 3,
+      initialIndex: 0,
+    )..addListener(() => setState(() {}));
     animationsMap.addAll({
       'rowOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -111,130 +116,182 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                17.0, 0.0, 17.0, 0.0),
-                            child: FlutterFlowChoiceChips(
-                              options: const [
-                                ChipData('Tổ chức'),
-                                ChipData('Chi nhánh'),
-                                ChipData('Bộ phận')
-                              ],
-                              onChanged: (val) async {
-                                setState(() =>
-                                    _model.choiceChipsValue = val?.firstOrNull);
-                                _model.isLoad = false;
-                                setState(() {});
-                                setState(() =>
-                                    _model.listViewPagingController?.refresh());
-                                await _model.newsfeedListRequire(context);
-                                setState(() {});
-                                _model.isLoad = true;
-                                setState(() {});
-                              },
-                              selectedChipStyle: ChipStyle(
-                                backgroundColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor: const Color(0x00000000),
-                                iconSize: 0.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                elevation: 0.0,
-                                borderColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderWidth: 0.0,
-                                borderRadius: BorderRadius.circular(8.0),
+                  if ('1' == '2')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  17.0, 0.0, 17.0, 0.0),
+                              child: FlutterFlowChoiceChips(
+                                options: const [
+                                  ChipData('Tổ chức'),
+                                  ChipData('Chi nhánh'),
+                                  ChipData('Bộ phận')
+                                ],
+                                onChanged: (val) async {
+                                  setState(() => _model.choiceChipsValue =
+                                      val?.firstOrNull);
+                                  _model.isLoad = false;
+                                  setState(() {});
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+                                  await _model.newsfeedListRequire(context);
+                                  setState(() {});
+                                  _model.isLoad = true;
+                                  setState(() {});
+                                },
+                                selectedChipStyle: ChipStyle(
+                                  backgroundColor: const Color(0x00000000),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  iconColor: const Color(0x00000000),
+                                  iconSize: 0.0,
+                                  labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                unselectedChipStyle: ChipStyle(
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  iconColor: const Color(0x00000000),
+                                  iconSize: 0.0,
+                                  labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 8.0, 0.0),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                chipSpacing: 0.0,
+                                rowSpacing: 12.0,
+                                multiselect: false,
+                                initialized: _model.choiceChipsValue != null,
+                                alignment: WrapAlignment.spaceAround,
+                                controller:
+                                    _model.choiceChipsValueController ??=
+                                        FormFieldController<List<String>>(
+                                  ['Tổ chức'],
+                                ),
+                                wrapped: true,
                               ),
-                              unselectedChipStyle: ChipStyle(
-                                backgroundColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
-                                    ),
-                                iconColor: const Color(0x00000000),
-                                iconSize: 0.0,
-                                labelPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                elevation: 0.0,
-                                borderColor: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              chipSpacing: 0.0,
-                              rowSpacing: 12.0,
-                              multiselect: false,
-                              initialized: _model.choiceChipsValue != null,
-                              alignment: WrapAlignment.spaceAround,
-                              controller: _model.choiceChipsValueController ??=
-                                  FormFieldController<List<String>>(
-                                ['Tổ chức'],
-                              ),
-                              wrapped: true,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              color: _model.choiceChipsValue == 'Tổ chức'
-                                  ? FlutterFlowTheme.of(context).primary
-                                  : const Color(0x00000000),
+                  Container(
+                    height: 56.0,
+                    decoration: const BoxDecoration(),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 0.0),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: const Alignment(0.0, 0),
+                            child: TabBar(
+                              labelColor: FlutterFlowTheme.of(context).primary,
+                              unselectedLabelColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              unselectedLabelStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              indicatorColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              padding: const EdgeInsets.all(4.0),
+                              tabs: const [
+                                Tab(
+                                  text: 'Tổ chức',
+                                ),
+                                Tab(
+                                  text: 'Chi nhánh',
+                                ),
+                                Tab(
+                                  text: 'Bộ phận',
+                                ),
+                              ],
+                              controller: _model.tabBarController,
+                              onTap: (i) async {
+                                [
+                                  () async {
+                                    _model.isLoad = false;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                    await _model.newsfeedListRequire(context);
+                                    setState(() {});
+                                    _model.isLoad = true;
+                                    setState(() {});
+                                  },
+                                  () async {
+                                    _model.isLoad = false;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                    await _model.newsfeedListRequire(context);
+                                    setState(() {});
+                                    _model.isLoad = true;
+                                    setState(() {});
+                                  },
+                                  () async {
+                                    _model.isLoad = false;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                    await _model.newsfeedListRequire(context);
+                                    setState(() {});
+                                    _model.isLoad = true;
+                                    setState(() {});
+                                  }
+                                ][i]();
+                              },
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              color: _model.choiceChipsValue == 'Chi nhánh'
-                                  ? FlutterFlowTheme.of(context).primary
-                                  : const Color(0x00000000),
+                          Expanded(
+                            child: TabBarView(
+                              controller: _model.tabBarController,
+                              children: [
+                                Container(),
+                                Container(),
+                                Container(),
+                              ],
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            height: 1.0,
-                            decoration: BoxDecoration(
-                              color: _model.choiceChipsValue == 'Bộ phận'
-                                  ? FlutterFlowTheme.of(context).primary
-                                  : const Color(0x00000000),
-                            ),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
@@ -278,7 +335,18 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           'NewsfeedListRequire',
                                           queryParameters: {
                                             'checkScope': serializeParam(
-                                              _model.choiceChipsValue,
+                                              () {
+                                                if (_model.tabBarCurrentIndex ==
+                                                    0) {
+                                                  return 'Tổ chức';
+                                                } else if (_model
+                                                        .tabBarCurrentIndex ==
+                                                    1) {
+                                                  return 'Chi nhánh';
+                                                } else {
+                                                  return 'Bộ phận';
+                                                }
+                                              }(),
                                               ParamType.String,
                                             ),
                                           }.withoutNulls,
@@ -320,15 +388,15 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 ),
                                 if (valueOrDefault<bool>(
                                   () {
-                                    if (_model.choiceChipsValue == 'Tổ chức') {
+                                    if (_model.tabBarCurrentIndex == 0) {
                                       return true;
-                                    } else if ((_model.choiceChipsValue ==
-                                            'Chi nhánh') &&
+                                    } else if ((_model.tabBarCurrentIndex ==
+                                            1) &&
                                         (FFAppState().user.role !=
                                             '82073000-1ba2-43a4-a55c-459d17c23b68')) {
                                       return true;
-                                    } else if ((_model.choiceChipsValue ==
-                                            'Bộ phận') &&
+                                    } else if ((_model.tabBarCurrentIndex ==
+                                            2) &&
                                         ((FFAppState().user.role ==
                                                 '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
                                             (FFAppState().user.role ==
@@ -375,12 +443,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   checkRequire: 'require',
                                                   checkScope: () {
                                                     if (_model
-                                                            .choiceChipsValue ==
-                                                        'Tổ chức') {
+                                                            .tabBarCurrentIndex ==
+                                                        0) {
                                                       return 0;
                                                     } else if (_model
-                                                            .choiceChipsValue ==
-                                                        'Chi nhánh') {
+                                                            .tabBarCurrentIndex ==
+                                                        1) {
                                                       return 1;
                                                     } else {
                                                       return 2;
@@ -450,6 +518,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                               serializeParam(
                                                             newsfeedRequireItem
                                                                 .id,
+                                                            ParamType.String,
+                                                          ),
+                                                          'checkpage':
+                                                              serializeParam(
+                                                            'newsfeed',
                                                             ParamType.String,
                                                           ),
                                                         }.withoutNulls,
@@ -795,6 +868,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                               .id,
                                                           ParamType.String,
                                                         ),
+                                                        'checkpage':
+                                                            serializeParam(
+                                                          'newsfeed',
+                                                          ParamType.String,
+                                                        ),
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
@@ -860,9 +938,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                     FlutterFlowTheme.of(
                                                                             context)
                                                                         .noColor,
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText
+                                                                    Colors.black
                                                                   ],
                                                                   stops: const [
                                                                     0.0,
@@ -1050,8 +1126,19 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       queryParameters: {
                                                         'checkScope':
                                                             serializeParam(
-                                                          _model
-                                                              .choiceChipsValue,
+                                                          () {
+                                                            if (_model
+                                                                    .tabBarCurrentIndex ==
+                                                                0) {
+                                                              return 'Tổ chức';
+                                                            } else if (_model
+                                                                    .tabBarCurrentIndex ==
+                                                                1) {
+                                                              return 'Chi nhánh';
+                                                            } else {
+                                                              return 'Bộ phận';
+                                                            }
+                                                          }(),
                                                           ParamType.String,
                                                         ),
                                                       }.withoutNulls,
@@ -1336,15 +1423,15 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 ),
                                 if (valueOrDefault<bool>(
                                   () {
-                                    if (_model.choiceChipsValue == 'Tổ chức') {
+                                    if (_model.tabBarCurrentIndex == 0) {
                                       return true;
-                                    } else if ((_model.choiceChipsValue ==
-                                            'Chi nhánh') &&
+                                    } else if ((_model.tabBarCurrentIndex ==
+                                            1) &&
                                         (FFAppState().user.role !=
                                             '82073000-1ba2-43a4-a55c-459d17c23b68')) {
                                       return true;
-                                    } else if ((_model.choiceChipsValue ==
-                                            'Bộ phận') &&
+                                    } else if ((_model.tabBarCurrentIndex ==
+                                            2) &&
                                         ((FFAppState().user.role ==
                                                 '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
                                             (FFAppState().user.role ==
@@ -1391,12 +1478,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                   checkRequire: 'published',
                                                   checkScope: () {
                                                     if (_model
-                                                            .choiceChipsValue ==
-                                                        'Tổ chức') {
+                                                            .tabBarCurrentIndex ==
+                                                        0) {
                                                       return 0;
                                                     } else if (_model
-                                                            .choiceChipsValue ==
-                                                        'Chi nhánh') {
+                                                            .tabBarCurrentIndex ==
+                                                        1) {
                                                       return 1;
                                                     } else {
                                                       return 2;
@@ -1424,425 +1511,496 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                           // This list view is "shrink wrapped" this can affect your app performance, we would suggest limiting the number of items you query in this list view.
                           //
                           // The list view is shrink wrapped to prevent the page from having two scrollable elements. The parent column is the element that is scrollable and it provides a smooth user experience.
-                          RefreshIndicator(
-                            onRefresh: () async {
-                              setState(() =>
-                                  _model.listViewPagingController?.refresh());
-                              await _model.waitForOnePageForListView();
-                            },
-                            child: PagedListView<ApiPagingParams, dynamic>(
-                              pagingController: _model.setListViewController(
-                                (nextPageMarker) =>
-                                    NewsfeedGroup.newsfeedListCall.call(
-                                  accessToken: FFAppState().accessToken,
-                                  filter: () {
-                                    if (_model.choiceChipsValue == 'Tổ chức') {
-                                      return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                        FFAppState().staffOrganization,
-                                        r'''$.id''',
-                                      ).toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                    } else if (_model.choiceChipsValue ==
-                                        'Chi nhánh') {
-                                      return () {
-                                        if (FFAppState().user.role ==
-                                            '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffBranch,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffBranch,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffBranch,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else {
-                                          return ' ';
-                                        }
-                                      }();
-                                    } else if (_model.choiceChipsValue ==
-                                        'Bộ phận') {
-                                      return () {
-                                        if (FFAppState().user.role ==
-                                            '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffDepartment,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffDepartment,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffBranch,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else if (FFAppState().user.role ==
-                                            '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                          return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                                            FFAppState().staffOrganization,
-                                            r'''$.id''',
-                                          ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
-                                        } else {
-                                          return ' ';
-                                        }
-                                      }();
-                                    } else {
-                                      return ' ';
-                                    }
-                                  }(),
-                                  limit: 20,
-                                  offset: nextPageMarker.nextPageNumber * 20,
-                                ),
+                          PagedListView<ApiPagingParams, dynamic>(
+                            pagingController: _model.setListViewController(
+                              (nextPageMarker) =>
+                                  NewsfeedGroup.newsfeedListCall.call(
+                                accessToken: FFAppState().accessToken,
+                                filter: () {
+                                  if (_model.tabBarCurrentIndex == 0) {
+                                    return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                      FFAppState().staffOrganization,
+                                      r'''$.id''',
+                                    ).toString()}\"}}},{\"branch_id\":{\"_null\":true}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                  } else if (_model.tabBarCurrentIndex == 1) {
+                                    return () {
+                                      if (FFAppState().user.role ==
+                                          '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffBranch,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffBranch,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"_null\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffBranch,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else {
+                                        return ' ';
+                                      }
+                                    }();
+                                  } else if (_model.tabBarCurrentIndex == 2) {
+                                    return () {
+                                      if (FFAppState().user.role ==
+                                          '3755a98d-f064-45cd-80e4-5084ab1dd2c4') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffDepartment,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffDepartment,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          'a8d33527-375b-4599-ac70-6a3fcad1de39') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffBranch,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else if (FFAppState().user.role ==
+                                          '82073000-1ba2-43a4-a55c-459d17c23b68') {
+                                        return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                                          FFAppState().staffOrganization,
+                                          r'''$.id''',
+                                        ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      } else {
+                                        return ' ';
+                                      }
+                                    }();
+                                  } else {
+                                    return ' ';
+                                  }
+                                }(),
+                                limit: 20,
+                                offset: nextPageMarker.nextPageNumber * 20,
                               ),
-                              padding: const EdgeInsets.fromLTRB(
-                                0,
-                                0,
-                                0,
-                                70.0,
-                              ),
-                              primary: false,
-                              shrinkWrap: true,
-                              reverse: false,
-                              scrollDirection: Axis.vertical,
-                              builderDelegate:
-                                  PagedChildBuilderDelegate<dynamic>(
-                                // Customize what your widget looks like when it's loading the first page.
-                                firstPageProgressIndicatorBuilder: (_) =>
-                                    Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                            ),
+                            padding: const EdgeInsets.fromLTRB(
+                              0,
+                              0,
+                              0,
+                              70.0,
+                            ),
+                            primary: false,
+                            shrinkWrap: true,
+                            reverse: false,
+                            scrollDirection: Axis.vertical,
+                            builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                              // Customize what your widget looks like when it's loading the first page.
+                              firstPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
                                     ),
                                   ),
                                 ),
-                                // Customize what your widget looks like when it's loading another page.
-                                newPageProgressIndicatorBuilder: (_) => Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                              ),
+                              // Customize what your widget looks like when it's loading another page.
+                              newPageProgressIndicatorBuilder: (_) => Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
                                     ),
                                   ),
                                 ),
-                                noItemsFoundIndicatorBuilder: (_) =>
-                                    const DNFNewsfeedWidget(),
-                                itemBuilder: (context, _, newsfeedIndex) {
-                                  final newsfeedItem = _model
-                                      .listViewPagingController!
-                                      .itemList![newsfeedIndex];
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.stretch,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 16.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          'ProfileUserNew',
-                                                          queryParameters: {
-                                                            'staffId':
-                                                                serializeParam(
-                                                              newsfeedItem
-                                                                  .userCreated
-                                                                  .staffs
-                                                                  .first
-                                                                  .id,
-                                                              ParamType.String,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        decoration:
-                                                            BoxDecoration(
+                              ),
+                              noItemsFoundIndicatorBuilder: (_) =>
+                                  const DNFNewsfeedWidget(),
+                              itemBuilder: (context, _, newsfeedIndex) {
+                                final newsfeedItem = _model
+                                    .listViewPagingController!
+                                    .itemList![newsfeedIndex];
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 16.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 16.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'ProfileUserNew',
+                                                        queryParameters: {
+                                                          'staffId':
+                                                              serializeParam(
+                                                            newsfeedItem
+                                                                .userCreated
+                                                                .staffs
+                                                                .first
+                                                                .id,
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              const TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    0),
+                                                          ),
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .accent1,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(90.0),
+                                                        shape:
+                                                            BoxShape.rectangle,
+                                                        border: Border.all(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .accent1,
+                                                              .primary,
+                                                          width: 2.0,
+                                                        ),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(2.0),
+                                                        child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       90.0),
-                                                          shape: BoxShape
-                                                              .rectangle,
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
+                                                          child: Image.network(
+                                                            '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
+                                                            width: 300.0,
+                                                            height: 200.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            newsfeedItem
+                                                                .userCreated
+                                                                .firstName,
+                                                            style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primary,
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.all(
-                                                                  2.0),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        90.0),
-                                                            child:
-                                                                Image.network(
-                                                              '${FFAppConstants.ApiBaseUrl}/assets/${newsfeedItem.userCreated.avatar}?access_token=${FFAppState().accessToken}',
-                                                              width: 300.0,
-                                                              height: 200.0,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              newsfeedItem
-                                                                  .userCreated
-                                                                  .firstName,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              dateTimeFormat(
-                                                                'relative',
-                                                                functions.stringToDateTime(
-                                                                    newsfeedItem
-                                                                        .dateCreated),
-                                                                locale: FFLocalizations.of(
-                                                                        context)
-                                                                    .languageCode,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Nunito Sans',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    fontSize:
-                                                                        13.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    if (newsfeedItem
-                                                            .userCreated.id ==
-                                                        FFAppState().user.id)
-                                                      FlutterFlowIconButton(
-                                                        borderColor:
-                                                            Colors.transparent,
-                                                        borderRadius: 20.0,
-                                                        borderWidth: 1.0,
-                                                        buttonSize: 40.0,
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_control,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        onPressed: () async {
-                                                          await showModalBottomSheet(
-                                                            isScrollControlled:
-                                                                true,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            useSafeArea: true,
-                                                            context: context,
-                                                            builder: (context) {
-                                                              return GestureDetector(
-                                                                onTap: () => _model
-                                                                        .unfocusNode
-                                                                        .canRequestFocus
-                                                                    ? FocusScope.of(
-                                                                            context)
-                                                                        .requestFocus(_model
-                                                                            .unfocusNode)
-                                                                    : FocusScope.of(
-                                                                            context)
-                                                                        .unfocus(),
-                                                                child: Padding(
-                                                                  padding: MediaQuery
-                                                                      .viewInsetsOf(
-                                                                          context),
-                                                                  child:
-                                                                      ActionNewsfeedWidget(
-                                                                    newsFeedList:
-                                                                        newsfeedItem,
-                                                                    callback:
-                                                                        () async {
-                                                                      setState(() => _model
-                                                                          .listViewPagingController
-                                                                          ?.refresh());
-                                                                    },
-                                                                  ),
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
                                                                 ),
-                                                              );
-                                                            },
-                                                          ).then((value) =>
-                                                              safeSetState(
-                                                                  () {}));
-                                                        },
+                                                          ),
+                                                          Text(
+                                                            dateTimeFormat(
+                                                              'relative',
+                                                              functions.stringToDateTime(
+                                                                  newsfeedItem
+                                                                      .dateCreated),
+                                                              locale: FFLocalizations
+                                                                      .of(context)
+                                                                  .languageCode,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                  ],
-                                                ),
-                                              ),
-                                              if (newsfeedItem.title != null &&
-                                                  newsfeedItem.title != '')
-                                                Text(
-                                                  newsfeedItem.title,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
+                                                    ),
+                                                  ),
+                                                  if (newsfeedItem
+                                                          .userCreated.id ==
+                                                      FFAppState().user.id)
+                                                    FlutterFlowIconButton(
+                                                      borderColor:
+                                                          Colors.transparent,
+                                                      borderRadius: 20.0,
+                                                      borderWidth: 1.0,
+                                                      buttonSize: 40.0,
+                                                      icon: Icon(
+                                                        Icons.keyboard_control,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .primaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
+                                                                .secondaryText,
+                                                        size: 24.0,
                                                       ),
+                                                      onPressed: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          useSafeArea: true,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    ActionNewsfeedWidget(
+                                                                  newsFeedList:
+                                                                      newsfeedItem,
+                                                                  checkPage:
+                                                                      'newsfeed',
+                                                                  callback:
+                                                                      () async {
+                                                                    setState(() => _model
+                                                                        .listViewPagingController
+                                                                        ?.refresh());
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      },
+                                                    ),
+                                                ],
+                                              ),
+                                            ),
+                                            if (newsfeedItem.title != null &&
+                                                newsfeedItem.title != '')
+                                              Text(
+                                                newsfeedItem.title,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                              ),
+                                            if ((_model.newsfeedPublished
+                                                    .isNotEmpty) &&
+                                                (newsfeedItem != null) &&
+                                                (newsfeedItem.content != null &&
+                                                    newsfeedItem.content !=
+                                                        '') &&
+                                                ((newsfeedItem.videos.length >
+                                                        0) ||
+                                                    (newsfeedItem.files.length >
+                                                        0)))
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    'NewsfeedDetail',
+                                                    queryParameters: {
+                                                      'newsfeedId':
+                                                          serializeParam(
+                                                        newsfeedItem.id,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                },
+                                                child: RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: newsfeedItem
+                                                            .content,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontSize: 14.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  textAlign: TextAlign.start,
+                                                  maxLines: 2,
                                                 ),
-                                              if ((_model.newsfeedPublished
-                                                      .isNotEmpty) &&
-                                                  (newsfeedItem != null) &&
-                                                  (newsfeedItem.content !=
-                                                          null &&
-                                                      newsfeedItem.content !=
-                                                          '') &&
-                                                  ((newsfeedItem.videos.length >
-                                                          0) ||
-                                                      (newsfeedItem
-                                                              .files.length >
-                                                          0)))
-                                                InkWell(
+                                              ),
+                                            if ((_model.newsfeedPublished
+                                                    .isNotEmpty) &&
+                                                (newsfeedItem != null) &&
+                                                (newsfeedItem.content != null &&
+                                                    newsfeedItem.content !=
+                                                        '') &&
+                                                ((newsfeedItem.videos.length >
+                                                        0) ||
+                                                    (newsfeedItem.files.length >
+                                                        0)))
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 8.0),
+                                                child: InkWell(
                                                   splashColor:
                                                       Colors.transparent,
                                                   focusColor:
@@ -1879,23 +2037,13 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         MediaQuery.of(context)
                                                             .textScaler,
                                                     text: TextSpan(
-                                                      children: [
+                                                      children: const [
                                                         TextSpan(
-                                                          text: newsfeedItem
-                                                              .content,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Nunito Sans',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                          text: 'Xem thêm... ',
+                                                          style: TextStyle(
+                                                            fontStyle: FontStyle
+                                                                .normal,
+                                                          ),
                                                         )
                                                       ],
                                                       style:
@@ -1907,168 +2055,279 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                     'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
+                                                                    .secondaryText,
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
                                                     ),
                                                     textAlign: TextAlign.start,
-                                                    maxLines: 2,
                                                   ),
                                                 ),
-                                              if ((_model.newsfeedPublished
-                                                      .isNotEmpty) &&
-                                                  (newsfeedItem != null) &&
-                                                  (newsfeedItem.content !=
-                                                          null &&
-                                                      newsfeedItem.content !=
-                                                          '') &&
-                                                  ((newsfeedItem.videos.length >
-                                                          0) ||
-                                                      (newsfeedItem
-                                                              .files.length >
-                                                          0)))
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 8.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      context.pushNamed(
-                                                        'NewsfeedDetail',
-                                                        queryParameters: {
-                                                          'newsfeedId':
-                                                              serializeParam(
-                                                            newsfeedItem.id,
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              const TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                          ),
-                                                        },
-                                                      );
-                                                    },
-                                                    child: RichText(
-                                                      textScaler:
-                                                          MediaQuery.of(context)
-                                                              .textScaler,
-                                                      text: TextSpan(
-                                                        children: const [
-                                                          TextSpan(
-                                                            text:
-                                                                'Xem thêm... ',
-                                                            style: TextStyle(
-                                                              fontStyle:
-                                                                  FontStyle
-                                                                      .normal,
-                                                            ),
-                                                          )
-                                                        ],
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                              ),
+                                            if ((_model.newsfeedPublished
+                                                    .isNotEmpty) &&
+                                                (newsfeedItem != null) &&
+                                                (newsfeedItem.content != null &&
+                                                    newsfeedItem.content !=
+                                                        '') &&
+                                                ((newsfeedItem.videos.length ==
+                                                        0) &&
+                                                    (newsfeedItem
+                                                            .files.length ==
+                                                        0)))
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 8.0),
+                                                child:
+                                                    custom_widgets.FormatText(
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  number: 90,
+                                                  text: newsfeedItem.content,
+                                                  action: () async {
+                                                    context.pushNamed(
+                                                      'NewsfeedDetail',
+                                                      queryParameters: {
+                                                        'newsfeedId':
+                                                            serializeParam(
+                                                          newsfeedItem.id,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            if (newsfeedItem.images.length > 0)
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Builder(
+                                                    builder: (context) {
+                                                      final imageList =
+                                                          newsfeedItem.images
+                                                              .toList();
+                                                      return MasonryGridView
+                                                          .builder(
+                                                        physics:
+                                                            const NeverScrollableScrollPhysics(),
+                                                        gridDelegate:
+                                                            const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                          crossAxisCount: 2,
+                                                        ),
+                                                        crossAxisSpacing: 6.0,
+                                                        mainAxisSpacing: 6.0,
+                                                        itemCount:
+                                                            imageList.length,
+                                                        shrinkWrap: true,
+                                                        itemBuilder: (context,
+                                                            imageListIndex) {
+                                                          final imageListItem =
+                                                              imageList[
+                                                                  imageListIndex];
+                                                          return Visibility(
+                                                            visible:
+                                                                imageListIndex <
+                                                                    6,
+                                                            child: Stack(
+                                                              children: [
+                                                                InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      PageTransition(
+                                                                        type: PageTransitionType
+                                                                            .fade,
+                                                                        child:
+                                                                            FlutterFlowExpandedImageView(
+                                                                          image:
+                                                                              Image.network(
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
+                                                                          allowRotation:
+                                                                              false,
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                          useHeroAnimation:
+                                                                              true,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  child: Hero(
+                                                                    tag:
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                    transitionOnUserGestures:
+                                                                        true,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            150.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
-                                                      ),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                    ),
-                                                  ),
-                                                ),
-                                              if ((_model.newsfeedPublished
-                                                      .isNotEmpty) &&
-                                                  (newsfeedItem != null) &&
-                                                  (newsfeedItem.content !=
-                                                          null &&
-                                                      newsfeedItem.content !=
-                                                          '') &&
-                                                  ((newsfeedItem
-                                                              .videos.length ==
-                                                          0) &&
-                                                      (newsfeedItem
-                                                              .files.length ==
-                                                          0)))
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 8.0),
-                                                  child:
-                                                      custom_widgets.FormatText(
-                                                    width: 100.0,
-                                                    height: 100.0,
-                                                    number: 90,
-                                                    text: newsfeedItem.content,
-                                                    action: () async {
-                                                      context.pushNamed(
-                                                        'NewsfeedDetail',
-                                                        queryParameters: {
-                                                          'newsfeedId':
-                                                              serializeParam(
-                                                            newsfeedItem.id,
-                                                            ParamType.String,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              const TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .fade,
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    0),
-                                                          ),
+                                                                if ((newsfeedItem
+                                                                            .images
+                                                                            .length >
+                                                                        6) &&
+                                                                    (imageListIndex ==
+                                                                        5))
+                                                                  Opacity(
+                                                                    opacity:
+                                                                        0.7,
+                                                                    child:
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'NewsfeedDetail',
+                                                                          queryParameters:
+                                                                              {
+                                                                            'newsfeedId':
+                                                                                serializeParam(
+                                                                              newsfeedItem.id,
+                                                                              ParamType.String,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <String,
+                                                                              dynamic>{
+                                                                            kTransitionInfoKey:
+                                                                                const TransitionInfo(
+                                                                              hasTransition: true,
+                                                                              transitionType: PageTransitionType.fade,
+                                                                              duration: Duration(milliseconds: 0),
+                                                                            ),
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            150.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8.0),
+                                                                        ),
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          '+${formatNumber(
+                                                                            newsfeedItem.images.length -
+                                                                                6,
+                                                                            formatType:
+                                                                                FormatType.decimal,
+                                                                            decimalType:
+                                                                                DecimalType.commaDecimal,
+                                                                          )}',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Nunito Sans',
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                fontSize: 16.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                          );
                                                         },
                                                       );
                                                     },
                                                   ),
                                                 ),
-                                              if (newsfeedItem.images.length >
-                                                  0)
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
+                                              ),
+                                            if ((newsfeedItem.videos.length >
+                                                    0) &&
+                                                ('1' == '2'))
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: Visibility(
+                                                  visible: (newsfeedItem
+                                                              .videos.length >
+                                                          0) &&
+                                                      ('1' == '2'),
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.all(8.0),
                                                     child: Builder(
                                                       builder: (context) {
-                                                        final imageList =
-                                                            newsfeedItem.images
+                                                        final videoList =
+                                                            newsfeedItem.videos
                                                                 .toList();
                                                         return MasonryGridView
                                                             .builder(
@@ -2081,156 +2340,31 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           crossAxisSpacing: 6.0,
                                                           mainAxisSpacing: 6.0,
                                                           itemCount:
-                                                              imageList.length,
+                                                              videoList.length,
                                                           shrinkWrap: true,
                                                           itemBuilder: (context,
-                                                              imageListIndex) {
-                                                            final imageListItem =
-                                                                imageList[
-                                                                    imageListIndex];
-                                                            return Visibility(
-                                                              visible:
-                                                                  imageListIndex <
-                                                                      6,
-                                                              child: Stack(
-                                                                children: [
-                                                                  InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      await Navigator
-                                                                          .push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type:
-                                                                              PageTransitionType.fade,
-                                                                          child:
-                                                                              FlutterFlowExpandedImageView(
-                                                                            image:
-                                                                                Image.network(
-                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                              fit: BoxFit.contain,
-                                                                            ),
-                                                                            allowRotation:
-                                                                                false,
-                                                                            tag:
-                                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                            useHeroAnimation:
-                                                                                true,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                    child: Hero(
-                                                                      tag:
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                      transitionOnUserGestures:
-                                                                          true,
-                                                                      child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              double.infinity,
-                                                                          height:
-                                                                              150.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  if ((newsfeedItem
-                                                                              .images
-                                                                              .length >
-                                                                          6) &&
-                                                                      (imageListIndex ==
-                                                                          5))
-                                                                    Opacity(
-                                                                      opacity:
-                                                                          0.7,
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          context
-                                                                              .pushNamed(
-                                                                            'NewsfeedDetail',
-                                                                            queryParameters:
-                                                                                {
-                                                                              'newsfeedId': serializeParam(
-                                                                                newsfeedItem.id,
-                                                                                ParamType.String,
-                                                                              ),
-                                                                            }.withoutNulls,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: const TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Container(
-                                                                          width:
-                                                                              double.infinity,
-                                                                          height:
-                                                                              150.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryText,
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(8.0),
-                                                                          ),
-                                                                          alignment: const AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Text(
-                                                                            '+${formatNumber(
-                                                                              newsfeedItem.images.length - 6,
-                                                                              formatType: FormatType.decimal,
-                                                                              decimalType: DecimalType.commaDecimal,
-                                                                            )}',
-                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                  fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                  fontSize: 16.0,
-                                                                                  letterSpacing: 0.0,
-                                                                                  fontWeight: FontWeight.w500,
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                ],
-                                                              ),
+                                                              videoListIndex) {
+                                                            final videoListItem =
+                                                                videoList[
+                                                                    videoListIndex];
+                                                            return FlutterFlowVideoPlayer(
+                                                              path:
+                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                              videoType:
+                                                                  VideoType
+                                                                      .network,
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              autoPlay: false,
+                                                              looping: true,
+                                                              showControls:
+                                                                  true,
+                                                              allowFullScreen:
+                                                                  true,
+                                                              allowPlaybackSpeedMenu:
+                                                                  false,
                                                             );
                                                           },
                                                         );
@@ -2238,332 +2372,171 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     ),
                                                   ),
                                                 ),
-                                              if ((newsfeedItem.videos.length >
-                                                      0) &&
-                                                  ('1' == '2'))
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Visibility(
-                                                    visible: (newsfeedItem
-                                                                .videos.length >
-                                                            0) &&
-                                                        ('1' == '2'),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(8.0),
-                                                      child: Builder(
-                                                        builder: (context) {
-                                                          final videoList =
-                                                              newsfeedItem
-                                                                  .videos
-                                                                  .toList();
-                                                          return MasonryGridView
-                                                              .builder(
-                                                            physics:
-                                                                const NeverScrollableScrollPhysics(),
-                                                            gridDelegate:
-                                                                const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                                              crossAxisCount: 2,
-                                                            ),
-                                                            crossAxisSpacing:
-                                                                6.0,
-                                                            mainAxisSpacing:
-                                                                6.0,
-                                                            itemCount: videoList
-                                                                .length,
-                                                            shrinkWrap: true,
-                                                            itemBuilder: (context,
-                                                                videoListIndex) {
-                                                              final videoListItem =
-                                                                  videoList[
-                                                                      videoListIndex];
-                                                              return FlutterFlowVideoPlayer(
-                                                                path:
-                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${videoListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                videoType:
-                                                                    VideoType
-                                                                        .network,
-                                                                width: double
-                                                                    .infinity,
-                                                                height: double
-                                                                    .infinity,
-                                                                autoPlay: false,
-                                                                looping: true,
-                                                                showControls:
-                                                                    true,
-                                                                allowFullScreen:
-                                                                    true,
-                                                                allowPlaybackSpeedMenu:
-                                                                    false,
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              Builder(
-                                                builder: (context) => Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 8.0, 0.0, 6.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            alignment: const AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
+                                              ),
+                                            Builder(
+                                              builder: (context) => Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 8.0, 0.0, 6.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
                                                             child:
-                                                                GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child:
-                                                                  CommentNewsfeedWidget(
-                                                                comment:
-                                                                    newsfeedItem
-                                                                        .comments,
-                                                                id: newsfeedItem
-                                                                    .id,
-                                                                callBack:
-                                                                    () async {
-                                                                  await _model
-                                                                      .newsfeedListRequire(
-                                                                          context);
+                                                                CommentNewsfeedWidget(
+                                                              comment:
+                                                                  newsfeedItem
+                                                                      .comments,
+                                                              id: newsfeedItem
+                                                                  .id,
+                                                              callBack:
+                                                                  () async {
+                                                                await _model
+                                                                    .newsfeedListRequire(
+                                                                        context);
 
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                              ),
+                                                                setState(() {});
+                                                              },
                                                             ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          setState(() {}));
-                                                    },
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        const Icon(
-                                                          Icons.favorite,
-                                                          color:
-                                                              Color(0xFFF40A0A),
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              newsfeedItem
-                                                                  .reacts.length
-                                                                  .toString(),
-                                                              '0',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
                                                           ),
-                                                        ),
-                                                        Icon(
-                                                          Icons.comment,
-                                                          color: FlutterFlowTheme
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        setState(() {}));
+                                                  },
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      const Icon(
+                                                        Icons.favorite,
+                                                        color:
+                                                            Color(0xFFF40A0A),
+                                                        size: 18.0,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            newsfeedItem
+                                                                .reacts.length
+                                                                .toString(),
+                                                            '0',
+                                                          ),
+                                                          style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .secondaryText,
-                                                          size: 18.0,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            '${valueOrDefault<String>(
-                                                              newsfeedItem
-                                                                  .comments
-                                                                  .length
-                                                                  .toString(),
-                                                              '0',
-                                                            )} bình luận',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.comment,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 18.0,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          '${valueOrDefault<String>(
+                                                            newsfeedItem
+                                                                .comments.length
+                                                                .toString(),
+                                                            '0',
+                                                          )} bình luận',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
-                                                      ].divide(
-                                                          const SizedBox(width: 3.0)),
-                                                    ),
+                                                      ),
+                                                    ].divide(
+                                                        const SizedBox(width: 3.0)),
                                                   ),
                                                 ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  // Cập nhật yêu thích
-                                                  if (newsfeedItem.reacts
-                                                          .where((e) =>
-                                                              e.reactsId
-                                                                  .staffId ==
-                                                              FFAppState()
-                                                                  .staffid)
-                                                          .toList()
-                                                          .length ==
-                                                      0)
-                                                    Semantics(
-                                                      label: 'Yêu thích',
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          await _model
-                                                              .reactNewsfeed(
-                                                            context,
-                                                            newsId:
-                                                                newsfeedItem.id,
-                                                          );
-                                                          setState(() {});
-                                                          setState(() => _model
-                                                              .listViewPagingController
-                                                              ?.refresh());
-                                                          await _model
-                                                              .waitForOnePageForListView();
-                                                        },
-                                                        child: Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        4.0,
-                                                                        8.0,
-                                                                        4.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .favorite_border,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 20.0,
-                                                                ),
-                                                                Text(
-                                                                  'Thích',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ].divide(const SizedBox(
-                                                                  width: 4.0)),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  if (newsfeedItem.reacts
-                                                          .where((e) =>
-                                                              e.reactsId
-                                                                  .staffId ==
-                                                              FFAppState()
-                                                                  .staffid)
-                                                          .toList()
-                                                          .length >
-                                                      0)
-                                                    InkWell(
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                // Cập nhật yêu thích
+                                                if (newsfeedItem.reacts
+                                                        .where((e) =>
+                                                            e.reactsId
+                                                                .staffId ==
+                                                            FFAppState()
+                                                                .staffid)
+                                                        .toList()
+                                                        .length ==
+                                                    0)
+                                                  Semantics(
+                                                    label: 'Yêu thích',
+                                                    child: InkWell(
                                                       splashColor:
                                                           Colors.transparent,
                                                       focusColor:
@@ -2574,23 +2547,17 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           Colors.transparent,
                                                       onTap: () async {
                                                         await _model
-                                                            .reactNewsfeedDelete(
+                                                            .reactNewsfeed(
                                                           context,
-                                                          reactId: newsfeedItem
-                                                              .reacts
-                                                              .where((e) =>
-                                                                  e.reactsId
-                                                                      .staffId ==
-                                                                  FFAppState()
-                                                                      .staffid)
-                                                              .toList()
-                                                              .first
-                                                              .id,
+                                                          newsId:
+                                                              newsfeedItem.id,
                                                         );
                                                         setState(() {});
                                                         setState(() => _model
                                                             .listViewPagingController
                                                             ?.refresh());
+                                                        await _model
+                                                            .waitForOnePageForListView();
                                                       },
                                                       child: Container(
                                                         decoration:
@@ -2619,10 +2586,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                 MainAxisAlignment
                                                                     .start,
                                                             children: [
-                                                              const Icon(
-                                                                Icons.favorite,
-                                                                color: Color(
-                                                                    0xFFF40A0A),
+                                                              Icon(
+                                                                Icons
+                                                                    .favorite_border,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 size: 20.0,
                                                               ),
                                                               Text(
@@ -2646,138 +2615,224 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         ),
                                                       ),
                                                     ),
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          useSafeArea: true,
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CommentNewsfeedWidget(
-                                                                  comment:
-                                                                      newsfeedItem
-                                                                          .comments,
-                                                                  id: newsfeedItem
-                                                                      .id,
-                                                                  callBack:
-                                                                      () async {
-                                                                    await _model
-                                                                        .newsfeedListRequire(
-                                                                            context);
-                                                                    setState(() => _model
-                                                                        .listViewPagingController
-                                                                        ?.refresh());
+                                                  ),
+                                                if (newsfeedItem.reacts
+                                                        .where((e) =>
+                                                            e.reactsId
+                                                                .staffId ==
+                                                            FFAppState()
+                                                                .staffid)
+                                                        .toList()
+                                                        .length >
+                                                    0)
+                                                  InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await _model
+                                                          .reactNewsfeedDelete(
+                                                        context,
+                                                        reactId: newsfeedItem
+                                                            .reacts
+                                                            .where((e) =>
+                                                                e.reactsId
+                                                                    .staffId ==
+                                                                FFAppState()
+                                                                    .staffid)
+                                                            .toList()
+                                                            .first
+                                                            .id,
+                                                      );
+                                                      setState(() {});
+                                                      setState(() => _model
+                                                          .listViewPagingController
+                                                          ?.refresh());
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    4.0,
+                                                                    8.0,
+                                                                    4.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            const Icon(
+                                                              Icons.favorite,
+                                                              color: Color(
+                                                                  0xFFF40A0A),
+                                                              size: 20.0,
+                                                            ),
+                                                            Text(
+                                                              'Thích',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                            ),
+                                                          ].divide(const SizedBox(
+                                                              width: 4.0)),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                Expanded(
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        useSafeArea: true,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CommentNewsfeedWidget(
+                                                                comment:
+                                                                    newsfeedItem
+                                                                        .comments,
+                                                                id: newsfeedItem
+                                                                    .id,
+                                                                callBack:
+                                                                    () async {
+                                                                  await _model
+                                                                      .newsfeedListRequire(
+                                                                          context);
+                                                                  setState(() => _model
+                                                                      .listViewPagingController
+                                                                      ?.refresh());
 
-                                                                    setState(
-                                                                        () {});
-                                                                  },
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                    child: SafeArea(
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      90.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      4.0,
+                                                                      8.0,
+                                                                      4.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Text(
+                                                                  'Nhập bình luận',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
                                                                 ),
                                                               ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            safeSetState(
-                                                                () {}));
-                                                      },
-                                                      child: SafeArea(
-                                                        child: Container(
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        90.0),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        4.0,
-                                                                        8.0,
-                                                                        4.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Text(
-                                                                    'Nhập bình luận',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Nunito Sans',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Icon(
-                                                                  Icons
-                                                                      .tag_faces,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 24.0,
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              Icon(
+                                                                Icons.tag_faces,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 24.0,
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 8.0)),
-                                              ),
-                                            ],
-                                          ),
+                                                ),
+                                              ].divide(const SizedBox(width: 8.0)),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],

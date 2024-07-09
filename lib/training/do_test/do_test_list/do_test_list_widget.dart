@@ -74,7 +74,16 @@ class _DoTestListWidgetState extends State<DoTestListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.goNamed(
+                'Profile',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(

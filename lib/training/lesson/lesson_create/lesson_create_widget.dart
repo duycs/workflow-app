@@ -7,10 +7,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/training/lesson/ckeditor_create_lesson/ckeditor_create_lesson_widget.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/lesson/quiz_creation_lesson/quiz_creation_lesson_widget.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1193,16 +1192,15 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 8.0, 0.0, 0.0),
+                              0.0, 12.0, 0.0, 12.0),
                           child: Text(
                             'Nội dung',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                           ),
                         ),
                         Container(
@@ -1217,106 +1215,97 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             ),
                           ),
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Builder(
-                            builder: (context) => InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (dialogContext) {
-                                    return Dialog(
-                                      elevation: 0,
-                                      insetPadding: EdgeInsets.zero,
-                                      backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
-                                          .resolve(Directionality.of(context)),
-                                      child: GestureDetector(
-                                        onTap: () => _model
-                                                .unfocusNode.canRequestFocus
-                                            ? FocusScope.of(context)
-                                                .requestFocus(
-                                                    _model.unfocusNode)
-                                            : FocusScope.of(context).unfocus(),
-                                        child: SizedBox(
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          child: CkeditorCreateLessonWidget(
-                                            input: _model.input,
-                                            output: _model.output,
-                                            callBack: (input, output) async {
-                                              _model.checkContent = output!;
-                                              _model.input = input!;
-                                              _model.output = output;
-                                              setState(() {});
-                                            },
-                                          ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                useSafeArea: true,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: SizedBox(
+                                        height: double.infinity,
+                                        child: MobileEditorComponentWidget(
+                                          content: _model.json,
+                                          setContentCallback:
+                                              (editorContent) async {
+                                            _model.checkContent =
+                                                editorContent.toString();
+                                            _model.json = editorContent;
+                                            setState(() {});
+                                            Navigator.pop(context);
+                                          },
                                         ),
                                       ),
-                                    );
-                                  },
-                                ).then((value) => setState(() {}));
-                              },
-                              child: Container(
-                                width: 180.0,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+                            },
+                            child: Container(
+                              width: 180.0,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: BorderRadius.circular(10.0),
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).alternate,
                                 ),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 5.0, 0.0),
-                                        child: Icon(
-                                          Icons.edit_note,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 24.0,
-                                        ),
+                              ),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Icon(
+                                        Icons.edit_note,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
                                       ),
-                                      if (_model.checkContent == '')
-                                        Text(
-                                          'Nhập nội dung',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      if (_model.checkContent != '')
-                                        Text(
-                                          'Chỉnh sửa nội dung',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                letterSpacing: 0.0,
-                                              ),
-                                        ),
-                                    ],
-                                  ),
+                                    ),
+                                    if (_model.checkContent == '')
+                                      Text(
+                                        'Nhập nội dung',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    if (_model.checkContent != '')
+                                      Text(
+                                        'Chỉnh sửa nội dung',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -1335,11 +1324,14 @@ class _LessonCreateWidgetState extends State<LessonCreateWidget> {
                             ),
                             alignment: const AlignmentDirectional(0.0, 0.0),
                           ),
-                        custom_widgets.HTMLView(
-                          width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: 100.0,
-                          html: functions.formatHtml(_model.checkContent),
-                        ),
+                        if (_model.checkContent != '')
+                          wrapWithModel(
+                            model: _model.mobileEditorDisplayComponentModel,
+                            updateCallback: () => setState(() {}),
+                            child: MobileEditorDisplayComponentWidget(
+                              content: _model.checkContent,
+                            ),
+                          ),
                       ].divide(const SizedBox(height: 6.0)),
                     ),
                   ),

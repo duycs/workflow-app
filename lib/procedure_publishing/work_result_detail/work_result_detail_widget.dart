@@ -3,7 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure_publishing/checkbox_work_result/checkbox_work_result_widget.dart';
 import '/procedure_publishing/result_work_grid_view/result_work_grid_view_widget.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -545,7 +545,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                   },
                                                 ),
                                               if (dataListItem.actionType ==
-                                                  'todo_list')
+                                                  'to_do_list')
                                                 Builder(
                                                   builder: (context) {
                                                     final dataCheckList =
@@ -573,56 +573,16 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     );
                                                   },
                                                 ),
-                                              if (dataListItem
-                                                          .operations
-                                                          .first
-                                                          .operationsId
-                                                          .result !=
-                                                      '')
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                        border: Border.all(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                        ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    6.0,
-                                                                    8.0,
-                                                                    6.0),
-                                                        child: custom_widgets
-                                                            .HtmlToDoc(
-                                                          width:
-                                                              double.infinity,
-                                                          height: 150.0,
-                                                          html: functions
-                                                              .formatHtml(
-                                                                  dataListItem
-                                                                      .operations
-                                                                      .first
-                                                                      .operationsId
-                                                                      .result),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                              if (dataListItem.actionType ==
+                                                  'submit_text')
+                                                MobileEditorDisplayComponentWidget(
+                                                  key: Key(
+                                                      'Keyoeo_${dataListIndex}_of_${dataList.length}'),
+                                                  content: dataListItem
+                                                      .operations
+                                                      .first
+                                                      .operationsId
+                                                      .result,
                                                 ),
                                             ].divide(const SizedBox(height: 8.0)),
                                           ),

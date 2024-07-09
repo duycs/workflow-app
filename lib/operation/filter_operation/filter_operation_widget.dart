@@ -80,8 +80,8 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -95,7 +95,12 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -454,7 +459,6 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                     onChanged: (val) =>
                         setState(() => _model.statusValue = val),
                     width: double.infinity,
-                    height: 56.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,
@@ -502,7 +506,6 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                     onChanged: (val) =>
                         setState(() => _model.actionValue = val),
                     width: double.infinity,
-                    height: 56.0,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Nunito Sans',
                           letterSpacing: 0.0,

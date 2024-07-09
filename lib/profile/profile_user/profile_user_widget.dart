@@ -110,6 +110,7 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Flexible(
                   child: SingleChildScrollView(
@@ -778,7 +779,8 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       context.pushNamed(

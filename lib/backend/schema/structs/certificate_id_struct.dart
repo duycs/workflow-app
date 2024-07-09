@@ -8,7 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 class CertificateIdStruct extends BaseStruct {
   CertificateIdStruct({
     String? code,
-  }) : _code = code;
+    String? id,
+  })  : _code = code,
+        _id = id;
 
   // "code" field.
   String? _code;
@@ -17,9 +19,17 @@ class CertificateIdStruct extends BaseStruct {
 
   bool hasCode() => _code != null;
 
+  // "id" field.
+  String? _id;
+  String get id => _id ?? '';
+  set id(String? val) => _id = val;
+
+  bool hasId() => _id != null;
+
   static CertificateIdStruct fromMap(Map<String, dynamic> data) =>
       CertificateIdStruct(
         code: data['code'] as String?,
+        id: data['id'] as String?,
       );
 
   static CertificateIdStruct? maybeFromMap(dynamic data) => data is Map
@@ -28,12 +38,17 @@ class CertificateIdStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'code': _code,
+        'id': _id,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
         'code': serializeParam(
           _code,
+          ParamType.String,
+        ),
+        'id': serializeParam(
+          _id,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -45,6 +60,11 @@ class CertificateIdStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        id: deserializeParam(
+          data['id'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -52,16 +72,18 @@ class CertificateIdStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is CertificateIdStruct && code == other.code;
+    return other is CertificateIdStruct && code == other.code && id == other.id;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([code]);
+  int get hashCode => const ListEquality().hash([code, id]);
 }
 
 CertificateIdStruct createCertificateIdStruct({
   String? code,
+  String? id,
 }) =>
     CertificateIdStruct(
       code: code,
+      id: id,
     );

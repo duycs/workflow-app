@@ -1,0 +1,93 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
+import 'package:flutter/material.dart';
+import 'popup_task_detail_model.dart';
+export 'popup_task_detail_model.dart';
+
+class PopupTaskDetailWidget extends StatefulWidget {
+  const PopupTaskDetailWidget({
+    super.key,
+    this.content,
+  });
+
+  final String? content;
+
+  @override
+  State<PopupTaskDetailWidget> createState() => _PopupTaskDetailWidgetState();
+}
+
+class _PopupTaskDetailWidgetState extends State<PopupTaskDetailWidget> {
+  late PopupTaskDetailModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => PopupTaskDetailModel());
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 20.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.clear,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 24.0,
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: wrapWithModel(
+                model: _model.mobileEditorDisplayComponentModel,
+                updateCallback: () => setState(() {}),
+                child: MobileEditorDisplayComponentWidget(
+                  content: widget.content!,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

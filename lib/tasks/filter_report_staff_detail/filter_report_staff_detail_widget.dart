@@ -79,8 +79,8 @@ class _FilterReportStaffDetailWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -94,7 +94,12 @@ class _FilterReportStaffDetailWidgetState
               ),
             )
           ],
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -707,16 +712,6 @@ class _FilterReportStaffDetailWidgetState
                     ].divide(const SizedBox(height: 4.0)),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
                   child: Row(
@@ -815,7 +810,7 @@ class _FilterReportStaffDetailWidgetState
                     ].divide(const SizedBox(width: 16.0)),
                   ),
                 ),
-              ].divide(const SizedBox(height: 8.0)),
+              ].divide(const SizedBox(height: 16.0)),
             ),
           ),
         ),

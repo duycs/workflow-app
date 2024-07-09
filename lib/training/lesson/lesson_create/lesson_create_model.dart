@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'lesson_create_widget.dart' show LessonCreateWidget;
 import 'package:flutter/material.dart';
@@ -25,13 +26,11 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
   String uploadFile = '';
 
-  String checkContent = '';
-
   int? checkTime;
 
-  String input = '';
+  String checkContent = '';
 
-  String output = '';
+  String input = '';
 
   String testId = '';
 
@@ -40,7 +39,11 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
     updateFn(listLession ??= LessonsStruct());
   }
 
+  String output = '';
+
   String checkIamge = '';
+
+  dynamic json;
 
   ///  State fields for stateful widgets in this page.
 
@@ -76,8 +79,14 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
+
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
 
   @override
   void dispose() {
@@ -93,6 +102,8 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     estimateInDayFocusNode?.dispose();
     estimateInDayTextController?.dispose();
+
+    mobileEditorDisplayComponentModel.dispose();
   }
 
   /// Action blocks.

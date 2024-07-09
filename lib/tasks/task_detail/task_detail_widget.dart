@@ -4,13 +4,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/tasks/detail_action_type_approve/detail_action_type_approve_widget.dart';
 import '/tasks/detail_action_type_image/detail_action_type_image_widget.dart';
 import '/tasks/detail_action_type_to_do_list/detail_action_type_to_do_list_widget.dart';
 import '/tasks/detail_action_type_upload_file/detail_action_type_upload_file_widget.dart';
-import '/tasks/task_detail_ck_popup/task_detail_ck_popup_widget.dart';
+import '/tasks/popup_task_detail/popup_task_detail_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -181,10 +182,10 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                   if (_model.isLoad)
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 8.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Expanded(
                             child: Padding(
@@ -196,7 +197,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 4.0, 0.0),
+                                        0.0, 12.0, 4.0, 2.0),
                                     child: Text(
                                       _model.list.first.workflowId.name,
                                       style: FlutterFlowTheme.of(context)
@@ -205,7 +206,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                             fontFamily: 'Nunito Sans',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            fontSize: 16.0,
+                                            fontSize: 18.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -216,12 +217,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 4.0, 0.0),
+                                            0.0, 0.0, 8.0, 0.0),
                                         child: Icon(
                                           Icons.outlined_flag_outlined,
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
-                                          size: 20.0,
+                                          size: 22.0,
                                         ),
                                       ),
                                       Text(
@@ -233,9 +234,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryText,
-                                              fontSize: 14.0,
+                                              fontSize: 13.0,
                                               letterSpacing: 0.0,
-                                              fontStyle: FontStyle.italic,
                                             ),
                                       ),
                                     ],
@@ -244,23 +244,27 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                               ),
                             ),
                           ),
-                          CircularPercentIndicator(
-                            percent: _model.list.isNotEmpty
-                                ? (double.parse((_model.list
-                                            .where((e) => e.status == 'done')
-                                            .toList()
-                                            .length /
-                                        _model.list.length)
-                                    .toStringAsFixed(1)))
-                                : 0.0,
-                            radius: 30.0,
-                            lineWidth: 6.0,
-                            animation: true,
-                            animateFromLastPercent: true,
-                            progressColor:
-                                FlutterFlowTheme.of(context).secondary,
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).alternate,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: CircularPercentIndicator(
+                              percent: _model.list.isNotEmpty
+                                  ? (double.parse((_model.list
+                                              .where((e) => e.status == 'done')
+                                              .toList()
+                                              .length /
+                                          _model.list.length)
+                                      .toStringAsFixed(1)))
+                                  : 0.0,
+                              radius: 30.0,
+                              lineWidth: 5.0,
+                              animation: true,
+                              animateFromLastPercent: true,
+                              progressColor:
+                                  FlutterFlowTheme.of(context).primary,
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
@@ -283,7 +287,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                         .override(
                                           fontFamily: 'Nunito Sans',
                                           color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                              .primary,
                                           fontSize: 18.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w600,
@@ -327,183 +331,150 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                     Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).accent1,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Visibility(
-                          visible: _model.isLoad,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.manage_accounts_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 22.0,
+                              ),
+                              Text(
+                                'Người tạo: ',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 13.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  _model.list.first.createdUserId
+                                                  .firstName !=
+                                              ''
+                                      ? _model
+                                          .list.first.createdUserId.firstName
+                                      : ' ',
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90.0),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'ProfileUserNew',
+                                      queryParameters: {
+                                        'staffId': serializeParam(
+                                          _model.list.first.createdUserId.staffs
+                                              .first.id,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 30.0,
+                                    height: 30.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Image.network(
+                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.list.first.createdUserId.avatar}?access_token=${FFAppState().accessToken}',
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ].divide(const SizedBox(width: 8.0)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 2.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 2.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Icon(
-                                        Icons.manage_accounts_outlined,
+                                Icon(
+                                  Icons.date_range_outlined,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 22.0,
+                                ),
+                                Text(
+                                  'Ngày tạo:',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
-                                        size: 22.0,
+                                        fontSize: 13.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.normal,
                                       ),
-                                      Text(
-                                        'Người tạo: ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          _model
-                                                          .list
-                                                          .first
-                                                          .createdUserId
-                                                          .firstName !=
-                                                      ''
-                                              ? _model.list.first.createdUserId
-                                                  .firstName
-                                              : ' ',
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                              ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    dateTimeFormat(
+                                      'HH:mm dd/MM/yyyy',
+                                      functions.stringToDateTime(
+                                          _model.list.first.dateCreated),
+                                      locale: FFLocalizations.of(context)
+                                          .languageCode,
+                                    ),
+                                    textAlign: TextAlign.end,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
                                         ),
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(90.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                        ),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'ProfileUserNew',
-                                              queryParameters: {
-                                                'staffId': serializeParam(
-                                                  _model
-                                                      .list
-                                                      .first
-                                                      .createdUserId
-                                                      .staffs
-                                                      .first
-                                                      .id,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    const TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          child: Container(
-                                            width: 35.0,
-                                            height: 35.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              '${FFAppConstants.ApiBaseUrl}/assets/${_model.list.first.createdUserId.avatar}?access_token=${FFAppState().accessToken}',
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 8.0)),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 2.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Icon(
-                                        Icons.date_range_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 22.0,
-                                      ),
-                                      Text(
-                                        'Ngày tạo:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          dateTimeFormat(
-                                            'HH:mm dd/MM/yyyy',
-                                            functions.stringToDateTime(
-                                                _model.list.first.dateCreated),
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          ),
-                                          textAlign: TextAlign.end,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Nunito Sans',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ),
-                                    ].divide(const SizedBox(width: 8.0)),
-                                  ),
-                                ),
-                              ],
+                              ].divide(const SizedBox(width: 8.0)),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   if (_model.list.isNotEmpty)
@@ -1063,7 +1034,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                             return 230.0;
                                                           }
                                                         }(),
-                                                        height: 8.0,
+                                                        height: 4.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: () {
@@ -1072,7 +1043,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 'done') {
                                                               return FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondary;
+                                                                  .accent2;
                                                             } else if ((dataListItem
                                                                         .status ==
                                                                     'todo') &&
@@ -1081,11 +1052,11 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     1)) {
                                                               return FlutterFlowTheme
                                                                       .of(context)
-                                                                  .primary;
+                                                                  .accent1;
                                                             } else {
                                                               return FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryText;
+                                                                  .alternate;
                                                             }
                                                           }(),
                                                           borderRadius:
@@ -1103,7 +1074,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 4.0,
-                                                                8.0, 4.0),
+                                                                0.0, 4.0),
                                                     child: Text(
                                                       () {
                                                         if ((dataListItem
@@ -2057,6 +2028,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                           .result !=
                                                                       '')
                                                                 Container(
+                                                                  height: 300.0,
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: FlutterFlowTheme.of(
@@ -2082,17 +2054,126 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     padding:
                                                                         const EdgeInsets.all(
                                                                             8.0),
-                                                                    child: custom_widgets
-                                                                        .HtmlToDoc(
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          150.0,
-                                                                      html: functions.formatHtml(dataListItem
+                                                                    child:
+                                                                        MobileEditorDisplayComponentWidget(
+                                                                      key: Key(
+                                                                          'Keyqyv_${dataListIndex}_of_${dataList.length}'),
+                                                                      content: dataListItem
                                                                           .operations
                                                                           .first
                                                                           .operationsId
-                                                                          .result),
+                                                                          .result,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              if (dataListItem
+                                                                          .operations
+                                                                          .first
+                                                                          .operationsId
+                                                                          .result !=
+                                                                      '')
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                              8.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      await showModalBottomSheet(
+                                                                        isScrollControlled:
+                                                                            true,
+                                                                        backgroundColor:
+                                                                            Colors.transparent,
+                                                                        useSafeArea:
+                                                                            true,
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          return GestureDetector(
+                                                                            onTap: () => _model.unfocusNode.canRequestFocus
+                                                                                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                                : FocusScope.of(context).unfocus(),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: MediaQuery.viewInsetsOf(context),
+                                                                              child: MobileEditorComponentWidget(
+                                                                                content: getJsonField(
+                                                                                  dataListItem.operations.first.operationsId.toMap(),
+                                                                                  r'''$.result''',
+                                                                                ),
+                                                                                setContentCallback: (editorContent) async {
+                                                                                  _model.gettokenTaskDetail2Copy = await action_blocks.tokenReload(context);
+                                                                                  if (_model.gettokenTaskDetail2Copy!) {
+                                                                                    _model.apiResultd4m2Copy = await TaskGroup.updateOperationCall.call(
+                                                                                      operationId: dataListItem.operations.first.operationsId.id,
+                                                                                      accessToken: FFAppState().accessToken,
+                                                                                      requestDataJson: <String, dynamic>{
+                                                                                        'status': 'done',
+                                                                                        'result': editorContent,
+                                                                                      },
+                                                                                    );
+
+                                                                                    if (!(_model.apiResultd4m2Copy?.succeeded ?? true)) {
+                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                        SnackBar(
+                                                                                          content: Text(
+                                                                                            'Xác nhận thất bại',
+                                                                                            style: TextStyle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            ),
+                                                                                          ),
+                                                                                          duration: const Duration(milliseconds: 4000),
+                                                                                          backgroundColor: FlutterFlowTheme.of(context).error,
+                                                                                        ),
+                                                                                      );
+                                                                                    }
+                                                                                    await _model.getDetail(context);
+                                                                                    Navigator.pop(context);
+                                                                                  } else {
+                                                                                    setState(() {});
+                                                                                  }
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      ).then((value) =>
+                                                                          safeSetState(
+                                                                              () {}));
+
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Text(
+                                                                      'Mở rộng',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito Sans',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontStyle:
+                                                                                FontStyle.italic,
+                                                                          ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -2110,6 +2191,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     .stretch,
                                                             children: [
                                                               Container(
+                                                                height: 300.0,
                                                                 decoration:
                                                                     BoxDecoration(
                                                                   color: FlutterFlowTheme.of(
@@ -2131,17 +2213,82 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                       const EdgeInsets
                                                                           .all(
                                                                               8.0),
-                                                                  child: custom_widgets
-                                                                      .HtmlToDoc(
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        150.0,
-                                                                    html: functions.formatHtml(dataListItem
+                                                                  child:
+                                                                      MobileEditorDisplayComponentWidget(
+                                                                    key: Key(
+                                                                        'Keyide_${dataListIndex}_of_${dataList.length}'),
+                                                                    content: dataListItem
                                                                         .operations
                                                                         .first
                                                                         .operationsId
-                                                                        .result),
+                                                                        .result,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(
+                                                                            8.0),
+                                                                child: InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      useSafeArea:
+                                                                          true,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return GestureDetector(
+                                                                          onTap: () => _model.unfocusNode.canRequestFocus
+                                                                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                              : FocusScope.of(context).unfocus(),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
+                                                                            child:
+                                                                                PopupTaskDetailWidget(
+                                                                              content: dataListItem.operations.first.operationsId.result,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        safeSetState(
+                                                                            () {}));
+                                                                  },
+                                                                  child: Text(
+                                                                    'Mở rộng',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontStyle:
+                                                                              FontStyle.italic,
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -2160,134 +2307,136 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 (dataListItem
                                                                         .current ==
                                                                     1))
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          16.0),
-                                                                  child:
-                                                                      FFButtonWidget(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      await showDialog(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (dialogContext) {
-                                                                          return Dialog(
-                                                                            elevation:
-                                                                                0,
-                                                                            insetPadding:
-                                                                                EdgeInsets.zero,
-                                                                            backgroundColor:
-                                                                                Colors.transparent,
-                                                                            alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            16.0),
+                                                                child:
+                                                                    FFButtonWidget(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      useSafeArea:
+                                                                          true,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return GestureDetector(
+                                                                          onTap: () => _model.unfocusNode.canRequestFocus
+                                                                              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                                                                              : FocusScope.of(context).unfocus(),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
                                                                             child:
-                                                                                GestureDetector(
-                                                                              onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
-                                                                              child: TaskDetailCkPopupWidget(
-                                                                                item: dataListItem.operations.first.operationsId.result,
-                                                                                workflowId: widget.workflowId!,
-                                                                                publishedCount: dataListItem.publishedCount,
-                                                                                paramBack: widget.paramBack,
-                                                                                action: (ckString) async {
-                                                                                  _model.apiResultx5lTokenCopy = await action_blocks.tokenReload(context);
-                                                                                  if (_model.apiResultx5lTokenCopy!) {
-                                                                                    _model.apiResultx5lCopy = await TaskGroup.updateOperationCall.call(
-                                                                                      accessToken: FFAppState().accessToken,
-                                                                                      operationId: dataListItem.operations.first.operationsId.id,
-                                                                                      requestDataJson: <String, dynamic>{
-                                                                                        'status': 'done',
-                                                                                        'result': ckString,
-                                                                                      },
-                                                                                    );
-
-                                                                                    if (!(_model.apiResultx5lCopy?.succeeded ?? true)) {
-                                                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                                                        SnackBar(
-                                                                                          content: Text(
-                                                                                            'Xác nhận thất bại',
-                                                                                            style: TextStyle(
-                                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                                            ),
-                                                                                          ),
-                                                                                          duration: const Duration(milliseconds: 4000),
-                                                                                          backgroundColor: FlutterFlowTheme.of(context).error,
-                                                                                        ),
-                                                                                      );
-                                                                                    }
-
-                                                                                    setState(() {});
-                                                                                  } else {
-                                                                                    setState(() {});
-                                                                                  }
-                                                                                },
+                                                                                MobileEditorComponentWidget(
+                                                                              content: getJsonField(
+                                                                                dataListItem.operations.first.operationsId.toMap(),
+                                                                                r'''$.result''',
                                                                               ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
+                                                                              setContentCallback: (editorContent) async {
+                                                                                _model.gettokenTaskDetailCopy = await action_blocks.tokenReload(context);
+                                                                                if (_model.gettokenTaskDetailCopy!) {
+                                                                                  _model.apiResultd4mCopy = await TaskGroup.updateOperationCall.call(
+                                                                                    operationId: dataListItem.operations.first.operationsId.id,
+                                                                                    accessToken: FFAppState().accessToken,
+                                                                                    requestDataJson: <String, dynamic>{
+                                                                                      'status': 'done',
+                                                                                      'result': editorContent,
+                                                                                    },
+                                                                                  );
 
-                                                                      setState(
-                                                                          () {});
-                                                                    },
-                                                                    text:
-                                                                        'Nhập văn bản',
-                                                                    icon: Icon(
-                                                                      Icons
-                                                                          .edit_note,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      size:
-                                                                          20.0,
-                                                                    ),
-                                                                    options:
-                                                                        FFButtonOptions(
-                                                                      width:
-                                                                          125.0,
-                                                                      height:
-                                                                          35.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.normal,
+                                                                                  if (!(_model.apiResultd4mCopy?.succeeded ?? true)) {
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'Xác nhận thất bại',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: const Duration(milliseconds: 4000),
+                                                                                        backgroundColor: FlutterFlowTheme.of(context).error,
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                  await _model.getDetail(context);
+                                                                                  Navigator.pop(context);
+                                                                                } else {
+                                                                                  setState(() {});
+                                                                                }
+                                                                              },
+                                                                            ),
                                                                           ),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                    ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        safeSetState(
+                                                                            () {}));
+
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                  text:
+                                                                      'Nhập văn bản',
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .edit_note,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  options:
+                                                                      FFButtonOptions(
+                                                                    width:
+                                                                        125.0,
+                                                                    height:
+                                                                        35.0,
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    iconPadding:
+                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito Sans',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              13.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
+                                                                        ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
                                                                   ),
                                                                 ),
                                                               ),

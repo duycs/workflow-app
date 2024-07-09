@@ -110,22 +110,7 @@ class _TestListWidgetState extends State<TestListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'StudyProgramList',
-                queryParameters: {
-                  'checkpage': serializeParam(
-                    'profile',
-                    ParamType.String,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.safePop();
             },
           ),
           title: Row(

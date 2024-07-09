@@ -10,6 +10,8 @@ class ActionNewsfeedDetailModel
 
   int loop = 0;
 
+  int? checkColor = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for MouseRegion widget.

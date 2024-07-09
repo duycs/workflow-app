@@ -4,8 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/company_review/company_review_widget.dart';
 import '/training/order/invite_user/invite_user_widget.dart';
-import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -247,75 +247,69 @@ class _StudyProgramListMarketWidgetState
                               .asValidator(context),
                         ),
                       ),
-                      Builder(
-                        builder: (context) => FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 10.0,
-                          borderWidth: 1.0,
-                          buttonSize: 50.0,
-                          icon: Icon(
-                            Icons.tune_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: FilterStudyProgramMarketWidget(
-                                      name: _model.nameSearch!,
-                                      lessionsName: _model.lessionsNameSearch!,
-                                      dateStart: _model.dateStartSearch!,
-                                      dateEnd: _model.dateEndSearch!,
-                                      callBack: (name, dateStart, dateEnd,
-                                          lessions) async {
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.clear();
-                                        });
-                                        _model.nameSearch = name;
-                                        _model.dateEndSearch = dateEnd;
-                                        _model.dateStartSearch = dateStart;
-                                        _model.lessionsNameSearch = lessions;
-                                        setState(() {});
-                                        setState(() => _model
-                                            .listViewPagingController1
-                                            ?.refresh());
-                                        setState(() {
-                                          _model
-                                              .textFieldNameSearchTextController
-                                              ?.text = name!;
-                                          _model.textFieldNameSearchTextController
-                                                  ?.selection =
-                                              TextSelection.collapsed(
-                                                  offset: _model
-                                                      .textFieldNameSearchTextController!
-                                                      .text
-                                                      .length);
-                                        });
-
-                                        setState(() {});
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
                         ),
+                        onPressed: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            useSafeArea: true,
+                            context: context,
+                            builder: (context) {
+                              return GestureDetector(
+                                onTap: () => _model.unfocusNode.canRequestFocus
+                                    ? FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode)
+                                    : FocusScope.of(context).unfocus(),
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: FilterStudyProgramMarketWidget(
+                                    name: _model.nameSearch!,
+                                    lessionsName: _model.lessionsNameSearch!,
+                                    dateStart: _model.dateStartSearch!,
+                                    dateEnd: _model.dateEndSearch!,
+                                    callBack: (name, dateStart, dateEnd,
+                                        lessions) async {
+                                      setState(() {
+                                        _model.textFieldNameSearchTextController
+                                            ?.clear();
+                                      });
+                                      _model.nameSearch = name;
+                                      _model.dateEndSearch = dateEnd;
+                                      _model.dateStartSearch = dateStart;
+                                      _model.lessionsNameSearch = lessions;
+                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController1
+                                          ?.refresh());
+                                      setState(() {
+                                        _model.textFieldNameSearchTextController
+                                            ?.text = name!;
+                                        _model.textFieldNameSearchTextController
+                                                ?.selection =
+                                            TextSelection.collapsed(
+                                                offset: _model
+                                                    .textFieldNameSearchTextController!
+                                                    .text
+                                                    .length);
+                                      });
+
+                                      setState(() {});
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ).then((value) => safeSetState(() {}));
+                        },
                       ),
                     ],
                   ),
@@ -817,9 +811,9 @@ class _StudyProgramListMarketWidgetState
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          24.0,
+                                                                          16.0,
                                                                           0.0,
-                                                                          24.0,
+                                                                          16.0,
                                                                           0.0),
                                                               iconPadding:
                                                                   const EdgeInsetsDirectional

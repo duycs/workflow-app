@@ -1888,70 +1888,67 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                       ),
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Builder(
-                          builder: (context) => FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 10.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 1.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: FilterProgramsWidget(
-                                        domain: _model.domain,
-                                        author: _model.author,
-                                        category: _model.category,
-                                        priceMin: _model.priceMin,
-                                        priceMax: _model.priceMax,
-                                        listDomain: _model.listDataDomains
-                                            .map((e) => e.name)
-                                            .toList(),
-                                        checkPrice: '',
-                                        checkPrice1: 'checkPriceListList',
-                                        priceMin1: '',
-                                        priceMax1: '',
-                                        checkAuthor: '',
-                                        callBack: (domain,
-                                            author,
-                                            category,
-                                            priceMin,
-                                            priceMax,
-                                            priceMin1,
-                                            priceMax1) async {
-                                          _model.domain = domain!;
-                                          _model.author = author!;
-                                          _model.category = category!;
-                                          _model.priceMin = priceMin!;
-                                          _model.priceMax = priceMax!;
-                                          setState(() {});
-                                          await _model
-                                              .getProgramsMarketAll(context);
-                                        },
-                                      ),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterProgramsWidget(
+                                      domain: _model.domain,
+                                      author: _model.author,
+                                      category: _model.category,
+                                      priceMin: _model.priceMin,
+                                      priceMax: _model.priceMax,
+                                      listDomain: _model.listDataDomains
+                                          .map((e) => e.name)
+                                          .toList(),
+                                      checkPrice: 'checkPriceListList',
+                                      checkPrice1: 'checkPriceListList',
+                                      priceMin1: '',
+                                      priceMax1: '',
+                                      checkAuthor: '',
+                                      callBack: (domain,
+                                          author,
+                                          category,
+                                          priceMin,
+                                          priceMax,
+                                          priceMin1,
+                                          priceMax1) async {
+                                        _model.domain = domain!;
+                                        _model.author = author!;
+                                        _model.category = category!;
+                                        _model.priceMin = priceMin!;
+                                        _model.priceMax = priceMax!;
+                                        setState(() {});
+                                        await _model
+                                            .getProgramsMarketAll(context);
+                                      },
                                     ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
                         ),
                       ),
                     ],

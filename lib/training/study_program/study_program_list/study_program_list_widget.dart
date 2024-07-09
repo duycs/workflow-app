@@ -151,6 +151,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                     itemProgram: widget.programsItem,
                     itemLessions: widget.itemListLession,
                     itemLession: widget.itemLesstion,
+                    checkCodeCertificate:
+                        widget.dataProframDeatail!.certificateId.code,
                     callBackList2: () async {
                       _model.checkShow = null;
                       _model.dataList = [];
@@ -544,78 +546,74 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Builder(
-                          builder: (context) => FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 10.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
+                        FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: FilterStudyProgramWidget(
-                                        name: _model.nameSearch!,
-                                        lessionsName:
-                                            _model.lessionsNameSearch!,
-                                        dateStart: _model.dateStartSearch!,
-                                        dateEnd: _model.dateEndSearch!,
-                                        status: _model.status,
-                                        callBack: (name, dateStart, dateEnd,
-                                            lessions, status) async {
-                                          setState(() {
-                                            _model
-                                                .textFieldNameSearchTextController
-                                                ?.clear();
-                                          });
-                                          _model.nameSearch = name;
-                                          _model.dateEndSearch = dateEnd;
-                                          _model.dateStartSearch = dateStart;
-                                          _model.lessionsNameSearch = lessions;
-                                          _model.status = status!;
-                                          setState(() {});
-                                          setState(() => _model
-                                              .listViewPagingController1
-                                              ?.refresh());
-                                          setState(() {
-                                            _model
-                                                .textFieldNameSearchTextController
-                                                ?.text = name!;
-                                            _model.textFieldNameSearchTextController
-                                                    ?.selection =
-                                                TextSelection.collapsed(
-                                                    offset: _model
-                                                        .textFieldNameSearchTextController!
-                                                        .text
-                                                        .length);
-                                          });
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterStudyProgramWidget(
+                                      name: _model.nameSearch!,
+                                      lessionsName: _model.lessionsNameSearch!,
+                                      dateStart: _model.dateStartSearch!,
+                                      dateEnd: _model.dateEndSearch!,
+                                      status: _model.status,
+                                      callBack: (name, dateStart, dateEnd,
+                                          lessions, status) async {
+                                        setState(() {
+                                          _model
+                                              .textFieldNameSearchTextController
+                                              ?.clear();
+                                        });
+                                        _model.nameSearch = name;
+                                        _model.dateEndSearch = dateEnd;
+                                        _model.dateStartSearch = dateStart;
+                                        _model.lessionsNameSearch = lessions;
+                                        _model.status = status!;
+                                        setState(() {});
+                                        setState(() => _model
+                                            .listViewPagingController1
+                                            ?.refresh());
+                                        setState(() {
+                                          _model
+                                              .textFieldNameSearchTextController
+                                              ?.text = name!;
+                                          _model.textFieldNameSearchTextController
+                                                  ?.selection =
+                                              TextSelection.collapsed(
+                                                  offset: _model
+                                                      .textFieldNameSearchTextController!
+                                                      .text
+                                                      .length);
+                                        });
 
-                                          setState(() {});
-                                        },
-                                      ),
+                                        setState(() {});
+                                      },
                                     ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
                         ),
                       ],
                     ),
@@ -1014,6 +1012,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                                   : false,
                                                                               checkpage: widget.checkpage,
                                                                               idProgram: dataListViewItem.id,
+                                                                              checkCodeCertificate: dataListViewItem.certificateId.code,
                                                                               callBackList2: () async {
                                                                                 _model.checkShow = null;
                                                                                 _model.dataList = [];

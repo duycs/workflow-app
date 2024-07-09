@@ -1066,6 +1066,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'newsfeedId',
               ParamType.String,
             ),
+            checkpage: params.getParam(
+              'checkpage',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(

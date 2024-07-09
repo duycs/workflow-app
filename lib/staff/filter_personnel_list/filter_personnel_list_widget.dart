@@ -135,8 +135,8 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -150,7 +150,12 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -189,7 +194,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -321,8 +326,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
 
                               setState(() {});
                             },
-                            width: 300.0,
-                            height: 40.0,
+                            width: double.infinity,
                             searchHintTextStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -398,8 +402,7 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
                                 .toList(),
                             onChanged: (val) =>
                                 setState(() => _model.departmentValue = val),
-                            width: 300.0,
-                            height: 40.0,
+                            width: double.infinity,
                             searchHintTextStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
