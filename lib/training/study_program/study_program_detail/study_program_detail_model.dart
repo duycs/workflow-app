@@ -1,7 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/training/certificate/certificate/certificate_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'study_program_detail_widget.dart' show StudyProgramDetailWidget;
 import 'package:expandable/expandable.dart';
@@ -21,8 +20,6 @@ class StudyProgramDetailModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for Certificate component.
-  late CertificateModel certificateModel;
   // State field(s) for Expandable widget.
   late ExpandableController expandableExpandableController1;
 
@@ -30,14 +27,11 @@ class StudyProgramDetailModel
   late ExpandableController expandableExpandableController2;
 
   @override
-  void initState(BuildContext context) {
-    certificateModel = createModel(context, () => CertificateModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    certificateModel.dispose();
     expandableExpandableController1.dispose();
     expandableExpandableController2.dispose();
   }

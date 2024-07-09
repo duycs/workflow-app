@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'update_profile_c_p_n_widget.dart' show UpdateProfileCPNWidget;
 import 'package:flutter/material.dart';
@@ -103,6 +104,8 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   FocusNode? addressFocusNode;
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   bool isDataUploading1 = false;
   FFUploadedFile uploadedLocalFile1 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -137,7 +140,10 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
   ApiCallResponse? apiResultUpdateOrganization;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
 
   @override
   void dispose() {
@@ -152,6 +158,8 @@ class UpdateProfileCPNModel extends FlutterFlowModel<UpdateProfileCPNWidget> {
 
     addressFocusNode?.dispose();
     addressTextController?.dispose();
+
+    mobileEditorDisplayComponentModel.dispose();
   }
 
   /// Action blocks.

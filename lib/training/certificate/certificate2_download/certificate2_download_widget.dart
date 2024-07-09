@@ -156,10 +156,10 @@ class _Certificate2DownloadWidgetState
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
-                        getJsonField(
+                        'Chức vụ:\"${getJsonField(
                           FFAppState().staffLogin,
                           r'''$.tilte''',
-                        ).toString(),
+                        ).toString()}\"',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 12.0,
@@ -207,6 +207,7 @@ class _Certificate2DownloadWidgetState
                   child: FFButtonWidget(
                     onPressed: () async {
                       await actions.screenCertificate1(
+                        context,
                         'Stack',
                         widget.program!,
                         dateTimeFormat(

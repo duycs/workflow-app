@@ -40,6 +40,8 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
 
   dynamic content;
 
+  dynamic json;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

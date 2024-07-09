@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'staffs_programs_lesson_widget.dart' show StaffsProgramsLessonWidget;
@@ -66,6 +67,8 @@ class StaffsProgramsLessonModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   // State field(s) for comments widget.
   FocusNode? commentsFocusNode;
   TextEditingController? commentsTextController;
@@ -80,11 +83,15 @@ class StaffsProgramsLessonModel
   ApiCallResponse? apiResultUpdateStaffProgramStatus;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    mobileEditorDisplayComponentModel.dispose();
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();
   }

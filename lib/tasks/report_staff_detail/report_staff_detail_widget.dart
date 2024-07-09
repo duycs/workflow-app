@@ -2713,187 +2713,183 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       .asValidator(context),
                                                 ),
                                               ),
-                                              Builder(
-                                                builder: (context) =>
-                                                    FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Colors.transparent,
-                                                  borderRadius: 10.0,
-                                                  borderWidth: 1.0,
-                                                  buttonSize: 50.0,
-                                                  icon: Icon(
-                                                    Icons.tune_rounded,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 30.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder: (dialogContext) {
-                                                        return Dialog(
-                                                          elevation: 0,
-                                                          insetPadding:
-                                                              EdgeInsets.zero,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          alignment: const AlignmentDirectional(
-                                                                  0.0, 0.0)
-                                                              .resolve(
-                                                                  Directionality.of(
-                                                                      context)),
-                                                          child:
-                                                              GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child:
-                                                                FilterReportStaffDetailWidget(
-                                                              filterSearch: _model
-                                                                  .textController
-                                                                  .text,
-                                                              dateStart1: _model
-                                                                  .dateStart1Filter,
-                                                              dateStart2: _model
-                                                                  .dateStart2Filter,
-                                                              type: _model
-                                                                  .typeFilter,
-                                                              status: _model
-                                                                  .statusFilter,
-                                                              dateEnd1: _model
-                                                                  .dateEnd1Filter,
-                                                              dateEnd2: _model
-                                                                  .dateEnd2Filter,
-                                                              callback: (dateStart1Callback,
-                                                                  dateStart2Callback,
-                                                                  typeCallback,
-                                                                  dateEnd1Callback,
-                                                                  dateEnd2Callback,
-                                                                  statusCallback) async {
-                                                                _model.dateStart1Filter =
-                                                                    dateStart1Callback;
-                                                                _model.dateStart2Filter =
-                                                                    dateStart2Callback;
-                                                                _model.typeFilter =
-                                                                    typeCallback;
-                                                                _model.statusFilter =
-                                                                    statusCallback;
-                                                                _model.dateEnd1Filter =
-                                                                    dateEnd1Callback;
-                                                                _model.dateEnd2Filter =
-                                                                    dateEnd2Callback;
-                                                                setState(() {});
-                                                                setState(() => _model
-                                                                    .listViewPagingController
-                                                                    ?.refresh());
-                                                                _model
-                                                                    .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    functions.stringToDateTime(
-                                                                        _model
-                                                                            .dateStart1Filter),
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
-                                                                    return DateTime.parse(
-                                                                            var1)
-                                                                        .add(const Duration(
-                                                                            days:
-                                                                                1))
-                                                                        .toString();
-                                                                  }(dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    functions.stringToDateTime(
-                                                                        _model
-                                                                            .dateStart2Filter),
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
-                                                                    if (_model
-                                                                            .typeFilter ==
-                                                                        'Nhập văn bản') {
-                                                                      return 'submit_text';
-                                                                    } else if (_model
-                                                                            .typeFilter ==
-                                                                        'Upload File') {
-                                                                      return 'upload_file';
-                                                                    } else if (_model
-                                                                            .typeFilter ==
-                                                                        'Chụp ảnh') {
-                                                                      return 'image';
-                                                                    } else if (_model
-                                                                            .typeFilter ==
-                                                                        'Check List Công việc') {
-                                                                      return 'to_do_list';
-                                                                    } else if (_model
-                                                                            .typeFilter ==
-                                                                        'Phê duyệt') {
-                                                                      return ' approve';
-                                                                    } else {
-                                                                      return ' ';
-                                                                    }
-                                                                  }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    functions.stringToDateTime(
-                                                                        _model
-                                                                            .dateEnd1Filter),
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
-                                                                    return DateTime.parse(
-                                                                            var1)
-                                                                        .add(const Duration(
-                                                                            days:
-                                                                                1))
-                                                                        .toString();
-                                                                  }(dateTimeFormat(
-                                                                    'yyyy-MM-dd',
-                                                                    functions.stringToDateTime(
-                                                                        _model
-                                                                            .dateEnd2Filter),
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
-                                                                    if (_model
-                                                                            .statusFilter ==
-                                                                        'Chưa thực hiện') {
-                                                                      return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
-                                                                    } else if (_model
-                                                                            .statusFilter ==
-                                                                        'Đang thực hiện') {
-                                                                      return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
-                                                                    } else if (_model
-                                                                            .statusFilter ==
-                                                                        'Hoàn thành') {
-                                                                      return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
-                                                                    } else {
-                                                                      return ' ';
-                                                                    }
-                                                                  }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
-                                                                setState(() {});
-                                                              },
-                                                            ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        setState(() {}));
-                                                  },
+                                              FlutterFlowIconButton(
+                                                borderColor: Colors.transparent,
+                                                borderRadius: 10.0,
+                                                borderWidth: 1.0,
+                                                buttonSize: 50.0,
+                                                icon: Icon(
+                                                  Icons.tune_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 30.0,
                                                 ),
+                                                onPressed: () async {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    useSafeArea: true,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return GestureDetector(
+                                                        onTap: () => _model
+                                                                .unfocusNode
+                                                                .canRequestFocus
+                                                            ? FocusScope.of(
+                                                                    context)
+                                                                .requestFocus(_model
+                                                                    .unfocusNode)
+                                                            : FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              FilterReportStaffDetailWidget(
+                                                            filterSearch: _model
+                                                                .textController
+                                                                .text,
+                                                            dateStart1: _model
+                                                                .dateStart1Filter,
+                                                            dateStart2: _model
+                                                                .dateStart2Filter,
+                                                            type: _model
+                                                                .typeFilter,
+                                                            status: _model
+                                                                .statusFilter,
+                                                            dateEnd1: _model
+                                                                .dateEnd1Filter,
+                                                            dateEnd2: _model
+                                                                .dateEnd2Filter,
+                                                            callback: (dateStart1Callback,
+                                                                dateStart2Callback,
+                                                                typeCallback,
+                                                                dateEnd1Callback,
+                                                                dateEnd2Callback,
+                                                                statusCallback) async {
+                                                              _model.dateStart1Filter =
+                                                                  dateStart1Callback;
+                                                              _model.dateStart2Filter =
+                                                                  dateStart2Callback;
+                                                              _model.typeFilter =
+                                                                  typeCallback;
+                                                              _model.statusFilter =
+                                                                  statusCallback;
+                                                              _model.dateEnd1Filter =
+                                                                  dateEnd1Callback;
+                                                              _model.dateEnd2Filter =
+                                                                  dateEnd2Callback;
+                                                              setState(() {});
+                                                              setState(() => _model
+                                                                  .listViewPagingController
+                                                                  ?.refresh());
+                                                              _model
+                                                                  .filterRequest = '{\"_and\":[{}${(_model.dateStart1Filter != null && _model.dateStart1Filter != '') && (_model.dateStart1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_gte\":\"${dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions
+                                                                      .stringToDateTime(
+                                                                          _model
+                                                                              .dateStart1Filter),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                )}\"}}}}' : ' '}${(_model.dateStart2Filter != null && _model.dateStart2Filter != '') && (_model.dateStart2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_start\":{\"_lte\":\"${(String var1) {
+                                                                  return DateTime
+                                                                          .parse(
+                                                                              var1)
+                                                                      .add(const Duration(
+                                                                          days:
+                                                                              1))
+                                                                      .toString();
+                                                                }(dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions
+                                                                      .stringToDateTime(
+                                                                          _model
+                                                                              .dateStart2Filter),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ))}\"}}}}' : ' '}${(_model.typeFilter != ' ') && (_model.typeFilter != null && _model.typeFilter != '') ? ',{\"tasks\":{\"tasks_id\":{\"action_type\":{\"_eq\":\"${() {
+                                                                  if (_model
+                                                                          .typeFilter ==
+                                                                      'Nhập văn bản') {
+                                                                    return 'submit_text';
+                                                                  } else if (_model
+                                                                          .typeFilter ==
+                                                                      'Upload File') {
+                                                                    return 'upload_file';
+                                                                  } else if (_model
+                                                                          .typeFilter ==
+                                                                      'Chụp ảnh') {
+                                                                    return 'image';
+                                                                  } else if (_model
+                                                                          .typeFilter ==
+                                                                      'Check List Công việc') {
+                                                                    return 'to_do_list';
+                                                                  } else if (_model
+                                                                          .typeFilter ==
+                                                                      'Phê duyệt') {
+                                                                    return ' approve';
+                                                                  } else {
+                                                                    return ' ';
+                                                                  }
+                                                                }()}\"}}}}' : ' '}${_model.textController.text != '' ? ',{\"tasks\":{\"tasks_id\":{\"name\":{\"_icontains\":\"${_model.textController.text}\"}}}}' : ' '}${(_model.dateEnd1Filter != null && _model.dateEnd1Filter != '') && (_model.dateEnd1Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":,{\"date_end\":{\"_gte\":\"${dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions
+                                                                      .stringToDateTime(
+                                                                          _model
+                                                                              .dateEnd1Filter),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                )}\"}}}}' : ' '}${(_model.dateEnd2Filter != null && _model.dateEnd2Filter != '') && (_model.dateEnd2Filter != ' ') ? ',{\"tasks\":{\"tasks_id\":{\"date_end\":{\"_lte\":\"${(String var1) {
+                                                                  return DateTime
+                                                                          .parse(
+                                                                              var1)
+                                                                      .add(const Duration(
+                                                                          days:
+                                                                              1))
+                                                                      .toString();
+                                                                }(dateTimeFormat(
+                                                                  'yyyy-MM-dd',
+                                                                  functions
+                                                                      .stringToDateTime(
+                                                                          _model
+                                                                              .dateEnd2Filter),
+                                                                  locale: FFLocalizations.of(
+                                                                          context)
+                                                                      .languageCode,
+                                                                ))}\"}}}}' : ' '}${(_model.statusFilter != ' ') && (_model.statusFilter != null && _model.statusFilter != '') ? () {
+                                                                  if (_model
+                                                                          .statusFilter ==
+                                                                      'Chưa thực hiện') {
+                                                                    return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"0\"}}}}]}';
+                                                                  } else if (_model
+                                                                          .statusFilter ==
+                                                                      'Đang thực hiện') {
+                                                                    return ',{\"_and\":[{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"todo\"}}}},{\"tasks\":{\"tasks_id\":{\"current\":{\"_eq\":\"1\"}}}}]}';
+                                                                  } else if (_model
+                                                                          .statusFilter ==
+                                                                      'Hoàn thành') {
+                                                                    return ',{\"tasks\":{\"tasks_id\":{\"status\":{\"_eq\":\"done\"}}}}';
+                                                                  } else {
+                                                                    return ' ';
+                                                                  }
+                                                                }() : ' '}${(_model.checkStatus4 == true) || (_model.checkStatus5 == true) || (_model.checkStatus6 == true) ? ',{\"tasks\":{\"tasks_id\":{\"over_deadline\":{\"_eq\":\"1\"}}}}' : ' '}]}';
+                                                              setState(() {});
+                                                            },
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() {}));
+                                                },
                                               ),
                                             ],
                                           ),

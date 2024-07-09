@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
 import '/training/lesson/menu_delete/menu_delete_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
@@ -159,6 +160,8 @@ class _LessonDetailHomePageWidgetState
                         false;
                     if (confirmDialogResponse) {
                       await _model.startLesson(context);
+                      setState(() {});
+                      await _model.updatePrograms(context);
                       setState(() {});
                     }
                   },
@@ -2158,13 +2161,16 @@ class _LessonDetailHomePageWidgetState
                                               r'''$.content''',
                                             ).toString()) !=
                                             ''))
-                                  custom_widgets.HtmlToDoc(
-                                    width: double.infinity,
-                                    height: 180.0,
-                                    html: functions.formatHtml(getJsonField(
-                                      widget.listItems,
-                                      r'''$.content''',
-                                    ).toString()),
+                                  wrapWithModel(
+                                    model: _model
+                                        .mobileEditorDisplayComponentModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: MobileEditorDisplayComponentWidget(
+                                      content: getJsonField(
+                                        widget.listItems,
+                                        r'''$.content''',
+                                      ).toString(),
+                                    ),
                                   ),
                               ],
                             ),

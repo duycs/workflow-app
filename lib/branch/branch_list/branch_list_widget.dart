@@ -268,49 +268,45 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                             _model.textControllerValidator.asValidator(context),
                       ),
                     ),
-                    Builder(
-                      builder: (context) => FlutterFlowIconButton(
-                        borderColor: Colors.transparent,
-                        borderRadius: 10.0,
-                        borderWidth: 1.0,
-                        buttonSize: 50.0,
-                        icon: Icon(
-                          Icons.tune_rounded,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 30.0,
-                        ),
-                        onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (dialogContext) {
-                              return Dialog(
-                                elevation: 0,
-                                insetPadding: EdgeInsets.zero,
-                                backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
-                                    .resolve(Directionality.of(context)),
-                                child: GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
-                                          ? FocusScope.of(context)
-                                              .requestFocus(_model.unfocusNode)
-                                          : FocusScope.of(context).unfocus(),
-                                  child: FilterBranchWidget(
-                                    status: _model.searchStatus,
-                                    callBack: (status) async {
-                                      _model.searchStatus = status!;
-                                      setState(() {});
-                                      setState(() => _model
-                                          .listViewPagingController
-                                          ?.refresh());
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));
-                        },
+                    FlutterFlowIconButton(
+                      borderColor: Colors.transparent,
+                      borderRadius: 10.0,
+                      borderWidth: 1.0,
+                      buttonSize: 50.0,
+                      icon: Icon(
+                        Icons.tune_rounded,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 30.0,
                       ),
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          useSafeArea: true,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: FilterBranchWidget(
+                                  status: _model.searchStatus,
+                                  callBack: (status) async {
+                                    _model.searchStatus = status!;
+                                    setState(() {});
+                                    setState(() => _model
+                                        .listViewPagingController
+                                        ?.refresh());
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
                     ),
                   ].divide(const SizedBox(width: 8.0)),
                 ),

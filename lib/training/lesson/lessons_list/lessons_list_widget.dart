@@ -114,22 +114,7 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'StudyProgramList',
-                queryParameters: {
-                  'checkpage': serializeParam(
-                    'profile',
-                    ParamType.String,
-                  ),
-                }.withoutNulls,
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.safePop();
             },
           ),
           title: Text(

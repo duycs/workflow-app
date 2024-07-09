@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'created_lession_study_widget.dart' show CreatedLessionStudyWidget;
 import 'package:flutter/material.dart';
@@ -35,15 +36,15 @@ class CreatedLessionStudyModel
 
   String input = '';
 
-  String output = '';
-
-  String checkContent = '';
-
   String testId = '';
 
   bool checkValidateImage = false;
 
   bool checkValiContent = false;
+
+  bool checkValiTime = false;
+
+  dynamic content;
 
   ///  State fields for stateful widgets in this component.
 
@@ -96,6 +97,8 @@ class CreatedLessionStudyModel
   FFUploadedFile uploadedLocalFile3 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? checkReloadTokenCreatedLession2;
   // Stores action output result for [Backend Call - API (PostLesson)] action in Button widget.
@@ -109,6 +112,8 @@ class CreatedLessionStudyModel
   void initState(BuildContext context) {
     nameTextControllerValidator = _nameTextControllerValidator;
     descriptionTextControllerValidator = _descriptionTextControllerValidator;
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
   }
 
   @override
@@ -124,6 +129,8 @@ class CreatedLessionStudyModel
 
     estimateInDayFocusNode?.dispose();
     estimateInDayTextController?.dispose();
+
+    mobileEditorDisplayComponentModel.dispose();
   }
 
   /// Action blocks.
@@ -244,7 +251,7 @@ class CreatedLessionStudyModel
           'status': 'published',
           'name': nameTextController.text,
           'description': descriptionTextController.text,
-          'content': checkContent,
+          'content': input,
           'image_cover': image != '' ? image : null,
           'video': video != '' ? video : null,
           'duration_hours': durationHoursTextController.text,

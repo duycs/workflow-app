@@ -3,9 +3,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +54,36 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            'Thông tin tổ chức',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                ),
+          ),
+          actions: const [],
+          centerTitle: false,
+          elevation: 1.0,
+        ),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -1022,45 +1052,46 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                          -1.0, -1.0),
-                                                  child: Padding(
+                                                if (_model.organizationDetail
+                                                            ?.description !=
+                                                        null &&
+                                                    _model.organizationDetail
+                                                            ?.description !=
+                                                        '')
+                                                  Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(6.0, 12.0,
-                                                                6.0, 10.0),
-                                                    child:
-                                                        custom_widgets.HTMLView(
-                                                      width: double.infinity,
-                                                      height: 100.0,
-                                                      html: (_model
-                                                                          .organizationDetail
-                                                                          ?.description !=
-                                                                      null &&
-                                                                  _model
-                                                                          .organizationDetail
-                                                                          ?.description !=
-                                                                      '') &&
-                                                              (_model
-                                                                      .organizationDetail
-                                                                      ?.description !=
-                                                                  'undefined') &&
-                                                              (_model.organizationDetail
-                                                                      ?.description !=
-                                                                  'null') &&
-                                                              (_model.organizationDetail
-                                                                      ?.description !=
-                                                                  '<br>')
-                                                          ? functions
-                                                              .formatHtml(_model
-                                                                  .organizationDetail!
-                                                                  .description)
-                                                          : 'Chưa có thông tin giới thiệu',
+                                                            .fromSTEB(6.0, 8.0,
+                                                                0.0, 8.0),
+                                                    child: wrapWithModel(
+                                                      model: _model
+                                                          .mobileEditorDisplayComponentModel,
+                                                      updateCallback: () =>
+                                                          setState(() {}),
+                                                      child:
+                                                          MobileEditorDisplayComponentWidget(
+                                                        content: (_model.organizationDetail?.description !=
+                                                                        null &&
+                                                                    _model.organizationDetail
+                                                                            ?.description !=
+                                                                        '') &&
+                                                                (_model
+                                                                        .organizationDetail
+                                                                        ?.description !=
+                                                                    'undefined') &&
+                                                                (_model.organizationDetail
+                                                                        ?.description !=
+                                                                    'null') &&
+                                                                (_model.organizationDetail
+                                                                        ?.description !=
+                                                                    '<br>')
+                                                            ? _model
+                                                                .organizationDetail!
+                                                                .description
+                                                            : 'Chưa có thông tin giới thiệu',
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
                                                 Divider(
                                                   height: 16.0,
                                                   thickness: 1.0,
@@ -1677,27 +1708,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                         ),
                       ),
                   ].addToEnd(const SizedBox(height: 38.0)),
-                ),
-              ),
-              Opacity(
-                opacity: 0.8,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primaryBackground,
-                    borderRadius: 30.0,
-                    borderWidth: 1.0,
-                    buttonSize: 60.0,
-                    fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                    icon: Icon(
-                      Icons.arrow_back_sharp,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 30.0,
-                    ),
-                    onPressed: () async {
-                      context.safePop();
-                    },
-                  ),
                 ),
               ),
             ],

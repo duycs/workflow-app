@@ -125,7 +125,16 @@ class _ProcedurePublishedListWidgetState
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
@@ -273,7 +282,7 @@ class _ProcedurePublishedListWidgetState
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,
-                            enableDrag: false,
+                            useSafeArea: true,
                             context: context,
                             builder: (context) {
                               return GestureDetector(
@@ -686,7 +695,7 @@ class _ProcedurePublishedListWidgetState
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primary,
+                                                                .secondaryBackground,
                                                             boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 0.0,
@@ -752,7 +761,7 @@ class _ProcedurePublishedListWidgetState
                                                                             .bodyLarge
                                                                             .override(
                                                                               fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
                                                                             ),
@@ -765,7 +774,7 @@ class _ProcedurePublishedListWidgetState
                                                                           Icon(
                                                                             Icons.access_time,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             size:
                                                                                 22.0,
                                                                           ),
@@ -777,7 +786,7 @@ class _ProcedurePublishedListWidgetState
                                                                             )}',
                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 13.0,
                                                                                   letterSpacing: 0.0,
                                                                                 ),
@@ -794,7 +803,7 @@ class _ProcedurePublishedListWidgetState
                                                                           Icon(
                                                                             Icons.person_outline,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                FlutterFlowTheme.of(context).primaryText,
                                                                             size:
                                                                                 22.0,
                                                                           ),
@@ -802,7 +811,7 @@ class _ProcedurePublishedListWidgetState
                                                                             'Người tạo: ',
                                                                             style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 13.0,
                                                                                   letterSpacing: 0.0,
                                                                                 ),
@@ -905,7 +914,7 @@ class _ProcedurePublishedListWidgetState
                                                                         fontFamily:
                                                                             'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
+                                                                            .primaryText,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:

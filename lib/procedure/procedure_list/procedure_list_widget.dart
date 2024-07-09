@@ -113,8 +113,8 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.goNamed(
-                'Profile',
+              context.pushNamed(
+                'Home',
                 extra: <String, dynamic>{
                   kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
@@ -275,7 +275,7 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
                             await showModalBottomSheet(
                               isScrollControlled: true,
                               backgroundColor: Colors.transparent,
-                              enableDrag: false,
+                              useSafeArea: true,
                               context: context,
                               builder: (context) {
                                 return GestureDetector(

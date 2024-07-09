@@ -158,10 +158,10 @@ class _Certificate1DownloadWidgetState
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 2.0),
                                       child: Text(
-                                        getJsonField(
+                                        'Chức vụ: \"${getJsonField(
                                           FFAppState().staffLogin,
-                                          r'''$.tilte''',
-                                        ).toString(),
+                                          r'''$.title''',
+                                        ).toString()}\"',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -336,6 +336,7 @@ class _Certificate1DownloadWidgetState
                                       FFButtonWidget(
                                         onPressed: () async {
                                           await actions.screenCertificate(
+                                            context,
                                             'Stack',
                                             widget.program!,
                                             dateTimeFormat(
@@ -498,7 +499,7 @@ class _Certificate1DownloadWidgetState
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -537,10 +538,10 @@ class _Certificate1DownloadWidgetState
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 2.0),
                             child: Text(
-                              getJsonField(
+                              'Chức vụ: \"${getJsonField(
                                 FFAppState().staffLogin,
-                                r'''$.tilte''',
-                              ).toString(),
+                                r'''$.title''',
+                              ).toString()}\"',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -590,11 +591,12 @@ class _Certificate1DownloadWidgetState
                     Align(
                       alignment: const AlignmentDirectional(1.0, 1.0),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 5.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 10.0, 10.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             await actions.screenCertificate1(
+                              context,
                               'Stack',
                               widget.program!,
                               dateTimeFormat(

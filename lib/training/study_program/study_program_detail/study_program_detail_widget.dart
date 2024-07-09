@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/certificate/certificate/certificate_widget.dart';
+import '/training/study_program/certificate_list_study_program/certificate_list_study_program_widget.dart';
 import '/training/study_program/study_program_edit/study_program_edit_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -314,164 +314,209 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                                child: Image.network(
-                                                  '${FFAppConstants.ApiBaseUrl}/assets/${_model.studyProgramData?.userCreated.avatar}?access_token=${FFAppState().accessToken}',
-                                                  width: 40.0,
-                                                  height: 40.0,
-                                                  fit: BoxFit.cover,
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40.0),
+                                                  child: Image.network(
+                                                    '${FFAppConstants.ApiBaseUrl}/assets/${_model.studyProgramData?.userCreated.avatar}?access_token=${FFAppState().accessToken}',
+                                                    width: 40.0,
+                                                    height: 40.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          12.0, 0.0, 0.0, 0.0),
-                                                  child: Column(
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          _model
+                                                              .studyProgramData!
+                                                              .userCreated
+                                                              .firstName,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyLarge
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Icon(
+                                                  Icons.date_range_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                                Expanded(
+                                                  child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        _model
-                                                            .studyProgramData!
-                                                            .userCreated
-                                                            .firstName,
+                                                        'Ngày tạo: ${dateTimeFormat(
+                                                          'dd/MM/yyyy',
+                                                          functions.stringToDateTime(
+                                                              _model
+                                                                  .studyProgramData
+                                                                  ?.dateCreated),
+                                                          locale:
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .languageCode,
+                                                        )}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                Icons.date_range_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              Expanded(
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      'Ngày tạo: ${dateTimeFormat(
-                                                        'dd/MM/yyyy',
-                                                        functions.stringToDateTime(
-                                                            _model
-                                                                .studyProgramData
-                                                                ?.dateCreated),
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      )}',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Container(
-                                                      height: 30.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .accent2,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20.0),
-                                                      ),
-                                                      child: Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      2.0,
-                                                                      8.0,
-                                                                      2.0),
-                                                          child: Text(
-                                                            'Hoạt động',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
                                                                 .bodyMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  fontSize:
-                                                                      13.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                 ),
+                                                      ),
+                                                      if ((_model.studyProgramData
+                                                                      ?.copyrightOrganizationId ==
+                                                                  null ||
+                                                              _model.studyProgramData
+                                                                      ?.copyrightOrganizationId ==
+                                                                  '') &&
+                                                          (_model.studyProgramData
+                                                                      ?.copyrightProgramId ==
+                                                                  null ||
+                                                              _model.studyProgramData
+                                                                      ?.copyrightProgramId ==
+                                                                  ''))
+                                                        Container(
+                                                          height: 30.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: _model
+                                                                        .studyProgramData
+                                                                        ?.status ==
+                                                                    'published'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent2
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .accent3,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0),
+                                                          ),
+                                                          child: Align(
+                                                            alignment:
+                                                                const AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          2.0,
+                                                                          8.0,
+                                                                          2.0),
+                                                              child: Text(
+                                                                _model.studyProgramData
+                                                                            ?.status ==
+                                                                        'published'
+                                                                    ? 'Hoạt động'
+                                                                    : 'Không hoạt động',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: _model.studyProgramData?.status ==
+                                                                              'published'
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .secondary
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .tertiary,
+                                                                      fontSize:
+                                                                          13.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                            ].divide(const SizedBox(width: 4.0)),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
                                           ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Icon(
-                                                Icons.update_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              Text(
-                                                'Thời hạn:  ${_model.studyProgramData?.estimateInDay.toString()} ngày',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ].divide(const SizedBox(width: 4.0)),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.update_sharp,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                                Text(
+                                                  'Thời hạn:  ${_model.studyProgramData?.estimateInDay.toString()} ngày',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
                                           ),
                                           Text(
                                             'Mô tả:',
@@ -488,39 +533,23 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                 ),
                                           ).animateOnPageLoad(animationsMap[
                                               'textOnPageLoadAnimation2']!),
-                                          Text(
-                                            _model
-                                                .studyProgramData!.description,
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ).animateOnPageLoad(animationsMap[
-                                              'textOnPageLoadAnimation3']!),
-                                          Text(
-                                            'Chứng chỉ:',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize: 15.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                          ),
-                                          wrapWithModel(
-                                            model: _model.certificateModel,
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: CertificateWidget(
-                                              program: _model.studyProgramData!
-                                                  .userCreated.firstName,
-                                            ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 8.0, 8.0),
+                                            child: Text(
+                                              _model.studyProgramData!
+                                                  .description,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                            ).animateOnPageLoad(animationsMap[
+                                                'textOnPageLoadAnimation3']!),
                                           ),
                                           Divider(
                                             thickness: 1.0,
@@ -746,7 +775,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 0.0),
+                                                    0.0, 12.0, 0.0, 12.0),
                                             child: Container(
                                               width: double.infinity,
                                               decoration: BoxDecoration(
@@ -926,6 +955,166 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                               ),
                                             ),
                                           ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 15.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  'Chứng chỉ:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: 15.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                                if (_model
+                                                            .studyProgramData
+                                                            ?.certificateId
+                                                            .id ==
+                                                        null ||
+                                                    _model
+                                                            .studyProgramData
+                                                            ?.certificateId
+                                                            .id ==
+                                                        '')
+                                                  Text(
+                                                    '(Chưa có chứng chỉ áp dụng)',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                if ((_model.studyProgramData
+                                                            ?.certificateId !=
+                                                        null) &&
+                                                    (_model
+                                                                .studyProgramData
+                                                                ?.certificateId
+                                                                .id !=
+                                                            null &&
+                                                        _model
+                                                                .studyProgramData
+                                                                ?.certificateId
+                                                                .id !=
+                                                            '') &&
+                                                    (_model
+                                                            .studyProgramData
+                                                            ?.certificateId
+                                                            .id !=
+                                                        'null'))
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      await showModalBottomSheet(
+                                                        isScrollControlled:
+                                                            true,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        useSafeArea: true,
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return GestureDetector(
+                                                            onTap: () => _model
+                                                                    .unfocusNode
+                                                                    .canRequestFocus
+                                                                ? FocusScope.of(
+                                                                        context)
+                                                                    .requestFocus(
+                                                                        _model
+                                                                            .unfocusNode)
+                                                                : FocusScope.of(
+                                                                        context)
+                                                                    .unfocus(),
+                                                            child: Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CertificateListStudyProgramWidget(
+                                                                programdetail:
+                                                                    _model
+                                                                        .studyProgramData,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ).then((value) =>
+                                                          safeSetState(() {}));
+                                                    },
+                                                    text: 'Xem chứng chỉ',
+                                                    options: FFButtonOptions(
+                                                      height: 30.0,
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
+                                                              ),
+                                                      elevation: 3.0,
+                                                      borderSide: const BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                  ),
+                                              ].divide(const SizedBox(width: 4.0)),
+                                            ),
+                                          ),
                                         ].divide(const SizedBox(height: 8.0)),
                                       ),
                                     ),
@@ -938,134 +1127,134 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                         ),
                       ),
                     ),
-                    if (widget.studyProgramList?.userCreated.id ==
-                        FFAppState().user.id)
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 16.0, 0.0, 16.0),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                          ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        await showModalBottomSheet(
-                                          isScrollControlled: true,
-                                          backgroundColor: Colors.transparent,
-                                          enableDrag: false,
-                                          context: context,
-                                          builder: (context) {
-                                            return GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: ActionChinhSuaWidget(
-                                                  dataDetail:
-                                                      _model.studyProgramData,
-                                                  checkMarket: ((_model
-                                                                      .studyProgramData
-                                                                      ?.template ==
-                                                                  0) &&
-                                                              (getJsonField(
-                                                                    FFAppState()
-                                                                        .staffOrganization,
-                                                                    r'''$.authors[0]''',
-                                                                  ) !=
-                                                                  null) &&
-                                                              ((_model.studyProgramData?.authorId ==
-                                                                          null ||
-                                                                      _model.studyProgramData?.authorId ==
-                                                                          '') ||
-                                                                  ((_model.studyProgramData?.authorId != null &&
-                                                                          _model.studyProgramData?.authorId !=
-                                                                              '') &&
-                                                                      (_model.studyProgramData
-                                                                              ?.authorId ==
-                                                                          getJsonField(
-                                                                            FFAppState().staffOrganization,
-                                                                            r'''$.authors[0]''',
-                                                                          )
-                                                                              .toString()))) &&
-                                                              (_model.studyProgramData
-                                                                          ?.copyrightOrganizationId ==
-                                                                      null ||
-                                                                  _model.studyProgramData
-                                                                          ?.copyrightOrganizationId ==
-                                                                      '') &&
-                                                              (_model.studyProgramData
-                                                                      ?.version ==
-                                                                  0)) ==
-                                                          true
-                                                      ? true
-                                                      : false,
-                                                  checkpage:
-                                                      'studyProgramDetail',
-                                                  callBackList2: () async {
-                                                    await _model
-                                                        .getOneDataStudyProgram(
-                                                            context);
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        enableDrag: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: ActionChinhSuaWidget(
+                                                dataDetail:
+                                                    _model.studyProgramData,
+                                                checkMarket: ((_model
+                                                                    .studyProgramData
+                                                                    ?.template ==
+                                                                0) &&
+                                                            (getJsonField(
+                                                                  FFAppState()
+                                                                      .staffOrganization,
+                                                                  r'''$.authors[0]''',
+                                                                ) !=
+                                                                null) &&
+                                                            ((_model.studyProgramData?.authorId ==
+                                                                        null ||
+                                                                    _model.studyProgramData?.authorId ==
+                                                                        '') ||
+                                                                ((_model.studyProgramData?.authorId != null &&
+                                                                        _model.studyProgramData?.authorId !=
+                                                                            '') &&
+                                                                    (_model.studyProgramData
+                                                                            ?.authorId ==
+                                                                        getJsonField(
+                                                                          FFAppState()
+                                                                              .staffOrganization,
+                                                                          r'''$.authors[0]''',
+                                                                        )
+                                                                            .toString()))) &&
+                                                            (_model.studyProgramData
+                                                                        ?.copyrightOrganizationId ==
+                                                                    null ||
+                                                                _model.studyProgramData
+                                                                        ?.copyrightOrganizationId ==
+                                                                    '') &&
+                                                            (_model.studyProgramData
+                                                                    ?.version ==
+                                                                0)) ==
+                                                        true
+                                                    ? true
+                                                    : false,
+                                                checkpage: 'studyProgramDetail',
+                                                checkCodeCertificate: _model
+                                                    .studyProgramData!
+                                                    .certificateId
+                                                    .code,
+                                                callBackList2: () async {
+                                                  await _model
+                                                      .getOneDataStudyProgram(
+                                                          context);
 
-                                                    setState(() {});
-                                                  },
-                                                ),
+                                                  setState(() {});
+                                                },
                                               ),
-                                            );
-                                          },
-                                        ).then((value) => safeSetState(() {}));
-                                      },
-                                      text: 'Thao tác khác',
-                                      icon: const Icon(
-                                        Icons.menu,
-                                        size: 15.0,
-                                      ),
-                                      options: FFButtonOptions(
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color: Colors.white,
-                                              letterSpacing: 0.0,
                                             ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
+                                          );
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    },
+                                    text: 'Thao tác khác',
+                                    icon: const Icon(
+                                      Icons.menu,
+                                      size: 15.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
                                       ),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
+                                ),
+                                if (_model.studyProgramData?.userCreated.id ==
+                                    FFAppState().user.id)
                                   Expanded(
                                     child: Builder(
                                       builder: (context) => FFButtonWidget(
@@ -1148,13 +1337,13 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 8.0)),
-                              ),
+                              ].divide(const SizedBox(width: 8.0)),
                             ),
                           ),
-                        ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation2']!),
-                      ),
+                        ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation2']!),
+                    ),
                   ],
                 ),
               if (_model.isCheck == false)

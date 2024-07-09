@@ -1583,7 +1583,7 @@ class StudyProgramListCall {
         params: {
           'filter': filter,
           'fields':
-              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name,date_created, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id,user_created.avatar,lessions.lessions_id.duration_hours",
+              "user_created.first_name, user_created.id, category_id, domain_id, private, copyright_organization_id,template,date_create,estimate_in_day,organization_id,id, status, name,date_created, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,lessions.lessions_id.status,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.departments_id.id,departments.departments_id.name, image_cover, template, price, author_id, copyright_program_id, copyright_organization_id, version, limit_invite, invite_count,tests.tests_id.good_score,tests.tests_id.user_created.id, departments.departments_id.branch_id.id,user_created.avatar,lessions.lessions_id.duration_hours,lessions.lessions_id,certificate_id.id,certificate_id.code",
           'offset': offset,
           'limit': limit,
           'meta': "total_count,filter_count",
@@ -1627,7 +1627,7 @@ class StudyProgramOneCall {
       params: {
         'filter': filter,
         'fields':
-            "id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.id, departments.departments_id.id",
+            "id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.id, departments.departments_id.id,certificate_id.id,certificate_id.code",
         'offset': offset,
         'limit': limit,
         'meta': "total_count,filter_count",
@@ -1662,7 +1662,7 @@ class StudyProgramGetOneCall {
       },
       params: {
         'fields':
-            "id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.id, departments.departments_id.id,departments.departments_id.name,certificate_id,user_created.first_name,user_created.avatar",
+            "copyright_organization_id, copyright_program_id, user_created.id, id, status, name, description, duration_hours, lessions.lessions_id.id, lessions.lessions_id.name,tests.tests_id.id, tests.tests_id.name,tests.tests_id.description,tests.tests_id.duration_minutes,tests.tests_id.name,lessions.lessions_id.date_created,lessions.lessions_id.image_cover,tests.date_created,departments.id, departments.departments_id.id,departments.departments_id.name,certificate_id,user_created.first_name,user_created.avatar.lessions.lessions_id,certificate_id.id,certificate_id.code,image_cover",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3563,7 +3563,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan",
+            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan,tasks.tasks_id.submit_staff_id.id",
         'filter': filter,
       },
       returnBody: true,
@@ -5119,6 +5119,9 @@ class CertificateGroup {
     'Authorization': 'Bearer [accessToken]',
   };
   static ProgramsCall programsCall = ProgramsCall();
+  static GetOneCertificatesCall getOneCertificatesCall =
+      GetOneCertificatesCall();
+  static PathCertificatesCall pathCertificatesCall = PathCertificatesCall();
 }
 
 class ProgramsCall {
@@ -5138,6 +5141,72 @@ class ProgramsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'programs',
       apiUrl: '$baseUrl/items/programs/$idProgram',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetOneCertificatesCall {
+  Future<ApiCallResponse> call({
+    String? idCertificates = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = CertificateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetOneCertificates',
+      apiUrl: '$baseUrl/items/certificates/$idCertificates',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'fields[]': "programs,code, id",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class PathCertificatesCall {
+  Future<ApiCallResponse> call({
+    List<String>? programsList,
+    String? idCertificate = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = CertificateGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+    final programs = _serializeList(programsList);
+
+    final ffApiRequestBody = '''
+{
+  	  "programs":$programs
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'PathCertificates',
+      apiUrl: '$baseUrl/items/certificates/$idCertificate',
       callType: ApiCallType.PATCH,
       headers: {
         'Content-Type': 'application/json',

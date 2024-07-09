@@ -131,7 +131,7 @@ class _Certificate2ZoomWidgetState extends State<Certificate2ZoomWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 2.0),
                       child: Text(
-                        'Chức vụ',
+                        'Chức vụ: \"Nhân viên\"',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Nunito Sans',
                               fontSize: 12.0,

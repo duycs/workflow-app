@@ -101,32 +101,14 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          title: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              context.pushNamed(
-                'CertificateList',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-            },
-            child: Text(
-              'Tài liệu đào tạo',
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
-                    fontFamily: 'Nunito Sans',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    fontSize: 18.0,
-                    letterSpacing: 0.0,
-                  ),
-            ),
+          title: Text(
+            'Tài liệu đào tạo',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Nunito Sans',
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 18.0,
+                  letterSpacing: 0.0,
+                ),
           ),
           actions: const [],
           centerTitle: false,
@@ -3626,88 +3608,83 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     ),
                                 ].divide(const SizedBox(height: 4.0)),
                               ),
-                              Builder(
-                                builder: (context) => FlutterFlowIconButton(
-                                  borderColor: Colors.transparent,
-                                  borderRadius: 10.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 50.0,
-                                  icon: Icon(
-                                    Icons.tune_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () async {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: const AlignmentDirectional(
-                                                  0.0, 1.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: FilterLessonHomePageWidget(
-                                              status: _model.status,
-                                              dateStart: _model.dateStartList,
-                                              dateEnd: _model.dateEndList,
-                                              lessonFavoriteStatus: _model
-                                                  .lessonFavoriteStatusList,
-                                              statusLoveFilter: '',
-                                              statusDateToday: '',
-                                              statusDateHistory: '',
-                                              programsId: _model.programsAllId,
-                                              checkPrograms: 'programs',
-                                              callBack: (status,
-                                                  dateStart,
-                                                  dateEnd,
-                                                  lessonStatus,
-                                                  lessonFavoriteStatus,
-                                                  programsId) async {
-                                                _model.status = status!;
-                                                _model.dateStartList =
-                                                    dateTimeFormat(
-                                                  'yyyy-MM-dd',
-                                                  dateStart,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                );
-                                                _model.dateEndList =
-                                                    dateTimeFormat(
-                                                  'yyyy-MM-dd',
-                                                  dateEnd,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                );
-                                                _model.lessonFavoriteStatusList =
-                                                    lessonFavoriteStatus!;
-                                                _model.programsAllId =
-                                                    programsId!;
-                                                setState(() {});
-                                                setState(() => _model
-                                                    .listViewPagingController
-                                                    ?.refresh());
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ).then((value) => setState(() {}));
-                                  },
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 10.0,
+                                borderWidth: 1.0,
+                                buttonSize: 50.0,
+                                icon: Icon(
+                                  Icons.tune_rounded,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 30.0,
                                 ),
+                                onPressed: () async {
+                                  await showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    useSafeArea: true,
+                                    context: context,
+                                    builder: (context) {
+                                      return GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: FilterLessonHomePageWidget(
+                                            status: _model.status,
+                                            dateStart: _model.dateStartList,
+                                            dateEnd: _model.dateEndList,
+                                            lessonFavoriteStatus:
+                                                _model.lessonFavoriteStatusList,
+                                            statusLoveFilter: '',
+                                            statusDateToday: '',
+                                            statusDateHistory: '',
+                                            programsId: _model.programsAllId,
+                                            checkPrograms: 'programs',
+                                            callBack: (status,
+                                                dateStart,
+                                                dateEnd,
+                                                lessonStatus,
+                                                lessonFavoriteStatus,
+                                                programsId) async {
+                                              _model.status = status!;
+                                              _model.dateStartList =
+                                                  dateTimeFormat(
+                                                'yyyy-MM-dd',
+                                                dateStart,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
+                                              _model.dateEndList =
+                                                  dateTimeFormat(
+                                                'yyyy-MM-dd',
+                                                dateEnd,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              );
+                                              _model.lessonFavoriteStatusList =
+                                                  lessonFavoriteStatus!;
+                                              _model.programsAllId =
+                                                  programsId!;
+                                              setState(() {});
+                                              setState(() => _model
+                                                  .listViewPagingController
+                                                  ?.refresh());
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => safeSetState(() {}));
+                                },
                               ),
                             ],
                           ),

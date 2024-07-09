@@ -71,7 +71,16 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Newsfeed',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
@@ -378,6 +387,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                               child: ActionNewsfeedWidget(
                                                 newsFeedList:
                                                     newsfeedListRequireItem,
+                                                checkPage: 'newsfeedRequire',
                                                 callback: () async {
                                                   setState(() => _model
                                                       .listViewPagingController

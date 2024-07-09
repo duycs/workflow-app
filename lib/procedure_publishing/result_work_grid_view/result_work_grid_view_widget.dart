@@ -82,50 +82,53 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                       return Stack(
                         alignment: const AlignmentDirectional(1.0, -1.0),
                         children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: FlutterFlowExpandedImageView(
-                                    image: Image.network(
-                                      (widget.type == 'image') &&
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            decoration: const BoxDecoration(),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
+                                        (widget.type == 'image') &&
+                                                (widget.parameter2! > 0)
+                                            ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
+                                            : ' ',
+                                        fit: BoxFit.contain,
+                                      ),
+                                      allowRotation: false,
+                                      tag: (widget.type == 'image') &&
                                               (widget.parameter2! > 0)
                                           ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                           : ' ',
-                                      fit: BoxFit.contain,
+                                      useHeroAnimation: true,
                                     ),
-                                    allowRotation: false,
-                                    tag: (widget.type == 'image') &&
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag: (widget.type == 'image') &&
+                                        (widget.parameter2! > 0)
+                                    ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
+                                    : ' ',
+                                transitionOnUserGestures: true,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    (widget.type == 'image') &&
                                             (widget.parameter2! > 0)
                                         ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                         : ' ',
-                                    useHeroAnimation: true,
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
-                              );
-                            },
-                            child: Hero(
-                              tag: (widget.type == 'image') &&
-                                      (widget.parameter2! > 0)
-                                  ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
-                                  : ' ',
-                              transitionOnUserGestures: true,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  (widget.type == 'image') &&
-                                          (widget.parameter2! > 0)
-                                      ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
-                                      : ' ',
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),

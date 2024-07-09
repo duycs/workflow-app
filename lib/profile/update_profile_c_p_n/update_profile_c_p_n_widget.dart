@@ -7,11 +7,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import '/profile/update_profile_ck_popup/update_profile_ck_popup_widget.dart';
+import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -857,6 +856,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               Icon(
                                                                 Icons
@@ -881,119 +883,48 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                               .w500,
                                                                     ),
                                                               ),
-                                                              Expanded(
-                                                                child: Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          1.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Builder(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        await showDialog(
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (dialogContext) {
-                                                                            return Dialog(
-                                                                              elevation: 0,
-                                                                              insetPadding: EdgeInsets.zero,
-                                                                              backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                              child: UpdateProfileCkPopupWidget(
-                                                                                input: () {
-                                                                                  if ((_model.description2 != '') && (_model.description2 != ' ') && (_model.description2 != '') && (_model.description2 != 'undefined')) {
-                                                                                    return _model.description2;
-                                                                                  } else if (_model.description2 == 'undefined') {
-                                                                                    return '';
-                                                                                  } else {
-                                                                                    return '';
-                                                                                  }
-                                                                                }(),
-                                                                                output: _model.output,
-                                                                                action: (input, output) async {
-                                                                                  _model.input = input!;
-                                                                                  _model.output = output!;
-                                                                                  _model.description2 = output;
-                                                                                  setState(() {});
-                                                                                },
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            setState(() {}));
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .edit_note_sharp,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
                                                             ].divide(const SizedBox(
                                                                 width: 8.0)),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                    if ((_model.description2 !=
-                                                                '') &&
-                                                        (_model.description2 !=
-                                                            ' ') &&
-                                                        (_model.description2 !=
-                                                            '') &&
-                                                        (_model.description2 !=
-                                                            'undefined'))
-                                                      Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                          border: Border.all(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                          ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10.0),
+                                                        border: Border.all(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
                                                         ),
+                                                      ),
+                                                      child: Visibility(
+                                                        visible: _model.description2 !=
+                                                                '',
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets.all(
                                                                   8.0),
-                                                          child: custom_widgets
-                                                              .HtmlToDoc(
-                                                            width:
-                                                                double.infinity,
-                                                            height: 150.0,
-                                                            html: functions
-                                                                .formatHtml(_model
-                                                                    .description2),
+                                                          child: wrapWithModel(
+                                                            model: _model
+                                                                .mobileEditorDisplayComponentModel,
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child:
+                                                                MobileEditorDisplayComponentWidget(
+                                                              content: _model
+                                                                  .description2,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
+                                                    ),
                                                     Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1040,6 +971,114 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                             ),
                                                           ),
                                                       ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0,
+                                                                  16.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            useSafeArea: true,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    MobileEditorComponentWidget(
+                                                                  content:
+                                                                      getJsonField(
+                                                                    widget.data
+                                                                        ?.toMap(),
+                                                                    r'''$.description''',
+                                                                  ),
+                                                                  setContentCallback:
+                                                                      (editorContent) async {
+                                                                    _model.description2 =
+                                                                        editorContent
+                                                                            .toString();
+                                                                    setState(
+                                                                        () {});
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              safeSetState(
+                                                                  () {}));
+                                                        },
+                                                        text: 'Cập nhật mô tả',
+                                                        icon: Icon(
+                                                          Icons.edit_note_sharp,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 40.0,
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      24.0,
+                                                                      0.0,
+                                                                      24.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                  ),
+                                                          elevation: 3.0,
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding:
@@ -1284,6 +1323,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                 },
                                                                 text:
                                                                     'Cập nhật video',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .video_collection,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
                                                                 options:
                                                                     FFButtonOptions(
                                                                   height: 40.0,
@@ -1786,6 +1833,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                             }
                                                           },
                                                           text: 'Cập nhật  ảnh',
+                                                          icon: Icon(
+                                                            Icons
+                                                                .image_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
                                                           options:
                                                               FFButtonOptions(
                                                             height: 40.0,
@@ -2067,7 +2122,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 0.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   await _model.uploadListImage(context);
@@ -2207,6 +2262,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                 },
                 text: 'Cập nhật',
                 options: FFButtonOptions(
+                  width: double.infinity,
                   height: 40.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:

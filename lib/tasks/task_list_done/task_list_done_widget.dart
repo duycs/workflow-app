@@ -6,13 +6,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/tasks/done_action_type_to_do_list/done_action_type_to_do_list_widget.dart';
 import '/tasks/filter_task_list_done/filter_task_list_done_widget.dart';
 import '/tasks/popup_see_more/popup_see_more_widget.dart';
+import '/tasks/popup_task_done/popup_task_done_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -244,75 +245,70 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                Builder(
-                                  builder: (context) => FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 10.0,
-                                    borderWidth: 1.0,
-                                    buttonSize: 50.0,
-                                    icon: Icon(
-                                      Icons.tune_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 30.0,
-                                    ),
-                                    onPressed: () async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child: FilterTaskListDoneWidget(
-                                                filterSearch:
-                                                    _model.textController.text,
-                                                dateStart:
-                                                    _model.dateStartFilter,
-                                                dateEnd: _model.dateEndFilter,
-                                                type: _model.typeFilter,
-                                                created: _model.createdFilter,
-                                                workflowName:
-                                                    _model.workflowNameFilter,
-                                                callback: (dateStarCallback,
-                                                    dateEndCallback,
-                                                    typeCallback,
-                                                    createdCallback,
-                                                    workflowNameFilter) async {
-                                                  _model.dateStartFilter =
-                                                      dateStarCallback;
-                                                  _model.dateEndFilter =
-                                                      dateEndCallback;
-                                                  _model.typeFilter =
-                                                      typeCallback;
-                                                  _model.createdFilter =
-                                                      createdCallback!;
-                                                  _model.workflowNameFilter =
-                                                      workflowNameFilter!;
-                                                  setState(() {});
-                                                  setState(() => _model
-                                                      .listViewPagingController
-                                                      ?.refresh());
-                                                },
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => setState(() {}));
-                                    },
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 10.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 50.0,
+                                  icon: Icon(
+                                    Icons.tune_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 30.0,
                                   ),
+                                  onPressed: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      useSafeArea: true,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: FilterTaskListDoneWidget(
+                                              filterSearch:
+                                                  _model.textController.text,
+                                              dateStart: _model.dateStartFilter,
+                                              dateEnd: _model.dateEndFilter,
+                                              type: _model.typeFilter,
+                                              created: _model.createdFilter,
+                                              workflowName:
+                                                  _model.workflowNameFilter,
+                                              callback: (dateStarCallback,
+                                                  dateEndCallback,
+                                                  typeCallback,
+                                                  createdCallback,
+                                                  workflowNameFilter) async {
+                                                _model.dateStartFilter =
+                                                    dateStarCallback;
+                                                _model.dateEndFilter =
+                                                    dateEndCallback;
+                                                _model.typeFilter =
+                                                    typeCallback;
+                                                _model.createdFilter =
+                                                    createdCallback!;
+                                                _model.workflowNameFilter =
+                                                    workflowNameFilter!;
+                                                setState(() {});
+                                                setState(() => _model
+                                                    .listViewPagingController
+                                                    ?.refresh());
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
                                 ),
                               ],
                             ),
@@ -2021,6 +2017,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Container(
+                                                            height: 300.0,
                                                             decoration:
                                                                 BoxDecoration(
                                                               color: FlutterFlowTheme
@@ -2037,23 +2034,90 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                     .alternate,
                                                               ),
                                                             ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child:
-                                                                  custom_widgets
-                                                                      .HtmlToDoc(
-                                                                width: double
-                                                                    .infinity,
-                                                                height: 150.0,
-                                                                html: functions.formatHtml(
-                                                                    dataListItem
-                                                                        .operations
-                                                                        .first
-                                                                        .operationsId
-                                                                        .result),
-                                                              ),
+                                                            child:
+                                                                MobileEditorDisplayComponentWidget(
+                                                              key: Key(
+                                                                  'Keyltr_${dataListIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                              content: dataListItem
+                                                                  .operations
+                                                                  .first
+                                                                  .operationsId
+                                                                  .result,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets.all(
+                                                                  8.0),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                useSafeArea:
+                                                                    true,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          PopupTaskDoneWidget(
+                                                                        content: dataListItem
+                                                                            .operations
+                                                                            .first
+                                                                            .operationsId
+                                                                            .result,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
+                                                            },
+                                                            child: Text(
+                                                              'Mở rộng',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .italic,
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),

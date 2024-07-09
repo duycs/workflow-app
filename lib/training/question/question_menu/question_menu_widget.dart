@@ -45,210 +45,203 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 150.0,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 4.0,
-            color: Color(0x33000000),
-            offset: Offset(
-              0.0,
-              2.0,
-            ),
-          )
-        ],
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(0.0),
-          bottomRight: Radius.circular(0.0),
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 150.0,
-              child: Divider(
-                thickness: 3.0,
-                color: FlutterFlowTheme.of(context).alternate,
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 1.0),
+      child: Container(
+        width: double.infinity,
+        height: 200.0,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 4.0,
+              color: Color(0x33000000),
+              offset: Offset(
+                0.0,
+                2.0,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
-              child: MouseRegion(
-                opaque: false,
-                cursor: MouseCursor.defer ?? MouseCursor.defer,
-                onEnter: ((event) async {
-                  setState(() => _model.mouseRegionHovered1 = true);
-                }),
-                onExit: ((event) async {
-                  setState(() => _model.mouseRegionHovered1 = false);
-                }),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    _model.setColor = 1;
-                    setState(() {});
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      isDismissible: false,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: SizedBox(
-                            height: double.infinity,
-                            child: QuestionDetailWidget(
-                              itemOne: widget.item!,
+            )
+          ],
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 150.0,
+                child: Divider(
+                  thickness: 3.0,
+                  color: FlutterFlowTheme.of(context).alternate,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
+                child: MouseRegion(
+                  opaque: false,
+                  cursor: MouseCursor.defer ?? MouseCursor.defer,
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered1 = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered1 = false);
+                  }),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      _model.setColor = 1;
+                      setState(() {});
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        isDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: SizedBox(
+                              height: double.infinity,
+                              child: QuestionDetailWidget(
+                                itemOne: widget.item!,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
 
-                    Navigator.pop(context);
-                    _model.setColor = 0;
-                    setState(() {});
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: _model.setColor == 1
-                          ? FlutterFlowTheme.of(context).alternate
-                          : FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Icon(
+                      Navigator.pop(context);
+                      _model.setColor = 0;
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: _model.setColor == 1
+                            ? FlutterFlowTheme.of(context).alternate
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
                               Icons.info_outline,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24.0,
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Chi tiết',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Chi tiết',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
-              child: MouseRegion(
-                opaque: false,
-                cursor: MouseCursor.defer ?? MouseCursor.defer,
-                onEnter: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = true);
-                }),
-                onExit: ((event) async {
-                  setState(() => _model.mouseRegionHovered2 = false);
-                }),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    _model.setColor = 2;
-                    setState(() {});
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: QuestionUpdateWidget(
-                            item: widget.item!,
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 4.0),
+                child: MouseRegion(
+                  opaque: false,
+                  cursor: MouseCursor.defer ?? MouseCursor.defer,
+                  onEnter: ((event) async {
+                    setState(() => _model.mouseRegionHovered2 = true);
+                  }),
+                  onExit: ((event) async {
+                    setState(() => _model.mouseRegionHovered2 = false);
+                  }),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      _model.setColor = 2;
+                      setState(() {});
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: QuestionUpdateWidget(
+                              item: widget.item!,
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
 
-                    Navigator.pop(context);
-                    _model.setColor = 0;
-                    setState(() {});
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: _model.setColor == 2
-                          ? FlutterFlowTheme.of(context).alternate
-                          : FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Icon(
+                      Navigator.pop(context);
+                      _model.setColor = 0;
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: _model.setColor == 2
+                            ? FlutterFlowTheme.of(context).alternate
+                            : FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
                               Icons.edit_sharp,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24.0,
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Chỉnh sửa',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Chỉnh sửa',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ].divide(const SizedBox(height: 4.0)),
+            ].divide(const SizedBox(height: 4.0)),
+          ),
         ),
       ),
     );

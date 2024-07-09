@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'lesson_detail_home_page_widget.dart' show LessonDetailHomePageWidget;
@@ -51,17 +52,23 @@ class LessonDetailHomePageModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
   // State field(s) for comments widget.
   FocusNode? commentsFocusNode;
   TextEditingController? commentsTextController;
   String? Function(BuildContext, String?)? commentsTextControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    mobileEditorDisplayComponentModel.dispose();
     commentsFocusNode?.dispose();
     commentsTextController?.dispose();
   }
@@ -354,6 +361,43 @@ class LessonDetailHomePageModel
       } else {
         await startLesson(context);
       }
+    }
+  }
+
+  Future updatePrograms(BuildContext context) async {
+    ApiCallResponse? apiResultUpdateProgram;
+    bool? checkRefreshTokenBlock66abcd;
+
+    apiResultUpdateProgram =
+        await LessonGroup.updateStaffProgramStatusCall.call(
+      accessToken: FFAppState().accessToken,
+      staffId: FFAppState().staffid,
+      programId: widget.programId,
+    );
+
+    if (!(apiResultUpdateProgram.succeeded ?? true)) {
+      checkRefreshTokenBlock66abcd = await action_blocks.checkRefreshToken(
+        context,
+        jsonErrors: (apiResultUpdateProgram.jsonBody ?? ''),
+      );
+      if (!checkRefreshTokenBlock66abcd!) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Lỗi cập nhật trạng thái đang học của Chương trình',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            ),
+            duration: const Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).error,
+          ),
+        );
+      } else {
+        await updatePrograms(context);
+      }
+
+      return;
     }
   }
 }

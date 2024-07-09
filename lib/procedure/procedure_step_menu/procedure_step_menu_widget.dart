@@ -69,7 +69,6 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 150.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         boxShadow: const [
@@ -161,25 +160,19 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Icon(
-                                Icons.edit_sharp,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
-                              ),
+                            Icon(
+                              Icons.edit_sharp,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
                             ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
+                                    16.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Chỉnh sửa',
                                   style: FlutterFlowTheme.of(context)
@@ -234,24 +227,19 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Icon(
-                              Icons.delete,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
-                            ),
+                          Icon(
+                            Icons.delete,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
                           ),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
+                                  16.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Xóa',
                                 style: FlutterFlowTheme.of(context)
@@ -270,7 +258,7 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                 ),
               ),
             ),
-          ].divide(const SizedBox(height: 4.0)),
+          ],
         ),
       ),
     );

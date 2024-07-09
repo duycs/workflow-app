@@ -88,7 +88,6 @@ class _StaffsListDropdownWidgetState extends State<StaffsListDropdownWidget> {
         );
       },
       width: double.infinity,
-      height: 50.0,
       searchHintTextStyle: FlutterFlowTheme.of(context).labelMedium.override(
             fontFamily: 'Nunito Sans',
             letterSpacing: 0.0,

@@ -137,36 +137,28 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 16.0, 16.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Icon(
-                                Icons.delete,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 20.0,
-                              ),
+                            Icon(
+                              Icons.delete,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 24.0,
                             ),
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Xoá',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
+                              child: Text(
+                                'Xoá',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                             ),
-                          ],
+                          ].divide(const SizedBox(width: 16.0)),
                         ),
                       ),
                     ),

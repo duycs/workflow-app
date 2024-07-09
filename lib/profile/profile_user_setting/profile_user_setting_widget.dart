@@ -3,6 +3,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/training/do_test/delete_account/delete_account_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
@@ -92,185 +94,301 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 12.0, 0.0, 12.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12.0),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 16.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
+                      if (FFAppState().biometricLogin)
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 12.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(12.0),
+                              shape: BoxShape.rectangle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 16.0, 16.0, 16.0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 16.0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1.0,
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 1.0,
+                                          ),
                                         ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            flex: 2,
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
-                                              child: Container(
-                                                decoration: const BoxDecoration(),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Dấu vân tay',
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              flex: 2,
+                                              child: Align(
+                                                alignment: const AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Container(
+                                                  decoration: const BoxDecoration(),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          'Dấu vân tay',
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.fingerprint,
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                                .primary,
+                                                        size: 24.0,
                                                       ),
-                                                    ),
-                                                    Icon(
-                                                      Icons.fingerprint,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 24.0,
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Switch.adaptive(
-                                            value: _model.switchValue!,
-                                            onChanged: (_model.load == true)
-                                                ? null
-                                                : (newValue) async {
-                                                    setState(() =>
-                                                        _model.switchValue =
-                                                            newValue);
-                                                    if (newValue) {
-                                                      var shouldSetState =
-                                                          false;
-                                                      _model.authenticateUsingBiometricsSettingLoad =
-                                                          await actions
-                                                              .authenticateUsingBiometricsSetting();
-                                                      shouldSetState = true;
-                                                      if (_model
-                                                          .authenticateUsingBiometricsSettingLoad!) {
-                                                        _model.load = true;
-                                                        setState(() {});
-                                                      } else {
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                        return;
-                                                      }
-
-                                                      _model.tokenReloadProfileUserSetting =
-                                                          await action_blocks
-                                                              .tokenReload(
-                                                                  context);
-                                                      shouldSetState = true;
-                                                      if (_model
-                                                          .tokenReloadProfileUserSetting!) {
-                                                        _model.dataSetting =
-                                                            null;
-                                                        setState(() {});
-                                                        _model.sshkeyPublicKeySettingOn =
+                                            Switch.adaptive(
+                                              value: _model.switchValue!,
+                                              onChanged: (_model.load == true)
+                                                  ? null
+                                                  : (newValue) async {
+                                                      setState(() =>
+                                                          _model.switchValue =
+                                                              newValue);
+                                                      if (newValue) {
+                                                        var shouldSetState =
+                                                            false;
+                                                        _model.authenticateUsingBiometricsSettingLoad =
                                                             await actions
-                                                                .sshkey(
-                                                          getJsonField(
-                                                            FFAppState()
-                                                                .staffLogin,
-                                                            r'''$.email''',
-                                                          ).toString(),
-                                                          '',
-                                                          true,
-                                                        );
+                                                                .authenticateUsingBiometricsSetting();
                                                         shouldSetState = true;
-                                                        _model
-                                                            .updateDataSettingStruct(
-                                                          (e) => e
-                                                            ..enableBiometric =
-                                                                1
-                                                            ..publicKey = _model
-                                                                .sshkeyPublicKeySettingOn,
+                                                        if (_model
+                                                            .authenticateUsingBiometricsSettingLoad!) {
+                                                          _model.load = true;
+                                                          setState(() {});
+                                                        } else {
+                                                          if (shouldSetState) {
+                                                            setState(() {});
+                                                          }
+                                                          return;
+                                                        }
+
+                                                        _model.tokenReloadProfileUserSetting =
+                                                            await action_blocks
+                                                                .tokenReload(
+                                                                    context);
+                                                        shouldSetState = true;
+                                                        if (_model
+                                                            .tokenReloadProfileUserSetting!) {
+                                                          _model.dataSetting =
+                                                              null;
+                                                          setState(() {});
+                                                          _model.sshkeyPublicKeySettingOn =
+                                                              await actions
+                                                                  .sshkey(
+                                                            getJsonField(
+                                                              FFAppState()
+                                                                  .staffLogin,
+                                                              r'''$.email''',
+                                                            ).toString(),
+                                                            '',
+                                                            true,
+                                                          );
+                                                          shouldSetState =
+                                                              true;
+                                                          _model
+                                                              .updateDataSettingStruct(
+                                                            (e) => e
+                                                              ..enableBiometric =
+                                                                  1
+                                                              ..publicKey = _model
+                                                                  .sshkeyPublicKeySettingOn,
+                                                          );
+                                                          setState(() {});
+                                                        } else {
+                                                          setState(() {});
+                                                          if (shouldSetState) {
+                                                            setState(() {});
+                                                          }
+                                                          return;
+                                                        }
+
+                                                        _model.apiResultz8c =
+                                                            await SettingAcountGroup
+                                                                .updateBiometricVerificationCopyCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                          dataJson: _model
+                                                              .dataSetting
+                                                              ?.toMap(),
                                                         );
-                                                        setState(() {});
-                                                      } else {
+
+                                                        shouldSetState = true;
+                                                        if ((_model.apiResultz8c
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          await actions
+                                                              .saveInfoUser(
+                                                            'bv',
+                                                            DateTime.now()
+                                                                .toString(),
+                                                          );
+                                                          _model.getUserSetting =
+                                                              await UserGroup
+                                                                  .userMeCall
+                                                                  .call(
+                                                            accessToken:
+                                                                FFAppState()
+                                                                    .accessToken,
+                                                          );
+
+                                                          shouldSetState =
+                                                              true;
+                                                          if ((_model
+                                                                  .getUserSetting
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            FFAppState()
+                                                                .user = UserResourceDataStruct
+                                                                    .maybeFromMap((_model
+                                                                            .getUserSetting
+                                                                            ?.jsonBody ??
+                                                                        ''))!
+                                                                .data;
+                                                            setState(() {});
+                                                          }
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Lỗi cài đặt!',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                            ),
+                                                          );
+                                                        }
+
+                                                        _model.load = false;
                                                         setState(() {});
                                                         if (shouldSetState) {
                                                           setState(() {});
                                                         }
-                                                        return;
-                                                      }
+                                                      } else {
+                                                        var shouldSetState =
+                                                            false;
+                                                        _model.authenticateUsingBiometricsSettingOff =
+                                                            await actions
+                                                                .authenticateUsingBiometricsSetting();
+                                                        shouldSetState = true;
+                                                        if (_model
+                                                            .authenticateUsingBiometricsSettingOff!) {
+                                                          _model.load = true;
+                                                          setState(() {});
+                                                        } else {
+                                                          if (shouldSetState) {
+                                                            setState(() {});
+                                                          }
+                                                          return;
+                                                        }
 
-                                                      _model.apiResultz8c =
-                                                          await SettingAcountGroup
-                                                              .updateBiometricVerificationCopyCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        dataJson: _model
-                                                            .dataSetting
-                                                            ?.toMap(),
-                                                      );
+                                                        _model.tokenReloadProfileUserSettingCopy =
+                                                            await action_blocks
+                                                                .tokenReload(
+                                                                    context);
+                                                        shouldSetState = true;
+                                                        if (_model
+                                                            .tokenReloadProfileUserSettingCopy!) {
+                                                          _model.dataSetting =
+                                                              null;
+                                                          setState(() {});
+                                                          _model.sshkeyPublicKeySetting =
+                                                              await actions
+                                                                  .sshkey(
+                                                            getJsonField(
+                                                              FFAppState()
+                                                                  .staffLogin,
+                                                              r'''$.email''',
+                                                            ).toString(),
+                                                            '',
+                                                            true,
+                                                          );
+                                                          shouldSetState =
+                                                              true;
+                                                          _model
+                                                              .updateDataSettingStruct(
+                                                            (e) => e
+                                                              ..enableBiometric =
+                                                                  0
+                                                              ..publicKey = '',
+                                                          );
+                                                          setState(() {});
+                                                        } else {
+                                                          setState(() {});
+                                                          if (shouldSetState) {
+                                                            setState(() {});
+                                                          }
+                                                          return;
+                                                        }
 
-                                                      shouldSetState = true;
-                                                      if ((_model.apiResultz8c
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await actions
-                                                            .saveInfoUser(
-                                                          'bv',
-                                                          DateTime.now()
-                                                              .toString(),
-                                                        );
-                                                        _model.getUserSetting =
-                                                            await UserGroup
-                                                                .userMeCall
+                                                        _model.apiResultz8cCopy =
+                                                            await SettingAcountGroup
+                                                                .updateBiometricVerificationCopyCall
                                                                 .call(
+                                                          dataJson: _model
+                                                              .dataSetting
+                                                              ?.toMap(),
                                                           accessToken:
                                                               FFAppState()
                                                                   .accessToken,
@@ -278,197 +396,198 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
 
                                                         shouldSetState = true;
                                                         if ((_model
-                                                                .getUserSetting
+                                                                .apiResultz8cCopy
                                                                 ?.succeeded ??
                                                             true)) {
-                                                          FFAppState()
-                                                              .user = UserResourceDataStruct
-                                                                  .maybeFromMap((_model
-                                                                          .getUserSetting
-                                                                          ?.jsonBody ??
-                                                                      ''))!
-                                                              .data;
-                                                          setState(() {});
-                                                        }
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Lỗi cài đặt!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                          ),
-                                                        );
-                                                      }
-
-                                                      _model.load = false;
-                                                      setState(() {});
-                                                      if (shouldSetState) {
-                                                        setState(() {});
-                                                      }
-                                                    } else {
-                                                      var shouldSetState =
-                                                          false;
-                                                      _model.authenticateUsingBiometricsSettingOff =
                                                           await actions
-                                                              .authenticateUsingBiometricsSetting();
-                                                      shouldSetState = true;
-                                                      if (_model
-                                                          .authenticateUsingBiometricsSettingOff!) {
-                                                        _model.load = true;
-                                                        setState(() {});
-                                                      } else {
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                        return;
-                                                      }
+                                                              .clearInfoUser(
+                                                            'bv',
+                                                          );
+                                                          _model.getUserSettingOff =
+                                                              await UserGroup
+                                                                  .userMeCall
+                                                                  .call(
+                                                            accessToken:
+                                                                FFAppState()
+                                                                    .accessToken,
+                                                          );
 
-                                                      _model.tokenReloadProfileUserSettingCopy =
-                                                          await action_blocks
-                                                              .tokenReload(
-                                                                  context);
-                                                      shouldSetState = true;
-                                                      if (_model
-                                                          .tokenReloadProfileUserSettingCopy!) {
-                                                        _model.dataSetting =
-                                                            null;
-                                                        setState(() {});
-                                                        _model.sshkeyPublicKeySetting =
-                                                            await actions
-                                                                .sshkey(
-                                                          getJsonField(
+                                                          shouldSetState =
+                                                              true;
+                                                          if ((_model
+                                                                  .getUserSettingOff
+                                                                  ?.succeeded ??
+                                                              true)) {
                                                             FFAppState()
-                                                                .staffLogin,
-                                                            r'''$.email''',
-                                                          ).toString(),
-                                                          '',
-                                                          true,
-                                                        );
-                                                        shouldSetState = true;
-                                                        _model
-                                                            .updateDataSettingStruct(
-                                                          (e) => e
-                                                            ..enableBiometric =
-                                                                0
-                                                            ..publicKey = '',
-                                                        );
-                                                        setState(() {});
-                                                      } else {
-                                                        setState(() {});
-                                                        if (shouldSetState) {
-                                                          setState(() {});
-                                                        }
-                                                        return;
-                                                      }
-
-                                                      _model.apiResultz8cCopy =
-                                                          await SettingAcountGroup
-                                                              .updateBiometricVerificationCopyCall
-                                                              .call(
-                                                        dataJson: _model
-                                                            .dataSetting
-                                                            ?.toMap(),
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                      );
-
-                                                      shouldSetState = true;
-                                                      if ((_model
-                                                              .apiResultz8cCopy
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await actions
-                                                            .clearInfoUser(
-                                                          'bv',
-                                                        );
-                                                        _model.getUserSettingOff =
-                                                            await UserGroup
-                                                                .userMeCall
-                                                                .call(
-                                                          accessToken:
-                                                              FFAppState()
-                                                                  .accessToken,
-                                                        );
-
-                                                        shouldSetState = true;
-                                                        if ((_model
-                                                                .getUserSettingOff
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          FFAppState()
-                                                              .user = UserResourceDataStruct
-                                                                  .maybeFromMap((_model
-                                                                          .getUserSettingOff
-                                                                          ?.jsonBody ??
-                                                                      ''))!
-                                                              .data;
-                                                          setState(() {});
-                                                        }
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Lỗi cài đặt!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                .user = UserResourceDataStruct
+                                                                    .maybeFromMap((_model
+                                                                            .getUserSettingOff
+                                                                            ?.jsonBody ??
+                                                                        ''))!
+                                                                .data;
+                                                            setState(() {});
+                                                          }
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Lỗi cài đặt!',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
                                                               ),
+                                                              duration: const Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
                                                             ),
-                                                            duration: const Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .error,
-                                                          ),
-                                                        );
-                                                      }
+                                                          );
+                                                        }
 
-                                                      _model.load = false;
-                                                      setState(() {});
-                                                      if (shouldSetState) {
+                                                        _model.load = false;
                                                         setState(() {});
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
                                                       }
-                                                    }
-                                                  },
-                                            activeColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            activeTrackColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            inactiveTrackColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .alternate,
-                                            inactiveThumbColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                          ),
-                                        ],
+                                                    },
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              activeTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              inactiveTrackColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              inactiveThumbColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ].divide(const SizedBox(height: 8.0)),
+                                  ].divide(const SizedBox(height: 8.0)),
+                                ),
                               ),
+                            ),
+                          ),
+                        ),
+                      Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if (FFAppState().biometricLogin)
+                              SwitchListTile.adaptive(
+                                value: _model.switchListTileValue ??= true,
+                                onChanged: (newValue) async {
+                                  setState(() =>
+                                      _model.switchListTileValue = newValue);
+                                },
+                                title: Text(
+                                  'Đăng nhập bằng vân tay',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                subtitle: Text(
+                                  'Kích hoạt đăng nhập sử dụng vân tây',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                tileColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                activeColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                activeTrackColor:
+                                    FlutterFlowTheme.of(context).accent1,
+                                dense: false,
+                                controlAffinity:
+                                    ListTileControlAffinity.trailing,
+                              ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            36.0, 18.0, 36.0, 0.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: const DeleteAccountWidget(),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => safeSetState(() {}));
+                            },
+                            text: 'Xóa tài khoản',
+                            icon: const Icon(
+                              Icons.remove_circle,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).noColor,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).orange,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).orange,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(20.0),
                             ),
                           ),
                         ),

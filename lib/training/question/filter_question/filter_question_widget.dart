@@ -66,8 +66,8 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
   Widget build(BuildContext context) {
     return Visibility(
       visible: _model.isLoad == true,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+      child: Align(
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -81,7 +81,12 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                 ),
               )
             ],
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(0.0),
+              bottomRight: Radius.circular(0.0),
+              topLeft: Radius.circular(16.0),
+              topRight: Radius.circular(16.0),
+            ),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -164,7 +169,7 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(8.0, 24.0, 8.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(8.0, 16.0, 8.0, 0.0),
                     child: TextFormField(
                       controller: _model.nameTextController,
                       focusNode: _model.nameFocusNode,

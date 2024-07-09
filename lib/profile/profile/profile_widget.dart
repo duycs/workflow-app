@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/author/author_sign_up/author_sign_up_widget.dart';
-import '/training/do_test/delete_account/delete_account_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -3226,90 +3225,87 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               ),
-                              if (FFAppState().biometricLogin == true)
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 12.0, 16.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'ProfileUserSetting',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: 55.0,
-                                      decoration: BoxDecoration(
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 12.0, 16.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'ProfileUserSetting',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 55.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      shape: BoxShape.rectangle,
+                                      border: Border.all(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        shape: BoxShape.rectangle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                        ),
+                                            .alternate,
                                       ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Icon(
-                                              Icons.settings_outlined,
-                                              color:
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Icon(
+                                            Icons.settings_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Thiết lập tài khoản',
+                                              style:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Thiết lập tài khoản',
-                                                style:
+                                          ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.9, 0.0),
+                                              child: Icon(
+                                                Icons.arrow_forward_ios,
+                                                color:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Nunito Sans',
-                                                          fontSize: 14.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                        .secondaryText,
+                                                size: 14.0,
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.9, 0.0),
-                                                child: Icon(
-                                                  Icons.arrow_forward_ios,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 14.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
+                              ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 12.0, 16.0, 0.0),
@@ -3393,142 +3389,99 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 32.0, 16.0, 8.0),
+                                    16.0, 16.0, 16.0, 8.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    _model.staffDetail = null;
-                                    setState(() {});
-                                    FFAppState().accessToken = '';
-                                    FFAppState().refreshToken = '';
-                                    FFAppState().user = UserStruct();
-                                    FFAppState().expires = 0;
-                                    setState(() {});
-                                    _model.checkWfBV =
-                                        await actions.getReTokenUser(
-                                      'bv',
-                                    );
-                                    if (_model.checkWfBV == null ||
-                                        _model.checkWfBV == '') {
+                                    var confirmDialogResponse =
+                                        await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: const Text('Xác nhận'),
+                                                  content: const Text(
+                                                      'Bạn có chắc chắn muốn đăng xuất không?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: const Text('Không'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: const Text('Có'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                            false;
+                                    if (confirmDialogResponse) {
+                                      _model.staffDetail = null;
+                                      setState(() {});
+                                      FFAppState().accessToken = '';
+                                      FFAppState().refreshToken = '';
+                                      FFAppState().user = UserStruct();
+                                      FFAppState().expires = 0;
+                                      setState(() {});
+                                      _model.checkWfBV =
+                                          await actions.getReTokenUser(
+                                        'bv',
+                                      );
+                                      if (_model.checkWfBV == null ||
+                                          _model.checkWfBV == '') {
+                                        await actions.clearInfoUser(
+                                          'wf_email',
+                                        );
+                                      }
                                       await actions.clearInfoUser(
-                                        'wf_email',
+                                        'wf_token',
+                                      );
+                                      await actions.notifiRemoveServer();
+
+                                      context.goNamed(
+                                        'Login',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
                                       );
                                     }
-                                    await actions.clearInfoUser(
-                                      'wf_token',
-                                    );
-                                    await actions.notifiRemoveServer();
-
-                                    context.goNamed(
-                                      'Login',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
 
                                     setState(() {});
                                   },
                                   text: 'Đăng xuất',
+                                  icon: const Icon(
+                                    Icons.logout,
+                                    size: 15.0,
+                                  ),
                                   options: FFButtonOptions(
                                     height: 55.0,
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context).fBGrey,
                                     textStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
+                                        .labelMedium
                                         .override(
                                           fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w600,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                    borderRadius: BorderRadius.circular(50.0),
+                                    elevation: 0.0,
+                                    borderRadius: BorderRadius.circular(25.5),
                                   ),
                                 ),
                               ),
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68')
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 32.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () => _model
-                                                            .unfocusNode
-                                                            .canRequestFocus
-                                                        ? FocusScope.of(context)
-                                                            .requestFocus(_model
-                                                                .unfocusNode)
-                                                        : FocusScope.of(context)
-                                                            .unfocus(),
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          const DeleteAccountWidget(),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then((value) =>
-                                                  safeSetState(() {}));
-                                            },
-                                            text: 'Xóa tài khoản',
-                                            options: FFButtonOptions(
-                                              height: 55.0,
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                              borderRadius:
-                                                  BorderRadius.circular(50.0),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                             ].addToEnd(const SizedBox(height: 100.0)),
                           ),
                         ),

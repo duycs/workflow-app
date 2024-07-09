@@ -28,40 +28,6 @@ String generateRandomString(int length) {
       .join();
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Capture Widget to Image'),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              screenCertificate(
-                'Stack',
-                'Chương trình mẫu',
-                '01/01/2023',
-                '31/12/2023',
-                'https://example.com/image.png',
-                'Nguyễn Văn A',
-                'Người dùng mẫu',
-                'Tên công ty',
-              );
-            },
-            child: Text('Capture Screenshot'),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 Future<Uint8List?> captureWidgetToImage(GlobalKey key) async {
   try {
     RenderRepaintBoundary boundary =
@@ -78,7 +44,6 @@ Future<Uint8List?> captureWidgetToImage(GlobalKey key) async {
 
 Future<String> getSaveDirectory() async {
   String directoryPath;
-
   if (Platform.isAndroid) {
     directoryPath = '/storage/emulated/0/Download';
   } else if (Platform.isIOS) {
@@ -86,11 +51,11 @@ Future<String> getSaveDirectory() async {
   } else {
     throw UnsupportedError('Unsupported platform');
   }
-
   return directoryPath;
 }
 
-Future screenCertificate(
+Future<void> screenCertificate(
+  BuildContext context,
   String tagContainer,
   String program,
   String dateStart,
@@ -118,12 +83,7 @@ Future screenCertificate(
       );
 
       if (container != null) {
-        Widget containerWithKey = RepaintBoundary(
-          key: containerKey,
-          child: container,
-        );
-
-        await captureAndSave(containerWithKey, containerKey);
+        await captureAndSave(context, container, containerKey);
       } else {
         print('Container not found with tag: $tagContainer');
       }
@@ -136,10 +96,20 @@ Future screenCertificate(
 }
 
 Future<void> captureAndSave(
-    Widget containerWithKey, GlobalKey containerKey) async {
+    BuildContext context, Widget container, GlobalKey containerKey) async {
   try {
-    WidgetsFlutterBinding.ensureInitialized();
-    runApp(MaterialApp(home: Scaffold(body: containerWithKey)));
+    final overlayEntry = OverlayEntry(
+      builder: (context) => Material(
+        color: Colors.transparent,
+        child: Center(
+          child: RepaintBoundary(
+            key: containerKey,
+            child: container,
+          ),
+        ),
+      ),
+    );
+    Overlay.of(context)!.insert(overlayEntry);
 
     await Future.delayed(Duration(seconds: 1));
 
@@ -165,11 +135,11 @@ Future<void> captureAndSave(
         fontSize: 16.0,
       );
       Share.shareXFiles([XFile(filePath)]);
-
-      // runApp(MyApp());
     } else {
       print('Failed to capture widget as image');
     }
+
+    overlayEntry.remove();
   } catch (e) {
     print('Error capturing and saving screenshot: $e');
   }
@@ -251,7 +221,7 @@ Widget? findContainerByTag(
                               ),
                               SizedBox(height: 2),
                               Text(
-                                position,
+                                'Chức vụ: \"$position\"',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
@@ -283,38 +253,6 @@ Widget? findContainerByTag(
               ),
             ),
           ),
-          // Positioned(
-          //   top: 10,
-          //   right: 10,
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       ClipRRect(
-          //         borderRadius: BorderRadius.circular(15),
-          //         child: Container(
-          //           width: 30,
-          //           height: 30,
-          //           child: Image.memory(
-          //             imageBytes,
-          //             fit: BoxFit.cover,
-          //           ),
-          //         ),
-          //       ),
-          //       Container(
-          //         width: 50,
-          //         child: Center(
-          //           child: Text(
-          //             nameOr,
-          //             textAlign: TextAlign.center,
-          //             style: TextStyle(
-          //               fontSize: 8,
-          //             ),
-          //           ),
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
           Positioned(
             top: 10,
             right: 10,
@@ -345,11 +283,46 @@ Widget? findContainerByTag(
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
   return null;
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Capture Widget to Image'),
+        ),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              screenCertificate(
+                context,
+                'Stack',
+                'Chương trình mẫu',
+                '01/01/2023',
+                '31/12/2023',
+                'https://example.com/image.png',
+                'Nguyễn Văn A',
+                'Người dùng mẫu',
+                'Tên công ty',
+              );
+            },
+            child: Text('Capture Screenshot'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
 }

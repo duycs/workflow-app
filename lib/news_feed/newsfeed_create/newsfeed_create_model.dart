@@ -78,10 +78,19 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
 
   ///  State fields for stateful widgets in this component.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for Title widget.
   FocusNode? titleFocusNode;
   TextEditingController? titleTextController;
   String? Function(BuildContext, String?)? titleTextControllerValidator;
+  String? _titleTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Không được bỏ trống tiêu đề';
+    }
+
+    return null;
+  }
+
   // State field(s) for Content widget.
   FocusNode? contentFocusNode;
   TextEditingController? contentTextController;
@@ -108,7 +117,9 @@ class NewsfeedCreateModel extends FlutterFlowModel<NewsfeedCreateWidget> {
   ApiCallResponse? apiResultCreateNewsFeed;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    titleTextControllerValidator = _titleTextControllerValidator;
+  }
 
   @override
   void dispose() {

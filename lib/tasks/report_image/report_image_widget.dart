@@ -80,16 +80,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed(
-                'WorkResultList',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: const TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
+              context.safePop();
             },
           ),
           title: Row(
@@ -121,7 +112,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
-                      enableDrag: false,
+                      useSafeArea: true,
                       context: context,
                       builder: (context) {
                         return GestureDetector(
@@ -551,6 +542,28 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 8.0, 0.0, 8.0),
+                                            child: Text(
+                                              reportImagesItem.staffs.length > 0
+                                                  ? reportImagesItem
+                                                      .submitStaffId
+                                                      .userId
+                                                      .firstName
+                                                  : ' ',
+                                              maxLines: 1,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ),
                                           if (reportImagesItem.content !=
                                                   null &&
                                               reportImagesItem.content != '')
@@ -571,59 +584,44 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                             ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 8.0, 0.0, 8.0),
-                                            child: Text(
-                                              reportImagesItem.staffs.length > 0
-                                                  ? reportImagesItem
-                                                      .submitStaffId
-                                                      .userId
-                                                      .firstName
-                                                  : ' ',
-                                              maxLines: 1,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                            ),
-                                          ),
                                           if (reportImagesItem
                                                       .workflowId.name !=
                                                   null &&
                                               reportImagesItem
                                                       .workflowId.name !=
                                                   '')
-                                            Text(
-                                              reportImagesItem.workflowId
-                                                              .name !=
-                                                          null &&
-                                                      reportImagesItem
-                                                              .workflowId
-                                                              .name !=
-                                                          ''
-                                                  ? '#${reportImagesItem.workflowId.name}'
-                                                  : ' ',
-                                              maxLines: 2,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Nunito Sans',
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontStyle: FontStyle.italic,
-                                                  ),
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 12.0),
+                                              child: Text(
+                                                reportImagesItem.workflowId
+                                                                .name !=
+                                                            null &&
+                                                        reportImagesItem
+                                                                .workflowId
+                                                                .name !=
+                                                            ''
+                                                    ? '#${reportImagesItem.workflowId.name}'
+                                                    : ' ',
+                                                maxLines: 2,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    ),
+                                              ),
                                             ),
                                           if ((reportImagesItem
                                                       .operations
@@ -652,27 +650,17 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                                       ''))
                                             Container(
                                               decoration: const BoxDecoration(),
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 12.0, 12.0, 0.0),
-                                                  child:
-                                                      GridviewReportImageWidget(
-                                                    key: Key(
-                                                        'Key1ct_${reportImagesIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
-                                                    parameter1: reportImagesItem
-                                                        .operations
-                                                        .first
-                                                        .operationsId
-                                                        .files
-                                                        .length,
-                                                    parameter3: reportImagesItem
-                                                        .operations,
-                                                  ),
-                                                ),
+                                              child: GridviewReportImageWidget(
+                                                key: Key(
+                                                    'Key1ct_${reportImagesIndex}_of_${_model.listViewPagingController!.itemList!.length}'),
+                                                parameter1: reportImagesItem
+                                                    .operations
+                                                    .first
+                                                    .operationsId
+                                                    .files
+                                                    .length,
+                                                parameter3:
+                                                    reportImagesItem.operations,
                                               ),
                                             ),
                                           if ((reportImagesItem
@@ -745,7 +733,7 @@ class _ReportImageWidgetState extends State<ReportImageWidget> {
                                         ],
                                       ),
                                     ),
-                                  ],
+                                  ].divide(const SizedBox(width: 4.0)),
                                 ),
                               ),
                             ),

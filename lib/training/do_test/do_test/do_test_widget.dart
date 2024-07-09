@@ -1553,7 +1553,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                           text: 'Nộp bài',
                           options: FFButtonOptions(
                             width: double.infinity,
-                            height: 50.0,
+                            height: 40.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(

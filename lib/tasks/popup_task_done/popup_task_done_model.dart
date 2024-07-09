@@ -1,0 +1,22 @@
+import '/flutter_flow/flutter_flow_util.dart';
+import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
+import 'popup_task_done_widget.dart' show PopupTaskDoneWidget;
+import 'package:flutter/material.dart';
+
+class PopupTaskDoneModel extends FlutterFlowModel<PopupTaskDoneWidget> {
+  ///  State fields for stateful widgets in this component.
+
+  // Model for MobileEditorDisplayComponent component.
+  late MobileEditorDisplayComponentModel mobileEditorDisplayComponentModel;
+
+  @override
+  void initState(BuildContext context) {
+    mobileEditorDisplayComponentModel =
+        createModel(context, () => MobileEditorDisplayComponentModel());
+  }
+
+  @override
+  void dispose() {
+    mobileEditorDisplayComponentModel.dispose();
+  }
+}

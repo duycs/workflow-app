@@ -241,67 +241,64 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       ),
                       Align(
                         alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Builder(
-                          builder: (context) => FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 10.0,
-                            borderWidth: 1.0,
-                            buttonSize: 50.0,
-                            icon: Icon(
-                              Icons.tune_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (dialogContext) {
-                                  return Dialog(
-                                    elevation: 0,
-                                    insetPadding: EdgeInsets.zero,
-                                    backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
-                                        .resolve(Directionality.of(context)),
-                                    child: GestureDetector(
-                                      onTap: () => _model
-                                              .unfocusNode.canRequestFocus
+                        child: FlutterFlowIconButton(
+                          borderColor: Colors.transparent,
+                          borderRadius: 10.0,
+                          borderWidth: 1.0,
+                          buttonSize: 50.0,
+                          icon: Icon(
+                            Icons.tune_rounded,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 30.0,
+                          ),
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              useSafeArea: true,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                      child: FilterOrderListWidget(
-                                        status: _model.statusFilter,
-                                        private: _model.privateFilter,
-                                        dateStart: _model.dateStartFilter,
-                                        dateEnd: _model.dateEndFilter,
-                                        code: _model.codeFilter,
-                                        name: _model.nameFilter,
-                                        author: _model.authorFilter,
-                                        callback: (statusCb,
-                                            privateCb,
-                                            dateStartCb,
-                                            dateEndCb,
-                                            codeCb,
-                                            nameCb,
-                                            authorCb) async {
-                                          _model.statusFilter = statusCb!;
-                                          _model.privateFilter = privateCb!;
-                                          _model.codeFilter = codeCb;
-                                          _model.nameFilter = nameCb;
-                                          _model.authorFilter = authorCb;
-                                          _model.dateStartFilter = dateStartCb;
-                                          _model.dateEndFilter = dateEndCb;
-                                          setState(() {});
-                                          setState(() => _model
-                                              .listViewPagingController
-                                              ?.refresh());
-                                        },
-                                      ),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: FilterOrderListWidget(
+                                      status: _model.statusFilter,
+                                      private: _model.privateFilter,
+                                      dateStart: _model.dateStartFilter,
+                                      dateEnd: _model.dateEndFilter,
+                                      code: _model.codeFilter,
+                                      name: _model.nameFilter,
+                                      author: _model.authorFilter,
+                                      callback: (statusCb,
+                                          privateCb,
+                                          dateStartCb,
+                                          dateEndCb,
+                                          codeCb,
+                                          nameCb,
+                                          authorCb) async {
+                                        _model.statusFilter = statusCb!;
+                                        _model.privateFilter = privateCb!;
+                                        _model.codeFilter = codeCb;
+                                        _model.nameFilter = nameCb;
+                                        _model.authorFilter = authorCb;
+                                        _model.dateStartFilter = dateStartCb;
+                                        _model.dateEndFilter = dateEndCb;
+                                        setState(() {});
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
+                                      },
                                     ),
-                                  );
-                                },
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
                         ),
                       ),
                     ],

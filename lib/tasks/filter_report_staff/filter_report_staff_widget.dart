@@ -135,9 +135,10 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return Align(
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
+        width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: const [
@@ -150,7 +151,12 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
               ),
             )
           ],
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(0.0),
+            bottomRight: Radius.circular(0.0),
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -160,115 +166,122 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Bộ lọc',
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Nunito Sans',
-                            letterSpacing: 0.0,
-                          ),
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 20.0,
-                      borderWidth: 1.0,
-                      buttonSize: 40.0,
-                      icon: Icon(
-                        Icons.clear,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Bộ lọc',
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 20.0,
+                        borderWidth: 1.0,
+                        buttonSize: 40.0,
+                        icon: Icon(
+                          Icons.clear,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if ('1' == '2')
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Trạng thái hoạt động',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                          FlutterFlowChoiceChips(
-                            options: const [
-                              ChipData('Hoạt động'),
-                              ChipData('Không hoạt động')
-                            ],
-                            onChanged: (val) => setState(
-                                () => _model.statusValue = val?.firstOrNull),
-                            selectedChipStyle: ChipStyle(
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                              textStyle: FlutterFlowTheme.of(context)
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Trạng thái hoạt động',
+                              style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
                                     letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
                                   ),
-                              iconColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              iconSize: 14.0,
-                              elevation: 4.0,
-                              borderRadius: BorderRadius.circular(16.0),
                             ),
-                            unselectedChipStyle: ChipStyle(
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              iconColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              iconSize: 14.0,
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            chipSpacing: 12.0,
-                            rowSpacing: 12.0,
-                            multiselect: false,
-                            initialized: _model.statusValue != null,
-                            alignment: WrapAlignment.start,
-                            controller: _model.statusValueController ??=
-                                FormFieldController<List<String>>(
-                              [
-                                widget.status != null && widget.status != ''
-                                    ? widget.status!
-                                    : ' '
+                            FlutterFlowChoiceChips(
+                              options: const [
+                                ChipData('Hoạt động'),
+                                ChipData('Không hoạt động')
                               ],
+                              onChanged: (val) => setState(
+                                  () => _model.statusValue = val?.firstOrNull),
+                              selectedChipStyle: ChipStyle(
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                iconColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                iconSize: 14.0,
+                                elevation: 4.0,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              unselectedChipStyle: ChipStyle(
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).alternate,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      letterSpacing: 0.0,
+                                    ),
+                                iconColor:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                iconSize: 14.0,
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              chipSpacing: 12.0,
+                              rowSpacing: 12.0,
+                              multiselect: false,
+                              initialized: _model.statusValue != null,
+                              alignment: WrapAlignment.start,
+                              controller: _model.statusValueController ??=
+                                  FormFieldController<List<String>>(
+                                [
+                                  widget.status != null && widget.status != ''
+                                      ? widget.status!
+                                      : ' '
+                                ],
+                              ),
+                              wrapped: true,
                             ),
-                            wrapped: true,
-                          ),
-                        ].divide(const SizedBox(height: 4.0)),
+                          ].divide(const SizedBox(height: 4.0)),
+                        ),
                       ),
                     if (FFAppState().user.role ==
                         '82073000-1ba2-43a4-a55c-459d17c23b68')
                       Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
                             'Chi nhánh',
@@ -280,89 +293,95 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
-                          FlutterFlowDropDown<String>(
-                            controller: _model.branchValueController ??=
-                                FormFieldController<String>(
-                              _model.branchValue ??=
-                                  widget.branch != null && widget.branch != ''
-                                      ? widget.branch
-                                      : '1',
-                            ),
-                            options: List<String>.from(
-                                _model.branchList.map((e) => e.id).toList()),
-                            optionLabels:
-                                _model.branchList.map((e) => e.name).toList(),
-                            onChanged: (val) async {
-                              setState(() => _model.branchValue = val);
-                              _model.listDeparment4Token =
-                                  await action_blocks.tokenReload(context);
-                              if (_model.listDeparment4Token!) {
-                                _model.apiResultListDeparment4 =
-                                    await DepartmentGroup.getDepartmentListCall
-                                        .call(
-                                  accessToken: FFAppState().accessToken,
-                                  filter:
-                                      '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
-                                );
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: FlutterFlowDropDown<String>(
+                              controller: _model.branchValueController ??=
+                                  FormFieldController<String>(
+                                _model.branchValue ??=
+                                    widget.branch != null && widget.branch != ''
+                                        ? widget.branch
+                                        : '1',
+                              ),
+                              options: List<String>.from(
+                                  _model.branchList.map((e) => e.id).toList()),
+                              optionLabels:
+                                  _model.branchList.map((e) => e.name).toList(),
+                              onChanged: (val) async {
+                                setState(() => _model.branchValue = val);
+                                _model.listDeparment4Token =
+                                    await action_blocks.tokenReload(context);
+                                if (_model.listDeparment4Token!) {
+                                  _model.apiResultListDeparment4 =
+                                      await DepartmentGroup
+                                          .getDepartmentListCall
+                                          .call(
+                                    accessToken: FFAppState().accessToken,
+                                    filter:
+                                        '{\"_and\":[{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchValue}\"}}}]}',
+                                  );
 
-                                if ((_model
-                                        .apiResultListDeparment4?.succeeded ??
-                                    true)) {
-                                  _model.departmentList =
-                                      DepartmentListDataStruct.maybeFromMap(
-                                              (_model.apiResultListDeparment4
-                                                      ?.jsonBody ??
-                                                  ''))!
-                                          .data
-                                          .toList()
-                                          .cast<DepartmentListStruct>();
+                                  if ((_model
+                                          .apiResultListDeparment4?.succeeded ??
+                                      true)) {
+                                    _model.departmentList =
+                                        DepartmentListDataStruct.maybeFromMap(
+                                                (_model.apiResultListDeparment4
+                                                        ?.jsonBody ??
+                                                    ''))!
+                                            .data
+                                            .toList()
+                                            .cast<DepartmentListStruct>();
+                                    setState(() {});
+                                  }
+                                } else {
                                   setState(() {});
                                 }
-                              } else {
-                                setState(() {});
-                              }
 
-                              setState(() {});
-                            },
-                            width: 300.0,
-                            height: 40.0,
-                            searchHintTextStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            searchTextStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                            hintText: 'Lọc theo chi nhánh',
-                            searchHintText: 'Tìm kiếm ',
-                            icon: Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
+                                setState(() {});
+                              },
+                              width: 300.0,
+                              searchHintTextStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              searchTextStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintText: 'Lọc theo chi nhánh',
+                              searchHintText: 'Tìm kiếm ',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 2.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: 8.0,
+                              margin: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isOverButton: true,
+                              isSearchable: true,
+                              isMultiSelect: false,
                             ),
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            elevation: 2.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
-                            borderWidth: 2.0,
-                            borderRadius: 8.0,
-                            margin: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 4.0, 16.0, 4.0),
-                            hidesUnderline: true,
-                            isOverButton: true,
-                            isSearchable: true,
-                            isMultiSelect: false,
                           ),
                         ].divide(const SizedBox(height: 4.0)),
                       ),
@@ -372,7 +391,7 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                             'a8d33527-375b-4599-ac70-6a3fcad1de39'))
                       Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Text(
                             'Bộ phận',
@@ -402,7 +421,6 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                             onChanged: (val) =>
                                 setState(() => _model.departmentValue = val),
                             width: 300.0,
-                            height: 40.0,
                             searchHintTextStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(

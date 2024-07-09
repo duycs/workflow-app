@@ -56,6 +56,7 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
         final imageList = widget.parameter3?.toList() ?? [];
         return Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: List.generate(imageList.length, (imageListIndex) {
             final imageListItem = imageList[imageListIndex];
             return Builder(
@@ -80,40 +81,43 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
                       child: Stack(
                         alignment: const AlignmentDirectional(1.0, -1.0),
                         children: [
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: FlutterFlowExpandedImageView(
-                                    image: Image.network(
-                                      '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
-                                      fit: BoxFit.contain,
-                                    ),
-                                    allowRotation: false,
-                                    tag:
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            decoration: const BoxDecoration(),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: FlutterFlowExpandedImageView(
+                                      image: Image.network(
                                         '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
-                                    useHeroAnimation: true,
+                                        fit: BoxFit.contain,
+                                      ),
+                                      allowRotation: false,
+                                      tag:
+                                          '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                      useHeroAnimation: true,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            child: Hero(
-                              tag:
-                                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
-                              transitionOnUserGestures: true,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.fill,
+                                );
+                              },
+                              child: Hero(
+                                tag:
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                transitionOnUserGestures: true,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.network(
+                                    '${FFAppConstants.ApiBaseUrl}/assets/${widget.parameter1! > 0 ? gridviewImageItem.directusFilesId.id : ' '}?access_token=${FFAppState().accessToken}',
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

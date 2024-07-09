@@ -83,7 +83,16 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.goNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Row(
@@ -257,7 +266,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
-                          enableDrag: false,
+                          useSafeArea: true,
                           context: context,
                           builder: (context) {
                             return GestureDetector(
@@ -816,7 +825,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                 BoxDecoration(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .primary,
+                                                                  .secondaryBackground,
                                                               borderRadius:
                                                                   const BorderRadius
                                                                       .only(
@@ -868,7 +877,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             'Lần chạy thứ: ${itemTaskDoneItem.publishedCount.toString()}',
                                                                             style: FlutterFlowTheme.of(context).bodyLarge.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 14.0,
                                                                                   letterSpacing: 0.0,
                                                                                 ),
@@ -881,7 +890,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.access_time,
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   size: 22.0,
                                                                                 ),
                                                                               ),
@@ -893,7 +902,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 )}',
                                                                                 style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                       fontFamily: 'Nunito Sans',
-                                                                                      color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
                                                                                       fontSize: 14.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
@@ -907,8 +916,8 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               Padding(
                                                                                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
-                                                                                  Icons.access_time_filled,
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  Icons.update_outlined,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   size: 22.0,
                                                                                 ),
                                                                               ),
@@ -921,7 +930,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                   )}',
                                                                                   style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                         fontFamily: 'Nunito Sans',
-                                                                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
                                                                                         fontSize: 14.0,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
@@ -934,10 +943,10 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.person_outline,
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   size: 22.0,
                                                                                 ),
                                                                               ),
@@ -947,7 +956,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                   'Người tạo: ',
                                                                                   style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         fontFamily: 'Nunito Sans',
-                                                                                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
                                                                                         fontSize: 14.0,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
@@ -975,7 +984,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 'Người tham gia: ${itemTaskDoneItem.createdUserId.firstName == 'null' ? ' ' : itemTaskDoneItem.submitStaffId.userId.firstName}',
                                                                                 style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                       fontFamily: 'Nunito Sans',
-                                                                                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
                                                                                       fontSize: 14.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
@@ -1026,7 +1035,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 13.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
@@ -1159,7 +1168,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .primary,
+                                                                .secondaryBackground,
                                                             boxShadow: [
                                                               BoxShadow(
                                                                 blurRadius: 0.0,
@@ -1225,7 +1234,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             .bodyLarge
                                                                             .override(
                                                                               fontFamily: 'Nunito Sans',
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
                                                                             ),
@@ -1243,7 +1252,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             child:
                                                                                 Icon(
                                                                               Icons.access_time,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               size: 22.0,
                                                                             ),
                                                                           ),
@@ -1255,7 +1264,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             )}',
                                                                             style: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                   fontFamily: 'Nunito Sans',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
                                                                                   fontSize: 13.0,
                                                                                   letterSpacing: 0.0,
                                                                                 ),
@@ -1277,7 +1286,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                             child:
                                                                                 Icon(
                                                                               Icons.person_outline,
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
                                                                               size: 22.0,
                                                                             ),
                                                                           ),
@@ -1306,7 +1315,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                               'Người tạo: ',
                                                                               style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                     fontFamily: 'Nunito Sans',
-                                                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    color: FlutterFlowTheme.of(context).primaryText,
                                                                                     fontSize: 13.0,
                                                                                     letterSpacing: 0.0,
                                                                                   ),
@@ -1380,7 +1389,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                         fontFamily:
                                                                             'Nunito Sans',
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
+                                                                            .primaryText,
                                                                         fontSize:
                                                                             13.0,
                                                                         letterSpacing:

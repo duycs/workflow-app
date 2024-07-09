@@ -1465,9 +1465,10 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                               },
                               text: 'Mua cho cá nhân',
                               options: FFButtonOptions(
+                                width: double.infinity,
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
+                                    0.0, 0.0, 0.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).secondary,
@@ -1490,61 +1491,59 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                           ),
                         ),
                       if (false)
-                        Expanded(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              await showModalBottomSheet(
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                enableDrag: false,
-                                context: context,
-                                builder: (context) {
-                                  return GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: Padding(
-                                      padding: MediaQuery.viewInsetsOf(context),
-                                      child: OrderCreateWidget(
-                                        image: _model.dataGetOne?.imageCover,
-                                        price: _model.dataGetOne?.price,
-                                        name: _model.dataGetOne?.name,
-                                        numOfListLessions:
-                                            _model.dataGetOne?.lessions.length,
-                                        author:
-                                            _model.dataGetOne?.authorId.alias,
-                                        programId: widget.idProgram,
-                                        checkType: 'staff',
-                                      ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              enableDrag: false,
+                              context: context,
+                              builder: (context) {
+                                return GestureDetector(
+                                  onTap: () =>
+                                      _model.unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: OrderCreateWidget(
+                                      image: _model.dataGetOne?.imageCover,
+                                      price: _model.dataGetOne?.price,
+                                      name: _model.dataGetOne?.name,
+                                      numOfListLessions:
+                                          _model.dataGetOne?.lessions.length,
+                                      author:
+                                          _model.dataGetOne?.authorId.alias,
+                                      programId: widget.idProgram,
+                                      checkType: 'staff',
                                     ),
-                                  );
-                                },
-                              ).then((value) => safeSetState(() {}));
-                            },
-                            text: 'Mua cho cá nhân',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
                                   ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
+                                );
+                              },
+                            ).then((value) => safeSetState(() {}));
+                          },
+                          text: 'Mua cho cá nhân',
+                          options: FFButtonOptions(
+                            height: 40.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
                             ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       if (functions.isRoleAdminGroup(FFAppState().user))
@@ -1819,6 +1818,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                               },
                               text: 'Mua cho tổ chức',
                               options: FFButtonOptions(
+                                width: double.infinity,
                                 height: 40.0,
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),

@@ -8,7 +8,12 @@ import 'certificate1_zoom_model.dart';
 export 'certificate1_zoom_model.dart';
 
 class Certificate1ZoomWidget extends StatefulWidget {
-  const Certificate1ZoomWidget({super.key});
+  const Certificate1ZoomWidget({
+    super.key,
+    this.check,
+  });
+
+  final String? check;
 
   @override
   State<Certificate1ZoomWidget> createState() => _Certificate1ZoomWidgetState();
@@ -136,7 +141,7 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 2.0),
                                     child: Text(
-                                      'Chức vụ',
+                                      'Chức vụ: \"Nhân viên\"',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -249,30 +254,32 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
                             ),
                           ],
                         ),
-                        Align(
-                          alignment: const AlignmentDirectional(1.0, 1.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 5.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: FlutterFlowTheme.of(context)
-                                  .primaryBackground,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              icon: Icon(
-                                Icons.zoom_in_map,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 20.0,
+                        if (widget.check != 'studyProgram')
+                          Align(
+                            alignment: const AlignmentDirectional(1.0, 1.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 5.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderColor: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                icon: Icon(
+                                  Icons.zoom_in_map,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 20.0,
+                                ),
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
                               ),
-                              onPressed: () async {
-                                Navigator.pop(context);
-                              },
                             ),
                           ),
-                        ),
                       ],
                     ),
                     Align(
