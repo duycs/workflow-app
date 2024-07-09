@@ -56,6 +56,10 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   // State field(s) for test_id widget.
   String? testIdValue;
   FormFieldController<String>? testIdValueController;
@@ -67,10 +71,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FocusNode? estimateInDayFocusNode;
   TextEditingController? estimateInDayTextController;
   String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -190,7 +190,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         (apiResultCreateLesson.jsonBody ?? ''),
         r'''$.data''',
       ));
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 1000));
       if (widget.checkPage == 'studyProgram1') {
         context.pushNamed(
           'StudyProgramList',
@@ -304,7 +304,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     apiResultUploadVideo = await UploadFileGroup.uploadFileCall.call(
       accessToken: FFAppState().accessToken,
-      file: uploadedLocalFile2,
+      file: uploadedLocalFile1,
     );
 
     if ((apiResultUploadVideo.succeeded ?? true)) {
@@ -342,7 +342,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     apiResultUploadImage = await UploadFileGroup.uploadFileCall.call(
       accessToken: FFAppState().accessToken,
-      file: uploadedLocalFile1,
+      file: uploadedLocalFile2,
     );
 
     if ((apiResultUploadImage.succeeded ?? true)) {

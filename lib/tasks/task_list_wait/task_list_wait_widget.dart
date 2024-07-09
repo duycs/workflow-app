@@ -1599,7 +1599,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                   child: wrapWithModel(
                     model: _model.navBarModel,
                     updateCallback: () => setState(() {}),

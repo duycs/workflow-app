@@ -159,33 +159,24 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                             : FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.edit_sharp,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 24.0,
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Chỉnh sửa',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.edit_sharp,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
                         ),
+                        title: Text(
+                          'Chỉnh sửa',
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        tileColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        dense: false,
                       ),
                     ),
                   ),
@@ -226,33 +217,23 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
                           : FlutterFlowTheme.of(context).secondaryBackground,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.delete,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Xóa',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ],
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.delete_forever,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
                       ),
+                      title: Text(
+                        'Xóa',
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 14.0,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      tileColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      dense: false,
                     ),
                   ),
                 ),

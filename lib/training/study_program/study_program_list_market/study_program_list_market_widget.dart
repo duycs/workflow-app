@@ -4,8 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/training/company_review/company_review_widget.dart';
 import '/training/order/invite_user/invite_user_widget.dart';
+import '/training/study_program/company_review/company_review_widget.dart';
 import '/training/study_program/filter_study_program_market/filter_study_program_market_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -759,7 +759,10 @@ class _StudyProgramListMarketWidgetState
                                                       mainAxisAlignment:
                                                           MainAxisAlignment.end,
                                                       children: [
-                                                        if (false)
+                                                        if ((dataListViewItem
+                                                                .reacts
+                                                                .isNotEmpty) ==
+                                                            false)
                                                           FFButtonWidget(
                                                             onPressed:
                                                                 () async {
@@ -769,8 +772,8 @@ class _StudyProgramListMarketWidgetState
                                                                 backgroundColor:
                                                                     Colors
                                                                         .transparent,
-                                                                enableDrag:
-                                                                    false,
+                                                                useSafeArea:
+                                                                    true,
                                                                 context:
                                                                     context,
                                                                 builder:
@@ -792,6 +795,15 @@ class _StudyProgramListMarketWidgetState
                                                                           CompanyReviewWidget(
                                                                         programId:
                                                                             dataListViewItem.id,
+                                                                        callBack:
+                                                                            () async {
+                                                                          setState(() => _model
+                                                                              .listViewPagingController1
+                                                                              ?.refresh());
+
+                                                                          setState(
+                                                                              () {});
+                                                                        },
                                                                       ),
                                                                     ),
                                                                   );

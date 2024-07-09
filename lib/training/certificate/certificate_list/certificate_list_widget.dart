@@ -76,7 +76,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
           elevation: 1.0,
         ),
         body: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -85,6 +85,8 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 8.0),
                 child: Container(
+                  width: double.infinity,
+                  height: 200.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: const [
@@ -112,11 +114,12 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                 alignment: const AlignmentDirectional(0.0, -1.0),
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(5.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding:
@@ -128,7 +131,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
                                                 ),
                                           ),
@@ -172,7 +175,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
@@ -188,9 +191,9 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
+                                                  fontWeight: FontWeight.normal,
                                                 ),
                                           ),
                                         ),
@@ -205,9 +208,9 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Nunito Sans',
-                                                  fontSize: 10.0,
+                                                  fontSize: 12.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontWeight: FontWeight.normal,
                                                 ),
                                           ),
                                         ),
@@ -317,7 +320,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                               ],
                                             ),
                                           ),
-                                      ],
+                                      ].divide(const SizedBox(height: 3.0)),
                                     ),
                                   ),
                                   Align(
@@ -334,14 +337,18 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              child: Image.asset(
-                                                'assets/images/174158300_1028093337599101_7541039202745596694_n.jpg',
-                                                width: 30.0,
-                                                height: 30.0,
-                                                fit: BoxFit.cover,
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 3.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                child: Image.asset(
+                                                  'assets/images/174158300_1028093337599101_7541039202745596694_n.jpg',
+                                                  width: 30.0,
+                                                  height: 30.0,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                             Container(
@@ -356,7 +363,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Nunito Sans',
-                                                          fontSize: 7.0,
+                                                          fontSize: 8.0,
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
@@ -376,10 +383,10 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                         opacity: 0.3,
                         child: Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: FaIcon(
-                            FontAwesomeIcons.medal,
+                          child: Icon(
+                            Icons.emoji_events_rounded,
                             color: FlutterFlowTheme.of(context).warning,
-                            size: 24.0,
+                            size: 50.0,
                           ),
                         ),
                       ),
@@ -467,6 +474,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
                                       child: SizedBox(
+                                        height: 200.0,
                                         width:
                                             MediaQuery.sizeOf(context).width *
                                                 0.9,
@@ -519,6 +527,8 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 8.0),
                 child: Container(
+                  width: double.infinity,
+                  height: 200.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: const [
@@ -536,7 +546,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     children: [
                       Opacity(
-                        opacity: 0.2,
+                        opacity: 0.3,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -545,8 +555,8 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                               borderRadius: BorderRadius.circular(20.0),
                               child: Image.asset(
                                 'assets/images/174158300_1028093337599101_7541039202745596694_n.jpg',
-                                width: 35.0,
-                                height: 35.0,
+                                width: 40.0,
+                                height: 40.0,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -558,7 +568,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     fontFamily: 'Nunito Sans',
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
-                                    fontSize: 5.0,
+                                    fontSize: 8.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
@@ -566,21 +576,22 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 5.0, 0.0, 2.0),
+                                  0.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 10.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                     ),
                               ),
@@ -620,7 +631,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 10.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                     ),
@@ -635,9 +646,9 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 10.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ),
@@ -651,9 +662,9 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Nunito Sans',
-                                      fontSize: 10.0,
+                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ),
@@ -666,7 +677,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                     fontFamily: 'Nunito Sans',
                                     fontSize: 8.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.normal,
                                     fontStyle: FontStyle.italic,
                                   ),
                             ),
@@ -747,7 +758,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                   ],
                                 ),
                               ),
-                          ],
+                          ].divide(const SizedBox(height: 3.0)),
                         ),
                       ),
                     ],
@@ -829,6 +840,7 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
                                   child: SizedBox(
+                                    height: 200.0,
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.9,
                                     child: const Certificate2ZoomWidget(),

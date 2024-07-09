@@ -39,6 +39,10 @@ class ProgramCertificateModel
 
   ///  State fields for stateful widgets in this component.
 
+  // State field(s) for nameSearch widget.
+  FocusNode? nameSearchFocusNode;
+  TextEditingController? nameSearchTextController;
+  String? Function(BuildContext, String?)? nameSearchTextControllerValidator;
   // State field(s) for Checkbox widget.
   Map<StudyProgramListStruct, bool> checkboxValueMap1 = {};
   List<StudyProgramListStruct> get checkboxCheckedItems1 =>
@@ -91,7 +95,10 @@ class ProgramCertificateModel
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    nameSearchFocusNode?.dispose();
+    nameSearchTextController?.dispose();
+  }
 
   /// Action blocks.
   Future programsapi(BuildContext context) async {
@@ -103,7 +110,7 @@ class ProgramCertificateModel
       filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}]}',
+      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

@@ -122,7 +122,7 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 8.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
                   child: wrapWithModel(
                     model: _model.navBarModel,
                     updateCallback: () => setState(() {}),
@@ -286,6 +286,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '5';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -325,17 +332,22 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                              color: _model.checkColor == '5'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: _model.checkColor == '5'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 24.0,
                                       ),
                                     ],
@@ -1023,6 +1035,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            _model.checkColor = '6';
+                                            setState(() {});
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 10));
+                                            _model.checkColor = '';
+                                            setState(() {});
+
                                             context.pushNamed(
                                               'LessonList_Homepage',
                                               queryParameters: {
@@ -1079,25 +1098,36 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                               children: [
                                                 Text(
                                                   'Xem tất cả',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: _model
+                                                                        .checkColor ==
+                                                                    '6'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                 ),
                                                 Icon(
                                                   Icons.arrow_right,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                                  color:
+                                                      _model.checkColor == '6'
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                   size: 24.0,
                                                 ),
                                               ],
@@ -1206,6 +1236,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '7';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -1245,17 +1282,22 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                              color: _model.checkColor == '7'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: _model.checkColor == '7'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 24.0,
                                       ),
                                     ],
@@ -1985,6 +2027,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            _model.checkColor = '8';
+                                            setState(() {});
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 10));
+                                            _model.checkColor = '';
+                                            setState(() {});
+
                                             context.pushNamed(
                                               'LessonList_Homepage',
                                               queryParameters: {
@@ -2041,25 +2090,36 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                               children: [
                                                 Text(
                                                   'Xem tất cả',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: _model
+                                                                        .checkColor ==
+                                                                    '8'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                 ),
                                                 Icon(
                                                   Icons.arrow_right,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                                  color:
+                                                      _model.checkColor == '8'
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                   size: 24.0,
                                                 ),
                                               ],
@@ -2170,6 +2230,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '1';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -2205,6 +2272,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     decoration: BoxDecoration(
                                       color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: _model.checkColor == '1'
+                                            ? const Color(0x2A4B39EF)
+                                            : const Color(0x00000000),
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2252,6 +2324,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '2';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -2287,6 +2366,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     decoration: BoxDecoration(
                                       color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: _model.checkColor == '2'
+                                            ? const Color(0x2A4B39EF)
+                                            : const Color(0x00000000),
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2344,6 +2428,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '3';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -2379,6 +2470,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     decoration: BoxDecoration(
                                       color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: _model.checkColor == '3'
+                                            ? const Color(0x2A4B39EF)
+                                            : const Color(0x00000000),
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2426,6 +2522,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '4';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -2465,6 +2568,11 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                     decoration: BoxDecoration(
                                       color: const Color(0x2A4B39EF),
                                       borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: _model.checkColor == '4'
+                                            ? const Color(0x2A4B39EF)
+                                            : const Color(0x00000000),
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
@@ -2541,6 +2649,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    _model.checkColor = '9';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColor = '';
+                                    setState(() {});
+
                                     context.pushNamed(
                                       'LessonList_Homepage',
                                       queryParameters: {
@@ -2580,17 +2695,22 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
+                                              color: _model.checkColor == '9'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: _model.checkColor == '9'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 24.0,
                                       ),
                                     ],
@@ -3299,6 +3419,13 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            _model.checkColor = '10';
+                                            setState(() {});
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 10));
+                                            _model.checkColor = '';
+                                            setState(() {});
+
                                             context.pushNamed(
                                               'LessonList_Homepage',
                                               queryParameters: {
@@ -3355,25 +3482,36 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                               children: [
                                                 Text(
                                                   'Xem tất cả',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            color: _model
+                                                                        .checkColor ==
+                                                                    '10'
+                                                                ? FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary
+                                                                : FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                 ),
                                                 Icon(
                                                   Icons.arrow_right,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
+                                                  color:
+                                                      _model.checkColor == '10'
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
                                                   size: 24.0,
                                                 ),
                                               ],

@@ -336,6 +336,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          _model.checkColor = '1';
+                          setState(() {});
+                          await Future.delayed(
+                              const Duration(milliseconds: 10));
+                          _model.checkColor = '';
+                          setState(() {});
+
                           context.pushNamed(
                             'ProgramListMarket',
                             queryParameters: {
@@ -374,15 +381,19 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: _model.checkColor == '1'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
                             Icon(
                               Icons.arrow_right,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: _model.checkColor == '1'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : FlutterFlowTheme.of(context).secondaryText,
                               size: 20.0,
                             ),
                           ],
@@ -576,6 +587,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColor = '2';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColor = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'ProgramListMarket',
                                     queryParameters: {
@@ -628,8 +646,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                              color: _model.checkColor == '2'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
@@ -637,8 +657,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                        color: _model.checkColor == '2'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 24.0,
                                       ),
                                     ],
@@ -741,6 +764,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          _model.checkColor = '3';
+                          setState(() {});
+                          await Future.delayed(
+                              const Duration(milliseconds: 10));
+                          _model.checkColor = '';
+                          setState(() {});
+
                           context.pushNamed(
                             'ProgramListMarket',
                             queryParameters: {
@@ -779,15 +809,19 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: _model.checkColor == '3'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
                             Icon(
                               Icons.arrow_right,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: _model.checkColor == '3'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : FlutterFlowTheme.of(context).secondaryText,
                               size: 20.0,
                             ),
                           ],
@@ -1101,6 +1135,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  _model.checkColor = '4';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColor = '';
+                                  setState(() {});
+
                                   context.pushNamed(
                                     'ProgramListMarket',
                                     queryParameters: {
@@ -1153,8 +1194,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                              color: _model.checkColor == '4'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 14.0,
                                               letterSpacing: 0.0,
@@ -1162,8 +1205,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                        color: _model.checkColor == '4'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 24.0,
                                       ),
                                     ],
@@ -1266,6 +1312,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          _model.checkColor = '5';
+                          setState(() {});
+                          await Future.delayed(
+                              const Duration(milliseconds: 10));
+                          _model.checkColor = '';
+                          setState(() {});
+
                           context.pushNamed(
                             'CategoryMarket',
                             extra: <String, dynamic>{
@@ -1286,15 +1339,19 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: _model.checkColor == '5'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
                             Icon(
                               Icons.arrow_right,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: _model.checkColor == '5'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : FlutterFlowTheme.of(context).secondaryText,
                               size: 20.0,
                             ),
                           ],
@@ -1546,6 +1603,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          _model.checkColor = '6';
+                          setState(() {});
+                          await Future.delayed(
+                              const Duration(milliseconds: 10));
+                          _model.checkColor = '';
+                          setState(() {});
+
                           context.pushNamed(
                             'AuthorList',
                             extra: <String, dynamic>{
@@ -1566,15 +1630,19 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: _model.checkColor == '6'
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
                             Icon(
                               Icons.arrow_right,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: _model.checkColor == '6'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : FlutterFlowTheme.of(context).secondaryText,
                               size: 20.0,
                             ),
                           ],
@@ -1738,36 +1806,42 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                               },
                             ),
                             if (_model.listDataAuthors.length == 11)
-                              Container(
-                                width: 110.0,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  _model.checkColor = '7';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColor = '';
+                                  setState(() {});
+
+                                  context.pushNamed(
+                                    'AuthorList',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 110.0,
+                                  height: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                    ),
                                   ),
-                                ),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'AuthorList',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: const TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.fade,
-                                          duration: Duration(milliseconds: 0),
-                                        ),
-                                      },
-                                    );
-                                  },
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -1778,8 +1852,10 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                              color: _model.checkColor == '7'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
@@ -1787,8 +1863,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       ),
                                       Icon(
                                         Icons.arrow_right,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
+                                        color: _model.checkColor == '7'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .secondaryText,
                                         size: 20.0,
                                       ),
                                     ],

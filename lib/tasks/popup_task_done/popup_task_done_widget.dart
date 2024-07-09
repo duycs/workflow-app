@@ -45,6 +45,8 @@ class _PopupTaskDoneWidgetState extends State<PopupTaskDoneWidget> {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
+        width: MediaQuery.sizeOf(context).width * 1.0,
+        height: MediaQuery.sizeOf(context).height * 1.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           borderRadius: BorderRadius.circular(16.0),
@@ -75,13 +77,22 @@ class _PopupTaskDoneWidgetState extends State<PopupTaskDoneWidget> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: wrapWithModel(
-                model: _model.mobileEditorDisplayComponentModel,
-                updateCallback: () => setState(() {}),
-                child: MobileEditorDisplayComponentWidget(
-                  content: widget.content!,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: wrapWithModel(
+                        model: _model.mobileEditorDisplayComponentModel,
+                        updateCallback: () => setState(() {}),
+                        child: MobileEditorDisplayComponentWidget(
+                          content: widget.content!,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

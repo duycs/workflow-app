@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -245,6 +246,13 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
+                            _model.checkColor = '1';
+                            setState(() {});
+                            await Future.delayed(
+                                const Duration(milliseconds: 10));
+                            _model.checkColor = '';
+                            setState(() {});
+
                             context.pushNamed(
                               'ProgramListMarket',
                               queryParameters: {
@@ -266,6 +274,11 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).alternate,
                               borderRadius: BorderRadius.circular(2.0),
+                              border: Border.all(
+                                color: _model.checkColor == '1'
+                                    ? FlutterFlowTheme.of(context).primary
+                                    : const Color(0x00000000),
+                              ),
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(

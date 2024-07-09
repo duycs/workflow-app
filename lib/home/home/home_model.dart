@@ -5,6 +5,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomeModel extends FlutterFlowModel<HomeWidget> {
+  ///  Local state fields for this page.
+
+  String checkColorBorder = '';
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for Carousel widget.

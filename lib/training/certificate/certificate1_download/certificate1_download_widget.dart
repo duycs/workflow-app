@@ -57,6 +57,7 @@ class _Certificate1DownloadWidgetState
 
     return Column(
       mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (getJsonField(
               widget.checkShow,
@@ -88,180 +89,174 @@ class _Certificate1DownloadWidgetState
                                 opacity: 0.3,
                                 child: Align(
                                   alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: FaIcon(
-                                    FontAwesomeIcons.medal,
+                                  child: Icon(
+                                    Icons.emoji_events_rounded,
                                     color: FlutterFlowTheme.of(context).warning,
-                                    size: 60.0,
+                                    size: 50.0,
                                   ),
                                 ),
                               ),
                               Align(
                                 alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Độc lập - Tự do - Hạnh phúc',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 6.0, 0.0, 6.0),
-                                      child: Text(
-                                        'Chứng nhận',
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 5.0, 0.0, 0.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              fontFamily: 'Nunito Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              fontSize: 16.0,
+                                              fontFamily: 'Roboto',
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
                                             ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 2.0),
-                                      child: Text(
-                                        FFAppState().user.firstName,
+                                      Text(
+                                        'Độc lập - Tự do - Hạnh phúc',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Nunito Sans',
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
                                             ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 2.0),
-                                      child: Text(
-                                        'Chức vụ: \"${getJsonField(
-                                          FFAppState().staffLogin,
-                                          r'''$.title''',
-                                        ).toString()}\"',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Đã hoàn thành: \"${widget.program}\"',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Text(
-                                      'Từ ngày ${dateTimeFormat(
-                                        'dd-MM-yyyy',
-                                        functions
-                                            .stringToDateTime(widget.dateStart),
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      )} đến ngày ${dateTimeFormat(
-                                        'dd-MM-yyyy',
-                                        functions
-                                            .stringToDateTime(widget.dateEnd),
-                                        locale: FFLocalizations.of(context)
-                                            .languageCode,
-                                      )}',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 10.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                    ),
-                                    if ('1' == '2')
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 6.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Expanded(
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                child: FaIcon(
-                                                  FontAwesomeIcons.medal,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .warning,
-                                                  size: 30.0,
+                                            0.0, 6.0, 0.0, 6.0),
+                                        child: Text(
+                                          'Chứng nhận',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 2.0),
+                                        child: Text(
+                                          FFAppState().user.firstName,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 2.0),
+                                        child: Text(
+                                          'Chức vụ: \"${getJsonField(
+                                            FFAppState().staffLogin,
+                                            r'''$.title''',
+                                          ).toString()}\"',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                      Text(
+                                        'Đã hoàn thành: \"${widget.program}\"',
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                      Text(
+                                        'Từ ngày ${dateTimeFormat(
+                                          'dd-MM-yyyy',
+                                          functions.stringToDateTime(
+                                              widget.dateStart),
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        )} đến ngày ${dateTimeFormat(
+                                          'dd-MM-yyyy',
+                                          functions
+                                              .stringToDateTime(widget.dateEnd),
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        )}',
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 8.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              fontStyle: FontStyle.italic,
+                                            ),
+                                      ),
+                                      if ('1' == '2')
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 6.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, -1.0),
+                                                  child: FaIcon(
+                                                    FontAwesomeIcons.medal,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .warning,
+                                                    size: 30.0,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                height: 50.0,
-                                                decoration: const BoxDecoration(),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      getJsonField(
-                                                        FFAppState()
-                                                            .staffOrganization,
-                                                        r'''$.name''',
-                                                      ).toString(),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Nunito Sans',
-                                                            fontSize: 12.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Text(
-                                                        'Giám đốc',
+                                              Expanded(
+                                                child: Container(
+                                                  height: 50.0,
+                                                  decoration: const BoxDecoration(),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        getJsonField(
+                                                          FFAppState()
+                                                              .staffOrganization,
+                                                          r'''$.name''',
+                                                        ).toString(),
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -271,20 +266,35 @@ class _Certificate1DownloadWidgetState
                                                               fontSize: 12.0,
                                                               letterSpacing:
                                                                   0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
                                                             ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Expanded(
+                                                        child: Text(
+                                                          'Giám đốc',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Nunito Sans',
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                  ],
+                                    ].divide(const SizedBox(height: 3.0)),
+                                  ),
                                 ),
                               ),
                             ],
@@ -302,7 +312,7 @@ class _Certificate1DownloadWidgetState
                                     children: [
                                       ClipRRect(
                                         borderRadius:
-                                            BorderRadius.circular(20.0),
+                                            BorderRadius.circular(15.0),
                                         child: Image.network(
                                           '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
                                             FFAppState().staffOrganization,
@@ -376,7 +386,7 @@ class _Certificate1DownloadWidgetState
                                           size: 12.0,
                                         ),
                                         options: FFButtonOptions(
-                                          height: 20.0,
+                                          height: 25.0,
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
@@ -434,25 +444,21 @@ class _Certificate1DownloadWidgetState
               alignment: const AlignmentDirectional(0.0, 0.0),
               children: [
                 Opacity(
-                  opacity: 0.2,
+                  opacity: 0.3,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 35.0, 0.0, 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30.0),
-                          child: Image.network(
-                            '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
-                              FFAppState().staffOrganization,
-                              r'''$.logo''',
-                            ).toString()}?access_token=${FFAppState().accessToken}',
-                            width: 60.0,
-                            height: 60.0,
-                            fit: BoxFit.cover,
-                          ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(25.0),
+                        child: Image.network(
+                          '${FFAppConstants.ApiBaseUrl}/assets/${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.logo''',
+                          ).toString()}?access_token=${FFAppState().accessToken}',
+                          width: 50.0,
+                          height: 50.0,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       Container(
@@ -466,7 +472,7 @@ class _Certificate1DownloadWidgetState
                               .override(
                                 fontFamily: 'Nunito Sans',
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 5.0,
+                                fontSize: 8.0,
                                 letterSpacing: 0.0,
                               ),
                         ),
@@ -478,20 +484,25 @@ class _Certificate1DownloadWidgetState
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 5.0, 0.0, 0.0),
+                            child: Text(
+                              'CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
                           ),
                           Text(
                             'Độc lập - Tự do - Hạnh phúc',
@@ -499,7 +510,7 @@ class _Certificate1DownloadWidgetState
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 14.0,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                 ),
                           ),
@@ -515,7 +526,7 @@ class _Certificate1DownloadWidgetState
                                     color: FlutterFlowTheme.of(context).error,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
                           ),
@@ -548,7 +559,7 @@ class _Certificate1DownloadWidgetState
                                     fontFamily: 'Nunito Sans',
                                     fontSize: 12.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
@@ -561,7 +572,7 @@ class _Certificate1DownloadWidgetState
                                   fontFamily: 'Nunito Sans',
                                   fontSize: 12.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.normal,
                                 ),
                           ),
                           Text(
@@ -579,13 +590,13 @@ class _Certificate1DownloadWidgetState
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Nunito Sans',
-                                  fontSize: 10.0,
+                                  fontSize: 8.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FontStyle.italic,
                                 ),
                           ),
-                        ],
+                        ].divide(const SizedBox(height: 3.0)),
                       ),
                     ),
                     Align(
@@ -632,7 +643,7 @@ class _Certificate1DownloadWidgetState
                             size: 12.0,
                           ),
                           options: FFButtonOptions(
-                            height: 20.0,
+                            height: 25.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 5.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(

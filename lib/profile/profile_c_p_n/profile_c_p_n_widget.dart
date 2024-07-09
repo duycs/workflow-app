@@ -1033,7 +1033,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                 Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          0.0, 10.0, 0.0, 0.0),
+                                                          0.0, 10.0, 0.0, 8.0),
                                                   child: Text(
                                                     'Thông tin giới thiệu',
                                                     style: FlutterFlowTheme.of(
@@ -1052,16 +1052,46 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                if (_model.organizationDetail
-                                                            ?.description !=
-                                                        null &&
-                                                    _model.organizationDetail
-                                                            ?.description !=
-                                                        '')
+                                                if ((_model.organizationDetail
+                                                            ?.description ==
+                                                        'undefined') &&
+                                                    (_model.organizationDetail
+                                                            ?.description ==
+                                                        'null'))
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(6.0, 8.0,
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: Text(
+                                                      'Chưa có thông tin giới thiệu',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Nunito Sans',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                if ((_model.organizationDetail
+                                                                ?.description !=
+                                                            null &&
+                                                        _model
+                                                                .organizationDetail
+                                                                ?.description !=
+                                                            '') &&
+                                                    (_model.organizationDetail
+                                                            ?.description !=
+                                                        'undefined') &&
+                                                    (_model.organizationDetail
+                                                            ?.description !=
+                                                        'null'))
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(6.0, 0.0,
                                                                 0.0, 8.0),
                                                     child: wrapWithModel(
                                                       model: _model
@@ -1088,7 +1118,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                             ? _model
                                                                 .organizationDetail!
                                                                 .description
-                                                            : 'Chưa có thông tin giới thiệu',
+                                                            : '',
                                                       ),
                                                     ),
                                                   ),

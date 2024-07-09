@@ -90,6 +90,8 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
 
   bool checkLoad = false;
 
+  String checkColor = '';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

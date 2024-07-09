@@ -161,6 +161,8 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
   bool? uploadImageToken2;
   // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
+  ApiCallResponse? apiResultUploadImage21;
+  // Stores action output result for [Backend Call - API (UploadFile)] action in Button widget.
   ApiCallResponse? apiResultUploadImage2;
 
   @override

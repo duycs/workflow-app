@@ -493,11 +493,61 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                           children: [
                             if (FFAppState().biometricLogin)
                               SwitchListTile.adaptive(
-                                value: _model.switchListTileValue ??= true,
-                                onChanged: (newValue) async {
-                                  setState(() =>
-                                      _model.switchListTileValue = newValue);
-                                },
+                                value: _model.switchListTileValue ??=
+                                    FFAppState().user.enableBiometric.toString() ==
+                                        '1',
+                                onChanged: (_model.load == true)
+                                    ? null
+                                    : (newValue) async {
+                                        setState(() => _model
+                                            .switchListTileValue = newValue);
+                                        if (newValue) {
+                                          var shouldSetState = false;
+                                          _model.authenticateUsingBiometriceSettingLoad1 =
+                                              await actions
+                                                  .authenticateUsingBiometricsSetting();
+                                          shouldSetState = true;
+                                          if (_model
+                                              .authenticateUsingBiometriceSettingLoad1!) {
+                                            _model.load = true;
+                                            setState(() {});
+                                          }
+                                          _model.checktokenReloadBiometricsSetting =
+                                              await action_blocks
+                                                  .tokenReload(context);
+                                          shouldSetState = true;
+                                          if (_model
+                                              .checktokenReloadBiometricsSetting!) {
+                                            _model.dataSetting = null;
+                                            setState(() {});
+                                          } else {
+                                            setState(() {});
+                                            if (shouldSetState) {
+                                              setState(() {});
+                                            }
+                                            return;
+                                          }
+
+                                          _model.shkeyPublicKeySettingOn =
+                                              await actions.sshkey(
+                                            getJsonField(
+                                              FFAppState().staffLogin,
+                                              r'''$.email''',
+                                            ).toString(),
+                                            '',
+                                            true,
+                                          );
+                                          shouldSetState = true;
+                                          _model.updateDataSettingStruct(
+                                            (e) => e
+                                              ..incrementEnableBiometric(1)
+                                              ..publicKey = _model
+                                                  .shkeyPublicKeySettingOn,
+                                          );
+                                          setState(() {});
+                                          if (shouldSetState) setState(() {});
+                                        }
+                                      },
                                 title: Text(
                                   'Đăng nhập bằng vân tay',
                                   style: FlutterFlowTheme.of(context)

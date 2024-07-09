@@ -454,13 +454,13 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                             autofocus: false,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Tìm kiếm tên chương trình',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
+                              hintText: 'Tìm kiếm...',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -469,7 +469,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -497,7 +498,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                                  .primaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 0.0, 0.0),
                               prefixIcon: const Icon(

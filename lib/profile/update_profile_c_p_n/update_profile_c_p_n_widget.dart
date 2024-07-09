@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import '/profile/popup_update_profile/popup_update_profile_widget.dart';
 import '/rich_text_editor/mobile_editor_component/mobile_editor_component_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
 import 'dart:ui';
@@ -889,23 +890,27 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10.0),
-                                                        border: Border.all(
+                                                    if ((_model.description2 !=
+                                                                '') &&
+                                                        (_model.description2 !=
+                                                            'undefined'))
+                                                      Container(
+                                                        height: 150.0,
+                                                        decoration:
+                                                            BoxDecoration(
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .alternate,
+                                                              .secondaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.0),
+                                                          border: Border.all(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .alternate,
+                                                          ),
                                                         ),
-                                                      ),
-                                                      child: Visibility(
-                                                        visible: _model.description2 !=
-                                                                '',
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets.all(
@@ -924,7 +929,101 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                    if ((_model.description2 !=
+                                                                '') &&
+                                                        (_model.description2 !=
+                                                            'undefined'))
+                                                      Builder(
+                                                        builder: (context) =>
+                                                            InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (dialogContext) {
+                                                                return Dialog(
+                                                                  elevation: 0,
+                                                                  insetPadding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  alignment: const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0)
+                                                                      .resolve(
+                                                                          Directionality.of(
+                                                                              context)),
+                                                                  child:
+                                                                      SizedBox(
+                                                                    height:
+                                                                        MediaQuery.sizeOf(context).height *
+                                                                            1.0,
+                                                                    width: MediaQuery.sizeOf(context)
+                                                                            .width *
+                                                                        1.0,
+                                                                    child:
+                                                                        PopupUpdateProfileWidget(
+                                                                      content:
+                                                                          _model
+                                                                              .description2,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ).then((value) =>
+                                                                setState(
+                                                                    () {}));
+                                                          },
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            15.0),
+                                                                child: Text(
+                                                                  'Mở rộng',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontStyle:
+                                                                            FontStyle.italic,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
                                                     Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -949,7 +1048,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                         0.0,
                                                                         15.0),
                                                             child: Text(
-                                                              'Chưa có nội dung mô tả 1',
+                                                              'Chưa có nội dung mô tả',
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
