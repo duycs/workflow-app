@@ -311,6 +311,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                         builder: (context) {
                           final operationsView =
                               widget.item?.operations.toList() ?? [];
+
                           return ListView.separated(
                             padding: EdgeInsets.zero,
                             primary: false,
@@ -481,6 +482,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                     'staffs',
                                     'object')
                                 .toList();
+
                             return ListView.separated(
                               padding: EdgeInsets.zero,
                               primary: false,
@@ -631,6 +633,7 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
                                     'departments',
                                     'object')
                                 .toList();
+
                             return ListView.separated(
                               padding: EdgeInsets.zero,
                               primary: false,

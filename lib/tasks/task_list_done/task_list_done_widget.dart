@@ -543,7 +543,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                 0,
                                 0,
                                 0,
-                                90.0,
+                                200.0,
                               ),
                               primary: false,
                               reverse: false,
@@ -1582,6 +1582,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                               dataListItem
                                                                   .operations
                                                                   .toList();
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1620,6 +1621,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                               dataListItem
                                                                   .operations
                                                                   .toList();
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1638,6 +1640,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                           .operationsId
                                                                           .files
                                                                           .toList();
+
                                                                   return Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -1860,6 +1863,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                               dataListItem
                                                                   .operations
                                                                   .toList();
+
                                                           return Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1885,6 +1889,7 @@ class _TaskListDoneWidgetState extends State<TaskListDoneWidget> {
                                                                         .operationsId
                                                                         .files
                                                                         .toList();
+
                                                                     return GridView
                                                                         .builder(
                                                                       padding:

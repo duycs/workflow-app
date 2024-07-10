@@ -194,11 +194,10 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
                       child: FlutterFlowDropDown<String>(
                         controller: _model.domainValueController ??=
                             FormFieldController<String>(
-                          _model.domainValue ??=
-                              (widget.domain != '') &&
-                                      (widget.domain != 'noData')
-                                  ? widget.domain
-                                  : '',
+                          _model.domainValue ??= (widget.domain != '') &&
+                                  (widget.domain != 'noData')
+                              ? widget.domain
+                              : '',
                         ),
                         options: widget.listDomain!,
                         onChanged: (val) =>

@@ -89,6 +89,7 @@ class _DetailActionTypeUploadFileWidgetState
           Builder(
             builder: (context) {
               final dataFileUpload = _model.listFileUpload.toList();
+
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -239,6 +240,7 @@ class _DetailActionTypeUploadFileWidgetState
           Builder(
             builder: (context) {
               final dataFile = _model.listFileId.toList();
+
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,

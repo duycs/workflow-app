@@ -117,7 +117,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 widget.data,
                 r'''$.cccd''',
               ).toString().toString()
-            : 'Chưa có số căn cước');
+            : ' ');
     _model.addressFocusNode ??= FocusNode();
 
     _model.hotlineTextController3 ??= TextEditingController(
@@ -665,7 +665,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     .fromSTEB(
                                                                         20.0,
                                                                         0.0,
-                                                                        0.0,
+                                                                        20.0,
                                                                         0.0),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1197,7 +1197,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    12.0),
                                                         child: TextFormField(
                                                           controller: _model
                                                               .hotlineTextController3,
@@ -1219,6 +1219,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                       letterSpacing:
                                                                           0.0,
                                                                     ),
+                                                            hintText: ' ',
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1241,7 +1242,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          16.0),
+                                                                          20.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -1255,7 +1256,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          16.0),
+                                                                          20.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -1269,7 +1270,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          16.0),
+                                                                          20.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -1283,7 +1284,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          16.0),
+                                                                          20.0),
                                                             ),
                                                             contentPadding:
                                                                 const EdgeInsetsDirectional

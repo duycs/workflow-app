@@ -183,7 +183,7 @@ class _ProcessTemplateDetailWidgetState
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Sao chép quy trình thành công!',
+                                'Áp dụng quy trình thành công!',
                                 style: TextStyle(
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
@@ -328,6 +328,7 @@ class _ProcessTemplateDetailWidgetState
                     Builder(
                       builder: (context) {
                         final listView = _model.stepList.toList();
+
                         return ListView.builder(
                           padding: EdgeInsets.zero,
                           primary: false,

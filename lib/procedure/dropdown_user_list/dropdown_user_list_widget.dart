@@ -466,6 +466,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                               _model.textNameTextController.text
                                                   .toLowerCase()))
                                       .toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,

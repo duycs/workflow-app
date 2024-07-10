@@ -505,6 +505,7 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                                           .toList()
                                                           .map((e) => e.name)
                                                           .toList();
+
                                                   return ListView.separated(
                                                     padding: EdgeInsets.zero,
                                                     primary: false,
@@ -686,7 +687,8 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
                                             controller: _model
                                                     .radioButtonValueController ??=
                                                 FormFieldController<String>(
-                                                    widget.status == 'published'
+                                                    widget.status ==
+                                                            'published'
                                                         ? 'Hoạt động'
                                                         : 'Không hoạt động'),
                                             optionHeight: 40.0,

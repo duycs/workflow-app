@@ -333,6 +333,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                           .text
                                                           .toLowerCase())))
                                               .toList();
+
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             scrollDirection: Axis.vertical,
@@ -567,6 +568,7 @@ class _OperationsListPopupWidgetState extends State<OperationsListPopupWidget>
                                                       .textNameTextController
                                                       .text)))
                                               .toList();
+
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             scrollDirection: Axis.vertical,

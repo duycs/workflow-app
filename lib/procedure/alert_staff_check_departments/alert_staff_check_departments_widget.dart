@@ -85,6 +85,7 @@ class _AlertStaffCheckDepartmentsWidgetState
               Builder(
                 builder: (context) {
                   final list = widget.listParam!.toList();
+
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     primary: false,

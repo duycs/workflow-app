@@ -159,7 +159,7 @@ class _ActionNewsfeedWidgetState extends State<ActionNewsfeedWidget> {
                               size: 24.0,
                             ),
                             title: Text(
-                              'Xóa',
+                              'Chỉnh sửa',
                               style: FlutterFlowTheme.of(context)
                                   .titleLarge
                                   .override(

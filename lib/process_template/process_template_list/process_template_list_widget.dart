@@ -164,6 +164,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
                   enableDrag: false,
+                  useSafeArea: true,
                   context: context,
                   builder: (context) {
                     return Padding(
@@ -598,6 +599,7 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
                                                         final listStep =
                                                             listGridItem.steps
                                                                 .toList();
+
                                                         return ListView.builder(
                                                           padding:
                                                               EdgeInsets.zero,

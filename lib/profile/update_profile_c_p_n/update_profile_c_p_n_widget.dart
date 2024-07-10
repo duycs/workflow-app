@@ -66,14 +66,16 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
     _model.nameFocusNode ??= FocusNode();
 
     _model.hotlineTextController ??= TextEditingController(
-        text: widget.data?.hotline != 'undefined' ? widget.data?.hotline : ' ');
+        text:
+            widget.data?.hotline != 'undefined' ? widget.data?.hotline : ' ');
     _model.hotlineFocusNode ??= FocusNode();
 
     _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     _model.addressTextController ??= TextEditingController(
-        text: widget.data?.address != 'undefined' ? widget.data?.address : ' ');
+        text:
+            widget.data?.address != 'undefined' ? widget.data?.address : ' ');
     _model.addressFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
@@ -260,7 +262,9 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                     BorderRadius.circular(12.0),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(12.0),
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        12.0, 12.0, 12.0, 16.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -999,7 +1003,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
-                                                                            15.0),
+                                                                            16.0),
                                                                 child: Text(
                                                                   'Mở rộng',
                                                                   textAlign:
@@ -1024,21 +1028,21 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        if ((_model.description2 ==
-                                                                    '') ||
-                                                            (_model.description2 ==
-                                                                ' ') ||
-                                                            (_model.description2 ==
+                                                    if ((_model.description2 ==
                                                                 '') ||
-                                                            (_model.description2 ==
-                                                                'undefined'))
+                                                        (_model.description2 ==
+                                                            ' ') ||
+                                                        (_model.description2 ==
+                                                            '') ||
+                                                        (_model.description2 ==
+                                                            'undefined'))
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
                                                           Padding(
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -1069,14 +1073,14 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                   ),
                                                             ),
                                                           ),
-                                                      ],
-                                                    ),
+                                                        ],
+                                                      ),
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
-                                                                  16.0,
+                                                                  0.0,
                                                                   0.0,
                                                                   16.0),
                                                       child: FFButtonWidget(
@@ -1129,6 +1133,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                         options:
                                                             FFButtonOptions(
+                                                          width: 170.0,
                                                           height: 40.0,
                                                           padding:
                                                               const EdgeInsetsDirectional
@@ -1251,8 +1256,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
-                                                                  8.0),
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      0.0,
+                                                                      8.0,
+                                                                      16.0),
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -1432,6 +1441,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                                 ),
                                                                 options:
                                                                     FFButtonOptions(
+                                                                  width: 170.0,
                                                                   height: 40.0,
                                                                   padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -1592,6 +1602,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                             final listImage =
                                                                 _model.imageId
                                                                     .toList();
+
                                                             return GridView
                                                                 .builder(
                                                               padding:
@@ -1731,6 +1742,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                               final listImageUpload =
                                                                   _model.images
                                                                       .toList();
+
                                                               return GridView
                                                                   .builder(
                                                                 padding:
@@ -1931,7 +1943,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                               setState(() {});
                                                             }
                                                           },
-                                                          text: 'Cập nhật  ảnh',
+                                                          text: 'Cập nhật ảnh',
                                                           icon: Icon(
                                                             Icons
                                                                 .image_outlined,
@@ -1942,6 +1954,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           ),
                                                           options:
                                                               FFButtonOptions(
+                                                            width: 170.0,
                                                             height: 40.0,
                                                             padding:
                                                                 const EdgeInsetsDirectional
@@ -1993,8 +2006,7 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 4.0)),
+                                                  ],
                                                 ),
                                               ),
                                             ),

@@ -68,7 +68,7 @@ class AuthorMarketProfileModel
     apiResultList = await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"id\":{\"_eq\":\"${widget.itemAuthors?.id}\"}}}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"author_id\":{\"id\":{\"_eq\":\"${widget!.itemAuthors?.id}\"}}}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

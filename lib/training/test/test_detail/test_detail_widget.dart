@@ -355,6 +355,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                 builder: (context) {
                                   final questionList =
                                       _model.detail?.questions.toList() ?? [];
+
                                   return ListView.separated(
                                     padding: const EdgeInsets.fromLTRB(
                                       0,
@@ -422,6 +423,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                                               final answers = questionListItem
                                                   .questionsId.answers
                                                   .toList();
+
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
                                                 primary: false,
@@ -537,7 +539,7 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 15.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 15.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         if (Navigator.of(context).canPop()) {

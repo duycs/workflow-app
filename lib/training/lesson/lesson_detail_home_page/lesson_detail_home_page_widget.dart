@@ -2243,6 +2243,7 @@ class _LessonDetailHomePageWidgetState
                             child: Builder(
                               builder: (context) {
                                 final listItems = _model.list.toList();
+
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
@@ -2313,7 +2314,7 @@ class _LessonDetailHomePageWidgetState
                                                   errorBuilder: (context, error,
                                                           stackTrace) =>
                                                       Image.asset(
-                                                    'assets/images/error_image.jpg',
+                                                    'assets/images/error_image.png',
                                                     width: 40.0,
                                                     height: 40.0,
                                                     fit: BoxFit.cover,
@@ -2599,7 +2600,7 @@ class _LessonDetailHomePageWidgetState
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) =>
                               Image.asset(
-                            'assets/images/error_image.jpg',
+                            'assets/images/error_image.png',
                             width: 40.0,
                             height: 40.0,
                             fit: BoxFit.cover,

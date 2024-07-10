@@ -812,6 +812,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                                                   .author?.domains
                                                   .toList() ??
                                               [];
+
                                           return GridView.builder(
                                             padding: EdgeInsets.zero,
                                             gridDelegate:
@@ -1848,6 +1849,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
                               builder: (context) {
                                 final domainList =
                                     _model.author?.domains.toList() ?? [];
+
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:

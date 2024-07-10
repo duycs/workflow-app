@@ -524,7 +524,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         accessToken:
                                                             FFAppState()
                                                                 .accessToken,
-                                                        staffId: widget.staffId,
+                                                        staffId:
+                                                            widget.staffId,
                                                         filter: _model
                                                             .filterRequest,
                                                       );
@@ -611,7 +612,8 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                         accessToken:
                                                             FFAppState()
                                                                 .accessToken,
-                                                        staffId: widget.staffId,
+                                                        staffId:
+                                                            widget.staffId,
                                                         filter: _model
                                                             .filterRequest,
                                                       );

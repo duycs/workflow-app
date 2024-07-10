@@ -450,10 +450,13 @@ class _FilterOperationWidgetState extends State<FilterOperationWidget> {
                   child: FlutterFlowDropDown<String>(
                     controller: _model.statusValueController ??=
                         FormFieldController<String>(
-                      _model.statusValue ??= (widget.status != '') &&
-                              (widget.status == 'done')
-                          ? 'Hoạt động'
-                          : (widget.status == 'draft' ? 'Không hoạt động' : ''),
+                      _model.statusValue ??=
+                          (widget.status != '') &&
+                                  (widget.status == 'done')
+                              ? 'Hoạt động'
+                              : (widget.status == 'draft'
+                                  ? 'Không hoạt động'
+                                  : ''),
                     ),
                     options: const ['Hoạt động', 'Không hoạt động'],
                     onChanged: (val) =>

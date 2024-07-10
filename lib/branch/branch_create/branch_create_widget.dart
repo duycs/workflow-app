@@ -296,8 +296,9 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: (widget.listCode!).toList().contains(
-                                            _model
+                                    color: (widget.listCode!)
+                                            .toList()
+                                            .contains(_model
                                                 .branchCodeTextController.text)
                                         ? FlutterFlowTheme.of(context).error
                                         : FlutterFlowTheme.of(context)
@@ -308,8 +309,9 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: (widget.listCode!).toList().contains(
-                                            _model
+                                    color: (widget.listCode!)
+                                            .toList()
+                                            .contains(_model
                                                 .branchCodeTextController.text)
                                         ? FlutterFlowTheme.of(context).error
                                         : FlutterFlowTheme.of(context).primary,

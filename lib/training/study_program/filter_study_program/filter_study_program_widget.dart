@@ -343,14 +343,15 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
                   child: FlutterFlowDropDown<String>(
                     controller: _model.statusValueController ??=
                         FormFieldController<String>(
-                      _model.statusValue ??= (widget.status != null &&
-                                  widget.status != '') &&
-                              (widget.status == 'published')
-                          ? 'Hoạt động'
-                          : ((widget.status == 'draft') &&
-                                  (widget.status != null && widget.status != '')
-                              ? 'Không hoạt động'
-                              : ''),
+                      _model.statusValue ??=
+                          (widget.status != null && widget.status != '') &&
+                                  (widget.status == 'published')
+                              ? 'Hoạt động'
+                              : ((widget.status == 'draft') &&
+                                      (widget.status != null &&
+                                          widget.status != '')
+                                  ? 'Không hoạt động'
+                                  : ''),
                     ),
                     options: const ['Hoạt động', 'Không hoạt động'],
                     onChanged: (val) =>

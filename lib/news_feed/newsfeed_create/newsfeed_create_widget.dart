@@ -140,7 +140,7 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'Tạo mới newsfeed',
+                                        'Tạo mới bảng tin',
                                         style: FlutterFlowTheme.of(context)
                                             .headlineSmall
                                             .override(
@@ -358,6 +358,7 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
                                 Builder(
                                   builder: (context) {
                                     final list = _model.listImage.toList();
+
                                     return SingleChildScrollView(
                                       scrollDirection: Axis.horizontal,
                                       child: Row(
@@ -418,6 +419,7 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
                                   builder: (context) {
                                     final listFileUpload =
                                         _model.listFile.toList();
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children:
@@ -490,6 +492,7 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
                                   builder: (context) {
                                     final listVideoUpload =
                                         _model.listVideo.toList();
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children:
@@ -1202,8 +1205,8 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
                                       .titleSmall
                                       .override(
                                         fontFamily: 'Nunito Sans',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
+                                        color:
+                                            FlutterFlowTheme.of(context).blue,
                                         letterSpacing: 0.0,
                                       ),
                                   borderSide: const BorderSide(

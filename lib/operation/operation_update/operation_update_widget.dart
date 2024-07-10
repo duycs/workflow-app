@@ -401,7 +401,8 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
                                 Expanded(
                                   child: SwitchListTile.adaptive(
                                     value: _model.switchListTileValue ??=
-                                        widget.operationUpdate?.status == 'done'
+                                        widget.operationUpdate?.status ==
+                                                'done'
                                             ? true
                                             : false,
                                     onChanged: (newValue) async {

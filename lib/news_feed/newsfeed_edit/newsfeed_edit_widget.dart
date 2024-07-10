@@ -175,7 +175,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Text(
-                                          'Chỉnh sửa newsfeed',
+                                          'Chỉnh sửa bảng tin',
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(
@@ -413,6 +413,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                   Builder(
                                     builder: (context) {
                                       final list = _model.listImageId.toList();
+
                                       return SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
@@ -488,6 +489,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                   Builder(
                                     builder: (context) {
                                       final list = _model.listImage.toList();
+
                                       return SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
                                         child: Row(
@@ -565,6 +567,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     builder: (context) {
                                       final listFileUpload =
                                           _model.listFileId.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children:
@@ -652,6 +655,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     builder: (context) {
                                       final listFileUpload =
                                           _model.listFile.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children:
@@ -741,6 +745,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     builder: (context) {
                                       final listVideoUpload =
                                           _model.listVideoId.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: List.generate(
@@ -827,6 +832,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                     builder: (context) {
                                       final listVideoUpload =
                                           _model.listVideo.toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: List.generate(
@@ -1562,8 +1568,8 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                         .titleSmall
                                         .override(
                                           fontFamily: 'Nunito Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
+                                          color:
+                                              FlutterFlowTheme.of(context).blue,
                                           letterSpacing: 0.0,
                                         ),
                                     borderSide: const BorderSide(

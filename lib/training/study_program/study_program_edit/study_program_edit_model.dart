@@ -171,9 +171,9 @@ class StudyProgramEditModel extends FlutterFlowModel<StudyProgramEditWidget> {
           ..imageCover = () {
             if (uploadImageEdit != '') {
               return uploadImageEdit;
-            } else if (widget.dataDetail?.imageCover != null &&
-                widget.dataDetail?.imageCover != '') {
-              return widget.dataDetail?.imageCover;
+            } else if (widget!.dataDetail?.imageCover != null &&
+                widget!.dataDetail?.imageCover != '') {
+              return widget!.dataDetail?.imageCover;
             } else {
               return null;
             }

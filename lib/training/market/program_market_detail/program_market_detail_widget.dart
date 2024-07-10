@@ -211,6 +211,13 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                     image: Image.network(
                                                       '${FFAppConstants.ApiBaseUrl}/assets/${_model.dataGetOne?.imageCover}?access_token=${FFAppState().accessToken}',
                                                       fit: BoxFit.contain,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                        'assets/images/error_image.png',
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                     allowRotation: true,
                                                     tag:
@@ -232,6 +239,14 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -582,6 +597,12 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                         child: Image.network(
                                           '${FFAppConstants.ApiBaseUrl}/assets/${_model.dataGetOne?.authorId.avatar}?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Text(
@@ -800,6 +821,7 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                             builder: (context) {
                               final listLessons =
                                   _model.dataGetOne?.lessions.toList() ?? [];
+
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,
@@ -838,6 +860,14 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
                                                 width: double.infinity,
                                                 height: double.infinity,
                                                 fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                        stackTrace) =>
+                                                    Image.asset(
+                                                  'assets/images/error_image.png',
+                                                  width: double.infinity,
+                                                  height: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),

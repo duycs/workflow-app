@@ -85,27 +85,45 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
               ),
             ),
-            badges.Badge(
-              badgeContent: Text(
-                '1',
-                style: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Nunito Sans',
-                      color: Colors.white,
-                      letterSpacing: 0.0,
+            InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.goNamed(
+                  'Noti',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
                     ),
-              ),
-              showBadge: true,
-              shape: badges.BadgeShape.circle,
-              badgeColor: FlutterFlowTheme.of(context).primary,
-              elevation: 4.0,
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-              position: badges.BadgePosition.topEnd(),
-              animationType: badges.BadgeAnimationType.scale,
-              toAnimate: true,
-              child: FaIcon(
-                FontAwesomeIcons.bell,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 24.0,
+                  },
+                );
+              },
+              child: badges.Badge(
+                badgeContent: Text(
+                  '1',
+                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Nunito Sans',
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+                showBadge: true,
+                shape: badges.BadgeShape.circle,
+                badgeColor: FlutterFlowTheme.of(context).primary,
+                elevation: 4.0,
+                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                position: badges.BadgePosition.topEnd(),
+                animationType: badges.BadgeAnimationType.scale,
+                toAnimate: true,
+                child: FaIcon(
+                  FontAwesomeIcons.bell,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 24.0,
+                ),
               ),
             ),
           ].divide(const SizedBox(width: 16.0)),
@@ -312,59 +330,67 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             if ((FFAppState().user.role !=
                                                     '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                                 (FFAppState().Author == null))
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    enableDrag: false,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return Padding(
-                                                        padding: MediaQuery
-                                                            .viewInsetsOf(
-                                                                context),
-                                                        child:
-                                                            const AuthorSignUpWidget(),
-                                                      );
-                                                    },
-                                                  ).then((value) =>
-                                                      safeSetState(() {}));
-                                                },
-                                                text: 'Đăng ký quyền tác giả',
-                                                icon: const FaIcon(
-                                                  FontAwesomeIcons
-                                                      .fileSignature,
-                                                  size: 22.0,
-                                                ),
-                                                options: FFButtonOptions(
-                                                  height: 35.0,
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          16.0, 0.0, 16.0, 0.0),
-                                                  iconPadding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Nunito Sans',
-                                                        color: Colors.white,
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.0),
+                                              Builder(
+                                                builder: (context) =>
+                                                    FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child:
+                                                              const AuthorSignUpWidget(),
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        setState(() {}));
+                                                  },
+                                                  text: 'Đăng ký quyền tác giả',
+                                                  icon: const FaIcon(
+                                                    FontAwesomeIcons
+                                                        .fileSignature,
+                                                    size: 22.0,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    height: 35.0,
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(16.0, 0.0,
+                                                                16.0, 0.0),
+                                                    iconPadding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Nunito Sans',
+                                                          color: Colors.white,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50.0),
+                                                  ),
                                                 ),
                                               ),
                                             if ((FFAppState().user.role !=

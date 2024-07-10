@@ -159,6 +159,7 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
                   Builder(
                     builder: (context) {
                       final itemsPrograms = _model.programsDerpartmen.toList();
+
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,

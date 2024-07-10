@@ -19,7 +19,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
 
     apiResultAdd = await CertificateGroup.programsCall.call(
       accessToken: FFAppState().accessToken,
-      idProgram: widget.idProgram,
+      idProgram: widget!.idProgram,
       certificateId: '1ff8e3e4-fc53-4fe6-819a-db98d4785ef3',
     );
 
@@ -67,7 +67,7 @@ class ListCertiModel extends FlutterFlowModel<ListCertiWidget> {
 
     apiResultAdd1 = await CertificateGroup.programsCall.call(
       accessToken: FFAppState().accessToken,
-      idProgram: widget.idProgram,
+      idProgram: widget!.idProgram,
       certificateId: '22e2144b-e206-4bf6-a22e-110088325e14',
     );
 

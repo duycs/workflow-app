@@ -111,99 +111,173 @@ class _TimeKeepingSettingLocationWidgetState
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children: [
-                            Theme(
-                              data: ThemeData(
-                                checkboxTheme: const CheckboxThemeData(
-                                  visualDensity: VisualDensity.compact,
-                                  materialTapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                ),
-                                unselectedWidgetColor:
-                                    FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                              ),
-                              child: CheckboxListTile(
-                                value: _model.checkboxListTileValue1 ??= true,
-                                onChanged: (newValue) async {
-                                  setState(() => _model.checkboxListTileValue1 =
-                                      newValue!);
-                                },
-                                title: Text(
-                                  'Xã Đàn, Đống Đa',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                subtitle: Text(
-                                  '250m',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                tileColor: FlutterFlowTheme.of(context)
+                            Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                activeColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                checkColor: FlutterFlowTheme.of(context).info,
-                                dense: false,
-                                controlAffinity:
-                                    ListTileControlAffinity.trailing,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Theme(
+                                    data: ThemeData(
+                                      checkboxTheme: const CheckboxThemeData(
+                                        visualDensity: VisualDensity.compact,
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                      ),
+                                      unselectedWidgetColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                    ),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue1 ??=
+                                          true,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.checkboxListTileValue1 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Xã Đàn, Đống Đa',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      subtitle: Text(
+                                        '250m',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      checkColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.trailing,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 12.0),
+                                    child: Text(
+                                      'Chỉnh sửa',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                  Divider(
+                                    height: 1.0,
+                                    thickness: 1.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                                ],
                               ),
                             ),
-                            Theme(
-                              data: ThemeData(
-                                checkboxTheme: const CheckboxThemeData(
-                                  visualDensity: VisualDensity.compact,
-                                  materialTapTargetSize:
-                                      MaterialTapTargetSize.shrinkWrap,
-                                ),
-                                unselectedWidgetColor:
-                                    FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                              ),
-                              child: CheckboxListTile(
-                                value: _model.checkboxListTileValue2 ??= true,
-                                onChanged: (newValue) async {
-                                  setState(() => _model.checkboxListTileValue2 =
-                                      newValue!);
-                                },
-                                title: Text(
-                                  'Trung Phụng, Đống Đa',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                subtitle: Text(
-                                  '500m',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                tileColor: FlutterFlowTheme.of(context)
+                            Container(
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                                activeColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                checkColor: FlutterFlowTheme.of(context).info,
-                                dense: false,
-                                controlAffinity:
-                                    ListTileControlAffinity.trailing,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Theme(
+                                    data: ThemeData(
+                                      checkboxTheme: const CheckboxThemeData(
+                                        visualDensity: VisualDensity.compact,
+                                        materialTapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap,
+                                      ),
+                                      unselectedWidgetColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                    ),
+                                    child: CheckboxListTile(
+                                      value: _model.checkboxListTileValue2 ??=
+                                          false,
+                                      onChanged: (newValue) async {
+                                        setState(() =>
+                                            _model.checkboxListTileValue2 =
+                                                newValue!);
+                                      },
+                                      title: Text(
+                                        'Trung Phụng, Đống Đa',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      subtitle: Text(
+                                        '250m',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      activeColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      checkColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      dense: false,
+                                      controlAffinity:
+                                          ListTileControlAffinity.trailing,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 12.0),
+                                    child: Text(
+                                      'Chỉnh sửa',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                  ),
+                                  Divider(
+                                    height: 1.0,
+                                    thickness: 1.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
+                          ].divide(const SizedBox(height: 1.0)),
                         ),
                       ],
                     ),
@@ -217,7 +291,7 @@ class _TimeKeepingSettingLocationWidgetState
                       },
                       text: 'Thêm địa chỉ',
                       icon: const Icon(
-                        Icons.add_home,
+                        Icons.add_home_outlined,
                         size: 24.0,
                       ),
                       options: FFButtonOptions(

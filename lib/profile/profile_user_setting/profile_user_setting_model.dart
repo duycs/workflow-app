@@ -33,17 +33,17 @@ class ProfileUserSettingModel
   bool? tokenReloadProfileUserSetting;
   // Stores action output result for [Custom Action - sshkey] action in Switch widget.
   String? sshkeyPublicKeySettingOn;
-  // Stores action output result for [Backend Call - API (UpdateBiometricVerification Copy)] action in Switch widget.
+  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in Switch widget.
   ApiCallResponse? apiResultz8c;
   // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
   ApiCallResponse? getUserSetting;
   // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Switch widget.
   bool? authenticateUsingBiometricsSettingOff;
   // Stores action output result for [Action Block - tokenReload] action in Switch widget.
-  bool? tokenReloadProfileUserSettingCopy;
+  bool? tokenReloadProfileUserSetting1;
   // Stores action output result for [Custom Action - sshkey] action in Switch widget.
   String? sshkeyPublicKeySetting;
-  // Stores action output result for [Backend Call - API (UpdateBiometricVerification Copy)] action in Switch widget.
+  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in Switch widget.
   ApiCallResponse? apiResultz8cCopy;
   // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
   ApiCallResponse? getUserSettingOff;
@@ -55,6 +55,20 @@ class ProfileUserSettingModel
   bool? checktokenReloadBiometricsSetting;
   // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.
   String? shkeyPublicKeySettingOn;
+  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in SwitchListTile widget.
+  ApiCallResponse? apiResultUpdateBiometric;
+  // Stores action output result for [Backend Call - API (UserMe)] action in SwitchListTile widget.
+  ApiCallResponse? apiResultUpdateUser;
+  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in SwitchListTile widget.
+  bool? authenticateUsingBiometriceSettingLoadOff1;
+  // Stores action output result for [Action Block - tokenReload] action in SwitchListTile widget.
+  bool? checktokenReloadBiometricsSetting3;
+  // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.
+  String? shkeyPublicKeySetting2;
+  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in SwitchListTile widget.
+  ApiCallResponse? apiResultUpdateBiometric1;
+  // Stores action output result for [Backend Call - API (UserMe)] action in SwitchListTile widget.
+  ApiCallResponse? apiResultUpdateUserCopy;
 
   @override
   void initState(BuildContext context) {}

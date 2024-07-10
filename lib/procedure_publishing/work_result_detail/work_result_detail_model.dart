@@ -25,6 +25,8 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
+  bool? checktokenReloadDowloadFile;
 
   @override
   void initState(BuildContext context) {}
@@ -44,7 +46,7 @@ class WorkResultDetailModel extends FlutterFlowModel<WorkResultDetailWidget> {
       apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
+            '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget!.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget!.publishedCount?.toString()}\"}},{\"workflow_id\":{\"organization_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
         ).toString().toString()}\"}}}]}',

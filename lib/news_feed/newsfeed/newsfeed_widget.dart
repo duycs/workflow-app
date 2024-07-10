@@ -96,7 +96,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Newsfeed',
+            'Bảng tin',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   fontSize: 18.0,
@@ -401,10 +401,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
-                                    borderRadius: 8.0,
+                                    borderRadius: 90.0,
                                     buttonSize: 40.0,
+                                    hoverColor:
+                                        FlutterFlowTheme.of(context).alternate,
                                     icon: Icon(
-                                      Icons.edit_outlined,
+                                      Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       size: 22.0,
@@ -476,6 +478,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       builder: (context) {
                                         final newsfeedRequire =
                                             _model.newsfeedPublished.toList();
+
                                         return SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
                                           child: Row(
@@ -824,6 +827,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 builder: (context) {
                                   final newsfeedRequireList =
                                       _model.newsfeedPublished.toList();
+
                                   return SizedBox(
                                     width: double.infinity,
                                     height: 180.0,
@@ -1425,10 +1429,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
-                                    borderRadius: 8.0,
+                                    borderRadius: 90.0,
                                     buttonSize: 40.0,
+                                    hoverColor:
+                                        FlutterFlowTheme.of(context).alternate,
                                     icon: Icon(
-                                      Icons.edit_outlined,
+                                      Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
                                       size: 22.0,
@@ -1533,7 +1539,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                         FFAppState().staffOrganization,
                                         r'''$.id''',
-                                      ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      ).toString()}\"}}},{\"branch_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
                                     } else {
                                       return ' ';
                                     }
@@ -1572,7 +1578,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                         FFAppState().staffOrganization,
                                         r'''$.id''',
-                                      ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"published\"}}]}';
+                                      ).toString()}\"}}},{\"department_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"published\"}}]}';
                                     } else {
                                       return ' ';
                                     }
@@ -2078,6 +2084,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     final imageList =
                                                         newsfeedItem.images
                                                             .toList();
+
                                                     return MasonryGridView
                                                         .builder(
                                                       physics:
@@ -2282,6 +2289,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       final videoList =
                                                           newsfeedItem.videos
                                                               .toList();
+
                                                       return MasonryGridView
                                                           .builder(
                                                         physics:
@@ -2467,6 +2475,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           ),
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               // Cập nhật yêu thích
                                               if (newsfeedItem.reacts

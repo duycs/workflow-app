@@ -44,7 +44,7 @@ class ProfileUserNewModel extends FlutterFlowModel<ProfileUserNewWidget> {
     if (checkTokenGetOneStaff!) {
       apiResultGetOneDataStaff = await StaffGroup.staffGetOneCall.call(
         accessToken: FFAppState().accessToken,
-        staffId: widget.staffId,
+        staffId: widget!.staffId,
       );
 
       if ((apiResultGetOneDataStaff.succeeded ?? true)) {

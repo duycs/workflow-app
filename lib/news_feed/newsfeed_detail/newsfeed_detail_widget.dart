@@ -235,7 +235,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
             },
           ),
           title: Text(
-            'Chi tiết Newsfeed',
+            'Chi tiết bảng tin',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,
@@ -306,6 +306,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       .newsfeedItem?.images
                                                       .toList() ??
                                                   [];
+
                                               return FlutterFlowSwipeableStack(
                                                 onSwipeFn: (index) {},
                                                 onLeftSwipe: (index) {},
@@ -414,6 +415,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       .newsfeedItem?.images
                                                       .toList() ??
                                                   [];
+
                                               return SizedBox(
                                                 width: double.infinity,
                                                 height: 500.0,
@@ -436,16 +438,60 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                           imagesIndex) {
                                                         final imagesItem =
                                                             images[imagesIndex];
-                                                        return ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                            width: 300.0,
-                                                            height: 200.0,
-                                                            fit: BoxFit.cover,
+                                                        return InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            await Navigator
+                                                                .push(
+                                                              context,
+                                                              PageTransition(
+                                                                type:
+                                                                    PageTransitionType
+                                                                        .fade,
+                                                                child:
+                                                                    FlutterFlowExpandedImageView(
+                                                                  image: Image
+                                                                      .network(
+                                                                    '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                    fit: BoxFit
+                                                                        .contain,
+                                                                  ),
+                                                                  allowRotation:
+                                                                      false,
+                                                                  tag:
+                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                  useHeroAnimation:
+                                                                      true,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: Hero(
+                                                            tag:
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                            transitionOnUserGestures:
+                                                                true,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                              child:
+                                                                  Image.network(
+                                                                '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                width: 300.0,
+                                                                height: 200.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                            ),
                                                           ),
                                                         );
                                                       },
@@ -583,6 +629,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 .newsfeedItem?.reads
                                                 .toList() ??
                                             [];
+
                                         return Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: List.generate(
@@ -659,12 +706,15 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        if (_model.newsfeedItem!.reads
-                                                .where((e) =>
-                                                    e.readsId.staffId.userId
-                                                        .id ==
-                                                    FFAppState().user.id)
-                                                .toList().isEmpty)
+                                        if ((_model.newsfeedItem!.reads
+                                                    .where((e) =>
+                                                        e.readsId.staffId.userId
+                                                            .id ==
+                                                        FFAppState().user.id)
+                                                    .toList().isEmpty) &&
+                                            (FFAppState().user.id ==
+                                                _model.newsfeedItem?.userCreated
+                                                    .id))
                                           FFButtonWidget(
                                             onPressed: () async {
                                               var shouldSetState = false;
@@ -998,6 +1048,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                         .newsfeedItem?.videos
                                                         .toList() ??
                                                     [];
+
                                                 return MasonryGridView.builder(
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
@@ -1073,6 +1124,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                       .newsfeedItem?.files
                                                       .toList() ??
                                                   [];
+
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
                                                 primary: false,
@@ -1742,6 +1794,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                 .newsfeedItem?.comments
                                                 .toList() ??
                                             [];
+
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:

@@ -580,6 +580,7 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
                           child: Builder(
                             builder: (context) {
                               final listItems = _model.programs.toList();
+
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,

@@ -487,6 +487,7 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
                           child: Builder(
                             builder: (context) {
                               final listItems = _model.programs.toList();
+
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,

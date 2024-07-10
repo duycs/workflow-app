@@ -359,6 +359,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                             builder: (context) {
                                               final listStaff =
                                                   listItemItem.staffs.toList();
+
                                               return ListView.separated(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,
@@ -455,6 +456,7 @@ class _ListBranchProfileWidgetState extends State<ListBranchProfileWidget> {
                                         builder: (context) {
                                           final departmentList1 =
                                               listItemItem.departments.toList();
+
                                           return Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: List.generate(

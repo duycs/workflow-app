@@ -982,6 +982,7 @@ class _StudyProgramListMarketWidgetState
                                     builder: (context) {
                                       final dataListTestsView =
                                           dataListViewItem.tests.toList();
+
                                       return ListView.builder(
                                         padding: EdgeInsets.zero,
                                         primary: false,
@@ -1296,6 +1297,7 @@ class _StudyProgramListMarketWidgetState
                                     builder: (context) {
                                       final dataListLessionsView =
                                           dataListViewItem.lessions.toList();
+
                                       return ListView.builder(
                                         padding: EdgeInsets.zero,
                                         primary: false,

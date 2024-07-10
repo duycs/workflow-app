@@ -914,6 +914,7 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                 DataNotFoundCertificateWidget(),
                                           );
                                         }
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           primary: false,

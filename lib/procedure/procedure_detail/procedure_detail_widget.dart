@@ -510,6 +510,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                               .data?.staffs
                                                               .toList() ??
                                                           [];
+
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -669,6 +670,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                                                   ?.departments
                                                                   .toList() ??
                                                               [];
+
                                                       return ListView.builder(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -1106,6 +1108,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
                                         builder: (context) {
                                           final listView =
                                               _model.stepsList.toList();
+
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             primary: false,

@@ -115,7 +115,7 @@ class InviteUserModel extends FlutterFlowModel<InviteUserWidget> {
       apiResultGetOneProgram =
           await GroupMarketLessonGroup.getOneProgramsCall.call(
         accessToken: FFAppState().accessToken,
-        idPrograms: widget.programId,
+        idPrograms: widget!.programId,
       );
 
       if ((apiResultGetOneProgram.succeeded ?? true)) {

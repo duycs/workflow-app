@@ -78,7 +78,7 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
     if (getOneNewsfeed!) {
       apiResultGetOneNewsfeed = await NewsfeedGroup.newsfeedOneCall.call(
         accessToken: FFAppState().accessToken,
-        id: widget.newsfeedId,
+        id: widget!.newsfeedId,
       );
 
       if ((apiResultGetOneNewsfeed.succeeded ?? true)) {

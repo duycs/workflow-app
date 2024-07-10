@@ -22,6 +22,8 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
 
   bool checkLoading = false;
 
+  bool checkButton = false;
+
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
@@ -146,7 +148,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
             FFAppState().staffLogin,
             r'''$.id''',
           ),
-          'news_id': widget.id,
+          'news_id': widget!.id,
         },
       );
 
@@ -168,7 +170,7 @@ class CommentNewsfeedModel extends FlutterFlowModel<CommentNewsfeedWidget> {
     }
     apiResulNewFeddGetOne = await NewsfeedGroup.newsfeedOneCall.call(
       accessToken: FFAppState().accessToken,
-      id: widget.id,
+      id: widget!.id,
     );
 
     if ((apiResulNewFeddGetOne.succeeded ?? true)) {

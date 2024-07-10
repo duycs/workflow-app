@@ -7,6 +7,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'program_certificate_model.dart';
 export 'program_certificate_model.dart';
@@ -108,7 +109,7 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(24.0, 16.0, 24.0, 8.0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
@@ -157,7 +158,11 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                             '_model.nameSearchTextController',
                             const Duration(milliseconds: 500),
                             () async {
+                              _model.isLoad = false;
+                              setState(() {});
                               await _model.programsapi(context);
+                              setState(() {});
+                              _model.isLoad = true;
                               setState(() {});
                             },
                           ),
@@ -223,7 +228,11 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                 ? InkWell(
                                     onTap: () async {
                                       _model.nameSearchTextController?.clear();
+                                      _model.isLoad = false;
+                                      setState(() {});
                                       await _model.programsapi(context);
+                                      setState(() {});
+                                      _model.isLoad = true;
                                       setState(() {});
                                       setState(() {});
                                     },
@@ -265,11 +274,12 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                     ],
                   ),
                 ),
-                if (_model.isLoad == true)
+                if ((_model.isLoad == true) && (_model.programs.isNotEmpty))
                   Expanded(
                     child: Builder(
                       builder: (context) {
                         final listPrograms = _model.programs.toList();
+
                         return InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -460,6 +470,43 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                             size: 50.0,
                             color: FlutterFlowTheme.of(context).primary,
                           ),
+                        ),
+                      ),
+                    ),
+                  ),
+                if ((_model.isLoad == true) && !(_model.programs.isNotEmpty))
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 5.0),
+                      child: Container(
+                        width: double.infinity,
+                        decoration: const BoxDecoration(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: FaIcon(
+                                FontAwesomeIcons.database,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 50.0,
+                              ),
+                            ),
+                            Text(
+                              'Không có dữ liệu !',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

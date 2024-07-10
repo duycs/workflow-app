@@ -449,7 +449,7 @@ class ProcedureUpdateModel extends FlutterFlowModel<ProcedureUpdateWidget> {
           operations: item?.operations,
           status: 'published',
           staffsAlias: item?.staffsAlias,
-          estimateInSecond: widget.itemData?.estimateInSecond != null
+          estimateInSecond: widget!.itemData?.estimateInSecond != null
               ? item?.estimateInSecond
               : 0,
           timeOperate: item?.timeOperate != null && item?.timeOperate != ''

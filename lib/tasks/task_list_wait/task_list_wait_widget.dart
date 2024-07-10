@@ -544,7 +544,7 @@ class _TaskListWaitWidgetState extends State<TaskListWaitWidget> {
                                 0,
                                 0,
                                 0,
-                                90.0,
+                                200.0,
                               ),
                               primary: false,
                               reverse: false,

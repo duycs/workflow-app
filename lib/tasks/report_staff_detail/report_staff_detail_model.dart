@@ -142,7 +142,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
     if (getOneStaff!) {
       apiResultGetOneStaff = await StaffGroup.staffGetOneCall.call(
         accessToken: FFAppState().accessToken,
-        staffId: widget.staffId,
+        staffId: widget!.staffId,
       );
 
       if ((apiResultGetOneStaff.succeeded ?? true)) {
@@ -275,7 +275,7 @@ class ReportStaffDetailModel extends FlutterFlowModel<ReportStaffDetailWidget> {
     if (getOneStaffTask!) {
       apiResultGetOneStaff = await StaffGroup.staffGetOneCall.call(
         accessToken: FFAppState().accessToken,
-        staffId: widget.staffId,
+        staffId: widget!.staffId,
         filter: filterRequest,
       );
 

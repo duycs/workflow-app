@@ -743,7 +743,7 @@ class _StaffCreateWidgetState extends State<StaffCreateWidget>
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 0.0, 0.0, 4.0),
+                                        20.0, 0.0, 0.0, 10.0),
                                     child: Text(
                                       'Ngày sinh',
                                       style: FlutterFlowTheme.of(context)

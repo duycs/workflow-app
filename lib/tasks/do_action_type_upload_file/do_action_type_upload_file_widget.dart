@@ -89,6 +89,7 @@ class _DoActionTypeUploadFileWidgetState
         Builder(
           builder: (context) {
             final data = _model.listFileId.toList();
+
             return Column(
               mainAxisSize: MainAxisSize.max,
               children: List.generate(data.length, (dataIndex) {
@@ -311,6 +312,7 @@ class _DoActionTypeUploadFileWidgetState
           Builder(
             builder: (context) {
               final dataUpload = _model.listFileUpload.toList();
+
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: List.generate(dataUpload.length, (dataUploadIndex) {

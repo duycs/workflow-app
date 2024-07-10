@@ -462,6 +462,7 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
                                 builder: (context) {
                                   final questionList =
                                       _model.questionItem.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     primary: false,
@@ -549,6 +550,7 @@ class _QuizCreationLessonWidgetState extends State<QuizCreationLessonWidget> {
                                               final answersList =
                                                   questionListItem.answers
                                                       .toList();
+
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
                                                 primary: false,

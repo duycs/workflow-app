@@ -246,6 +246,7 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
                       builder: (context) {
                         final itemAuthorsSort =
                             _model.listDataAuthorsSort.toList();
+
                         return SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(

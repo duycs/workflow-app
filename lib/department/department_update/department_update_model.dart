@@ -201,7 +201,7 @@ class DepartmentUpdateModel extends FlutterFlowModel<DepartmentUpdateWidget> {
             ).toString().toString(),
       description: descriptionTextController.text,
       departmentId: getJsonField(
-        widget.items,
+        widget!.items,
         r'''$.id''',
       ).toString().toString(),
       programsIdJson: programIds.map((e) => e.toMap()).toList(),

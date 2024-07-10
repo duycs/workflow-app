@@ -78,6 +78,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
           child: Builder(
             builder: (context) {
               final list = widget.image?.operations.toList() ?? [];
+
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: List.generate(list.length, (listIndex) {
@@ -96,6 +97,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                               builder: (context) {
                                 final listImage =
                                     _model.listUploadImage.toList();
+
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
@@ -246,6 +248,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
             child: Builder(
               builder: (context) {
                 final listImageUpload = _model.imageUpload.toList();
+
                 return GridView.builder(
                   padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

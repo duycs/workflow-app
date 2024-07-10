@@ -852,6 +852,7 @@ class _QuestionUpdateWidgetState extends State<QuestionUpdateWidget> {
                                     final listView =
                                         _model.dataList?.answers.toList() ??
                                             [];
+
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
                                       primary: false,

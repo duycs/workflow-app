@@ -146,14 +146,14 @@ class AddProgramMarketModel extends FlutterFlowModel<AddProgramMarketWidget> {
     bool? deleteProgram;
     ApiCallResponse? apiResultDeleteProgram;
 
-    if (widget.version! > 0) {
+    if (widget!.version! > 0) {
       getProgramPreVersion = await action_blocks.tokenReload(context);
       if (getProgramPreVersion!) {
         apiResultGetPreProgram =
             await StudyProgramGroup.studyProgramOneCall.call(
           accessToken: FFAppState().accessToken,
           filter:
-              '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"version\":{\"_eq\":\"${widget.version?.toString()}\"}},{\"copyright_program_id\":{\"_eq\":\"${widget.id}\"}}]}',
+              '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"version\":{\"_eq\":\"${widget!.version?.toString()}\"}},{\"copyright_program_id\":{\"_eq\":\"${widget!.id}\"}}]}',
         );
 
         if ((apiResultGetPreProgram.succeeded ?? true)) {

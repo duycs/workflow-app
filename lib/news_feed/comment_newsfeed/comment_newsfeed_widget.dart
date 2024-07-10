@@ -1,6 +1,7 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/data_not_found_comment/data_not_found_comment_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,6 +11,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'comment_newsfeed_model.dart';
 export 'comment_newsfeed_model.dart';
@@ -30,8 +32,11 @@ class CommentNewsfeedWidget extends StatefulWidget {
   State<CommentNewsfeedWidget> createState() => _CommentNewsfeedWidgetState();
 }
 
-class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
+class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
+    with TickerProviderStateMixin {
   late CommentNewsfeedModel _model;
+
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -52,6 +57,21 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    animationsMap.addAll({
+      'rowOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShimmerEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
+    });
   }
 
   @override
@@ -157,6 +177,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                         if (commentList.isEmpty) {
                                           return const DataNotFoundCommentWidget();
                                         }
+
                                         return ListView.separated(
                                           padding: EdgeInsets.zero,
                                           primary: false,
@@ -236,7 +257,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                                                   error,
                                                                   stackTrace) =>
                                                               Image.asset(
-                                                            'assets/images/error_image.jpg',
+                                                            'assets/images/error_image.png',
                                                             width: 40.0,
                                                             height: 40.0,
                                                             fit: BoxFit.cover,
@@ -697,182 +718,216 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                         thickness: 1.0,
                         color: Color(0x66E0E3E7),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 0.0, 12.0, 4.0),
-                        child: Row(
+                      if (_model.checkButton == true)
+                        Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
-                                  allowPhoto: true,
-                                );
-                                if (selectedMedia != null &&
-                                    selectedMedia.every((m) =>
-                                        validateFileFormat(
-                                            m.storagePath, context))) {
-                                  setState(
-                                      () => _model.isDataUploading1 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 12.0, 4.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      final selectedMedia =
+                                          await selectMediaWithSourceBottomSheet(
+                                        context: context,
+                                        allowPhoto: true,
+                                      );
+                                      if (selectedMedia != null &&
+                                          selectedMedia.every((m) =>
+                                              validateFileFormat(
+                                                  m.storagePath, context))) {
+                                        setState(() =>
+                                            _model.isDataUploading1 = true);
+                                        var selectedUploadedFiles =
+                                            <FFUploadedFile>[];
 
-                                  try {
-                                    selectedUploadedFiles = selectedMedia
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                              height: m.dimensions?.height,
-                                              width: m.dimensions?.width,
-                                              blurHash: m.blurHash,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading1 = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedMedia.length) {
-                                    setState(() {
-                                      _model.uploadedLocalFile1 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    setState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/9967614.png',
-                                  width: 30.0,
-                                  height: 30.0,
-                                  fit: BoxFit.cover,
-                                ),
+                                        try {
+                                          selectedUploadedFiles = selectedMedia
+                                              .map((m) => FFUploadedFile(
+                                                    name: m.storagePath
+                                                        .split('/')
+                                                        .last,
+                                                    bytes: m.bytes,
+                                                    height:
+                                                        m.dimensions?.height,
+                                                    width: m.dimensions?.width,
+                                                    blurHash: m.blurHash,
+                                                  ))
+                                              .toList();
+                                        } finally {
+                                          _model.isDataUploading1 = false;
+                                        }
+                                        if (selectedUploadedFiles.length ==
+                                            selectedMedia.length) {
+                                          setState(() {
+                                            _model.uploadedLocalFile1 =
+                                                selectedUploadedFiles.first;
+                                          });
+                                        } else {
+                                          setState(() {});
+                                          return;
+                                        }
+                                      }
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/9967614.png',
+                                        width: 30.0,
+                                        height: 30.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 2.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        final selectedMedia =
+                                            await selectMediaWithSourceBottomSheet(
+                                          context: context,
+                                          allowPhoto: false,
+                                          allowVideo: true,
+                                        );
+                                        if (selectedMedia != null &&
+                                            selectedMedia.every((m) =>
+                                                validateFileFormat(
+                                                    m.storagePath, context))) {
+                                          setState(() =>
+                                              _model.isDataUploading2 = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
+
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedMedia
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                          height: m.dimensions
+                                                              ?.height,
+                                                          width: m.dimensions
+                                                              ?.width,
+                                                          blurHash: m.blurHash,
+                                                        ))
+                                                    .toList();
+                                          } finally {
+                                            _model.isDataUploading2 = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                              selectedMedia.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile2 =
+                                                  selectedUploadedFiles.first;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
+                                        }
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/10764003.png',
+                                          width: 30.0,
+                                          height: 30.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      final selectedFiles = await selectFiles(
+                                        multiFile: false,
+                                      );
+                                      if (selectedFiles != null) {
+                                        setState(() =>
+                                            _model.isDataUploading3 = true);
+                                        var selectedUploadedFiles =
+                                            <FFUploadedFile>[];
+
+                                        try {
+                                          selectedUploadedFiles = selectedFiles
+                                              .map((m) => FFUploadedFile(
+                                                    name: m.storagePath
+                                                        .split('/')
+                                                        .last,
+                                                    bytes: m.bytes,
+                                                  ))
+                                              .toList();
+                                        } finally {
+                                          _model.isDataUploading3 = false;
+                                        }
+                                        if (selectedUploadedFiles.length ==
+                                            selectedFiles.length) {
+                                          setState(() {
+                                            _model.uploadedLocalFile3 =
+                                                selectedUploadedFiles.first;
+                                          });
+                                        } else {
+                                          setState(() {});
+                                          return;
+                                        }
+                                      }
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.asset(
+                                        'assets/images/th_(1).jpg',
+                                        width: 30.0,
+                                        height: 30.0,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 2.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: false,
-                                    allowVideo: true,
-                                  );
-                                  if (selectedMedia != null &&
-                                      selectedMedia.every((m) =>
-                                          validateFileFormat(
-                                              m.storagePath, context))) {
-                                    setState(
-                                        () => _model.isDataUploading2 = true);
-                                    var selectedUploadedFiles =
-                                        <FFUploadedFile>[];
-
-                                    try {
-                                      selectedUploadedFiles = selectedMedia
-                                          .map((m) => FFUploadedFile(
-                                                name: m.storagePath
-                                                    .split('/')
-                                                    .last,
-                                                bytes: m.bytes,
-                                                height: m.dimensions?.height,
-                                                width: m.dimensions?.width,
-                                                blurHash: m.blurHash,
-                                              ))
-                                          .toList();
-                                    } finally {
-                                      _model.isDataUploading2 = false;
-                                    }
-                                    if (selectedUploadedFiles.length ==
-                                        selectedMedia.length) {
-                                      setState(() {
-                                        _model.uploadedLocalFile2 =
-                                            selectedUploadedFiles.first;
-                                      });
-                                    } else {
-                                      setState(() {});
-                                      return;
-                                    }
-                                  }
+                                  0.0, 0.0, 8.0, 0.0),
+                              child: FlutterFlowIconButton(
+                                borderRadius: 20.0,
+                                borderWidth: 1.0,
+                                buttonSize: 40.0,
+                                icon: Icon(
+                                  Icons.close,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                onPressed: () async {
+                                  _model.checkButton = false;
+                                  setState(() {});
                                 },
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/10764003.png',
-                                    width: 30.0,
-                                    height: 30.0,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
                               ),
                             ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                final selectedFiles = await selectFiles(
-                                  multiFile: false,
-                                );
-                                if (selectedFiles != null) {
-                                  setState(
-                                      () => _model.isDataUploading3 = true);
-                                  var selectedUploadedFiles =
-                                      <FFUploadedFile>[];
-
-                                  try {
-                                    selectedUploadedFiles = selectedFiles
-                                        .map((m) => FFUploadedFile(
-                                              name:
-                                                  m.storagePath.split('/').last,
-                                              bytes: m.bytes,
-                                            ))
-                                        .toList();
-                                  } finally {
-                                    _model.isDataUploading3 = false;
-                                  }
-                                  if (selectedUploadedFiles.length ==
-                                      selectedFiles.length) {
-                                    setState(() {
-                                      _model.uploadedLocalFile3 =
-                                          selectedUploadedFiles.first;
-                                    });
-                                  } else {
-                                    setState(() {});
-                                    return;
-                                  }
-                                }
-                              },
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/th_(1).jpg',
-                                  width: 30.0,
-                                  height: 30.0,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                          ].divide(const SizedBox(width: 10.0)),
-                        ),
-                      ),
+                          ],
+                        ).animateOnPageLoad(
+                            animationsMap['rowOnPageLoadAnimation']!),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             8.0, 4.0, 16.0, 44.0),
@@ -896,6 +951,21 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
+                                    FlutterFlowIconButton(
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 45.0,
+                                      icon: Icon(
+                                        Icons.insert_emoticon_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 28.0,
+                                      ),
+                                      onPressed: () async {
+                                        _model.checkButton = true;
+                                        setState(() {});
+                                      },
+                                    ),
                                     Expanded(
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -945,8 +1015,8 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
                                       buttonSize: 40.0,
                                       icon: Icon(
                                         Icons.send_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondary,
+                                        color:
+                                            FlutterFlowTheme.of(context).blue,
                                         size: 24.0,
                                       ),
                                       onPressed: () async {

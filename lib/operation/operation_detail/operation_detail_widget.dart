@@ -395,7 +395,8 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                 Expanded(
                                   child: SwitchListTile.adaptive(
                                     value: _model.switchListTileValue ??=
-                                        widget.operationDetail?.status == 'done'
+                                        widget.operationDetail?.status ==
+                                                'done'
                                             ? true
                                             : false,
                                     onChanged: ('1' == '1')
@@ -491,7 +492,8 @@ class _OperationDetailWidgetState extends State<OperationDetailWidget> {
                                       alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: OperationUpdateWidget(
-                                        operationUpdate: widget.operationDetail,
+                                        operationUpdate:
+                                            widget.operationDetail,
                                       ),
                                     );
                                   },
