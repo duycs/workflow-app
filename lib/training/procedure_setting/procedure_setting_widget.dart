@@ -868,6 +868,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listOne = _model.checkOne.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,
@@ -947,6 +948,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listTwo = _model.checkTwo.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,
@@ -1027,6 +1029,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listThree = _model.checkThrees.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,
@@ -1109,6 +1112,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listFour = _model.checkBoxFour.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,
@@ -1190,6 +1194,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listFive = _model.checkBoxFive.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,
@@ -1271,6 +1276,7 @@ class _ProcedureSettingWidgetState extends State<ProcedureSettingWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final listSix = _model.checkBoxSix.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.horizontal,

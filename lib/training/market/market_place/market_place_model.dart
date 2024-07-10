@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'dart:async';
 import 'market_place_widget.dart' show MarketPlaceWidget;
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -327,6 +328,22 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
   }
 
   /// Additional helper methods.
+  Future waitForOnePageForListView({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(const Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete =
+          (listViewPagingController?.nextPageKey?.nextPageNumber ?? 0) > 0;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {

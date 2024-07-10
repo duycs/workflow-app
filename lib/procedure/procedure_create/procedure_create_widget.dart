@@ -1293,6 +1293,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                           final listStaff =
                                                               _model.staffList
                                                                   .toList();
+
                                                           return ListView
                                                               .builder(
                                                             padding:
@@ -1510,6 +1511,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                           final listStaff = _model
                                                               .departmentsList
                                                               .toList();
+
                                                           return ListView
                                                               .builder(
                                                             padding:
@@ -2434,6 +2436,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                           final listOne = _model
                                                               .checkOne
                                                               .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -2544,6 +2547,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                           final listTwo = _model
                                                               .checkTwo
                                                               .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -2655,6 +2659,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                           final listThree =
                                                               _model.checkThrees
                                                                   .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -2767,6 +2772,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               _model
                                                                   .checkBoxFour
                                                                   .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -2878,6 +2884,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                               _model
                                                                   .checkBoxFive
                                                                   .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -2983,6 +2990,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                                         final listSix = _model
                                                             .checkBoxSix
                                                             .toList();
+
                                                         return ListView
                                                             .separated(
                                                           padding:
@@ -3769,6 +3777,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                                       builder: (context) {
                                         final listView =
                                             _model.stepsList.toList();
+
                                         return ReorderableListView.builder(
                                           padding: EdgeInsets.zero,
                                           primary: false,

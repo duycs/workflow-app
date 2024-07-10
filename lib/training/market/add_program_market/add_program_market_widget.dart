@@ -655,6 +655,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
                                           .checkBoxLession?.lessions
                                           .toList() ??
                                       [];
+
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     primary: false,

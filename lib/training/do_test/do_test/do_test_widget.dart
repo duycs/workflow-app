@@ -681,6 +681,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                   builder: (context) {
                                     final listQuestion =
                                         _model.list?.questions.toList() ?? [];
+
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
                                       primary: false,
@@ -877,6 +878,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               .questionsId
                                                               .answers
                                                               .toList();
+
                                                       return ListView.separated(
                                                         padding:
                                                             EdgeInsets.zero,
@@ -1029,6 +1031,7 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                               .questionsId
                                                               .answers
                                                               .toList();
+
                                                       return ListView.separated(
                                                         padding:
                                                             EdgeInsets.zero,

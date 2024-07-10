@@ -655,6 +655,7 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
                                                       .workflowSelected!.steps
                                                       .toList())
                                                   .toList();
+
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
                                                 primary: false,

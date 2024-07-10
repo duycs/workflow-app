@@ -62,7 +62,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
     ApiCallResponse? apiResultOrderUpdate;
 
     addToOrderItems(ProgramOrderItemsCreateStruct(
-      id: widget.programId,
+      id: widget!.programId,
       totalItem: functions.stringToInt(textController1.text),
       private: functions.stringToInt(dropDownValue!),
     ));
@@ -71,7 +71,7 @@ class OrderUpdateModel extends FlutterFlowModel<OrderUpdateWidget> {
       apiResultOrderUpdate = await OrderGroup.updateOrderCall.call(
         accessToken: FFAppState().accessToken,
         requestDataJson: <String, dynamic>{
-          'program_order_id': widget.orderId,
+          'program_order_id': widget!.orderId,
           'customer_id': FFAppState().staffid,
           'private': functions.stringToInt(dropDownValue!),
           'programs': getJsonField(

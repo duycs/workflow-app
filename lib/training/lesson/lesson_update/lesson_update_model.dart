@@ -158,7 +158,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
     apiResultUpdateLesson1 = await LessonGroup.pathLessonCall.call(
       accessToken: FFAppState().accessToken,
       idLesson: getJsonField(
-        widget.items,
+        widget!.items,
         r'''$.id''',
       ).toString().toString(),
       requestDataJson: <String, dynamic>{
@@ -170,12 +170,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           if (uploadImage != '') {
             return uploadImage;
           } else if (getJsonField(
-                widget.items,
+                widget!.items,
                 r'''$.image_cover''',
               ) !=
               null) {
             return getJsonField(
-              widget.items,
+              widget!.items,
               r'''$.image_cover''',
             );
           } else {
@@ -186,12 +186,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           if (uploadVideo != '') {
             return uploadVideo;
           } else if (getJsonField(
-                widget.items,
+                widget!.items,
                 r'''$.video''',
               ) !=
               null) {
             return getJsonField(
-              widget.items,
+              widget!.items,
               r'''$.video''',
             );
           } else {
@@ -204,12 +204,12 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           if (uploadFile != '') {
             return uploadFile;
           } else if (getJsonField(
-                widget.items,
+                widget!.items,
                 r'''$.file''',
               ) !=
               null) {
             return getJsonField(
-              widget.items,
+              widget!.items,
               r'''$.file''',
             );
           } else {
@@ -243,7 +243,7 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
         'LessonsList',
         queryParameters: {
           'checkpage': serializeParam(
-            widget.checkPage,
+            widget!.checkPage,
             ParamType.String,
           ),
         }.withoutNulls,

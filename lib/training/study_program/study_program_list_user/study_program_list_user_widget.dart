@@ -1114,6 +1114,7 @@ class _StudyProgramListUserWidgetState
                                       final dataLesson = itemProgramIdTilteItem
                                           .programId.lessions
                                           .toList();
+
                                       return Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children:

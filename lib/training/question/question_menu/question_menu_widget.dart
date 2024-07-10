@@ -138,7 +138,7 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                           size: 24.0,
                         ),
                         title: Text(
-                          'Xóa',
+                          'Chi tiết',
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
                                     fontFamily: 'Nunito Sans',
@@ -165,58 +165,68 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                   onExit: ((event) async {
                     setState(() => _model.mouseRegionHovered2 = false);
                   }),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      _model.setColor = 2;
-                      setState(() {});
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: QuestionUpdateWidget(
-                              item: widget.item!,
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
+                  child: Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        _model.setColor = 2;
+                        setState(() {});
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: SizedBox(
+                                height: 100.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                child: QuestionUpdateWidget(
+                                  item: widget.item!,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => setState(() {}));
 
-                      Navigator.pop(context);
-                      _model.setColor = 0;
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: _model.setColor == 2
-                            ? FlutterFlowTheme.of(context).alternate
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.edit_sharp,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
+                        Navigator.pop(context);
+                        _model.setColor = 0;
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: _model.setColor == 2
+                              ? FlutterFlowTheme.of(context).alternate
+                              : FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        title: Text(
-                          'Chỉnh sửa',
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.edit_sharp,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          title: Text(
+                            'Chỉnh sửa',
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          tileColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          dense: false,
                         ),
-                        tileColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        dense: false,
                       ),
                     ),
                   ),

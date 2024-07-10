@@ -3482,7 +3482,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               ),
-                            ].addToEnd(const SizedBox(height: 100.0)),
+                            ].addToEnd(const SizedBox(height: 200.0)),
                           ),
                         ),
                         if (_model.checkLoading == false)

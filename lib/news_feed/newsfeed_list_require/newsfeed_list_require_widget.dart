@@ -150,7 +150,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                           return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffOrganization,
                             r'''$.id''',
-                          ).toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+                          ).toString()}\"}}},{\"branch_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
                         } else {
                           return ' ';
                         }
@@ -189,7 +189,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                           return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffOrganization,
                             r'''$.id''',
-                          ).toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+                          ).toString()}\"}}},{\"department_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
                         } else {
                           return ' ';
                         }
@@ -576,6 +576,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   builder: (context) {
                                     final imageList =
                                         newsfeedListRequireItem.images.toList();
+
                                     return MasonryGridView.builder(
                                       physics:
                                           const NeverScrollableScrollPhysics(),
@@ -678,6 +679,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       final videoList = newsfeedListRequireItem
                                           .videos
                                           .toList();
+
                                       return MasonryGridView.builder(
                                         physics:
                                             const NeverScrollableScrollPhysics(),

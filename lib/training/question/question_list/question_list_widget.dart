@@ -85,19 +85,23 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: QuestionCreateWidget(
-                        callBackList: () async {
-                          _model.nameSearch = ' ';
-                          _model.status = ' ';
-                          setState(() {});
-                          setState(() {
-                            _model.questionNameTextController?.clear();
-                          });
-                          setState(
-                              () => _model.listViewPagingController?.refresh());
+                      child: SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        child: QuestionCreateWidget(
+                          callBackList: () async {
+                            _model.nameSearch = ' ';
+                            _model.status = ' ';
+                            setState(() {});
+                            setState(() {
+                              _model.questionNameTextController?.clear();
+                            });
+                            setState(() =>
+                                _model.listViewPagingController?.refresh());
 
-                          setState(() {});
-                        },
+                            setState(() {});
+                          },
+                        ),
                       ),
                     ),
                   );
@@ -407,8 +411,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 0.0, 12.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -420,7 +423,7 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             '${(detailViewIndex + 1).toString()}. ',

@@ -620,6 +620,7 @@ class _ProcedurePublishedListWidgetState
                                                             .withoutNulls
                                                             .toList() ??
                                                         [];
+
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,

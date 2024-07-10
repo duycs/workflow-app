@@ -79,6 +79,7 @@ class _DetailActionTypeImageWidgetState
           Builder(
             builder: (context) {
               final data = widget.image?.operations.toList() ?? [];
+
               return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: List.generate(data.length, (dataIndex) {
@@ -86,6 +87,7 @@ class _DetailActionTypeImageWidgetState
                   return Builder(
                     builder: (context) {
                       final dataGrid = dataItem.operationsId.files.toList();
+
                       return GridView.builder(
                         padding: EdgeInsets.zero,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -204,6 +206,7 @@ class _DetailActionTypeImageWidgetState
                 child: Builder(
                   builder: (context) {
                     final dataTodoItem = _model.imagesList.toList();
+
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -333,6 +336,7 @@ class _DetailActionTypeImageWidgetState
                 child: Builder(
                   builder: (context) {
                     final imageUpload = _model.images.toList();
+
                     return GridView.builder(
                       padding: EdgeInsets.zero,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

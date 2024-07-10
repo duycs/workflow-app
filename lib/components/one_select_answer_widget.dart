@@ -60,7 +60,8 @@ class _OneSelectAnswerWidgetState extends State<OneSelectAnswerWidget> {
             unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryText,
           ),
           child: Checkbox(
-            value: _model.checkboxValue ??= widget.stringId == widget.data?.id,
+            value: _model.checkboxValue ??=
+                widget.stringId == widget.data?.id,
             onChanged: (newValue) async {
               setState(() => _model.checkboxValue = newValue!);
               if (newValue!) {

@@ -82,7 +82,7 @@ class LessonDetailHomePageModel
       accessToken: FFAppState().accessToken,
       content: commentsTextController.text,
       lessionId: getJsonField(
-        widget.listItems,
+        widget!.listItems,
         r'''$.id''',
       ).toString().toString(),
       staffId: FFAppState().staffid,
@@ -119,7 +119,7 @@ class LessonDetailHomePageModel
     apiResultGetCommment = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${getJsonField(
-        widget.listItems,
+        widget!.listItems,
         r'''$.id''',
       ).toString().toString()}\"}}]}',
     );
@@ -167,7 +167,7 @@ class LessonDetailHomePageModel
     apiResultHeart = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter: '{\"_and\":[{\"id\":{\"_eq\":\"${getJsonField(
-        widget.listItems,
+        widget!.listItems,
         r'''$.id''',
       ).toString().toString()}\"}}]}',
     );
@@ -284,7 +284,7 @@ class LessonDetailHomePageModel
       staffId: FFAppState().staffid,
       status: 'love',
       lessionId: getJsonField(
-        widget.listItems,
+        widget!.listItems,
         r'''$.id''',
       ).toString().toString(),
     );
@@ -322,7 +322,7 @@ class LessonDetailHomePageModel
 
     apiResultStartLesson = await LessonGroup.updateStaffLessonStatusCall.call(
       accessToken: FFAppState().accessToken,
-      id: widget.id,
+      id: widget!.id,
       dateStart: getCurrentTimestamp.toString(),
     );
 
@@ -372,7 +372,7 @@ class LessonDetailHomePageModel
         await LessonGroup.updateStaffProgramStatusCall.call(
       accessToken: FFAppState().accessToken,
       staffId: FFAppState().staffid,
-      programId: widget.programId,
+      programId: widget!.programId,
     );
 
     if (!(apiResultUpdateProgram.succeeded ?? true)) {

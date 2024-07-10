@@ -717,6 +717,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                             .withoutNulls
                                                             .toList())
                                                     .toList();
+
                                                 return Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1086,6 +1087,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                           .withoutNulls
                                                           .toList() ??
                                                       [];
+
                                               return Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:

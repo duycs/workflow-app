@@ -56,6 +56,7 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
     return Builder(
       builder: (context) {
         final gripview = widget.operationList?.toList() ?? [];
+
         return Column(
           mainAxisSize: MainAxisSize.max,
           children: List.generate(gripview.length, (gripviewIndex) {
@@ -65,6 +66,7 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
               child: Builder(
                 builder: (context) {
                   final imageItem = gripviewItem.operationsId.files.toList();
+
                   return GridView.builder(
                     padding: EdgeInsets.zero,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

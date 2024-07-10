@@ -197,8 +197,8 @@ class _Certificate1DownloadWidgetState
                                               .languageCode,
                                         )} đến ngày ${dateTimeFormat(
                                           'dd-MM-yyyy',
-                                          functions
-                                              .stringToDateTime(widget.dateEnd),
+                                          functions.stringToDateTime(
+                                              widget.dateEnd),
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         )}',
@@ -376,7 +376,7 @@ class _Certificate1DownloadWidgetState
                                             FFAppState().user.firstName,
                                             getJsonField(
                                               FFAppState().staffLogin,
-                                              r'''$.tilte''',
+                                              r'''$.title''',
                                             ).toString(),
                                           );
                                         },

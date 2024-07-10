@@ -245,7 +245,12 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(12.0),
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                12.0,
+                                                                12.0,
+                                                                12.0,
+                                                                16.0),
                                                     child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -990,195 +995,183 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                             ),
                                                           ),
                                                         ),
-                                                        if (_model.data!.files
-                                                                .length <=
-                                                            3)
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            if (_model
+                                                                    .data!
+                                                                    .files
+                                                                    .length <=
+                                                                3)
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if (_model
+                                                                          .data!
+                                                                          .files.isNotEmpty)
+                                                                    Expanded(
+                                                                      flex: 3,
+                                                                      child:
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${_model.data?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                          width:
+                                                                              1900.0,
+                                                                          height:
+                                                                              208.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  Expanded(
+                                                                    flex: 2,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children:
+                                                                          [
+                                                                        if (_model.data!.files.length >=
+                                                                            2)
+                                                                          ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.data?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              width: 160.0,
+                                                                              height: 100.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        if (_model.data?.files.length ==
+                                                                            3)
+                                                                          ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${(_model.data?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              width: 160.0,
+                                                                              height: 100.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                      ].divide(const SizedBox(
+                                                                              height: 8.0)),
+                                                                    ),
+                                                                  ),
+                                                                ].divide(const SizedBox(
+                                                                    width:
+                                                                        8.0)),
+                                                              ),
+                                                            if (_model
+                                                                    .data!
+                                                                    .files
+                                                                    .length >
+                                                                3)
+                                                              Container(
+                                                                decoration:
+                                                                    const BoxDecoration(),
+                                                                child:
+                                                                    Visibility(
+                                                                  visible: _model
+                                                                          .data!
+                                                                          .files
+                                                                          .length >
+                                                                      3,
+                                                                  child:
+                                                                      Builder(
+                                                                    builder:
+                                                                        (context) {
+                                                                      final listImage =
+                                                                          _model.data?.files.toList() ??
+                                                                              [];
+
+                                                                      return GridView
+                                                                          .builder(
+                                                                        padding:
+                                                                            EdgeInsets.zero,
+                                                                        gridDelegate:
+                                                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                          crossAxisCount:
+                                                                              2,
+                                                                          crossAxisSpacing:
+                                                                              10.0,
+                                                                          mainAxisSpacing:
+                                                                              10.0,
+                                                                          childAspectRatio:
+                                                                              1.0,
+                                                                        ),
+                                                                        primary:
+                                                                            false,
+                                                                        shrinkWrap:
+                                                                            true,
+                                                                        scrollDirection:
+                                                                            Axis.vertical,
+                                                                        itemCount:
+                                                                            listImage.length,
+                                                                        itemBuilder:
+                                                                            (context,
+                                                                                listImageIndex) {
+                                                                          final listImageItem =
+                                                                              listImage[listImageIndex];
+                                                                          return ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                              width: 300.0,
+                                                                              height: 200.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                          ].divide(const SizedBox(
+                                                              height: 8.0)),
+                                                        ),
+                                                        if ((_model.data?.files
+                                                                    .length ==
+                                                                null) ||
+                                                            (_model.data!.files.isEmpty))
                                                           Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
                                                             children: [
-                                                              if (_model
-                                                                      .data!
-                                                                      .files.isNotEmpty)
-                                                                Expanded(
-                                                                  flex: 3,
-                                                                  child:
-                                                                      ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      '${FFAppConstants.ApiBaseUrl}/assets/${_model.data?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                      width:
-                                                                          1900.0,
-                                                                      height:
-                                                                          208.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                              Text(
+                                                                'Chưa có nội dung ảnh ',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic,
                                                                     ),
-                                                                  ),
-                                                                ),
-                                                              Expanded(
-                                                                flex: 2,
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    if (_model
-                                                                            .data!
-                                                                            .files
-                                                                            .length >=
-                                                                        2)
-                                                                      ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${(_model.data?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              160.0,
-                                                                          height:
-                                                                              100.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    if (_model
-                                                                            .data
-                                                                            ?.files
-                                                                            .length ==
-                                                                        3)
-                                                                      ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${(_model.data?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              160.0,
-                                                                          height:
-                                                                              100.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                  ].divide(const SizedBox(
-                                                                      height:
-                                                                          8.0)),
-                                                                ),
                                                               ),
-                                                            ].divide(const SizedBox(
-                                                                width: 8.0)),
-                                                          ),
-                                                        if (_model.data!.files
-                                                                .length >
-                                                            3)
-                                                          Container(
-                                                            decoration:
-                                                                const BoxDecoration(),
-                                                            child: Visibility(
-                                                              visible: _model
-                                                                      .data!
-                                                                      .files
-                                                                      .length >
-                                                                  3,
-                                                              child: Builder(
-                                                                builder:
-                                                                    (context) {
-                                                                  final listImage = _model
-                                                                          .data
-                                                                          ?.files
-                                                                          .toList() ??
-                                                                      [];
-                                                                  return GridView
-                                                                      .builder(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    gridDelegate:
-                                                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                                                      crossAxisCount:
-                                                                          2,
-                                                                      crossAxisSpacing:
-                                                                          10.0,
-                                                                      mainAxisSpacing:
-                                                                          10.0,
-                                                                      childAspectRatio:
-                                                                          1.0,
-                                                                    ),
-                                                                    primary:
-                                                                        false,
-                                                                    shrinkWrap:
-                                                                        true,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    itemCount:
-                                                                        listImage
-                                                                            .length,
-                                                                    itemBuilder:
-                                                                        (context,
-                                                                            listImageIndex) {
-                                                                      final listImageItem =
-                                                                          listImage[
-                                                                              listImageIndex];
-                                                                      return ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          '${FFAppConstants.ApiBaseUrl}/assets/${listImageItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
-                                                                          width:
-                                                                              300.0,
-                                                                          height:
-                                                                              200.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  );
-                                                                },
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        if ((_model.data?.files
-                                                                    .length ==
-                                                                null) ||
-                                                            (_model.data!.files.isEmpty))
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        16.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Text(
-                                                                  'Chưa có nội dung ảnh ',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Nunito Sans',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontStyle:
-                                                                            FontStyle.italic,
-                                                                      ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                            ],
                                                           ),
                                                         Padding(
                                                           padding:
@@ -1258,8 +1251,12 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          8.0,
+                                                                          0.0),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize

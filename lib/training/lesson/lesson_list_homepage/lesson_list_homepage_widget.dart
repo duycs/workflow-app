@@ -274,8 +274,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                         lessonFavoriteStatus:
                                             _model.lessonFavoriteStatusList,
                                         statusLoveFilter: widget.statusLove!,
-                                        statusDateToday: widget.lessonNewCreate,
-                                        statusDateHistory: widget.lesonHistory!,
+                                        statusDateToday:
+                                            widget.lessonNewCreate,
+                                        statusDateHistory:
+                                            widget.lesonHistory!,
                                         programsId: _model.programsId,
                                         checkPrograms: '',
                                         callBack: (status,

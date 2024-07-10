@@ -150,7 +150,7 @@ class ProgramCertificateModel
     apiResultGetOneCertificate =
         await CertificateGroup.getOneCertificatesCall.call(
       accessToken: FFAppState().accessToken,
-      idCertificates: widget.idCertificates,
+      idCertificates: widget!.idCertificates,
     );
 
     if ((apiResultGetOneCertificate.succeeded ?? true)) {
@@ -188,7 +188,7 @@ class ProgramCertificateModel
     apiResultAdd = await CertificateGroup.pathCertificatesCall.call(
       accessToken: FFAppState().accessToken,
       programsList: listProgramPost,
-      idCertificate: widget.idCertificates,
+      idCertificate: widget!.idCertificates,
     );
 
     if ((apiResultAdd.succeeded ?? true)) {

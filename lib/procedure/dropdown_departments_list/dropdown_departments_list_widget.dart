@@ -494,6 +494,7 @@ class _DropdownDepartmentsListWidgetState
                                               .textNameTextController.text
                                               .toLowerCase()))
                                       .toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     shrinkWrap: true,

@@ -621,6 +621,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                               ?.lessions
                                                               .toList() ??
                                                           [];
+
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -852,6 +853,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                     ?.departments
                                                                     .toList() ??
                                                                 [];
+
                                                         return Column(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -1090,7 +1092,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                                     'Nunito Sans',
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .primaryText,
+                                                                    .secondaryBackground,
                                                                 fontSize: 14.0,
                                                                 letterSpacing:
                                                                     0.0,
@@ -1151,7 +1153,7 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                       await showModalBottomSheet(
                                         isScrollControlled: true,
                                         backgroundColor: Colors.transparent,
-                                        enableDrag: false,
+                                        useSafeArea: true,
                                         context: context,
                                         builder: (context) {
                                           return GestureDetector(
@@ -1283,8 +1285,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                   child: StudyProgramEditWidget(
                                                     dataDetail:
                                                         _model.studyProgramData,
-                                                    itemLessions:
-                                                        widget.studyProgramList,
+                                                    itemLessions: widget
+                                                        .studyProgramList,
                                                     itemPrograms: widget
                                                         .studyProgramList
                                                         ?.toMap(),

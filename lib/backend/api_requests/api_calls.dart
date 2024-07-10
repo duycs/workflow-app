@@ -5034,14 +5034,14 @@ class SettingAcountGroup {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
   };
-  static UpdateBiometricVerificationCopyCall
-      updateBiometricVerificationCopyCall =
-      UpdateBiometricVerificationCopyCall();
+  static UpdateBiometricVerificationWorkCall
+      updateBiometricVerificationWorkCall =
+      UpdateBiometricVerificationWorkCall();
   static LoginBiometricVerificationCopyCall loginBiometricVerificationCopyCall =
       LoginBiometricVerificationCopyCall();
 }
 
-class UpdateBiometricVerificationCopyCall {
+class UpdateBiometricVerificationWorkCall {
   Future<ApiCallResponse> call({
     dynamic dataJson,
     String? accessToken = '',
@@ -5053,7 +5053,7 @@ class UpdateBiometricVerificationCopyCall {
     final data = _serializeJson(dataJson);
     final ffApiRequestBody = data;
     return ApiManager.instance.makeApiCall(
-      callName: 'UpdateBiometricVerification Copy',
+      callName: 'UpdateBiometricVerificationWork',
       apiUrl: '$baseUrl/flows/trigger/a5385417-9c38-406f-8ce3-5b669409c3e6',
       callType: ApiCallType.POST,
       headers: {

@@ -56,10 +56,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FocusNode? descriptionFocusNode;
   TextEditingController? descriptionTextController;
   String? Function(BuildContext, String?)? descriptionTextControllerValidator;
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
   // State field(s) for test_id widget.
   String? testIdValue;
   FormFieldController<String>? testIdValueController;
@@ -71,6 +67,10 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
   FocusNode? estimateInDayFocusNode;
   TextEditingController? estimateInDayTextController;
   String? Function(BuildContext, String?)? estimateInDayTextControllerValidator;
+  bool isDataUploading1 = false;
+  FFUploadedFile uploadedLocalFile1 =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
+
   bool isDataUploading2 = false;
   FFUploadedFile uploadedLocalFile2 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -191,7 +191,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         r'''$.data''',
       ));
       await Future.delayed(const Duration(milliseconds: 1000));
-      if (widget.checkPage == 'studyProgram1') {
+      if (widget!.checkPage == 'studyProgram1') {
         context.pushNamed(
           'StudyProgramList',
           queryParameters: {
@@ -204,15 +204,15 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
               ParamType.DataStruct,
             ),
             'programsItem': serializeParam(
-              widget.programsItem,
+              widget!.programsItem,
               ParamType.JSON,
             ),
             'itemListLession': serializeParam(
-              widget.listItemLession,
+              widget!.listItemLession,
               ParamType.DataStruct,
             ),
             'imagesProgram': serializeParam(
-              widget.imageProgram,
+              widget!.imageProgram,
               ParamType.FFUploadedFile,
             ),
           }.withoutNulls,
@@ -240,7 +240,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         );
       }
 
-      if (widget.checkPage == 'StudyProgramEdit') {
+      if (widget!.checkPage == 'StudyProgramEdit') {
         context.pushNamed(
           'StudyProgramList',
           queryParameters: {
@@ -249,15 +249,15 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
               ParamType.String,
             ),
             'programsItem': serializeParam(
-              widget.programsItem,
+              widget!.programsItem,
               ParamType.JSON,
             ),
             'itemListLession': serializeParam(
-              widget.listItemLession,
+              widget!.listItemLession,
               ParamType.DataStruct,
             ),
             'dataProframDeatail': serializeParam(
-              widget.dataProgramDetail,
+              widget!.dataProgramDetail,
               ParamType.DataStruct,
             ),
             'itemLesstion': serializeParam(
@@ -304,7 +304,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     apiResultUploadVideo = await UploadFileGroup.uploadFileCall.call(
       accessToken: FFAppState().accessToken,
-      file: uploadedLocalFile1,
+      file: uploadedLocalFile2,
     );
 
     if ((apiResultUploadVideo.succeeded ?? true)) {
@@ -342,7 +342,7 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
 
     apiResultUploadImage = await UploadFileGroup.uploadFileCall.call(
       accessToken: FFAppState().accessToken,
-      file: uploadedLocalFile2,
+      file: uploadedLocalFile1,
     );
 
     if ((apiResultUploadImage.succeeded ?? true)) {

@@ -74,8 +74,9 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
     _model.nameFocusNode ??= FocusNode();
 
     _model.authorTextController ??= TextEditingController(
-        text:
-            widget.author != null && widget.author != '' ? widget.author : '');
+        text: widget.author != null && widget.author != ''
+            ? widget.author
+            : '');
     _model.authorFocusNode ??= FocusNode();
   }
 
@@ -207,7 +208,8 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
                           controller: _model.statusValueController ??=
                               FormFieldController<List<String>>(
                             [
-                              (widget.status != null && widget.status != '') &&
+                              (widget.status != null &&
+                                          widget.status != '') &&
                                       (widget.status != '  ') &&
                                       (widget.status != '')
                                   ? widget.status!

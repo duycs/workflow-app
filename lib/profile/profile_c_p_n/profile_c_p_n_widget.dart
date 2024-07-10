@@ -261,7 +261,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      height: 32.0,
                                                       decoration: BoxDecoration(
                                                         color:
                                                             FlutterFlowTheme.of(
@@ -496,7 +495,6 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           );
                                                         },
                                                         child: Container(
-                                                          height: 32.0,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
@@ -859,6 +857,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                     .toList()
                                                                     .toList() ??
                                                                 [];
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -1586,6 +1585,7 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                           final images = _model
                                                               .listImage
                                                               .toList();
+
                                                           return GridView
                                                               .builder(
                                                             padding:

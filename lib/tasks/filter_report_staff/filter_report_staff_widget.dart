@@ -299,10 +299,10 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
                             child: FlutterFlowDropDown<String>(
                               controller: _model.branchValueController ??=
                                   FormFieldController<String>(
-                                _model.branchValue ??=
-                                    widget.branch != null && widget.branch != ''
-                                        ? widget.branch
-                                        : '1',
+                                _model.branchValue ??= widget.branch != null &&
+                                        widget.branch != ''
+                                    ? widget.branch
+                                    : '1',
                               ),
                               options: List<String>.from(
                                   _model.branchList.map((e) => e.id).toList()),

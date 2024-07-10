@@ -809,8 +809,10 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
                                   final listView =
                                       _model.requestData?.answers.toList() ??
                                           [];
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
+                                    primary: false,
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     itemCount: listView.length,

@@ -42,62 +42,58 @@ class _PopupTaskListWidgetState extends State<PopupTaskListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-        width: MediaQuery.sizeOf(context).width * 1.0,
-        height: MediaQuery.sizeOf(context).height * 1.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.circular(16.0),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
-              child: Row(
+    return Container(
+      width: MediaQuery.sizeOf(context).width * 1.0,
+      height: MediaQuery.sizeOf(context).height * 1.0,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 20.0,
+                  borderWidth: 1.0,
+                  buttonSize: 40.0,
+                  icon: Icon(
+                    Icons.clear,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    icon: Icon(
-                      Icons.clear,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: wrapWithModel(
+                      model: _model.mobileEditorDisplayComponentModel,
+                      updateCallback: () => setState(() {}),
+                      child: MobileEditorDisplayComponentWidget(
+                        content: widget.content!,
+                      ),
                     ),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: wrapWithModel(
-                        model: _model.mobileEditorDisplayComponentModel,
-                        updateCallback: () => setState(() {}),
-                        child: MobileEditorDisplayComponentWidget(
-                          content: widget.content!,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -484,6 +484,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                       child: Builder(
                         builder: (context) {
                           final dataList = _model.list.toList();
+
                           return Column(
                             mainAxisSize: MainAxisSize.min,
                             children:
@@ -1888,6 +1889,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                           dataListItem
                                                               .operations
                                                               .toList();
+
                                                       return Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,

@@ -54,9 +54,10 @@ class _RadioGroupTestsWidgetState extends State<RadioGroupTestsWidget> {
       options: _model.detail.map((e) => e.answersId.content).toList().toList(),
       onChanged: ('1' == '1') ? null : (val) => setState(() {}),
       controller: _model.radioButtonValueController ??=
-          FormFieldController<String>(widget.parameter1?.answersId.correct == 1
-              ? widget.parameter1!.answersId.content
-              : ' '),
+          FormFieldController<String>(
+              widget.parameter1?.answersId.correct == 1
+                  ? widget.parameter1!.answersId.content
+                  : ' '),
       optionHeight: 32.0,
       optionWidth: MediaQuery.sizeOf(context).width * 1.0,
       textStyle: FlutterFlowTheme.of(context).labelMedium.override(

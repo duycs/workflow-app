@@ -253,7 +253,7 @@ class StaffsProgramsLessonModel
       filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.id''',
-      ).toString().toString()}\"}}},{\"lession_id\":{\"id\":{\"_eq\":\"${widget.lessionId}\"}}},{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${widget.programsId}\"}}}}}]}',
+      ).toString().toString()}\"}}},{\"lession_id\":{\"id\":{\"_eq\":\"${widget!.lessionId}\"}}},{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${widget!.programsId}\"}}}}}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

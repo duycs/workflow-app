@@ -172,7 +172,8 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                                 controller: _model.dropDownValueController ??=
                                     FormFieldController<String>(
                                   _model.dropDownValue ??= () {
-                                    if (widget.itemOne?.answerType == 'radio') {
+                                    if (widget.itemOne?.answerType ==
+                                        'radio') {
                                       return '0';
                                     } else if (widget.itemOne?.answerType ==
                                         'checkbox') {
@@ -246,6 +247,7 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
                               builder: (context) {
                                 final dataListView =
                                     widget.itemOne?.answers.toList() ?? [];
+
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,

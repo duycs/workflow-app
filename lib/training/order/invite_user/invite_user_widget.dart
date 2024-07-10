@@ -746,6 +746,7 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
                                 builder: (context) {
                                   final staffList =
                                       _model.selectedStaffList.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     primary: false,

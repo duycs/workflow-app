@@ -414,6 +414,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                               child: Builder(
                                 builder: (context) {
                                   final questionList = _model.list.toList();
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     primary: false,
@@ -556,6 +557,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                         questionListItem
                                                             .questionId.answers
                                                             .toList();
+
                                                     return ListView.builder(
                                                       padding: EdgeInsets.zero,
                                                       primary: false,
@@ -700,6 +702,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                         questionListItem
                                                             .questionId.answers
                                                             .toList();
+
                                                     return ListView.separated(
                                                       padding: EdgeInsets.zero,
                                                       primary: false,
@@ -837,6 +840,7 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
                                                         questionListItem
                                                             .questionId.answers
                                                             .toList();
+
                                                     return ListView.separated(
                                                       padding: EdgeInsets.zero,
                                                       primary: false,

@@ -4,6 +4,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/procedure_publishing/checkbox_work_result/checkbox_work_result_widget.dart';
 import '/procedure_publishing/result_work_grid_view/result_work_grid_view_widget.dart';
 import '/rich_text_editor/mobile_editor_display_component/mobile_editor_display_component_widget.dart';
+import '/tasks/popup_see_more/popup_see_more_widget.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -175,6 +178,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                 child: Builder(
                   builder: (context) {
                     final dataList = _model.list.toList();
+
                     return ListView.separated(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -402,6 +406,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     final listFile =
                                                         dataListItem.operations
                                                             .toList();
+
                                                     return Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -443,6 +448,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                           .operationsId
                                                                           .files
                                                                           .toList();
+
                                                                   return Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -529,6 +535,81 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                                               ),
                                                                             ),
                                                                           ),
+                                                                          if ((functions.checkFileLast((String tail) {
+                                                                                    return tail.split('.').last;
+                                                                                  }(fileItemsItem.directusFilesId.filenameDownload)) ==
+                                                                                  'pdf') &&
+                                                                              (functions.checkFileLast((String tail) {
+                                                                                    return tail.split('.').last;
+                                                                                  }(fileItemsItem.directusFilesId.filenameDownload)) ==
+                                                                                  'img'))
+                                                                            Builder(
+                                                                              builder: (context) => FlutterFlowIconButton(
+                                                                                borderRadius: 20.0,
+                                                                                borderWidth: 1.0,
+                                                                                buttonSize: 40.0,
+                                                                                icon: Icon(
+                                                                                  Icons.remove_red_eye,
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  size: 24.0,
+                                                                                ),
+                                                                                onPressed: () async {
+                                                                                  await showDialog(
+                                                                                    context: context,
+                                                                                    builder: (dialogContext) {
+                                                                                      return Dialog(
+                                                                                        elevation: 0,
+                                                                                        insetPadding: EdgeInsets.zero,
+                                                                                        backgroundColor: Colors.transparent,
+                                                                                        alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        child: GestureDetector(
+                                                                                          onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                                                                          child: PopupSeeMoreWidget(
+                                                                                            fileName: fileItemsItem.directusFilesId.filenameDownload,
+                                                                                            fileId: fileItemsItem.directusFilesId.id,
+                                                                                          ),
+                                                                                        ),
+                                                                                      );
+                                                                                    },
+                                                                                  ).then((value) => setState(() {}));
+                                                                                },
+                                                                              ),
+                                                                            ),
+                                                                          FlutterFlowIconButton(
+                                                                            borderRadius:
+                                                                                20.0,
+                                                                            borderWidth:
+                                                                                1.0,
+                                                                            buttonSize:
+                                                                                40.0,
+                                                                            icon:
+                                                                                Icon(
+                                                                              Icons.file_download_outlined,
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                              size: 24.0,
+                                                                            ),
+                                                                            onPressed:
+                                                                                () async {
+                                                                              var shouldSetState = false;
+                                                                              _model.checktokenReloadDowloadFile = await action_blocks.tokenReload(context);
+                                                                              shouldSetState = true;
+                                                                              if (_model.checktokenReloadDowloadFile!) {
+                                                                                await actions.downloadFile(
+                                                                                  '${FFAppConstants.ApiBaseUrl}/assets/${fileItemsItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
+                                                                                  dataListItem.name,
+                                                                                  fileItemsItem.directusFilesId.filenameDownload,
+                                                                                );
+                                                                              } else {
+                                                                                setState(() {});
+                                                                                if (shouldSetState) setState(() {});
+                                                                                return;
+                                                                              }
+
+                                                                              if (shouldSetState) {
+                                                                                setState(() {});
+                                                                              }
+                                                                            },
+                                                                          ),
                                                                         ],
                                                                       );
                                                                     }).divide(const SizedBox(
@@ -551,6 +632,7 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                     final dataCheckList =
                                                         dataListItem.operations
                                                             .toList();
+
                                                     return ListView.builder(
                                                       padding: EdgeInsets.zero,
                                                       shrinkWrap: true,

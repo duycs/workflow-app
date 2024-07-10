@@ -251,6 +251,7 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
                           builder: (context) {
                             final listView =
                                 _model.requestData?.lessions.toList() ?? [];
+
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               primary: false,

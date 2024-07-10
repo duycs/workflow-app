@@ -50,8 +50,9 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
         while (_model.loop < widget.detail!.departments.length) {
           _model.addToListAdd(DepartmentListStruct(
             id: (widget.detail?.departments[_model.loop])?.departmentsId.id,
-            name:
-                (widget.detail?.departments[_model.loop])?.departmentsId.name,
+            name: (widget.detail?.departments[_model.loop])
+                ?.departmentsId
+                .name,
             branchId: BranchIdStruct(
               id: (widget.detail?.departments[_model.loop])
                   ?.departmentsId
@@ -275,6 +276,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                         Builder(
                           builder: (context) {
                             final listShow = _model.listAdd.toList();
+
                             return SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -431,20 +433,6 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                               var shouldSetState = false;
                               _model.loop = 0;
                               setState(() {});
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Trước vào loop',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
                               _model.updateRequestStruct(
                                 (e) => e
                                   ..departments =

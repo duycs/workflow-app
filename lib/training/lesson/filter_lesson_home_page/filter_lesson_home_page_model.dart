@@ -64,13 +64,13 @@ class FilterLessonHomePageModel
       filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${widget.checkPrograms != 'programs' ? ' ,{\"departments\":{\"departments_id\":{\"_eq\":\"' : ' '}${widget.checkPrograms != 'programs' ? getJsonField(
+      ).toString().toString()}\"}}${widget!.checkPrograms != 'programs' ? ' ,{\"departments\":{\"departments_id\":{\"_eq\":\"' : ' '}${widget!.checkPrograms != 'programs' ? getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString() : ' '}${widget.checkPrograms != 'programs' ? '\"}}}' : ' '}${widget.checkPrograms == 'programs' ? ',{\"departments\":{\"departments_id\":{\"_neq\":\"' : ' '}${widget.checkPrograms == 'programs' ? getJsonField(
+        ).toString().toString() : ' '}${widget!.checkPrograms != 'programs' ? '\"}}}' : ' '}${widget!.checkPrograms == 'programs' ? ',{\"departments\":{\"departments_id\":{\"_neq\":\"' : ' '}${widget!.checkPrograms == 'programs' ? getJsonField(
           FFAppState().staffDepartment,
           r'''$.id''',
-        ).toString().toString() : ' '}${widget.checkPrograms == 'programs' ? '\"}}}' : ' '}]}',
+        ).toString().toString() : ' '}${widget!.checkPrograms == 'programs' ? '\"}}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

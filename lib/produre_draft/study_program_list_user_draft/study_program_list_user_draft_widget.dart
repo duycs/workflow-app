@@ -347,6 +347,7 @@ class _StudyProgramListUserDraftWidgetState
                         ),
                       );
                     }
+
                     return ListView.separated(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -722,6 +723,7 @@ class _StudyProgramListUserDraftWidgetState
                                   builder: (context) {
                                     final dataListTestsView =
                                         dataListViewItem.studioIdTest.toList();
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
@@ -891,6 +893,7 @@ class _StudyProgramListUserDraftWidgetState
                                   builder: (context) {
                                     final dataListLessionsView =
                                         dataListViewItem.lessions.toList();
+
                                     return Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(

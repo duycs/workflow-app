@@ -254,7 +254,8 @@ class _FilterLessonHomePageWidgetState
                                                   FFLocalizations.of(context)
                                                       .languageCode,
                                             )
-                                          : ((widget.dateStart != '') &&
+                                          : ((widget.dateStart !=
+                                                          '') &&
                                                   (widget.dateStart != '0')
                                               ? widget.dateStart
                                               : 'Từ ngày'),

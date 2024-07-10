@@ -852,6 +852,7 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
                                             .requestData?.lessions
                                             .toList() ??
                                         [];
+
                                     return ListView.builder(
                                       padding: EdgeInsets.zero,
                                       primary: false,

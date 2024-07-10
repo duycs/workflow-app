@@ -75,9 +75,9 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
     ApiCallResponse? apiResultOrderCreate;
 
     addToProgramItems(ProgramOrderItemsCreateStruct(
-      id: widget.programId,
+      id: widget!.programId,
       totalItem: functions.stringToInt(quantityTextController.text),
-      private: widget.checkType == 'organization' ? 0 : 1,
+      private: widget!.checkType == 'organization' ? 0 : 1,
     ));
     reloadOrderCreate = await action_blocks.tokenReload(context);
     if (reloadOrderCreate!) {
@@ -93,7 +93,7 @@ class OrderCreateModel extends FlutterFlowModel<OrderCreateWidget> {
           ),
           'private': getJsonField(
             <String, int?>{
-              'map': widget.checkType == 'organization' ? 0 : 1,
+              'map': widget!.checkType == 'organization' ? 0 : 1,
             },
             r'''$.map''',
           ),

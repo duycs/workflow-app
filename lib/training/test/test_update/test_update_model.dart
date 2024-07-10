@@ -147,7 +147,7 @@ class TestUpdateModel extends FlutterFlowModel<TestUpdateWidget> {
     bool? checkRefreshTokenBlock;
 
     apiResultGetLinkTest = await TestGroup.testOneCall.call(
-      testsId: widget.id,
+      testsId: widget!.id,
       accessToken: FFAppState().accessToken,
     );
 

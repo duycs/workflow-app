@@ -46,7 +46,7 @@ class StudyProgramDetailModel
     if (checkReloadTockenGetOneStudyprogram!) {
       apiResultGetDataStudyProgram =
           await StudyProgramGroup.studyProgramGetOneCall.call(
-        id: widget.studyProgramList?.id,
+        id: widget!.studyProgramList?.id,
         accessToken: FFAppState().accessToken,
       );
 

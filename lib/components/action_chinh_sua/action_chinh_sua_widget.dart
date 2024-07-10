@@ -558,8 +558,8 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
                                     width: double.infinity,
                                     child: ListCertiWidget(
                                       idProgram: widget.idProgram,
-                                      checkCodeCertificate:
-                                          widget.dataDetail!.certificateId.code,
+                                      checkCodeCertificate: widget
+                                          .dataDetail!.certificateId.code,
                                     ),
                                   ),
                                 );

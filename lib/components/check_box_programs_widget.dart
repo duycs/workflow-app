@@ -47,6 +47,7 @@ class _CheckBoxProgramsWidgetState extends State<CheckBoxProgramsWidget> {
     return Builder(
       builder: (context) {
         final programItems = widget.parameter3?.toList() ?? [];
+
         return ListView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,

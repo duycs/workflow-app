@@ -674,6 +674,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                   final itemDomains =
                                       widget.itemAuthors?.domains.toList() ??
                                           [];
+
                                   return GridView.builder(
                                     padding: EdgeInsets.zero,
                                     gridDelegate:
@@ -1323,6 +1324,7 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                       builder: (context) {
                         final itemDomains =
                             widget.itemAuthors?.domains.toList() ?? [];
+
                         return GridView.builder(
                           padding: EdgeInsets.zero,
                           gridDelegate:

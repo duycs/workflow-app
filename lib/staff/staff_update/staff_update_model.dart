@@ -203,7 +203,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
       apiResultUpdateStaffTotal = await StaffGroup.updateStaffCall.call(
         accessToken: FFAppState().accessToken,
         id: getJsonField(
-          widget.staffDetail,
+          widget!.staffDetail,
           r'''$.user_id.id''',
         ).toString().toString(),
         requestDataJson: requestStaff,
@@ -216,7 +216,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
               await StaffGroup.updateUserStaffCall.call(
             accessToken: FFAppState().accessToken,
             staffId: getJsonField(
-              widget.staffDetail,
+              widget!.staffDetail,
               r'''$.id''',
             ).toString().toString(),
             requestDataJson: requestUserStaff,
@@ -227,7 +227,7 @@ class StaffUpdateModel extends FlutterFlowModel<StaffUpdateWidget> {
                 await StaffGroup.createProgramStaffCall.call(
               accessToken: FFAppState().accessToken,
               staffId: getJsonField(
-                widget.staffDetail,
+                widget!.staffDetail,
                 r'''$.id''',
               ).toString().toString(),
             );

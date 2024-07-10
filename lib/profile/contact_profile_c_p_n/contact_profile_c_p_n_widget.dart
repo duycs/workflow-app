@@ -147,6 +147,7 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
                               final profileBranhs =
                                   widget.contactProfile?.branchs.toList() ??
                                       [];
+
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 shrinkWrap: true,

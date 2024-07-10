@@ -42,7 +42,8 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.selectedPrograms = widget.programs!.toList().cast<ProgramStruct>();
+      _model.selectedPrograms =
+          widget.programs!.toList().cast<ProgramStruct>();
       setState(() {});
       while (_model.loop! < _model.selectedPrograms.length) {
         _model.updateSelectedProgramsAtIndex(
@@ -858,6 +859,7 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
                                               final listItems = _model
                                                   .selectedPrograms
                                                   .toList();
+
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,
                                                 shrinkWrap: true,

@@ -68,7 +68,7 @@ class ProgramMarketDetailModel
 
     apiResultListGetOne = await GroupMarketLessonGroup.getOneProgramsCall.call(
       accessToken: FFAppState().accessToken,
-      idPrograms: widget.idProgram,
+      idPrograms: widget!.idProgram,
     );
 
     if ((apiResultListGetOne.succeeded ?? true)) {
@@ -111,7 +111,7 @@ class ProgramMarketDetailModel
           FFAppState().staffLogin,
           r'''$.id''',
         ),
-        'program_id': widget.idProgram,
+        'program_id': widget!.idProgram,
       },
     );
 
@@ -187,7 +187,7 @@ class ProgramMarketDetailModel
 
     apiResultPostCopy = await StudyProgramGroup.coppyStaffProgramsCall.call(
       accessToken: FFAppState().accessToken,
-      programId: widget.idProgram,
+      programId: widget!.idProgram,
     );
 
     if ((apiResultPostCopy.succeeded ?? true)) {

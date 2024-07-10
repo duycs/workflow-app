@@ -433,6 +433,7 @@ class _DomainsSearchWidgetState extends State<DomainsSearchWidget> {
                                                 .textNameTextController.text
                                                 .toLowerCase()))
                                         .toList();
+
                                     return ListView.separated(
                                       padding: EdgeInsets.zero,
                                       shrinkWrap: true,

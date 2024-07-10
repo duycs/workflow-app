@@ -797,6 +797,16 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                               width: 80.0,
                                                               height: 80.0,
                                                               fit: BoxFit.cover,
+                                                              errorBuilder: (context,
+                                                                      error,
+                                                                      stackTrace) =>
+                                                                  Image.asset(
+                                                                'assets/images/error_image.png',
+                                                                width: 80.0,
+                                                                height: 80.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -1582,6 +1592,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                       builder: (context) {
                                         final dataListTestsView =
                                             dataListViewItem.tests.toList();
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           primary: false,
@@ -1911,6 +1922,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                       builder: (context) {
                                         final dataListLessionsView =
                                             dataListViewItem.lessions.toList();
+
                                         return ListView.builder(
                                           padding: EdgeInsets.zero,
                                           primary: false,

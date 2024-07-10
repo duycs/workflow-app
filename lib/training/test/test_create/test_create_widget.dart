@@ -462,6 +462,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                           Builder(
                             builder: (context) {
                               final questionList = _model.questionItem.toList();
+
                               return ListView.separated(
                                 padding: EdgeInsets.zero,
                                 primary: false,
@@ -544,6 +545,7 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                         builder: (context) {
                                           final answersList =
                                               questionListItem.answers.toList();
+
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
                                             primary: false,
@@ -781,6 +783,10 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                                       r'''$.map''',
                                     ),
                                     'good_score': _model.textController2.text,
+                                    'organization_id': getJsonField(
+                                      FFAppState().staffLogin,
+                                      r'''$.organization_id''',
+                                    ),
                                   },
                                 );
 

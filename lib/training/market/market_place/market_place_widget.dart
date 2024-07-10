@@ -9,6 +9,7 @@ import '/training/market/filter_programs/filter_programs_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -218,7 +219,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                           setState(() {});
                           await _model.getProgramsMarketNoFree(context);
                           setState(() {});
-                          await _model.getProgramsMarketAll(context);
+                          setState(
+                              () => _model.listViewPagingController?.refresh());
+
                           setState(() {});
                         },
                       ),
@@ -286,7 +289,9 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                   setState(() {});
                                   await _model.getProgramsMarketNoFree(context);
                                   setState(() {});
-                                  await _model.getProgramsMarketAll(context);
+                                  setState(() => _model.listViewPagingController
+                                      ?.refresh());
+
                                   setState(() {});
                                   setState(() {});
                                 },
@@ -434,6 +439,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                               builder: (context) {
                                 final listProgramsFree =
                                     _model.listDataProgramsFree.toList();
+
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children:
@@ -862,6 +868,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                               builder: (context) {
                                 final listProgramsNoFree =
                                     _model.listDataProgramsNoFree.toList();
+
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children:
@@ -948,6 +955,17 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                             height:
                                                                 double.infinity,
                                                             fit: BoxFit.cover,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.png',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1385,6 +1403,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                             builder: (context) {
                               final itemDomains =
                                   _model.listDataDomains.toList();
+
                               return GridView.builder(
                                 padding: EdgeInsets.zero,
                                 gridDelegate:
@@ -1476,6 +1495,14 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -1670,6 +1697,7 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                               builder: (context) {
                                 final listAuthors =
                                     _model.listDataAuthors.toList();
+
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1757,6 +1785,13 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                                       child: Image.network(
                                                         '${FFAppConstants.ApiBaseUrl}/assets/${listAuthorsItem.avatar}?access_token=${FFAppState().accessToken}',
                                                         fit: BoxFit.cover,
+                                                        errorBuilder: (context,
+                                                                error,
+                                                                stackTrace) =>
+                                                            Image.asset(
+                                                          'assets/images/error_image.png',
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -2019,8 +2054,11 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                         _model.priceMin = priceMin!;
                                         _model.priceMax = priceMax!;
                                         setState(() {});
-                                        await _model
-                                            .getProgramsMarketAll(context);
+                                        setState(() => _model
+                                            .listViewPagingController
+                                            ?.refresh());
+
+                                        setState(() {});
                                       },
                                     ),
                                   ),
@@ -2154,6 +2192,14 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
+                                        'assets/images/error_image.png',
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),

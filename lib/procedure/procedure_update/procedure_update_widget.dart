@@ -66,7 +66,9 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
       while (widget.itemData!.departments.length > _model.loop) {
         _model.addToPageDepartments(DepartmentsIdStruct(
           departmentsId: DepartmentsStruct(
-            id: (widget.itemData?.departments[_model.loop])?.departmentsId.id,
+            id: (widget.itemData?.departments[_model.loop])
+                ?.departmentsId
+                .id,
             name: (widget.itemData?.departments[_model.loop])
                 ?.departmentsId
                 .name,
@@ -115,8 +117,8 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
           _model.pageStaffs = [];
           _model.pageOperations = [];
           setState(() {});
-          while (
-              _model.loop2 < (widget.stepListPar![_model.loop]).staffs.length) {
+          while (_model.loop2 <
+              (widget.stepListPar![_model.loop]).staffs.length) {
             _model.addToPageStaffs(StaffsStepStruct(
               staffsId: StaffIdStruct(
                 id: ((widget.stepListPar?[_model.loop])?.staffs[_model.loop2])
@@ -1631,6 +1633,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                             .dataUpdate?.staffs
                                                             .toList() ??
                                                         [];
+
                                                     return ListView.builder(
                                                       padding: EdgeInsets.zero,
                                                       scrollDirection:
@@ -1839,6 +1842,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                             ?.departments
                                                             .toList() ??
                                                         [];
+
                                                     return ListView.builder(
                                                       padding: EdgeInsets.zero,
                                                       scrollDirection:
@@ -2800,6 +2804,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                             final listOne =
                                                                 _model.checkOne
                                                                     .toList();
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -2908,6 +2913,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                             final listTwo =
                                                                 _model.checkTwo
                                                                     .toList();
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -3018,6 +3024,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                 _model
                                                                     .checkThrees
                                                                     .toList();
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -3129,6 +3136,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                 _model
                                                                     .checkBoxFour
                                                                     .toList();
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -3239,6 +3247,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                                 _model
                                                                     .checkBoxFive
                                                                     .toList();
+
                                                             return ListView
                                                                 .separated(
                                                               padding:
@@ -3339,6 +3348,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                                                           final listSix = _model
                                                               .checkBoxSix
                                                               .toList();
+
                                                           return ListView
                                                               .separated(
                                                             padding:
@@ -4100,6 +4110,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                               Builder(
                                 builder: (context) {
                                   final listView = _model.stepList.toList();
+
                                   return ReorderableListView.builder(
                                     padding: EdgeInsets.zero,
                                     primary: false,

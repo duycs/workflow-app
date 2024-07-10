@@ -116,7 +116,7 @@ class TaskDetailModel extends FlutterFlowModel<TaskDetailWidget> {
       apiResultGetTaskList = await TaskGroup.getListTaskCall.call(
         accessToken: FFAppState().accessToken,
         filter:
-            '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget.publishedCount?.toString()}\"}}]}',
+            '{\"_and\":[{\"workflow_id\":{\"_eq\":\"${widget!.workflowId}\"}},{\"published_count\":{\"_eq\":\"${widget!.publishedCount?.toString()}\"}}]}',
         sort: 'number',
         offset: 0,
         limit: 100,

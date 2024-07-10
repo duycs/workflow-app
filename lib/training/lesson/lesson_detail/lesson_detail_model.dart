@@ -57,7 +57,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
 
     apiResultGetCommment = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget.idLesson}\"}}]}',
+      filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget!.idLesson}\"}}]}',
     );
 
     if ((apiResultGetCommment.succeeded ?? true)) {
@@ -98,7 +98,7 @@ class LessonDetailModel extends FlutterFlowModel<LessonDetailWidget> {
 
     apiResultGetDetail = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget.idLesson}\"}}]}',
+      filter: '{\"_and\":[{\"id\":{\"_eq\":\"${widget!.idLesson}\"}}]}',
     );
 
     if ((apiResultGetDetail.succeeded ?? true)) {

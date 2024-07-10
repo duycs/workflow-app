@@ -545,6 +545,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                               builder: (context) {
                                 final questionList =
                                     _model.questionItem.toList();
+
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
@@ -629,6 +630,7 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
                                             final answersList = questionListItem
                                                 .answers
                                                 .toList();
+
                                             return ListView.builder(
                                               padding: EdgeInsets.zero,
                                               primary: false,

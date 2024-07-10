@@ -84,8 +84,9 @@ class _TestsDropdownWidgetState extends State<TestsDropdownWidget> {
       child: FlutterFlowDropDown<String>(
         controller: _model.dropDownValueController ??=
             FormFieldController<String>(
-          _model.dropDownValue ??=
-              widget.value != null && widget.value != '' ? widget.value : ' ',
+          _model.dropDownValue ??= widget.value != null && widget.value != ''
+              ? widget.value
+              : ' ',
         ),
         options:
             List<String>.from(_model.dataListTest.map((e) => e.id).toList()),

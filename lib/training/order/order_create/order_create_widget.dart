@@ -994,9 +994,10 @@ class _OrderCreateWidgetState extends State<OrderCreateWidget> {
                                               MediaQuery.viewInsetsOf(context),
                                           child: PaymentWidget(
                                             orderId: _model.orderCreateDraft2!,
-                                            private: widget.checkType == 'staff'
-                                                ? 'private1'
-                                                : 'private0',
+                                            private:
+                                                widget.checkType == 'staff'
+                                                    ? 'private1'
+                                                    : 'private0',
                                             qr: (_model.apiResultQrCodeCreate
                                                     ?.jsonBody ??
                                                 ''),

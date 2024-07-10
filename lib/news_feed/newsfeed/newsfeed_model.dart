@@ -193,7 +193,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
               return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                 FFAppState().staffOrganization,
                 r'''$.id''',
-              ).toString().toString()}\"}}},{\"branch_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+              ).toString().toString()}\"}}},{\"branch_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
             } else {
               return ' ';
             }
@@ -232,7 +232,7 @@ class NewsfeedModel extends FlutterFlowModel<NewsfeedWidget> {
               return '{\"_and\":[{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
                 FFAppState().staffOrganization,
                 r'''$.id''',
-              ).toString().toString()}\"}}},{\"department_id\":{\"_null\":false}},{\"status\":{\"_eq\":\"require\"}}]}';
+              ).toString().toString()}\"}}},{\"department_id\":{\"_nnull\":true}},{\"status\":{\"_eq\":\"require\"}}]}';
             } else {
               return ' ';
             }

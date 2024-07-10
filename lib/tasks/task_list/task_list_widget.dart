@@ -682,7 +682,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                           0,
                           0,
                           0,
-                          150.0,
+                          200.0,
                         ),
                         primary: false,
                         shrinkWrap: true,
@@ -2517,6 +2517,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                       dataListItem.operations
                                                           .map((e) => e)
                                                           .toList();
+
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
                                                     primary: false,

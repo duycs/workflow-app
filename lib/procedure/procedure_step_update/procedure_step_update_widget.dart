@@ -58,10 +58,10 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
           ..name = widget.data?.name
           ..staffsAlias = widget.data?.staffsAlias
           ..estimateInSecond = widget.data?.estimateInSecond ?? 0
-          ..timeOperate =
-              widget.data?.timeOperate != null && widget.data?.timeOperate != ''
-                  ? widget.data?.timeOperate
-                  : ''
+          ..timeOperate = widget.data?.timeOperate != null &&
+                  widget.data?.timeOperate != ''
+              ? widget.data?.timeOperate
+              : ''
           ..id = widget.data?.id != null && widget.data?.id != ''
               ? widget.data?.id
               : null
@@ -843,6 +843,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                                   final operationsView =
                                       _model.stepsEdit?.operations.toList() ??
                                           [];
+
                                   return ListView.separated(
                                     padding: EdgeInsets.zero,
                                     primary: false,
@@ -1562,6 +1563,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               builder: (context) {
                                 final departmentsListView =
                                     _model.stafStepDepartments.toList();
+
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
@@ -1765,6 +1767,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
                               builder: (context) {
                                 final staffsListView =
                                     _model.staffsStepNv.toList();
+
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
                                   primary: false,
