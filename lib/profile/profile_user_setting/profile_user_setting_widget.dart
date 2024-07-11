@@ -244,7 +244,10 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                                               context)
                                                                           .unfocus(),
                                                                   child:
-                                                                      const ConfirmPasswordWidget(),
+                                                                      ConfirmPasswordWidget(
+                                                                    callBack:
+                                                                        (check) async {},
+                                                                  ),
                                                                 ),
                                                               );
                                                             },
@@ -284,6 +287,29 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                                     .sshkeyPublicKeySettingOn,
                                                             );
                                                             setState(() {});
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  title: Text(_model
+                                                                      .dataSetting!
+                                                                      .publicKey),
+                                                                  content: Text(
+                                                                      _model
+                                                                          .sshkeyPublicKeySettingOn!),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: const Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
                                                           } else {
                                                             setState(() {});
                                                             if (shouldSetState) {
@@ -299,9 +325,16 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                             accessToken:
                                                                 FFAppState()
                                                                     .accessToken,
-                                                            dataJson: _model
-                                                                .dataSetting
-                                                                ?.toMap(),
+                                                            dataJson: <String,
+                                                                dynamic>{
+                                                              'enable_biometric':
+                                                                  _model
+                                                                      .dataSetting
+                                                                      ?.enableBiometric,
+                                                              'public_key': _model
+                                                                  .dataSetting
+                                                                  ?.publicKey,
+                                                            },
                                                           );
 
                                                           shouldSetState =
@@ -379,7 +412,8 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                           shouldSetState =
                                                               true;
                                                           if (_model
-                                                              .authenticateUsingBiometricsSettingOff!) {
+                                                                  .authenticateUsingBiometricsSettingOff ==
+                                                              true) {
                                                             _model.load = true;
                                                             setState(() {});
                                                           } else {
@@ -403,11 +437,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                             _model.sshkeyPublicKeySetting =
                                                                 await actions
                                                                     .sshkey(
-                                                              getJsonField(
-                                                                FFAppState()
-                                                                    .staffLogin,
-                                                                r'''$.email''',
-                                                              ).toString(),
+                                                              FFAppState().user.email,
                                                               '',
                                                               true,
                                                             );
@@ -422,6 +452,30 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                                     '',
                                                             );
                                                             setState(() {});
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  title: Text(_model
+                                                                      .dataSetting!
+                                                                      .publicKey),
+                                                                  content: Text(_model
+                                                                      .dataSetting!
+                                                                      .enableBiometric
+                                                                      .toString()),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: const Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
                                                           } else {
                                                             setState(() {});
                                                             if (shouldSetState) {
@@ -434,9 +488,16 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                               await SettingAcountGroup
                                                                   .updateBiometricVerificationWorkCall
                                                                   .call(
-                                                            dataJson: _model
-                                                                .dataSetting
-                                                                ?.toMap(),
+                                                            dataJson: <String,
+                                                                dynamic>{
+                                                              'public_key': _model
+                                                                  .dataSetting
+                                                                  ?.publicKey,
+                                                              'enable_biometric':
+                                                                  _model
+                                                                      .dataSetting
+                                                                      ?.enableBiometric,
+                                                            },
                                                             accessToken:
                                                                 FFAppState()
                                                                     .accessToken,
@@ -554,12 +615,13 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                               .switchListTileValue = newValue);
                                           if (newValue) {
                                             var shouldSetState = false;
-                                            _model.authenticateUsingBiometriceSettingLoad1 =
+                                            _model.authenticateUsingBiometriceSetting1 =
                                                 await actions
                                                     .authenticateUsingBiometricsSetting();
                                             shouldSetState = true;
                                             if (_model
-                                                .authenticateUsingBiometriceSettingLoad1!) {
+                                                    .authenticateUsingBiometriceSetting1 ==
+                                                true) {
                                               _model.load = true;
                                               setState(() {});
                                             } else {
@@ -593,89 +655,156 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                         : FocusScope.of(context)
                                                             .unfocus(),
                                                     child:
-                                                        const ConfirmPasswordWidget(),
+                                                        ConfirmPasswordWidget(
+                                                      callBack: (check) async {
+                                                        _model.checkLogin =
+                                                            true;
+                                                        setState(() {});
+                                                      },
+                                                    ),
                                                   ),
                                                 );
                                               },
                                             ).then((value) => setState(() {}));
 
-                                            _model.checktokenReloadBiometricsSetting =
-                                                await action_blocks
-                                                    .tokenReload(context);
-                                            shouldSetState = true;
-                                            if (_model
-                                                .checktokenReloadBiometricsSetting!) {
-                                              _model.dataSetting = null;
-                                              setState(() {});
-                                            } else {
-                                              setState(() {});
-                                              if (shouldSetState) {
+                                            if (_model.checkLogin == true) {
+                                              _model.checktokenReloadBiometricsSetting =
+                                                  await action_blocks
+                                                      .tokenReload(context);
+                                              shouldSetState = true;
+                                              if (_model
+                                                  .checktokenReloadBiometricsSetting!) {
+                                                _model.dataSetting = null;
                                                 setState(() {});
+                                              } else {
+                                                setState(() {});
+                                                if (shouldSetState) {
+                                                  setState(() {});
+                                                }
+                                                return;
                                               }
-                                              return;
-                                            }
 
-                                            _model.shkeyPublicKeySettingOn =
-                                                await actions.sshkey(
-                                              getJsonField(
-                                                FFAppState().staffLogin,
-                                                r'''$.email''',
-                                              ).toString(),
-                                              '',
-                                              true,
-                                            );
-                                            shouldSetState = true;
-                                            _model.updateDataSettingStruct(
-                                              (e) => e
-                                                ..enableBiometric = 1
-                                                ..publicKey = _model
-                                                    .shkeyPublicKeySettingOn,
-                                            );
-                                            setState(() {});
-                                            _model.apiResultUpdateBiometric =
-                                                await SettingAcountGroup
-                                                    .updateBiometricVerificationWorkCall
-                                                    .call(
-                                              dataJson:
-                                                  _model.dataSetting?.toMap(),
-                                              accessToken:
-                                                  FFAppState().accessToken,
-                                            );
-
-                                            shouldSetState = true;
-                                            if ((_model.apiResultUpdateBiometric
-                                                    ?.succeeded ??
-                                                true)) {
-                                              await actions.saveInfoUser(
-                                                'bv',
-                                                DateTime.now().toString(),
+                                              _model.shkeyPublicKeySettingOn =
+                                                  await actions.sshkey(
+                                                'pexnictest@gmail.com',
+                                                '',
+                                                true,
                                               );
-                                              _model.apiResultUpdateUser =
-                                                  await UserGroup.userMeCall
+                                              shouldSetState = true;
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(_model
+                                                                .shkeyPublicKeySettingOn!),
+                                                            content:
+                                                                const Text('test'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: const Text(
+                                                                    'Cancel'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child: const Text(
+                                                                    'Confirm'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              _model.updateDataSettingStruct(
+                                                (e) => e
+                                                  ..enableBiometric = 1
+                                                  ..publicKey = _model
+                                                      .shkeyPublicKeySettingOn,
+                                              );
+                                              setState(() {});
+                                              _model.apiResultUpdateBiometric =
+                                                  await SettingAcountGroup
+                                                      .updateBiometricVerificationWorkCall
                                                       .call(
+                                                dataJson: <String, dynamic>{
+                                                  'enable_biometric': _model
+                                                      .dataSetting
+                                                      ?.enableBiometric,
+                                                  'public_key': _model
+                                                      .dataSetting?.publicKey,
+                                                },
                                                 accessToken:
                                                     FFAppState().accessToken,
                                               );
 
                                               shouldSetState = true;
-                                              if ((_model.apiResultUpdateUser
+                                              if ((_model
+                                                      .apiResultUpdateBiometric
                                                       ?.succeeded ??
                                                   true)) {
-                                                FFAppState()
-                                                    .user = UserResourceDataStruct
-                                                        .maybeFromMap((_model
-                                                                .apiResultUpdateUser
-                                                                ?.jsonBody ??
-                                                            ''))!
-                                                    .data;
-                                                setState(() {});
+                                                await actions.saveInfoUser(
+                                                  'bv',
+                                                  DateTime.now().toString(),
+                                                );
+                                                _model.apiResultUpdateUser =
+                                                    await UserGroup.userMeCall
+                                                        .call(
+                                                  accessToken:
+                                                      FFAppState().accessToken,
+                                                );
+
+                                                shouldSetState = true;
+                                                if ((_model.apiResultUpdateUser
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  FFAppState()
+                                                      .user = UserResourceDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultUpdateUser
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data;
+                                                  setState(() {});
+                                                }
+                                              } else {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Cài đặt không thành công',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .error,
+                                                  ),
+                                                );
                                               }
+
+                                              _model.load = false;
+                                              setState(() {});
                                             } else {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
                                                   content: Text(
-                                                    'Cài đặt không thành công',
+                                                    'Mật khẩu không đúng',
                                                     style: TextStyle(
                                                       color:
                                                           FlutterFlowTheme.of(
@@ -691,10 +820,12 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                           .error,
                                                 ),
                                               );
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
+                                              return;
                                             }
 
-                                            _model.load = false;
-                                            setState(() {});
                                             if (shouldSetState) {
                                               setState(() {});
                                             }
@@ -705,10 +836,17 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                     .authenticateUsingBiometricsSetting();
                                             shouldSetState = true;
                                             if (_model
-                                                .authenticateUsingBiometriceSettingLoadOff1!) {
+                                                    .authenticateUsingBiometriceSettingLoadOff1 ==
+                                                true) {
                                               _model.load = true;
                                               setState(() {});
+                                            } else {
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
+                                              return;
                                             }
+
                                             _model.checktokenReloadBiometricsSetting3 =
                                                 await action_blocks
                                                     .tokenReload(context);
@@ -745,8 +883,13 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                 await SettingAcountGroup
                                                     .updateBiometricVerificationWorkCall
                                                     .call(
-                                              dataJson:
-                                                  _model.dataSetting?.toMap(),
+                                              dataJson: <String, dynamic>{
+                                                'public_key': _model
+                                                    .dataSetting?.publicKey,
+                                                'enable_biometric': _model
+                                                    .dataSetting
+                                                    ?.enableBiometric,
+                                              },
                                               accessToken:
                                                   FFAppState().accessToken,
                                             );
@@ -822,7 +965,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                         ),
                                   ),
                                   subtitle: Text(
-                                    'Kích hoạt đăng nhập sử dụng vân tây',
+                                    'Kích hoạt đăng nhập sử dụng vân tay',
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(

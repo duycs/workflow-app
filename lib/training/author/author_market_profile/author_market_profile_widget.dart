@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -906,107 +905,165 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FFButtonWidget(
-                      onPressed: () async {
-                        _model.checkClick = '1';
-                        setState(() {});
-                      },
-                      text: 'Khoá học',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: _model.checkClick == '1'
-                            ? FlutterFlowTheme.of(context).secondary
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                _model.checkClick = '1';
+                                setState(() {});
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Khoá học',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: _model.checkClick == '1'
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primary
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              ),
                             ),
-                        borderSide: BorderSide(
-                          color: _model.checkClick == '1'
-                              ? FlutterFlowTheme.of(context).secondary
-                              : FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          Divider(
+                            height: 2.0,
+                            thickness: 1.0,
+                            color: _model.checkClick == '1'
+                                ? FlutterFlowTheme.of(context).primary
+                                : FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                          ),
+                        ],
                       ),
-                      showLoadingIndicator: false,
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        _model.checkClick = '2';
-                        setState(() {});
-                      },
-                      text: 'Lĩnh vực',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: _model.checkClick == '2'
-                            ? FlutterFlowTheme.of(context).secondary
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              _model.checkClick = '2';
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Lĩnh vực',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: _model.checkClick == '2'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
                             ),
-                        borderSide: BorderSide(
-                          color: _model.checkClick == '2'
-                              ? FlutterFlowTheme.of(context).secondary
-                              : FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          Divider(
+                            height: 2.0,
+                            thickness: 1.0,
+                            color: _model.checkClick == '2'
+                                ? FlutterFlowTheme.of(context).primary
+                                : FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                          ),
+                        ],
                       ),
-                      showLoadingIndicator: false,
                     ),
-                    FFButtonWidget(
-                      onPressed: () async {
-                        _model.checkClick = '3';
-                        setState(() {});
-                      },
-                      text: 'Profile',
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: _model.checkClick == '3'
-                            ? FlutterFlowTheme.of(context).secondary
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .titleSmall
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              _model.checkClick = '3';
+                              setState(() {});
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Align(
+                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                child: Text(
+                                  'Profile',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color: _model.checkClick == '3'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
                             ),
-                        borderSide: BorderSide(
-                          color: _model.checkClick == '3'
-                              ? FlutterFlowTheme.of(context).secondary
-                              : FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          Divider(
+                            height: 2.0,
+                            thickness: 1.0,
+                            color: _model.checkClick == '3'
+                                ? FlutterFlowTheme.of(context).primary
+                                : FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                          ),
+                        ],
                       ),
-                      showLoadingIndicator: false,
                     ),
                   ],
                 ),

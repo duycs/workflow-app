@@ -825,6 +825,7 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
                           setState(() {});
                         }
                         _model.loop = _model.loop + 1;
+                        _model.stepOperationsUpdate = [];
                         setState(() {});
                       }
                       _model.loop = 0;

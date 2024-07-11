@@ -27,17 +27,17 @@ Future<bool> authenticateUsingBiometricsSetting() async {
         useErrorDialogs: true,
         stickyAuth: true,
       ),
-      localizedReason: '',
+      localizedReason: 'Vui lòng xác thực để cài đặt!',
       authMessages: const <AuthMessages>[
         AndroidAuthMessages(
-          signInTitle: 'Vui lòng quét vân tay để cài đặt!',
+          signInTitle: 'Xác thực bằng vân tay',
           cancelButton: 'Hủy',
           biometricHint: '',
           // fingerprintHint: ''
           // lockOut: '',
         ),
         IOSAuthMessages(
-          localizedFallbackTitle: 'Vui lòng quét vân tay để cài đặt!',
+          localizedFallbackTitle: 'Vui lòng xác thực để cài đặt!',
           cancelButton: 'Hủy',
           lockOut: '',
         ),

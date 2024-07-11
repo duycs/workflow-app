@@ -199,7 +199,10 @@ class LessonUpdateModel extends FlutterFlowModel<LessonUpdateWidget> {
           }
         }(),
         'duration_hours': durationHoursTextController.text,
-        'test_id': testIdValue != 'null' ? testIdValue : null,
+        'test_id': (testIdValue != null && testIdValue != '') &&
+                (testIdValue != 'null')
+            ? testIdValue
+            : null,
         'file': () {
           if (uploadFile != '') {
             return uploadFile;

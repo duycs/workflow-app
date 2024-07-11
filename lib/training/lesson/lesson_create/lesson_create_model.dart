@@ -190,7 +190,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
         (apiResultCreateLesson.jsonBody ?? ''),
         r'''$.data''',
       ));
-      await Future.delayed(const Duration(milliseconds: 1000));
       if (widget!.checkPage == 'studyProgram1') {
         context.pushNamed(
           'StudyProgramList',
@@ -216,13 +215,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
               ParamType.FFUploadedFile,
             ),
           }.withoutNulls,
-          extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
-              hasTransition: true,
-              transitionType: PageTransitionType.fade,
-              duration: Duration(milliseconds: 0),
-            ),
-          },
         );
       } else {
         if (Navigator.of(context).canPop()) {
@@ -265,13 +257,6 @@ class LessonCreateModel extends FlutterFlowModel<LessonCreateWidget> {
               ParamType.DataStruct,
             ),
           }.withoutNulls,
-          extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
-              hasTransition: true,
-              transitionType: PageTransitionType.fade,
-              duration: Duration(milliseconds: 0),
-            ),
-          },
         );
       }
     } else {

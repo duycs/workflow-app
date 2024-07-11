@@ -768,6 +768,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               if (newsfeedListRequireItem.reacts
                                       .where((e) =>
@@ -776,54 +777,61 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       .toList()
                                       .length ==
                                   0)
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await _model.reactCreated(
-                                      context,
-                                      newsId: newsfeedListRequireItem.id,
-                                    );
-                                    setState(() {});
-                                    setState(() => _model
-                                        .listViewPagingController
-                                        ?.refresh());
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 4.0, 8.0, 4.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Icon(
-                                            Icons.favorite_border,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 20.0,
-                                          ),
-                                          Text(
-                                            'Thích',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 8.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.reactCreated(
+                                        context,
+                                        newsId: newsfeedListRequireItem.id,
+                                      );
+                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 4.0, 8.0, 4.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Icon(
+                                              Icons.favorite_border,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                              size: 20.0,
+                                            ),
+                                            Text(
+                                              'Thích',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ].divide(const SizedBox(width: 4.0)),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -835,59 +843,65 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                       .toList()
                                       .length >
                                   0)
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await _model.reactDelete(
-                                      context,
-                                      reactId: newsfeedListRequireItem.reacts
-                                          .where((e) =>
-                                              e.reactsId.staffId ==
-                                              FFAppState().staffid)
-                                          .toList()
-                                          .first
-                                          .id,
-                                    );
-                                    setState(() {});
-                                    setState(() => _model
-                                        .listViewPagingController
-                                        ?.refresh());
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(20.0),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 4.0, 8.0, 4.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          const Icon(
-                                            Icons.favorite,
-                                            color: Color(0xFFF40A0A),
-                                            size: 20.0,
-                                          ),
-                                          Text(
-                                            'Thích',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Nunito Sans',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                          ),
-                                        ].divide(const SizedBox(width: 4.0)),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 8.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await _model.reactDelete(
+                                        context,
+                                        reactId: newsfeedListRequireItem.reacts
+                                            .where((e) =>
+                                                e.reactsId.staffId ==
+                                                FFAppState().staffid)
+                                            .toList()
+                                            .first
+                                            .id,
+                                      );
+                                      setState(() {});
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 4.0, 8.0, 4.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            const Icon(
+                                              Icons.favorite,
+                                              color: Color(0xFFF40A0A),
+                                              size: 20.0,
+                                            ),
+                                            Text(
+                                              'Thích',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Nunito Sans',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ].divide(const SizedBox(width: 4.0)),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -972,7 +986,7 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 8.0)),
+                            ],
                           ),
                         ],
                       ),

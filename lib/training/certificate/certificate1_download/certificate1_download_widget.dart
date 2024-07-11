@@ -633,7 +633,7 @@ class _Certificate1DownloadWidgetState
                               FFAppState().user.firstName,
                               getJsonField(
                                 FFAppState().staffLogin,
-                                r'''$.tilte''',
+                                r'''$.title''',
                               ).toString(),
                             );
                           },

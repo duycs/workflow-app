@@ -550,6 +550,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                         _model.addToListAddStep(_model.stepsListRequest!);
                         setState(() {});
                         _model.loop = _model.loop + 1;
+                        _model.operationsList = [];
                         setState(() {});
                       }
                       _model.loop = 0;

@@ -509,106 +509,108 @@ class _DetailActionTypeUploadFileWidgetState
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              FFButtonWidget(
-                onPressed: (widget.dataPass?.current == 0)
-                    ? null
-                    : () async {
-                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
-                                false)) {
-                          _model.uploadFileToken =
-                              await action_blocks.tokenReload(context);
-                          if (_model.uploadFileToken!) {
-                            _model.apiResultUploadFile =
-                                await UploadFileGroup.uploadListFileCall.call(
-                              accessToken: FFAppState().accessToken,
-                              fileList: _model.listFileUpload,
-                            );
+              if (_model.listFileUpload.isNotEmpty)
+                FFButtonWidget(
+                  onPressed: (widget.dataPass?.current == 0)
+                      ? null
+                      : () async {
+                          if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                  false)) {
+                            _model.uploadFileToken =
+                                await action_blocks.tokenReload(context);
+                            if (_model.uploadFileToken!) {
+                              _model.apiResultUploadFile =
+                                  await UploadFileGroup.uploadListFileCall.call(
+                                accessToken: FFAppState().accessToken,
+                                fileList: _model.listFileUpload,
+                              );
 
-                            if ((_model.apiResultUploadFile?.succeeded ??
-                                true)) {
-                              if (_model.listFileUpload.length == 1) {
-                                _model.addToListFileId(FileIDDataTypeStruct(
-                                  id: getJsonField(
-                                    (_model.apiResultUploadFile?.jsonBody ??
-                                        ''),
-                                    r'''$.data.id''',
-                                  ).toString(),
-                                  filenameDownload: getJsonField(
-                                    (_model.apiResultUploadFile?.jsonBody ??
-                                        ''),
-                                    r'''$.data.filename_download''',
-                                  ).toString(),
-                                ));
-                                setState(() {});
-                              } else {
-                                while (_model.loop <
-                                    _model.listFileUpload.length) {
+                              if ((_model.apiResultUploadFile?.succeeded ??
+                                  true)) {
+                                if (_model.listFileUpload.length == 1) {
                                   _model.addToListFileId(FileIDDataTypeStruct(
-                                    id: (FileUploadStruct.maybeFromMap((_model
-                                                    .apiResultUploadFile
-                                                    ?.jsonBody ??
-                                                ''))
-                                            ?.data[_model.loop])
-                                        ?.id,
-                                    filenameDownload:
-                                        (FileUploadStruct.maybeFromMap((_model
-                                                        .apiResultUploadFile
-                                                        ?.jsonBody ??
-                                                    ''))
-                                                ?.data[_model.loop])
-                                            ?.filenameDownload,
+                                    id: getJsonField(
+                                      (_model.apiResultUploadFile?.jsonBody ??
+                                          ''),
+                                      r'''$.data.id''',
+                                    ).toString(),
+                                    filenameDownload: getJsonField(
+                                      (_model.apiResultUploadFile?.jsonBody ??
+                                          ''),
+                                      r'''$.data.filename_download''',
+                                    ).toString(),
                                   ));
                                   setState(() {});
-                                  _model.loop = _model.loop + 1;
+                                } else {
+                                  while (_model.loop <
+                                      _model.listFileUpload.length) {
+                                    _model.addToListFileId(FileIDDataTypeStruct(
+                                      id: (FileUploadStruct.maybeFromMap((_model
+                                                      .apiResultUploadFile
+                                                      ?.jsonBody ??
+                                                  ''))
+                                              ?.data[_model.loop])
+                                          ?.id,
+                                      filenameDownload:
+                                          (FileUploadStruct.maybeFromMap((_model
+                                                          .apiResultUploadFile
+                                                          ?.jsonBody ??
+                                                      ''))
+                                                  ?.data[_model.loop])
+                                              ?.filenameDownload,
+                                    ));
+                                    setState(() {});
+                                    _model.loop = _model.loop + 1;
+                                    setState(() {});
+                                  }
+                                  _model.loop = 0;
                                   setState(() {});
                                 }
-                                _model.loop = 0;
-                                setState(() {});
                               }
+                            } else {
+                              setState(() {});
                             }
-                          } else {
+                          }
+                          while (_model.loop < _model.listFileId.length) {
+                            _model.addToListStringId(
+                                _model.listFileId[_model.loop].id);
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
                             setState(() {});
                           }
-                        }
-                        while (_model.loop < _model.listFileId.length) {
-                          _model.addToListStringId(
-                              _model.listFileId[_model.loop].id);
+                          _model.loop = 0;
                           setState(() {});
-                          _model.loop = _model.loop + 1;
+                          await widget.callback?.call(
+                            _model.listStringId,
+                          );
+                          _model.listFileUpload = [];
                           setState(() {});
-                        }
-                        _model.loop = 0;
-                        setState(() {});
-                        await widget.callback?.call(
-                          _model.listStringId,
-                        );
-                        _model.listFileUpload = [];
-                        setState(() {});
 
-                        setState(() {});
-                      },
-                text: 'Lưu',
-                icon: Icon(
-                  Icons.save_alt,
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  size: 20.0,
+                          setState(() {});
+                        },
+                  text: 'Lưu',
+                  icon: Icon(
+                    Icons.save_alt,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    size: 20.0,
+                  ),
+                  options: FFButtonOptions(
+                    width: 110.0,
+                    height: 35.0,
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).labelLarge.override(
+                          fontFamily: 'Nunito Sans',
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          fontSize: 13.0,
+                          letterSpacing: 0.0,
+                        ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
-                options: FFButtonOptions(
-                  width: 110.0,
-                  height: 35.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).labelLarge.override(
-                        fontFamily: 'Nunito Sans',
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        fontSize: 13.0,
-                        letterSpacing: 0.0,
-                      ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
             ].divide(const SizedBox(width: 8.0)),
           ),
       ].divide(const SizedBox(height: 8.0)),

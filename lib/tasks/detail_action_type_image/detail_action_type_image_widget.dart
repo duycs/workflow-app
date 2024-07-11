@@ -543,99 +543,100 @@ class _DetailActionTypeImageWidgetState
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  FFButtonWidget(
-                    onPressed: () async {
-                      if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
-                              false)) {
-                        _model.uploadListImageToken =
-                            await action_blocks.tokenReload(context);
-                        if (_model.uploadListImageToken!) {
-                          _model.apiResultUploadListImage =
-                              await UploadFileGroup.uploadListFileCall.call(
-                            accessToken: FFAppState().accessToken,
-                            fileList: _model.images,
-                          );
+                  if (_model.images.isNotEmpty)
+                    FFButtonWidget(
+                      onPressed: () async {
+                        if ((_model.uploadedLocalFile.bytes?.isNotEmpty ??
+                                false)) {
+                          _model.uploadListImageToken =
+                              await action_blocks.tokenReload(context);
+                          if (_model.uploadListImageToken!) {
+                            _model.apiResultUploadListImage =
+                                await UploadFileGroup.uploadListFileCall.call(
+                              accessToken: FFAppState().accessToken,
+                              fileList: _model.images,
+                            );
 
-                          if ((_model.apiResultUploadListImage?.succeeded ??
-                              true)) {
-                            if (FileUploadStruct.maybeFromMap((_model
-                                            .apiResultUploadListImage
-                                            ?.jsonBody ??
-                                        ''))!
-                                    .data
-                                    .length >=
-                                2) {
-                              while (_model.loop <
-                                  FileUploadStruct.maybeFromMap((_model
+                            if ((_model.apiResultUploadListImage?.succeeded ??
+                                true)) {
+                              if (FileUploadStruct.maybeFromMap((_model
                                               .apiResultUploadListImage
                                               ?.jsonBody ??
                                           ''))!
                                       .data
-                                      .length) {
-                                _model.addToImagesList(
+                                      .length >=
+                                  2) {
+                                while (_model.loop <
                                     FileUploadStruct.maybeFromMap((_model
                                                 .apiResultUploadListImage
                                                 ?.jsonBody ??
                                             ''))!
-                                        .data[_model.loop]
-                                        .id);
+                                        .data
+                                        .length) {
+                                  _model.addToImagesList(
+                                      FileUploadStruct.maybeFromMap((_model
+                                                  .apiResultUploadListImage
+                                                  ?.jsonBody ??
+                                              ''))!
+                                          .data[_model.loop]
+                                          .id);
+                                  setState(() {});
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
+                                }
+                                _model.loop = 0;
                                 setState(() {});
-                                _model.loop = _model.loop + 1;
+                              } else {
+                                _model.addToImagesList(getJsonField(
+                                  (_model.apiResultUploadListImage?.jsonBody ??
+                                      ''),
+                                  r'''$.data.id''',
+                                ).toString());
                                 setState(() {});
                               }
-                              _model.loop = 0;
-                              setState(() {});
-                            } else {
-                              _model.addToImagesList(getJsonField(
-                                (_model.apiResultUploadListImage?.jsonBody ??
-                                    ''),
-                                r'''$.data.id''',
-                              ).toString());
-                              setState(() {});
                             }
+                          } else {
+                            setState(() {});
                           }
-                        } else {
-                          setState(() {});
                         }
-                      }
-                      await widget.callback?.call(
-                        _model.imagesList,
-                      );
-                      _model.images = [];
-                      setState(() {});
+                        await widget.callback?.call(
+                          _model.imagesList,
+                        );
+                        _model.images = [];
+                        setState(() {});
 
-                      setState(() {});
-                    },
-                    text: 'Lưu',
-                    icon: Icon(
-                      Icons.save_alt,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      size: 20.0,
-                    ),
-                    options: FFButtonOptions(
-                      width: 110.0,
-                      height: 35.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Nunito Sans',
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                fontSize: 13.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                        setState(() {});
+                      },
+                      text: 'Lưu',
+                      icon: Icon(
+                        Icons.save_alt,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        size: 20.0,
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                      options: FFButtonOptions(
+                        width: 110.0,
+                        height: 35.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
-                  ),
                 ].divide(const SizedBox(width: 8.0)),
               ),
           ].divide(const SizedBox(height: 8.0)),

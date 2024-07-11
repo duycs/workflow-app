@@ -184,8 +184,8 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: SizedBox(
-                                height: 100.0,
-                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                height: double.infinity,
+                                width: double.infinity,
                                 child: QuestionUpdateWidget(
                                   item: widget.item!,
                                 ),

@@ -1,10 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'time_keeping_setting_location_widget.dart'
-    show TimeKeepingSettingLocationWidget;
+import 'time_keeping_location_widget.dart' show TimeKeepingLocationWidget;
 import 'package:flutter/material.dart';
 
-class TimeKeepingSettingLocationModel
-    extends FlutterFlowModel<TimeKeepingSettingLocationWidget> {
+class TimeKeepingLocationModel
+    extends FlutterFlowModel<TimeKeepingLocationWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for CheckboxListTile widget.
