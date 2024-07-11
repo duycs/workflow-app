@@ -35,6 +35,21 @@
       "type" : "Consumable"
     },
     {
+      "displayPrice" : "139000",
+      "familyShareable" : false,
+      "internalID" : "6532596058",
+      "localizations" : [
+        {
+          "description" : "Mua khoá học trong ứng dụng với giá 139k",
+          "displayName" : "Mua Khoá học 139k",
+          "locale" : "vi"
+        }
+      ],
+      "productID" : "com.pexnic.comos.product_139k",
+      "referenceName" : "Mua Khoá học 139k",
+      "type" : "Consumable"
+    },
+    {
       "displayPrice" : "19000",
       "familyShareable" : false,
       "internalID" : "6504786445",
@@ -84,7 +99,7 @@
     "_applicationInternalID" : "6499068980",
     "_developerTeamID" : "FZ78ZDT87T",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 741325744.37736595,
+    "_lastSynchronizedDate" : 742401163.01292205,
     "_locale" : "vi",
     "_storefront" : "VNM",
     "_storeKitErrors" : [
