@@ -642,83 +642,95 @@ class _TestCreateWidgetState extends State<TestCreateWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      _model.unfocusNode.canRequestFocus
+                        child: Builder(
+                          builder: (context) => FFButtonWidget(
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
                                           ? FocusScope.of(context)
                                               .requestFocus(_model.unfocusNode)
                                           : FocusScope.of(context).unfocus(),
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: QuestionCreateTestWidget(
-                                      callBackList: (idQuestion) async {
-                                        _model.apiResultAddQuestion =
-                                            await QuestionGroup
-                                                .questionListOneCall
-                                                .call(
-                                          questionId: idQuestion,
-                                          accessToken: FFAppState().accessToken,
-                                        );
+                                      child: SizedBox(
+                                        height:
+                                            MediaQuery.sizeOf(context).height *
+                                                1.0,
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        child: QuestionCreateTestWidget(
+                                          callBackList: (idQuestion) async {
+                                            _model.apiResultAddQuestion =
+                                                await QuestionGroup
+                                                    .questionListOneCall
+                                                    .call(
+                                              questionId: idQuestion,
+                                              accessToken:
+                                                  FFAppState().accessToken,
+                                            );
 
-                                        if ((_model.apiResultAddQuestion
-                                                ?.succeeded ??
-                                            true)) {
-                                          _model.addToQuestionItem(
-                                              QuestsionOneDataStruct
-                                                      .maybeFromMap((_model
-                                                              .apiResultAddQuestion
-                                                              ?.jsonBody ??
-                                                          ''))!
-                                                  .data);
-                                          setState(() {});
-                                        }
-                                      },
+                                            if ((_model.apiResultAddQuestion
+                                                    ?.succeeded ??
+                                                true)) {
+                                              _model.addToQuestionItem(
+                                                  QuestsionOneDataStruct
+                                                          .maybeFromMap((_model
+                                                                  .apiResultAddQuestion
+                                                                  ?.jsonBody ??
+                                                              ''))!
+                                                      .data);
+                                              setState(() {});
+                                            }
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => safeSetState(() {}));
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
 
-                            setState(() {});
-                          },
-                          text: 'Câu hỏi mới',
-                          icon: const Icon(
-                            Icons.add,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              setState(() {});
+                            },
+                            text: 'Câu hỏi mới',
+                            icon: const Icon(
+                              Icons.add,
+                              size: 15.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            showLoadingIndicator: false,
                           ),
-                          showLoadingIndicator: false,
                         ),
                       ),
                       Expanded(

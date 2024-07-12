@@ -359,7 +359,12 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                           limit: 20,
                         ),
                       ),
-                      padding: EdgeInsets.zero,
+                      padding: const EdgeInsets.fromLTRB(
+                        0,
+                        0,
+                        0,
+                        30.0,
+                      ),
                       primary: false,
                       reverse: false,
                       scrollDirection: Axis.vertical,
