@@ -202,33 +202,25 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text(getJsonField(
-                                    functions.stringToJson(getJsonField(
-                                      widget.data,
-                                      r'''$.notifications_id.data''',
-                                    ).toString()),
-                                    r'''$.screen''',
-                                  ).toString()),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, false),
-                                      child: const Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(
-                                          alertDialogContext, true),
-                                      child: const Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                            false;
+                        if (getJsonField(
+                              functions.stringToJson(getJsonField(
+                                widget.data,
+                                r'''$.notifications_id.data''',
+                              ).toString()),
+                              r'''$.screen''',
+                            ).toString() ==
+                            '1') {
+                          context.goNamed('TaskList');
+                        } else if (getJsonField(
+                              functions.stringToJson(getJsonField(
+                                widget.data,
+                                r'''$.notifications_id.data''',
+                              ).toString()),
+                              r'''$.screen''',
+                            ).toString() ==
+                            '2') {
+                          context.goNamed('TaskListWait');
+                        }
                       },
                       text: 'Thực hiện ngay',
                       options: FFButtonOptions(
