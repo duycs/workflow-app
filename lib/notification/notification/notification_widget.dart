@@ -279,8 +279,11 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                   Text(
                                                     getJsonField(
                                                       functions.stringToJson(
-                                                          listItem.toString()),
-                                                      r'''$.notifications_id.contents''',
+                                                          getJsonField(
+                                                        listItem,
+                                                        r'''$.notifications_id''',
+                                                      ).toString()),
+                                                      r'''$.contents''',
                                                     ).toString(),
                                                     maxLines: 1,
                                                     style: FlutterFlowTheme.of(
@@ -300,9 +303,11 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                     child: Text(
                                                       getJsonField(
                                                         functions.stringToJson(
-                                                            listItem
-                                                                .toString()),
-                                                        r'''$.notifications_id.data''',
+                                                            getJsonField(
+                                                          listItem,
+                                                          r'''$.notifications_id''',
+                                                        ).toString()),
+                                                        r'''$.data''',
                                                       ).toString(),
                                                       maxLines: 2,
                                                       style:
