@@ -722,7 +722,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .showSnackBar(
                                                                 SnackBar(
                                                                   content: Text(
-                                                                    'Submit thành công',
+                                                                    'Hoàn thành nhiệm vụ',
                                                                     style:
                                                                         TextStyle(
                                                                       color: FlutterFlowTheme.of(
@@ -745,7 +745,7 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                   .showSnackBar(
                                                                 SnackBar(
                                                                   content: Text(
-                                                                    'Submit thất bại',
+                                                                    'Hoàn thành thất bại',
                                                                     style:
                                                                         TextStyle(
                                                                       color: FlutterFlowTheme.of(
@@ -794,6 +794,15 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                     OneWorkFlowDataStruct.maybeFromMap((_model.apiResultGetWorkflowDetail?.jsonBody ??
                                                                             ''))
                                                                         ?.data;
+                                                                _model.nextSteps = _model
+                                                                    .stepList
+                                                                    ?.steps
+                                                                    .where((e) =>
+                                                                        e.number ==
+                                                                        (dataListItem.number +
+                                                                            1))
+                                                                    .toList()
+                                                                    .first;
                                                                 setState(() {});
                                                               }
                                                               if (_model
@@ -805,15 +814,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 while (_model
                                                                         .loop <
                                                                     _model
-                                                                        .stepList!
-                                                                        .steps
+                                                                        .nextSteps!
+                                                                        .tasks
                                                                         .where((e) =>
-                                                                            e.number ==
-                                                                            (dataListItem.number +
-                                                                                1))
+                                                                            e.publishedCount ==
+                                                                            dataListItem.publishedCount)
                                                                         .toList()
-                                                                        .first
-                                                                        .staffs
                                                                         .length) {
                                                                   _model.receiveTaskDetailToken =
                                                                       await action_blocks
@@ -835,9 +841,9 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                               .workflowId
                                                                               .id,
                                                                       staffId: (_model
-                                                                              .stepList
-                                                                              ?.steps
-                                                                              .where((e) => e.number == (dataListItem.number + 1))
+                                                                              .nextSteps
+                                                                              ?.tasks
+                                                                              .where((e) => e.publishedCount == dataListItem.publishedCount)
                                                                               .toList()
                                                                               .first
                                                                               .staffs[_model.loop])

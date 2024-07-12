@@ -464,6 +464,15 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                                             height: 100.0,
                                             fit: BoxFit.cover,
                                             alignment: const Alignment(0.0, 0.0),
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              'assets/images/error_image.png',
+                                              width: 100.0,
+                                              height: 100.0,
+                                              fit: BoxFit.cover,
+                                              alignment: const Alignment(0.0, 0.0),
+                                            ),
                                           ),
                                         ),
                                       ),

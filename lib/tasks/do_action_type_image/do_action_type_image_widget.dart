@@ -207,7 +207,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                                           alertDialogContext,
                                                                           true),
                                                                   child: const Text(
-                                                                      'Confirm'),
+                                                                      'Xác nhận'),
                                                                 ),
                                                               ],
                                                             );
@@ -338,7 +338,7 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                               TextButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, true),
-                                                child: const Text('Confirm'),
+                                                child: const Text('Xác nhận'),
                                               ),
                                             ],
                                           );
@@ -433,81 +433,85 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-            FFButtonWidget(
-              onPressed: () async {
-                if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
-                  _model.imageToken = await action_blocks.tokenReload(context);
-                  if (_model.imageToken!) {
-                    _model.apiResultImage =
-                        await UploadFileGroup.uploadListFileCall.call(
-                      accessToken: FFAppState().accessToken,
-                      fileList: _model.imageUpload,
-                    );
+            if (_model.imageUpload.isNotEmpty)
+              FFButtonWidget(
+                onPressed: () async {
+                  if ((_model.uploadedLocalFile.bytes?.isNotEmpty ?? false)) {
+                    _model.imageToken =
+                        await action_blocks.tokenReload(context);
+                    if (_model.imageToken!) {
+                      _model.apiResultImage =
+                          await UploadFileGroup.uploadListFileCall.call(
+                        accessToken: FFAppState().accessToken,
+                        fileList: _model.imageUpload,
+                      );
 
-                    if ((_model.apiResultImage?.succeeded ?? true)) {
-                      if (FileUploadStruct.maybeFromMap(
-                                  (_model.apiResultImage?.jsonBody ?? ''))!
-                              .data
-                              .length >=
-                          2) {
-                        while (_model.loop <
-                            FileUploadStruct.maybeFromMap(
+                      if ((_model.apiResultImage?.succeeded ?? true)) {
+                        if (FileUploadStruct.maybeFromMap(
                                     (_model.apiResultImage?.jsonBody ?? ''))!
                                 .data
-                                .length) {
-                          _model.addToListUploadImage(
+                                .length >=
+                            2) {
+                          while (_model.loop <
                               FileUploadStruct.maybeFromMap(
                                       (_model.apiResultImage?.jsonBody ?? ''))!
-                                  .data[_model.loop]
-                                  .id);
+                                  .data
+                                  .length) {
+                            _model.addToListUploadImage(
+                                FileUploadStruct.maybeFromMap(
+                                        (_model.apiResultImage?.jsonBody ??
+                                            ''))!
+                                    .data[_model.loop]
+                                    .id);
+                            setState(() {});
+                            _model.loop = _model.loop + 1;
+                            setState(() {});
+                          }
+                          _model.loop = 0;
                           setState(() {});
-                          _model.loop = _model.loop + 1;
+                        } else {
+                          _model.addToListUploadImage(getJsonField(
+                            (_model.apiResultImage?.jsonBody ?? ''),
+                            r'''$.data.id''',
+                          ).toString());
                           setState(() {});
                         }
-                        _model.loop = 0;
-                        setState(() {});
-                      } else {
-                        _model.addToListUploadImage(getJsonField(
-                          (_model.apiResultImage?.jsonBody ?? ''),
-                          r'''$.data.id''',
-                        ).toString());
-                        setState(() {});
                       }
+                    } else {
+                      setState(() {});
                     }
-                  } else {
-                    setState(() {});
                   }
-                }
-                await widget.callback?.call(
-                  _model.listUploadImage,
-                );
-                _model.imageUpload = [];
-                setState(() {});
+                  await widget.callback?.call(
+                    _model.listUploadImage,
+                  );
+                  _model.imageUpload = [];
+                  setState(() {});
 
-                setState(() {});
-              },
-              text: 'Lưu',
-              icon: Icon(
-                Icons.save_alt,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                size: 20.0,
+                  setState(() {});
+                },
+                text: 'Lưu',
+                icon: Icon(
+                  Icons.save_alt,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  size: 20.0,
+                ),
+                options: FFButtonOptions(
+                  width: 110.0,
+                  height: 35.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Nunito Sans',
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        fontSize: 13.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.normal,
+                      ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
               ),
-              options: FFButtonOptions(
-                width: 110.0,
-                height: 35.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      fontSize: 13.0,
-                      letterSpacing: 0.0,
-                      fontWeight: FontWeight.normal,
-                    ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-            ),
           ].divide(const SizedBox(width: 8.0)),
         ),
       ].divide(const SizedBox(height: 8.0)),

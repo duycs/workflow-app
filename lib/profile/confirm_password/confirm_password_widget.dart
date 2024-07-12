@@ -10,7 +10,12 @@ import 'confirm_password_model.dart';
 export 'confirm_password_model.dart';
 
 class ConfirmPasswordWidget extends StatefulWidget {
-  const ConfirmPasswordWidget({super.key});
+  const ConfirmPasswordWidget({
+    super.key,
+    this.callBack,
+  });
+
+  final Future Function(bool check)? callBack;
 
   @override
   State<ConfirmPasswordWidget> createState() => _ConfirmPasswordWidgetState();
@@ -127,7 +132,7 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 20.0),
+                                16.0, 0.0, 16.0, 20.0),
                             child: Text(
                               'Quý khách vui lòng nhập mật khẩu để kích hoạt chức năng này',
                               textAlign: TextAlign.center,
@@ -143,7 +148,7 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                           ),
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                8.0, 0.0, 8.0, 0.0),
+                                16.0, 0.0, 16.0, 0.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -173,14 +178,14 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                                           fontFamily: 'Nunito Sans',
                                           letterSpacing: 0.0,
                                         ),
-                                    enabledBorder: UnderlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                         color: Color(0x00000000),
                                         width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    focusedBorder: UnderlineInputBorder(
+                                    focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -188,7 +193,7 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    errorBorder: UnderlineInputBorder(
+                                    errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
@@ -196,7 +201,7 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
-                                    focusedErrorBorder: UnderlineInputBorder(
+                                    focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
@@ -252,15 +257,15 @@ class _ConfirmPasswordWidgetState extends State<ConfirmPasswordWidget> {
                       if (_model.checkReloadTokenLogin!) {
                         _model.apiResultLoginSetting =
                             await AuthenGroup.loginCall.call(
-                          email: getJsonField(
-                            FFAppState().staffLogin,
-                            r'''$.email''',
-                          ).toString(),
+                          email: FFAppState().user.email,
                           password: _model.textController.text,
                         );
 
                         shouldSetState = true;
                         if ((_model.apiResultLoginSetting?.succeeded ?? true)) {
+                          await widget.callBack?.call(
+                            true,
+                          );
                           Navigator.pop(context);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

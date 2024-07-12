@@ -2,21 +2,21 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import 'package:flutter/material.dart';
-import 'time_keeping_setting_location_model.dart';
-export 'time_keeping_setting_location_model.dart';
+import 'time_keeping_location_model.dart';
+export 'time_keeping_location_model.dart';
 
-class TimeKeepingSettingLocationWidget extends StatefulWidget {
-  const TimeKeepingSettingLocationWidget({super.key});
+class TimeKeepingLocationWidget extends StatefulWidget {
+  const TimeKeepingLocationWidget({super.key});
 
   @override
-  State<TimeKeepingSettingLocationWidget> createState() =>
-      _TimeKeepingSettingLocationWidgetState();
+  State<TimeKeepingLocationWidget> createState() =>
+      _TimeKeepingLocationWidgetState();
 }
 
-class _TimeKeepingSettingLocationWidgetState
-    extends State<TimeKeepingSettingLocationWidget> {
-  late TimeKeepingSettingLocationModel _model;
+class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
+  late TimeKeepingLocationModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +27,7 @@ class _TimeKeepingSettingLocationWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TimeKeepingSettingLocationModel());
+    _model = createModel(context, () => TimeKeepingLocationModel());
   }
 
   @override
@@ -85,14 +85,31 @@ class _TimeKeepingSettingLocationWidgetState
                           ),
                     ),
                   ),
-                  Text(
-                    'Tiếp tục',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          color: FlutterFlowTheme.of(context).primary,
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                        ),
+                  FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    text: 'Lưu',
+                    options: FFButtonOptions(
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Nunito Sans',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
                   ),
                 ],
               ),
@@ -282,37 +299,55 @@ class _TimeKeepingSettingLocationWidgetState
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
-                      },
-                      text: 'Thêm địa chỉ',
-                      icon: const Icon(
-                        Icons.add_home_outlined,
-                        size: 24.0,
-                      ),
-                      options: FFButtonOptions(
-                        height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
+                  Builder(
+                    builder: (context) => Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (dialogContext) {
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: const SizedBox(
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                  child: TimeKeepingLocationCreatedWidget(),
                                 ),
-                        elevation: 3.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
+                        text: 'Thêm địa chỉ',
+                        icon: const Icon(
+                          Icons.add_home_outlined,
+                          size: 24.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
                       ),
                     ),
                   ),

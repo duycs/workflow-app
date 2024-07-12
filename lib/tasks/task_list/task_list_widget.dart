@@ -153,7 +153,6 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             child: ProcedurePublishedWidget(
                               callback: () async {
-                                await _model.getTaskToDo(context);
                                 await _model.getNumberTask(context);
                                 setState(() => _model.listViewPagingController1
                                     ?.refresh());
@@ -1092,7 +1091,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                   .showSnackBar(
                                                                 SnackBar(
                                                                   content: Text(
-                                                                    'Submit thành công',
+                                                                    'Hoàn thành nhiệm vụ',
                                                                     style:
                                                                         TextStyle(
                                                                       color: FlutterFlowTheme.of(
@@ -1115,7 +1114,7 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                   .showSnackBar(
                                                                 SnackBar(
                                                                   content: Text(
-                                                                    'Submit thất bại',
+                                                                    'Hoàn thành thất bại',
                                                                     style:
                                                                         TextStyle(
                                                                       color: FlutterFlowTheme.of(
@@ -1164,6 +1163,15 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                     OneWorkFlowDataStruct.maybeFromMap((_model.apiResultGetWorkflowCopy?.jsonBody ??
                                                                             ''))
                                                                         ?.data;
+                                                                _model.nextStep = _model
+                                                                    .stepList
+                                                                    ?.steps
+                                                                    .where((e) =>
+                                                                        e.number ==
+                                                                        (dataListItem.number +
+                                                                            1))
+                                                                    .toList()
+                                                                    .first;
                                                                 setState(() {});
                                                               }
                                                               if (_model
@@ -1175,12 +1183,11 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 while (_model
                                                                         .loop <
                                                                     _model
-                                                                        .stepList!
-                                                                        .steps
+                                                                        .nextStep!
+                                                                        .tasks
                                                                         .where((e) =>
-                                                                            e.number ==
-                                                                            (dataListItem.number +
-                                                                                1))
+                                                                            e.publishedCount ==
+                                                                            dataListItem.publishedCount)
                                                                         .toList()
                                                                         .first
                                                                         .staffs
@@ -1205,9 +1212,9 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                               .workflowId
                                                                               .id,
                                                                       staffId: (_model
-                                                                              .stepList
-                                                                              ?.steps
-                                                                              .where((e) => e.number == (dataListItem.number + 1))
+                                                                              .nextStep
+                                                                              ?.tasks
+                                                                              .where((e) => e.publishedCount == dataListItem.publishedCount)
                                                                               .toList()
                                                                               .first
                                                                               .staffs[_model.loop])

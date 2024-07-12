@@ -22,6 +22,8 @@ class ProfileUserSettingModel
 
   bool? load = false;
 
+  bool checkLogin = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -50,7 +52,7 @@ class ProfileUserSettingModel
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
   // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in SwitchListTile widget.
-  bool? authenticateUsingBiometriceSettingLoad1;
+  bool? authenticateUsingBiometriceSetting1;
   // Stores action output result for [Action Block - tokenReload] action in SwitchListTile widget.
   bool? checktokenReloadBiometricsSetting;
   // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.

@@ -55,12 +55,16 @@ Future<String?> sshkey(
     // tạo privateKey
 
     var privateKey = await RSA.convertJWKToPrivateKey(str, pkcs12);
+
     print('result ${privateKey}');
     var publicKey = await RSA.convertJWKToPublicKey(str, pkcs12);
-    print('result ${publicKey}');
-    return '1';
+    if (publicKey != null) {
+      print('result ${publicKey}');
+      return publicKey;
+    } else
+      null;
   } catch (e) {
     print('erro ${e}');
-    return '12';
+    return null;
   }
 }

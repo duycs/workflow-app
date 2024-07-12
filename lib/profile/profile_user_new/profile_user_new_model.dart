@@ -18,6 +18,8 @@ class ProfileUserNewModel extends FlutterFlowModel<ProfileUserNewWidget> {
 
   dynamic dataStaff;
 
+  String checkShow = '1';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

@@ -711,7 +711,6 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                                           0.0, 8.0, 0.0, 8.0),
                                                   child: Container(
                                                     width: double.infinity,
-                                                    height: 40.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)

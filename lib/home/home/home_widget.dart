@@ -71,6 +71,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                 child: Image.network(
                   '${FFAppConstants.ApiBaseUrl}/assets/${FFAppState().user.avatar}?access_token=${FFAppState().accessToken}',
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    'assets/images/error_image.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -85,47 +89,48 @@ class _HomeWidgetState extends State<HomeWidget> {
                     ),
               ),
             ),
-            InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                context.goNamed(
-                  'Noti',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
-              },
-              child: badges.Badge(
-                badgeContent: Text(
-                  '1',
-                  style: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Nunito Sans',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
+            if (FFAppState().IsInDevelopment)
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.goNamed(
+                    'Noti',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: const TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
                       ),
-                ),
-                showBadge: true,
-                shape: badges.BadgeShape.circle,
-                badgeColor: FlutterFlowTheme.of(context).primary,
-                elevation: 4.0,
-                padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                position: badges.BadgePosition.topEnd(),
-                animationType: badges.BadgeAnimationType.scale,
-                toAnimate: true,
-                child: FaIcon(
-                  FontAwesomeIcons.bell,
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 24.0,
+                    },
+                  );
+                },
+                child: badges.Badge(
+                  badgeContent: Text(
+                    '1',
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Nunito Sans',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  showBadge: true,
+                  shape: badges.BadgeShape.circle,
+                  badgeColor: FlutterFlowTheme.of(context).primary,
+                  elevation: 4.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                  position: badges.BadgePosition.topEnd(),
+                  animationType: badges.BadgeAnimationType.scale,
+                  toAnimate: true,
+                  child: FaIcon(
+                    FontAwesomeIcons.bell,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
                 ),
               ),
-            ),
           ].divide(const SizedBox(width: 16.0)),
         ),
         actions: const [],
@@ -296,20 +301,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            FlutterFlowIconButton(
-                                              borderRadius: 12.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 40.0,
-                                              fillColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              icon: Icon(
-                                                Icons.open_in_new_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 24.0,
-                                              ),
+                                            FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed(
                                                   'MarketPlace',
@@ -326,7 +318,75 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   },
                                                 );
                                               },
+                                              text: 'Khám phá ngay',
+                                              icon: const Icon(
+                                                Icons.open_in_new_outlined,
+                                                size: 24.0,
+                                              ),
+                                              options: FFButtonOptions(
+                                                height: 36.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .green,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Nunito Sans',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(18.0),
+                                              ),
                                             ),
+                                            if (false)
+                                              FlutterFlowIconButton(
+                                                borderRadius: 12.0,
+                                                borderWidth: 1.0,
+                                                buttonSize: 40.0,
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                icon: Icon(
+                                                  Icons.open_in_new_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 24.0,
+                                                ),
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                    'MarketPlace',
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                },
+                                              ),
                                             if ((FFAppState().user.role !=
                                                     '3755a98d-f064-45cd-80e4-5084ab1dd2c4') &&
                                                 (FFAppState().Author == null))
@@ -363,7 +423,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     size: 22.0,
                                                   ),
                                                   options: FFButtonOptions(
-                                                    height: 35.0,
+                                                    height: 36.0,
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 0.0,
@@ -1303,7 +1363,421 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ].divide(const SizedBox(width: 12.0)),
                       ),
                     ),
-                  ].addToEnd(const SizedBox(height: 100.0)),
+                    if (FFAppState().IsInDevelopment)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 30.0, 20.0, 10.0),
+                        child: Text(
+                          'Chấm công',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                        ),
+                      ),
+                    if (FFAppState().IsInDevelopment)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  _model.checkColorBorder = '15';
+                                  setState(() {});
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 10));
+                                  _model.checkColorBorder = '';
+                                  setState(() {});
+
+                                  context.pushNamed(
+                                    'TimeKeeping',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 70.0,
+                                  height: 90.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: _model.checkColorBorder == '15'
+                                          ? FlutterFlowTheme.of(context).primary
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                    ),
+                                  ),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        4.0, 12.0, 4.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Icon(
+                                          Icons.fact_check_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 30.0,
+                                        ),
+                                        Text(
+                                          'Chấm công',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Nunito Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                fontSize: 13.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ].divide(const SizedBox(height: 2.0)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                (FFAppState().user.role ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                (FFAppState().user.role ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '11';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingGroup',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 70.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '11'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 12.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.format_list_bulleted_add,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Cấu hình',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                (FFAppState().user.role ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                (FFAppState().user.role ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '12';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingLocationList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 70.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '12'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 12.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.share_location_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Vị trí',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                (FFAppState().user.role ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                (FFAppState().user.role ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '13';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingShiftList',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 70.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '13'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 12.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.six_ft_apart_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Ca làm việc',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            if ((FFAppState().user.role == '6a8bc644-cb2d-4a31-b11e-b86e19824725') ||
+                                (FFAppState().user.role ==
+                                    '82073000-1ba2-43a4-a55c-459d17c23b68') ||
+                                (FFAppState().user.role ==
+                                    'a8d33527-375b-4599-ac70-6a3fcad1de39'))
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.checkColorBorder = '14';
+                                    setState(() {});
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 10));
+                                    _model.checkColorBorder = '';
+                                    setState(() {});
+
+                                    context.pushNamed(
+                                      'TimekeepingReport',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: const TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 70.0,
+                                    height: 90.0,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12.0),
+                                      border: Border.all(
+                                        color: _model.checkColorBorder == '14'
+                                            ? FlutterFlowTheme.of(context)
+                                                .primary
+                                            : FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                      ),
+                                    ),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          4.0, 12.0, 4.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.chartBar,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 30.0,
+                                          ),
+                                          Text(
+                                            'Báo cáo',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Nunito Sans',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ].divide(const SizedBox(height: 2.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ].divide(const SizedBox(width: 12.0)),
+                        ),
+                      ),
+                  ].addToEnd(const SizedBox(height: 110.0)),
                 ),
               ),
             ),

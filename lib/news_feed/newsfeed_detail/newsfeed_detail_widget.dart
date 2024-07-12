@@ -712,7 +712,7 @@ class _NewsfeedDetailWidgetState extends State<NewsfeedDetailWidget>
                                                             .id ==
                                                         FFAppState().user.id)
                                                     .toList().isEmpty) &&
-                                            (FFAppState().user.id ==
+                                            (FFAppState().user.id !=
                                                 _model.newsfeedItem?.userCreated
                                                     .id))
                                           FFButtonWidget(

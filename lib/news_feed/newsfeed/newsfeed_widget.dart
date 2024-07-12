@@ -402,14 +402,14 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 90.0,
-                                    buttonSize: 40.0,
+                                    buttonSize: 50.0,
                                     hoverColor:
                                         FlutterFlowTheme.of(context).alternate,
                                     icon: Icon(
                                       Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 22.0,
+                                      size: 24.0,
                                     ),
                                     onPressed: () async {
                                       await showModalBottomSheet(
@@ -1430,14 +1430,14 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                       0.0, 0.0, 16.0, 0.0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 90.0,
-                                    buttonSize: 40.0,
+                                    buttonSize: 50.0,
                                     hoverColor:
                                         FlutterFlowTheme.of(context).alternate,
                                     icon: Icon(
                                       Icons.add,
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryText,
-                                      size: 22.0,
+                                      size: 24.0,
                                     ),
                                     onPressed: () async {
                                       await showModalBottomSheet(
@@ -1595,7 +1595,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                             0,
                             0,
                             0,
-                            70.0,
+                            150.0,
                           ),
                           primary: false,
                           shrinkWrap: true,
@@ -1639,7 +1639,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
+                                      0.0, 8.0, 0.0, 8.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
@@ -2476,7 +2476,7 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: [
                                               // Cập nhật yêu thích
                                               if (newsfeedItem.reacts
@@ -2486,8 +2486,104 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                       .toList()
                                                       .length ==
                                                   0)
-                                                Semantics(
-                                                  label: 'Yêu thích',
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 8.0, 0.0),
+                                                  child: Semantics(
+                                                    label: 'Yêu thích',
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await _model
+                                                            .reactNewsfeed(
+                                                          context,
+                                                          newsId:
+                                                              newsfeedItem.id,
+                                                        );
+                                                        setState(() {});
+                                                        setState(() => _model
+                                                            .listViewPagingController
+                                                            ?.refresh());
+                                                        await _model
+                                                            .waitForOnePageForListView();
+                                                      },
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      20.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      4.0,
+                                                                      8.0,
+                                                                      4.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .favorite_border,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 20.0,
+                                                              ),
+                                                              Text(
+                                                                'Thích',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Nunito Sans',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                              ),
+                                                            ].divide(const SizedBox(
+                                                                width: 4.0)),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              if (newsfeedItem.reacts
+                                                      .where((e) =>
+                                                          e.reactsId.staffId ==
+                                                          FFAppState().staffid)
+                                                      .toList()
+                                                      .length >
+                                                  0)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 8.0, 0.0),
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
@@ -2499,16 +2595,23 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       await _model
-                                                          .reactNewsfeed(
+                                                          .reactNewsfeedDelete(
                                                         context,
-                                                        newsId: newsfeedItem.id,
+                                                        reactId: newsfeedItem
+                                                            .reacts
+                                                            .where((e) =>
+                                                                e.reactsId
+                                                                    .staffId ==
+                                                                FFAppState()
+                                                                    .staffid)
+                                                            .toList()
+                                                            .first
+                                                            .id,
                                                       );
                                                       setState(() {});
                                                       setState(() => _model
                                                           .listViewPagingController
                                                           ?.refresh());
-                                                      await _model
-                                                          .waitForOnePageForListView();
                                                     },
                                                     child: Container(
                                                       decoration: BoxDecoration(
@@ -2534,12 +2637,10 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                               MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Icon(
-                                                              Icons
-                                                                  .favorite_border,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
+                                                            const Icon(
+                                                              Icons.favorite,
+                                                              color: Color(
+                                                                  0xFFF40A0A),
                                                               size: 20.0,
                                                             ),
                                                             Text(
@@ -2560,93 +2661,6 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           ].divide(const SizedBox(
                                                               width: 4.0)),
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              if (newsfeedItem.reacts
-                                                      .where((e) =>
-                                                          e.reactsId.staffId ==
-                                                          FFAppState().staffid)
-                                                      .toList()
-                                                      .length >
-                                                  0)
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    await _model
-                                                        .reactNewsfeedDelete(
-                                                      context,
-                                                      reactId: newsfeedItem
-                                                          .reacts
-                                                          .where((e) =>
-                                                              e.reactsId
-                                                                  .staffId ==
-                                                              FFAppState()
-                                                                  .staffid)
-                                                          .toList()
-                                                          .first
-                                                          .id,
-                                                    );
-                                                    setState(() {});
-                                                    setState(() => _model
-                                                        .listViewPagingController
-                                                        ?.refresh());
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryBackground,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  4.0,
-                                                                  8.0,
-                                                                  4.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          const Icon(
-                                                            Icons.favorite,
-                                                            color: Color(
-                                                                0xFFF40A0A),
-                                                            size: 20.0,
-                                                          ),
-                                                          Text(
-                                                            'Thích',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito Sans',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                          ),
-                                                        ].divide(const SizedBox(
-                                                            width: 4.0)),
                                                       ),
                                                     ),
                                                   ),
@@ -2710,63 +2724,61 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                     ).then((value) =>
                                                         safeSetState(() {}));
                                                   },
-                                                  child: SafeArea(
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(90.0),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    4.0,
-                                                                    8.0,
-                                                                    4.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Text(
-                                                                'Nhập bình luận',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Icon(
-                                                              Icons.tag_faces,
-                                                              color: FlutterFlowTheme
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              90.0),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  4.0,
+                                                                  8.0,
+                                                                  4.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Nhập bình luận',
+                                                              style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito Sans',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                          Icon(
+                                                            Icons.tag_faces,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 8.0)),
+                                            ],
                                           ),
                                         ],
                                       ),

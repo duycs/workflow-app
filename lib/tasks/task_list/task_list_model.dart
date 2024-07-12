@@ -86,6 +86,11 @@ class TaskListModel extends FlutterFlowModel<TaskListWidget> {
           int index, Function(FileDataTypeStruct) updateFn) =>
       listFileDataType[index] = updateFn(listFileDataType[index]);
 
+  StepsStruct? nextStep;
+  void updateNextStepStruct(Function(StepsStruct) updateFn) {
+    updateFn(nextStep ??= StepsStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

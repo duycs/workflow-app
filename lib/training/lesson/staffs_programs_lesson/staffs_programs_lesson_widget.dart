@@ -491,214 +491,214 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .end,
-                                                            children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .attach_file_sharp,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                size: 18.0,
-                                                              ),
-                                                              Text(
-                                                                'Tài liệu khác:',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Nunito Sans',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
-                                                              if ((_model.checkFile ==
-                                                                      '1') &&
-                                                                  (_model
-                                                                          .staffsLessionsListOne
-                                                                          .first
-                                                                          .lessionId
-                                                                          .file !=
-                                                                      null) &&
-                                                                  (((((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdf') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdfa') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdfx') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdft') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdfvt') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'pdfua')) ||
-                                                                      ((((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'jpeg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'png') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'gif') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'jpg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'bmp') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'tiff') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'tif') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'raw') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'webp') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'svg') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'heic') ||
-                                                                          (((String type) {
-                                                                                return type.split('.').last;
-                                                                              }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
-                                                                              'heif'))) &&
-                                                                  (_model.status != 'draft'))
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          2.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          1.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      _model.checkFile =
-                                                                          '0';
-                                                                      setState(
-                                                                          () {});
-                                                                    },
-                                                                    child: Text(
-                                                                      '(Mở file)',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontStyle:
-                                                                                FontStyle.italic,
-                                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        3.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .attach_file_sharp,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 18.0,
+                                                                ),
+                                                                Text(
+                                                                  'Tài liệu khác:',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Nunito Sans',
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                                if ((_model.checkFile ==
+                                                                        '1') &&
+                                                                    (_model
+                                                                            .staffsLessionsListOne
+                                                                            .first
+                                                                            .lessionId
+                                                                            .file !=
+                                                                        null) &&
+                                                                    (((((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdf') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdfa') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdfx') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdft') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdfvt') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'pdfua')) ||
+                                                                        ((((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'jpeg') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'png') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'gif') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'jpg') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'bmp') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'tiff') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'tif') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'raw') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'webp') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'svg') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'heic') ||
+                                                                            (((String type) {
+                                                                                  return type.split('.').last;
+                                                                                }(_model.staffsLessionsListOne.first.lessionId.file.filenameDownload)) ==
+                                                                                'heif'))) &&
+                                                                    (_model.status != 'draft'))
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            2.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            1.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        _model.checkFile =
+                                                                            '0';
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        '(Mở file)',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontStyle: FontStyle.italic,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              if (_model
-                                                                      .checkFile ==
-                                                                  '0')
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          2.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          1.0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    splashColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    focusColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    hoverColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    highlightColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    onTap:
-                                                                        () async {
-                                                                      _model.checkFile =
-                                                                          '1';
-                                                                      setState(
-                                                                          () {});
-                                                                    },
-                                                                    child: Text(
-                                                                      '(Đóng file)',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Nunito Sans',
-                                                                            fontSize:
-                                                                                13.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontStyle:
-                                                                                FontStyle.italic,
-                                                                          ),
+                                                                if (_model
+                                                                        .checkFile ==
+                                                                    '0')
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            2.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            1.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      onTap:
+                                                                          () async {
+                                                                        _model.checkFile =
+                                                                            '1';
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        '(Đóng file)',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Nunito Sans',
+                                                                              fontSize: 13.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontStyle: FontStyle.italic,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                            ],
+                                                              ],
+                                                            ),
                                                           ),
                                                           Row(
                                                             mainAxisSize:

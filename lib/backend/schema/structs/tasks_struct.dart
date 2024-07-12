@@ -14,6 +14,7 @@ class TasksStruct extends BaseStruct {
     String? dateStart,
     String? dateEnd,
     List<TasksStaffsIdStruct>? staffs,
+    int? publishedCount,
   })  : _id = id,
         _status = status,
         _name = name,
@@ -21,7 +22,8 @@ class TasksStruct extends BaseStruct {
         _content = content,
         _dateStart = dateStart,
         _dateEnd = dateEnd,
-        _staffs = staffs;
+        _staffs = staffs,
+        _publishedCount = publishedCount;
 
   // "id" field.
   String? _id;
@@ -83,6 +85,16 @@ class TasksStruct extends BaseStruct {
 
   bool hasStaffs() => _staffs != null;
 
+  // "published_count" field.
+  int? _publishedCount;
+  int get publishedCount => _publishedCount ?? 0;
+  set publishedCount(int? val) => _publishedCount = val;
+
+  void incrementPublishedCount(int amount) =>
+      publishedCount = publishedCount + amount;
+
+  bool hasPublishedCount() => _publishedCount != null;
+
   static TasksStruct fromMap(Map<String, dynamic> data) => TasksStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -95,6 +107,7 @@ class TasksStruct extends BaseStruct {
           data['staffs'],
           TasksStaffsIdStruct.fromMap,
         ),
+        publishedCount: castToType<int>(data['published_count']),
       );
 
   static TasksStruct? maybeFromMap(dynamic data) =>
@@ -109,6 +122,7 @@ class TasksStruct extends BaseStruct {
         'date_start': _dateStart,
         'date_end': _dateEnd,
         'staffs': _staffs?.map((e) => e.toMap()).toList(),
+        'published_count': _publishedCount,
       }.withoutNulls;
 
   @override
@@ -145,6 +159,10 @@ class TasksStruct extends BaseStruct {
           _staffs,
           ParamType.DataStruct,
           isList: true,
+        ),
+        'published_count': serializeParam(
+          _publishedCount,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -191,6 +209,11 @@ class TasksStruct extends BaseStruct {
           true,
           structBuilder: TasksStaffsIdStruct.fromSerializableMap,
         ),
+        publishedCount: deserializeParam(
+          data['published_count'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -207,12 +230,22 @@ class TasksStruct extends BaseStruct {
         content == other.content &&
         dateStart == other.dateStart &&
         dateEnd == other.dateEnd &&
-        listEquality.equals(staffs, other.staffs);
+        listEquality.equals(staffs, other.staffs) &&
+        publishedCount == other.publishedCount;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [id, status, name, description, content, dateStart, dateEnd, staffs]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        status,
+        name,
+        description,
+        content,
+        dateStart,
+        dateEnd,
+        staffs,
+        publishedCount
+      ]);
 }
 
 TasksStruct createTasksStruct({
@@ -223,6 +256,7 @@ TasksStruct createTasksStruct({
   String? content,
   String? dateStart,
   String? dateEnd,
+  int? publishedCount,
 }) =>
     TasksStruct(
       id: id,
@@ -232,4 +266,5 @@ TasksStruct createTasksStruct({
       content: content,
       dateStart: dateStart,
       dateEnd: dateEnd,
+      publishedCount: publishedCount,
     );

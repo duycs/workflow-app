@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.dart';
+import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
 import 'package:flutter/material.dart';
 import 'timekeeping_create_model.dart';
 export 'timekeeping_create_model.dart';
@@ -72,7 +73,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
             children: [
               Expanded(
                 child: Text(
-                  'Tạo hình thức chấm công',
+                  'Tạo cấu hình chấm công',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Nunito Sans',
                         color: FlutterFlowTheme.of(context).primaryText,
@@ -81,13 +82,42 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       ),
                 ),
               ),
-              Text(
-                'Tiếp tục',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Nunito Sans',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Builder(
+                builder: (context) => InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (dialogContext) {
+                        return Dialog(
+                          elevation: 0,
+                          insetPadding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent,
+                          alignment: const AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
+                          child: GestureDetector(
+                            onTap: () => _model.unfocusNode.canRequestFocus
+                                ? FocusScope.of(context)
+                                    .requestFocus(_model.unfocusNode)
+                                : FocusScope.of(context).unfocus(),
+                            child: const TimekeepingShiftWidget(),
+                          ),
+                        );
+                      },
+                    ).then((value) => setState(() {}));
+                  },
+                  child: Text(
+                    'Tiếp tục',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Nunito Sans',
+                          color: FlutterFlowTheme.of(context).primary,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -897,21 +927,22 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                         ChipData('HCNS'),
                         ChipData('Truyền thông')
                       ],
-                      onChanged: ('1' == '2')
+                      onChanged: ('1' == '1')
                           ? null
                           : (val) => setState(
                               () => _model.choiceChipsValue = val?.firstOrNull),
                       selectedChipStyle: ChipStyle(
                         backgroundColor: FlutterFlowTheme.of(context).secondary,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .bodyMedium
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 13.0,
-                              letterSpacing: 0.0,
-                            ),
-                        iconColor: FlutterFlowTheme.of(context).primaryText,
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Nunito Sans',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  fontSize: 13.0,
+                                  letterSpacing: 0.0,
+                                ),
+                        iconColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
                         iconSize: 18.0,
                         elevation: 0.0,
                         borderRadius: BorderRadius.circular(16.0),
@@ -939,6 +970,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           FormFieldController<List<String>>(
                         [],
                       ),
+                      disabledColor: FlutterFlowTheme.of(context).secondary,
                       wrapped: true,
                     ),
                   ),
@@ -1014,93 +1046,110 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                           ),
                     ),
                   ),
-                  ListView(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Hồng Ánh Lan Anh',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+                    child: ListView(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).secondary,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 4.0),
+                                    child: Text(
+                                      'Hồng Ánh Lan Anh',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.delete_outline,
-                                  color: FlutterFlowTheme.of(context).error,
-                                  size: 24.0,
+                                FlutterFlowIconButton(
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    color: FlutterFlowTheme.of(context).error,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Đạt nguyễn',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).secondary,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                10.0, 0.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 4.0),
+                                    child: Text(
+                                      'Đạt nguyễn',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 20.0,
-                                borderWidth: 1.0,
-                                buttonSize: 40.0,
-                                icon: Icon(
-                                  Icons.delete_outline,
-                                  color: FlutterFlowTheme.of(context).error,
-                                  size: 24.0,
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 20.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    color: FlutterFlowTheme.of(context).error,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () {
+                                    print('IconButton pressed ...');
+                                  },
                                 ),
-                                onPressed: () {
-                                  print('IconButton pressed ...');
-                                },
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ].divide(const SizedBox(height: 2.0)),
+                      ].divide(const SizedBox(height: 2.0)),
+                    ),
                   ),
                 ].addToEnd(const SizedBox(height: 32.0)),
               ),

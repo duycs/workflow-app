@@ -368,21 +368,21 @@ class _ProcedurePublishedListWidgetState
                               ).toString()}\"}}';
                             } else if (FFAppState().user.role ==
                                 'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                              return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
+                              return ',{\"steps\":{\"tasks\":{\"staffs\":{\"staffs_id\":{\"branch_id\":{\"_eq\":\"${getJsonField(
                                 FFAppState().staffLogin,
                                 r'''$.branch_id''',
-                              ).toString()}\"}}}}}';
+                              ).toString()}\"}}}}}}';
                             } else if (FFAppState().user.role ==
                                 '6a8bc644-cb2d-4a31-b11e-b86e19824725') {
-                              return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
+                              return ',{\"steps\":{\"tasks\":{\"staffs\":{\"staffs_id\":{\"department_id\":{\"_eq\":\"${getJsonField(
                                 FFAppState().staffLogin,
                                 r'''$.department_id''',
-                              ).toString()}\"}}}}}';
+                              ).toString()}\"}}}}}}';
                             } else {
-                              return ',{\"steps\":{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                              return ',{\"steps\":{\"tasks\":{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                 FFAppState().staffLogin,
                                 r'''$.id''',
-                              ).toString()}\"}}}}}';
+                              ).toString()}\"}}}}}}';
                             }
                           }()}${(_model.searchName != '') && (_model.searchName != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.searchName}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
                               return DateTime.parse(var1)

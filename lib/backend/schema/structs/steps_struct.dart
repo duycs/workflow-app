@@ -24,6 +24,7 @@ class StepsStruct extends BaseStruct {
     int? estimateInSecond,
     String? timeOperate,
     List<DepartmentListStruct>? departments,
+    List<TasksStruct>? tasks,
   })  : _id = id,
         _status = status,
         _description = description,
@@ -41,7 +42,8 @@ class StepsStruct extends BaseStruct {
         _staffsAlias = staffsAlias,
         _estimateInSecond = estimateInSecond,
         _timeOperate = timeOperate,
-        _departments = departments;
+        _departments = departments,
+        _tasks = tasks;
 
   // "id" field.
   String? _id;
@@ -194,6 +196,17 @@ class StepsStruct extends BaseStruct {
 
   bool hasDepartments() => _departments != null;
 
+  // "tasks" field.
+  List<TasksStruct>? _tasks;
+  List<TasksStruct> get tasks => _tasks ?? const [];
+  set tasks(List<TasksStruct>? val) => _tasks = val;
+
+  void updateTasks(Function(List<TasksStruct>) updateFn) {
+    updateFn(_tasks ??= []);
+  }
+
+  bool hasTasks() => _tasks != null;
+
   static StepsStruct fromMap(Map<String, dynamic> data) => StepsStruct(
         id: data['id'] as String?,
         status: data['status'] as String?,
@@ -222,6 +235,10 @@ class StepsStruct extends BaseStruct {
           data['departments'],
           DepartmentListStruct.fromMap,
         ),
+        tasks: getStructList(
+          data['tasks'],
+          TasksStruct.fromMap,
+        ),
       );
 
   static StepsStruct? maybeFromMap(dynamic data) =>
@@ -246,6 +263,7 @@ class StepsStruct extends BaseStruct {
         'estimate_in_second': _estimateInSecond,
         'time_operate': _timeOperate,
         'departments': _departments?.map((e) => e.toMap()).toList(),
+        'tasks': _tasks?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -322,6 +340,11 @@ class StepsStruct extends BaseStruct {
         ),
         'departments': serializeParam(
           _departments,
+          ParamType.DataStruct,
+          isList: true,
+        ),
+        'tasks': serializeParam(
+          _tasks,
           ParamType.DataStruct,
           isList: true,
         ),
@@ -424,6 +447,12 @@ class StepsStruct extends BaseStruct {
           true,
           structBuilder: DepartmentListStruct.fromSerializableMap,
         ),
+        tasks: deserializeStructParam<TasksStruct>(
+          data['tasks'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: TasksStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -450,7 +479,8 @@ class StepsStruct extends BaseStruct {
         staffsAlias == other.staffsAlias &&
         estimateInSecond == other.estimateInSecond &&
         timeOperate == other.timeOperate &&
-        listEquality.equals(departments, other.departments);
+        listEquality.equals(departments, other.departments) &&
+        listEquality.equals(tasks, other.tasks);
   }
 
   @override
@@ -472,7 +502,8 @@ class StepsStruct extends BaseStruct {
         staffsAlias,
         estimateInSecond,
         timeOperate,
-        departments
+        departments,
+        tasks
       ]);
 }
 
