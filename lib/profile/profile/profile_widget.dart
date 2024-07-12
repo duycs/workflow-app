@@ -178,6 +178,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                               ? '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}'
                                                               : ' ',
                                                           fit: BoxFit.contain,
+                                                          errorBuilder: (context,
+                                                                  error,
+                                                                  stackTrace) =>
+                                                              Image.asset(
+                                                            'assets/images/error_image.png',
+                                                            fit: BoxFit.contain,
+                                                          ),
                                                         ),
                                                         allowRotation: true,
                                                         tag: _model.staffDetail !=
@@ -207,6 +214,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       width: 90.0,
                                                       height: 90.0,
                                                       fit: BoxFit.cover,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                        'assets/images/error_image.png',
+                                                        width: 90.0,
+                                                        height: 90.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -3482,7 +3498,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                               ),
-                            ].addToEnd(const SizedBox(height: 200.0)),
+                            ].addToEnd(const SizedBox(height: 100.0)),
                           ),
                         ),
                         if (_model.checkLoading == false)

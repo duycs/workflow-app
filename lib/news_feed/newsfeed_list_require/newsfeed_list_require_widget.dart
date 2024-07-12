@@ -304,6 +304,14 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                           width: 300.0,
                                           height: 200.0,
                                           fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 300.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -603,6 +611,14 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
                                                   width: 180.0,
                                                   height: 150.0,
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    width: 180.0,
+                                                    height: 150.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                               if ((newsfeedListRequireItem

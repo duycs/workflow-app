@@ -321,6 +321,14 @@ class _Certificate1DownloadWidgetState
                                           width: 30.0,
                                           height: 30.0,
                                           fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 30.0,
+                                            height: 30.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                       Expanded(
@@ -459,6 +467,13 @@ class _Certificate1DownloadWidgetState
                           width: 50.0,
                           height: 50.0,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Image.asset(
+                            'assets/images/error_image.png',
+                            width: 50.0,
+                            height: 50.0,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       Container(

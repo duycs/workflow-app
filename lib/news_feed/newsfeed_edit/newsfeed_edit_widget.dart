@@ -434,6 +434,15 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     width: 100.0,
                                                     height: 100.0,
                                                     fit: BoxFit.cover,
+                                                    errorBuilder: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.png',
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -511,6 +520,15 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
                                                     width: 100.0,
                                                     height: 100.0,
                                                     fit: BoxFit.cover,
+                                                    errorBuilder: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.png',
+                                                      width: 100.0,
+                                                      height: 100.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                                 Padding(

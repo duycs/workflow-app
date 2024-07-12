@@ -483,6 +483,18 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                               height: double
                                                                   .infinity,
                                                               fit: BoxFit.cover,
+                                                              errorBuilder: (context,
+                                                                      error,
+                                                                      stackTrace) =>
+                                                                  Image.asset(
+                                                                'assets/images/error_image.png',
+                                                                width: double
+                                                                    .infinity,
+                                                                height: double
+                                                                    .infinity,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -1445,6 +1457,17 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             height:
                                                                 double.infinity,
                                                             fit: BoxFit.cover,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.png',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -2878,6 +2901,17 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                                             height:
                                                                 double.infinity,
                                                             fit: BoxFit.cover,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.png',
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -4004,6 +4038,15 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
                                               height: double.infinity,
                                               fit: BoxFit.cover,
                                               alignment: const Alignment(0.0, 0.0),
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                width: 100.0,
+                                                height: double.infinity,
+                                                fit: BoxFit.cover,
+                                                alignment: const Alignment(0.0, 0.0),
+                                              ),
                                             ),
                                           ),
                                           Expanded(

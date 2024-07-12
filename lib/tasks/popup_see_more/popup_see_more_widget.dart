@@ -124,6 +124,11 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
                                 image: Image.network(
                                   '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
                                   fit: BoxFit.contain,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                                 allowRotation: false,
                                 tag:
@@ -143,6 +148,12 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
                               '${FFAppConstants.ApiBaseUrl}/assets/${widget.fileId}?access_token=${FFAppState().accessToken}',
                               width: double.infinity,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                'assets/images/error_image.png',
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),

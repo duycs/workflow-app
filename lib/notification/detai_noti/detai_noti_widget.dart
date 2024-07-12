@@ -73,6 +73,12 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                       width: 80.0,
                       height: 60.0,
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
+                        'assets/images/error_image.png',
+                        width: 80.0,
+                        height: 60.0,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Expanded(

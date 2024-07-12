@@ -429,53 +429,65 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: OrderDetailWidget(
-                                            image: dataListItem
-                                                .programOrderItems
-                                                .first
-                                                .programId
-                                                .imageCover,
-                                            name: dataListItem.programOrderItems
-                                                .first.programId.name,
-                                            rating: 0.0,
-                                            author: dataListItem
-                                                .programOrderItems
-                                                .first
-                                                .programId
-                                                .authorId
-                                                .alias,
-                                            quantity: valueOrDefault<int>(
-                                              dataListItem.totalItem,
-                                              0,
-                                            ),
-                                            status: dataListItem.status,
-                                            price: valueOrDefault<String>(
-                                              dataListItem.programOrderItems
-                                                  .first.programId.price,
-                                              '0',
-                                            ),
-                                            numLessions: valueOrDefault<int>(
-                                              dataListItem
+                                          child: SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            child: OrderDetailWidget(
+                                              image: dataListItem
                                                   .programOrderItems
                                                   .first
                                                   .programId
-                                                  .lessions
-                                                  .length,
-                                              0,
+                                                  .imageCover,
+                                              name: dataListItem
+                                                  .programOrderItems
+                                                  .first
+                                                  .programId
+                                                  .name,
+                                              rating: 0.0,
+                                              author: dataListItem
+                                                  .programOrderItems
+                                                  .first
+                                                  .programId
+                                                  .authorId
+                                                  .alias,
+                                              quantity: valueOrDefault<int>(
+                                                dataListItem.totalItem,
+                                                0,
+                                              ),
+                                              status: dataListItem.status,
+                                              price: valueOrDefault<String>(
+                                                dataListItem.programOrderItems
+                                                    .first.programId.price,
+                                                '0',
+                                              ),
+                                              numLessions: valueOrDefault<int>(
+                                                dataListItem
+                                                    .programOrderItems
+                                                    .first
+                                                    .programId
+                                                    .lessions
+                                                    .length,
+                                                0,
+                                              ),
+                                              totalPrice:
+                                                  valueOrDefault<String>(
+                                                dataListItem.totalPrice,
+                                                '0',
+                                              ),
+                                              private: dataListItem.private
+                                                  .toString(),
+                                              code: dataListItem.code,
+                                              orderId: dataListItem.id,
+                                              programId: dataListItem
+                                                  .programOrderItems
+                                                  .first
+                                                  .programId
+                                                  .id,
                                             ),
-                                            totalPrice: valueOrDefault<String>(
-                                              dataListItem.totalPrice,
-                                              '0',
-                                            ),
-                                            private:
-                                                dataListItem.private.toString(),
-                                            code: dataListItem.code,
-                                            orderId: dataListItem.id,
-                                            programId: dataListItem
-                                                .programOrderItems
-                                                .first
-                                                .programId
-                                                .id,
                                           ),
                                         ),
                                       );
@@ -508,6 +520,15 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                                                       width: 100.0,
                                                       height: 110.0,
                                                       fit: BoxFit.cover,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                        'assets/images/error_image.png',
+                                                        width: 100.0,
+                                                        height: 110.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

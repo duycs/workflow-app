@@ -409,6 +409,12 @@ class _ListStaffProfileCompanyWidgetState
                                             image: Image.network(
                                               '${FFAppConstants.ApiBaseUrl}/assets/${imagesItem.userId.avatar}?access_token=${FFAppState().accessToken}',
                                               fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                fit: BoxFit.contain,
+                                              ),
                                             ),
                                             allowRotation: true,
                                             tag:
@@ -430,6 +436,14 @@ class _ListStaffProfileCompanyWidgetState
                                           width: 100.0,
                                           height: 50.0,
                                           fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 100.0,
+                                            height: 50.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -565,6 +579,14 @@ class _ListStaffProfileCompanyWidgetState
                                             width: 36.0,
                                             height: 36.0,
                                             fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              'assets/images/error_image.png',
+                                              width: 36.0,
+                                              height: 36.0,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                         Expanded(

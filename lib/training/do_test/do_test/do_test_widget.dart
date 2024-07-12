@@ -154,6 +154,15 @@ class _DoTestWidgetState extends State<DoTestWidget> {
                                           height: 200.0,
                                           fit: BoxFit.cover,
                                           alignment: const Alignment(0.0, 0.0),
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: double.infinity,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                            alignment: const Alignment(0.0, 0.0),
+                                          ),
                                         ),
                                       ),
                                     ),

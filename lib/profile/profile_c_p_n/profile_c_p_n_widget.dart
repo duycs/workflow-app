@@ -693,6 +693,18 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                   height: 40.0,
                                                                   fit: BoxFit
                                                                       .cover,
+                                                                  errorBuilder: (context,
+                                                                          error,
+                                                                          stackTrace) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    'assets/images/error_image.png',
+                                                                    width: 40.0,
+                                                                    height:
+                                                                        40.0,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  ),
                                                                 ),
                                                               ),
                                                             ),
@@ -987,6 +999,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               width: 40.0,
                                                                               height: 40.0,
                                                                               fit: BoxFit.cover,
+                                                                              errorBuilder: (context, error, stackTrace) => Image.asset(
+                                                                                'assets/images/error_image.png',
+                                                                                width: 40.0,
+                                                                                height: 40.0,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                           Padding(
@@ -1351,6 +1369,14 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                         '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.files.first.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                                         fit: BoxFit
                                                                             .contain,
+                                                                        errorBuilder: (context,
+                                                                                error,
+                                                                                stackTrace) =>
+                                                                            Image.asset(
+                                                                          'assets/images/error_image.png',
+                                                                          fit: BoxFit
+                                                                              .contain,
+                                                                        ),
                                                                       ),
                                                                       allowRotation:
                                                                           false,
@@ -1382,6 +1408,19 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                         208.0,
                                                                     fit: BoxFit
                                                                         .cover,
+                                                                    errorBuilder: (context,
+                                                                            error,
+                                                                            stackTrace) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      'assets/images/error_image.png',
+                                                                      width:
+                                                                          190.0,
+                                                                      height:
+                                                                          208.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1434,6 +1473,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                 Image.network(
                                                                               '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[1])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                                               fit: BoxFit.contain,
+                                                                              errorBuilder: (context, error, stackTrace) => Image.asset(
+                                                                                'assets/images/error_image.png',
+                                                                                fit: BoxFit.contain,
+                                                                              ),
                                                                             ),
                                                                             allowRotation:
                                                                                 false,
@@ -1463,6 +1506,16 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               100.0,
                                                                           fit: BoxFit
                                                                               .cover,
+                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                              Image.asset(
+                                                                            'assets/images/error_image.png',
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1508,6 +1561,10 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                                 Image.network(
                                                                               '${FFAppConstants.ApiBaseUrl}/assets/${(_model.organizationDetail?.files[2])?.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                                               fit: BoxFit.contain,
+                                                                              errorBuilder: (context, error, stackTrace) => Image.asset(
+                                                                                'assets/images/error_image.png',
+                                                                                fit: BoxFit.contain,
+                                                                              ),
                                                                             ),
                                                                             allowRotation:
                                                                                 false,
@@ -1537,6 +1594,16 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                               100.0,
                                                                           fit: BoxFit
                                                                               .cover,
+                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                              Image.asset(
+                                                                            'assets/images/error_image.png',
+                                                                            width:
+                                                                                160.0,
+                                                                            height:
+                                                                                100.0,
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
@@ -1655,6 +1722,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           '${FFAppConstants.ApiBaseUrl}/assets/$imagesItem?access_token=${FFAppState().accessToken}',
                                                                           fit: BoxFit
                                                                               .contain,
+                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                              Image.asset(
+                                                                            'assets/images/error_image.png',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
                                                                         ),
                                                                         allowRotation:
                                                                             false,
@@ -1685,6 +1758,19 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                                                           200.0,
                                                                       fit: BoxFit
                                                                           .cover,
+                                                                      errorBuilder: (context,
+                                                                              error,
+                                                                              stackTrace) =>
+                                                                          Image
+                                                                              .asset(
+                                                                        'assets/images/error_image.png',
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            200.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1724,6 +1810,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                           image: Image.network(
                                             '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.logo}?access_token=${FFAppState().accessToken}',
                                             fit: BoxFit.contain,
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    Image.asset(
+                                              'assets/images/error_image.png',
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
                                           allowRotation: false,
                                           tag:
@@ -1747,6 +1839,12 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
                                       child: Image.network(
                                         '${FFAppConstants.ApiBaseUrl}/assets/${_model.organizationDetail?.logo}?access_token=${FFAppState().accessToken}',
                                         fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),

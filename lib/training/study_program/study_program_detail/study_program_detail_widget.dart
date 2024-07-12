@@ -270,6 +270,13 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                     '${FFAppConstants.ApiBaseUrl}/assets/${_model.studyProgramData?.imageCover != null && _model.studyProgramData?.imageCover != '' ? _model.studyProgramData?.imageCover : ' '}?access_token=${FFAppState().accessToken}',
                                     height: 250.0,
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Image.asset(
+                                      'assets/images/error_image.png',
+                                      height: 250.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ).animateOnPageLoad(animationsMap[
@@ -330,6 +337,15 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
                                                     width: 40.0,
                                                     height: 40.0,
                                                     fit: BoxFit.cover,
+                                                    errorBuilder: (context,
+                                                            error,
+                                                            stackTrace) =>
+                                                        Image.asset(
+                                                      'assets/images/error_image.png',
+                                                      width: 40.0,
+                                                      height: 40.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
                                                   ),
                                                 ),
                                                 Expanded(

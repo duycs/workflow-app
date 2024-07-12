@@ -10,6 +10,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'update_profile_user_model.dart';
 export 'update_profile_user_model.dart';
@@ -36,6 +37,15 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UpdateProfileUserModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.date = getJsonField(
+        widget.data,
+        r'''$.dob''',
+      ).toString().toString();
+      setState(() {});
+    });
 
     _model.nameTextController ??= TextEditingController(
         text: getJsonField(
@@ -322,6 +332,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                   Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Padding(
                                                         padding:
@@ -330,7 +343,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    20.0),
                                                         child: TextFormField(
                                                           controller: _model
                                                               .nameTextController,
@@ -453,7 +466,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    20.0),
                                                         child: TextFormField(
                                                           controller: _model
                                                               .hotlineTextController1,
@@ -573,7 +586,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    20.0),
                                                         child: TextFormField(
                                                           controller: _model
                                                               .hotlineTextController2,
@@ -691,7 +704,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                       8.0,
                                                                       0.0,
                                                                       8.0,
-                                                                      0.0),
+                                                                      20.0),
                                                           child: TextFormField(
                                                             controller: _model
                                                                 .textController4,
@@ -813,7 +826,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    20.0),
                                                         child:
                                                             FlutterFlowDropDown<
                                                                 String>(
@@ -891,7 +904,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    20.0),
                                                         child: TextFormField(
                                                           controller: _model
                                                               .addressTextController,
@@ -1012,7 +1025,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                     8.0,
                                                                     0.0,
                                                                     8.0,
-                                                                    0.0),
+                                                                    10.0),
                                                         child: InkWell(
                                                           splashColor: Colors
                                                               .transparent,
@@ -1099,17 +1112,9 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                 );
                                                               });
                                                             }
-                                                            _model.date =
-                                                                dateTimeFormat(
-                                                              'dd/MM/yyyy',
-                                                              functions
-                                                                  .stringToDateTime(
-                                                                      _model
-                                                                          .date),
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
-                                                            );
+                                                            _model.date = _model
+                                                                .datePicked!
+                                                                .toString();
                                                             setState(() {});
                                                           },
                                                           child: Container(
@@ -1127,9 +1132,15 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                           40.0),
                                                               border:
                                                                   Border.all(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: _model
+                                                                            .checkDate ==
+                                                                        false
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
                                                                 width: 2.0,
                                                               ),
                                                             ),
@@ -1190,12 +1201,38 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                           ),
                                                         ),
                                                       ),
+                                                      if (_model.checkDate ==
+                                                          true)
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      15.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      20.0),
+                                                          child: Text(
+                                                            'Vui lòng nhập ngày sinh',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Nunito Sans',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
-                                                                    0.0,
+                                                                    10.0,
                                                                     8.0,
                                                                     12.0),
                                                         child: TextFormField(
@@ -1310,8 +1347,7 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                                                   context),
                                                         ),
                                                       ),
-                                                    ].divide(
-                                                        const SizedBox(height: 20.0)),
+                                                    ],
                                                   ),
                                                 ].divide(const SizedBox(height: 4.0)),
                                               ),
@@ -1345,6 +1381,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                       width: 120.0,
                                       height: 120.0,
                                       fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
+                                        'assets/images/error_image.png',
+                                        width: 120.0,
+                                        height: 120.0,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 if ((_model.uploadedLocalFile.bytes
@@ -1361,6 +1405,14 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                                         width: 120.0,
                                         height: 120.0,
                                         fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          width: 120.0,
+                                          height: 120.0,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -1436,6 +1488,13 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
                 var shouldSetState = false;
                 if (_model.formKey.currentState == null ||
                     !_model.formKey.currentState!.validate()) {
+                  return;
+                }
+                if (!((_model.date != '') &&
+                    (_model.date != 'null'))) {
+                  _model.checkDate = true;
+                  setState(() {});
+                  if (shouldSetState) setState(() {});
                   return;
                 }
                 var confirmDialogResponse = await showDialog<bool>(

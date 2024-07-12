@@ -419,6 +419,12 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                     child: Image.network(
                                       '${FFAppConstants.ApiBaseUrl}/assets/${_model.list.first.createdUserId.avatar}?access_token=${FFAppState().accessToken}',
                                       fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
+                                        'assets/images/error_image.png',
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -1671,6 +1677,14 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
                                                                 '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.submitStaffId.userId.avatar}?access_token=${FFAppState().accessToken}',
                                                                 fit: BoxFit
                                                                     .cover,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.png',
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

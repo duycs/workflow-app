@@ -137,6 +137,13 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                     image: Image.network(
                                                       '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                                       fit: BoxFit.contain,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                        'assets/images/error_image.png',
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                     allowRotation: false,
                                                     tag:
@@ -156,6 +163,12 @@ class _DoActionTypeImageWidgetState extends State<DoActionTypeImageWidget> {
                                                 child: Image.network(
                                                   '${FFAppConstants.ApiBaseUrl}/assets/$listImageItem?access_token=${FFAppState().accessToken}',
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),

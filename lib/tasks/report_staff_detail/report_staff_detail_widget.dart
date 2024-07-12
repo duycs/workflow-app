@@ -410,7 +410,7 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                 children: [
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        8.0, 16.0, 8.0, 16.0),
+                                        8.0, 16.0, 8.0, 0.0),
                                     child: SingleChildScrollView(
                                       primary: false,
                                       child: Column(
@@ -581,81 +581,83 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                             8.0),
                                                   ),
                                                 ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 8.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    var shouldSetState = false;
+                                              if (FFAppState().IsInDevelopment)
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 8.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      var shouldSetState =
+                                                          false;
 
-                                                    setState(() {});
-                                                    _model.getOneStaffTask2 =
-                                                        await action_blocks
-                                                            .tokenReload(
-                                                                context);
-                                                    shouldSetState = true;
-                                                    if (_model
-                                                        .getOneStaffTask2!) {
-                                                      _model.apiResultGetOneStaff2 =
-                                                          await StaffGroup
-                                                              .staffGetOneCall
-                                                              .call(
-                                                        accessToken:
-                                                            FFAppState()
-                                                                .accessToken,
-                                                        staffId:
-                                                            widget.staffId,
-                                                        filter: _model
-                                                            .filterRequest,
-                                                      );
-
+                                                      setState(() {});
+                                                      _model.getOneStaffTask2 =
+                                                          await action_blocks
+                                                              .tokenReload(
+                                                                  context);
                                                       shouldSetState = true;
-                                                      if ((_model
-                                                              .apiResultGetOneStaff2
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await actions
-                                                            .reportDetailToCsv(
-                                                          (_model.apiResultGetOneStaff2
-                                                                  ?.jsonBody ??
-                                                              ''),
+                                                      if (_model
+                                                          .getOneStaffTask2!) {
+                                                        _model.apiResultGetOneStaff2 =
+                                                            await StaffGroup
+                                                                .staffGetOneCall
+                                                                .call(
+                                                          accessToken:
+                                                              FFAppState()
+                                                                  .accessToken,
+                                                          staffId:
+                                                              widget.staffId,
+                                                          filter: _model
+                                                              .filterRequest,
                                                         );
+
+                                                        shouldSetState = true;
+                                                        if ((_model
+                                                                .apiResultGetOneStaff2
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          await actions
+                                                              .reportDetailToCsv(
+                                                            (_model.apiResultGetOneStaff2
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          );
+                                                        }
+                                                      } else {
+                                                        FFAppState()
+                                                            .update(() {});
+                                                        if (shouldSetState) {
+                                                          setState(() {});
+                                                        }
+                                                        return;
                                                       }
-                                                    } else {
-                                                      FFAppState()
-                                                          .update(() {});
+
                                                       if (shouldSetState) {
                                                         setState(() {});
                                                       }
-                                                      return;
-                                                    }
-
-                                                    if (shouldSetState) {
-                                                      setState(() {});
-                                                    }
-                                                  },
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.asset(
-                                                      'assets/images/export-spreadsheet-512.webp',
-                                                      width: 45.0,
-                                                      height: 45.0,
-                                                      fit: BoxFit.cover,
+                                                    },
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      child: Image.asset(
+                                                        'assets/images/export-spreadsheet-512.webp',
+                                                        width: 45.0,
+                                                        height: 45.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                           Stack(
@@ -3312,7 +3314,12 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                 sort: '-date_created',
                                               ),
                                             ),
-                                            padding: EdgeInsets.zero,
+                                            padding: const EdgeInsets.fromLTRB(
+                                              0,
+                                              0,
+                                              0,
+                                              30.0,
+                                            ),
                                             primary: false,
                                             shrinkWrap: true,
                                             reverse: false,
@@ -4232,68 +4239,73 @@ class _ReportStaffDetailWidgetState extends State<ReportStaffDetailWidget>
                                                       },
                                                     ),
                                                   ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 8.0, 0.0),
-                                                  child: InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      await showModalBottomSheet(
-                                                        isScrollControlled:
-                                                            true,
-                                                        backgroundColor:
-                                                            Colors.transparent,
-                                                        useSafeArea: true,
-                                                        context: context,
-                                                        builder: (context) {
-                                                          return GestureDetector(
-                                                            onTap: () => _model
-                                                                    .unfocusNode
-                                                                    .canRequestFocus
-                                                                ? FocusScope.of(
-                                                                        context)
-                                                                    .requestFocus(
-                                                                        _model
-                                                                            .unfocusNode)
-                                                                : FocusScope.of(
-                                                                        context)
-                                                                    .unfocus(),
-                                                            child: Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  ExportExcelGetOneWidget(
-                                                                json: _model
-                                                                    .jsonExport,
+                                                if (FFAppState()
+                                                    .IsInDevelopment)
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                8.0, 0.0),
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          useSafeArea: true,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () => _model
+                                                                      .unfocusNode
+                                                                      .canRequestFocus
+                                                                  ? FocusScope.of(
+                                                                          context)
+                                                                      .requestFocus(
+                                                                          _model
+                                                                              .unfocusNode)
+                                                                  : FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    ExportExcelGetOneWidget(
+                                                                  json: _model
+                                                                      .jsonExport,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ).then((value) =>
-                                                          safeSetState(() {}));
-                                                    },
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                      child: Image.asset(
-                                                        'assets/images/export-spreadsheet-512.webp',
-                                                        width: 45.0,
-                                                        height: 45.0,
-                                                        fit: BoxFit.cover,
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      },
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.asset(
+                                                          'assets/images/export-spreadsheet-512.webp',
+                                                          width: 45.0,
+                                                          height: 45.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           ),

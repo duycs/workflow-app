@@ -973,6 +973,10 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                                                                                 child: Image.network(
                                                                                   '${FFAppConstants.ApiBaseUrl}/assets/${itemTaskDoneItem.createdUserId.avatar}?access_token=${FFAppState().accessToken}',
                                                                                   fit: BoxFit.cover,
+                                                                                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                                                                                    'assets/images/error_image.png',
+                                                                                    fit: BoxFit.cover,
+                                                                                  ),
                                                                                 ),
                                                                               ),
                                                                             ],

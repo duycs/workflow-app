@@ -153,6 +153,12 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                                     image: Image.network(
                                       '${FFAppConstants.ApiBaseUrl}/assets/${widget.image}?access_token=${FFAppState().accessToken}',
                                       fit: BoxFit.contain,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              Image.asset(
+                                        'assets/images/error_image.png',
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                     allowRotation: false,
                                     tag:
@@ -173,6 +179,13 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
                                   width: 100.0,
                                   height: 100.0,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Image.asset(
+                                    'assets/images/error_image.png',
+                                    width: 100.0,
+                                    height: 100.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),

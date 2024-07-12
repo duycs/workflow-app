@@ -53,7 +53,7 @@ class _DataNotFoundWidgetState extends State<DataNotFoundWidget> {
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
               child: Text(
-                'Không có dữ liệu !',
+                'Chưa có dữ liệu!',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                       fontFamily: 'Nunito Sans',
                       fontSize: 16.0,

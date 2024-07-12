@@ -55,8 +55,6 @@ class ProfileUserSettingModel
   bool? authenticateUsingBiometriceSetting1;
   // Stores action output result for [Action Block - tokenReload] action in SwitchListTile widget.
   bool? checktokenReloadBiometricsSetting;
-  // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.
-  String? shkeyPublicKeySettingOn;
   // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in SwitchListTile widget.
   ApiCallResponse? apiResultUpdateBiometric;
   // Stores action output result for [Backend Call - API (UserMe)] action in SwitchListTile widget.
@@ -65,8 +63,6 @@ class ProfileUserSettingModel
   bool? authenticateUsingBiometriceSettingLoadOff1;
   // Stores action output result for [Action Block - tokenReload] action in SwitchListTile widget.
   bool? checktokenReloadBiometricsSetting3;
-  // Stores action output result for [Custom Action - sshkey] action in SwitchListTile widget.
-  String? shkeyPublicKeySetting2;
   // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in SwitchListTile widget.
   ApiCallResponse? apiResultUpdateBiometric1;
   // Stores action output result for [Backend Call - API (UserMe)] action in SwitchListTile widget.

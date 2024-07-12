@@ -583,7 +583,7 @@ class _FixedToolbar extends StatelessWidget {
     final mimeType = _getMimeType(image.path);
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('https://workflow-api-dev.pexnic.com/files'),
+      Uri.parse('https://workflow-api.pexnic.com/files'),
     );
     request.headers['Content-Type'] = 'multipart/form-data';
     request.headers['Authorization'] =
@@ -600,7 +600,7 @@ class _FixedToolbar extends StatelessWidget {
     if (response.statusCode == 200) {
       final responseBody = await response.stream.bytesToString();
       final responseData = json.decode(responseBody);
-      return 'https://workflow-api-dev.pexnic.com/assets/${responseData['data']['id']}';
+      return 'https://workflow-api.pexnic.com/assets/${responseData['data']['id']}';
     } else {
       throw Exception('Failed to upload image');
     }

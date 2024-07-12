@@ -344,6 +344,14 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
                                                 width: 36.0,
                                                 height: 36.0,
                                                 fit: BoxFit.cover,
+                                                errorBuilder: (context, error,
+                                                        stackTrace) =>
+                                                    Image.asset(
+                                                  'assets/images/error_image.png',
+                                                  width: 36.0,
+                                                  height: 36.0,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),

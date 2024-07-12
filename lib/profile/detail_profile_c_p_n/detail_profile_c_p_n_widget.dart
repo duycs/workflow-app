@@ -1366,6 +1366,13 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                     image: Image.network(
                                                       '${FFAppConstants.ApiBaseUrl}/assets/${_model.data?.logo}?access_token=${FFAppState().accessToken}',
                                                       fit: BoxFit.contain,
+                                                      errorBuilder: (context,
+                                                              error,
+                                                              stackTrace) =>
+                                                          Image.asset(
+                                                        'assets/images/error_image.png',
+                                                        fit: BoxFit.contain,
+                                                      ),
                                                     ),
                                                     allowRotation: false,
                                                     tag:
@@ -1389,6 +1396,12 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
                                                 child: Image.network(
                                                   '${FFAppConstants.ApiBaseUrl}/assets/${_model.data?.logo}?access_token=${FFAppState().accessToken}',
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ),

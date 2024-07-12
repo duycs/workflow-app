@@ -11,6 +11,8 @@ class UpdateProfileUserModel extends FlutterFlowModel<UpdateProfileUserWidget> {
 
   String date = '';
 
+  bool checkDate = false;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

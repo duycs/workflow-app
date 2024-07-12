@@ -176,6 +176,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                         _model.uploadedLocalFile4.bytes ??
                                             Uint8List.fromList([]),
                                         fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                       allowRotation: false,
                                       tag:
@@ -201,6 +207,13 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                         Uint8List.fromList([]),
                                     width: double.infinity,
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Image.asset(
+                                      'assets/images/error_image.png',
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -2068,6 +2081,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                                           .bytes ??
                                                       Uint8List.fromList([]),
                                                   fit: BoxFit.contain,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    fit: BoxFit.contain,
+                                                  ),
                                                 ),
                                                 allowRotation: false,
                                                 tag: 'circleImageTag2',
@@ -2090,6 +2109,12 @@ class _UpdateProfileCPNWidgetState extends State<UpdateProfileCPNWidget> {
                                               _model.uploadedLocalFile3.bytes ??
                                                   Uint8List.fromList([]),
                                               fit: BoxFit.cover,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),
