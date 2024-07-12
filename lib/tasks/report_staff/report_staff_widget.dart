@@ -518,66 +518,69 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                       ),
                                     ),
                                   ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 16.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      await showModalBottomSheet(
-                                        isScrollControlled: true,
-                                        backgroundColor: Colors.transparent,
-                                        useSafeArea: true,
-                                        context: context,
-                                        builder: (context) {
-                                          return GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: Padding(
-                                              padding: MediaQuery.viewInsetsOf(
-                                                  context),
-                                              child: ExportExcelWidget(
-                                                json: _model.json,
+                                if (FFAppState().IsInDevelopment)
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 16.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          useSafeArea: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child: Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: ExportExcelWidget(
+                                                  json: _model.json,
+                                                ),
                                               ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+                                      },
+                                      text: 'Xuất excel',
+                                      icon: const FaIcon(
+                                        FontAwesomeIcons.fileExcel,
+                                        color: Color(0xFF09923F),
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 45.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              letterSpacing: 0.0,
                                             ),
-                                          );
-                                        },
-                                      ).then((value) => safeSetState(() {}));
-                                    },
-                                    text: 'Xuất excel',
-                                    icon: const FaIcon(
-                                      FontAwesomeIcons.fileExcel,
-                                      color: Color(0xFF09923F),
-                                    ),
-                                    options: FFButtonOptions(
-                                      height: 45.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 2.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        elevation: 2.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           ),
@@ -792,6 +795,14 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                           image: Image.network(
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar}?access_token=${FFAppState().accessToken}',
                                                             fit: BoxFit.contain,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.png',
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
                                                           ),
                                                           allowRotation: false,
                                                           tag:
@@ -816,6 +827,15 @@ class _ReportStaffWidgetState extends State<ReportStaffWidget> {
                                                         width: 120.0,
                                                         height: 120.0,
                                                         fit: BoxFit.cover,
+                                                        errorBuilder: (context,
+                                                                error,
+                                                                stackTrace) =>
+                                                            Image.asset(
+                                                          'assets/images/error_image.png',
+                                                          width: 120.0,
+                                                          height: 120.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

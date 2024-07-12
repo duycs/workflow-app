@@ -274,6 +274,13 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
                                                       child: Image.network(
                                                         '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.staffs.first.staffsId.userId.avatar}?access_token=${FFAppState().accessToken}',
                                                         fit: BoxFit.cover,
+                                                        errorBuilder: (context,
+                                                                error,
+                                                                stackTrace) =>
+                                                            Image.asset(
+                                                          'assets/images/error_image.png',
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

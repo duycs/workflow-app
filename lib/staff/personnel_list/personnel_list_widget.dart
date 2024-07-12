@@ -564,6 +564,14 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                           image: Image.network(
                                                             '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.userId.avatar != null && dataListItem.userId.avatar != '' ? dataListItem.userId.avatar : ' '}?access_token=${FFAppState().accessToken}',
                                                             fit: BoxFit.contain,
+                                                            errorBuilder: (context,
+                                                                    error,
+                                                                    stackTrace) =>
+                                                                Image.asset(
+                                                              'assets/images/error_image.png',
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
                                                           ),
                                                           allowRotation: false,
                                                           tag:
@@ -588,6 +596,15 @@ class _PersonnelListWidgetState extends State<PersonnelListWidget> {
                                                         width: 120.0,
                                                         height: 120.0,
                                                         fit: BoxFit.cover,
+                                                        errorBuilder: (context,
+                                                                error,
+                                                                stackTrace) =>
+                                                            Image.asset(
+                                                          'assets/images/error_image.png',
+                                                          width: 120.0,
+                                                          height: 120.0,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

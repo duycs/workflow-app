@@ -1592,6 +1592,14 @@ class _TaskListWidgetState extends State<TaskListWidget> {
                                                                 '${FFAppConstants.ApiBaseUrl}/assets/${dataListItem.createdUserId.avatar}?access_token=${FFAppState().accessToken}',
                                                                 fit: BoxFit
                                                                     .cover,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.png',
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

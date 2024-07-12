@@ -105,6 +105,12 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                                             ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                             : ' ',
                                         fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                       allowRotation: false,
                                       tag: (widget.type == 'image') &&
@@ -130,6 +136,12 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
                                         ? '${FFAppConstants.ApiBaseUrl}/assets/${imageItemItem.directusFilesId.id}?access_token=${FFAppState().accessToken}'
                                         : ' ',
                                     fit: BoxFit.cover,
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            Image.asset(
+                                      'assets/images/error_image.png',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),

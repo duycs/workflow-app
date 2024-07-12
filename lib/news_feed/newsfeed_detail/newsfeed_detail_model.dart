@@ -23,6 +23,8 @@ class NewsfeedDetailModel extends FlutterFlowModel<NewsfeedDetailWidget> {
 
   String uploadFile = '';
 
+  bool checkIcon = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

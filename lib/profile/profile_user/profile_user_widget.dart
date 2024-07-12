@@ -171,6 +171,12 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                                     r'''$.user_id.avatar''',
                                                   ).toString()}?access_token=${FFAppState().accessToken}',
                                                   fit: BoxFit.contain,
+                                                  errorWidget: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    fit: BoxFit.contain,
+                                                  ),
                                                 ),
                                                 allowRotation: false,
                                                 tag:
@@ -206,6 +212,14 @@ class _ProfileUserWidgetState extends State<ProfileUserWidget> {
                                               width: 60.0,
                                               height: 60.0,
                                               fit: BoxFit.cover,
+                                              errorWidget: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                width: 60.0,
+                                                height: 60.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),

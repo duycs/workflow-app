@@ -401,7 +401,10 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                 getCurrentTimestamp,
                                 locale:
                                     FFLocalizations.of(context).languageCode,
-                              ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${_model.programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsId != '' ? _model.programsId : ' '}${_model.programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"status\":{\"_eq\":\"draft\"}}' : ' '}]}',
+                              ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${_model.programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsId != '' ? _model.programsId : ' '}${_model.programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"status\":{\"_eq\":\"draft\"}}' : ' '},{\"orgnization_id\":{\"_eq\":\"${getJsonField(
+                              FFAppState().staffLogin,
+                              r'''$.orgnization_id''',
+                            ).toString()}\"}}]}',
                             limit: 20,
                             accessToken: FFAppState().accessToken,
                             offset: nextPageMarker.nextPageNumber * 20,
@@ -516,6 +519,15 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                           height: double.infinity,
                                           fit: BoxFit.cover,
                                           alignment: const Alignment(0.0, 0.0),
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            width: 100.0,
+                                            height: double.infinity,
+                                            fit: BoxFit.cover,
+                                            alignment: const Alignment(0.0, 0.0),
+                                          ),
                                         ),
                                       ),
                                       Expanded(

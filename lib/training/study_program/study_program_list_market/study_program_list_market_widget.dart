@@ -458,6 +458,14 @@ class _StudyProgramListMarketWidgetState
                                                   width: 80.0,
                                                   height: 80.0,
                                                   fit: BoxFit.cover,
+                                                  errorBuilder: (context, error,
+                                                          stackTrace) =>
+                                                      Image.asset(
+                                                    'assets/images/error_image.png',
+                                                    width: 80.0,
+                                                    height: 80.0,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -900,9 +908,16 @@ class _StudyProgramListMarketWidgetState
                                                                             ? FocusScope.of(context).requestFocus(_model.unfocusNode)
                                                                             : FocusScope.of(context).unfocus(),
                                                                         child:
-                                                                            InviteUserWidget(
-                                                                          programId:
-                                                                              dataListViewItem.id,
+                                                                            SizedBox(
+                                                                          height:
+                                                                              MediaQuery.sizeOf(context).height * 1.0,
+                                                                          width:
+                                                                              MediaQuery.sizeOf(context).width * 1.0,
+                                                                          child:
+                                                                              InviteUserWidget(
+                                                                            programId:
+                                                                                dataListViewItem.id,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     );
@@ -1388,6 +1403,16 @@ class _StudyProgramListMarketWidgetState
                                                               width: 300.0,
                                                               height: 200.0,
                                                               fit: BoxFit.cover,
+                                                              errorBuilder: (context,
+                                                                      error,
+                                                                      stackTrace) =>
+                                                                  Image.asset(
+                                                                'assets/images/error_image.png',
+                                                                width: 300.0,
+                                                                height: 200.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),

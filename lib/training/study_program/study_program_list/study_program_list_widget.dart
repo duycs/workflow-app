@@ -656,7 +656,7 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                               }(_model.dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
                               FFAppState().staffLogin,
                               r'''$.organization_id''',
-                            ).toString()}\"}}'}${(_model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}]}',
+                            ).toString()}\"}}'}${(_model.status != '') && (_model.status != ' ') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '},{\"copyright_program_id\":{\"_null\":true}},{\"copyright_organization_id\":{\"_null\":true}}]}',
                           ),
                         ),
                         padding: EdgeInsets.zero,
@@ -2011,6 +2011,16 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
                                                                 height: 200.0,
                                                                 fit: BoxFit
                                                                     .cover,
+                                                                errorBuilder: (context,
+                                                                        error,
+                                                                        stackTrace) =>
+                                                                    Image.asset(
+                                                                  'assets/images/error_image.png',
+                                                                  width: 300.0,
+                                                                  height: 200.0,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),

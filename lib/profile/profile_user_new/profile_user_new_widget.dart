@@ -140,6 +140,12 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                             image: Image.network(
                                               '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}',
                                               fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                fit: BoxFit.contain,
+                                              ),
                                             ),
                                             allowRotation: false,
                                             tag:
@@ -157,6 +163,13 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                         '${FFAppConstants.ApiBaseUrl}/assets/${_model.staffDetail?.userId.avatar}?access_token=${FFAppState().accessToken}',
                                         width: double.infinity,
                                         fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          width: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -2101,29 +2114,41 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                 : FocusScope.of(
                                                                         context)
                                                                     .unfocus(),
-                                                            child:
-                                                                ProfileStaffNewWidget(
-                                                              name: _model
-                                                                  .staffDetail
-                                                                  ?.userId
-                                                                  .firstName,
-                                                              gender: _model
-                                                                  .staffDetail
-                                                                  ?.gender,
-                                                              phone: _model
-                                                                  .staffDetail
-                                                                  ?.phone,
-                                                              role: _model
-                                                                  .staffDetail
-                                                                  ?.title,
-                                                              image: _model
-                                                                  .staffDetail
-                                                                  ?.userId
-                                                                  .avatar,
-                                                              email: _model
-                                                                  .staffDetail
-                                                                  ?.userId
-                                                                  .email,
+                                                            child: SizedBox(
+                                                              height: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .height *
+                                                                  1.0,
+                                                              width: MediaQuery
+                                                                          .sizeOf(
+                                                                              context)
+                                                                      .width *
+                                                                  1.0,
+                                                              child:
+                                                                  ProfileStaffNewWidget(
+                                                                name: _model
+                                                                    .staffDetail
+                                                                    ?.userId
+                                                                    .firstName,
+                                                                gender: _model
+                                                                    .staffDetail
+                                                                    ?.gender,
+                                                                phone: _model
+                                                                    .staffDetail
+                                                                    ?.phone,
+                                                                role: _model
+                                                                    .staffDetail
+                                                                    ?.title,
+                                                                image: _model
+                                                                    .staffDetail
+                                                                    ?.userId
+                                                                    .avatar,
+                                                                email: _model
+                                                                    .staffDetail
+                                                                    ?.userId
+                                                                    .email,
+                                                              ),
                                                             ),
                                                           ),
                                                         );
@@ -2626,6 +2651,12 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                                     width: 30.0,
                                                                                     height: 30.0,
                                                                                     fit: BoxFit.cover,
+                                                                                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                                                                                      'assets/images/error_image.png',
+                                                                                      width: 30.0,
+                                                                                      height: 30.0,
+                                                                                      fit: BoxFit.cover,
+                                                                                    ),
                                                                                   ),
                                                                                 ),
                                                                                 Expanded(
@@ -2767,6 +2798,19 @@ class _ProfileUserNewWidgetState extends State<ProfileUserNewWidget>
                                                                         50.0,
                                                                     fit: BoxFit
                                                                         .cover,
+                                                                    errorBuilder: (context,
+                                                                            error,
+                                                                            stackTrace) =>
+                                                                        Image
+                                                                            .asset(
+                                                                      'assets/images/error_image.png',
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                                 Container(

@@ -684,50 +684,11 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                 return;
                                               }
 
-                                              _model.shkeyPublicKeySettingOn =
-                                                  await actions.sshkey(
-                                                'pexnictest@gmail.com',
-                                                '',
-                                                true,
-                                              );
-                                              shouldSetState = true;
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(_model
-                                                                .shkeyPublicKeySettingOn!),
-                                                            content:
-                                                                const Text('test'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: const Text(
-                                                                    'Cancel'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child: const Text(
-                                                                    'Confirm'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      ) ??
-                                                      false;
                                               _model.updateDataSettingStruct(
                                                 (e) => e
                                                   ..enableBiometric = 1
-                                                  ..publicKey = _model
-                                                      .shkeyPublicKeySettingOn,
+                                                  ..publicKey =
+                                                      'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJWXhr8ug7c/E/JJYJvNtf93qOkRo0/ciiO0x2B07sw188U84TTltrrK2lrFNr5fUbSfKvUjH2dZvjppkYLoCqcCAwEAAQ==',
                                               );
                                               setState(() {});
                                               _model.apiResultUpdateBiometric =
@@ -863,16 +824,6 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                               return;
                                             }
 
-                                            _model.shkeyPublicKeySetting2 =
-                                                await actions.sshkey(
-                                              getJsonField(
-                                                FFAppState().staffLogin,
-                                                r'''$.email''',
-                                              ).toString(),
-                                              '',
-                                              true,
-                                            );
-                                            shouldSetState = true;
                                             _model.updateDataSettingStruct(
                                               (e) => e
                                                 ..enableBiometric = 0

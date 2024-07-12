@@ -177,7 +177,6 @@ export '/timekeeping/timekeeping_create/timekeeping_create_widget.dart'
     show TimekeepingCreateWidget;
 export '/timekeeping/time_keeping/time_keeping_widget.dart'
     show TimeKeepingWidget;
-export '/notification/noti/noti_widget.dart' show NotiWidget;
 export '/timekeeping/timekeeping_location_list/timekeeping_location_list_widget.dart'
     show TimekeepingLocationListWidget;
 export '/timekeeping/timekeeping_shift_list/timekeeping_shift_list_widget.dart'

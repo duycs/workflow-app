@@ -1,17 +1,19 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/data_not_found_comment/data_not_found_comment_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/upload_data.dart';
+import '/tasks/popup_see_more/popup_see_more_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'comment_newsfeed_model.dart';
 export 'comment_newsfeed_model.dart';
@@ -32,11 +34,8 @@ class CommentNewsfeedWidget extends StatefulWidget {
   State<CommentNewsfeedWidget> createState() => _CommentNewsfeedWidgetState();
 }
 
-class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
-    with TickerProviderStateMixin {
+class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget> {
   late CommentNewsfeedModel _model;
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void setState(VoidCallback callback) {
@@ -57,21 +56,6 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
-
-    animationsMap.addAll({
-      'rowOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
-    });
   }
 
   @override
@@ -405,6 +389,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                                                                         backgroundColor: FlutterFlowTheme.of(context).secondary,
                                                                                       ),
                                                                                     );
+                                                                                    await widget.callBack?.call();
                                                                                   }
                                                                                 } else {
                                                                                   if (shouldSetState) setState(() {});
@@ -450,6 +435,255 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                                                           ),
                                                                     ),
                                                                   ),
+                                                                  if (commentListItem
+                                                                              .commentsId
+                                                                              .image !=
+                                                                          '')
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          6.0,
+                                                                          4.0,
+                                                                          6.0,
+                                                                          4.0),
+                                                                      child:
+                                                                          InkWell(
+                                                                        splashColor:
+                                                                            Colors.transparent,
+                                                                        focusColor:
+                                                                            Colors.transparent,
+                                                                        hoverColor:
+                                                                            Colors.transparent,
+                                                                        highlightColor:
+                                                                            Colors.transparent,
+                                                                        onTap:
+                                                                            () async {
+                                                                          await Navigator
+                                                                              .push(
+                                                                            context,
+                                                                            PageTransition(
+                                                                              type: PageTransitionType.fade,
+                                                                              child: FlutterFlowExpandedImageView(
+                                                                                image: CachedNetworkImage(
+                                                                                  fadeInDuration: const Duration(milliseconds: 500),
+                                                                                  fadeOutDuration: const Duration(milliseconds: 500),
+                                                                                  imageUrl: '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
+                                                                                  fit: BoxFit.contain,
+                                                                                ),
+                                                                                allowRotation: false,
+                                                                                tag: '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
+                                                                                useHeroAnimation: true,
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                        child:
+                                                                            Hero(
+                                                                          tag:
+                                                                              '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
+                                                                          transitionOnUserGestures:
+                                                                              true,
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                CachedNetworkImage(
+                                                                              fadeInDuration: const Duration(milliseconds: 500),
+                                                                              fadeOutDuration: const Duration(milliseconds: 500),
+                                                                              imageUrl: '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.image}?access_token=${FFAppState().accessToken}',
+                                                                              width: double.infinity,
+                                                                              height: 150.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if (commentListItem
+                                                                              .commentsId
+                                                                              .video !=
+                                                                          '')
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          6.0,
+                                                                          0.0,
+                                                                          6.0,
+                                                                          4.0),
+                                                                      child:
+                                                                          FlutterFlowVideoPlayer(
+                                                                        path:
+                                                                            '${FFAppConstants.ApiBaseUrl}/assets/${commentListItem.commentsId.video}?access_token=${FFAppState().accessToken}',
+                                                                        videoType:
+                                                                            VideoType.network,
+                                                                        width: double
+                                                                            .infinity,
+                                                                        autoPlay:
+                                                                            false,
+                                                                        looping:
+                                                                            true,
+                                                                        showControls:
+                                                                            true,
+                                                                        allowFullScreen:
+                                                                            true,
+                                                                        allowPlaybackSpeedMenu:
+                                                                            false,
+                                                                      ),
+                                                                    ),
+                                                                  if ('1' ==
+                                                                      '2')
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        if (functions.checkFileLast((String
+                                                                                var1) {
+                                                                              return var1.split('.').last;
+                                                                            }(commentListItem.commentsId.id)) ==
+                                                                            'exc')
+                                                                          ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.asset(
+                                                                              'assets/images/excel.png',
+                                                                              width: 35.0,
+                                                                              height: 35.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        if (functions.checkFileLast((String
+                                                                                var1) {
+                                                                              return var1.split('.').last;
+                                                                            }(commentListItem.commentsId.id)) ==
+                                                                            'word')
+                                                                          ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.asset(
+                                                                              'assets/images/images.png',
+                                                                              width: 35.0,
+                                                                              height: 35.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        if (functions.checkFileLast((String
+                                                                                var1) {
+                                                                              return var1.split('.').last;
+                                                                            }(commentListItem.commentsId.file)) ==
+                                                                            'pptx')
+                                                                          ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                            child:
+                                                                                Image.asset(
+                                                                              'assets/images/ppt.png',
+                                                                              width: 35.0,
+                                                                              height: 35.0,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        if (functions.checkFileLast((String
+                                                                                var1) {
+                                                                              return var1.split('.').last;
+                                                                            }(commentListItem.commentsId.file)) ==
+                                                                            'pdf')
+                                                                          Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                8.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                ClipRRect(
+                                                                              borderRadius: BorderRadius.circular(8.0),
+                                                                              child: Image.asset(
+                                                                                'assets/images/pdf.png',
+                                                                                width: 35.0,
+                                                                                height: 35.0,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Align(
+                                                                            alignment:
+                                                                                const AlignmentDirectional(-1.0, 0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              commentListItem.commentsId.file,
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    fontFamily: 'Nunito Sans',
+                                                                                    letterSpacing: 0.0,
+                                                                                  ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        if ((functions.checkFileLast((String tail) {
+                                                                                  return tail.split('.').last;
+                                                                                }(commentListItem.commentsId.file)) ==
+                                                                                'pdf') &&
+                                                                            (functions.checkFileLast((String tail) {
+                                                                                  return tail.split('.').last;
+                                                                                }(commentListItem.commentsId.file)) ==
+                                                                                'img'))
+                                                                          Builder(
+                                                                            builder: (context) =>
+                                                                                FlutterFlowIconButton(
+                                                                              borderColor: Colors.transparent,
+                                                                              borderRadius: 20.0,
+                                                                              borderWidth: 1.0,
+                                                                              buttonSize: 40.0,
+                                                                              icon: Icon(
+                                                                                Icons.remove_red_eye,
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                size: 24.0,
+                                                                              ),
+                                                                              onPressed: () async {
+                                                                                await showDialog(
+                                                                                  context: context,
+                                                                                  builder: (dialogContext) {
+                                                                                    return Dialog(
+                                                                                      elevation: 0,
+                                                                                      insetPadding: EdgeInsets.zero,
+                                                                                      backgroundColor: Colors.transparent,
+                                                                                      alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                      child: PopupSeeMoreWidget(
+                                                                                        fileName: commentListItem.commentsId.file,
+                                                                                        fileId: commentListItem.commentsId.file,
+                                                                                      ),
+                                                                                    );
+                                                                                  },
+                                                                                ).then((value) => setState(() {}));
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        FlutterFlowIconButton(
+                                                                          borderColor:
+                                                                              Colors.transparent,
+                                                                          borderRadius:
+                                                                              20.0,
+                                                                          borderWidth:
+                                                                              1.0,
+                                                                          buttonSize:
+                                                                              40.0,
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.file_download_outlined,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryText,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            print('IconButton pressed ...');
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                 ],
                                                               ),
                                                             ),
@@ -579,6 +813,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                               16.0, 0.0, 16.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -597,11 +832,12 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                   borderColor: Colors.transparent,
                                   borderRadius: 30.0,
                                   borderWidth: 1.0,
-                                  buttonSize: 50.0,
+                                  buttonSize: 45.0,
                                   icon: Icon(
-                                    Icons.delete_outline,
-                                    color: FlutterFlowTheme.of(context).error,
-                                    size: 30.0,
+                                    Icons.close_sharp,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
                                   ),
                                   onPressed: () async {
                                     setState(() {
@@ -620,10 +856,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                               false))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 12.0, 0.0),
+                              12.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 valueOrDefault<String>(
@@ -645,11 +881,12 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                 child: FlutterFlowIconButton(
                                   borderRadius: 20.0,
                                   borderWidth: 1.0,
-                                  buttonSize: 50.0,
+                                  buttonSize: 45.0,
                                   icon: Icon(
-                                    Icons.delete_outline,
-                                    color: FlutterFlowTheme.of(context).error,
-                                    size: 30.0,
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
                                   ),
                                   onPressed: () async {
                                     setState(() {
@@ -668,10 +905,10 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                               false))
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 12.0, 0.0),
+                              12.0, 0.0, 16.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 valueOrDefault<String>(
@@ -692,13 +929,14 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                     11.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: Colors.transparent,
-                                  borderRadius: 20.0,
+                                  borderRadius: 30.0,
                                   borderWidth: 1.0,
-                                  buttonSize: 50.0,
+                                  buttonSize: 45.0,
                                   icon: Icon(
-                                    Icons.delete_outline,
-                                    color: FlutterFlowTheme.of(context).error,
-                                    size: 30.0,
+                                    Icons.close,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24.0,
                                   ),
                                   onPressed: () async {
                                     setState(() {
@@ -854,61 +1092,64 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      final selectedFiles = await selectFiles(
-                                        multiFile: false,
-                                      );
-                                      if (selectedFiles != null) {
-                                        setState(() =>
-                                            _model.isDataUploading3 = true);
-                                        var selectedUploadedFiles =
-                                            <FFUploadedFile>[];
+                                  if ('1' == '2')
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        final selectedFiles = await selectFiles(
+                                          multiFile: false,
+                                        );
+                                        if (selectedFiles != null) {
+                                          setState(() =>
+                                              _model.isDataUploading3 = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
 
-                                        try {
-                                          selectedUploadedFiles = selectedFiles
-                                              .map((m) => FFUploadedFile(
-                                                    name: m.storagePath
-                                                        .split('/')
-                                                        .last,
-                                                    bytes: m.bytes,
-                                                  ))
-                                              .toList();
-                                        } finally {
-                                          _model.isDataUploading3 = false;
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedFiles
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                        ))
+                                                    .toList();
+                                          } finally {
+                                            _model.isDataUploading3 = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                              selectedFiles.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile3 =
+                                                  selectedUploadedFiles.first;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
                                         }
-                                        if (selectedUploadedFiles.length ==
-                                            selectedFiles.length) {
-                                          setState(() {
-                                            _model.uploadedLocalFile3 =
-                                                selectedUploadedFiles.first;
-                                          });
-                                        } else {
-                                          setState(() {});
-                                          return;
-                                        }
-                                      }
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.asset(
-                                        'assets/images/th_(1).jpg',
-                                        width: 30.0,
-                                        height: 30.0,
-                                        fit: BoxFit.contain,
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/th_(1).jpg',
+                                          width: 30.0,
+                                          height: 30.0,
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                     ),
-                                  ),
                                 ].divide(const SizedBox(width: 10.0)),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 8.0, 0.0),
+                                  0.0, 0.0, 16.0, 0.0),
                               child: FlutterFlowIconButton(
                                 borderRadius: 20.0,
                                 borderWidth: 1.0,
@@ -926,8 +1167,7 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                               ),
                             ),
                           ],
-                        ).animateOnPageLoad(
-                            animationsMap['rowOnPageLoadAnimation']!),
+                        ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             8.0, 4.0, 16.0, 44.0),
@@ -1087,9 +1327,9 @@ class _CommentNewsfeedWidgetState extends State<CommentNewsfeedWidget>
                                         _model.uploadVideo = '';
                                         _model.uploadFile = '';
                                         setState(() {});
+                                        await widget.callBack?.call();
                                         await _model.newsFeedGetOne(context);
                                         setState(() {});
-                                        await widget.callBack?.call();
                                       },
                                     ),
                                   ],

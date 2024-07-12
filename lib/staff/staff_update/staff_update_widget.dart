@@ -273,6 +273,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                                 r'''$.user_id.avatar''',
                                               ).toString()}?access_token=${FFAppState().accessToken}',
                                               fit: BoxFit.contain,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
+                                                  Image.asset(
+                                                'assets/images/error_image.png',
+                                                fit: BoxFit.contain,
+                                              ),
                                             ),
                                             allowRotation: false,
                                             tag:
@@ -305,6 +311,12 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
                                             r'''$.user_id.avatar''',
                                           ).toString()}?access_token=${FFAppState().accessToken}',
                                           fit: BoxFit.fitWidth,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  Image.asset(
+                                            'assets/images/error_image.png',
+                                            fit: BoxFit.fitWidth,
+                                          ),
                                         ),
                                       ),
                                     ),

@@ -83,7 +83,7 @@ class _ActionNewsfeedDetailWidgetState
           mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
-              width: 150.0,
+              width: 50.0,
               child: Divider(
                 thickness: 3.0,
                 color: FlutterFlowTheme.of(context).alternate,

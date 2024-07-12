@@ -85,7 +85,7 @@ class StudyProgramListModel extends FlutterFlowModel<StudyProgramListWidget> {
           }(dateEndSearch!)}\"}}}}' : ' '}${',{\"organization_id\":{\"_eq\":\"${getJsonField(
           FFAppState().staffLogin,
           r'''$.organization_id''',
-        ).toString().toString()}\"}}'}]}',
+        ).toString().toString()}\"}}'},{\"copyright_program_id\":{\"_null\":true}},{\"copyright_organization_id\":{\"_null\":true}}]}',
       );
 
       if ((apiResultStudyProgramListSearch.succeeded ?? true)) {

@@ -1730,6 +1730,15 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                           width: 300.0,
                                                           height: 200.0,
                                                           fit: BoxFit.cover,
+                                                          errorBuilder: (context,
+                                                                  error,
+                                                                  stackTrace) =>
+                                                              Image.asset(
+                                                            'assets/images/error_image.png',
+                                                            width: 300.0,
+                                                            height: 200.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -2134,6 +2143,12 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           '${FFAppConstants.ApiBaseUrl}/assets/${imageListItem.directusFilesId.id}?access_token=${FFAppState().accessToken}',
                                                                           fit: BoxFit
                                                                               .contain,
+                                                                          errorBuilder: (context, error, stackTrace) =>
+                                                                              Image.asset(
+                                                                            'assets/images/error_image.png',
+                                                                            fit:
+                                                                                BoxFit.contain,
+                                                                          ),
                                                                         ),
                                                                         allowRotation:
                                                                             false,
@@ -2164,6 +2179,19 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                           150.0,
                                                                       fit: BoxFit
                                                                           .cover,
+                                                                      errorBuilder: (context,
+                                                                              error,
+                                                                              stackTrace) =>
+                                                                          Image
+                                                                              .asset(
+                                                                        'assets/images/error_image.png',
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            150.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),

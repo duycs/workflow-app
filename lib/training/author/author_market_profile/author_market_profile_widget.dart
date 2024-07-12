@@ -106,6 +106,11 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                             image: Image.network(
                               '${FFAppConstants.ApiBaseUrl}/assets/${widget.itemAuthors?.avatar}?access_token=${FFAppState().accessToken}',
                               fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(
+                                'assets/images/error_image.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                             allowRotation: false,
                             tag:
@@ -124,6 +129,13 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                         width: double.infinity,
                         height: 270.0,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset(
+                          'assets/images/error_image.png',
+                          width: double.infinity,
+                          height: 270.0,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -1358,6 +1370,14 @@ class _AuthorMarketProfileWidgetState extends State<AuthorMarketProfileWidget>
                                         width: double.infinity,
                                         height: double.infinity,
                                         fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                Image.asset(
+                                          'assets/images/error_image.png',
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),

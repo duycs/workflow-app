@@ -79,16 +79,20 @@ class _BranchListWidgetState extends State<BranchListWidget> {
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: BranchCreateWidget(
-                        listCode: _model.codeList,
-                        listName: _model.nameList,
-                        reloadDataList: () async {
-                          await Future.delayed(
-                              const Duration(milliseconds: 500));
-                          await _model.getLinkBranch(context);
-                          setState(
-                              () => _model.listViewPagingController?.refresh());
-                        },
+                      child: SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 1.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        child: BranchCreateWidget(
+                          listCode: _model.codeList,
+                          listName: _model.nameList,
+                          reloadDataList: () async {
+                            await Future.delayed(
+                                const Duration(milliseconds: 500));
+                            await _model.getLinkBranch(context);
+                            setState(() =>
+                                _model.listViewPagingController?.refresh());
+                          },
+                        ),
                       ),
                     ),
                   );

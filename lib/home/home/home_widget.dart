@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/notification/notification/notification_widget.dart';
 import '/training/author/author_sign_up/author_sign_up_widget.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
@@ -90,44 +91,53 @@ class _HomeWidgetState extends State<HomeWidget> {
               ),
             ),
             if (FFAppState().IsInDevelopment)
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.goNamed(
-                    'Noti',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
-                      ),
-                    },
-                  );
-                },
-                child: badges.Badge(
-                  badgeContent: Text(
-                    '1',
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Nunito Sans',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  showBadge: true,
-                  shape: badges.BadgeShape.circle,
-                  badgeColor: FlutterFlowTheme.of(context).primary,
-                  elevation: 4.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                  position: badges.BadgePosition.topEnd(),
-                  animationType: badges.BadgeAnimationType.scale,
-                  toAnimate: true,
-                  child: FaIcon(
-                    FontAwesomeIcons.bell,
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                    size: 24.0,
+              Builder(
+                builder: (context) => InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (dialogContext) {
+                        return Dialog(
+                          elevation: 0,
+                          insetPadding: EdgeInsets.zero,
+                          backgroundColor: Colors.transparent,
+                          alignment: const AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
+                          child: SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            child: const NotificationWidget(),
+                          ),
+                        );
+                      },
+                    ).then((value) => setState(() {}));
+                  },
+                  child: badges.Badge(
+                    badgeContent: Text(
+                      '1',
+                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                            fontFamily: 'Nunito Sans',
+                            color: Colors.white,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    showBadge: true,
+                    shape: badges.BadgeShape.circle,
+                    badgeColor: FlutterFlowTheme.of(context).primary,
+                    elevation: 4.0,
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                    position: badges.BadgePosition.topEnd(),
+                    animationType: badges.BadgeAnimationType.scale,
+                    toAnimate: true,
+                    child: FaIcon(
+                      FontAwesomeIcons.bell,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 24.0,
+                    ),
                   ),
                 ),
               ),
@@ -301,58 +311,64 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            FFButtonWidget(
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                  'MarketPlace',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        const TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .fade,
-                                                      duration: Duration(
-                                                          milliseconds: 0),
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                              text: 'Khám phá ngay',
-                                              icon: const Icon(
-                                                Icons.open_in_new_outlined,
-                                                size: 24.0,
-                                              ),
-                                              options: FFButtonOptions(
-                                                height: 36.0,
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                iconPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .green,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Nunito Sans',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .info,
-                                                      letterSpacing: 0.0,
-                                                    ),
-                                                elevation: 3.0,
-                                                borderSide: const BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                            Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 8.0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                    'MarketPlace',
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          const TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .fade,
+                                                        duration: Duration(
+                                                            milliseconds: 0),
+                                                      ),
+                                                    },
+                                                  );
+                                                },
+                                                text: 'Khám phá ngay',
+                                                icon: const Icon(
+                                                  Icons.open_in_new_outlined,
+                                                  size: 24.0,
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(18.0),
+                                                options: FFButtonOptions(
+                                                  height: 36.0,
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 16.0, 0.0),
+                                                  iconPadding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .green,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Nunito Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .info,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                  elevation: 3.0,
+                                                  borderSide: const BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                ),
                                               ),
                                             ),
                                             if (false)
@@ -409,8 +425,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child:
-                                                              const AuthorSignUpWidget(),
+                                                          child: SizedBox(
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                1.0,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                1.0,
+                                                            child:
+                                                                const AuthorSignUpWidget(),
+                                                          ),
                                                         );
                                                       },
                                                     ).then((value) =>
