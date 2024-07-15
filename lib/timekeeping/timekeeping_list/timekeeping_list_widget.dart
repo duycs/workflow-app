@@ -6,25 +6,25 @@ import '/flutter_flow/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'timekeeping_group_model.dart';
-export 'timekeeping_group_model.dart';
+import 'timekeeping_list_model.dart';
+export 'timekeeping_list_model.dart';
 
-class TimekeepingGroupWidget extends StatefulWidget {
-  const TimekeepingGroupWidget({super.key});
+class TimekeepingListWidget extends StatefulWidget {
+  const TimekeepingListWidget({super.key});
 
   @override
-  State<TimekeepingGroupWidget> createState() => _TimekeepingGroupWidgetState();
+  State<TimekeepingListWidget> createState() => _TimekeepingListWidgetState();
 }
 
-class _TimekeepingGroupWidgetState extends State<TimekeepingGroupWidget> {
-  late TimekeepingGroupModel _model;
+class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
+  late TimekeepingListModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TimekeepingGroupModel());
+    _model = createModel(context, () => TimekeepingListModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();

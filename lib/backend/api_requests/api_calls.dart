@@ -25,6 +25,142 @@ class GroupTemplateGroup {
 
 /// End GroupTemplate Group Code
 
+/// Start TimekeepingShift Group Code
+
+class TimekeepingShiftGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static ShiftListCall shiftListCall = ShiftListCall();
+  static AddressListCall addressListCall = AddressListCall();
+  static CityListCall cityListCall = CityListCall();
+}
+
+class ShiftListCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'ShiftList',
+        apiUrl: '$baseUrl/items/shifts',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
+}
+
+class AddressListCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'AddressList',
+        apiUrl: '$baseUrl/items/address',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'sort': "-date_created",
+          'fields[]':
+              "ward_id.district_id.id, ward_id.district_id.name, ward_id.district_id.city_id.id, ward_id.district_id.city_id.name, id, status, detail, location, meter_range, ward_id.id, ward_id.name, user_created.first_name",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
+}
+
+class CityListCall {
+  Future<ApiCallResponse> call({
+    int? limit = 5000,
+    int? offset = 0,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'CityList',
+      apiUrl: '$baseUrl/items/cities',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'limit': limit,
+        'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End TimekeepingShift Group Code
+
 /// Start Newsfeed Group Code
 
 class NewsfeedGroup {
@@ -3563,7 +3699,7 @@ class StaffGetOneCall {
       },
       params: {
         'fields':
-            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan,tasks.tasks_id.submit_staff_id.id,staff_programs.program_id.certificate_id.id,staff_programs.program_id.certificate_id.name, staff_programs.program_id.certificate_id.code,staff_programs.date_updated,notifications.id, notifications.notifications_id.id, notifications.notifications_id.data, notifications.notifications_id.contents, notifications.notifications_id.status, notifications.notifications_id.user_created",
+            "sort, id, title, user_id.role, status, organization_id.id, organization_id.name, branch_id.id, branch_id.name, department_id.id, department_id.name, cccd, gender, phone, dob, user_id.id, user_id.email, user_id.first_name, user_id.last_name, user_id.status, user_id.avatar, staff_lessions.id, staff_lessions.status, staff_tests.id, staff_tests.status, tasks.tasks_id.status, tasks.tasks_id.over_deadline, staff_tests.percent_correct, staff_programs.program_id.name, staff_programs.status, staff_programs.date_created, staff_programs.deadline, staff_programs.program_id.lessions, staff_lessions.lession_id.name, staff_lessions.program_id.name, staff_lessions.status, staff_lessions.date_created, staff_lessions.deadline, staff_lessions.date_start, staff_tests.test_id.name, staff_tests.lession_id.name, staff_tests.pass, staff_tests.date_start, staff_tests.date_end, staff_tests.percent_correct, staff_tests.test_id.good_score, staff_tests.score, staff_tests.total_correct, staff_tests.total_incorrect, tasks.tasks_id.id, tasks.tasks_id.name, tasks.tasks_id.number, tasks.tasks_id.description, tasks.tasks_id.step_id, tasks.tasks_id.workflow_id, tasks.tasks_id.current, skills.id, skills.skills_id.id, skills.skills_id.name, current_step_id.id, current_step_id.name, tasks.tasks_id.operations.id, tasks.tasks_id.operations.operations_id.name, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.description, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files, date_created, tasks.tasks_id.workflow_id.name, tasks.tasks_id.workflow_id.id, tasks.tasks_id.date_created, tasks.tasks_id.date_start, tasks.tasks_id.date_end, tasks.tasks_id.action_type, tasks.tasks_id.operations.operations_id.content, tasks.tasks_id.operations.operations_id.result, tasks.tasks_id.operations.operations_id.files.directus_files_id.filename_download,description,slogan,tasks.tasks_id.submit_staff_id.id,staff_programs.program_id.certificate_id.id,staff_programs.program_id.certificate_id.name, staff_programs.program_id.certificate_id.code,staff_programs.date_updated, notifications.notifications_id.data, notifications.notifications_id.contents, notifications.notifications_id.status, notifications.notifications_id.user_created",
         'filter': filter,
       },
       returnBody: true,
@@ -5029,7 +5165,7 @@ class SettingAcountGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',

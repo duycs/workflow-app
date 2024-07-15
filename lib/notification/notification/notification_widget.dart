@@ -187,7 +187,9 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                             const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const DetaiNotiWidget(),
+                                        child: DetaiNotiWidget(
+                                          data: listItem,
+                                        ),
                                       );
                                     },
                                   ).then((value) => setState(() {}));
@@ -255,14 +257,16 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  getJsonField(
+                                                  (String var1) {
+                                                    return var1.split('.').last;
+                                                  }(getJsonField(
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
-                                                      r'''$.notifications_id''',
+                                                      r'''$.notifications_id.contents''',
                                                     ).toString()),
-                                                    r'''$.contents.en''',
-                                                  ).toString(),
+                                                    r'''$.en''',
+                                                  ).toString()),
                                                   maxLines: 1,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -278,7 +282,18 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                       .fromSTEB(
                                                           0.0, 4.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Dọn dẹp, sắp xếp kho',
+                                                    (String var1) {
+                                                      return var1
+                                                          .split('.')
+                                                          .first;
+                                                    }(getJsonField(
+                                                      functions.stringToJson(
+                                                          getJsonField(
+                                                        listItem,
+                                                        r'''$.notifications_id.contents''',
+                                                      ).toString()),
+                                                      r'''$.en''',
+                                                    ).toString()),
                                                     maxLines: 2,
                                                     style: FlutterFlowTheme.of(
                                                             context)

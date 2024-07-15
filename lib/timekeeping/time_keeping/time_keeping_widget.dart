@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_checkin/time_keeping_checkin_widget.dart';
 import '/timekeeping/time_keeping_checkout/time_keeping_checkout_widget.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'time_keeping_model.dart';
 export 'time_keeping_model.dart';
@@ -1734,6 +1735,7 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                       child: Builder(
                         builder: (context) => FFButtonWidget(
                           onPressed: () async {
+                            var shouldSetState = false;
                             await showDialog(
                               context: context,
                               builder: (dialogContext) {
@@ -1754,6 +1756,57 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                                 );
                               },
                             ).then((value) => setState(() {}));
+
+                            _model.authenticateBiometicsTimeKeeping =
+                                await actions
+                                    .authenticateUsingBiometricsSetting();
+                            shouldSetState = true;
+                            if (_model.authenticateBiometicsTimeKeeping !=
+                                true) {
+                              if (shouldSetState) setState(() {});
+                              return;
+                            }
+                            _model.timeKeepingLocation =
+                                await actions.timeKeepingLocation(
+                              21.0166349,
+                              105.8344615,
+                              100.0,
+                            );
+                            shouldSetState = true;
+                            if (_model.timeKeepingLocation ==
+                                'Chấm công thành công!') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    _model.timeKeepingLocation!,
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    _model.timeKeepingLocation!,
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).error,
+                                ),
+                              );
+                            }
+
+                            if (shouldSetState) setState(() {});
                           },
                           text: 'Chấm công vào',
                           icon: const Icon(

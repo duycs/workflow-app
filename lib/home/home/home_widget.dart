@@ -358,6 +358,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .info,
+                                                        fontSize: 13.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                   elevation: 3.0,
@@ -1506,7 +1507,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     setState(() {});
 
                                     context.pushNamed(
-                                      'TimekeepingGroup',
+                                      'TimekeepingList',
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,

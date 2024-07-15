@@ -1,5 +1,9 @@
 export '/backend/schema/util/schema_util.dart';
 
+export 'address_city_struct.dart';
+export 'address_district_struct.dart';
+export 'address_list_struct.dart';
+export 'address_ward_struct.dart';
 export 'answers_list_struct.dart';
 export 'author_id_struct.dart';
 export 'author_id_market_struct.dart';
@@ -58,6 +62,7 @@ export 'lesson_market_struct.dart';
 export 'lessons_struct.dart';
 export 'lessons_list_data_struct.dart';
 export 'list_user_struct.dart';
+export 'location_struct.dart';
 export 'login_resource_struct.dart';
 export 'login_resource_data_struct.dart';
 export 'login_response_struct.dart';
@@ -107,6 +112,7 @@ export 'reacts_id_market_struct.dart';
 export 'reacts_market_struct.dart';
 export 'read_newsfeed_struct.dart';
 export 'request_answer_staff_struct.dart';
+export 'shift_list_struct.dart';
 export 'staff_answer_list_struct.dart';
 export 'staff_answer_list_data_struct.dart';
 export 'staff_id_struct.dart';

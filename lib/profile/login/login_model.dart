@@ -62,13 +62,12 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   bool? loginauthencateUssingBV;
   // Stores action output result for [Custom Action - getReTokenUser] action in IconButton widget.
   String? checkWfEmailBV;
-  // Stores action output result for [Custom Action - sshkey] action in IconButton widget.
-  String? sshkeyPublicKeyLogin;
+  // Stores action output result for [Custom Action - biometricCreateSignature] action in IconButton widget.
+  String? signature;
   // Stores action output result for [Backend Call - API (LoginBiometricVerification)] action in IconButton widget.
   ApiCallResponse? apiResultvlloginSTH1;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.
   ApiCallResponse? apiResultGetStaffIdSTH;
-  bool ame = false;
 
   @override
   void initState(BuildContext context) {

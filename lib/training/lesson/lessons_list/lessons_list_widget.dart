@@ -347,19 +347,24 @@ class _LessonsListWidgetState extends State<LessonsListWidget> {
                       pagingController: _model.setListViewController(
                         (nextPageMarker) => LessonGroup.getLessonListCall.call(
                           accessToken: FFAppState().accessToken,
-                          filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+                          filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
                             FFAppState().staffLogin,
                             r'''$.organization_id''',
-                          ).toString()}\"}}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? _model.dateStart : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? '\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ((String var1) {
+                          ).toString()}\"}}'}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_icontains\":\"${_model.status}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
                               return DateTime.parse(var1)
                                   .add(const Duration(days: 1))
                                   .toString();
-                            }(_model.dateEnd)) : ' '}${(_model.dateEnd != '') && (_model.dateEnd != 'noData') ? '\"}}' : ' '}${_model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programId != '' ? _model.programId : ' '}${_model.programId != '' ? '\"}}}}' : ' '}]}',
+                            }(_model.dateEnd)}\"}}' : ' '}${_model.programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"${_model.programId}\"}}}}' : ' '}]}',
                           offset: nextPageMarker.nextPageNumber * 20,
                           limit: 20,
                         ),
                       ),
-                      padding: EdgeInsets.zero,
+                      padding: const EdgeInsets.fromLTRB(
+                        0,
+                        0,
+                        0,
+                        30.0,
+                      ),
                       primary: false,
                       reverse: false,
                       scrollDirection: Axis.vertical,

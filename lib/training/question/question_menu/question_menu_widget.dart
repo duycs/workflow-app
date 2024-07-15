@@ -93,62 +93,68 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                   onExit: ((event) async {
                     setState(() => _model.mouseRegionHovered1 = false);
                   }),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      _model.setColor = 1;
-                      setState(() {});
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        isDismissible: false,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: MediaQuery.viewInsetsOf(context),
-                            child: SizedBox(
-                              height: double.infinity,
-                              child: QuestionDetailWidget(
-                                itemOne: widget.item!,
+                  child: Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        _model.setColor = 1;
+                        setState(() {});
+                        await showDialog(
+                          context: context,
+                          builder: (dialogContext) {
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              child: SizedBox(
+                                height: MediaQuery.sizeOf(context).height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                child: QuestionDetailWidget(
+                                  itemOne: widget.item!,
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
+                            );
+                          },
+                        ).then((value) => setState(() {}));
 
-                      Navigator.pop(context);
-                      _model.setColor = 0;
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: _model.setColor == 1
-                            ? FlutterFlowTheme.of(context).alternate
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.info_outline,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
+                        Navigator.pop(context);
+                        _model.setColor = 0;
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: _model.setColor == 1
+                              ? FlutterFlowTheme.of(context).alternate
+                              : FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
-                        title: Text(
-                          'Chi tiết',
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.info_outline,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          title: Text(
+                            'Chi tiết',
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          tileColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          dense: false,
                         ),
-                        tileColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        dense: false,
                       ),
                     ),
                   ),
@@ -184,8 +190,8 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: SizedBox(
-                                height: double.infinity,
-                                width: double.infinity,
+                                height: MediaQuery.sizeOf(context).height * 1.0,
+                                width: MediaQuery.sizeOf(context).width * 1.0,
                                 child: QuestionUpdateWidget(
                                   item: widget.item!,
                                 ),

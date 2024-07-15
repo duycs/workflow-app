@@ -182,7 +182,7 @@ class FFAppState extends ChangeNotifier {
     _Author = value;
   }
 
-  bool _biometricLogin = false;
+  bool _biometricLogin = true;
   bool get biometricLogin => _biometricLogin;
   set biometricLogin(bool value) {
     _biometricLogin = value;

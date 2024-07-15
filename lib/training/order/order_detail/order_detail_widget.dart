@@ -90,9 +90,6 @@ class _OrderDetailWidgetState extends State<OrderDetailWidget> {
     return Align(
       alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
-        constraints: const BoxConstraints(
-          maxHeight: 720.0,
-        ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
           boxShadow: const [

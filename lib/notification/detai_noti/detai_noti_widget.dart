@@ -2,12 +2,18 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'detai_noti_model.dart';
 export 'detai_noti_model.dart';
 
 class DetaiNotiWidget extends StatefulWidget {
-  const DetaiNotiWidget({super.key});
+  const DetaiNotiWidget({
+    super.key,
+    required this.data,
+  });
+
+  final dynamic data;
 
   @override
   State<DetaiNotiWidget> createState() => _DetaiNotiWidgetState();
@@ -58,7 +64,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
@@ -90,7 +96,15 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Nhiệm vụ mới',
+                            (String var1) {
+                              return var1.split('.').last;
+                            }(getJsonField(
+                              functions.stringToJson(getJsonField(
+                                widget.data,
+                                r'''$.notifications_id.contents''',
+                              ).toString()),
+                              r'''$.en''',
+                            ).toString()),
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
                                       fontFamily: 'Nunito Sans',
@@ -102,7 +116,15 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                                 0.0, 4.0, 0.0, 0.0),
                             child: SelectionArea(
                                 child: Text(
-                              'Quy trình.....',
+                              (String var1) {
+                                return var1.split('.').first;
+                              }(getJsonField(
+                                functions.stringToJson(getJsonField(
+                                  widget.data,
+                                  r'''$.notifications_id.contents''',
+                                ).toString()),
+                                r'''$.en''',
+                              ).toString()),
                               style: FlutterFlowTheme.of(context)
                                   .bodySmall
                                   .override(
@@ -179,8 +201,26 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                       ),
                     ),
                     FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        if (getJsonField(
+                              functions.stringToJson(getJsonField(
+                                widget.data,
+                                r'''$.notifications_id.data''',
+                              ).toString()),
+                              r'''$.screen''',
+                            ).toString() ==
+                            '1') {
+                          context.goNamed('TaskList');
+                        } else if (getJsonField(
+                              functions.stringToJson(getJsonField(
+                                widget.data,
+                                r'''$.notifications_id.data''',
+                              ).toString()),
+                              r'''$.screen''',
+                            ).toString() ==
+                            '2') {
+                          context.goNamed('TaskListWait');
+                        }
                       },
                       text: 'Thực hiện ngay',
                       options: FFButtonOptions(

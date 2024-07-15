@@ -29,3 +29,8 @@ export 'call_screen.dart' show callScreen;
 export 'check_intro_screen.dart' show checkIntroScreen;
 export 'screen_certificate.dart' show screenCertificate;
 export 'screen_certificate1.dart' show screenCertificate1;
+export 'biometric_create_public_key.dart' show biometricCreatePublicKey;
+export 'biometric_get_public_key.dart' show biometricGetPublicKey;
+export 'biometric_delete_key_pair.dart' show biometricDeleteKeyPair;
+export 'biometric_create_signature.dart' show biometricCreateSignature;
+export 'time_keeping_location.dart' show timeKeepingLocation;

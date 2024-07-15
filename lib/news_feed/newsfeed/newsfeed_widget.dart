@@ -14,6 +14,7 @@ import '/news_feed/d_n_f_newsfeed/d_n_f_newsfeed_widget.dart';
 import '/news_feed/newsfeed_create/newsfeed_create_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -1993,6 +1994,11 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                         newsfeedItem.id,
                                                         ParamType.String,
                                                       ),
+                                                      'checkpage':
+                                                          serializeParam(
+                                                        'newsfeed',
+                                                        ParamType.String,
+                                                      ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
@@ -2739,6 +2745,10 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
                                                                 await _model
                                                                     .newsfeedListRequire(
                                                                         context);
+                                                                await Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            500));
                                                                 setState(() => _model
                                                                     .listViewPagingController
                                                                     ?.refresh());

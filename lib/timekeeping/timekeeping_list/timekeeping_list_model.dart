@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'timekeeping_group_widget.dart' show TimekeepingGroupWidget;
+import 'timekeeping_list_widget.dart' show TimekeepingListWidget;
 import 'package:flutter/material.dart';
 
-class TimekeepingGroupModel extends FlutterFlowModel<TimekeepingGroupWidget> {
+class TimekeepingListModel extends FlutterFlowModel<TimekeepingListWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

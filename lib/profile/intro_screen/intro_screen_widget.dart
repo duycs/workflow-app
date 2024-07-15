@@ -35,7 +35,7 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().isFirstTime != true) {
-        context.pushNamed(
+        context.goNamed(
           'Login',
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(

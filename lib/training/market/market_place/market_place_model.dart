@@ -128,7 +128,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_eq\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
@@ -171,7 +171,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}},{\"price\":{\"_gt\":\"0\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
@@ -214,7 +214,7 @@ class MarketPlaceModel extends FlutterFlowModel<MarketPlaceWidget> {
         await GroupMarketLessonGroup.getListMarketLessonCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${searchMarketTextController.text != '' ? searchMarketTextController.text : ' '}${searchMarketTextController.text != '' ? '\"}}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"' : ' '}${(domain != '') && (domain != 'noData') ? domain : ' '}${(domain != '') && (domain != 'noData') ? '\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"' : ' '}${(author != '') && (author != 'noData') ? author : ' '}${(author != '') && (author != 'noData') ? '\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"' : ' '}${(category != '') && (category != 'noData') ? category : ' '}${(category != '') && (category != 'noData') ? '\"}}}' : ' '}${(priceMin != '') && (priceMin != 'noData') ? ',{\"price\":{\"_gte\":\"' : ' '}${(priceMin != '') && (priceMin != 'noData') ? priceMin : ' '}${(priceMin != '') && (priceMin != 'noData') ? '\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') ? ',{\"price\":{\"_lte\":\"' : ' '}${(priceMax != '') && (priceMax != 'noData') ? priceMax : ' '}${(priceMax != '') && (priceMax != 'noData') ? '\"}}' : ' '}]}',
+          '{\"_and\":[{\"template\":{\"_eq\":\"1\"}}${searchMarketTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${searchMarketTextController.text}\"}}' : ' '}${(domain != '') && (domain != 'noData') ? ',{\"domain_id\":{\"name\":{\"_icontains\":\"$domain\"}}}' : ' '}${(author != '') && (author != 'noData') ? ',{\"author_id\":{\"alias\":{\"_icontains\":\"$author\"}}}' : ' '}${(category != '') && (category != 'noData') ? ',{\"category_id\":{\"name\":{\"_icontains\":\"$category\"}}}' : ' '}${(priceMin != '') && (priceMin != 'noData') ? ',{\"price\":{\"_gte\":\"$priceMin\"}}' : ' '}${(priceMax != '') && (priceMax != 'noData') ? ',{\"price\":{\"_lte\":\"$priceMax\"}}' : ' '}]}',
     );
 
     if ((apiResultGetListAll.succeeded ?? true)) {

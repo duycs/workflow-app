@@ -1,9 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/time_keeping_shift_created/time_keeping_shift_created_widget.dart';
+import '/timekeeping/time_keeping_shift_filter/time_keeping_shift_filter_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'timekeeping_shift_list_model.dart';
 export 'timekeeping_shift_list_model.dart';
 
@@ -39,6 +43,8 @@ class _TimekeepingShiftListWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -214,8 +220,25 @@ class _TimekeepingShiftListWidgetState
                         color: FlutterFlowTheme.of(context).primaryText,
                         size: 30.0,
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
+                      onPressed: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          useSafeArea: true,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: const TimeKeepingShiftFilterWidget(),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
                     ),
                   ],
@@ -223,97 +246,132 @@ class _TimekeepingShiftListWidgetState
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: ListView(
+                child: PagedListView<ApiPagingParams, dynamic>.separated(
+                  pagingController: _model.setListViewController(
+                    (nextPageMarker) =>
+                        TimekeepingShiftGroup.shiftListCall.call(
+                      accessToken: FFAppState().accessToken,
+                      limit: 20,
+                      filter: ' ',
+                      offset: nextPageMarker.nextPageNumber * 20,
+                    ),
+                  ),
                   padding: EdgeInsets.zero,
+                  primary: false,
                   shrinkWrap: true,
+                  reverse: false,
                   scrollDirection: Axis.vertical,
-                  children: [
-                    ListTile(
-                      title: Text(
-                        'Ca 1',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        '7:00 - 11:00',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                  separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    // Customize what your widget looks like when it's loading the first page.
+                    firstPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
                     ),
-                    ListTile(
-                      title: Text(
-                        'Ca 2',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        '7:00 - 11:00',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                    // Customize what your widget looks like when it's loading another page.
+                    newPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
                     ),
-                    ListTile(
-                      title: Text(
-                        'Ca 3',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
+
+                    itemBuilder: (context, _, shiftListIndex) {
+                      final shiftListItem = _model
+                          .listViewPagingController!.itemList![shiftListIndex];
+                      return Container(
+                        decoration: const BoxDecoration(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ListTile(
+                              title: Text(
+                                shiftListItem.name,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                '${shiftListItem.startTime} - ${shiftListItem.endTime}',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 20.0,
+                              ),
+                              dense: false,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
-                      ),
-                      subtitle: Text(
-                        '7:00 - 11:00',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 8.0, 8.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: valueOrDefault<Color>(
+                                    shiftListItem.status == 'published'
+                                        ? FlutterFlowTheme.of(context).accent2
+                                        : FlutterFlowTheme.of(context).accent3,
+                                    FlutterFlowTheme.of(context).accent2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20.0),
                                 ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ].divide(const SizedBox(height: 8.0)),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 4.0, 8.0, 4.0),
+                                  child: Text(
+                                    shiftListItem.status == 'published'
+                                        ? 'Hoạt động'
+                                        : 'Không hoạt động',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: valueOrDefault<Color>(
+                                            shiftListItem.status == 'published'
+                                                ? FlutterFlowTheme.of(context)
+                                                    .secondary
+                                                : FlutterFlowTheme.of(context)
+                                                    .tertiary,
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

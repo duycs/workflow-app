@@ -1120,9 +1120,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'TimekeepingGroup',
-          path: '/timekeepingGroup',
-          builder: (context, params) => const TimekeepingGroupWidget(),
+          name: 'TimekeepingList',
+          path: '/timekeepingList',
+          builder: (context, params) => const TimekeepingListWidget(),
         ),
         FFRoute(
           name: 'TimekeepingCreate',
