@@ -118,10 +118,10 @@ class LessonDetailHomePageModel
 
     apiResultGetCommment = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"id\":{\"_eq\":\"${getJsonField(
         widget!.listItems,
         r'''$.id''',
-      ).toString().toString()}\"}}]}',
+      ).toString().toString()}\"}}'}]}',
     );
 
     if ((apiResultGetCommment.succeeded ?? true)) {

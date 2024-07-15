@@ -65,12 +65,12 @@ class LessonsListModel extends FlutterFlowModel<LessonsListWidget> {
 
     apiResultList = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? dateStart : ' '}${(dateStart != '') && (dateStart != 'noDate') ? '\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ((String var1) {
+      ).toString().toString()}\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status\"}}' : ' '}${(dateStart != '') && (dateStart != 'noDate') ? ',{\"date_created\":{\"_gte\":\"$dateStart\"}}' : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
           return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEnd)) : ' '}${(dateEnd != '') && (dateEnd != 'noData') ? '\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programId != '' ? programId : ' '}${programId != '' ? '\"}}}}' : ' '}]}',
+        }(dateEnd)}\"}}' : ' '}${programId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programId\"}}}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

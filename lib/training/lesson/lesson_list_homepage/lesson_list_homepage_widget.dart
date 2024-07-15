@@ -379,32 +379,22 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
                               LessonGroup.employeeLessonListCall.call(
-                            filter: '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${widget.staffId != null && widget.staffId != '' ? widget.staffId : FFAppState().staffid}\"}}}${_model.nameSearchTextController.text != '' ? ',' : ' '}${_model.nameSearchTextController.text != '' ? '{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',' : ' '}${(_model.status != '') && (_model.status != 'noData') ? '{\"lession_id\":{\"status\":{\"_icontains\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}}' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? ',' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '{\"lession_id\":{\"date_created\":{\"_gte\":\"' : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? _model.dateStartList : ' '}${(_model.dateStartList != null && _model.dateStartList != '') && (_model.dateStartList != '0') ? '\"}}}' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ',' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '{\"lession_id\":{\"date_created\":{\"_lte\":\"' : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? ((String var1) {
-                                return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
-                                    .toString();
-                              }(_model.dateEndList!)) : ' '}${(_model.dateEndList != null && _model.dateEndList != '') && (_model.dateEndList != '0') ? '\"}}}' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? ',' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? '{\"status\":{\"_eq\":\"' : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? _model.statusLesson : ' '}${(_model.statusLesson != '') && (_model.statusLesson != 'noData') ? '\"}}' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? ',' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? _model.lessonFavoriteStatusList : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(_model.lessonFavoriteStatusList != '') && (_model.lessonFavoriteStatusList != 'noData') ? '\"}}}}}' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? ',{\"status\":{\"_eq\":\"' : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? widget.statusLesson : ' '}${widget.statusLesson != null && widget.statusLesson != '' ? '\"}}' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? ',{\"lession_id\":{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}}}, {\"lession_id\":{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? FFAppState().staffid : ' '}${(widget.statusLove != null && widget.statusLove != '') && (widget.statusLove == 'love') ? '\"}}}}}' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? functions.aDayInThePast(getCurrentTimestamp) : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? '\"}},{\"date_created\":{\"_lte\":\"' : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ((String var1) {
-                                return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
-                                    .toString();
-                              }(dateTimeFormat(
-                                'yyyy-MM-dd',
-                                getCurrentTimestamp,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              ))) : ' '}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? '\"}}' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? ',{\"_and\":[{\"date_created\":{\"_gte\":\"' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? functions.aDayInThePast(getCurrentTimestamp) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}},{\"date_created\":{\"_lte\":\"' : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? ((String var1) {
-                                return DateTime.parse(var1)
-                                    .add(const Duration(days: 1))
-                                    .toString();
-                              }(dateTimeFormat(
-                                'yyyy-MM-dd',
-                                getCurrentTimestamp,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              ))) : ' '}${(widget.lesonHistory != null && widget.lesonHistory != '') || (widget.lesonHistory == 'lessonHistory') ? '\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}' : ' '}${_model.programsId != '' ? ',{\"lession_id\":{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${_model.programsId != '' ? _model.programsId : ' '}${_model.programsId != '' ? '\"}}}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}${(widget.lessonNewCreate != null && widget.lessonNewCreate != '') && (widget.lessonNewCreate == 'dateToday') ? ',{\"status\":{\"_eq\":\"draft\"}}' : ' '},{\"organization_id\":{\"_eq\":\"${getJsonField(
-                              FFAppState().staffLogin,
-                              r'''$.organization_id''',
-                            ).toString()}\"}}]}',
+                            filter: functions.filterListLessonAdmin(
+                                FFAppState().staffid,
+                                getJsonField(
+                                  FFAppState().staffLogin,
+                                  r'''$.organization_id''',
+                                ).toString(),
+                                _model.nameSearchTextController.text,
+                                _model.status,
+                                _model.dateStartList,
+                                _model.dateEndList,
+                                widget.statusLesson,
+                                _model.lessonFavoriteStatusList,
+                                widget.statusLove,
+                                widget.lessonNewCreate,
+                                widget.lesonHistory,
+                                _model.programsId),
                             limit: 20,
                             accessToken: FFAppState().accessToken,
                             offset: nextPageMarker.nextPageNumber * 20,

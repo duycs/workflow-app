@@ -62,7 +62,7 @@ class CategoryMarketModel extends FlutterFlowModel<CategoryMarketWidget> {
     apiResultList = await GetDomainsGroup.getDomainsCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[${searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"' : ' '}${searchDomainsTextController.text != '' ? searchDomainsTextController.text : ' '}${searchDomainsTextController.text != '' ? '\"}}' : ' '}]}',
+          '{\"_and\":[${searchDomainsTextController.text != '' ? '{\"name\":{\"_icontains\":\"${searchDomainsTextController.text}\"}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -818,17 +817,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         null &&
                                                                     _model.checkWfEmailBV !=
                                                                         '') {
-                                                                  _model.sshkeyPublicKeyLogin =
+                                                                  _model.signature =
                                                                       await actions
-                                                                          .sshkey(
-                                                                    getJsonField(
-                                                                      FFAppState()
-                                                                          .staffLogin,
-                                                                      r'''$.email''',
-                                                                    ).toString(),
-                                                                    '',
-                                                                    true,
-                                                                  );
+                                                                          .biometricCreateSignature();
                                                                   shouldSetState =
                                                                       true;
                                                                   _model.apiResultvlloginSTH1 =
@@ -840,7 +831,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                       'email':
                                                                           '${_model.checkWfEmailBV}',
                                                                       'signature':
-                                                                          '${_model.sshkeyPublicKeyLogin}',
+                                                                          _model
+                                                                              .signature!,
                                                                     },
                                                                   );
 
@@ -1046,68 +1038,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                               if (shouldSetState) {
                                                                 setState(() {});
                                                               }
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  if ((_model.showSTH ==
-                                                          true) &&
-                                                      (FFAppState()
-                                                              .biometricLogin ==
-                                                          true) &&
-                                                      ('1' == '2'))
-                                                    Expanded(
-                                                      flex: 1,
-                                                      child: Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child:
-                                                              FlutterFlowIconButton(
-                                                            borderColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .noColor,
-                                                            borderRadius: 50.0,
-                                                            borderWidth: 1.0,
-                                                            buttonSize: 52.0,
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            icon: Icon(
-                                                              Icons.fingerprint,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                            onPressed:
-                                                                () async {
-                                                              final localAuth =
-                                                                  LocalAuthentication();
-                                                              bool
-                                                                  isBiometricSupported =
-                                                                  await localAuth
-                                                                      .isDeviceSupported();
-
-                                                              if (isBiometricSupported) {
-                                                                _model.ame = await localAuth
-                                                                    .authenticate(
-                                                                        localizedReason:
-                                                                            '123');
-                                                                setState(() {});
-                                                              }
-
-                                                              setState(() {});
                                                             },
                                                           ),
                                                         ),

@@ -1,9 +1,14 @@
+import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
+import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'timekeeping_location_list_model.dart';
 export 'timekeeping_location_list_model.dart';
 
@@ -39,6 +44,8 @@ class _TimekeepingLocationListWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -227,98 +234,128 @@ class _TimekeepingLocationListWidgetState
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: ListView(
+                child: PagedListView<ApiPagingParams, dynamic>.separated(
+                  pagingController: _model.setListViewController1(
+                    (nextPageMarker) =>
+                        TimekeepingShiftGroup.addressListCall.call(
+                      accessToken: FFAppState().accessToken,
+                      limit: 20,
+                      offset: nextPageMarker.nextPageNumber * 20,
+                      filter: ' {}',
+                    ),
+                  ),
                   padding: EdgeInsets.zero,
+                  primary: false,
                   shrinkWrap: true,
+                  reverse: false,
                   scrollDirection: Axis.vertical,
-                  children: [
-                    ListTile(
-                      title: Text(
-                        'Trung Phụng, Đống Đa',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        '500 m',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                  separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    // Customize what your widget looks like when it's loading the first page.
+                    firstPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
                     ),
-                    ListTile(
-                      title: Text(
-                        'Ô Chợ Dừa, Đống Đa',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        '200 m',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
+                    // Customize what your widget looks like when it's loading another page.
+                    newPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
                     ),
-                    ListTile(
-                      title: Text(
-                        'Lam Sơn, Hưng Yên',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
+                    noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                    itemBuilder: (context, _, addressListIndex) {
+                      final addressListItem = _model.listViewPagingController1!
+                          .itemList![addressListIndex];
+                      return Builder(
+                        builder: (context) => InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (dialogContext) {
+                                return Dialog(
+                                  elevation: 0,
+                                  insetPadding: EdgeInsets.zero,
+                                  backgroundColor: Colors.transparent,
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: SizedBox(
+                                      height: double.infinity,
+                                      width: double.infinity,
+                                      child: TimeKeepingLocationDetailWidget(
+                                        item: addressListItem,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
+                          child: ListTile(
+                            title: Text(
+                              'Trung Phụng, Đống Đa',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
-                      ),
-                      subtitle: Text(
-                        '300 m',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 20.0,
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      dense: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ].divide(const SizedBox(height: 8.0)),
+                            subtitle: Text(
+                              addressListItem.meterRange.toString(),
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 20.0,
+                            ),
+                            tileColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            dense: false,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
+              ),
+              ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: const [],
               ),
             ],
           ),

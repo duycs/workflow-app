@@ -348,40 +348,20 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
                             filter: '{\"_and\":[${() {
                               if (FFAppState().user.role ==
                                   '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return '{\"organization_id\":{\"_eq\":\"';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return getJsonField(
+                                return '{\"organization_id\":{\"_eq\":\"${getJsonField(
                                   FFAppState().staffLogin,
                                   r'''$.organization_id''',
-                                ).toString();
+                                ).toString()}\"}}';
                               } else if (FFAppState().user.role ==
                                   'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return getJsonField(
+                                return '{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
                                   FFAppState().staffBranch,
                                   r'''$.id''',
-                                ).toString();
+                                ).toString()}\"}}}';
                               } else {
                                 return ' ';
                               }
-                            }()}${() {
-                              if (FFAppState().user.role ==
-                                  '82073000-1ba2-43a4-a55c-459d17c23b68') {
-                                return '\"}}';
-                              } else if (FFAppState().user.role ==
-                                  'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-                                return '\"}}}';
-                              } else {
-                                return ' ';
-                              }
-                            }()}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${_model.nameSearchTextController.text != '' ? _model.nameSearchTextController.text : ' '}${_model.nameSearchTextController.text != '' ? '\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(_model.status != '') && (_model.status != 'noData') ? _model.status : ' '}${(_model.status != '') && (_model.status != 'noData') ? '\"}}' : ' '}${(_model.branchId != '') && (_model.branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(_model.branchId != '') && (_model.branchId != 'noData') ? _model.branchId : ' '}${(_model.branchId != '') && (_model.branchId != 'noData') ? '\"}}}' : ' '}]}',
+                            }()}${_model.nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${_model.nameSearchTextController.text}\"}}' : ' '}${(_model.status != '') && (_model.status != 'noData') ? ',{\"status\":{\"_eq\":\"${_model.status}\"}}' : ' '}${(_model.branchId != '') && (_model.branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"${_model.branchId}\"}}}' : ' '}]}',
                             limit: 20,
                             offset: nextPageMarker.nextPageNumber * 20,
                             accessToken: FFAppState().accessToken,

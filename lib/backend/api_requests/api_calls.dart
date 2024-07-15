@@ -25,6 +25,142 @@ class GroupTemplateGroup {
 
 /// End GroupTemplate Group Code
 
+/// Start TimekeepingShift Group Code
+
+class TimekeepingShiftGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static ShiftListCall shiftListCall = ShiftListCall();
+  static AddressListCall addressListCall = AddressListCall();
+  static CityListCall cityListCall = CityListCall();
+}
+
+class ShiftListCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'ShiftList',
+        apiUrl: '$baseUrl/items/shifts',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'sort': "-date_created",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
+}
+
+class AddressListCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return FFApiInterceptor.makeApiCall(
+      ApiCallOptions(
+        callName: 'AddressList',
+        apiUrl: '$baseUrl/items/address',
+        callType: ApiCallType.GET,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $accessToken',
+        },
+        params: {
+          'filter': filter,
+          'offset': offset,
+          'limit': limit,
+          'sort': "-date_created",
+          'fields[]':
+              "ward_id.district_id.id, ward_id.district_id.name, ward_id.district_id.city_id.id, ward_id.district_id.city_id.name, id, status, detail, location, meter_range, ward_id.id, ward_id.name, user_created.first_name",
+        },
+        returnBody: true,
+        encodeBodyUtf8: false,
+        decodeUtf8: false,
+        cache: false,
+        isStreamingApi: false,
+        alwaysAllowBody: false,
+      ),
+      interceptors,
+    );
+  }
+
+  static final interceptors = [
+    CheckTokenCallAPI(),
+  ];
+}
+
+class CityListCall {
+  Future<ApiCallResponse> call({
+    int? limit = 5000,
+    int? offset = 0,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'CityList',
+      apiUrl: '$baseUrl/items/cities',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'limit': limit,
+        'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End TimekeepingShift Group Code
+
 /// Start Newsfeed Group Code
 
 class NewsfeedGroup {
@@ -5029,7 +5165,7 @@ class SettingAcountGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api.pexnic.com';
+      'https://workflow-api-dev.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',

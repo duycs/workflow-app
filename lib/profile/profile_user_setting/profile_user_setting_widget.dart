@@ -684,11 +684,14 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                 return;
                                               }
 
+                                              _model.publicKey = await actions
+                                                  .biometricCreatePublicKey();
+                                              shouldSetState = true;
                                               _model.updateDataSettingStruct(
                                                 (e) => e
                                                   ..enableBiometric = 1
                                                   ..publicKey =
-                                                      'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJWXhr8ug7c/E/JJYJvNtf93qOkRo0/ciiO0x2B07sw188U84TTltrrK2lrFNr5fUbSfKvUjH2dZvjppkYLoCqcCAwEAAQ==',
+                                                      _model.publicKey,
                                               );
                                               setState(() {});
                                               _model.apiResultUpdateBiometric =
@@ -734,6 +737,26 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                               ''))!
                                                       .data;
                                                   setState(() {});
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title:
+                                                            const Text('Thông báo'),
+                                                        content: const Text(
+                                                            'Bạn đã kích hoạt đăng nhập bằng sinh trắc học thành công!'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: const Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
                                                 }
                                               } else {
                                                 ScaffoldMessenger.of(context)
@@ -816,6 +839,10 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
                                                 .checktokenReloadBiometricsSetting3!) {
                                               _model.dataSetting = null;
                                               setState(() {});
+                                              _model.deleteBiometricKeyPair =
+                                                  await actions
+                                                      .biometricDeleteKeyPair();
+                                              shouldSetState = true;
                                             } else {
                                               setState(() {});
                                               if (shouldSetState) {

@@ -72,38 +72,20 @@ class DepartmentListModel extends FlutterFlowModel<DepartmentListWidget> {
       accessToken: FFAppState().accessToken,
       filter: '{\"_and\":[${() {
         if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
-          return '{\"organization_id\":{\"_eq\":\"';
-        } else if (FFAppState().user.role ==
-            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-          return '{\"branch_id\":{\"id\":{\"_eq\":\"';
-        } else {
-          return ' ';
-        }
-      }()}${() {
-        if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
-          return getJsonField(
+          return '{\"organization_id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.organization_id''',
-          ).toString().toString();
+          ).toString().toString()}\"}}';
         } else if (FFAppState().user.role ==
             'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-          return getJsonField(
+          return '{\"branch_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffBranch,
             r'''$.id''',
-          ).toString().toString();
+          ).toString().toString()}\"}}}';
         } else {
           return ' ';
         }
-      }()}${() {
-        if (FFAppState().user.role == '82073000-1ba2-43a4-a55c-459d17c23b68') {
-          return '\"}}';
-        } else if (FFAppState().user.role ==
-            'a8d33527-375b-4599-ac70-6a3fcad1de39') {
-          return '\"}}}';
-        } else {
-          return ' ';
-        }
-      }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"' : ' '}${(branchId != '') && (branchId != 'noData') ? branchId : ' '}${(branchId != '') && (branchId != 'noData') ? '\"}}}' : ' '}]}',
+      }()}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_eq\":\"$status\"}}' : ' '}${(branchId != '') && (branchId != 'noData') ? ',{\"branch_id\":{\"id\":{\"_eq\":\"$branchId\"}}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {

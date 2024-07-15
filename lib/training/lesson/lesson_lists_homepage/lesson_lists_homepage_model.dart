@@ -145,15 +145,15 @@ class LessonListsHomepageModel
 
     apiResultList = await LessonGroup.getLessonListCall.call(
       accessToken: FFAppState().accessToken,
-      filter: '{\"_and\":[{\"organization_id\":{\"_eq\":\"${getJsonField(
+      filter: '{\"_and\":[${'{\"organization_id\":{\"_eq\":\"${getJsonField(
         FFAppState().staffLogin,
         r'''$.organization_id''',
-      ).toString().toString()}\"}}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"' : ' '}${(status != '') && (status != 'noData') ? status : ' '}${(status != '') && (status != 'noData') ? '\"}}' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? dateStartList : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? '\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ((String var1) {
-          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
-        }(dateEndList)) : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? '\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? FFAppState().staffid : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? '\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"' : ' '}${programsAllId != '' ? programsAllId : ' '}${programsAllId != '' ? '\"}}}}' : ' '},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
+      ).toString().toString()}\"}},{\"programs\":{\"programs_id\":{\"departments\":{\"departments_id\":{\"id\":{\"_neq\":\"${getJsonField(
         FFAppState().staffDepartment,
         r'''$.id''',
-      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}]}',
+      ).toString().toString()}\"}}}}}},{\"status\":{\"_icontains\":\"published\"}}'}${nameSearchTextController.text != '' ? ',{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}' : ' '}${(status != '') && (status != 'noData') ? ',{\"status\":{\"_icontains\":\"$status$status' : ' '}${(dateStartList != '') && (dateStartList != 'noData') ? ',{\"date_created\":{\"_gte\":\"$dateStartList\"}}' : ' '}${(dateEndList != '') && (dateEndList != 'noData') ? ',{\"date_created\":{\"_lte\":\"${(String var1) {
+          return DateTime.parse(var1).add(const Duration(days: 1)).toString();
+        }(dateEndList)}\"}}' : ' '}${(lessonFavoriteStatusList != '') && (lessonFavoriteStatusList != 'noData') ? ',{\"reacts\":{\"reacts_id\":{\"status\":{\"_eq\":\"love\"}}}},{\"reacts\":{\"reacts_id\":{\"staff_id\":{\"_eq\":\"${FFAppState().staffid}\"}}}}' : ' '}${programsAllId != '' ? ',{\"programs\":{\"programs_id\":{\"id\":{\"_eq\":\"$programsAllId\"}}}}' : ' '}]}',
     );
 
     if ((apiResultList.succeeded ?? true)) {
@@ -193,7 +193,7 @@ class LessonListsHomepageModel
     apiResultListRow = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+          '{\"_and\":[${'{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}'}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
@@ -238,13 +238,13 @@ class LessonListsHomepageModel
     apiResultListRow2 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
+          '{\"_and\":[${'{\"status\":{\"_eq\":\"draft\"}},{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+      ))}\"}},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}'}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}]}',
       offset: 0,
       limit: 11,
     );
@@ -289,13 +289,13 @@ class LessonListsHomepageModel
     apiResultListRow3 = await LessonGroup.employeeLessonListCall.call(
       accessToken: FFAppState().accessToken,
       filter:
-          '{\"_and\":[{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"' : ' '}${nameSearchTextController.text != '' ? nameSearchTextController.text : ' '}${nameSearchTextController.text != '' ? '\"}}}' : ' '},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
+          '{\"_and\":[${'{\"staff_id\":{\"id\":{\"_eq\":\"${FFAppState().staffid}\"}}},{\"_and\":[{\"_and\":[{\"date_created\":{\"_gte\":\"${functions.aDayInThePast(getCurrentTimestamp)}\"}},{\"date_created\":{\"_lte\":\"${(String var1) {
         return DateTime.parse(var1).add(const Duration(days: 1)).toString();
       }(dateTimeFormat(
         'yyyy-MM-dd',
         getCurrentTimestamp,
         locale: FFLocalizations.of(context).languageCode,
-      ))}\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}]}',
+      ))}\"}}]},{\"_or\":[{\"status\":{\"_eq\":\"done\"}},{\"status\":{\"_eq\":\"inprogress\"}}]}]},{\"lession_id\":{\"status\":{\"_eq\":\"published\"}}}'}${nameSearchTextController.text != '' ? ',{\"lession_id\":{\"name\":{\"_icontains\":\"${nameSearchTextController.text}\"}}}' : ' '}]}',
       limit: 11,
       offset: 0,
     );

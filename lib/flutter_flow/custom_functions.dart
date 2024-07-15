@@ -676,3 +676,87 @@ bool isRoleStaff(UserStruct user) {
     return false;
   }
 }
+
+String? filterListLessonAdmin(
+  String? staffId,
+  String? organizationId,
+  String? nameSearch,
+  String? status,
+  String? dateStartList,
+  String? dateEndList,
+  String? statusLesson,
+  String? lessonFavorriteStatusList,
+  String? statusLove,
+  String? lessonNewCreate,
+  String? lessonHistory,
+  String? programId,
+) {
+  final buffer = StringBuffer('{"_and":[');
+  buffer.write('{"staff_id":{"id":{"_eq":"$staffId"}}},');
+  buffer.write('{"lession_id":{"status":{"_eq":"published"}}},');
+  buffer.write('{"organization_id":{"_eq":"$organizationId"}}');
+
+  if (nameSearch != null && nameSearch.isNotEmpty) {
+    buffer.write(',{"lession_id":{"name":{"_icontains":"$nameSearch"}}}');
+  }
+  if (status != null && status.isNotEmpty && status != "noData") {
+    buffer.write(',{"lession_id":{"status":{"_icontains":"$status"}}}');
+  }
+  if (dateStartList != null &&
+      dateStartList.isNotEmpty &&
+      dateStartList != '0') {
+    buffer.write(',{"lession_id":{"date_created":{"_gte":"$dateStartList"}}}');
+  }
+  if (dateEndList != null && dateEndList.isNotEmpty && dateEndList != '0') {
+    DateTime dateEnd = DateTime.parse(dateEndList).add(Duration(days: 1));
+    String dateEndModified = dateEnd.toIso8601String();
+
+    buffer
+        .write(',{"lession_id":{"date_created":{"_lte":"$dateEndModified"}}}');
+  }
+  if (statusLesson != null &&
+      statusLesson.isNotEmpty &&
+      statusLesson != "noData") {
+    buffer.write(',{"status":{"_eq":"$statusLesson"}}');
+  }
+  if (lessonFavorriteStatusList != null &&
+      lessonFavorriteStatusList.isNotEmpty &&
+      lessonFavorriteStatusList != "noData") {
+    buffer.write(
+        ',{"lession_id":{"reacts":{"reacts_id":{"status":{"_eq":"$lessonFavorriteStatusList"}}}}},{"lession_id":{"reacts":{"reacts_id":{"staff_id":{"_eq":"$staffId"}}}}}');
+  }
+  if (statusLove != null && statusLove.isNotEmpty && statusLove == "love") {
+    buffer.write(
+        ',{"lession_id":{"reacts":{"reacts_id":{"status":{"_eq":"love"}}}}}, {"lession_id":{"reacts":{"reacts_id":{"staff_id":{"_eq":"$staffId"}}}}}');
+  }
+  if (lessonNewCreate != null && lessonNewCreate == "dateToday") {
+    DateTime currentDate = DateTime.now();
+    DateTime futureDate = currentDate.add(Duration(days: 1));
+    DateTime pastDate = currentDate.subtract(Duration(days: 30));
+
+    String futureDateString = futureDate.toIso8601String();
+    String pastDateString = pastDate.toIso8601String();
+
+    buffer.write(
+        ',{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lte":"$futureDateString"}},{"status":{"_eq":"draft"}}');
+  }
+  if (lessonHistory != null && lessonHistory == "lessonHistory") {
+    DateTime currentDate = DateTime.now();
+    DateTime futureDate = currentDate.add(Duration(days: 1));
+    DateTime pastDate = currentDate.subtract(Duration(days: 30));
+
+    String futureDateString = futureDate.toIso8601String();
+    String pastDateString = pastDate.toIso8601String();
+
+    buffer.write(
+        ',{"_and":[{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lte":"$futureDateString"}}]},{"_or":[{"status":{"_eq":"done"}},{"status":{"_eq":"inprogress"}}]}');
+  }
+
+  if (programId != null && programId.isNotEmpty) {
+    buffer.write(
+        ',{"lession_id":{"programs":{"programs_id":{"id":{"_eq":"$programId"}}}}}');
+  }
+
+  buffer.write(']}');
+  return buffer.toString();
+}

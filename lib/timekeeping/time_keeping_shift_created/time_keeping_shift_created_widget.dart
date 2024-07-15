@@ -28,6 +28,9 @@ class _TimeKeepingShiftCreatedWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingShiftCreatedModel());
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -68,7 +71,7 @@ class _TimeKeepingShiftCreatedWidgetState
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,6 +111,78 @@ class _TimeKeepingShiftCreatedWidgetState
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                         child: Text(
+                          'Tên ca làm việc',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          autofocus: false,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'VD: Ca sáng...',
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                        child: Text(
                           'Thời gian bắt đầu làm việc',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -116,37 +191,92 @@ class _TimeKeepingShiftCreatedWidgetState
                                   ),
                         ),
                       ),
-                      Container(
-                        width: 100.0,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Chưa cập nhật',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          final datePicked1Time = await showTimePicker(
+                            context: context,
+                            initialTime:
+                                TimeOfDay.fromDateTime(getCurrentTimestamp),
+                            builder: (context, child) {
+                              return wrapInMaterialTimePickerTheme(
+                                context,
+                                child!,
+                                headerBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                headerForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                headerTextStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 32.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                pickerBackgroundColor:
+                                    FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                pickerForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                selectedDateTimeBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                selectedDateTimeForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                actionButtonForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                iconSize: 24.0,
+                              );
+                            },
+                          );
+                          if (datePicked1Time != null) {
+                            safeSetState(() {
+                              _model.datePicked1 = DateTime(
+                                getCurrentTimestamp.year,
+                                getCurrentTimestamp.month,
+                                getCurrentTimestamp.day,
+                                datePicked1Time.hour,
+                                datePicked1Time.minute,
+                              );
+                            });
+                          }
+                        },
+                        child: Container(
+                          width: 100.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Chưa cập nhật',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Icon(
-                                Icons.alarm,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 22.0,
-                              ),
-                            ],
+                                Icon(
+                                  Icons.alarm,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 22.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -162,37 +292,92 @@ class _TimeKeepingShiftCreatedWidgetState
                                   ),
                         ),
                       ),
-                      Container(
-                        width: 100.0,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Chưa cập nhật',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Nunito Sans',
-                                        letterSpacing: 0.0,
-                                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          final datePicked2Time = await showTimePicker(
+                            context: context,
+                            initialTime:
+                                TimeOfDay.fromDateTime(getCurrentTimestamp),
+                            builder: (context, child) {
+                              return wrapInMaterialTimePickerTheme(
+                                context,
+                                child!,
+                                headerBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                headerForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                headerTextStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 32.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                pickerBackgroundColor:
+                                    FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                pickerForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                selectedDateTimeBackgroundColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                selectedDateTimeForegroundColor:
+                                    FlutterFlowTheme.of(context).info,
+                                actionButtonForegroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                                iconSize: 24.0,
+                              );
+                            },
+                          );
+                          if (datePicked2Time != null) {
+                            safeSetState(() {
+                              _model.datePicked2 = DateTime(
+                                getCurrentTimestamp.year,
+                                getCurrentTimestamp.month,
+                                getCurrentTimestamp.day,
+                                datePicked2Time.hour,
+                                datePicked2Time.minute,
+                              );
+                            });
+                          }
+                        },
+                        child: Container(
+                          width: 100.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 8.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Chưa cập nhật',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              Icon(
-                                Icons.alarm,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 22.0,
-                              ),
-                            ],
+                                Icon(
+                                  Icons.alarm,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 22.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
