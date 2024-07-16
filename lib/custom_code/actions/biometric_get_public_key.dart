@@ -18,6 +18,7 @@ import 'dart:typed_data';
 import 'dart:math';
 import 'package:asn1lib/asn1lib.dart';
 import '/custom_code/actions/biometric_create_public_key.dart' as create_block;
+import 'package:basic_utils/basic_utils.dart';
 
 Future<String?> biometricGetPublicKey() async {
   final storage = FlutterSecureStorage();

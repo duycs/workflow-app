@@ -31,7 +31,7 @@ class TimekeepingShiftGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
@@ -5165,7 +5165,7 @@ class SettingAcountGroup {
   static String getBaseUrl({
     String? accessToken = '',
   }) =>
-      'https://workflow-api-dev.pexnic.com';
+      'https://workflow-api.pexnic.com';
   static Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer [accessToken]',
