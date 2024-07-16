@@ -16,21 +16,32 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:math';
 import 'package:basic_utils/basic_utils.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<String?> biometricCreatePublicKey() async {
   final storage = FlutterSecureStorage();
   const publicKeyKey = 'biometric_public_key';
   const privateKeyKey = 'biometric_private_key';
+  const refreshTokenKey = 'wf_token';
 
   try {
     AsymmetricKeyPair<PublicKey, PrivateKey> keyPair =
-      CryptoUtils.generateRSAKeyPair(keySize: 1024);
+      CryptoUtils.generateRSAKeyPair();
 
     String publicKeyPem = CryptoUtils.encodeRSAPublicKeyToPem(keyPair.publicKey as RSAPublicKey);
     String privateKeyPem = CryptoUtils.encodeRSAPrivateKeyToPem(keyPair.privateKey as RSAPrivateKey);
 
     await storage.write(key: publicKeyKey, value: publicKeyPem);
     await storage.write(key: privateKeyKey, value: privateKeyPem);
+
+    // Lấy refresh_token từ SharedPreferences
+    final prefs = await SharedPreferences.getInstance();
+    final refreshToken = prefs.getString('wf_token');
+
+    // Lưu refresh_token vào FlutterSecureStorage
+    if (refreshToken != null) {
+      await storage.write(key: refreshTokenKey, value: refreshToken);
+    }
 
     return base64.encode(utf8.encode(publicKeyPem));
   } catch (e) {

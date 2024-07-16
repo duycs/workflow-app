@@ -20,23 +20,33 @@ import 'package:asn1lib/asn1lib.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:basic_utils/basic_utils.dart';
 
-Future<String?> biometricCreateSignature() async {
+Future<String?> biometricCreateSignature(String email) async {
   final storage = FlutterSecureStorage();
   const privateKeyKey = 'biometric_private_key';
-  final dataToSign = utf8.encode('hanoi@mail.com');
+  const refreshTokenKey = 'wf_token';
+  final dataToSign = utf8.encode(email);
 
   try {
     String? privateKeyPem = await storage.read(key: privateKeyKey);
+    String? refreshToken = await storage.read(key: refreshTokenKey);
   
-    if (publicKeyPem == null || privateKeyPem == null) {
-      print('Lỗi khi lấy hoặc tạo public key: $e');
+    if (privateKeyPem == null) {
+      print('Lỗi khi lấy private key');
       return null;
     }
 
     final privateKey =
         encrypt.RSAKeyParser().parse(privateKeyPem) as RSAPrivateKey;
 
-    return base64Encode(CryptoUtils.rsaPssSign(privateKey, dataToSign, algorithm: 'SHA-256/PSS'));
+    String signature = base64Encode(CryptoUtils.rsaSign(privateKey, dataToSign, algorithmName: 'SHA-256/RSA'));
+
+    Map<String, dynamic> result = {
+      'email': email,
+      'signature': signature,
+      'refresh_token': refreshToken ?? '',
+    };
+
+    return jsonEncode(result);
   } catch (e) {
     print('Lỗi khi tạo chữ ký: $e');
     return null;
