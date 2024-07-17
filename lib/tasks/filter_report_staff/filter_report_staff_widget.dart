@@ -122,6 +122,8 @@ class _FilterReportStaffWidgetState extends State<FilterReportStaffWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

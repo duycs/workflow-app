@@ -31,6 +31,8 @@ class _RatingStafWidgetState extends State<RatingStafWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RatingStafModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -56,6 +56,8 @@ class _DetailProfileCPNWidgetState extends State<DetailProfileCPNWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

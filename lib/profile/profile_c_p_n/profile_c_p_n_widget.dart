@@ -36,6 +36,8 @@ class _ProfileCPNWidgetState extends State<ProfileCPNWidget> {
       await _model.getLinkOrganization(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

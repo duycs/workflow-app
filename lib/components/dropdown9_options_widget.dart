@@ -24,6 +24,8 @@ class _Dropdown9OptionsWidgetState extends State<Dropdown9OptionsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Dropdown9OptionsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

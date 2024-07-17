@@ -43,6 +43,8 @@ class _FilterLessonUserWidgetState extends State<FilterLessonUserWidget> {
       _model.dateEnd = widget.dateEnd!;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

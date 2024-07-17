@@ -63,6 +63,8 @@ class _QuestionTestWidgetState extends State<QuestionTestWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -60,6 +60,8 @@ class _ProfileWidgetState extends State<ProfileWidget>
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

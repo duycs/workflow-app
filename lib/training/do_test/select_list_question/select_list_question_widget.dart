@@ -42,6 +42,8 @@ class _SelectListQuestionWidgetState extends State<SelectListQuestionWidget> {
       _model.detail = widget.listAnswer!.toList().cast<AnswersListStruct>();
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

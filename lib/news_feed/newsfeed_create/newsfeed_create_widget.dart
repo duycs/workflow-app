@@ -49,6 +49,7 @@ class _NewsfeedCreateWidgetState extends State<NewsfeedCreateWidget> {
 
     _model.switchValue1 = true;
     _model.switchValue2 = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

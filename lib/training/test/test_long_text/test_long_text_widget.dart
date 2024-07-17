@@ -36,6 +36,8 @@ class _TestLongTextWidgetState extends State<TestLongTextWidget> {
             ? widget.answersId?.answersId.content
             : ' ');
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

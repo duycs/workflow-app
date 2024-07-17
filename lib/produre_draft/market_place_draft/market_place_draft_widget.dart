@@ -32,6 +32,7 @@ class _MarketPlaceDraftWidgetState extends State<MarketPlaceDraftWidget>
       length: 6,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

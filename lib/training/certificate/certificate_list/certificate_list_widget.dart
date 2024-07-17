@@ -27,6 +27,8 @@ class _CertificateListWidgetState extends State<CertificateListWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CertificateListModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

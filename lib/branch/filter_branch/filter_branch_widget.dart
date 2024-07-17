@@ -35,6 +35,8 @@ class _FilterBranchWidgetState extends State<FilterBranchWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FilterBranchModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

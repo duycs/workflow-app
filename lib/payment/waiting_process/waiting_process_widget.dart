@@ -25,6 +25,8 @@ class _WaitingProcessWidgetState extends State<WaitingProcessWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => WaitingProcessModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

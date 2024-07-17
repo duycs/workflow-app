@@ -47,6 +47,8 @@ class _QuestionCreateWidgetState extends State<QuestionCreateWidget> {
 
     _model.textAnswerNumberTextController ??= TextEditingController();
     _model.textAnswerNumberFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

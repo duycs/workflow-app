@@ -57,6 +57,8 @@ class _DepartmentDetailWidgetState extends State<DepartmentDetailWidget> {
       _model.loop = 0;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

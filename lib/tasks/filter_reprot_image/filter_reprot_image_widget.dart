@@ -71,6 +71,8 @@ class _FilterReprotImageWidgetState extends State<FilterReprotImageWidget> {
             ? widget.nameTask
             : '');
     _model.tenquytrinhFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

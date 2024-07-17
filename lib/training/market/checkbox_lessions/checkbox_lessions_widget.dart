@@ -41,6 +41,8 @@ class _CheckboxLessionsWidgetState extends State<CheckboxLessionsWidget> {
       _model.checkBoxLessions = widget.checkLessions!;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

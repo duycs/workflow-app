@@ -26,6 +26,8 @@ class _QuestionSelectWidgetState extends State<QuestionSelectWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuestionSelectModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

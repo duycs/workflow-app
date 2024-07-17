@@ -80,6 +80,8 @@ class _ProcedurePublishingWidgetState extends State<ProcedurePublishingWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

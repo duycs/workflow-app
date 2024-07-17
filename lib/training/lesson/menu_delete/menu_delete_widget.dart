@@ -33,6 +33,8 @@ class _MenuDeleteWidgetState extends State<MenuDeleteWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MenuDeleteModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

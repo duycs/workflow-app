@@ -27,6 +27,8 @@ class _WaitActionTypeApproveWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => WaitActionTypeApproveModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

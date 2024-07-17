@@ -79,6 +79,8 @@ class _StaffsProgramsLessonWidgetState extends State<StaffsProgramsLessonWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

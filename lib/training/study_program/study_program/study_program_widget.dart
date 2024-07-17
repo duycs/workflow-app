@@ -35,6 +35,8 @@ class _StudyProgramWidgetState extends State<StudyProgramWidget> {
 
     _model.programDescriptionTextController ??= TextEditingController();
     _model.programDescriptionFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

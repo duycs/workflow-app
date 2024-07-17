@@ -30,6 +30,8 @@ class _RadioButonDetailWidgetState extends State<RadioButonDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RadioButonDetailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

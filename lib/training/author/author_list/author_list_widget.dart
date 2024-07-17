@@ -48,6 +48,8 @@ class _AuthorListWidgetState extends State<AuthorListWidget>
 
     _model.searchAuthorsTextController ??= TextEditingController();
     _model.searchAuthorsFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

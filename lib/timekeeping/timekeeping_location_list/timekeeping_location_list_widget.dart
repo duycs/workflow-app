@@ -7,6 +7,7 @@ import '/timekeeping/time_keeping_location_created/time_keeping_location_created
 import '/timekeeping/time_keeping_location_detail/time_keeping_location_detail_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'timekeeping_location_list_model.dart';
@@ -33,6 +34,8 @@ class _TimekeepingLocationListWidgetState
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -124,124 +127,133 @@ class _TimekeepingLocationListWidgetState
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 12.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: _model.textController,
-                        focusNode: _model.textFieldFocusNode,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.textController',
-                          const Duration(milliseconds: 1000),
-                          () => setState(() {}),
-                        ),
-                        autofocus: false,
-                        textInputAction: TextInputAction.search,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
+              if ('1' == '2')
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.textController',
+                            const Duration(milliseconds: 1000),
+                            () => setState(() {}),
+                          ),
+                          autofocus: false,
+                          textInputAction: TextInputAction.search,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            hintText: 'Tìm kiếm...',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  letterSpacing: 0.0,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            prefixIcon: const Icon(
+                              Icons.search_sharp,
+                              size: 24.0,
+                            ),
+                            suffixIcon: _model.textController!.text.isNotEmpty
+                                ? InkWell(
+                                    onTap: () async {
+                                      _model.textController?.clear();
+                                      setState(() {});
+                                    },
+                                    child: Icon(
+                                      Icons.clear,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 18.0,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Nunito Sans',
                                     letterSpacing: 0.0,
                                   ),
-                          hintText: 'Tìm kiếm...',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primary,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          filled: true,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 0.0, 0.0),
-                          prefixIcon: const Icon(
-                            Icons.search_sharp,
-                            size: 24.0,
-                          ),
-                          suffixIcon: _model.textController!.text.isNotEmpty
-                              ? InkWell(
-                                  onTap: () async {
-                                    _model.textController?.clear();
-                                    setState(() {});
-                                  },
-                                  child: Icon(
-                                    Icons.clear,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    size: 18.0,
-                                  ),
-                                )
-                              : null,
+                          cursorColor: FlutterFlowTheme.of(context).primary,
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                            ),
-                        cursorColor: FlutterFlowTheme.of(context).primary,
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
                       ),
-                    ),
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 10.0,
-                      borderWidth: 1.0,
-                      buttonSize: 50.0,
-                      icon: Icon(
-                        Icons.tune_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30.0,
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 10.0,
+                        borderWidth: 1.0,
+                        buttonSize: 50.0,
+                        icon: Icon(
+                          Icons.tune_rounded,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 30.0,
+                        ),
+                        onPressed: () {
+                          print('IconButton pressed ...');
+                        },
                       ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: PagedListView<ApiPagingParams, dynamic>.separated(
-                  pagingController: _model.setListViewController1(
+                  pagingController: _model.setListViewController(
                     (nextPageMarker) =>
                         TimekeepingShiftGroup.addressListCall.call(
                       accessToken: FFAppState().accessToken,
                       limit: 20,
                       offset: nextPageMarker.nextPageNumber * 20,
-                      filter: ' {}',
+                      filter:
+                          '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                        FFAppState().staffOrganization,
+                        r'''$.id''',
+                      ).toString()}\"}}}',
                     ),
                   ),
                   padding: EdgeInsets.zero,
@@ -277,7 +289,7 @@ class _TimekeepingLocationListWidgetState
                     ),
                     noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
                     itemBuilder: (context, _, addressListIndex) {
-                      final addressListItem = _model.listViewPagingController1!
+                      final addressListItem = _model.listViewPagingController!
                           .itemList![addressListIndex];
                       return Builder(
                         builder: (context) => InkWell(
@@ -313,36 +325,93 @@ class _TimekeepingLocationListWidgetState
                               },
                             ).then((value) => setState(() {}));
                           },
-                          child: ListTile(
-                            title: Text(
-                              'Trung Phụng, Đống Đa',
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
+                          child: Slidable(
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              extentRatio: 0.5,
+                              children: [
+                                Builder(
+                                  builder: (context) => SlidableAction(
+                                    label: 'Chỉnh sửa',
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    icon: Icons.edit_outlined,
+                                    onPressed: (_) async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: const AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child: GestureDetector(
+                                              onTap: () => _model.unfocusNode
+                                                      .canRequestFocus
+                                                  ? FocusScope.of(context)
+                                                      .requestFocus(
+                                                          _model.unfocusNode)
+                                                  : FocusScope.of(context)
+                                                      .unfocus(),
+                                              child:
+                                                  const TimeKeepingLocationCreatedWidget(),
+                                            ),
+                                          );
+                                        },
+                                      ).then((value) => setState(() {}));
+                                    },
                                   ),
+                                ),
+                                SlidableAction(
+                                  label: 'Share',
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).info,
+                                  icon: Icons.share,
+                                  onPressed: (_) {
+                                    print('SlidableActionWidget pressed ...');
+                                  },
+                                ),
+                              ],
                             ),
-                            subtitle: Text(
-                              addressListItem.meterRange.toString(),
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Nunito Sans',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            trailing: Icon(
-                              Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 20.0,
-                            ),
-                            tileColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            dense: false,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
+                            child: ListTile(
+                              title: Text(
+                                '${addressListItem.wardId.name}, ${addressListItem.wardId.districtId.name}, ${addressListItem.wardId.districtId.cityId.name}',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                '${formatNumber(
+                                  addressListItem.meterRange,
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.commaDecimal,
+                                )} m',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 20.0,
+                              ),
+                              tileColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              dense: false,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
                           ),
                         ),
@@ -350,12 +419,6 @@ class _TimekeepingLocationListWidgetState
                     },
                   ),
                 ),
-              ),
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: const [],
               ),
             ],
           ),

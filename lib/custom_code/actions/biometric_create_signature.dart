@@ -17,52 +17,37 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:math';
 import 'package:asn1lib/asn1lib.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:basic_utils/basic_utils.dart';
 
-Future<String?> biometricCreateSignature() async {
+Future<dynamic> biometricCreateSignature(String email) async {
   final storage = FlutterSecureStorage();
   const privateKeyKey = 'biometric_private_key';
-  final random = Random.secure();
+  const refreshTokenKey = 'wf_token';
+  final dataToSign = utf8.encode(email);
 
   try {
     String? privateKeyPem = await storage.read(key: privateKeyKey);
+    String? refreshToken = await storage.read(key: refreshTokenKey);
+
     if (privateKeyPem == null) {
-      throw Exception('Private key not found');
+      print('Lỗi khi lấy private key');
+      return null;
     }
 
-    final data =
-        Uint8List.fromList(List<int>.generate(32, (_) => random.nextInt(256)));
+    final privateKey =
+        encrypt.RSAKeyParser().parse(privateKeyPem) as RSAPrivateKey;
 
-    String cleanedPem = privateKeyPem
-        .replaceAll('-----BEGIN PRIVATE KEY-----', '')
-        .replaceAll('-----END PRIVATE KEY-----', '')
-        .replaceAll(RegExp(r'[\r\n]+'), '');
+    String signature = base64Encode(CryptoUtils.rsaSign(privateKey, dataToSign,
+        algorithmName: 'SHA-256/RSA'));
 
-    final privateKeyBytes = base64.decode(cleanedPem);
+    Map<String, dynamic> result = {
+      'email': email,
+      'signature': signature,
+      'refresh_token': refreshToken ?? '',
+    };
 
-    BigInt bytesToBigInt(List<int> bytes) {
-      BigInt result = BigInt.from(0);
-      for (int i = 0; i < bytes.length; i++) {
-        result += BigInt.from(bytes[bytes.length - 1 - i]) << (8 * i);
-      }
-      return result;
-    }
-
-    final privateKeySequence = ASN1Sequence.fromBytes(privateKeyBytes);
-    final privateKey = RSAPrivateKey(
-        bytesToBigInt(privateKeySequence.elements[1].valueBytes()), // modulus
-        bytesToBigInt(
-            privateKeySequence.elements[3].valueBytes()), // privateExponent
-        bytesToBigInt(privateKeySequence.elements[4].valueBytes()), // p
-        bytesToBigInt(privateKeySequence.elements[5].valueBytes()) // q
-        );
-
-    final signer = RSASigner(SHA256Digest(), '0609608648016503040201');
-    signer.init(true, PrivateKeyParameter<RSAPrivateKey>(privateKey));
-
-    final signature = signer.generateSignature(data);
-    final signatureBytes = signature.bytes;
-
-    return base64.encode(signatureBytes);
+    return result;
   } catch (e) {
     print('Lỗi khi tạo chữ ký: $e');
     return null;

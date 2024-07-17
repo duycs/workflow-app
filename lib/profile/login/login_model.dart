@@ -63,7 +63,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   // Stores action output result for [Custom Action - getReTokenUser] action in IconButton widget.
   String? checkWfEmailBV;
   // Stores action output result for [Custom Action - biometricCreateSignature] action in IconButton widget.
-  String? signature;
+  dynamic signature;
   // Stores action output result for [Backend Call - API (LoginBiometricVerification)] action in IconButton widget.
   ApiCallResponse? apiResultvlloginSTH1;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.

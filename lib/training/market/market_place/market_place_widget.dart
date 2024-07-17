@@ -63,6 +63,8 @@ class _MarketPlaceWidgetState extends State<MarketPlaceWidget> {
 
     _model.searchMarketTextController ??= TextEditingController();
     _model.searchMarketFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

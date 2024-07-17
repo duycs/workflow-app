@@ -26,6 +26,8 @@ class _DataNotFoundRowNewWidgetState extends State<DataNotFoundRowNewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DataNotFoundRowNewModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

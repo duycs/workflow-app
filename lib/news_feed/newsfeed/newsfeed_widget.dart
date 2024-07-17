@@ -73,6 +73,8 @@ class _NewsfeedWidgetState extends State<NewsfeedWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -23,6 +23,8 @@ class _DropdownTestListWidgetState extends State<DropdownTestListWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DropdownTestListModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

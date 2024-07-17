@@ -36,6 +36,8 @@ class _TestNumberAddWidgetState extends State<TestNumberAddWidget> {
             ? widget.answersId?.answersId.content
             : ' ');
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

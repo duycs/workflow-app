@@ -41,6 +41,8 @@ class _CheckBoxToggleWidgetState extends State<CheckBoxToggleWidget> {
       _model.check = widget.checkParam!;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

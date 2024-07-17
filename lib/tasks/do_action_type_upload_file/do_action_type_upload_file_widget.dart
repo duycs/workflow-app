@@ -69,6 +69,8 @@ class _DoActionTypeUploadFileWidgetState
       _model.fileName = [];
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

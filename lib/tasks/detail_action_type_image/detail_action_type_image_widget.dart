@@ -57,6 +57,8 @@ class _DetailActionTypeImageWidgetState
       _model.loop = 0;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

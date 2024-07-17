@@ -26,6 +26,8 @@ class _WaitingProcessComponentWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => WaitingProcessComponentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

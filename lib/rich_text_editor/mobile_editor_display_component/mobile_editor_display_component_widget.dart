@@ -31,6 +31,8 @@ class _MobileEditorDisplayComponentWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => MobileEditorDisplayComponentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

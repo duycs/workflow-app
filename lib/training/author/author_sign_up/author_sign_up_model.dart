@@ -49,6 +49,10 @@ class AuthorSignUpModel extends FlutterFlowModel<AuthorSignUpWidget> {
 
   bool checkName = false;
 
+  bool checkAvatar = false;
+
+  bool checkDomain = false;
+
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();

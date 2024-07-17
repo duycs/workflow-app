@@ -66,6 +66,8 @@ class _OrderUpdateWidgetState extends State<OrderUpdateWidget> {
     _model.textFieldFocusNode1!.addListener(() => setState(() {}));
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -181,6 +181,7 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
 
     _model.switch1Value = true;
     _model.switch2Value = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

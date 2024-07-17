@@ -112,6 +112,8 @@ export 'reacts_id_market_struct.dart';
 export 'reacts_market_struct.dart';
 export 'read_newsfeed_struct.dart';
 export 'request_answer_staff_struct.dart';
+export 'shift_cofigs_shifts_struct.dart';
+export 'shift_configs_struct.dart';
 export 'shift_list_struct.dart';
 export 'staff_answer_list_struct.dart';
 export 'staff_answer_list_data_struct.dart';

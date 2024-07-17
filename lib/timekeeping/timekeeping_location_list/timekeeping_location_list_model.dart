@@ -17,8 +17,8 @@ class TimekeepingLocationListModel
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
 
-  PagingController<ApiPagingParams, dynamic>? listViewPagingController1;
-  Function(ApiPagingParams nextPageMarker)? listViewApiCall1;
+  PagingController<ApiPagingParams, dynamic>? listViewPagingController;
+  Function(ApiPagingParams nextPageMarker)? listViewApiCall;
 
   @override
   void initState(BuildContext context) {}
@@ -29,18 +29,18 @@ class TimekeepingLocationListModel
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    listViewPagingController1?.dispose();
+    listViewPagingController?.dispose();
   }
 
   /// Additional helper methods.
-  PagingController<ApiPagingParams, dynamic> setListViewController1(
+  PagingController<ApiPagingParams, dynamic> setListViewController(
     Function(ApiPagingParams) apiCall,
   ) {
-    listViewApiCall1 = apiCall;
-    return listViewPagingController1 ??= _createListViewController1(apiCall);
+    listViewApiCall = apiCall;
+    return listViewPagingController ??= _createListViewController(apiCall);
   }
 
-  PagingController<ApiPagingParams, dynamic> _createListViewController1(
+  PagingController<ApiPagingParams, dynamic> _createListViewController(
     Function(ApiPagingParams) query,
   ) {
     final controller = PagingController<ApiPagingParams, dynamic>(
@@ -50,11 +50,11 @@ class TimekeepingLocationListModel
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewAddressListPage1);
+    return controller..addPageRequestListener(listViewAddressListPage);
   }
 
-  void listViewAddressListPage1(ApiPagingParams nextPageMarker) =>
-      listViewApiCall1!(nextPageMarker).then((listViewAddressListResponse) {
+  void listViewAddressListPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewAddressListResponse) {
         final pageItems = ((getJsonField(
                   listViewAddressListResponse.jsonBody,
                   r'''$.data''',
@@ -67,7 +67,7 @@ class TimekeepingLocationListModel
                 [])
             .toList() as List;
         final newNumItems = nextPageMarker.numItems + pageItems.length;
-        listViewPagingController1?.appendPage(
+        listViewPagingController?.appendPage(
           pageItems,
           (pageItems.isNotEmpty)
               ? ApiPagingParams(

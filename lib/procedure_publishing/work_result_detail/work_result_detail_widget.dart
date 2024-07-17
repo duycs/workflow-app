@@ -43,6 +43,8 @@ class _WorkResultDetailWidgetState extends State<WorkResultDetailWidget> {
       await _model.getTaskToDo(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

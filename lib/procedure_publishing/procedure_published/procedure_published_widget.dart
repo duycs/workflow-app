@@ -79,6 +79,8 @@ class _ProcedurePublishedWidgetState extends State<ProcedurePublishedWidget> {
       _model.isLoad = true;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

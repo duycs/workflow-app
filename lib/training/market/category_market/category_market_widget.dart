@@ -44,6 +44,8 @@ class _CategoryMarketWidgetState extends State<CategoryMarketWidget> {
 
     _model.searchDomainsTextController ??= TextEditingController();
     _model.searchDomainsFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -37,6 +37,8 @@ class _CompanyReviewWidgetState extends State<CompanyReviewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CompanyReviewModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

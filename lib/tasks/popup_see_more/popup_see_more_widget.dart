@@ -37,6 +37,8 @@ class _PopupSeeMoreWidgetState extends State<PopupSeeMoreWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PopupSeeMoreModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

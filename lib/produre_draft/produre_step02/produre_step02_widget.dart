@@ -30,6 +30,8 @@ class _ProdureStep02WidgetState extends State<ProdureStep02Widget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -63,6 +63,8 @@ class _FilterProcedurePublishedWidgetState
             ? widget.userCreated
             : '');
     _model.nameFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

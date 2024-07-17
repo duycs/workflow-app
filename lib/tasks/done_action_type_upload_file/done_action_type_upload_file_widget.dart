@@ -32,6 +32,8 @@ class _DoneActionTypeUploadFileWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DoneActionTypeUploadFileModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

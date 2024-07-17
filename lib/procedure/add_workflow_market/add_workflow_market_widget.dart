@@ -120,6 +120,8 @@ class _AddWorkflowMarketWidgetState extends State<AddWorkflowMarketWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

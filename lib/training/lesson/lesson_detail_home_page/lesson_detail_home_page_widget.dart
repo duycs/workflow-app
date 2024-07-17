@@ -68,6 +68,8 @@ class _LessonDetailHomePageWidgetState
 
     _model.commentsTextController ??= TextEditingController();
     _model.commentsFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

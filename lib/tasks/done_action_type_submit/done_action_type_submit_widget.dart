@@ -34,6 +34,8 @@ class _DoneActionTypeSubmitWidgetState
 
     _model.textController ??= TextEditingController(text: widget.result);
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -50,6 +50,8 @@ class _DepartmentCreateWidgetState extends State<DepartmentCreateWidget> {
 
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

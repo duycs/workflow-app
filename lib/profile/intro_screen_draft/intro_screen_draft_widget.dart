@@ -42,6 +42,8 @@ class _IntroScreenDraftWidgetState extends State<IntroScreenDraftWidget> {
         );
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

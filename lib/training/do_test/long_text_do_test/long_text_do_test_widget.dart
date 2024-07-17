@@ -37,6 +37,8 @@ class _LongTextDoTestWidgetState extends State<LongTextDoTestWidget> {
     _model.textController ??=
         TextEditingController(text: widget.listAnswerText);
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

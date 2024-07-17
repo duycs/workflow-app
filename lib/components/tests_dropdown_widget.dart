@@ -65,6 +65,8 @@ class _TestsDropdownWidgetState extends State<TestsDropdownWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

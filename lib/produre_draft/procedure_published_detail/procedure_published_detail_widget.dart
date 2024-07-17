@@ -63,6 +63,8 @@ class _ProcedurePublishedDetailWidgetState
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

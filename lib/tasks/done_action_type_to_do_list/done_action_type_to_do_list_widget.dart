@@ -32,6 +32,8 @@ class _DoneActionTypeToDoListWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DoneActionTypeToDoListModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

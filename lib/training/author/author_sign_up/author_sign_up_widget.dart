@@ -50,6 +50,8 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
 
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -143,7 +145,9 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(90.0),
                                   border: Border.all(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: _model.checkAvatar == false
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context).error,
                                     width: 2.0,
                                   ),
                                 ),
@@ -255,9 +259,33 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                             ],
                           ),
                         ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (_model.checkAvatar == true)
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 21.0, 0.0),
+                                child: Text(
+                                  'Vui lòng tải ảnh đại diện',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                ),
+                              ),
+                          ],
+                        ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 0.0, 0.0),
+                              8.0, 8.0, 0.0, 0.0),
                           child: Text(
                             'Tên tác giả',
                             style: FlutterFlowTheme.of(context)
@@ -527,7 +555,9 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           fillColor:
                               FlutterFlowTheme.of(context).secondaryBackground,
                           elevation: 1.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
+                          borderColor: _model.checkDomain == false
+                              ? FlutterFlowTheme.of(context).alternate
+                              : FlutterFlowTheme.of(context).error,
                           borderWidth: 1.0,
                           borderRadius: 12.0,
                           margin: const EdgeInsetsDirectional.fromSTEB(
@@ -539,6 +569,23 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           onMultiSelectChanged: (val) =>
                               setState(() => _model.dropDownValue = val),
                         ),
+                        if (_model.checkDomain == true)
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 0.0, 0.0, 0.0),
+                            child: Text(
+                              ' Vui lòng chọn lĩnh vực!',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
                       ]
                           .divide(const SizedBox(height: 4.0))
                           .addToEnd(const SizedBox(height: 32.0)),
@@ -589,49 +636,38 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               var shouldSetState = false;
-                              if (_model.checkName != false) {
+                              if (_model.checkName == false) {
+                                if ((_model.uploadedLocalFile.bytes
+                                            ?.isNotEmpty ??
+                                        false)) {
+                                  _model.checkAvatar = false;
+                                  setState(() {});
+                                  if (_model.formKey.currentState == null ||
+                                      !_model.formKey.currentState!
+                                          .validate()) {
+                                    return;
+                                  }
+                                } else {
+                                  _model.checkAvatar = true;
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+
+                                if (_model.dropDownValue?.length != null) {
+                                  _model.checkDomain = false;
+                                  setState(() {});
+                                } else {
+                                  _model.checkDomain = true;
+                                  setState(() {});
+                                  if (shouldSetState) setState(() {});
+                                  return;
+                                }
+                              } else {
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
-                              if (_model.formKey.currentState == null ||
-                                  !_model.formKey.currentState!.validate()) {
-                                return;
-                              }
-                              if ((_model.uploadedLocalFile.bytes ?? [])
-                                      .isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Vui lòng đẩy ảnh đại diện!',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                                return;
-                              }
-                              if (_model.dropDownValue == null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Vui lòng chọn lĩnh vực',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: const Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).error,
-                                  ),
-                                );
-                                return;
-                              }
+
                               while (
                                   _model.loop < _model.dropDownValue!.length) {
                                 _model.addToSelectedDomainList(
@@ -643,25 +679,16 @@ class _AuthorSignUpWidgetState extends State<AuthorSignUpWidget> {
                               }
                               _model.loop = 0;
                               setState(() {});
-                              if (_model.selectedDomainList.isEmpty) {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('Vui lòng chọn lĩnh vực'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('Ok'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
+                              if (_model.selectedDomainList.isNotEmpty) {
+                                _model.checkDomain = false;
+                                setState(() {});
+                              } else {
+                                _model.checkDomain = true;
+                                setState(() {});
                                 if (shouldSetState) setState(() {});
                                 return;
                               }
+
                               var confirmDialogResponse =
                                   await showDialog<bool>(
                                         context: context,

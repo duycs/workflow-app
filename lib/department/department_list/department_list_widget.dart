@@ -63,6 +63,8 @@ class _DepartmentListWidgetState extends State<DepartmentListWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

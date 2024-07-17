@@ -82,6 +82,7 @@ class _NewsfeedEditWidgetState extends State<NewsfeedEditWidget> {
 
     _model.switchValue1 = true;
     _model.switchValue2 = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

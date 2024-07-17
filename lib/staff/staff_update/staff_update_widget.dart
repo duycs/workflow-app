@@ -178,6 +178,8 @@ class _StaffUpdateWidgetState extends State<StaffUpdateWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

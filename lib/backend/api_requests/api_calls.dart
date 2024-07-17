@@ -39,6 +39,9 @@ class TimekeepingShiftGroup {
   static ShiftListCall shiftListCall = ShiftListCall();
   static AddressListCall addressListCall = AddressListCall();
   static CityListCall cityListCall = CityListCall();
+  static ShiftCreateCall shiftCreateCall = ShiftCreateCall();
+  static ShiftUpdateCall shiftUpdateCall = ShiftUpdateCall();
+  static ShiftConfigsCall shiftConfigsCall = ShiftConfigsCall();
 }
 
 class ShiftListCall {
@@ -148,6 +151,108 @@ class CityListCall {
       params: {
         'limit': limit,
         'offset': offset,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ShiftCreateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'ShiftCreate',
+      apiUrl: '$baseUrl/items/shifts',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ShiftUpdateCall {
+  Future<ApiCallResponse> call({
+    dynamic requestJson,
+    String? id = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    final request = _serializeJson(requestJson);
+    final ffApiRequestBody = request;
+    return ApiManager.instance.makeApiCall(
+      callName: 'ShiftUpdate',
+      apiUrl: '$baseUrl/items/shifts/$id',
+      callType: ApiCallType.PATCH,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ShiftConfigsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '{}',
+    int? offset = 0,
+    int? limit = 5000,
+    String? accessToken = '',
+  }) async {
+    final baseUrl = TimekeepingShiftGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'ShiftConfigs',
+      apiUrl: '$baseUrl/items/shift_configs',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+        'offset': offset,
+        'limit': limit,
+        'sort': "-date_created",
+        'fields[]':
+            "name, branchs.id,branchs.name, departments.id, departments.name, staffs.id, staffs.user_id.first_name, shifts.id, shifts.shifts_id.id, shifts.shifts_id.name, shifts.shifts_id.start_time, shifts.shifts_id.end_time, shifts.shifts_id.normal, id, status, enable, user_created, date_created, address_id, organization_id",
       },
       returnBody: true,
       encodeBodyUtf8: false,
@@ -5362,6 +5467,52 @@ class PathCertificatesCall {
 }
 
 /// End Certificate Group Code
+
+/// Start Notifications Group Code
+
+class NotificationsGroup {
+  static String getBaseUrl({
+    String? accessToken = '',
+  }) =>
+      'https://workflow-api-dev.pexnic.com';
+  static Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer [accessToken]',
+  };
+  static GetNotificationsCall getNotificationsCall = GetNotificationsCall();
+}
+
+class GetNotificationsCall {
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    String? accessToken = '',
+  }) async {
+    final baseUrl = NotificationsGroup.getBaseUrl(
+      accessToken: accessToken,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetNotifications',
+      apiUrl: '$baseUrl/items/notifications',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+      params: {
+        'filter': filter,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End Notifications Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

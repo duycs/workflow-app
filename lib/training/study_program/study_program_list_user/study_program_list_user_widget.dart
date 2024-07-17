@@ -58,6 +58,8 @@ class _StudyProgramListUserWidgetState
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
     _model.textFieldNameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

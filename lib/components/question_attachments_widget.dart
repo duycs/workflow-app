@@ -26,6 +26,8 @@ class _QuestionAttachmentsWidgetState extends State<QuestionAttachmentsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuestionAttachmentsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

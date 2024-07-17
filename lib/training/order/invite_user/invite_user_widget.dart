@@ -50,6 +50,8 @@ class _InviteUserWidgetState extends State<InviteUserWidget> {
       await _model.getStaffList1(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

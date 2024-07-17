@@ -110,6 +110,8 @@ class _IntroScreenWidgetState extends State<IntroScreenWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

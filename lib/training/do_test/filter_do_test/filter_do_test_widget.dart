@@ -46,6 +46,8 @@ class _FilterDoTestWidgetState extends State<FilterDoTestWidget> {
       _model.dateEnd = widget.dateEnd!;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -26,6 +26,8 @@ class _TimeKeepingCheckinWidgetState extends State<TimeKeepingCheckinWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingCheckinModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

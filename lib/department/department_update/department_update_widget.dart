@@ -77,6 +77,8 @@ class _DepartmentUpdateWidgetState extends State<DepartmentUpdateWidget> {
       r'''$.description''',
     ).toString().toString());
     _model.descriptionFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

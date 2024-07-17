@@ -152,6 +152,8 @@ class _UpdateProfileUserWidgetState extends State<UpdateProfileUserWidget> {
               ).toString().toString()
             : '');
     _model.hotlineFocusNode3 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

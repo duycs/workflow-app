@@ -73,6 +73,8 @@ class _FilterTaskListWaitWidgetState extends State<FilterTaskListWaitWidget> {
             ? widget.workflowName
             : '');
     _model.workflowNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

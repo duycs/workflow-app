@@ -68,6 +68,8 @@ class _FilterReportStaffDetailWidgetState
       _model.dateEnd2 = widget.dateEnd2!;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -47,6 +47,7 @@ class _OperationCreateWidgetState extends State<OperationCreateWidget> {
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.switchValue = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

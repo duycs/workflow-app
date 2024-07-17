@@ -185,6 +185,8 @@ class _StudyProgramListWidgetState extends State<StudyProgramListWidget> {
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
     _model.textFieldNameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -47,6 +47,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
 
     _model.searchTextController ??= TextEditingController();
     _model.searchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

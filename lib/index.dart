@@ -185,3 +185,5 @@ export '/timekeeping/timekeeping_report/timekeeping_report_widget.dart'
     show TimekeepingReportWidget;
 export '/timekeeping/timekeeping_detail/timekeeping_detail_widget.dart'
     show TimekeepingDetailWidget;
+export '/timekeeping/timekeeping_update/timekeeping_update_widget.dart'
+    show TimekeepingUpdateWidget;

@@ -41,6 +41,8 @@ class _SelectDoTestWidgetState extends State<SelectDoTestWidget> {
       _model.addToDetail(widget.listQuestion!);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

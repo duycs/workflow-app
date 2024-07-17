@@ -41,6 +41,8 @@ class _SelectedProgramsWidgetState extends State<SelectedProgramsWidget> {
       _model.check = widget.itemCheck;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

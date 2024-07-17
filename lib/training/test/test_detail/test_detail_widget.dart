@@ -83,6 +83,8 @@ class _TestDetailWidgetState extends State<TestDetailWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

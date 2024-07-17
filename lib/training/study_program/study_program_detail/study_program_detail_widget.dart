@@ -171,6 +171,8 @@ class _StudyProgramDetailWidgetState extends State<StudyProgramDetailWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

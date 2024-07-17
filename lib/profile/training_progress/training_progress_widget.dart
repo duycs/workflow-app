@@ -141,6 +141,8 @@ class _TrainingProgressWidgetState extends State<TrainingProgressWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -120,6 +120,8 @@ class _StudyProgramEditWidgetState extends State<StudyProgramEditWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

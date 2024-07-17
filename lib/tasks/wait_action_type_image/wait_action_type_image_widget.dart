@@ -26,6 +26,8 @@ class _WaitActionTypeImageWidgetState extends State<WaitActionTypeImageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => WaitActionTypeImageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

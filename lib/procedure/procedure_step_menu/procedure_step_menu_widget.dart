@@ -56,6 +56,8 @@ class _ProcedureStepMenuWidgetState extends State<ProcedureStepMenuWidget> {
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

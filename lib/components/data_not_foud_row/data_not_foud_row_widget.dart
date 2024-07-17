@@ -24,6 +24,8 @@ class _DataNotFoudRowWidgetState extends State<DataNotFoudRowWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DataNotFoudRowModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

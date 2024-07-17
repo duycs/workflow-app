@@ -49,6 +49,8 @@ class _LessonDetailWidgetState extends State<LessonDetailWidget> {
       await _model.getComments(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

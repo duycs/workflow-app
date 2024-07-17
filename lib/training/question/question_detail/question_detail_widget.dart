@@ -33,6 +33,8 @@ class _QuestionDetailWidgetState extends State<QuestionDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuestionDetailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

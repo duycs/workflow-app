@@ -64,6 +64,8 @@ class _FilterStudyProgramUserWidgetState
     _model.nameTextController ??= TextEditingController(
         text: widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

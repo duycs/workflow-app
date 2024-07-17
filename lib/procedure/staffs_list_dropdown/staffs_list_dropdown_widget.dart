@@ -60,6 +60,8 @@ class _StaffsListDropdownWidgetState extends State<StaffsListDropdownWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

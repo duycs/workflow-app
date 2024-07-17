@@ -26,6 +26,8 @@ class _TimeKeepingShiftSelectWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingShiftSelectModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

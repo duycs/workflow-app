@@ -63,6 +63,8 @@ class _LessionsDropdownWidgetState extends State<LessionsDropdownWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

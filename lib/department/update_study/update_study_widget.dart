@@ -34,6 +34,8 @@ class _UpdateStudyWidgetState extends State<UpdateStudyWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UpdateStudyModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

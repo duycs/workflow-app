@@ -45,6 +45,8 @@ class _LessonsListUserWidgetState extends State<LessonsListUserWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -49,6 +49,8 @@ class _ProfileStaffWidgetState extends State<ProfileStaffWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileStaffModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

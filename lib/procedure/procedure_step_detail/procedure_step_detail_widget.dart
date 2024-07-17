@@ -37,6 +37,8 @@ class _ProcedureStepDetailWidgetState extends State<ProcedureStepDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProcedureStepDetailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -31,6 +31,8 @@ class _DeleteAccountWidgetState extends State<DeleteAccountWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DeleteAccountModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

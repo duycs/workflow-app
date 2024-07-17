@@ -78,6 +78,8 @@ class _TrainingRankDetailWidgetState extends State<TrainingRankDetailWidget>
           !anim.applyInitialState),
       this,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

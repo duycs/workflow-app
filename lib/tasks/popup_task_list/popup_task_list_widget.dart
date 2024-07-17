@@ -31,6 +31,8 @@ class _PopupTaskListWidgetState extends State<PopupTaskListWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PopupTaskListModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

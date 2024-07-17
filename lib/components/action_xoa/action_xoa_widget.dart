@@ -24,6 +24,8 @@ class _ActionXoaWidgetState extends State<ActionXoaWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ActionXoaModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

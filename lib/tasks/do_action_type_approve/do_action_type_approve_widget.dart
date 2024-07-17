@@ -31,6 +31,8 @@ class _DoActionTypeApproveWidgetState extends State<DoActionTypeApproveWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DoActionTypeApproveModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -75,6 +75,8 @@ class _FilterLessonHomePageWidgetState
       await _model.programs(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

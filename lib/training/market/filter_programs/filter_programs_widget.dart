@@ -112,6 +112,8 @@ class _FilterProgramsWidgetState extends State<FilterProgramsWidget> {
             ? widget.priceMax1
             : '');
     _model.priceMax1FocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
