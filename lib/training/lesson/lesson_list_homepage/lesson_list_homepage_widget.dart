@@ -270,7 +270,6 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                     child: Padding(
                                       padding: MediaQuery.viewInsetsOf(context),
                                       child: FilterLessonHomePageWidget(
-                                        status: _model.status,
                                         dateStart: _model.dateStartList,
                                         dateEnd: _model.dateEndList,
                                         lessonFavoriteStatus:
@@ -282,13 +281,11 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                                             widget.lesonHistory!,
                                         programsId: _model.programsId,
                                         checkPrograms: '',
-                                        callBack: (status,
-                                            dateStart,
+                                        callBack: (dateStart,
                                             dateEnd,
                                             lessonStatus,
                                             lessonFavoriteStatus,
                                             programsId) async {
-                                          _model.status = status!;
                                           _model.dateStartList = dateTimeFormat(
                                             'yyyy-MM-dd',
                                             dateStart,
@@ -351,7 +348,6 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         ),
                   ),
                   if ((_model.nameSearchTextController.text != '') ||
-                      (_model.status != '') ||
                       ((_model.dateEndList != null &&
                               _model.dateEndList != '') &&
                           (_model.dateEndList != '0')) ||
@@ -381,14 +377,13 @@ class _LessonListHomepageWidgetState extends State<LessonListHomepageWidget> {
                         pagingController: _model.setListViewController(
                           (nextPageMarker) =>
                               LessonGroup.employeeLessonListCall.call(
-                            filter: functions.filterListLessonAdmin(
+                            filter: functions.filterListLessonUser(
                                 FFAppState().staffid,
                                 getJsonField(
                                   FFAppState().staffLogin,
                                   r'''$.organization_id''',
                                 ).toString(),
                                 _model.nameSearchTextController.text,
-                                _model.status,
                                 _model.dateStartList,
                                 _model.dateEndList,
                                 widget.statusLesson,

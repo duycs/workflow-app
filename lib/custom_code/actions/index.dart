@@ -34,3 +34,4 @@ export 'biometric_get_public_key.dart' show biometricGetPublicKey;
 export 'biometric_delete_key_pair.dart' show biometricDeleteKeyPair;
 export 'biometric_create_signature.dart' show biometricCreateSignature;
 export 'time_keeping_location.dart' show timeKeepingLocation;
+export 'get_current_location_struct.dart' show getCurrentLocationStruct;

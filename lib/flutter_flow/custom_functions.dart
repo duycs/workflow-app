@@ -677,11 +677,10 @@ bool isRoleStaff(UserStruct user) {
   }
 }
 
-String? filterListLessonAdmin(
+String? filterListLessonUser(
   String? staffId,
   String? organizationId,
   String? nameSearch,
-  String? status,
   String? dateStartList,
   String? dateEndList,
   String? statusLesson,
@@ -699,9 +698,6 @@ String? filterListLessonAdmin(
   if (nameSearch != null && nameSearch.isNotEmpty) {
     buffer.write(',{"lession_id":{"name":{"_icontains":"$nameSearch"}}}');
   }
-  if (status != null && status.isNotEmpty && status != "noData") {
-    buffer.write(',{"lession_id":{"status":{"_icontains":"$status"}}}');
-  }
   if (dateStartList != null &&
       dateStartList.isNotEmpty &&
       dateStartList != '0') {
@@ -711,8 +707,7 @@ String? filterListLessonAdmin(
     DateTime dateEnd = DateTime.parse(dateEndList).add(Duration(days: 1));
     String dateEndModified = dateEnd.toIso8601String();
 
-    buffer
-        .write(',{"lession_id":{"date_created":{"_lte":"$dateEndModified"}}}');
+    buffer.write(',{"lession_id":{"date_created":{"_lt":"$dateEndModified"}}}');
   }
   if (statusLesson != null &&
       statusLesson.isNotEmpty &&
@@ -738,7 +733,7 @@ String? filterListLessonAdmin(
     String pastDateString = pastDate.toIso8601String();
 
     buffer.write(
-        ',{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lte":"$futureDateString"}},{"status":{"_eq":"draft"}}');
+        ',{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lt":"$futureDateString"}},{"status":{"_eq":"draft"}}');
   }
   if (lessonHistory != null && lessonHistory == "lessonHistory") {
     DateTime currentDate = DateTime.now();
@@ -749,7 +744,7 @@ String? filterListLessonAdmin(
     String pastDateString = pastDate.toIso8601String();
 
     buffer.write(
-        ',{"_and":[{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lte":"$futureDateString"}}]},{"_or":[{"status":{"_eq":"done"}},{"status":{"_eq":"inprogress"}}]}');
+        ',{"_and":[{"date_created":{"_gte":"$pastDateString"}},{"date_created":{"_lt":"$futureDateString"}}]},{"_or":[{"status":{"_eq":"done"}},{"status":{"_eq":"inprogress"}}]}');
   }
 
   if (programId != null && programId.isNotEmpty) {

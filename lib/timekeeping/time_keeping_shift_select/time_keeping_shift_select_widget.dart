@@ -1,11 +1,21 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_shift_select_model.dart';
 export 'time_keeping_shift_select_model.dart';
 
 class TimeKeepingShiftSelectWidget extends StatefulWidget {
-  const TimeKeepingShiftSelectWidget({super.key});
+  const TimeKeepingShiftSelectWidget({
+    super.key,
+    required this.callback,
+  });
+
+  final Future Function(ShiftListStruct item)? callback;
 
   @override
   State<TimeKeepingShiftSelectWidget> createState() =>
@@ -39,6 +49,8 @@ class _TimeKeepingShiftSelectWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
@@ -91,202 +103,106 @@ class _TimeKeepingShiftSelectWidgetState
                     ],
                   ),
                 ),
-                ListView(
+                PagedListView<ApiPagingParams, dynamic>(
+                  pagingController: _model.setListViewController(
+                    (nextPageMarker) =>
+                        TimekeepingShiftGroup.shiftListCall.call(
+                      accessToken: FFAppState().accessToken,
+                      offset: nextPageMarker.nextPageNumber * 20,
+                      limit: 20,
+                      filter:
+                          '{\"_and\":[{\"status\":{\"_eq\":\"published\"}},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                        FFAppState().staffOrganization,
+                        r'''$.id''',
+                      ).toString()}\"}}}]}',
+                    ),
+                  ),
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
+                  reverse: false,
                   scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca sáng',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    // Customize what your widget looks like when it's loading the first page.
+                    firstPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
                           ),
-                          subtitle: Text(
-                            '7:00 - 11:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          dense: false,
                         ),
                       ),
                     ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca chiều',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
+                    // Customize what your widget looks like when it's loading another page.
+                    newPageProgressIndicatorBuilder: (_) => Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
                           ),
-                          subtitle: Text(
-                            '13:00 - 17:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          tileColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          dense: false,
                         ),
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca tối',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
+                    noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                    itemBuilder: (context, _, shiftsIndex) {
+                      final shiftsItem = _model
+                          .listViewPagingController!.itemList![shiftsIndex];
+                      return InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await widget.callback?.call(
+                            ShiftListStruct(
+                              id: shiftsItem.name,
+                              startTime: shiftsItem.startTime,
+                              endTime: shiftsItem.endTime,
+                              name: shiftsItem.name,
+                            ),
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
                           ),
-                          subtitle: Text(
-                            '17:00 - 21:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: ListTile(
+                              title: Text(
+                                shiftsItem.name != null && shiftsItem.name != ''
+                                    ? shiftsItem.name
+                                    : 'Chưa cập nhật',
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                '${shiftsItem.startTime} - ${shiftsItem.endTime}',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Nunito Sans',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              dense: false,
+                            ),
                           ),
-                          tileColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          dense: false,
                         ),
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca 1',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          subtitle: Text(
-                            '17:00 - 21:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          tileColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          dense: false,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca 2',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          subtitle: Text(
-                            '17:00 - 21:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          tileColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          dense: false,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 0.0),
-                        child: ListTile(
-                          title: Text(
-                            'Ca 3',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          subtitle: Text(
-                            '17:00 - 21:00',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                          tileColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          dense: false,
-                        ),
-                      ),
-                    ),
-                  ],
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

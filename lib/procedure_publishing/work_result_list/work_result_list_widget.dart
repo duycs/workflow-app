@@ -379,11 +379,7 @@ class _WorkResultListWidgetState extends State<WorkResultListWidget> {
                               r'''$.id''',
                             ).toString()}\"}}}}}';
                           }
-                        }()}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lte\":\"${(String var1) {
-                            return DateTime.parse(var1)
-                                .add(const Duration(days: 1))
-                                .toString();
-                          }(_model.dateEnd)}\"}}}}' : ' '}${(_model.userCreated != '') && (_model.userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.userCreated}\"}}}}}' : ' '}]}',
+                        }()}${(_model.nameSearch != '') && (_model.nameSearch != ' ') ? ',{\"name\":{\"_icontains\":\"${_model.nameSearch}\"}}' : ' '}${(_model.dateStart != '') && (_model.dateStart != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_gte\":\"${_model.dateStart}\"}}}}' : ' '}${(_model.dateEnd != '') && (_model.dateEnd != ' ') ? ',{\"steps\":{\"tasks\":{\"date_created\":{\"_lt\":\"${_model.dateEnd}\"}}}}' : ' '}${(_model.userCreated != '') && (_model.userCreated != ' ') ? ',{\"steps\":{\"tasks\":{\"created_user_id\":{\"first_name\":{\"_icontains\":\"${_model.userCreated}\"}}}}}' : ' '}]}',
                         offset: nextPageMarker.nextPageNumber * 20,
                         limit: 20,
                       ),

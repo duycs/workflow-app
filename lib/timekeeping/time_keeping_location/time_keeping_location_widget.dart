@@ -1,14 +1,23 @@
+import '/backend/api_requests/api_calls.dart';
+import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'time_keeping_location_model.dart';
 export 'time_keeping_location_model.dart';
 
 class TimeKeepingLocationWidget extends StatefulWidget {
-  const TimeKeepingLocationWidget({super.key});
+  const TimeKeepingLocationWidget({
+    super.key,
+    required this.callback,
+  });
+
+  final Future Function(String? addressId)? callback;
 
   @override
   State<TimeKeepingLocationWidget> createState() =>
@@ -41,6 +50,8 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
@@ -88,8 +99,27 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      if (_model.locationSelect != null) {
+                        await widget.callback?.call(
+                          _model.locationSelect?.id,
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Vui lòng chọn vị trí',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor: FlutterFlowTheme.of(context).error,
+                          ),
+                        );
+                        return;
+                      }
                     },
                     text: 'Lưu',
                     options: FFButtonOptions(
@@ -122,183 +152,155 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ListView(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Theme(
-                                    data: ThemeData(
-                                      checkboxTheme: const CheckboxThemeData(
-                                        visualDensity: VisualDensity.compact,
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
-                                      ),
-                                      unselectedWidgetColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                    ),
-                                    child: CheckboxListTile(
-                                      value: _model.checkboxListTileValue1 ??=
-                                          true,
-                                      onChanged: (newValue) async {
-                                        setState(() =>
-                                            _model.checkboxListTileValue1 =
-                                                newValue!);
-                                      },
-                                      title: Text(
-                                        'Xã Đàn, Đống Đa',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      subtitle: Text(
-                                        '250m',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      tileColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      checkColor:
-                                          FlutterFlowTheme.of(context).info,
-                                      dense: false,
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 12.0),
-                                    child: Text(
-                                      'Chỉnh sửa',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
-                                  Divider(
-                                    height: 1.0,
-                                    thickness: 1.0,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Theme(
-                                    data: ThemeData(
-                                      checkboxTheme: const CheckboxThemeData(
-                                        visualDensity: VisualDensity.compact,
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
-                                      ),
-                                      unselectedWidgetColor:
-                                          FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                    ),
-                                    child: CheckboxListTile(
-                                      value: _model.checkboxListTileValue2 ??=
-                                          false,
-                                      onChanged: (newValue) async {
-                                        setState(() =>
-                                            _model.checkboxListTileValue2 =
-                                                newValue!);
-                                      },
-                                      title: Text(
-                                        'Trung Phụng, Đống Đa',
-                                        style: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      subtitle: Text(
-                                        '250m',
-                                        style: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Nunito Sans',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      tileColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      checkColor:
-                                          FlutterFlowTheme.of(context).info,
-                                      dense: false,
-                                      controlAffinity:
-                                          ListTileControlAffinity.trailing,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 12.0),
-                                    child: Text(
-                                      'Chỉnh sửa',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
-                                  Divider(
-                                    height: 1.0,
-                                    thickness: 1.0,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ].divide(const SizedBox(height: 1.0)),
+                    child: PagedListView<ApiPagingParams, dynamic>.separated(
+                      pagingController: _model.setListViewController(
+                        (nextPageMarker) =>
+                            TimekeepingShiftGroup.addressListCall.call(
+                          filter:
+                              '{\"_and\":[{\"status\":{\"_eq\":\"published\"}},{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                            FFAppState().staffOrganization,
+                            r'''$.id''',
+                          ).toString()}\"}}}]}',
+                          offset: nextPageMarker.nextPageNumber * 20,
+                          limit: 20,
+                          accessToken: FFAppState().accessToken,
                         ),
-                      ],
+                      ),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      reverse: false,
+                      scrollDirection: Axis.vertical,
+                      separatorBuilder: (_, __) => const SizedBox(height: 1.0),
+                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                        // Customize what your widget looks like when it's loading the first page.
+                        firstPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Customize what your widget looks like when it's loading another page.
+                        newPageProgressIndicatorBuilder: (_) => Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                        noItemsFoundIndicatorBuilder: (_) =>
+                            const DataNotFoundWidget(),
+                        itemBuilder: (context, _, locationListIndex) {
+                          final locationListItem = _model
+                              .listViewPagingController!
+                              .itemList![locationListIndex];
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Theme(
+                                  data: ThemeData(
+                                    checkboxTheme: const CheckboxThemeData(
+                                      visualDensity: VisualDensity.compact,
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    unselectedWidgetColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                  ),
+                                  child: CheckboxListTile(
+                                    value: _model.checkboxListTileValueMap[
+                                            locationListItem] ??=
+                                        locationListItem.id ==
+                                            _model.locationSelect?.id,
+                                    onChanged: (newValue) async {
+                                      setState(() =>
+                                          _model.checkboxListTileValueMap[
+                                              locationListItem] = newValue!);
+                                      if (newValue!) {
+                                        _model.locationSelect =
+                                            locationListItem;
+                                        setState(() {});
+                                      } else {
+                                        _model.locationSelect = null;
+                                        setState(() {});
+                                      }
+                                    },
+                                    title: Text(
+                                      locationListItem.detail != null &&
+                                              locationListItem.detail != ''
+                                          ? locationListItem.detail
+                                          : 'Chưa cập nhật',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    subtitle: Text(
+                                      locationListItem.meterRange != null
+                                          ? '${locationListItem.meterRange.toString()} m'
+                                          : 'Chưa cập nhật',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Nunito Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    tileColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    checkColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    dense: false,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 0.0, 12.0),
+                                  child: Text(
+                                    'Chỉnh sửa',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Nunito Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                                Divider(
+                                  height: 1.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   Builder(
@@ -316,10 +318,12 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                 backgroundColor: Colors.transparent,
                                 alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: const SizedBox(
+                                child: SizedBox(
                                   height: double.infinity,
                                   width: double.infinity,
-                                  child: TimeKeepingLocationCreatedWidget(),
+                                  child: TimeKeepingLocationCreatedWidget(
+                                    callBack: () async {},
+                                  ),
                                 ),
                               );
                             },

@@ -3,12 +3,12 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'time_keeping_location_created_widget.dart'
-    show TimeKeepingLocationCreatedWidget;
+import 'time_keeping_location_update_widget.dart'
+    show TimeKeepingLocationUpdateWidget;
 import 'package:flutter/material.dart';
 
-class TimeKeepingLocationCreatedModel
-    extends FlutterFlowModel<TimeKeepingLocationCreatedWidget> {
+class TimeKeepingLocationUpdateModel
+    extends FlutterFlowModel<TimeKeepingLocationUpdateWidget> {
   ///  Local state fields for this component.
 
   List<ListCityStruct> listCity = [];
@@ -62,12 +62,6 @@ class TimeKeepingLocationCreatedModel
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
-  List<double>? getCurrentLocation;
-  // Stores action output result for [Action Block - tokenReload] action in Button widget.
-  bool? checkTokenTimeKeepingCreated;
-  // Stores action output result for [Backend Call - API (TimeKeepingCreated)] action in Button widget.
-  ApiCallResponse? apiResultTimeKeepingCreated;
 
   @override
   void initState(BuildContext context) {}

@@ -218,7 +218,7 @@ class _TimeKeepingLocationDetailWidgetState
                               16.0, 16.0, 16.0, 16.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.item?.wardId.districtId.name,
+                              widget.item?.wardId.name,
                               'Chưa có thông tin Xã',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -271,9 +271,6 @@ class _TimeKeepingLocationDetailWidgetState
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 200.0,
                       ),
                       Padding(
                         padding:

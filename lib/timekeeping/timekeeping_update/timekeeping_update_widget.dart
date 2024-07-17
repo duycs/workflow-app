@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.dart';
-import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
 import 'package:flutter/material.dart';
 import 'timekeeping_update_model.dart';
 export 'timekeeping_update_model.dart';
@@ -84,42 +83,13 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                       ),
                 ),
               ),
-              Builder(
-                builder: (context) => InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (dialogContext) {
-                        return Dialog(
-                          elevation: 0,
-                          insetPadding: EdgeInsets.zero,
-                          backgroundColor: Colors.transparent,
-                          alignment: const AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
-                          child: GestureDetector(
-                            onTap: () => _model.unfocusNode.canRequestFocus
-                                ? FocusScope.of(context)
-                                    .requestFocus(_model.unfocusNode)
-                                : FocusScope.of(context).unfocus(),
-                            child: const TimekeepingShiftWidget(),
-                          ),
-                        );
-                      },
-                    ).then((value) => setState(() {}));
-                  },
-                  child: Text(
-                    'Tiếp tục',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Nunito Sans',
-                          color: FlutterFlowTheme.of(context).primary,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
+              Text(
+                'Tiếp tục',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Nunito Sans',
+                      color: FlutterFlowTheme.of(context).primary,
+                      letterSpacing: 0.0,
+                    ),
               ),
             ],
           ),
@@ -339,6 +309,72 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                       ),
                     ),
                   ),
+                  if ('1' == '2')
+                    Theme(
+                      data: ThemeData(
+                        checkboxTheme: CheckboxThemeData(
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                        ),
+                        unselectedWidgetColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                      ),
+                      child: CheckboxListTile(
+                        value: _model.checkboxListTileValue1 ??= false,
+                        onChanged: ('1' == '2')
+                            ? null
+                            : (newValue) async {
+                                setState(() =>
+                                    _model.checkboxListTileValue1 = newValue!);
+                              },
+                        title: Text(
+                          'Chấm công theo ngày',
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        subtitle: Text(
+                          'Chấm cả ngày, 1/2 ngày, ...',
+                          style: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 13.0,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                        tileColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        checkColor: ('1' == '2')
+                            ? null
+                            : FlutterFlowTheme.of(context).info,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(8.0),
+                            topRight: Radius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if ('1' == '2')
+                    Divider(
+                      height: 1.0,
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                    ),
                   Theme(
                     data: ThemeData(
                       checkboxTheme: CheckboxThemeData(
@@ -352,69 +388,13 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                           FlutterFlowTheme.of(context).primaryText,
                     ),
                     child: CheckboxListTile(
-                      value: _model.checkboxListTileValue1 ??= false,
-                      onChanged: (newValue) async {
-                        setState(
-                            () => _model.checkboxListTileValue1 = newValue!);
-                      },
-                      title: Text(
-                        'Chấm công theo ngày',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        'Chấm cả ngày, 1/2 ngày, ...',
-                        style: FlutterFlowTheme.of(context)
-                            .labelMedium
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 13.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      checkColor: FlutterFlowTheme.of(context).info,
-                      dense: true,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(8.0),
-                          topRight: Radius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    height: 1.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Theme(
-                    data: ThemeData(
-                      checkboxTheme: CheckboxThemeData(
-                        visualDensity: VisualDensity.compact,
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                      unselectedWidgetColor:
-                          FlutterFlowTheme.of(context).primaryText,
-                    ),
-                    child: CheckboxListTile(
-                      value: _model.checkboxListTileValue2 ??= false,
-                      onChanged: (newValue) async {
-                        setState(
-                            () => _model.checkboxListTileValue2 = newValue!);
-                      },
+                      value: _model.checkboxListTileValue2 ??= true,
+                      onChanged: ('1' == '2')
+                          ? null
+                          : (newValue) async {
+                              setState(() =>
+                                  _model.checkboxListTileValue2 = newValue!);
+                            },
                       title: Text(
                         'Chấm công theo ca',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -437,77 +417,78 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                       tileColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       activeColor: FlutterFlowTheme.of(context).primary,
-                      checkColor: FlutterFlowTheme.of(context).info,
+                      checkColor: ('1' == '2')
+                          ? null
+                          : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
-                        ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
                   ),
-                  Divider(
-                    height: 1.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Theme(
-                    data: ThemeData(
-                      checkboxTheme: CheckboxThemeData(
-                        visualDensity: VisualDensity.compact,
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
+                  if ('1' == '2')
+                    Divider(
+                      height: 1.0,
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                    ),
+                  if ('1' == '2')
+                    Theme(
+                      data: ThemeData(
+                        checkboxTheme: CheckboxThemeData(
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                        ),
+                        unselectedWidgetColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                      ),
+                      child: CheckboxListTile(
+                        value: _model.checkboxListTileValue3 ??= false,
+                        onChanged: (newValue) async {
+                          setState(
+                              () => _model.checkboxListTileValue3 = newValue!);
+                        },
+                        title: Text(
+                          'Chấm công theo giờ',
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        subtitle: Text(
+                          'Chấm giờ vào làm. tan làm, ...',
+                          style: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 13.0,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                        tileColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        checkColor: FlutterFlowTheme.of(context).info,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(8.0),
+                            bottomRight: Radius.circular(8.0),
+                            topLeft: Radius.circular(0.0),
+                            topRight: Radius.circular(0.0),
+                          ),
                         ),
                       ),
-                      unselectedWidgetColor:
-                          FlutterFlowTheme.of(context).primaryText,
                     ),
-                    child: CheckboxListTile(
-                      value: _model.checkboxListTileValue3 ??= false,
-                      onChanged: (newValue) async {
-                        setState(
-                            () => _model.checkboxListTileValue3 = newValue!);
-                      },
-                      title: Text(
-                        'Chấm công theo giờ',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        'Chấm giờ vào làm. tan làm, ...',
-                        style: FlutterFlowTheme.of(context)
-                            .labelMedium
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 13.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      checkColor: FlutterFlowTheme.of(context).info,
-                      dense: true,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(8.0),
-                          bottomRight: Radius.circular(8.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
-                        ),
-                      ),
-                    ),
-                  ),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
@@ -552,11 +533,13 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                           FlutterFlowTheme.of(context).primaryText,
                     ),
                     child: CheckboxListTile(
-                      value: _model.checkboxListTileValue4 ??= false,
-                      onChanged: (newValue) async {
-                        setState(
-                            () => _model.checkboxListTileValue4 = newValue!);
-                      },
+                      value: _model.checkboxListTileValue4 ??= true,
+                      onChanged: ('1' == '2')
+                          ? null
+                          : (newValue) async {
+                              setState(() =>
+                                  _model.checkboxListTileValue4 = newValue!);
+                            },
                       title: Text(
                         'Tích hợp chấm công bằng vị trí',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -579,7 +562,9 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                       tileColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       activeColor: FlutterFlowTheme.of(context).primary,
-                      checkColor: FlutterFlowTheme.of(context).info,
+                      checkColor: ('1' == '2')
+                          ? null
+                          : FlutterFlowTheme.of(context).info,
                       dense: true,
                       controlAffinity: ListTileControlAffinity.leading,
                       shape: const RoundedRectangleBorder(
@@ -597,6 +582,68 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                     thickness: 1.0,
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
+                  if ('1' == '2')
+                    Theme(
+                      data: ThemeData(
+                        checkboxTheme: CheckboxThemeData(
+                          visualDensity: VisualDensity.compact,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                        ),
+                        unselectedWidgetColor:
+                            FlutterFlowTheme.of(context).primaryText,
+                      ),
+                      child: CheckboxListTile(
+                        value: _model.checkboxListTileValue5 ??= false,
+                        onChanged: (newValue) async {
+                          setState(
+                              () => _model.checkboxListTileValue5 = newValue!);
+                        },
+                        title: Text(
+                          'Tích hợp chấm công bằng wifi',
+                          style:
+                              FlutterFlowTheme.of(context).titleLarge.override(
+                                    fontFamily: 'Nunito Sans',
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                        subtitle: Text(
+                          'Kết hợp với wifi yêu cầu, ...',
+                          style: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: 'Nunito Sans',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontSize: 13.0,
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                        tileColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        checkColor: FlutterFlowTheme.of(context).info,
+                        dense: true,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(0.0),
+                            topRight: Radius.circular(0.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if ('1' == '2')
+                    Divider(
+                      height: 1.0,
+                      thickness: 1.0,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                    ),
                   Theme(
                     data: ThemeData(
                       checkboxTheme: CheckboxThemeData(
@@ -610,65 +657,7 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                           FlutterFlowTheme.of(context).primaryText,
                     ),
                     child: CheckboxListTile(
-                      value: _model.checkboxListTileValue5 ??= false,
-                      onChanged: (newValue) async {
-                        setState(
-                            () => _model.checkboxListTileValue5 = newValue!);
-                      },
-                      title: Text(
-                        'Tích hợp chấm công bằng wifi',
-                        style: FlutterFlowTheme.of(context).titleLarge.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      subtitle: Text(
-                        'Kết hợp với wifi yêu cầu, ...',
-                        style: FlutterFlowTheme.of(context)
-                            .labelMedium
-                            .override(
-                              fontFamily: 'Nunito Sans',
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 13.0,
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                      tileColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      checkColor: FlutterFlowTheme.of(context).info,
-                      dense: true,
-                      controlAffinity: ListTileControlAffinity.leading,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(0.0),
-                          bottomRight: Radius.circular(0.0),
-                          topLeft: Radius.circular(0.0),
-                          topRight: Radius.circular(0.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    height: 1.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).primaryBackground,
-                  ),
-                  Theme(
-                    data: ThemeData(
-                      checkboxTheme: CheckboxThemeData(
-                        visualDensity: VisualDensity.compact,
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                      ),
-                      unselectedWidgetColor:
-                          FlutterFlowTheme.of(context).primaryText,
-                    ),
-                    child: CheckboxListTile(
-                      value: _model.checkboxListTileValue6 ??= false,
+                      value: _model.checkboxListTileValue6 ??= true,
                       onChanged: (newValue) async {
                         setState(
                             () => _model.checkboxListTileValue6 = newValue!);
@@ -726,7 +715,7 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                           FlutterFlowTheme.of(context).primaryText,
                     ),
                     child: CheckboxListTile(
-                      value: _model.checkboxListTileValue7 ??= false,
+                      value: _model.checkboxListTileValue7 ??= true,
                       onChanged: (newValue) async {
                         setState(
                             () => _model.checkboxListTileValue7 = newValue!);
@@ -771,96 +760,101 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                     thickness: 1.0,
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
-                    child: RichText(
-                      textScaler: MediaQuery.of(context).textScaler,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Ngày chốt bảng chấm công',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                          ),
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                              color: FlutterFlowTheme.of(context).error,
-                            ),
-                          )
-                        ],
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await showModalBottomSheet(
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        useSafeArea: true,
-                        context: context,
-                        builder: (context) {
-                          return GestureDetector(
-                            onTap: () => _model.unfocusNode.canRequestFocus
-                                ? FocusScope.of(context)
-                                    .requestFocus(_model.unfocusNode)
-                                : FocusScope.of(context).unfocus(),
-                            child: Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: const TimeKeepingSelectDateWidget(),
-                            ),
-                          );
-                        },
-                      ).then((value) => safeSetState(() {}));
-                    },
-                    child: Container(
-                      width: 100.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
+                  if ('1' == '2')
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),
+                      child: RichText(
+                        textScaler: MediaQuery.of(context).textScaler,
+                        text: TextSpan(
                           children: [
-                            Expanded(
-                              child: Text(
-                                'Ngày cuối cùng trong tháng',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
+                            TextSpan(
+                              text: 'Ngày chốt bảng chấm công',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
+                            TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).error,
                               ),
-                            ),
-                            Icon(
-                              Icons.keyboard_double_arrow_down,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 22.0,
-                            ),
+                            )
                           ],
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Nunito Sans',
+                                    letterSpacing: 0.0,
+                                  ),
                         ),
                       ),
                     ),
-                  ),
+                  if ('1' == '2')
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          useSafeArea: true,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () => _model.unfocusNode.canRequestFocus
+                                  ? FocusScope.of(context)
+                                      .requestFocus(_model.unfocusNode)
+                                  : FocusScope.of(context).unfocus(),
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: const TimeKeepingSelectDateWidget(),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
+                      child: Container(
+                        width: 100.0,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              8.0, 0.0, 8.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Ngày cuối cùng trong tháng',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              Icon(
+                                Icons.keyboard_double_arrow_down,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 22.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(2.0, 24.0, 0.0, 4.0),

@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -12,7 +13,7 @@ class ChoiceChipShiftCofigsWidget extends StatefulWidget {
     this.departmentListName,
   });
 
-  final List<String>? departmentListName;
+  final List<DepartmentListStruct>? departmentListName;
 
   @override
   State<ChoiceChipShiftCofigsWidget> createState() =>
@@ -47,8 +48,11 @@ class _ChoiceChipShiftCofigsWidgetState
   @override
   Widget build(BuildContext context) {
     return FlutterFlowChoiceChips(
-      options:
-          widget.departmentListName!.map((label) => ChipData(label)).toList(),
+      options: widget.departmentListName!
+          .map((e) => e.name)
+          .toList()
+          .map((label) => ChipData(label))
+          .toList(),
       onChanged: ('1' == '1')
           ? null
           : (val) => setState(() => _model.choiceChipsValue = val?.firstOrNull),

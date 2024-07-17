@@ -73,10 +73,12 @@ class _TimekeepingLocationListWidgetState
                           ? FocusScope.of(context)
                               .requestFocus(_model.unfocusNode)
                           : FocusScope.of(context).unfocus(),
-                      child: const SizedBox(
+                      child: SizedBox(
                         height: double.infinity,
                         width: double.infinity,
-                        child: TimeKeepingLocationCreatedWidget(),
+                        child: TimeKeepingLocationCreatedWidget(
+                          callBack: () async {},
+                        ),
                       ),
                     ),
                   );
@@ -240,183 +242,190 @@ class _TimekeepingLocationListWidgetState
                     ],
                   ),
                 ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                child: PagedListView<ApiPagingParams, dynamic>.separated(
-                  pagingController: _model.setListViewController(
-                    (nextPageMarker) =>
-                        TimekeepingShiftGroup.addressListCall.call(
-                      accessToken: FFAppState().accessToken,
-                      limit: 20,
-                      offset: nextPageMarker.nextPageNumber * 20,
-                      filter:
-                          '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
-                        FFAppState().staffOrganization,
-                        r'''$.id''',
-                      ).toString()}\"}}}',
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                  child: PagedListView<ApiPagingParams, dynamic>.separated(
+                    pagingController: _model.setListViewController(
+                      (nextPageMarker) =>
+                          TimekeepingShiftGroup.addressListCall.call(
+                        accessToken: FFAppState().accessToken,
+                        limit: 20,
+                        offset: nextPageMarker.nextPageNumber * 20,
+                        filter:
+                            '{\"organization_id\":{\"id\":{\"_eq\":\"${getJsonField(
+                          FFAppState().staffOrganization,
+                          r'''$.id''',
+                        ).toString()}\"}}}',
+                      ),
                     ),
-                  ),
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  reverse: false,
-                  scrollDirection: Axis.vertical,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8.0),
-                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                    // Customize what your widget looks like when it's loading the first page.
-                    firstPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+                    padding: EdgeInsets.zero,
+                    primary: false,
+                    shrinkWrap: true,
+                    reverse: false,
+                    scrollDirection: Axis.vertical,
+                    separatorBuilder: (_, __) => const SizedBox(height: 8.0),
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      // Customize what your widget looks like when it's loading the first page.
+                      firstPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    // Customize what your widget looks like when it's loading another page.
-                    newPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 50.0,
-                        height: 50.0,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
+                      // Customize what your widget looks like when it's loading another page.
+                      newPageProgressIndicatorBuilder: (_) => Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
-                    itemBuilder: (context, _, addressListIndex) {
-                      final addressListItem = _model.listViewPagingController!
-                          .itemList![addressListIndex];
-                      return Builder(
-                        builder: (context) => InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: SizedBox(
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      child: TimeKeepingLocationDetailWidget(
-                                        item: addressListItem,
+                      noItemsFoundIndicatorBuilder: (_) => const DataNotFoundWidget(),
+                      itemBuilder: (context, _, addressListIndex) {
+                        final addressListItem = _model.listViewPagingController!
+                            .itemList![addressListIndex];
+                        return Builder(
+                          builder: (context) => InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () => _model
+                                              .unfocusNode.canRequestFocus
+                                          ? FocusScope.of(context)
+                                              .requestFocus(_model.unfocusNode)
+                                          : FocusScope.of(context).unfocus(),
+                                      child: SizedBox(
+                                        height: double.infinity,
+                                        width: double.infinity,
+                                        child: TimeKeepingLocationDetailWidget(
+                                          item: addressListItem,
+                                        ),
                                       ),
                                     ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+                            },
+                            child: Slidable(
+                              endActionPane: ActionPane(
+                                motion: const ScrollMotion(),
+                                extentRatio: 0.5,
+                                children: [
+                                  Builder(
+                                    builder: (context) => SlidableAction(
+                                      label: 'Chỉnh sửa',
+                                      backgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      icon: Icons.edit_outlined,
+                                      onPressed: (_) async {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child:
+                                                    TimeKeepingLocationCreatedWidget(
+                                                  callBack: () async {},
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                    ),
                                   ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-                          },
-                          child: Slidable(
-                            endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              extentRatio: 0.5,
-                              children: [
-                                Builder(
-                                  builder: (context) => SlidableAction(
-                                    label: 'Chỉnh sửa',
+                                  SlidableAction(
+                                    label: 'Share',
                                     backgroundColor:
-                                        FlutterFlowTheme.of(context).primary,
-                                    icon: Icons.edit_outlined,
-                                    onPressed: (_) async {
-                                      await showDialog(
-                                        context: context,
-                                        builder: (dialogContext) {
-                                          return Dialog(
-                                            elevation: 0,
-                                            insetPadding: EdgeInsets.zero,
-                                            backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
-                                                    0.0, 0.0)
-                                                .resolve(
-                                                    Directionality.of(context)),
-                                            child: GestureDetector(
-                                              onTap: () => _model.unfocusNode
-                                                      .canRequestFocus
-                                                  ? FocusScope.of(context)
-                                                      .requestFocus(
-                                                          _model.unfocusNode)
-                                                  : FocusScope.of(context)
-                                                      .unfocus(),
-                                              child:
-                                                  const TimeKeepingLocationCreatedWidget(),
-                                            ),
-                                          );
-                                        },
-                                      ).then((value) => setState(() {}));
+                                        FlutterFlowTheme.of(context).info,
+                                    icon: Icons.share,
+                                    onPressed: (_) {
+                                      print('SlidableActionWidget pressed ...');
                                     },
                                   ),
+                                ],
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  '${addressListItem.wardId.name}, ${addressListItem.wardId.districtId.name}, ${addressListItem.wardId.districtId.cityId.name}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        fontSize: 18.0,
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
-                                SlidableAction(
-                                  label: 'Share',
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  icon: Icons.share,
-                                  onPressed: (_) {
-                                    print('SlidableActionWidget pressed ...');
-                                  },
+                                subtitle: Text(
+                                  '${formatNumber(
+                                    addressListItem.meterRange,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                  )} m',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Nunito Sans',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
-                              ],
-                            ),
-                            child: ListTile(
-                              title: Text(
-                                '${addressListItem.wardId.name}, ${addressListItem.wardId.districtId.name}, ${addressListItem.wardId.districtId.cityId.name}',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              subtitle: Text(
-                                '${formatNumber(
-                                  addressListItem.meterRange,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
-                                )} m',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Nunito Sans',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 20.0,
-                              ),
-                              tileColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              dense: false,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 20.0,
+                                ),
+                                tileColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                dense: false,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
