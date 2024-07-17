@@ -77,6 +77,7 @@ class _ProcedureStepCreateWidgetState extends State<ProcedureStepCreateWidget> {
         setState(() {});
       },
     );
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

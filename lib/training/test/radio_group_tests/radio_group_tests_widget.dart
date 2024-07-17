@@ -39,6 +39,8 @@ class _RadioGroupTestsWidgetState extends State<RadioGroupTestsWidget> {
       _model.addToDetail(widget.parameter1!);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -32,6 +32,8 @@ class _PopupDetailProfileWidgetState extends State<PopupDetailProfileWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PopupDetailProfileModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -25,6 +25,8 @@ class _StudyProgramRankWidgetState extends State<StudyProgramRankWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

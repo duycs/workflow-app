@@ -19,7 +19,7 @@ class NotificationModel extends FlutterFlowModel<NotificationWidget> {
 
   // Stores action output result for [Action Block - tokenReload] action in Notification widget.
   bool? checkTokenNoti;
-  // Stores action output result for [Backend Call - API (StaffGetOne)] action in Notification widget.
+  // Stores action output result for [Backend Call - API (GetNotifications)] action in Notification widget.
   ApiCallResponse? apiResultStaffNoti;
 
   @override

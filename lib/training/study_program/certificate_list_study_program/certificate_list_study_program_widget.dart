@@ -35,6 +35,8 @@ class _CertificateListStudyProgramWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => CertificateListStudyProgramModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

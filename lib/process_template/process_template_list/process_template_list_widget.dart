@@ -102,6 +102,8 @@ class _ProcessTemplateListWidgetState extends State<ProcessTemplateListWidget> {
 
     _model.textNameTextController ??= TextEditingController();
     _model.textNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

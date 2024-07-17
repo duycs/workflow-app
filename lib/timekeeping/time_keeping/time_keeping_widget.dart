@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/timekeeping/time_keeping_checkin/time_keeping_checkin_widget.dart';
 import '/timekeeping/time_keeping_checkout/time_keeping_checkout_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
@@ -25,6 +24,8 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -1732,110 +1733,85 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
-                      child: Builder(
-                        builder: (context) => FFButtonWidget(
-                          onPressed: () async {
-                            var shouldSetState = false;
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () => _model
-                                            .unfocusNode.canRequestFocus
-                                        ? FocusScope.of(context)
-                                            .requestFocus(_model.unfocusNode)
-                                        : FocusScope.of(context).unfocus(),
-                                    child: const TimeKeepingCheckinWidget(),
-                                  ),
-                                );
-                              },
-                            ).then((value) => setState(() {}));
-
-                            _model.authenticateBiometicsTimeKeeping =
-                                await actions
-                                    .authenticateUsingBiometricsSetting();
-                            shouldSetState = true;
-                            if (_model.authenticateBiometicsTimeKeeping !=
-                                true) {
-                              if (shouldSetState) setState(() {});
-                              return;
-                            }
-                            _model.timeKeepingLocation =
-                                await actions.timeKeepingLocation(
-                              21.0166349,
-                              105.8344615,
-                              100.0,
-                            );
-                            shouldSetState = true;
-                            if (_model.timeKeepingLocation ==
-                                'Chấm công thành công!') {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    _model.timeKeepingLocation!,
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    _model.timeKeepingLocation!,
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).error,
-                                ),
-                              );
-                            }
-
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          var shouldSetState = false;
+                          _model.authenticateBiometicsTimeKeeping =
+                              await actions
+                                  .authenticateUsingBiometricsSetting();
+                          shouldSetState = true;
+                          if (_model.authenticateBiometicsTimeKeeping != true) {
                             if (shouldSetState) setState(() {});
-                          },
-                          text: 'Chấm công vào',
-                          icon: const Icon(
-                            Icons.fingerprint,
-                            size: 24.0,
-                          ),
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).secondary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Nunito Sans',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
+                            return;
+                          }
+                          _model.timeKeepingLocation =
+                              await actions.timeKeepingLocation(
+                            21.0166349,
+                            105.8344615,
+                            100.0,
+                          );
+                          shouldSetState = true;
+                          if (_model.timeKeepingLocation ==
+                              'Chấm công thành công!') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  _model.timeKeepingLocation!,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
                                 ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  _model.timeKeepingLocation!,
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).error,
+                              ),
+                            );
+                          }
+
+                          if (shouldSetState) setState(() {});
+                        },
+                        text: 'Chấm công vào',
+                        icon: const Icon(
+                          Icons.fingerprint,
+                          size: 24.0,
+                        ),
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).secondary,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Nunito Sans',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
                           ),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
                     ),

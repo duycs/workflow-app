@@ -27,6 +27,8 @@ class _QuestionMultiSelectWidgetState extends State<QuestionMultiSelectWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuestionMultiSelectModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

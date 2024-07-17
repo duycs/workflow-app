@@ -147,6 +147,7 @@ class _ProcedureStepUpdateWidgetState extends State<ProcedureStepUpdateWidget> {
         setState(() {});
       },
     );
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

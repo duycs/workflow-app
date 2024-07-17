@@ -77,6 +77,8 @@ class _DoTestDetailWidgetState extends State<DoTestDetailWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -33,6 +33,8 @@ class _AfterPaymentWidgetState extends State<AfterPaymentWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AfterPaymentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

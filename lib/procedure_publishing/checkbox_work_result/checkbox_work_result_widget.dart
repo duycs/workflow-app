@@ -31,6 +31,8 @@ class _CheckboxWorkResultWidgetState extends State<CheckboxWorkResultWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CheckboxWorkResultModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

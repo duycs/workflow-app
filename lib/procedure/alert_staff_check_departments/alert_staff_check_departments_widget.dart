@@ -33,6 +33,8 @@ class _AlertStaffCheckDepartmentsWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => AlertStaffCheckDepartmentsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

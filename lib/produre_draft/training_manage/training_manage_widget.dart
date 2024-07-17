@@ -55,6 +55,8 @@ class _TrainingManageWidgetState extends State<TrainingManageWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

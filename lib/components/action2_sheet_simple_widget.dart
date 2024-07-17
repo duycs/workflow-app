@@ -26,6 +26,8 @@ class _Action2SheetSimpleWidgetState extends State<Action2SheetSimpleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Action2SheetSimpleModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

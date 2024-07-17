@@ -33,6 +33,8 @@ class _CheckBoxProgramsWidgetState extends State<CheckBoxProgramsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CheckBoxProgramsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

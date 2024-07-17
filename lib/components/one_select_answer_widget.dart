@@ -34,6 +34,8 @@ class _OneSelectAnswerWidgetState extends State<OneSelectAnswerWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => OneSelectAnswerModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

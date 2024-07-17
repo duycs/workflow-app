@@ -34,6 +34,8 @@ class _ChipCustomWidgetState extends State<ChipCustomWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChipCustomModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -61,6 +61,8 @@ class _BranchUpdateWidgetState extends State<BranchUpdateWidget> {
     _model.descriptionBranchTextController ??=
         TextEditingController(text: widget.description);
     _model.descriptionBranchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

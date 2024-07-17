@@ -32,6 +32,8 @@ class _WaitActionTypeUploadFileWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => WaitActionTypeUploadFileModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

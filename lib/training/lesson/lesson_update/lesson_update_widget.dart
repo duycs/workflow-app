@@ -92,6 +92,8 @@ class _LessonUpdateWidgetState extends State<LessonUpdateWidget> {
               ).toString().toString()
             : '');
     _model.estimateInDayFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

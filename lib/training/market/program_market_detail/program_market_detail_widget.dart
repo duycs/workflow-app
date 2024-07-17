@@ -82,6 +82,8 @@ class _ProgramMarketDetailWidgetState extends State<ProgramMarketDetailWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

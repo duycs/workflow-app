@@ -76,6 +76,8 @@ class _TestUpdateWidgetState extends State<TestUpdateWidget> {
 
     _model.textController4 ??= TextEditingController(text: widget.time);
     _model.textFieldFocusNode4 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

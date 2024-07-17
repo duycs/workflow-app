@@ -55,6 +55,8 @@ class _ProgramCertificateWidgetState extends State<ProgramCertificateWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -76,6 +76,8 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
 
     _model.timeMinuteTextController ??= TextEditingController();
     _model.timeMinuteFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -133,7 +135,7 @@ class _ProcedureCreateWidgetState extends State<ProcedureCreateWidget>
                   ) ??
                   false;
               if (confirmDialogResponse) {
-                context.pushNamed('ProcedureList');
+                context.safePop();
               } else {
                 return;
               }

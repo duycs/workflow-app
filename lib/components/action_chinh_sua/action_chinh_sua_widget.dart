@@ -98,6 +98,8 @@ class _ActionChinhSuaWidgetState extends State<ActionChinhSuaWidget> {
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

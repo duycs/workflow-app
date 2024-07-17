@@ -40,6 +40,8 @@ class _ResultWorkGridViewWidgetState extends State<ResultWorkGridViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ResultWorkGridViewModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

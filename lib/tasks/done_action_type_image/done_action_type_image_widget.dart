@@ -31,6 +31,8 @@ class _DoneActionTypeImageWidgetState extends State<DoneActionTypeImageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DoneActionTypeImageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -35,6 +35,8 @@ class _ListCertiWidgetState extends State<ListCertiWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ListCertiModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

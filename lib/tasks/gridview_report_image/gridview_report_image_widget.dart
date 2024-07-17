@@ -38,6 +38,8 @@ class _GridviewReportImageWidgetState extends State<GridviewReportImageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GridviewReportImageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

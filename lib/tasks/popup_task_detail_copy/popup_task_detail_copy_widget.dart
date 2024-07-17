@@ -32,6 +32,8 @@ class _PopupTaskDetailCopyWidgetState extends State<PopupTaskDetailCopyWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PopupTaskDetailCopyModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

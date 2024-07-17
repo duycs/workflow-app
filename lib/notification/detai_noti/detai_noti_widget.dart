@@ -32,6 +32,8 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DetaiNotiModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -101,7 +103,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                             }(getJsonField(
                               functions.stringToJson(getJsonField(
                                 widget.data,
-                                r'''$.notifications_id.contents''',
+                                r'''$.contents''',
                               ).toString()),
                               r'''$.en''',
                             ).toString()),
@@ -121,7 +123,7 @@ class _DetaiNotiWidgetState extends State<DetaiNotiWidget> {
                               }(getJsonField(
                                 functions.stringToJson(getJsonField(
                                   widget.data,
-                                  r'''$.notifications_id.contents''',
+                                  r'''$.contents''',
                                 ).toString()),
                                 r'''$.en''',
                               ).toString()),

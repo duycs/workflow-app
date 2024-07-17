@@ -32,6 +32,8 @@ class _AfterInviteWidgetState extends State<AfterInviteWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AfterInviteModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -167,6 +167,7 @@ class _ProcedureDetailWidgetState extends State<ProcedureDetailWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

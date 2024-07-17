@@ -61,6 +61,8 @@ class _FilterWorkResultWidgetState extends State<FilterWorkResultWidget> {
             ? widget.userCreated
             : '');
     _model.nameUserCreatedFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

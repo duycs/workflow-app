@@ -88,6 +88,8 @@ class _StudyProgramCreateWidgetState extends State<StudyProgramCreateWidget> {
                 : '')
             : '');
     _model.estimateInDayFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

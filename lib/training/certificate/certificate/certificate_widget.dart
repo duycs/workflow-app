@@ -50,6 +50,8 @@ class _CertificateWidgetState extends State<CertificateWidget>
         ],
       ),
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

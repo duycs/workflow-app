@@ -102,6 +102,8 @@ class _TaskListWidgetState extends State<TaskListWidget> {
 
     _model.textFieldNameTextController ??= TextEditingController();
     _model.textFieldNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

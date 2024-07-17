@@ -31,6 +31,8 @@ class _CheckboxGroupsTestWidgetState extends State<CheckboxGroupsTestWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CheckboxGroupsTestModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

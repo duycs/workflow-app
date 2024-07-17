@@ -31,6 +31,8 @@ class _PopupTaskDetailWidgetState extends State<PopupTaskDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PopupTaskDetailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -49,6 +49,8 @@ class _FilterStudyProgramUserCopyWidgetState
             ? widget.lessonName
             : '');
     _model.lessionNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

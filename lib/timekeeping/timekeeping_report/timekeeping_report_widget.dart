@@ -22,6 +22,8 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingReportModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -163,6 +163,7 @@ class _AddProgramMarketWidgetState extends State<AddProgramMarketWidget> {
 
     _model.switchOnValue = true;
     _model.switchOffValue = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

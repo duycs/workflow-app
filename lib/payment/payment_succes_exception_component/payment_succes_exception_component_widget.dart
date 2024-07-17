@@ -27,6 +27,8 @@ class _PaymentSuccesExceptionComponentWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => PaymentSuccesExceptionComponentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

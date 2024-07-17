@@ -26,10 +26,12 @@ Future<String?> biometricCreatePublicKey() async {
 
   try {
     AsymmetricKeyPair<PublicKey, PrivateKey> keyPair =
-      CryptoUtils.generateRSAKeyPair();
+        CryptoUtils.generateRSAKeyPair();
 
-    String publicKeyPem = CryptoUtils.encodeRSAPublicKeyToPem(keyPair.publicKey as RSAPublicKey);
-    String privateKeyPem = CryptoUtils.encodeRSAPrivateKeyToPem(keyPair.privateKey as RSAPrivateKey);
+    String publicKeyPem =
+        CryptoUtils.encodeRSAPublicKeyToPem(keyPair.publicKey as RSAPublicKey);
+    String privateKeyPem = CryptoUtils.encodeRSAPrivateKeyToPem(
+        keyPair.privateKey as RSAPrivateKey);
 
     await storage.write(key: publicKeyKey, value: publicKeyPem);
     await storage.write(key: privateKeyKey, value: privateKeyPem);

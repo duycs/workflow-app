@@ -25,6 +25,8 @@ class _DataNotFoundCommentWidgetState extends State<DataNotFoundCommentWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DataNotFoundCommentModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

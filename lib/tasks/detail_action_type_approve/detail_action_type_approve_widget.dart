@@ -35,6 +35,8 @@ class _DetailActionTypeApproveWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DetailActionTypeApproveModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

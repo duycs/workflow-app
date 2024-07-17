@@ -36,52 +36,32 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.checkTokenNoti = await action_blocks.tokenReload(context);
       if (_model.checkTokenNoti!) {
-        _model.apiResultStaffNoti = await StaffGroup.staffGetOneCall.call(
+        _model.apiResultStaffNoti =
+            await NotificationsGroup.getNotificationsCall.call(
           accessToken: FFAppState().accessToken,
-          staffId: getJsonField(
+          filter:
+              '{\"_and\":[{\"_and\":[{\"staffs\":{\"staffs_id\":{\"id\":{\"_eq\":\"${getJsonField(
             FFAppState().staffLogin,
             r'''$.id''',
-          ).toString().toString(),
+          ).toString().toString()}\"}}}}]},{\"status\":{\"_neq\":\"archived\"}}]}',
         );
 
         if ((_model.apiResultStaffNoti?.succeeded ?? true)) {
           _model.notiList = getJsonField(
             (_model.apiResultStaffNoti?.jsonBody ?? ''),
-            r'''$.data.notifications''',
+            r'''$.data''',
             true,
           )!
               .toList()
               .cast<dynamic>();
           setState(() {});
-          var confirmDialogResponse = await showDialog<bool>(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text(getJsonField(
-                      (_model.apiResultStaffNoti?.jsonBody ?? ''),
-                      r'''$.data.notifications''',
-                    ).toString().toString()),
-                    actions: [
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, false),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.pop(alertDialogContext, true),
-                        child: const Text('Confirm'),
-                      ),
-                    ],
-                  );
-                },
-              ) ??
-              false;
         }
       } else {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -201,7 +181,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                         .secondaryBackground,
                                     boxShadow: const [
                                       BoxShadow(
-                                        blurRadius: 3.0,
+                                        blurRadius: 1.0,
                                         color: Color(0x33000000),
                                         offset: Offset(
                                           0.0,
@@ -263,7 +243,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                     functions.stringToJson(
                                                         getJsonField(
                                                       listItem,
-                                                      r'''$.notifications_id.contents''',
+                                                      r'''$.contents''',
                                                     ).toString()),
                                                     r'''$.en''',
                                                   ).toString()),
@@ -290,7 +270,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                       functions.stringToJson(
                                                           getJsonField(
                                                         listItem,
-                                                        r'''$.notifications_id.contents''',
+                                                        r'''$.contents''',
                                                       ).toString()),
                                                       r'''$.en''',
                                                     ).toString()),

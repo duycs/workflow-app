@@ -49,6 +49,8 @@ class _OperationUpdateWidgetState extends State<OperationUpdateWidget> {
     _model.textController3 ??=
         TextEditingController(text: widget.operationUpdate?.description);
     _model.textFieldFocusNode3 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

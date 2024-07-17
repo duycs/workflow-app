@@ -64,6 +64,8 @@ class _BranchDetailWidgetState extends State<BranchDetailWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

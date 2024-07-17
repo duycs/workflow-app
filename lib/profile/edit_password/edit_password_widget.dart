@@ -35,6 +35,8 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
 
     _model.confirmPassTextController ??= TextEditingController();
     _model.confirmPassFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

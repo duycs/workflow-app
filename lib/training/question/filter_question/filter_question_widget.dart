@@ -53,6 +53,8 @@ class _FilterQuestionWidgetState extends State<FilterQuestionWidget> {
 
     _model.nameTextController ??= TextEditingController(text: widget.name);
     _model.nameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

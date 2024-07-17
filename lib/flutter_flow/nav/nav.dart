@@ -1005,6 +1005,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'checkpage',
               ParamType.String,
             ),
+            checkback: params.getParam(
+              'checkback',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -1153,6 +1157,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TimekeepingDetail',
           path: '/timekeepingDetail',
           builder: (context, params) => const TimekeepingDetailWidget(),
+        ),
+        FFRoute(
+          name: 'TimekeepingUpdate',
+          path: '/timekeepingUpdate',
+          builder: (context, params) => const TimekeepingUpdateWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

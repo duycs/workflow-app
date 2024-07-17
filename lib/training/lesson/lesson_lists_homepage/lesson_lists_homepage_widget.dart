@@ -75,6 +75,8 @@ class _LessonListsHomepageWidgetState extends State<LessonListsHomepageWidget> {
 
     _model.nameSearchTextController ??= TextEditingController();
     _model.nameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

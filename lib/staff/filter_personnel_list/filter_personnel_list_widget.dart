@@ -122,6 +122,8 @@ class _FilterPersonnelListWidgetState extends State<FilterPersonnelListWidget> {
         setState(() {});
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

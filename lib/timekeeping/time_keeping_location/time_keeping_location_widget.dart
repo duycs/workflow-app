@@ -28,6 +28,8 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingLocationModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

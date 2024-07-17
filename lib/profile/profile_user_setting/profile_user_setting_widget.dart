@@ -33,6 +33,7 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
 
     _model.switchValue =
         FFAppState().user.enableBiometric.toString() == '1';
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

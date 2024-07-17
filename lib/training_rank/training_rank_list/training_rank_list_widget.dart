@@ -27,6 +27,8 @@ class _TrainingRankListWidgetState extends State<TrainingRankListWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

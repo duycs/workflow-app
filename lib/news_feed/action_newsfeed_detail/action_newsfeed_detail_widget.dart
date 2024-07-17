@@ -49,6 +49,8 @@ class _ActionNewsfeedDetailWidgetState
         await Future.delayed(const Duration(milliseconds: 500));
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

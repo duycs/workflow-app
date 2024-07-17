@@ -32,6 +32,8 @@ class _ExportExcelGetOneWidgetState extends State<ExportExcelGetOneWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ExportExcelGetOneModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

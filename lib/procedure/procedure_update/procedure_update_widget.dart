@@ -386,6 +386,8 @@ class _ProcedureUpdateWidgetState extends State<ProcedureUpdateWidget>
 
     _model.timeMinuteTextController ??= TextEditingController();
     _model.timeMinuteFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

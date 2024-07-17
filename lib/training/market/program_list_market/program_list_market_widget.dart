@@ -62,6 +62,8 @@ class _ProgramListMarketWidgetState extends State<ProgramListMarketWidget> {
 
     _model.searchMarketTextController ??= TextEditingController();
     _model.searchMarketFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -40,6 +40,8 @@ class _Certificate2DownloadWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => Certificate2DownloadModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

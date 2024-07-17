@@ -35,6 +35,8 @@ class _MultiSelecListQuestionWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => MultiSelecListQuestionModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

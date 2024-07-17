@@ -32,6 +32,8 @@ class _ContactProfileCPNWidgetState extends State<ContactProfileCPNWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ContactProfileCPNModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

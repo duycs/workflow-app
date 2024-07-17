@@ -63,6 +63,8 @@ class _ProdureStepDetailDraftWidgetState
 
     _model.textController11 ??= TextEditingController();
     _model.textFieldFocusNode11 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

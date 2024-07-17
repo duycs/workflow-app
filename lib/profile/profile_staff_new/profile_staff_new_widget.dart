@@ -49,6 +49,8 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProfileStaffNewModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -412,7 +414,16 @@ class _ProfileStaffNewWidgetState extends State<ProfileStaffNewWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           12.0, 12.0, 0.0, 12.0),
                                       child: Text(
-                                        widget.gender == 'male' ? 'Nam' : 'Nữ',
+                                        () {
+                                          if (widget.gender == 'male') {
+                                            return 'Nam';
+                                          } else if (widget.gender ==
+                                              'female') {
+                                            return 'Nữ';
+                                          } else {
+                                            return '';
+                                          }
+                                        }(),
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(

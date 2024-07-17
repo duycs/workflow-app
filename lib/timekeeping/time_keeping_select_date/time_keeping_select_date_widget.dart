@@ -27,6 +27,8 @@ class _TimeKeepingSelectDateWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingSelectDateModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

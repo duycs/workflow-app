@@ -48,6 +48,8 @@ class _BranchCreateWidgetState extends State<BranchCreateWidget> {
 
     _model.descriptionBranchTextController ??= TextEditingController();
     _model.descriptionBranchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

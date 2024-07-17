@@ -51,6 +51,8 @@ class _FilterStatusDepartmentWidgetState
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

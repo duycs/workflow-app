@@ -37,6 +37,8 @@ class _NewsfeedListRequireWidgetState extends State<NewsfeedListRequireWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => NewsfeedListRequireModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

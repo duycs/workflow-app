@@ -137,9 +137,6 @@ class ProgramMarketDetailModel
           ) ??
           false;
       if (confirmDialogResponse) {
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
         context.pushNamed(
           'StudyProgramListUser',
           extra: <String, dynamic>{
@@ -212,11 +209,18 @@ class ProgramMarketDetailModel
           ) ??
           false;
       if (confirmDialogResponse) {
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
         context.pushNamed(
-          'StudyProgramList',
+          'StudyProgramListMarket',
+          queryParameters: {
+            'checkpage': serializeParam(
+              'private0',
+              ParamType.String,
+            ),
+            'checkback': serializeParam(
+              'market',
+              ParamType.String,
+            ),
+          }.withoutNulls,
           extra: <String, dynamic>{
             kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,

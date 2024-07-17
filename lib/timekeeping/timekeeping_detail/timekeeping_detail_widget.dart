@@ -24,6 +24,8 @@ class _TimekeepingDetailWidgetState extends State<TimekeepingDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingDetailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

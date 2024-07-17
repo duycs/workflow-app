@@ -79,6 +79,8 @@ class _ProcessTemplateDetailWidgetState
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -34,6 +34,8 @@ class _QuestionMenuWidgetState extends State<QuestionMenuWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuestionMenuModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

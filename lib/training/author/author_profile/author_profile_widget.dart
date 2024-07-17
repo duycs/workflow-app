@@ -58,6 +58,7 @@ class _AuthorProfileWidgetState extends State<AuthorProfileWidget>
       length: 3,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

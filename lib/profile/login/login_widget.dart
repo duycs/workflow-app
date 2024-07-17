@@ -151,6 +151,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -819,21 +821,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                                                                         '') {
                                                                   _model.signature =
                                                                       await actions
-                                                                          .biometricCreateSignature();
+                                                                          .biometricCreateSignature(
+                                                                    FFAppState()
+                                                                        .user
+                                                                        .email,
+                                                                  );
                                                                   shouldSetState =
                                                                       true;
                                                                   _model.apiResultvlloginSTH1 =
                                                                       await STHLoginAcountsGroup
                                                                           .loginBiometricVerificationCall
                                                                           .call(
-                                                                    dataJson: <String,
-                                                                        String>{
-                                                                      'email':
-                                                                          '${_model.checkWfEmailBV}',
-                                                                      'signature':
-                                                                          _model
-                                                                              .signature!,
-                                                                    },
+                                                                    dataJson: _model
+                                                                        .signature,
                                                                   );
 
                                                                   shouldSetState =

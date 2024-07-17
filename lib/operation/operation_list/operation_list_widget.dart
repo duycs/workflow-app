@@ -68,6 +68,7 @@ class _OperationListWidgetState extends State<OperationListWidget>
       length: 3,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

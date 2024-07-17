@@ -69,6 +69,8 @@ class _UpdateAuthorWidgetState extends State<UpdateAuthorWidget> {
     _model.descriptionTextController ??=
         TextEditingController(text: widget.description);
     _model.descriptionFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

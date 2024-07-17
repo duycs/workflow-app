@@ -27,6 +27,8 @@ class _DoneActionTypeApproveWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DoneActionTypeApproveModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

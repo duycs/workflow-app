@@ -31,6 +31,8 @@ class _DetailActionTypeSubmitTextWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DetailActionTypeSubmitTextModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

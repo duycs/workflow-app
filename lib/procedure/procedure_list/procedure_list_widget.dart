@@ -49,6 +49,8 @@ class _ProcedureListWidgetState extends State<ProcedureListWidget> {
 
     _model.textNameTextController ??= TextEditingController();
     _model.textNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

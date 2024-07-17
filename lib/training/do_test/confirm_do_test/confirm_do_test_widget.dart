@@ -65,6 +65,8 @@ class _ConfirmDoTestWidgetState extends State<ConfirmDoTestWidget> {
       _model.isLoading = true;
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

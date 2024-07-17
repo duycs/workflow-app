@@ -48,6 +48,8 @@ class _QuestionListWidgetState extends State<QuestionListWidget>
 
     _model.questionNameTextController ??= TextEditingController();
     _model.questionNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

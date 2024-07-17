@@ -64,6 +64,8 @@ class _CreatedLessionStudyWidgetState extends State<CreatedLessionStudyWidget> {
 
     _model.estimateInDayTextController ??= TextEditingController();
     _model.estimateInDayFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

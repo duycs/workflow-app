@@ -63,6 +63,8 @@ class _FilterStudyProgramWidgetState extends State<FilterStudyProgramWidget> {
     _model.nameTextController ??= TextEditingController(
         text: widget.name != null && widget.name != '' ? widget.name : '');
     _model.nameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

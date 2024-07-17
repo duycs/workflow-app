@@ -27,6 +27,8 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimekeepingShiftModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -27,6 +27,8 @@ class _DataNotFoundCertificateWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DataNotFoundCertificateModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

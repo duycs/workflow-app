@@ -51,6 +51,8 @@ class _TaskDetailWidgetState extends State<TaskDetailWidget> {
       await _model.getDetail(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

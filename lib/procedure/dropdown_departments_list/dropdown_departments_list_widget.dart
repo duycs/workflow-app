@@ -213,6 +213,7 @@ class _DropdownDepartmentsListWidgetState
 
     _model.switchValue1 = true;
     _model.switchValue2 = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

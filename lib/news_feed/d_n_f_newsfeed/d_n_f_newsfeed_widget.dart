@@ -24,6 +24,8 @@ class _DNFNewsfeedWidgetState extends State<DNFNewsfeedWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DNFNewsfeedModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

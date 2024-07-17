@@ -21,9 +21,11 @@ class StudyProgramListMarketWidget extends StatefulWidget {
   const StudyProgramListMarketWidget({
     super.key,
     required this.checkpage,
+    this.checkback,
   });
 
   final String? checkpage;
+  final String? checkback;
 
   @override
   State<StudyProgramListMarketWidget> createState() =>
@@ -56,6 +58,8 @@ class _StudyProgramListMarketWidgetState
 
     _model.textFieldNameSearchTextController ??= TextEditingController();
     _model.textFieldNameSearchFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -92,16 +96,20 @@ class _StudyProgramListMarketWidgetState
                 size: 30.0,
               ),
               onPressed: () async {
-                context.pushNamed(
-                  'Profile',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: const TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                      duration: Duration(milliseconds: 0),
-                    ),
-                  },
-                );
+                if (widget.checkback == 'market') {
+                  context.safePop();
+                } else {
+                  context.pushNamed(
+                    'Profile',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: const TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
+                      ),
+                    },
+                  );
+                }
               },
             ),
             title: Row(

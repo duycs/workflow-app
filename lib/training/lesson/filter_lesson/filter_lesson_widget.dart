@@ -52,6 +52,8 @@ class _FilterLessonWidgetState extends State<FilterLessonWidget> {
       await _model.programs(context);
       setState(() {});
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

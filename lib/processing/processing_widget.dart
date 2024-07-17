@@ -20,6 +20,8 @@ class _ProcessingWidgetState extends State<ProcessingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ProcessingModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

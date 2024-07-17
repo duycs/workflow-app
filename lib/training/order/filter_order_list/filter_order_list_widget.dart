@@ -78,6 +78,8 @@ class _FilterOrderListWidgetState extends State<FilterOrderListWidget> {
             ? widget.author
             : '');
     _model.authorFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

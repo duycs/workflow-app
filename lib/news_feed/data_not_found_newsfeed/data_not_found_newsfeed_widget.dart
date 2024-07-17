@@ -33,6 +33,8 @@ class _DataNotFoundNewsfeedWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => DataNotFoundNewsfeedModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

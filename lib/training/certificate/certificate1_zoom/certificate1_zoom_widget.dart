@@ -32,6 +32,8 @@ class _Certificate1ZoomWidgetState extends State<Certificate1ZoomWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Certificate1ZoomModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
