@@ -101,7 +101,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             );
             return;
           } else {
-            return;
+            _model.isLoad = true;
+            setState(() {});
           }
         } else {
           _model.checkWfToken = await actions.getReTokenUser(

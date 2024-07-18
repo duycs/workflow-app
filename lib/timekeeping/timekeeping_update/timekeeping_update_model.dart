@@ -93,6 +93,19 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
 
   String? address;
 
+  List<ShiftCofigsShiftsStruct> shiftsInitial = [];
+  void addToShiftsInitial(ShiftCofigsShiftsStruct item) =>
+      shiftsInitial.add(item);
+  void removeFromShiftsInitial(ShiftCofigsShiftsStruct item) =>
+      shiftsInitial.remove(item);
+  void removeAtIndexFromShiftsInitial(int index) =>
+      shiftsInitial.removeAt(index);
+  void insertAtIndexInShiftsInitial(int index, ShiftCofigsShiftsStruct item) =>
+      shiftsInitial.insert(index, item);
+  void updateShiftsInitialAtIndex(
+          int index, Function(ShiftCofigsShiftsStruct) updateFn) =>
+      shiftsInitial[index] = updateFn(shiftsInitial[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -169,23 +182,27 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
     loop = 0;
   }
 
-  Future shiftConfigsCreate(BuildContext context) async {
-    bool? shiftConfigsCreate;
-    ApiCallResponse? apiResultShiftConfigs;
+  Future shiftConfigsUpdate(
+    BuildContext context, {
+    required String? id,
+  }) async {
+    bool? shiftConfigsUpdate;
+    ApiCallResponse? apiResultShiftConfigsUpdate;
 
-    shiftConfigsCreate = await action_blocks.tokenReload(context);
-    if (shiftConfigsCreate!) {
-      apiResultShiftConfigs =
-          await TimekeepingShiftGroup.shiftConfigsCreateCall.call(
+    shiftConfigsUpdate = await action_blocks.tokenReload(context);
+    if (shiftConfigsUpdate!) {
+      apiResultShiftConfigsUpdate =
+          await TimekeepingShiftGroup.shiftConfigsUpdateCall.call(
         accessToken: FFAppState().accessToken,
+        id: id,
         requestJson: request?.toMap(),
       );
 
-      if ((apiResultShiftConfigs.succeeded ?? true)) {
+      if ((apiResultShiftConfigsUpdate.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Tạo cấu hình chấm công thành công',
+              'Chỉnh sửa cấu hình chấm công thành công',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -198,7 +215,7 @@ class TimekeepingUpdateModel extends FlutterFlowModel<TimekeepingUpdateWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Lỗi tạo cấu hình chấm công',
+              'Lỗi chỉnh sửa cấu hình chấm công',
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),

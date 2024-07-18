@@ -11,7 +11,6 @@ import '/timekeeping/time_keeping_select_date/time_keeping_select_date_widget.da
 import '/timekeeping/timekeeping_shift/timekeeping_shift_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
 import 'timekeeping_update_model.dart';
 export 'timekeeping_update_model.dart';
 
@@ -72,6 +71,32 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
         setState(() {});
       }
       _model.loop = 0;
+      _model.shiftsInitial =
+          widget.itemDetail!.shifts.toList().cast<ShiftCofigsShiftsStruct>();
+      setState(() {});
+      while (_model.loop < _model.shiftsInitial.length) {
+        _model.addToShiftSelect(ShiftListStruct(
+          id: (widget.itemDetail?.shifts[_model.loop])?.shiftsId.id,
+          startTime:
+              (widget.itemDetail?.shifts[_model.loop])?.shiftsId.startTime,
+          endTime:
+              (widget.itemDetail?.shifts[_model.loop])?.shiftsId.endTime,
+          name: (widget.itemDetail?.shifts[_model.loop])?.shiftsId.name,
+        ));
+        _model.loop = _model.loop + 1;
+        setState(() {});
+      }
+      _model.loop = 0;
+      _model.updateRequestStruct(
+        (e) => e
+          ..status = widget.itemDetail?.status
+          ..addressId = widget.itemDetail?.addressId.id
+          ..departments =
+              widget.itemDetail!.departments.map((e) => e.id).toList().toList()
+          ..staffs =
+              widget.itemDetail!.staffs.map((e) => e.id).toList().toList()
+          ..name = widget.itemDetail?.name,
+      );
       setState(() {});
     });
 
@@ -96,8 +121,6 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -250,15 +273,13 @@ class _TimekeepingUpdateWidgetState extends State<TimekeepingUpdateWidget> {
                               },
                               callback2: (addressId) async {
                                 _model.updateRequestStruct(
-                                  (e) => e
-                                    ..addressId = addressId
-                                    ..organizationId = getJsonField(
-                                      FFAppState().staffOrganization,
-                                      r'''$.id''',
-                                    ).toString(),
+                                  (e) => e..addressId = addressId,
                                 );
                                 setState(() {});
-                                await _model.shiftConfigsCreate(context);
+                                await _model.shiftConfigsUpdate(
+                                  context,
+                                  id: widget.itemDetail?.id,
+                                );
 
                                 context.pushNamed(
                                   'TimekeepingList',

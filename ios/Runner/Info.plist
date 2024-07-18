@@ -49,7 +49,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-    <string>Bạn vui lòng cho phép ứng dụng truy cập vị trí để thực hiện tính năng chấm công theo địa điểm</string>
+    <string>Ứng dụng cần quyền truy cập vào vị trí của bạn khi sử dụng ứng dụng để cung cấp các dịch vụ dựa trên vị trí. Ví dụ: check-in theo location.</string>
 
 
 	<key>UILaunchStoryboardName</key>

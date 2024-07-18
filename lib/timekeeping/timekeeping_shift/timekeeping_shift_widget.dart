@@ -56,20 +56,6 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
         if (_model.check == true) {
           _model.check = false;
           setState(() {});
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                content: const Text('Tạo CH thôi'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: const Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
           await widget.callback2?.call(
             _model.addressId,
           );
