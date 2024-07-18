@@ -24,6 +24,10 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Custom Action - checkLoginSharePreferences] action in Login widget.
   bool? checkEmailWf;
+  // Stores action output result for [Custom Action - secureStorageGet] action in Login widget.
+  String? biometricAccessToken;
+  // Stores action output result for [Backend Call - API (GetStaffId)] action in Login widget.
+  ApiCallResponse? apiResultGetStaffBiometric;
   // Stores action output result for [Custom Action - getReTokenUser] action in Login widget.
   String? checkWfToken;
   // Stores action output result for [Backend Call - API (RefreshToken)] action in Login widget.
@@ -65,7 +69,7 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   // Stores action output result for [Custom Action - biometricCreateSignature] action in IconButton widget.
   dynamic signature;
   // Stores action output result for [Backend Call - API (LoginBiometricVerification)] action in IconButton widget.
-  ApiCallResponse? apiResultvlloginSTH1;
+  ApiCallResponse? apiResultLoginBiometric;
   // Stores action output result for [Backend Call - API (GetStaffId)] action in IconButton widget.
   ApiCallResponse? apiResultGetStaffIdSTH;
 

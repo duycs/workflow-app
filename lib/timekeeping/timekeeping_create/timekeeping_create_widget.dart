@@ -103,6 +103,8 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                       return;
                     }
                     if (_model.staffSelectList.isNotEmpty) {
+                      _model.checkStaffs = [];
+                      setState(() {});
                       while (_model.loop < _model.staffSelectList.length) {
                         if (_model.staffsDepartment
                                 .where((e) =>
@@ -175,10 +177,25 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                     .requestFocus(_model.unfocusNode)
                                 : FocusScope.of(context).unfocus(),
                             child: TimekeepingShiftWidget(
-                              callback: (shifts) async {
+                              shiftSelect: _model.shiftSelect,
+                              callback: (shiftsSelect) async {
+                                while (_model.loop == shiftsSelect.length) {
+                                  _model.addToShifts(
+                                      ShiftsIdShiftConfigsRequestStruct(
+                                    shiftsId: IdStruct(
+                                      id: shiftsSelect[_model.loop].id,
+                                    ),
+                                  ));
+                                  _model.loop = _model.loop + 1;
+                                  setState(() {});
+                                }
                                 _model.updateRequestStruct(
-                                  (e) => e..shifts = shifts.toList(),
+                                  (e) => e..shifts = _model.shifts.toList(),
                                 );
+                                _model.loop = 0;
+                                _model.shiftSelect = shiftsSelect
+                                    .toList()
+                                    .cast<ShiftListStruct>();
                                 setState(() {});
                               },
                               callback2: (addressId) async {
@@ -1050,25 +1067,25 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                   dataPar: _model.departmentSelectList,
                                   callback: (item) async {
                                     _model.departmentSelectList = [];
+                                    _model.staffsDepartment = [];
                                     setState(() {});
                                     _model.departmentSelectList = item!
                                         .toList()
                                         .cast<DepartmentsIdStruct>();
                                     setState(() {});
                                     while (_model.loop <
-                                        _model.staffsDepartment.length) {
+                                        _model.departmentSelectList.length) {
                                       while (_model.loop2! <
                                           _model
                                               .departmentSelectList[_model.loop]
-                                              .departmentsId
-                                              .staffs
+                                              .checkStaff
                                               .length) {
                                         _model.addToStaffsDepartment(
                                             StaffListStruct(
                                           id: _model
                                               .departmentSelectList[_model.loop]
-                                              .departmentsId
-                                              .staffs[_model.loop2!]
+                                              .checkStaff[_model.loop2!]
+                                              .staffsId
                                               .id,
                                         ));
                                         _model.loop2 = _model.loop2! + 1;

@@ -12,20 +12,30 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future<List<double>> getCurrentLocationStruct() async {
-  // Add your function code here!
+// Kiểm tra xem dịch vụ định vị có được bật hay không
+  bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    throw Exception('Location services are disabled');
+  }
+
+  // Kiểm tra và yêu cầu quyền truy cập vị trí
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
-      throw Exception('Quyền vị trí bị từ chối');
+      throw Exception('Location permissions are denied');
     }
   }
 
   if (permission == LocationPermission.deniedForever) {
-    throw Exception('Quyền vị trí bị từ chối vĩnh viễn');
+    throw Exception('Location permissions are permanently denied');
   }
 
+  // Lấy vị trí hiện tại với độ chính xác cao
   Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high);
+    desiredAccuracy: LocationAccuracy.high,
+  );
+
+  // Trả về danh sách tọa độ vĩ độ và kinh độ
   return [position.latitude, position.longitude];
 }

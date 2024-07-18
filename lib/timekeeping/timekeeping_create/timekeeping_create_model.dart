@@ -69,6 +69,28 @@ class TimekeepingCreateModel extends FlutterFlowModel<TimekeepingCreateWidget> {
 
   int? loop2 = 0;
 
+  List<ShiftListStruct> shiftSelect = [];
+  void addToShiftSelect(ShiftListStruct item) => shiftSelect.add(item);
+  void removeFromShiftSelect(ShiftListStruct item) => shiftSelect.remove(item);
+  void removeAtIndexFromShiftSelect(int index) => shiftSelect.removeAt(index);
+  void insertAtIndexInShiftSelect(int index, ShiftListStruct item) =>
+      shiftSelect.insert(index, item);
+  void updateShiftSelectAtIndex(
+          int index, Function(ShiftListStruct) updateFn) =>
+      shiftSelect[index] = updateFn(shiftSelect[index]);
+
+  List<ShiftsIdShiftConfigsRequestStruct> shifts = [];
+  void addToShifts(ShiftsIdShiftConfigsRequestStruct item) => shifts.add(item);
+  void removeFromShifts(ShiftsIdShiftConfigsRequestStruct item) =>
+      shifts.remove(item);
+  void removeAtIndexFromShifts(int index) => shifts.removeAt(index);
+  void insertAtIndexInShifts(
+          int index, ShiftsIdShiftConfigsRequestStruct item) =>
+      shifts.insert(index, item);
+  void updateShiftsAtIndex(
+          int index, Function(ShiftsIdShiftConfigsRequestStruct) updateFn) =>
+      shifts[index] = updateFn(shifts[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

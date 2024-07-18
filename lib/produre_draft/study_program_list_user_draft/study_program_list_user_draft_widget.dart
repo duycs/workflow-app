@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/training/certificate/certificate/certificate_widget.dart';
 import '/training/do_test/confirm_do_test/confirm_do_test_widget.dart';
-import '/training/study_program/filter_study_program_user/filter_study_program_user_widget.dart';
+import '/training/filter_study_program_user/filter_study_program_user_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';

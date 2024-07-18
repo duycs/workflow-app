@@ -24,31 +24,13 @@ class ProfileUserSettingModel
 
   bool checkLogin = false;
 
+  bool isSetPublicKeyInSecureStorage = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for Switch widget.
-  bool? switchValue;
-  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Switch widget.
-  bool? authenticateUsingBiometricsSettingLoad;
-  // Stores action output result for [Action Block - tokenReload] action in Switch widget.
-  bool? tokenReloadProfileUserSetting;
-  // Stores action output result for [Custom Action - sshkey] action in Switch widget.
-  String? sshkeyPublicKeySettingOn;
-  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in Switch widget.
-  ApiCallResponse? apiResultz8c;
-  // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
-  ApiCallResponse? getUserSetting;
-  // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in Switch widget.
-  bool? authenticateUsingBiometricsSettingOff;
-  // Stores action output result for [Action Block - tokenReload] action in Switch widget.
-  bool? tokenReloadProfileUserSetting1;
-  // Stores action output result for [Custom Action - sshkey] action in Switch widget.
-  String? sshkeyPublicKeySetting;
-  // Stores action output result for [Backend Call - API (UpdateBiometricVerificationWork)] action in Switch widget.
-  ApiCallResponse? apiResultz8cCopy;
-  // Stores action output result for [Backend Call - API (UserMe)] action in Switch widget.
-  ApiCallResponse? getUserSettingOff;
+  // Stores action output result for [Custom Action - secureStorageGet] action in ProfileUserSetting widget.
+  String? biometricAccessToken;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
   // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in SwitchListTile widget.

@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/timekeeping/timekeeping_management_list/timekeeping_management_list_widget.dart';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'report_popup_model.dart';
 export 'report_popup_model.dart';
@@ -84,6 +83,8 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        Navigator.pop(context);
+
                         context.pushNamed(
                           'TimeKeeping',
                           queryParameters: {
@@ -141,21 +142,22 @@ class _ReportPopupWidgetState extends State<ReportPopupWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await showAlignedDialog(
+                          Navigator.pop(context);
+                          await showDialog(
                             context: context,
-                            isGlobal: false,
-                            avoidOverflow: false,
-                            targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
-                            followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                                .resolve(Directionality.of(context)),
                             builder: (dialogContext) {
-                              return const Material(
-                                color: Colors.transparent,
-                                child: SizedBox(
+                              return Dialog(
+                                elevation: 0,
+                                insetPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.transparent,
+                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                    .resolve(Directionality.of(context)),
+                                child: const SizedBox(
                                   height: double.infinity,
                                   width: double.infinity,
-                                  child: TimekeepingManagementListWidget(),
+                                  child: TimekeepingManagementListWidget(
+                                    checkShowParams: 'check',
+                                  ),
                                 ),
                               );
                             },

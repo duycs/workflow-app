@@ -163,6 +163,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                       listItem,
                                       r'''$.id''',
                                     ).toString(),
+                                    status: 'archived',
                                   );
 
                                   if ((_model.apiResultbz5?.succeeded ??
@@ -193,6 +194,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                           r'''$.screen''',
                                         ).toString() ==
                                         '3') {
+                                      context.goNamed('StudyProgramListUser');
                                     } else if (getJsonField(
                                           functions.stringToJson(getJsonField(
                                             listItem,
@@ -201,6 +203,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                           r'''$.screen''',
                                         ).toString() ==
                                         '4') {
+                                      context.goNamed('StudyProgramListUser');
                                     } else if (getJsonField(
                                           functions.stringToJson(getJsonField(
                                             listItem,
@@ -208,7 +211,9 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                           ).toString()),
                                           r'''$.screen''',
                                         ).toString() ==
-                                        '5') {}
+                                        '5') {
+                                      context.goNamed('LessonLists_Homepage');
+                                    }
                                   }
                                 } else {
                                   setState(() {});
@@ -245,26 +250,113 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        width: 32.0,
-                                        height: 32.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .accent1,
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
+                                      if ((getJsonField(
+                                                functions
+                                                    .stringToJson(getJsonField(
+                                                  listItem,
+                                                  r'''$.data''',
+                                                ).toString()),
+                                                r'''$.screen''',
+                                              ).toString() ==
+                                              '3') ||
+                                          (getJsonField(
+                                                functions
+                                                    .stringToJson(getJsonField(
+                                                  listItem,
+                                                  r'''$.data''',
+                                                ).toString()),
+                                                r'''$.screen''',
+                                              ).toString() ==
+                                              '4'))
+                                        Container(
+                                          width: 32.0,
+                                          height: 32.0,
+                                          decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
+                                                .accent1,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.menu_book,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 16.0,
                                           ),
                                         ),
-                                        child: Icon(
-                                          Icons.person_add_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 16.0,
+                                      if ((getJsonField(
+                                                functions
+                                                    .stringToJson(getJsonField(
+                                                  listItem,
+                                                  r'''$.data''',
+                                                ).toString()),
+                                                r'''$.screen''',
+                                              ).toString() ==
+                                              '1') ||
+                                          (getJsonField(
+                                                functions
+                                                    .stringToJson(getJsonField(
+                                                  listItem,
+                                                  r'''$.data''',
+                                                ).toString()),
+                                                r'''$.screen''',
+                                              ).toString() ==
+                                              '2'))
+                                        Container(
+                                          width: 32.0,
+                                          height: 32.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent1,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.rule,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 16.0,
+                                          ),
                                         ),
-                                      ),
+                                      if (getJsonField(
+                                            functions.stringToJson(getJsonField(
+                                              listItem,
+                                              r'''$.data''',
+                                            ).toString()),
+                                            r'''$.screen''',
+                                          ).toString() ==
+                                          '5')
+                                        Container(
+                                          width: 32.0,
+                                          height: 32.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .accent1,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 2.0,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.play_lesson_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 16.0,
+                                          ),
+                                        ),
                                       Expanded(
                                         child: Padding(
                                           padding:
@@ -338,19 +430,12 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                         0.0, 8.0, 0.0, 4.0),
                                                 child: Text(
                                                   dateTimeFormat(
-                                                    'HH:mm,dd/MM/yyyy',
+                                                    'dd/MM/yyyy',
                                                     functions.stringToDateTime(
-                                                        (String var1) {
-                                                      return var1
-                                                          .split('.')
-                                                          .last;
-                                                    }(functions
-                                                            .stringToJson(
-                                                                getJsonField(
-                                                              listItem,
-                                                              r'''$.date_created''',
-                                                            ).toString())
-                                                            .toString())),
+                                                        getJsonField(
+                                                      listItem,
+                                                      r'''$.date_created''',
+                                                    ).toString()),
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
@@ -373,14 +458,10 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                           ),
                                         ),
                                       ),
-                                      if (((String var1) {
-                                            return var1.split('.').last;
-                                          }(functions
-                                              .stringToJson(getJsonField(
-                                                listItem,
-                                                r'''$.status''',
-                                              ).toString())
-                                              .toString())) ==
+                                      if (getJsonField(
+                                            listItem,
+                                            r'''$.status''',
+                                          ).toString() !=
                                           'archived')
                                         Container(
                                           width: 12.0,

@@ -70,7 +70,9 @@ class _TimeKeepingWidgetState extends State<TimeKeepingWidget> {
             },
           ),
           title: Text(
-            'Chấm công cá nhân',
+            widget.checkShowFilter == 'adminReport'
+                ? 'Báo cáo chấm công theo tháng'
+                : 'Chấm công cá nhân',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Nunito Sans',
                   color: FlutterFlowTheme.of(context).primaryText,

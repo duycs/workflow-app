@@ -1,11 +1,17 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'timekeeping_management_list_model.dart';
 export 'timekeeping_management_list_model.dart';
 
 class TimekeepingManagementListWidget extends StatefulWidget {
-  const TimekeepingManagementListWidget({super.key});
+  const TimekeepingManagementListWidget({
+    super.key,
+    this.checkShowParams,
+  });
+
+  final String? checkShowParams;
 
   @override
   State<TimekeepingManagementListWidget> createState() =>
@@ -40,9 +46,11 @@ class _TimekeepingManagementListWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(0.0),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -57,6 +65,7 @@ class _TimekeepingManagementListWidgetState
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     InkWell(
                       splashColor: Colors.transparent,
@@ -72,21 +81,96 @@ class _TimekeepingManagementListWidgetState
                         size: 30.0,
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                      child: Text(
-                        'Chấm công ngày 01/07/2024',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Nunito Sans',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                            ),
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Text(
+                            widget.checkShowParams == 'check'
+                                ? 'Báo cáo chấm công tất cả nhân viên theo tháng'
+                                : 'Báo cáo chấm công tất cả nhân viên theo ngày01/07/2024',
+                            maxLines: 2,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Nunito Sans',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
                       ),
                     ),
                   ].divide(const SizedBox(width: 10.0)),
                 ),
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Lọc Theo:',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                    SizedBox(
+                      width: 200.0,
+                      height: 50.0,
+                      child: custom_widgets.CustomWidgetDateTime(
+                        width: 200.0,
+                        height: 50.0,
+                        date: getCurrentTimestamp,
+                        action: (dateStart, dateEnd) async {
+                          _model.dateStart = dateStart!;
+                          _model.dateEnd = dateStart;
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ].divide(const SizedBox(width: 12.0)),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/export-spreadsheet-512.webp',
+                            width: 50.0,
+                            height: 50.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Xuất Excel',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Nunito Sans',
+                            color: FlutterFlowTheme.of(context).primary,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
           Padding(

@@ -737,6 +737,10 @@ class _DropdownUserListWidgetState extends State<DropdownUserListWidget> {
                                   firstName: _model
                                       .staffList[_model.loop].userId.firstName,
                                 ),
+                                departmentId: DepartmentListStruct(
+                                  name: _model
+                                      .staffList[_model.loop].departmentId.name,
+                                ),
                               ));
                               setState(() {});
                             }

@@ -315,9 +315,20 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
                                             icon: Icons.edit_outlined,
-                                            onPressed: (_) {
-                                              print(
-                                                  'SlidableActionWidget pressed ...');
+                                            onPressed: (_) async {
+                                              context.pushNamed(
+                                                'TimekeepingUpdate',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      const TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
                                             },
                                           ),
                                         ],

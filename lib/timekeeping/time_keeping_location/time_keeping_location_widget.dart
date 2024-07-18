@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
@@ -322,7 +323,13 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                   height: double.infinity,
                                   width: double.infinity,
                                   child: TimeKeepingLocationCreatedWidget(
-                                    callBack: () async {},
+                                    callBack: () async {
+                                      setState(() => _model
+                                          .listViewPagingController
+                                          ?.refresh());
+
+                                      setState(() {});
+                                    },
                                   ),
                                 ),
                               );

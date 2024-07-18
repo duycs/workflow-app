@@ -662,15 +662,11 @@ class _TimekeepingReportWidgetState extends State<TimekeepingReportWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: SizedBox(
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                0.6,
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.9,
+                                          child: const SizedBox(
+                                            height: double.infinity,
+                                            width: double.infinity,
                                             child:
-                                                const TimekeepingManagementListWidget(),
+                                                TimekeepingManagementListWidget(),
                                           ),
                                         ),
                                       );

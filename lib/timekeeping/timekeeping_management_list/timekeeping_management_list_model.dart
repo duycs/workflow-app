@@ -9,6 +9,10 @@ class TimekeepingManagementListModel
 
   String checkShow = '0';
 
+  String dateStart = '';
+
+  String dateEnd = '';
+
   @override
   void initState(BuildContext context) {}
 

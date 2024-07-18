@@ -522,6 +522,24 @@ class _TimeKeepingLocationCreatedWidgetState
                   if ((_model.getCurrentLocation != null &&
                           (_model.getCurrentLocation)!.isNotEmpty) ==
                       true) {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title:
+                              Text(_model.getCurrentLocation!.first.toString()),
+                          content:
+                              Text(_model.getCurrentLocation!.last.toString()),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                     _model.checkTokenTimeKeepingCreated =
                         await action_blocks.tokenReload(context);
                     shouldSetState = true;
@@ -575,6 +593,7 @@ class _TimeKeepingLocationCreatedWidgetState
                         ),
                       );
                       await widget.callBack?.call();
+                      Navigator.pop(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -590,17 +609,20 @@ class _TimeKeepingLocationCreatedWidgetState
                       );
                     }
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Định vị chưa được bật',
-                          style: TextStyle(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        ),
-                        duration: const Duration(milliseconds: 4000),
-                        backgroundColor: FlutterFlowTheme.of(context).error,
-                      ),
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: const Text('Định vị chưa được bật'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: const Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
                     );
                     if (shouldSetState) setState(() {});
                     return;

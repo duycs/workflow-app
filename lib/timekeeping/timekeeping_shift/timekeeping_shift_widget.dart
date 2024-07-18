@@ -18,11 +18,12 @@ class TimekeepingShiftWidget extends StatefulWidget {
     super.key,
     required this.callback,
     required this.callback2,
+    this.shiftSelect,
   });
 
-  final Future Function(List<ShiftsIdShiftConfigsRequestStruct> shifts)?
-      callback;
+  final Future Function(List<ShiftListStruct> shiftsSelect)? callback;
   final Future Function(String? addressId)? callback2;
+  final List<ShiftListStruct>? shiftSelect;
 
   @override
   State<TimekeepingShiftWidget> createState() => _TimekeepingShiftWidgetState();
@@ -44,6 +45,9 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.shiftSelect =
+          widget.shiftSelect!.toList().cast<ShiftListStruct>();
+      setState(() {});
       while ('1' == '1') {
         if (_model.check == true) {
           await widget.callback2?.call(
@@ -122,10 +126,49 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        var shouldSetState = false;
+                        if (_model.shiftSelect.isNotEmpty) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                content:
+                                    Text(_model.shiftSelect.length.toString()),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                content: const Text('Vui lòng chọn ca làm việc!'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          if (shouldSetState) setState(() {});
+                          return;
+                        }
+
                         while (_model.loop < _model.shiftSelect.length) {
                           if (_model.shiftSelect[_model.loop].id == '') {
                             _model.shiftCreate =
                                 await action_blocks.tokenReload(context);
+                            shouldSetState = true;
                             if (_model.shiftCreate!) {
                               _model.apiResultShiftCreate =
                                   await TimekeepingShiftGroup.shiftCreateCall
@@ -150,6 +193,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                 },
                               );
 
+                              shouldSetState = true;
                               if ((_model.apiResultShiftCreate?.succeeded ??
                                   true)) {
                                 _model.updateShiftSelectAtIndex(
@@ -172,19 +216,8 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                         }
                         _model.loop = 0;
                         setState(() {});
-                        while (_model.loop < _model.shiftSelect.length) {
-                          _model
-                              .addToShiftsId(ShiftsIdShiftConfigsRequestStruct(
-                            shiftsId: IdStruct(
-                              id: _model.shiftSelect[_model.loop].id,
-                            ),
-                          ));
-                          setState(() {});
-                        }
-                        _model.loop = 0;
-                        setState(() {});
                         await widget.callback?.call(
-                          _model.shiftsId,
+                          _model.shiftSelect,
                         );
                         await showDialog(
                           context: context,
@@ -206,7 +239,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           },
                         ).then((value) => setState(() {}));
 
-                        setState(() {});
+                        if (shouldSetState) setState(() {});
                       },
                       child: Text(
                         'Tiếp tục',
@@ -223,10 +256,10 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
               ),
             ),
             Expanded(
-              child: Opacity(
-                opacity: 0.8,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: SingleChildScrollView(
+                  primary: false,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -289,6 +322,28 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: TimeKeepingShiftSelectWidget(
                                     callback: (item) async {
+                                      if (_model.shiftSelect
+                                              .where((e) => e.id == item.id)
+                                              .toList().isNotEmpty) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return AlertDialog(
+                                              content: const Text(
+                                                  'Ca làm việc đã được chọn. Vui lòng chọn ca làm việc khác!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: const Text('Ok'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                        return;
+                                      }
                                       _model.addToShiftSelect(ShiftListStruct(
                                         id: item.id,
                                         startTime: item.startTime,
@@ -719,60 +774,72 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           builder: (context) {
                             final shiftsSelect = _model.shiftSelect.toList();
 
-                            return ListView.builder(
+                            return ListView.separated(
                               padding: EdgeInsets.zero,
                               primary: false,
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemCount: shiftsSelect.length,
+                              separatorBuilder: (_, __) =>
+                                  const SizedBox(height: 4.0),
                               itemBuilder: (context, shiftsSelectIndex) {
                                 final shiftsSelectItem =
                                     shiftsSelect[shiftsSelectIndex];
-                                return Slidable(
-                                  endActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    extentRatio: 0.25,
-                                    children: [
-                                      SlidableAction(
-                                        label: 'Xóa',
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context).error,
-                                        icon: Icons.delete_outline,
-                                        onPressed: (_) async {
-                                          _model.removeAtIndexFromShiftSelect(
-                                              shiftsSelectIndex);
-                                          setState(() {});
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                  child: ListTile(
-                                    title: Text(
-                                      shiftsSelectItem.name != ''
-                                          ? shiftsSelectItem.name
-                                          : 'Chưa cập nhật',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                    subtitle: Text(
-                                      '${shiftsSelectItem.startTime} - ${shiftsSelectItem.endTime}',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Nunito Sans',
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    tileColor: FlutterFlowTheme.of(context)
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    dense: true,
+                                  ),
+                                  child: Slidable(
+                                    endActionPane: ActionPane(
+                                      motion: const ScrollMotion(),
+                                      extentRatio: 0.25,
+                                      children: [
+                                        SlidableAction(
+                                          label: 'Xóa',
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .error,
+                                          icon: Icons.delete_outline,
+                                          onPressed: (_) async {
+                                            _model.removeAtIndexFromShiftSelect(
+                                                shiftsSelectIndex);
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                    child: ListTile(
+                                      leading: const Icon(
+                                        Icons.six_ft_apart_sharp,
+                                      ),
+                                      title: Text(
+                                        shiftsSelectItem.name != ''
+                                            ? shiftsSelectItem.name
+                                            : 'Chưa cập nhật',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                      ),
+                                      subtitle: Text(
+                                        '${shiftsSelectItem.startTime} - ${shiftsSelectItem.endTime}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Nunito Sans',
+                                              fontSize: 13.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      tileColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      dense: true,
+                                    ),
                                   ),
                                 );
                               },
