@@ -41,6 +41,10 @@ class TimekeepingShiftModel extends FlutterFlowModel<TimekeepingShiftWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Action Block - tokenReload] action in IconButton widget.
+  bool? shiftCreateBack;
+  // Stores action output result for [Backend Call - API (ShiftCreate)] action in IconButton widget.
+  ApiCallResponse? apiResultShiftCreateback;
   // Stores action output result for [Action Block - tokenReload] action in Text widget.
   bool? shiftCreate;
   // Stores action output result for [Backend Call - API (ShiftCreate)] action in Text widget.

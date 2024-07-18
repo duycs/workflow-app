@@ -48,7 +48,8 @@
     <string>In order to record audio for video, this app requires permission to access the microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Bạn vui lòng cho phép ứng dụng truy cập vị trí để thực hiện tính năng chấm công theo địa điểm</string>
 
 
 	<key>UILaunchStoryboardName</key>

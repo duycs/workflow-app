@@ -755,3 +755,14 @@ String? filterListLessonUser(
   buffer.write(']}');
   return buffer.toString();
 }
+
+String? stringToBase64(String input) {
+  try {
+    final bytes = utf8.encode(input);
+    final base64Str = base64.encode(bytes);
+    return base64Str;
+  } catch (e) {
+    print('Error converting string to base64: $e');
+    return null;
+  }
+}

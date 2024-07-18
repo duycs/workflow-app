@@ -89,7 +89,16 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed(
+                'Home',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
             },
           ),
           title: Text(
@@ -318,6 +327,12 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             onPressed: (_) async {
                                               context.pushNamed(
                                                 'TimekeepingUpdate',
+                                                queryParameters: {
+                                                  'itemDetail': serializeParam(
+                                                    shiftCofigsListItem,
+                                                    ParamType.DataStruct,
+                                                  ),
+                                                }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
                                                       const TransitionInfo(
@@ -437,10 +452,8 @@ class _TimekeepingListWidgetState extends State<TimekeepingListWidget> {
                                             ),
                                           ),
                                         ),
-                                        if (shiftCofigsListItem.addressId.id !=
-                                                null &&
-                                            shiftCofigsListItem.addressId.id !=
-                                                '')
+                                        if (shiftCofigsListItem.addressId !=
+                                            null)
                                           Container(
                                             decoration: BoxDecoration(
                                               borderRadius:

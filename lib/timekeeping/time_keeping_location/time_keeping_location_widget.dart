@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/data_not_found/data_not_found_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/timekeeping/time_keeping_location_created/time_keeping_location_created_widget.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 import 'time_keeping_location_model.dart';
@@ -16,9 +18,11 @@ class TimeKeepingLocationWidget extends StatefulWidget {
   const TimeKeepingLocationWidget({
     super.key,
     required this.callback,
+    this.addressId,
   });
 
-  final Future Function(String? addressId)? callback;
+  final Future Function(String? addressId, int checkBack)? callback;
+  final String? addressId;
 
   @override
   State<TimeKeepingLocationWidget> createState() =>
@@ -38,6 +42,18 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimeKeepingLocationModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (widget.addressId != null && widget.addressId != '') {
+        _model.locationSelect = AddressListStruct(
+          id: widget.addressId,
+        );
+        setState(() {});
+      } else {
+        return;
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -86,7 +102,13 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                       size: 30.0,
                     ),
                     onPressed: () async {
-                      context.pop();
+                      if (_model.locationSelect != null) {
+                        await widget.callback?.call(
+                          _model.locationSelect?.id,
+                          1,
+                        );
+                      }
+                      Navigator.pop(context);
                     },
                   ),
                   Expanded(
@@ -104,6 +126,7 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                       if (_model.locationSelect != null) {
                         await widget.callback?.call(
                           _model.locationSelect?.id,
+                          0,
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -323,11 +346,13 @@ class _TimeKeepingLocationWidgetState extends State<TimeKeepingLocationWidget> {
                                   height: double.infinity,
                                   width: double.infinity,
                                   child: TimeKeepingLocationCreatedWidget(
-                                    callBack: () async {
+                                    callBack: (id) async {
                                       setState(() => _model
                                           .listViewPagingController
                                           ?.refresh());
-
+                                      _model.locationSelect = AddressListStruct(
+                                        id: id,
+                                      );
                                       setState(() {});
                                     },
                                   ),

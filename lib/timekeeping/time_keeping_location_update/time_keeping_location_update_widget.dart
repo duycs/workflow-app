@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_place_picker.dart';
@@ -13,10 +14,10 @@ export 'time_keeping_location_update_model.dart';
 class TimeKeepingLocationUpdateWidget extends StatefulWidget {
   const TimeKeepingLocationUpdateWidget({
     super.key,
-    this.callBack,
+    required this.item,
   });
 
-  final Future Function()? callBack;
+  final AddressListStruct? item;
 
   @override
   State<TimeKeepingLocationUpdateWidget> createState() =>
@@ -154,7 +155,7 @@ class _TimeKeepingLocationUpdateWidgetState
                       FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController1 ??=
                             FormFieldController<String>(
-                          _model.dropDownValue1 ??= '',
+                          _model.dropDownValue1 ??= widget.item?.id,
                         ),
                         options: List<String>.from(
                             _model.listCity.map((e) => e.id).toList()),
@@ -204,7 +205,8 @@ class _TimeKeepingLocationUpdateWidgetState
                       FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController2 ??=
                             FormFieldController<String>(
-                          _model.dropDownValue2 ??= '',
+                          _model.dropDownValue2 ??=
+                              widget.item?.wardId.districtId.id,
                         ),
                         options: List<String>.from(
                             _model.listDistricts.map((e) => e.id).toList()),
@@ -260,7 +262,7 @@ class _TimeKeepingLocationUpdateWidgetState
                       FlutterFlowDropDown<String>(
                         controller: _model.dropDownValueController3 ??=
                             FormFieldController<String>(
-                          _model.dropDownValue3 ??= '',
+                          _model.dropDownValue3 ??= widget.item?.wardId.id,
                         ),
                         options: List<String>.from(
                             _model.listWards.map((e) => e.id).toList()),

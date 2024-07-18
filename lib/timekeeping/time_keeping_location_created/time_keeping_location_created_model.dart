@@ -41,8 +41,15 @@ class TimeKeepingLocationCreatedModel
   void updateListWardsAtIndex(int index, Function(WardsStruct) updateFn) =>
       listWards[index] = updateFn(listWards[index]);
 
+  bool checkCtity = false;
+
+  bool checkDistric = false;
+
+  bool checkWard = false;
+
   ///  State fields for stateful widgets in this component.
 
+  final formKey = GlobalKey<FormState>();
   // State field(s) for DropDown widget.
   String? dropDownValue1;
   FormFieldController<String>? dropDownValueController1;
@@ -56,12 +63,28 @@ class TimeKeepingLocationCreatedModel
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
+  String? _textController1Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập địa chỉ';
+    }
+
+    return null;
+  }
+
   // State field(s) for PlacePicker widget.
   FFPlace placePickerValue = const FFPlace();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  String? _textController2Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Vui lòng nhập phạm vi áp dụng';
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Custom Action - getCurrentLocationStruct] action in Button widget.
   List<double>? getCurrentLocation;
   // Stores action output result for [Action Block - tokenReload] action in Button widget.
@@ -70,7 +93,10 @@ class TimeKeepingLocationCreatedModel
   ApiCallResponse? apiResultTimeKeepingCreated;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    textController1Validator = _textController1Validator;
+    textController2Validator = _textController2Validator;
+  }
 
   @override
   void dispose() {

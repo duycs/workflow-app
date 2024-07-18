@@ -77,7 +77,7 @@ class _TimekeepingLocationListWidgetState
                         height: double.infinity,
                         width: double.infinity,
                         child: TimeKeepingLocationCreatedWidget(
-                          callBack: () async {},
+                          callBack: (id) async {},
                         ),
                       ),
                     ),
@@ -332,7 +332,7 @@ class _TimekeepingLocationListWidgetState
                             child: Slidable(
                               endActionPane: ActionPane(
                                 motion: const ScrollMotion(),
-                                extentRatio: 0.5,
+                                extentRatio: 0.25,
                                 children: [
                                   Builder(
                                     builder: (context) => SlidableAction(
@@ -364,7 +364,7 @@ class _TimekeepingLocationListWidgetState
                                                         .unfocus(),
                                                 child:
                                                     TimeKeepingLocationCreatedWidget(
-                                                  callBack: () async {},
+                                                  callBack: (id) async {},
                                                 ),
                                               ),
                                             );
@@ -372,15 +372,6 @@ class _TimekeepingLocationListWidgetState
                                         ).then((value) => setState(() {}));
                                       },
                                     ),
-                                  ),
-                                  SlidableAction(
-                                    label: 'Share',
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).info,
-                                    icon: Icons.share,
-                                    onPressed: (_) {
-                                      print('SlidableActionWidget pressed ...');
-                                    },
                                   ),
                                 ],
                               ),

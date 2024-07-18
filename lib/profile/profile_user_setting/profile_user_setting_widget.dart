@@ -8,6 +8,7 @@ import '/profile/confirm_password/confirm_password_widget.dart';
 import '/training/do_test/delete_account/delete_account_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,9 @@ class _ProfileUserSettingWidgetState extends State<ProfileUserSettingWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.biometricAccessToken = await actions.secureStorageGet(
-        FFAppConstants.BiometricTokenKey,
-      );
-      if (_model.biometricAccessToken == FFAppState().user.publicKey) {
+      _model.biometricPublicKey = await actions.biometricGetPublicKey();
+      if (functions.stringToBase64(_model.biometricPublicKey!) ==
+          FFAppState().user.publicKey) {
         _model.isSetPublicKeyInSecureStorage = true;
         setState(() {});
       } else {

@@ -29,8 +29,8 @@ class ProfileUserSettingModel
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - secureStorageGet] action in ProfileUserSetting widget.
-  String? biometricAccessToken;
+  // Stores action output result for [Custom Action - biometricGetPublicKey] action in ProfileUserSetting widget.
+  String? biometricPublicKey;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue;
   // Stores action output result for [Custom Action - authenticateUsingBiometricsSetting] action in SwitchListTile widget.

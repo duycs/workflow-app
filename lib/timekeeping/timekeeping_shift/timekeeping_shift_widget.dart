@@ -19,11 +19,14 @@ class TimekeepingShiftWidget extends StatefulWidget {
     required this.callback,
     required this.callback2,
     this.shiftSelect,
+    this.address,
   });
 
-  final Future Function(List<ShiftListStruct> shiftsSelect)? callback;
+  final Future Function(List<ShiftListStruct> shiftsSelect, String? addressId)?
+      callback;
   final Future Function(String? addressId)? callback2;
   final List<ShiftListStruct>? shiftSelect;
+  final String? address;
 
   @override
   State<TimekeepingShiftWidget> createState() => _TimekeepingShiftWidgetState();
@@ -47,9 +50,26 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.shiftSelect =
           widget.shiftSelect!.toList().cast<ShiftListStruct>();
+      _model.addressId = widget.address;
       setState(() {});
       while ('1' == '1') {
         if (_model.check == true) {
+          _model.check = false;
+          setState(() {});
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                content: const Text('Tạo CH thôi'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
           await widget.callback2?.call(
             _model.addressId,
           );
@@ -106,7 +126,70 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       size: 30.0,
                     ),
                     onPressed: () async {
+                      var shouldSetState = false;
+                      if (_model.shiftSelect.isEmpty) {
+                        Navigator.pop(context);
+                        if (shouldSetState) setState(() {});
+                        return;
+                      }
+                      while (_model.loop < _model.shiftSelect.length) {
+                        if (_model.shiftSelect[_model.loop].id == '') {
+                          _model.shiftCreateBack =
+                              await action_blocks.tokenReload(context);
+                          shouldSetState = true;
+                          if (_model.shiftCreateBack!) {
+                            _model.apiResultShiftCreateback =
+                                await TimekeepingShiftGroup.shiftCreateCall
+                                    .call(
+                              accessToken: FFAppState().accessToken,
+                              requestJson: <String, dynamic>{
+                                'start_time':
+                                    _model.shiftSelect[_model.loop].startTime,
+                                'end_time':
+                                    _model.shiftSelect[_model.loop].endTime,
+                                'status': 'published',
+                                'normal': getJsonField(
+                                  <String, int>{
+                                    'map': 1,
+                                  },
+                                  r'''$.map''',
+                                ),
+                                'organization_id': getJsonField(
+                                  FFAppState().staffOrganization,
+                                  r'''$.id''',
+                                ),
+                              },
+                            );
+
+                            shouldSetState = true;
+                            if (_model.shiftCreateBack!) {
+                              _model.updateShiftSelectAtIndex(
+                                _model.loop,
+                                (e) => e
+                                  ..id = getJsonField(
+                                    (_model.apiResultShiftCreateback
+                                            ?.jsonBody ??
+                                        ''),
+                                    r'''$.data.id''',
+                                  ).toString(),
+                              );
+                              setState(() {});
+                            }
+                          } else {
+                            setState(() {});
+                          }
+                        }
+                        _model.loop = _model.loop + 1;
+                        setState(() {});
+                      }
+                      _model.loop = 0;
+                      setState(() {});
+                      await widget.callback?.call(
+                        _model.shiftSelect,
+                        _model.addressId,
+                      );
                       Navigator.pop(context);
+                      if (shouldSetState) setState(() {});
                     },
                   ),
                   Expanded(
@@ -127,24 +210,7 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         var shouldSetState = false;
-                        if (_model.shiftSelect.isNotEmpty) {
-                          await showDialog(
-                            context: context,
-                            builder: (alertDialogContext) {
-                              return AlertDialog(
-                                content:
-                                    Text(_model.shiftSelect.length.toString()),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        } else {
+                        if (_model.shiftSelect.isEmpty) {
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
@@ -163,7 +229,6 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                           if (shouldSetState) setState(() {});
                           return;
                         }
-
                         while (_model.loop < _model.shiftSelect.length) {
                           if (_model.shiftSelect[_model.loop].id == '') {
                             _model.shiftCreate =
@@ -211,13 +276,14 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               setState(() {});
                             }
                           }
-                          _model.loop = 0;
+                          _model.loop = _model.loop + 1;
                           setState(() {});
                         }
                         _model.loop = 0;
                         setState(() {});
                         await widget.callback?.call(
                           _model.shiftSelect,
+                          _model.addressId,
                         );
                         await showDialog(
                           context: context,
@@ -228,12 +294,23 @@ class _TimekeepingShiftWidgetState extends State<TimekeepingShiftWidget> {
                               backgroundColor: Colors.transparent,
                               alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: TimeKeepingLocationWidget(
-                                callback: (addressId) async {
-                                  _model.check = true;
-                                  _model.addressId = addressId;
-                                  setState(() {});
-                                },
+                              child: SizedBox(
+                                height: double.infinity,
+                                width: double.infinity,
+                                child: TimeKeepingLocationWidget(
+                                  addressId: _model.addressId,
+                                  callback: (addressId, checkBack) async {
+                                    if (checkBack == 1) {
+                                      _model.check = false;
+                                      _model.addressId = addressId;
+                                      setState(() {});
+                                    } else {
+                                      _model.check = true;
+                                      _model.addressId = addressId;
+                                      setState(() {});
+                                    }
+                                  },
+                                ),
                               ),
                             );
                           },

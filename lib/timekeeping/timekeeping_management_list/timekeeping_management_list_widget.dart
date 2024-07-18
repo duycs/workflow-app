@@ -114,31 +114,35 @@ class _TimekeepingManagementListWidgetState
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Lọc Theo:',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Nunito Sans',
-                            letterSpacing: 0.0,
-                          ),
-                    ),
-                    SizedBox(
-                      width: 200.0,
-                      height: 50.0,
-                      child: custom_widgets.CustomWidgetDateTime(
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        'Lọc Theo:',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Nunito Sans',
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      SizedBox(
                         width: 200.0,
                         height: 50.0,
-                        date: getCurrentTimestamp,
-                        action: (dateStart, dateEnd) async {
-                          _model.dateStart = dateStart!;
-                          _model.dateEnd = dateStart;
-                          setState(() {});
-                        },
+                        child: custom_widgets.CustomWidgetDateTime(
+                          width: 200.0,
+                          height: 50.0,
+                          date: getCurrentTimestamp,
+                          action: (dateStart, dateEnd) async {
+                            _model.dateStart = dateStart!;
+                            _model.dateEnd = dateStart;
+                            setState(() {});
+                          },
+                        ),
                       ),
-                    ),
-                  ].divide(const SizedBox(width: 12.0)),
+                    ].divide(const SizedBox(width: 12.0)),
+                  ),
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.max,

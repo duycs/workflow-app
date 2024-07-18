@@ -91,6 +91,8 @@ class TimekeepingCreateModel extends FlutterFlowModel<TimekeepingCreateWidget> {
           int index, Function(ShiftsIdShiftConfigsRequestStruct) updateFn) =>
       shifts[index] = updateFn(shifts[index]);
 
+  String? address;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

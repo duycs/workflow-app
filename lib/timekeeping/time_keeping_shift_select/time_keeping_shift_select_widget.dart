@@ -103,7 +103,7 @@ class _TimeKeepingShiftSelectWidgetState
                     ],
                   ),
                 ),
-                PagedListView<ApiPagingParams, dynamic>(
+                PagedListView<ApiPagingParams, dynamic>.separated(
                   pagingController: _model.setListViewController(
                     (nextPageMarker) =>
                         TimekeepingShiftGroup.shiftListCall.call(
@@ -121,6 +121,7 @@ class _TimeKeepingShiftSelectWidgetState
                   shrinkWrap: true,
                   reverse: false,
                   scrollDirection: Axis.vertical,
+                  separatorBuilder: (_, __) => const SizedBox(height: 4.0),
                   builderDelegate: PagedChildBuilderDelegate<dynamic>(
                     // Customize what your widget looks like when it's loading the first page.
                     firstPageProgressIndicatorBuilder: (_) => Center(
@@ -158,7 +159,7 @@ class _TimeKeepingShiftSelectWidgetState
                         onTap: () async {
                           await widget.callback?.call(
                             ShiftListStruct(
-                              id: shiftsItem.name,
+                              id: shiftsItem.id,
                               startTime: shiftsItem.startTime,
                               endTime: shiftsItem.endTime,
                               name: shiftsItem.name,

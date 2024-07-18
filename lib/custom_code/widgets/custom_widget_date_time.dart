@@ -10,31 +10,40 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+// Các import tự động của FlutterFlow
+import '/custom_code/widgets/index.dart'; // Import các widget tùy chỉnh khác
+import '/custom_code/actions/index.dart'; // Import các hành động tùy chỉnh
+import '/flutter_flow/custom_functions.dart'; // Import các hàm tùy chỉnh
+
+// Bắt đầu mã widget tùy chỉnh
+// KHÔNG XÓA HOẶC SỬA MÃ TRÊN ĐÂY!
+
 class CustomWidgetDateTime extends StatefulWidget {
   const CustomWidgetDateTime({
-    super.key,
+    Key? key,
     this.width,
     this.height,
     this.date,
     this.action,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double? height;
   final DateTime? date;
-  final Future Function(String? dateStart, String? dateEnd)? action;
+  final Future<void> Function(String? dateStart, String? dateEnd)? action;
 
   @override
-  State<CustomWidgetDateTime> createState() => _CustomWidgetDateTimeState();
+  _CustomWidgetDateTimeState createState() => _CustomWidgetDateTimeState();
 }
 
 class _CustomWidgetDateTimeState extends State<CustomWidgetDateTime> {
-  DateTime? selectedDate;
+  late DateTime selectedDate;
 
   @override
   void initState() {
     super.initState();
     selectedDate = widget.date ?? DateTime.now();
+    _updateDates();
   }
 
   @override
@@ -42,22 +51,24 @@ class _CustomWidgetDateTimeState extends State<CustomWidgetDateTime> {
     return Container(
       width: widget.width,
       child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.center, // Center children horizontally
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: DropdownButton<int>(
-              value: selectedDate?.month,
+              value: selectedDate.month,
               underline: SizedBox.shrink(),
               items: List.generate(12, (index) {
-                return DropdownMenuItem(
+                return DropdownMenuItem<int>(
                   value: index + 1,
-                  child: Text('Tháng ${index + 1}'),
+                  child: Text(
+                    'Tháng ${index + 1}',
+                    style: TextStyle(fontSize: 14),
+                  ),
                 );
               }),
               onChanged: (value) {
                 setState(() {
-                  selectedDate = DateTime(selectedDate!.year, value!, 1);
+                  selectedDate = DateTime(selectedDate.year, value!, 1);
                 });
                 _updateDates();
               },
@@ -66,18 +77,21 @@ class _CustomWidgetDateTimeState extends State<CustomWidgetDateTime> {
           SizedBox(width: 16.0),
           Expanded(
             child: DropdownButton<int>(
-              value: selectedDate?.year,
+              value: selectedDate.year,
               underline: SizedBox.shrink(),
               items: List.generate(100, (index) {
                 int year = DateTime.now().year - 50 + index;
-                return DropdownMenuItem(
+                return DropdownMenuItem<int>(
                   value: year,
-                  child: Text('$year'),
+                  child: Text(
+                    '$year',
+                    style: TextStyle(fontSize: 14),
+                  ),
                 );
               }),
               onChanged: (value) {
                 setState(() {
-                  selectedDate = DateTime(value!, selectedDate!.month, 1);
+                  selectedDate = DateTime(value!, selectedDate.month, 1);
                 });
                 _updateDates();
               },
@@ -89,16 +103,14 @@ class _CustomWidgetDateTimeState extends State<CustomWidgetDateTime> {
   }
 
   void _updateDates() async {
-    if (selectedDate == null || widget.action == null) return;
-
-    DateTime dateStart = DateTime(selectedDate!.year, selectedDate!.month, 1);
-    DateTime dateEnd = DateTime(selectedDate!.year, selectedDate!.month + 1, 1);
+    DateTime startDate = DateTime(selectedDate.year, selectedDate.month, 1);
+    DateTime endDate = DateTime(selectedDate.year, selectedDate.month + 1, 1);
 
     String dateStartString =
-        "${dateStart.year.toString().padLeft(4, '0')}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}";
+        "${startDate.year.toString().padLeft(4, '0')}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}";
     String dateEndString =
-        "${dateEnd.year.toString().padLeft(4, '0')}-${dateEnd.month.toString().padLeft(2, '0')}-${dateEnd.day.toString().padLeft(2, '0')}";
+        "${endDate.year.toString().padLeft(4, '0')}-${endDate.month.toString().padLeft(2, '0')}-${endDate.day.toString().padLeft(2, '0')}";
 
-    await widget.action!(dateStartString, dateEndString);
+    await widget.action?.call(dateStartString, dateEndString);
   }
 }

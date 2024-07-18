@@ -178,8 +178,11 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 : FocusScope.of(context).unfocus(),
                             child: TimekeepingShiftWidget(
                               shiftSelect: _model.shiftSelect,
-                              callback: (shiftsSelect) async {
-                                while (_model.loop == shiftsSelect.length) {
+                              address: _model.address,
+                              callback: (shiftsSelect, addressId) async {
+                                _model.shifts = [];
+                                setState(() {});
+                                while (_model.loop < shiftsSelect.length) {
                                   _model.addToShifts(
                                       ShiftsIdShiftConfigsRequestStruct(
                                     shiftsId: IdStruct(
@@ -196,6 +199,7 @@ class _TimekeepingCreateWidgetState extends State<TimekeepingCreateWidget> {
                                 _model.shiftSelect = shiftsSelect
                                     .toList()
                                     .cast<ShiftListStruct>();
+                                _model.address = addressId;
                                 setState(() {});
                               },
                               callback2: (addressId) async {
